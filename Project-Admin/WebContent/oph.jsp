@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-오평화
+오평화 내가바로 갓평화!
 </body>
 </html>

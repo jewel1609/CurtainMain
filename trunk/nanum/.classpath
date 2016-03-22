@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/snacktory-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/slf4j-ext-1.7.5.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/slf4j-simple-1.7.5.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/jhannanum.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_65/jre/lib/ext/jsoup-1.7.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+body, input, div, span, p, a, td, th, caption, lable, h1, h2, h3, h4, h5, h6, textarea, iframe, ul, ol, li, dd, dt, b, u, i, strong, pre, code, address, city, header, aside {
+	color: #333333;
+	font-family: "나눔바른고딕", "나눔 고딕", "돋움체";
+	font-size: 12pt;
+}
+
+.w3-sidenav a {
+	padding:16px;font-weight:bold
+}

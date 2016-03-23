@@ -28,6 +28,7 @@ html, body, h1, h2, h3, h4, h5 {
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resource/js/jquery-1.12.1.js"></script>
+<script type="text/javascript" src="/resource/js/json2.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -111,6 +112,7 @@ html, body, h1, h2, h3, h4, h5 {
 	         var text = $(this).text();
 		});
 		
+		//패스워드 확인
 		$("#inputPasswordCheck").keyup(function(){
 			
 			if ( $("#inputPasswordCheck").val() == ""){
@@ -127,8 +129,80 @@ html, body, h1, h2, h3, h4, h5 {
 			
 		});
 		
-		$("#inputUnivName").autocomplete({
-			
+		//대학이름 검색
+		$("#inputUnivName").keyup(function(){
+			//AJAX 준비
+	         $.post(
+	                  "/Curtain/doUnivSearch" //갈 서블릿url
+	                  , {
+	                	  "inputUnivName" : $("#inputUnivName").val()
+	                	 }
+	                  , function(data) { //응답내용
+	                	 	 var jsonData3 = {};
+		                  
+		                     try {
+		                        jsonData3 = JSON.parse(data);
+		                     }
+		                     catch(e) {
+		                    	console.log(e);
+		                     }
+		                    console.log(jsonData3.checkUnivName);
+		                    
+		                    jsonData3.checkUnivName = $.trim(jsonData3.checkUnivName);
+		                    
+		                    var result = jsonData3.checkUnivName.split(',');
+		        			var univList = "";
+		        			for(var i = 0; i<result.length; i++){
+		        				univList += "<div class=\"univList\">" + result[i] +"</div>";
+		        			}
+		        			$("#univSuggest").html(univList).show();
+	                  }
+	         );
+		});
+		
+		//새로HTML이 추가되면 해줘야하는것 
+		$("body").on("click", ".univList",function(){
+			alert($(this).text());
+			$("#inputUnivName").val($(this).text());
+			$("#univSuggest").hide("slow");
+		});
+		
+		//과 이름 검색
+		$("#inputMajorName").keyup(function(){
+			//AJAX 준비
+	         $.post(
+	                  "/Curtain/doMajorSearch" //갈 서블릿url
+	                  , {
+	                	  "inputMajorName" : $("#inputMajorName").val()
+	                	 }
+	                  , function(data) { //응답내용
+	                	 	 var jsonData3 = {};
+		                  
+		                     try {
+		                        jsonData3 = JSON.parse(data);
+		                     }
+		                     catch(e) {
+		                    	console.log(e);
+		                     }
+		                    console.log(jsonData3.checkMajorNameList);
+		                    
+		                    jsonData3.checkMajorNameList = $.trim(jsonData3.checkMajorNameList);
+		                    
+		                    var result = jsonData3.checkMajorNameList.split(',');
+		        			var univList = "";
+		        			for(var i = 0; i<result.length; i++){
+		        				univList += "<div class=\"majorList\">" + result[i] +"</div>";
+		        			}
+		        			$("#majorSuggest").html(univList).show();
+	                  }
+	         );
+		});
+		
+		//$("#inputMajorName").keyup 에서 새로HTML이 추가되기 때문에
+		//on으로 이어주기 위해 해줘야하는것 
+		$("body").on("click", ".majorList",function(){
+			$("#inputMajorName").val($(this).text());
+			$("#majorSuggest").hide("slow");
 		});
 		
 		//회원가입 버튼 누를시,
@@ -255,6 +329,7 @@ html, body, h1, h2, h3, h4, h5 {
 						<div class="col-sm-6">
 							<input class="form-control" id="inputUnivName" name="inputUnivName" type="text"
 								placeholder="대학교를 검색하세요">
+							<div class="col-sm-6" id="univSuggest"></div>
 						</div>
 					</div>
 					
@@ -264,6 +339,7 @@ html, body, h1, h2, h3, h4, h5 {
 						<div class="col-sm-6">
 							<input class="form-control" id="inputMajorName" name="inputMajorName" type="text"
 								placeholder="학과를 검색하세요.">
+							<div class="col-sm-6" id="majorSuggest"></div>
 						</div>
 					</div>
 					<hr>

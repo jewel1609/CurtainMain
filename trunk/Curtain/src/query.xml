@@ -43,5 +43,24 @@
 			AND         A.MAJOR_GROUP_ID = 1
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showMajorArticle>
+		
+		
+		
+		<myWriteArticle>
+			SELECT	ARTICLE_TITLE
+					, ARTICLE_DESC
+					, ARTICLE_MODIFY_DATE
+					, BOARD_ID
+					, SM.NICK_NAME
+					, A.MAJOR_GROUP_ID
+					, HITS
+					, ARTICLE_LIKES
+			FROM	ARTICLE A
+                    , STD_MEMBER SM
+			WHERE	A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND     BOARD_ID IN (1, 2)
+			AND		A.STUDENT_EMAIL = ?
+		</myWriteArticle>
+		
 	</article>
 </query>

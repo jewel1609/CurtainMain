@@ -11,6 +11,16 @@
   </welcome-file-list>
   <servlet>
     <description></description>
+    <display-name>StudentMajorAritlceServlet</display-name>
+    <servlet-name>StudentMajorAritlceServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.StudentMajorAritlceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentMajorAritlceServlet</servlet-name>
+    <url-pattern>/studentMajorAritlce</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>RegistMemberServlet</display-name>
     <servlet-name>RegistMemberServlet</servlet-name>
     <servlet-class>com.ktds.curtain.member.web.RegistStdMemberServlet</servlet-class>

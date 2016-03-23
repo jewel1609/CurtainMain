@@ -8,11 +8,11 @@
 	$(document).ready( function(){
 		
 		$("#cancelBtn1").click(function() {
-			location.href = "/Curtain/myPage";
+			location.href = "/myPage";
 		})	
 		
 		$("#cancelBtn2").click(function() {
-			location.href = "/Curtain/myPage";
+			location.href = "/myPage";
 		})	
 		
 	});	

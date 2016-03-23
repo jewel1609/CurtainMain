@@ -45,7 +45,7 @@ html, body, h1, h2, h3, h4, h5 {
 				
 					<!-- 대학교 이메일 -->
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputEmail">대학교 이메일</label>
+						<label class="col-sm-3 control-label" for="inputUnivEmail">대학교 이메일</label>
 						<div class="col-sm-6">
 							<div class="input-group">
 								<input class="form-control" id="inputEmail" type="email" 
@@ -125,26 +125,23 @@ html, body, h1, h2, h3, h4, h5 {
 					<!-- 약관 동의 -->
 					<h1>
 						약관 동의
-					</h1>
-					<br/>
+					</h1><hr>
 					<div class="form-group">
 						<div class="col-sm-6" data-toggle="buttons">
 							개인화면 약관에 동의 <a href="#">내용보기</a>
-								<input id="agree"type="checkbox" autocomplete="off">
+								<input class="w3-check" id="agree"type="checkbox" autocomplete="off">
 						</div>
 						
 						<div class="col-sm-6" data-toggle="buttons">
 							개인정보 수정 및 이용에 동의 <a href="#">내용보기</a>
-								<input id="agree2" type="checkbox" autocomplete="off">
+								<input class="w3-check" id="agree2" type="checkbox" autocomplete="off">
 						</div>
 					</div>
 					
 					<!-- 가입하기 버튼 -->
 					<div class="form-group">
 						<div class="col-sm-12 text-center">
-							<button class="btn btn-primary" type="submit">
-								가입하기<i class="fa fa-check spaceLeft"></i>
-							</button>
+							<input type="button" class="btn btn-primary" value="가입하기">
 							<!--  
 							<button class="btn btn-danger" type="submit">
 								가입취소<i class="fa fa-times spaceLeft"></i>

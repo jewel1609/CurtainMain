@@ -60,7 +60,7 @@
           				<b>일반 이메일</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>jewel1609@nate.com</p>
+    					<input type="text" tabindex="0" id="userEmail" name="userEmail" placeholder="jewel1609@nate.com" />
     				</div>
           		</div>
             </div>
@@ -77,7 +77,7 @@
           				<b>닉네임</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>갓피스</p>
+    					<input type="text" tabindex="1" id="userNickName" name="userNickName" placeholder="갓피스" />
     				</div>
           		</div>
             </div>
@@ -206,10 +206,10 @@
      	
      <div class="w3-center-align">	
 		<div class="w3-btn-group">
-			<button type="button" class="btn btn-primary " style="background-color:#FF3300; border:0px;">
+			<button type="button" class="btn btn-primary" tabindex="2" style="background-color:#FF3300; border:0px;">
 				회원 정보 변경하기
 			</button>
-			<button type="button" id="cancelBtn1" class="btn btn-primary " style="background-color:#c0c0c0; border:0px;">
+			<button type="button" id="cancelBtn1" class="btn btn-primary" tabindex="3" style="background-color:#c0c0c0; border:0px;">
 				<div style="margin-left:50px; margin-right:50px;">취소</div>
 			</button>
 		</div>
@@ -234,7 +234,7 @@
           				<b>기존 비밀 번호</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<input type="password"  tabindex="1" id="userPw" name="userPw"/>
+    					<input type="password"  tabindex="4" id="userPw" name="userPw"/>
     				</div>
           		</div>
             </div>
@@ -251,7 +251,7 @@
           				<b>새로운 비밀번호</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<input type="password"  tabindex="2" id="userNewPw" name="userPw"/>
+    					<input type="password"  tabindex="5" id="userNewPw" name="userPw"/>
     				</div>
           		</div>
             </div>
@@ -268,7 +268,7 @@
           				<b>새로운 비밀번호 확인</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<input type="password"  tabindex="3" id="userNewRePw" name="userPw"/>
+    					<input type="password"  tabindex="6" id="userNewRePw" name="userPw"/>
     				</div>
           		</div>
             </div>
@@ -278,10 +278,10 @@
       
       <div class="w3-center-align">	
 		<div class="w3-btn-group">
-			<button type="button" class="btn btn-primary " style="background-color:#FF3300; border:0px;">
+			<button type="button" class="btn btn-primary " tabindex="7" style="background-color:#FF3300; border:0px;">
 				비밀번호 변경하기
 			</button>
-			<button type="button" id="cancelBtn2" class="btn btn-primary " style="background-color:#c0c0c0; border:0px;">
+			<button type="button" id="cancelBtn2" class="btn btn-primary" tabindex="8" style="background-color:#c0c0c0; border:0px;">
 				<div style="margin-left:50px; margin-right:50px;">취소</div>
 			</button>
 		</div>

@@ -6,7 +6,7 @@
 	
 	$(document).ready( function(){
 		$("#modifyBtn").click(function() {
-			location.href = "/Curtain/myPage/modifyMember";
+			location.href = "/myPage/modifyMember";
 		})	
 		
 	});
@@ -60,7 +60,7 @@
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
             <div class="w3-container">
-           		<a href="/Curtain/myPage/myLikesArticle">
+           		<a href="/myPage/myLikesArticle">
            		<h4>
 					내가 좋아요 한 글            		
            		</h4>
@@ -74,7 +74,7 @@
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
             <div class="w3-container">
-              <a href="/Curtain/myPage/myWriteArticle">
+              <a href="/myPage/myWriteArticle">
               <h4>
               	내가 쓴 글
               </h4>
@@ -88,7 +88,7 @@
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
             <div class="w3-container">
-              <a href="/Curtain/myPage/myScrabArticle">
+              <a href="/myPage/myScrabArticle">
               <h4>
               	내가 스크랩 한 글
               </h4>

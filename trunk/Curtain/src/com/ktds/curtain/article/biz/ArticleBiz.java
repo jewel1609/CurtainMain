@@ -39,8 +39,19 @@ public class ArticleBiz {
 		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) {
 			doWriteArticle = doWriteAdArticle(article);
 		}
+		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) {
+			doWriteArticle = doWriteSecretArticleOne(article);
+		}
+		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {
+			doWriteArticle = doWriteSecretArticleTwo(article);
+		}
+		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {
+			doWriteArticle = doWriteSecretArticleThree(article);
+		}
 		return doWriteArticle;
 	}
+
+
 
 	/**
 	 * 전공
@@ -61,7 +72,7 @@ public class ArticleBiz {
 		articleDAO.doWriteUnivArticle(article);
 		return false;
 	}
-
+	
 	/**
 	 * 홍보
 	 * @param article
@@ -70,6 +81,37 @@ public class ArticleBiz {
 	private boolean doWriteAdArticle(ArticleVO article) {
 		articleDAO.doWriteAdArticle(article);
 		return false;
+}
+	
+	/**
+	 * 비밀게시판 등급1
+	 * @param article
+	 * @return
+	 */
+	private boolean doWriteSecretArticleOne(ArticleVO article) {
+		articleDAO.doWriteSecretArticleOne(article);
+		return false;
 	}
 
+	/**
+	 * 비밀게시판 등급2
+	 * @param article
+	 * @return
+	 */
+	private boolean doWriteSecretArticleTwo(ArticleVO article) {
+		articleDAO.doWriteSecretArticleTwo(article);
+		return false;
+	}
+	
+	/**
+	 * 비밀게시판 등급3
+	 * @param article
+	 * @return
+	 */
+	private boolean doWriteSecretArticleThree(ArticleVO article) {
+		articleDAO.doWriteSecretArticleThree(article);
+		return false;	
+	}
+
+	
 }

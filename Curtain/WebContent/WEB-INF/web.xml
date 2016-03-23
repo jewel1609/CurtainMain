@@ -49,6 +49,18 @@
     <servlet-name>QuestionAndAnswerServlet</servlet-name>
     <url-pattern>/questionAndAnswer</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>WriteArticleServlet</display-name>
+    <servlet-name>WriteArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.WriteArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WriteArticleServlet</servlet-name>
+    <url-pattern>/writeArticle</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>AuthNumCheckServlet</display-name>
@@ -129,4 +141,5 @@
     <servlet-name>MyLikesArticleServlet</servlet-name>
     <url-pattern>/myPage/myLikesArticle</url-pattern>
   </servlet-mapping>
+
 </web-app>

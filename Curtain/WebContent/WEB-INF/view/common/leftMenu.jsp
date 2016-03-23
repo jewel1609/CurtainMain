@@ -13,6 +13,6 @@
     </div>
   </div>	
   <a href="#">홍보게시판</a>	
-  <a href="/Curtain/myPage">마이페이지</a>		
+  <a href="/myPage">마이페이지</a>		
    <a href="<c:url value="/questionAndAnswer" />">Q & A</a>		
 </nav>

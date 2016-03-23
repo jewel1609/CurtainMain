@@ -2,6 +2,20 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 
+<script type="text/javascript">
+	
+	$(document).ready( function(){
+		$("#modifyBtn").click(function() {
+			location.href = "/Curtain/myPage/modifyMember";
+		})	
+		
+	});
+		
+	
+
+</script>
+
+
 <div class="w3-container w3-center w3-main" style="margin-top:30px; margin-bottom:20px;">    
 
   <div class="w3-row" >
@@ -14,7 +28,7 @@
           			<b>닉네임 000 님의 마이페이지 입니다.</b>
           		</div>
           		<div class="w3-col" style="width:10%">
-    				<button type="button" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원정보 변경</button>
+    				<button type="button" id="modifyBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원정보 변경</button>
     			</div>
             </div>
           </div>

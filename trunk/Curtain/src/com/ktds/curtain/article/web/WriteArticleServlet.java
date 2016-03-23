@@ -42,8 +42,8 @@ public class WriteArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String articleTitle = request.getParameter("articleTitle");
 		String articleDescription = request.getParameter("articleDescription");
-		String articleTypeName = request.getParameter("articleTypeName");
 		String articleTypeId = request.getParameter("articleTypeId");
+		String majorArticle = request.getParameter("majorArticle");
 		
 //		HttpSession session = request.getSession();
 //		StdMemberVO stdMember = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
@@ -51,8 +51,8 @@ public class WriteArticleServlet extends HttpServlet {
 		ArticleVO article = new ArticleVO();
 		article.setArticleTitle(articleTitle);
 		article.setArticleDesc(articleDescription);
-		article.setArticleTypeName(articleTypeName);
 		article.setArticleTypeId(Integer.parseInt(articleTypeId));
+		article.setMajorArticle(majorArticle);
 		
 		article.setStudentEmail("test@smu.ac.kr");
 		article.setMemberTypeId(1);

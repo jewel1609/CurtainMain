@@ -3,6 +3,20 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+
+<script type="text/javascript">
+
+	$(document).ready( function () {
+		$("#writeBtn").click( function () {
+				var form = $("#writeArticle");
+				form.attr("method", "post");
+				form.attr("action", "/main");
+				form.submit();
+		});
+	});
+
+</script>
+
 <div class="w3-container w3-center w3-main" style="margin-top:30px; margin-bottom:20px;">    
 
   <div class="w3-row" >
@@ -10,23 +24,27 @@
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-round w3-white">
-            <div class="w3-container w3-padding w3-left-align">
-              <div class="form-group">
-				  <textarea class="w3-col m12" rows="5" id="comment" style=" margin-bottom:5px;" placeholder="무슨 생각을 하고 계신가요?"></textarea>
-				</div>
-               <div class="btn-group pull-right">
-					    <div class="btn-group">
-					      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="background-color:#FF3300; border:0px;">
-					      파일첨부 <span class="caret"></span></button>
-					      <ul class="dropdown-menu" role="menu">
-					        <li><a href="#">사진</a></li>
-					        <li><a href="#">동영상</a></li>
-		    				</ul>
-    					</div>
-    				<button type="button" class="btn btn-primary " style="background-color:#FF3300; border:0px;">게시</button>
-    			</div>
-
-            </div>
+          
+          <form id="writeArticle">
+	            <div class="w3-container w3-padding w3-left-align">
+	              <div class="form-group1">
+	              	  <input type="hidden" id="majorArticle" name="majorArticle" value="majorArticle"/>
+					  <textarea name="articleDescription" class="w3-col m12" rows="5" id="comment" style=" margin-bottom:5px;" placeholder="무슨 생각을 하고 계신가요?"></textarea>
+					</div>
+	               <div class="btn-group pull-right">
+						    <div class="btn-group">
+						      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="background-color:#FF3300; border:0px;">
+						      파일첨부 <span class="caret"></span></button>
+						      <ul class="dropdown-menu" role="menu">
+						        <li><a href="#">사진</a></li>
+						        <li><a href="#">동영상</a></li>
+			    				</ul>
+	    					</div>
+	    				<button type="button" id="writeBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;">게시</button>
+	    			</div>
+	            </div>
+            </form>
+            
           </div>
         </div>
       </div>

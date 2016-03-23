@@ -12,7 +12,14 @@ public class StdMemberVO {
 	private String rankModifyDate;
 	private int Activity;
 	private String password;
+	private int majorGroupId;
 	
+	public int getMajorGroupId() {
+		return majorGroupId;
+	}
+	public void setMajorGroupId(int majorGroupId) {
+		this.majorGroupId = majorGroupId;
+	}
 	public String getStudentEmail() {
 		return studentEmail;
 	}

@@ -81,7 +81,7 @@ public class SessionCheckFilter implements Filter {
 				HttpSession session = req.getSession();
 				
 				// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
-				StdMemberVO member = (StdMemberVO) session.getAttribute("_MEMBER_");
+				StdMemberVO member = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
 				
 				// 로그인 했는지 안 했는지는 null로 check
 				// null이면 사용자가 로그인 하지 않은 상태

@@ -29,4 +29,14 @@
     <servlet-name>DoRegistMemberServlet</servlet-name>
     <url-pattern>/doRegistStdMember</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QuestionAndAnswerServlet</display-name>
+    <servlet-name>QuestionAndAnswerServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.QuestionAndAnswerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuestionAndAnswerServlet</servlet-name>
+    <url-pattern>/questionAndAnswer</url-pattern>
+  </servlet-mapping>
 </web-app>

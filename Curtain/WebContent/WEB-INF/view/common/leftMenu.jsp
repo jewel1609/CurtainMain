@@ -12,6 +12,6 @@
     </div>
   </div>	
   <a href="#">홍보게시판</a>	
-  <a href="#">마이페이지</a>		
+  <a href="/Curtain/myPage">마이페이지</a>		
    <a href="#">Q & A</a>		
 </nav>

@@ -122,6 +122,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>RegisterQuestionServlet</display-name>
+    <servlet-name>RegisterQuestionServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.qa.web.RegisterQuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterQuestionServlet</servlet-name>
+    <url-pattern>/registerQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>MyPageServlet</display-name>
     <servlet-name>MyPageServlet</servlet-name>
     <servlet-class>com.ktds.curtain.member.web.MyPageServlet</servlet-class>

@@ -138,4 +138,55 @@
 		
 >>>>>>> .r111
 	</article>
+	
+	<qa>
+		<registerQuestionByStudent>
+			INSERT INTO CURTAIN.QA	(
+										QUESTION_ID
+										, QUESTION_TITLE
+										, QUESTION_DESCRIPTION
+										, ANSWER_DESCRIPTION
+										, QUESTION_DATE
+										, ANSWER_DATE
+										, STUDENT_EMAIL
+										, IS_CHECKED
+										, COMPANY_EMAIL
+									) 
+			VALUES					(
+										QUESTION_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, ''
+										, SYSDATE
+										, ''
+										, ?
+										, 'N'
+										, ''
+									)
+		</registerQuestionByStudent>
+		<registerQuestionByCompany>
+			INSERT INTO CURTAIN.QA	(
+										QUESTION_ID
+										, QUESTION_TITLE
+										, QUESTION_DESCRIPTION
+										, ANSWER_DESCRIPTION
+										, QUESTION_DATE
+										, ANSWER_DATE
+										, STUDENT_EMAIL
+										, IS_CHECKED
+										, COMPANY_EMAIL
+									) 
+			VALUES					(
+										QUESTION_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, ''
+										, SYSDATE
+										, ''
+										, ''
+										, 'N'
+										, ?
+									)
+		</registerQuestionByCompany>
+	</qa>
 </query>

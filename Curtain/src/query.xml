@@ -2,6 +2,16 @@
 
 <query>
 	<major>
+		<getMajorGroupIdByMajorId>
+			SELECT	MAJOR_GROUP_ID		
+			FROM	MAJOR
+			WHERE	MAJOR_ID = ?		
+		</getMajorGroupIdByMajorId>
+		<getMajorIdByMajorName>
+			SELECT	MAJOR_ID		
+			FROM	MAJOR
+			WHERE	MAJOR_NAME = ? 
+		</getMajorIdByMajorName>
 		<checkMajorName>
 			SELECT	MAJOR_ID
 					, MAJOR_NAME
@@ -11,6 +21,11 @@
 		</checkMajorName>
 	</major>
 	<univ>
+		<getUnivIdByUnivName>
+			SELECT	UNIV_ID		
+			FROM	UNIV
+			WHERE	UNIV_NAME = ? 
+		</getUnivIdByUnivName>
 		<checkUnivName>
 			SELECT	UNIV_ID
 					, UNIV_NAME
@@ -136,8 +151,33 @@
 			AND		A.ARTICLE_ID = AB.ARTICLE_ID
 		</myScrabArticle>
 		
->>>>>>> .r111
 	</article>
+
+	<stdMember>
+		<addStdMember>
+			INSERT INTO STD_MEMBER (
+										   STUDENT_EMAIL
+										   , UNIV_ID
+										   , MAJOR_ID
+										   , SIGNUP_DATE
+										   , SECOND_EMAIL
+										   , RANK_MODIFY_DATE
+										   , PASSWORD
+										   , MAJOR_GROUP_ID
+									) 
+			VALUES 					( 
+											?
+											, ?
+											, ?
+											, SYSDATE
+										 	, ?
+											, SYSDATE
+											, ?
+											, ?
+									)
+		</addStdMember>
+	</stdMember>
+=======
 	
 	<qa>
 		<registerQuestionByStudent>
@@ -189,4 +229,5 @@
 									)
 		</registerQuestionByCompany>
 	</qa>
+>>>>>>> .r116
 </query>

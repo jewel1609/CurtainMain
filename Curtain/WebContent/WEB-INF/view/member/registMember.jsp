@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <title>회원가입</title>
@@ -19,6 +20,14 @@ html, body, h1, h2, h3, h4, h5 {
 .w3-sidenav a {
 	padding: 16px;
 	font-weight: bold
+}
+
+.univList{
+	cursor: pointer;
+}
+
+.majorList{
+	cursor: pointer;
 }
 </style>
 <link rel="stylesheet"
@@ -41,7 +50,7 @@ html, body, h1, h2, h3, h4, h5 {
 				} 
 			//AJAX 준비
 	         $.post(
-	                  "/Curtain/authNumSend" //갈 서블릿url
+	                  "<c:url value="/authNumSend" />" //갈 서블릿url
 	                  , { "inputUnivEmail" : $("#inputUnivEmail").val() }
 	                  , function(data) { //응답내용
 	                	  
@@ -79,7 +88,7 @@ html, body, h1, h2, h3, h4, h5 {
 				} 
 			//AJAX 준비
 	         $.post(
-	                  "/Curtain/authNumCheck" //갈 서블릿url
+	        		 "<c:url value="/authNumCheck" />" //갈 서블릿url
 	                  , {
 	                	  "inputUnivEmail" : $("#inputUnivEmail").val()  
 	                	  , "inputNumberCheck" : $("#inputNumberCheck").val() 
@@ -133,7 +142,7 @@ html, body, h1, h2, h3, h4, h5 {
 		$("#inputUnivName").keyup(function(){
 			//AJAX 준비
 	         $.post(
-	                  "/Curtain/doUnivSearch" //갈 서블릿url
+	        		 "<c:url value="/doUnivSearch" />"//갈 서블릿url
 	                  , {
 	                	  "inputUnivName" : $("#inputUnivName").val()
 	                	 }
@@ -171,7 +180,7 @@ html, body, h1, h2, h3, h4, h5 {
 		$("#inputMajorName").keyup(function(){
 			//AJAX 준비
 	         $.post(
-	                  "/Curtain/doMajorSearch" //갈 서블릿url
+	        		 "<c:url value="/doMajorSearch" />" //갈 서블릿url
 	                  , {
 	                	  "inputMajorName" : $("#inputMajorName").val()
 	                	 }
@@ -248,7 +257,7 @@ html, body, h1, h2, h3, h4, h5 {
 			 
 			var form = $("#registStdForm");
 			form.attr("method", "POST");
-			form.attr("action", "/Curtain/doRegistStdMember");
+			form.attr("action", "<c:url value="/doRegistStdMember" />");
 			form.submit();
 		
 		});

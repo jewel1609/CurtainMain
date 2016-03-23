@@ -30,13 +30,13 @@ public class ArticleBiz {
 	public boolean doWriteArticle(ArticleVO article) {
 		boolean doWriteArticle = false;
 		
-		if ( article.getMajorArticle().equals(BoardId.MAJOR_BOARD) ) {
+		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) {
 			doWriteArticle = doWriteMajorArticle(article);
 		}
-		else if (article.getMajorArticle().equals(BoardId.UNIV_BOARD)) {
+		else if (article.getBoardId()== Integer.parseInt(BoardId.UNIV_BOARD)) {
 			doWriteArticle = doWriteUnivArticle(article);
 		}
-		else if (article.getMajorArticle().equals(BoardId.AD_BOARD)) {
+		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) {
 			doWriteArticle = doWriteAdArticle(article);
 		}
 		return doWriteArticle;

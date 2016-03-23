@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ktds.curtain.article.vo.ArticleVO;
-import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.member.vo.StdMemberVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
@@ -93,6 +92,24 @@ public class ArticleDAO {
 	public void doWriteAdArticle(ArticleVO article) {
 		
 	}
+	
+
+	public void doWriteSecretArticleOne(ArticleVO article) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doWriteSecretArticleTwo(ArticleVO article) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doWriteSecretArticleThree(ArticleVO article) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 	private void loadOracleDriver() {
 		try {
@@ -123,5 +140,6 @@ public class ArticleDAO {
 		}
 
 	}
+
 
 }

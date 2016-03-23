@@ -29,7 +29,7 @@
       	<div class="w3-col" style="width:30%">
       		<h1>회원정보 변경</h1>
       	</div>
-      	<div class="w3-col" style="width:70%; margin-top:35px; margin-left:-90px;">
+      	<div class="w3-col" style="width:70%; margin-top:35px;">
       		<p>닉네임과 이메일 주소는 변경 시 꼭 회원  정보를 변경하여 주세요!</p>
       	</div>
       </div>

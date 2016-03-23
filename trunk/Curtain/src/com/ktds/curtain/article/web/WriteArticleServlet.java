@@ -40,10 +40,15 @@ public class WriteArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String articleTitle = request.getParameter("articleTitle");
+		System.out.println(articleTitle);
 		String articleDescription = request.getParameter("articleDescription");
+		System.out.println(articleDescription);
 		String articleTypeId = request.getParameter("articleTypeId");
-		String majorArticle = request.getParameter("majorArticle");
+		System.out.println(articleTypeId);
+		String boardId = request.getParameter("boardId");
+		System.out.println(boardId);
 		
 //		HttpSession session = request.getSession();
 //		StdMemberVO stdMember = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
@@ -52,17 +57,19 @@ public class WriteArticleServlet extends HttpServlet {
 		article.setArticleTitle(articleTitle);
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(Integer.parseInt(articleTypeId));
-		article.setMajorArticle(majorArticle);
-		
+		article.setBoardId(Integer.parseInt(boardId));
+
 		article.setStudentEmail("test@smu.ac.kr");
 		article.setMemberTypeId(1);
 		article.setUnivId(1);
-		article.setMajorGroupId(68);
+		article.setMajorGroupId(1);
 		article.setMajorId(1);
 		article.setNickName("류연s");
 		article.setPassword("1");
 
 		boolean doWriteArticle = articleBiz.doWriteArticle(article);
+		
+		response.sendRedirect("/studentMajorAritlce");
 
 
 	}

@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>RegistMemberServlet</display-name>
+    <servlet-name>RegistMemberServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.RegistStdMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegistMemberServlet</servlet-name>
+    <url-pattern>/registStdMember</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoRegistMemberServlet</display-name>
+    <servlet-name>DoRegistMemberServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.DoRegistStdMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoRegistMemberServlet</servlet-name>
+    <url-pattern>/doRegistStdMember</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -2,6 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<script	type="text/javascript">
+	$(document).ready(function () {
+		$("#btnSubmit").click(function (){
+			var form = $("#btnForm");
+			form.attr("method", "post");
+			form.attr("action", "<c:url value="/registerQuestion"/> ");
+		});
+		$("#btnFAQ").click(function (){
+			var form = $("#btnForm");
+			form.attr("method", "post");
+			form.attr("action", "<c:url value="/questionAndAnswer"/> ");
+		});
+	});
+</script>
 
 	<div class="w3-container w3-center w3-main"
 		style="margin-top: 30px; margin-bottom: 20px;">
@@ -33,23 +47,34 @@
 				
 				<div class="w3-row-padding w3-margin-top">
 					<div class="w3-col m12">
-						<div class="w3-card-2 w3-white w3-round-large" style="padding: 10px; height: 500px;">
-							<table class="w3-table w3-border w3-bordered">
-								<tr>
-									<td width="200px" style="padding-left: 20px; padding-top: 15px;">제목</td>
-									<td>
-										<input class="w3-input" type="text" placeholder="포인트가 갑자기 사라졌어요.">
-									</td>
-								</tr>
-								<tr>
-									<td style="padding-left: 20px; padding-top: 15px;">문의 내용</td>
-									<td>
-										<textarea class="w3-col m12" rows="5" id="comment" style=" margin-bottom:5px;"
-											 placeholder="일요일 오전 10시경 포인트가 갑자기 사라졌어요.">
-										</textarea>
-									</td>
-								</tr>
-							</table>
+						<div class="w3-card-2 w3-white w3-round-large" style="padding: 10px; height: 600px;">
+							<form id="btnForm">
+								<div style="margin-bottom: 10px; float: left; clear: both;">
+									<select id="memberType" name="memberType" class="w3-select" style="width: 200px; padding-left: 20px;">
+										<option value="1">학생회원</option>
+										<option value="2">기업회원</option>
+									</select>
+								</div>
+								<table class="w3-table w3-border w3-bordered">
+									<tr>
+										<td width="200px" style="padding-left: 20px; padding-top: 15px;">제목</td>
+										<td>
+											<input id="questionTitle" name="questionTitle" class="w3-input" type="text" placeholder="포인트가 갑자기 사라졌어요.">
+										</td>
+									</tr>
+									<tr>
+										<td style="padding-left: 20px; padding-top: 15px;">문의 내용</td>
+										<td>
+											<textarea id="questionDescription" name="questionDescription" class="w3-col m12" rows="5" style="height:400px; margin-bottom:5px; padding:0 10px 0 10px;"
+											 placeholder="일요일 오전 10시경 포인트가 갑자기 사라졌어요."></textarea>
+										</td>
+									</tr>
+								</table>
+								<div style="float: right; margin-top: 20px;">
+										<button id="btnSubmit" class="w3-btn w3-border" style="background-color: white; margin-right: 20px; color: black;">문의 하기</button>
+										<button id="btnFAQ" class="w3-btn w3-border" style="background-color: white; color: black;">뒤로 가기</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

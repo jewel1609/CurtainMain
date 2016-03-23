@@ -13,6 +13,69 @@ import com.ktds.curtain.util.xml.XML;
 
 public class MajorDAO {
 
+	//학과 이름에 따른 학과 ID 받기
+	public int getMajorIdByMajorName(String inputMajorName){
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int majorId = 0;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/major/getMajorIdByMajorName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, inputMajorName);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				majorId = rs.getInt("MAJOR_ID");
+			}
+			System.out.println("major id :  " + majorId);
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+			return majorId;
+	}
+	
+	// 학과 Id에 따른 소계열 Id 찾기
+	public int getMajorGroupIdByMajorId(int inputMajorId){
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int majorGroupId = 0;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/major/getMajorGroupIdByMajorId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, inputMajorId);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				majorGroupId = rs.getInt("MAJOR_GROUP_ID");
+			}
+			System.out.println("majorGroupId :  " + majorGroupId);
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+			return majorGroupId;
+	}
+	
+	//입력받는 학과에 맞는 학과들 출력
 	public String checkMajorName(String inputMajorName) {
 		System.out.println("DAO : " + inputMajorName);
 		loadOracleDriver();

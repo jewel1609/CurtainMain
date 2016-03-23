@@ -52,6 +52,37 @@ public class UnivDAO {
 		return univList;
 	}
 
+
+	public int getUnivIdByUnivName(String inputUnivName) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int univId = 0;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// univName에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/univ/getUnivIdByUnivName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, inputUnivName);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				univId = rs.getInt("UNIV_ID");
+			}
+			System.out.println("major id :  " + univId);
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+			return univId;
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -80,4 +111,5 @@ public class UnivDAO {
 			}
 		}
 	}
+
 }

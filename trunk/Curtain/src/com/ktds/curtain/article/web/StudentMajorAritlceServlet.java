@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ktds.curtain.article.biz.ArticleBiz;
+//import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.member.vo.StdMemberVO;
 
@@ -19,14 +19,14 @@ import com.ktds.curtain.member.vo.StdMemberVO;
  */
 public class StudentMajorAritlceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArticleBiz articleBiz;
+	//private ArticleBiz articleBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public StudentMajorAritlceServlet() {
         super();
-        articleBiz = new ArticleBiz();
+        //articleBiz = new ArticleBiz();
     }
 
 	/**
@@ -44,9 +44,9 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		StdMemberVO stdMember = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
 		
-		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember);
+		//List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember);
 		
-		request.setAttribute("majorArticles", majorArticles);
+		//request.setAttribute("majorArticles", majorArticles);
 		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/article.jsp");
 		rd.forward(request, response);
 	}

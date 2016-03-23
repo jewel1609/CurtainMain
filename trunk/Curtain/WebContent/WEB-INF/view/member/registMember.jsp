@@ -27,7 +27,165 @@ html, body, h1, h2, h3, h4, h5 {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resource/js/jquery-1.12.1.js"></script>
+<script type="text/javascript">
 
+	$(document).ready(function() {
+		
+		//인증번호 보내기버튼 클릭시,
+		$("#authNumSendBtn").click(function(){
+			if( $("#inputUnivEmail").val() == ""){
+				alert("학교 이메일을 입력하세요");
+				return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			//AJAX 준비
+	         $.post(
+	                  "/Curtain/authNumSend" //갈 서블릿url
+	                  , { "inputUnivEmail" : $("#inputUnivEmail").val() }
+	                  , function(data) { //응답내용
+	                	  
+	                     var jsonData3 = {};
+	                  
+	                     try {
+	                        jsonData3 = JSON.parse(data);
+	                     }
+	                     catch(e) {
+	                    	console.log(e);
+	                        jsonData3.result = false;
+	                     }
+	                  
+	                     console.log(jsonData3);
+	                     if(jsonData3.result){
+		                    	var text = $("#inputUnivEmail").text();
+		                    	if(jsonData3.isSendCheck){
+		                    		alert("메일전송이 성공하였습니다.");
+		                    	}
+		                    	if(!jsonData3.isSendCheck){
+		                    		$("#inputUnivEmail").focus();
+		                    		alert("메일전송이 실패하였습니다.");
+		                    	}
+		                     } 
+	                  }
+	         );
+	         var text = $(this).text();
+	      });
+		
+		//인증확인버튼 클릭시,
+		$("#authNumCheckBtn").click(function(){
+			if( $("#inputNumberCheck").val() == ""){
+				alert("인증번호를 입력하세요");
+				return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			//AJAX 준비
+	         $.post(
+	                  "/Curtain/authNumCheck" //갈 서블릿url
+	                  , {
+	                	  "inputUnivEmail" : $("#inputUnivEmail").val()  
+	                	  , "inputNumberCheck" : $("#inputNumberCheck").val() 
+	                	 }
+	                  , function(data) { //응답내용
+	                	  
+	                     var jsonData3 = {};
+	                  
+	                     try {
+	                        jsonData3 = JSON.parse(data);
+	                     }
+	                     catch(e) {
+	                    	console.log(e);
+	                        jsonData3.result = false;
+	                     }
+	                  
+	                     console.log(jsonData3);
+	                     if(jsonData3.result){
+	                    	var text = $("#inputNumberCheck").text();
+	                    	if(jsonData3.isUnivEmail){
+	                    		alert("인증되었습니다.");
+	                    	}
+	                    	if(!jsonData3.isUnivEmail){
+	                    		$("#inputNumberCheck").focus();
+	                    		alert("인증이 실패되었습니다.");
+	                    	}
+	                     } 
+	                  }
+	         );
+	         var text = $(this).text();
+		});
+		
+		$("#inputPasswordCheck").keyup(function(){
+			
+			if ( $("#inputPasswordCheck").val() == ""){
+				 $("#passwordCheckSpan").text("");
+				 return;
+			}
+			if($("#inputPassword").val() == $("#inputPasswordCheck").val()){
+				 $("#passwordCheckSpan").text("재확인 비밀번호가 같습니다.");
+			}
+			if($("#inputPassword").val() != $("#inputPasswordCheck").val()){
+				 $("#passwordCheckSpan").text("재확인 비밀번호가 다릅니다.");
+				 $("#inputPasswordCheck").focus();
+			}
+			
+		});
+		
+		$("#inputUnivName").autocomplete({
+			
+		});
+		
+		//회원가입 버튼 누를시,
+		$("#registStdBtn").click(function(){
+			
+			// 유효성 검사 혹은 Validation Check
+			 if( $("#inputUnivEmail").val() == ""){
+				alert("학교 이메일을 입력하세요!");
+				return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputNumberCheck").val() == ""){
+					alert("인증번호를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputPassword").val() == ""){
+					alert("비밀번호를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputPasswordCheck").val() == ""){
+					alert("재확인 비밀번호를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputUnivName").val() == ""){
+					alert("대학교를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputMajorName").val() == ""){
+					alert("학과를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputSecondEmail").val() == ""){
+					alert("보조이메일을 입력하세요.");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if($("#agree").prop('checked') == false){
+				 	alert("이용약관을 체크해주세요.");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+			 	}
+			 if($("#secondAgree").prop('checked') == false){
+				 	alert("이용약관을 체크해주세요.");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+			 	}
+			 
+			var form = $("#registStdForm");
+			form.attr("method", "POST");
+			form.attr("action", "/Curtain/doRegistStdMember");
+			form.submit();
+		
+		});
+		
+		$("#cancleBtn").click(function(){
+			window.history.back();
+		});
+		
+	});
+
+</script>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 
 	<div class="w3-container w3-center w3-main"
@@ -41,19 +199,17 @@ html, body, h1, h2, h3, h4, h5 {
 					</h1>
 				</div>
 			
-				<form class="form-horizontal">
+				<form id=registStdForm class="form-horizontal">
 				
 					<!-- 대학교 이메일 -->
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputUnivEmail">대학교 이메일</label>
 						<div class="col-sm-6">
 							<div class="input-group">
-								<input class="form-control" id="inputEmail" type="email" 
+								<input class="form-control" id="inputUnivEmail" name="inputUnivEmail" type="email" 
 								placeholder="학교 이메일주소를 입력하세요. 일반이메일은 인증메일이 전송되지않습니다."/>
 									<span class="input-group-btn">
-										<button class="btn btn-success">
-											인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
-										</button>
+										<input type="button" id="authNumSendBtn" class="btn btn-success" value="인증번호 전송">
 									</span>
 							</div>
 						</div>
@@ -64,11 +220,10 @@ html, body, h1, h2, h3, h4, h5 {
 						<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호 확인</label>
 						<div class="col-sm-6">
 							<div class="input-group">
-								<input class="form-control" id="inputNumberCheck" type="text" 
-								placeholder="전송된 인증번호를 입력해주세요."> <span class="input-group-btn">
-									<button class="btn btn-success" type="button">
-										인증번호 확인<i class="fa fa-edit spaceLeft"></i>
-									</button>
+								<input class="form-control" id="inputNumberCheck" name="inputNumberCheck" type="text" 
+								placeholder="전송된 인증번호를 입력해주세요."> 
+								<span class="input-group-btn">
+									<input type="button" id="authNumCheckBtn" class="btn btn-success" value="인증번호 확인">
 								</span>
 							</div>
 						</div>
@@ -78,7 +233,7 @@ html, body, h1, h2, h3, h4, h5 {
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputPassword" type="password"
+							<input class="form-control" id="inputPassword" name="inputPassword" type="password"
 								placeholder="8-20자리 영문 대소문자, 숫자를 혼합하여 사용.">
 						</div>
 					</div>
@@ -87,9 +242,10 @@ html, body, h1, h2, h3, h4, h5 {
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 재확인</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputPasswordCheck"
+							<input class="form-control" id="inputPasswordCheck" name="inputPasswordCheck"
 								type="password" placeholder="비밀번호 재확인">
 						</div>
+						<span id="passwordCheckSpan"></span>
 					</div>
 					<hr>
 					
@@ -97,7 +253,7 @@ html, body, h1, h2, h3, h4, h5 {
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputUniv">대학교</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputName" type="text"
+							<input class="form-control" id="inputUnivName" name="inputUnivName" type="text"
 								placeholder="대학교를 검색하세요">
 						</div>
 					</div>
@@ -106,7 +262,7 @@ html, body, h1, h2, h3, h4, h5 {
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputMajor">학과</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputName" type="text"
+							<input class="form-control" id="inputMajorName" name="inputMajorName" type="text"
 								placeholder="학과를 검색하세요.">
 						</div>
 					</div>
@@ -114,9 +270,9 @@ html, body, h1, h2, h3, h4, h5 {
 					
 					<!-- 보조 이메일 -->
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputEmail">보조 이메일</label>
+						<label class="col-sm-3 control-label" for="inputSecondEmail">보조 이메일</label>
 						<div class="col-sm-6">
-								<input class="form-control" id="inputEmail" type="email" 
+								<input class="form-control" id="inputSecondEmail" name="inputSecondEmail" type="email" 
 								placeholder="비밀번호 분실 시 활용됩니다.">
 						</div>
 					</div>
@@ -129,24 +285,20 @@ html, body, h1, h2, h3, h4, h5 {
 					<div class="form-group">
 						<div class="col-sm-6" data-toggle="buttons">
 							개인화면 약관에 동의 <a href="#">내용보기</a>
-								<input class="w3-check" id="agree"type="checkbox" autocomplete="off">
+								<input class="w3-check" id="agree" name="agree" type="checkbox" autocomplete="off">
 						</div>
 						
 						<div class="col-sm-6" data-toggle="buttons">
 							개인정보 수정 및 이용에 동의 <a href="#">내용보기</a>
-								<input class="w3-check" id="agree2" type="checkbox" autocomplete="off">
+								<input class="w3-check" id="secondAgree" name="secondAgree" type="checkbox" autocomplete="off">
 						</div>
 					</div>
-					
+					<br>
 					<!-- 가입하기 버튼 -->
 					<div class="form-group">
 						<div class="col-sm-12 text-center">
-							<input type="button" class="btn btn-primary" value="가입하기">
-							<!--  
-							<button class="btn btn-danger" type="submit">
-								가입취소<i class="fa fa-times spaceLeft"></i>
-							</button>
-							-->
+							<input type="button" id="registStdBtn" class="btn btn-primary" value="가입하기">
+							<input type="button" id="cancleBtn" class="btn btn-danger" value="가입취소">
 						</div>
 					</div>
 				</form>

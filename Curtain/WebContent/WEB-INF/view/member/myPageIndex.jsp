@@ -25,7 +25,7 @@
           <div class="w3-card-2 w3-round w3-white">
             <div class="w3-container w3-padding w3-left-align">
           		<div class="w3-col" style="width:90%">
-          			<b>닉네임 000 님의 마이페이지 입니다.</b>
+          			<h3>닉네임 000 님의 마이페이지 입니다.</h3>
           		</div>
           		<div class="w3-col" style="width:10%">
     				<button type="button" id="modifyBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원정보 변경</button>
@@ -60,9 +60,11 @@
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
             <div class="w3-container">
-              <p>
-              	내가 좋아요 한 글
-              </p>
+           		<a href="/Curtain/myPage/myLikesArticle">
+           		<h4>
+					내가 좋아요 한 글            		
+           		</h4>
+           		</a>
             </div>
           </div>
         </div>
@@ -72,9 +74,11 @@
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
             <div class="w3-container">
-              <p>
+              <a href="/Curtain/myPage/myWriteArticle">
+              <h4>
               	내가 쓴 글
-              </p>
+              </h4>
+              </a>
             </div>
           </div>
         </div>
@@ -84,9 +88,11 @@
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
             <div class="w3-container">
-              <p>
+              <a href="/Curtain/myPage/myScrabArticle">
+              <h4>
               	내가 스크랩 한 글
-              </p>
+              </h4>
+              </a>
             </div>
           </div>
         </div>

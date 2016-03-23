@@ -32,7 +32,7 @@ public class QuestionAndAnswerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/questionAndAnswer");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/faq.jsp");
 		rd.forward(request, response);
 	}
 

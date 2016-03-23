@@ -60,6 +60,31 @@
 			AND         A.MAJOR_GROUP_ID = 1
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showMajorArticle>
+		<doWriteMajorArticle>
+			INSERT INTO 	ARTICLE (
+  										 ARTICLE_ID
+  										 , ARTICLE_TITLE
+  										 , ARTICLE_DESC
+  										 , ARTICLE_REGISTER_DATE
+  										 , ARTICLE_MODIFY_DATE
+  										 , ARTICLE_TYPE_ID
+  										 , STUDENT_EMAIL
+  										 , BOARD_ID
+  										 , MAJOR_GROUP_ID
+  									)	 
+			VALUES 					( 
+										ARTICLE_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, SYSDATE
+										, SYSDATE
+										, ?
+										, ?
+										, ?
+										, ?
+									)
+		</doWriteMajorArticle>
+		
 		
 		
 		
@@ -111,5 +136,6 @@
 			AND		A.ARTICLE_ID = AB.ARTICLE_ID
 		</myScrabArticle>
 		
+>>>>>>> .r111
 	</article>
 </query>

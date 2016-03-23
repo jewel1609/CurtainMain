@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.curtain.qa.biz.QuestionAndAnswerBiz;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
+import com.ktds.curtain.util.Root;
 
 /**
  * Servlet implementation class RegisterQuestionServlet
@@ -37,20 +38,15 @@ public class RegisterQuestionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		QuestionAndAnswerVO questionAndAnswerVO = new QuestionAndAnswerVO();
-		
 		String memberType = request.getParameter("memberType");
+		
+		// TODO 세션에서 이메일을 받아와야 한다.
 		questionAndAnswerVO.setQuestionDescription(request.getParameter("questionDescription"));
 		questionAndAnswerVO.setQuestionTitle(request.getParameter("questionTitle"));
-		// 기업회원인지 학생회원인지
-		// 세션에서 받아와야 한다.
-		if (memberType.equals("1")) {
-			questionAndAnswerVO.setStudentEmail("sosdig@naver.com");
-		}
-		else if (memberType.equals("2")){
-			questionAndAnswerVO.setCompanyEmail("sosdig@daum.net");
-		}
+		String email = "sosdig@naver.com";
+		questionAndAnswerBiz.registerQuestion(questionAndAnswerVO, email, memberType);
 		
-		
+		response.sendRedirect(Root.get(this) + "/questionAndAnswer");
 		
 	}
 

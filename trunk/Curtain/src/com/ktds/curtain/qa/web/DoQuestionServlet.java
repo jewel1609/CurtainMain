@@ -32,10 +32,8 @@ public class DoQuestionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/qa/question.jsp");
 		rd.forward(request, response);
-	
 	}
 
 }

@@ -11,11 +11,12 @@ import java.util.List;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.member.vo.StdMemberVO;
 import com.ktds.curtain.util.web.Const;
+import com.ktds.curtain.util.xml.XML;
 
 public class ArticleDAO {
 
 	// 학과
-	public List<ArticleVO> majorArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showMajorArticle(StdMemberVO stdMember) {
 
 		loadOracleDriver();
 
@@ -28,14 +29,15 @@ public class ArticleDAO {
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
-			String query = "";
+			String query = XML.getNodeString("//query/article/showMajorArticle/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, stdMember.getMajorGroupId());
+//			stmt.setInt(1, stdMember.getMajorGroupId());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				article = new ArticleVO();
 				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				System.out.println(article.getArticleTitle());
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
 				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
@@ -55,6 +57,41 @@ public class ArticleDAO {
 			closeDB(conn, stmt, rs);
 		}
 		return articles;
+	}
+	
+	public void doWriteMajorArticle(ArticleVO article) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/doWriteMajorArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, article.getArticleTitle());
+			stmt.setString(2, article.getArticleDesc());
+			stmt.setInt(3, article.getArticleTypeId());
+			stmt.setString(4, article.getStudentEmail());
+			stmt.setInt(5, article.getBoardId());
+			stmt.setInt(6,  article.);
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+		
+	}
+	
+	public void doWriteUnivArticle(ArticleVO article) {
+		
+	}
+	
+	public void doWriteAdArticle(ArticleVO article) {
+		
 	}
 
 	private void loadOracleDriver() {

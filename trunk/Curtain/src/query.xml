@@ -79,5 +79,37 @@
 			AND		A.STUDENT_EMAIL = ?
 		</myWriteArticle>
 		
+		<myLikesArticle>
+			SELECT	ARTICLE_TITLE
+					, ARTICLE_DESC
+					, ARTICLE_MODIFY_DATE
+					, BOARD_ID
+					, SM.NICK_NAME
+					, A.MAJOR_GROUP_ID
+					, HITS
+					, ARTICLE_LIKES
+			FROM	ARTICLE A
+					, STD_MEMBER SM
+					, ARTICLE_LIKE AL 
+			WHERE	A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND		A.ARTICLE_ID = AL.ARTICLE_ID
+		</myLikesArticle>
+		
+		<myScrabArticle>
+			SELECT	ARTICLE_TITLE
+					, ARTICLE_DESC
+					, ARTICLE_MODIFY_DATE
+					, BOARD_ID
+					, SM.NICK_NAME
+					, A.MAJOR_GROUP_ID
+					, HITS
+					, ARTICLE_LIKES
+			FROM	ARTICLE A
+					, STD_MEMBER SM
+					, ARTICLE_SCRAB AB
+			WHERE	A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND		A.ARTICLE_ID = AB.ARTICLE_ID
+		</myScrabArticle>
+		
 	</article>
 </query>

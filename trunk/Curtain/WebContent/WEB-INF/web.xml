@@ -49,6 +49,28 @@
     <servlet-name>QuestionAndAnswerServlet</servlet-name>
     <url-pattern>/questionAndAnswer</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>AuthNumCheckServlet</display-name>
+    <servlet-name>AuthNumCheckServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.auth.web.AuthNumCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthNumCheckServlet</servlet-name>
+    <url-pattern>/authNumCheck</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AuthNumSendServlet</display-name>
+    <servlet-name>AuthNumSendServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.auth.web.AuthNumSendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthNumSendServlet</servlet-name>
+    <url-pattern>/authNumSend</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>DoQuestionservlet</display-name>
@@ -59,4 +81,5 @@
     <servlet-name>DoQuestionservlet</servlet-name>
     <url-pattern>/doQuestion</url-pattern>
   </servlet-mapping>
+
 </web-app>

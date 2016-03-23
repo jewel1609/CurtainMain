@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <query>
+	<mac>
+		<getMacDescByStudentEmail>
+			SELECT 	MAC_ID
+					, STUDENT_EMAIL
+					, MAC_DESC
+			FROM	MAC
+			WHERE	STUDENT_EMAIL = ?					
+		</getMacDescByStudentEmail>
+		
+		<addMacInfo>
+			INSERT INTO MAC (
+						  		MAC_ID
+						  		, STUDENT_EMAIL
+						  		, MAC_DESC
+						  	) 
+			VALUES 			( 
+								MAC_ID_SEQ.NEXTVAL
+								,?
+								,? 
+							)
+		</addMacInfo>
+	</mac>
 	<article>
 		<showMajorArticle>
         	SELECT		ARTICLE_TITLE
@@ -22,5 +44,4 @@
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showMajorArticle>
 	</article>
-	
 </query>

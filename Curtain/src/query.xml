@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <query>
+	<major>
+		<checkMajorName>
+			SELECT	MAJOR_ID
+					, MAJOR_NAME
+					, MAJOR_GROUP_ID					
+			FROM	MAJOR
+			WHERE	MAJOR_NAME LIKE '%' || ? || '%'		
+		</checkMajorName>
+	</major>
+	<univ>
+		<checkUnivName>
+			SELECT	UNIV_ID
+					, UNIV_NAME
+			FROM	UNIV
+			WHERE	UNIV_NAME LIKE '%' || ? || '%'			
+		</checkUnivName>
+	</univ>
 	<mac>
 		<getMacDescByStudentEmail>
 			SELECT 	MAC_ID

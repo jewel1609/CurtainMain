@@ -81,16 +81,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ModifyMember</display-name>
-    <servlet-name>ModifyMember</servlet-name>
-    <servlet-class>com.ktds.curtain.member.web.ModifyMember</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ModifyMember</servlet-name>
-    <url-pattern>/myPage/modifyMember</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>MyPageServlet</display-name>
     <servlet-name>MyPageServlet</servlet-name>
     <servlet-class>com.ktds.curtain.member.web.MyPageServlet</servlet-class>
@@ -98,5 +88,45 @@
   <servlet-mapping>
     <servlet-name>MyPageServlet</servlet-name>
     <url-pattern>/myPage</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyScrabArticleServlet</display-name>
+    <servlet-name>MyScrabArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.MyScrabArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyScrabArticleServlet</servlet-name>
+    <url-pattern>/myPage/myScrabArticle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifyMemberServlet</display-name>
+    <servlet-name>ModifyMemberServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.ModifyMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyMemberServlet</servlet-name>
+    <url-pattern>/myPage/modifyMember</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyWriteArticleServlet</display-name>
+    <servlet-name>MyWriteArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.MyWriteArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyWriteArticleServlet</servlet-name>
+    <url-pattern>/myPage/myWriteArticle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyLikesArticleServlet</display-name>
+    <servlet-name>MyLikesArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.MyLikesArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyLikesArticleServlet</servlet-name>
+    <url-pattern>/myPage/myLikesArticle</url-pattern>
   </servlet-mapping>
 </web-app>

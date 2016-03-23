@@ -11,11 +11,19 @@ public class ArticleVO extends StdMemberVO {
 	private int articleTypeId;
 	private String studentEmail;
 	private int boardId;
-	private int majorId;
+	private int majorGroupId;
 	private int univId;
 	private int hits;
 	private int articleLikes;
 	
+	private String articleTypeName;
+	
+	public String getArticleTypeName() {
+		return articleTypeName;
+	}
+	public void setArticleTypeName(String articleTypeName) {
+		this.articleTypeName = articleTypeName;
+	}
 	public int getArticleId() {
 		return articleId;
 	}
@@ -64,12 +72,6 @@ public class ArticleVO extends StdMemberVO {
 	public void setBoardId(int boardId) {
 		this.boardId = boardId;
 	}
-	public int getMajorId() {
-		return majorId;
-	}
-	public void setMajorId(int majorId) {
-		this.majorId = majorId;
-	}
 	public int getUnivId() {
 		return univId;
 	}
@@ -89,4 +91,10 @@ public class ArticleVO extends StdMemberVO {
 		this.articleLikes = articleLikes;
 	}
 
+	public int getMajorGroupId() {
+		return majorGroupId;
+	}
+	public void setMajorGroupId(int majorGroupId) {
+		this.majorGroupId = majorGroupId;
+	}
 }

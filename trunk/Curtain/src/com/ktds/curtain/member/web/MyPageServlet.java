@@ -33,11 +33,9 @@ public class MyPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/myPageIndex.jsp");
-		rd.forward(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/myPageIndex.jsp");
+			rd.forward(request, response);
 	}
 
 }

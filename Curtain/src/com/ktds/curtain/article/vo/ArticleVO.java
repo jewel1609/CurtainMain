@@ -15,16 +15,7 @@ public class ArticleVO extends StdMemberVO {
 	private int univId;
 	private int hits;
 	private int articleLikes;
-	
-	// major, univ, ad 구분 
-	private String majorArticle;
-	
-	public String getMajorArticle() {
-		return majorArticle;
-	}
-	public void setMajorArticle(String majorArticle) {
-		this.majorArticle = majorArticle;
-	}
+
 	private String articleTypeName;
 	
 	public String getArticleTypeName() {

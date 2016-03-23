@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>회원가입</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet"
@@ -27,44 +27,8 @@ html, body, h1, h2, h3, h4, h5 {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<body>
 
-	<nav class="w3-sidenav w3-collapse w3-white w3-animate-left w3-card-2"
-		style="z-index: 3; width: 250px; height: 400px; margin-top: 185px;">
-		<a href="#" class="w3-border-bottom w3-large"><img
-			src="http://www.w3schools.com/images/w3schools.png"
-			style="width: 80%;"></a> <a href="javascript:void(0)"
-			onclick="w3_close()"
-			class="w3-text-teal w3-hide-large w3-closenav w3-large">Close ×</a>
-		<div class="w3-accordion">
-			<a onclick="myAccordion('demo')" href="javascript:void(0)">학생 게시판<i
-				class="fa fa-caret-down"></i></a>
-			<div id="demo"
-				class="w3-accordion-content w3-animate-left w3-padding">
-				<a href="#">컴퓨터공학</a> <a href="#">밀당대학교</a>
-			</div>
-		</div>
-		<a href="#">홍보게시판</a> <a href="#">마이페이지</a> <a href="#">Q & A</a>
-	</nav>
-
-	<div class="w3-overlay w3-hide-large" onclick="w3_close()"
-		style="cursor: pointer"></div>
-
-	<div class="w3-main">
-
-		<div id="myTop" class="w3-top w3-container w3-padding-8"
-			style="background-color: #A9D039; border: 0px;">
-			<i
-				class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left w3-margin-right"
-				onclick="w3_open()"></i>
-		</div>
-
-		<header class="w3-container w3-padding-15 "
-			style="background-color: #A9D039; border: 0px; padding: 20px;">
-			<h1 class="w3-xxxlarge w3-padding-5" style="margin-left: 10px;">커튼</h1>
-		</header>
-	</div>
-
+<jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 
 	<div class="w3-container w3-center w3-main"
 		style="margin-top: 30px; margin-bottom: 20px;">
@@ -73,107 +37,131 @@ html, body, h1, h2, h3, h4, h5 {
 			<div class="col-md-12">
 				<div class="page-header">
 					<h1>
-						회원가입 <small>horizontal form</small>
+						개인정보 입력
 					</h1>
 				</div>
+			
 				<form class="form-horizontal">
+				
+					<!-- 대학교 이메일 -->
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="inputEmail" type="email"
-								placeholder="이메일">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="inputPassword" type="password"
-								placeholder="비밀번호">
-							<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호
-							확인</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="inputPasswordCheck"
-								type="password" placeholder="비밀번호 확인">
-							<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputName">이름</label>
-						<div class="col-sm-6">
-							<input class="form-control" id="inputName" type="text"
-								placeholder="이름">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
+						<label class="col-sm-3 control-label" for="inputEmail">대학교 이메일</label>
 						<div class="col-sm-6">
 							<div class="input-group">
-								<input type="tel" class="form-control" id="inputNumber"
-									placeholder="- 없이 입력해 주세요" /> <span class="input-group-btn">
-									<button class="btn btn-success">
-										인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
-									</button>
-								</span>
+								<input class="form-control" id="inputEmail" type="email" 
+								placeholder="학교 이메일주소를 입력하세요. 일반이메일은 인증메일이 전송되지않습니다."/>
+									<span class="input-group-btn">
+										<button class="btn btn-success">
+											인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
+										</button>
+									</span>
 							</div>
 						</div>
 					</div>
+					
+					<!-- 인증번호확인 -->
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호
-							확인</label>
+						<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호 확인</label>
 						<div class="col-sm-6">
 							<div class="input-group">
-								<input class="form-control" id="inputNumberCheck" type="text"
-									placeholder="인증번호"> <span class="input-group-btn">
+								<input class="form-control" id="inputNumberCheck" type="text" 
+								placeholder="전송된 인증번호를 입력해주세요."> <span class="input-group-btn">
 									<button class="btn btn-success" type="button">
 										인증번호 확인<i class="fa fa-edit spaceLeft"></i>
 									</button>
 								</span>
 							</div>
-							<p class="help-block">전송된 인증번호를 입력해주세요.</p>
 						</div>
 					</div>
+					
+					<!-- 비밀번호 -->
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputAgree">약관
-							동의</label>
-						<div class="col-sm-6" data-toggle="buttons">
-							<label class="btn btn-warning active"> <input id="agree"
-								type="checkbox" autocomplete="off" chacked> <span
-								class="fa fa-check"></span>
-							</label> <a href="#">이용약관</a> 에 동의 합니다.
+						<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="inputPassword" type="password"
+								placeholder="8-20자리 영문 대소문자, 숫자를 혼합하여 사용.">
 						</div>
 					</div>
+					
+					<!-- 비밀번호 재확인 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 재확인</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="inputPasswordCheck"
+								type="password" placeholder="비밀번호 재확인">
+						</div>
+					</div>
+					<hr>
+					
+					<!-- 대학교 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputUniv">대학교</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="inputName" type="text"
+								placeholder="대학교를 검색하세요">
+						</div>
+					</div>
+					
+					<!-- 학과 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputMajor">학과</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="inputName" type="text"
+								placeholder="학과를 검색하세요.">
+						</div>
+					</div>
+					<hr>
+					
+					<!-- 보조 이메일 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputEmail">보조 이메일</label>
+						<div class="col-sm-6">
+								<input class="form-control" id="inputEmail" type="email" 
+								placeholder="비밀번호 분실 시 활용됩니다.">
+						</div>
+					</div>
+					<br/>
+					
+					<!-- 약관 동의 -->
+					<h1>
+						약관 동의
+					</h1>
+					<br/>
+					<div class="form-group">
+						<div class="col-sm-6" data-toggle="buttons">
+							개인화면 약관에 동의 <a href="#">내용보기</a>
+								<input id="agree"type="checkbox" autocomplete="off">
+						</div>
+						
+						<div class="col-sm-6" data-toggle="buttons">
+							개인정보 수정 및 이용에 동의 <a href="#">내용보기</a>
+								<input id="agree2" type="checkbox" autocomplete="off">
+						</div>
+					</div>
+					
+					<!-- 가입하기 버튼 -->
 					<div class="form-group">
 						<div class="col-sm-12 text-center">
 							<button class="btn btn-primary" type="submit">
-								회원가입<i class="fa fa-check spaceLeft"></i>
+								가입하기<i class="fa fa-check spaceLeft"></i>
 							</button>
+							<!--  
 							<button class="btn btn-danger" type="submit">
 								가입취소<i class="fa fa-times spaceLeft"></i>
 							</button>
+							-->
 						</div>
 					</div>
 				</form>
 				<hr>
+				
 			</div>
 		</article>
 
-
-
-
 	</div>
 
-	<footer class="w3-container"
-		style="background-color: #A9D039; border: 0px;">
-		<h5>Footer</h5>
-		<p>Footer information goes here</p>
-	</footer>
 
-
-
+<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<script>
 		function w3_open() {
 			document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
@@ -206,5 +194,4 @@ html, body, h1, h2, h3, h4, h5 {
 		}
 	</script>
 
-</body>
 </html>

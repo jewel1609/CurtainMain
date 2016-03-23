@@ -49,7 +49,6 @@
     <servlet-name>QuestionAndAnswerServlet</servlet-name>
     <url-pattern>/questionAndAnswer</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>WriteArticleServlet</display-name>
@@ -90,6 +89,36 @@
   <servlet-mapping>
     <servlet-name>DoQuestionservlet</servlet-name>
     <url-pattern>/doQuestion</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>DoUnivSearchServlet</display-name>
+    <servlet-name>DoUnivSearchServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.univ.web.DoUnivSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoUnivSearchServlet</servlet-name>
+    <url-pattern>/doUnivSearch</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>CharacterEncodingFilter</display-name>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>com.ktds.curtain.filter.CharacterEncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoMajorSearchServlet</display-name>
+    <servlet-name>DoMajorSearchServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.major.web.DoMajorSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoMajorSearchServlet</servlet-name>
+    <url-pattern>/doMajorSearch</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -141,5 +170,4 @@
     <servlet-name>MyLikesArticleServlet</servlet-name>
     <url-pattern>/myPage/myLikesArticle</url-pattern>
   </servlet-mapping>
-
 </web-app>

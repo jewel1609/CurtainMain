@@ -10,7 +10,7 @@
 		$("#writeBtn").click( function () {
 				var form = $("#writeArticle");
 				form.attr("method", "post");
-				form.attr("action", "/main");
+				form.attr("action","/writeArticle");
 				form.submit();
 		});
 	});
@@ -28,8 +28,22 @@
           <form id="writeArticle">
 	            <div class="w3-container w3-padding w3-left-align">
 	              <div class="form-group1">
-	              	  <input type="hidden" id="majorArticle" name="majorArticle" value="majorArticle"/>
-					  <textarea name="articleDescription" class="w3-col m12" rows="5" id="comment" style=" margin-bottom:5px;" placeholder="무슨 생각을 하고 계신가요?"></textarea>
+		              	  <input type="hidden" id="boardId" name="boardId" value="1"/>
+		              	<div>
+		              	<div class="container col-xs-2 input-lg" style="padding-bottom:10px; padding-left:0px;">
+						      <select class="form-control " id="sel1" name="articleTypeId">
+						        <option value="1">고민</option>
+						        <option value="2">취업</option>
+						        <option value="3">연애</option>
+						      </select>
+						</div>
+							<div style="padding-top:4px;">
+							    <input type="text"  class="w3-col m10 input-lg" id="articleTitle" name="articleTitle" placeholder="제목"  />
+							</div>
+						</div>
+						<div style="padding-top:4px;">
+						  <textarea name="articleDescription" class="w3-col m12" rows="5" id="comment" style=" margin-bottom:5px;" placeholder="무슨 생각을 하고 계신가요?"></textarea>
+						</div>
 					</div>
 	               <div class="btn-group pull-right">
 						    <div class="btn-group">
@@ -54,7 +68,11 @@
 	        <div class="w3-col m12">
 	          <div class="w3-card-2 w3-white w3-round-large">
 	            <div class="w3-container">
-	              <p>${article.articleTitle}</p>
+	           	 <div>
+		           	 <div>${article.articleTypeName}</div>
+	           		${article.articleTitle}
+	           	 </div>
+	              
 	              <p>${article.articleDesc}</p>
 	              <p>${article.articleModifyDate}  ${article.nickName}</p>
 	            </div>

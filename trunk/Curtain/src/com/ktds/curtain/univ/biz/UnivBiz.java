@@ -10,5 +10,9 @@ public class UnivBiz {
 	public String checkUnivName(String inputUnivName) {
 		return univDAO.checkUnivName(inputUnivName);
 	}
+	public boolean isExistStdUnivEmail(String inputUnivEmail) {
+		
+		return univDAO.isExistStdUnivEmail(inputUnivEmail);
+	}
 
 }

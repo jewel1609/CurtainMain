@@ -58,7 +58,6 @@ public class WriteArticleServlet extends HttpServlet {
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(Integer.parseInt(articleTypeId));
 		article.setBoardId(Integer.parseInt(boardId));
-
 		article.setStudentEmail("test@smu.ac.kr");
 		article.setMemberTypeId(1);
 		article.setUnivId(1);

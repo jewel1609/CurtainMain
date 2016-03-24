@@ -208,6 +208,14 @@
 											, ?
 									)
 		</addStdMember>
+		
+		<updateMemberInfo>
+			UPDATE	STD_MEMBER
+			SET		SECOND_EMAIL = ?
+					, NICK_NAME = ?
+			WHERE	STUDENT_EMAIL = ?
+		</updateMemberInfo>
+		
 	</stdMember>
 	
 	<qa>

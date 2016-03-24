@@ -40,6 +40,34 @@ public class StdMemberDAO {
 				closeDB(conn, stmt, rs);
 			}
 	}
+	
+	public void updateMemberInfo(String userEmail, String userNickName) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/stdMember/updateMemberInfo/text()");
+			stmt = conn.prepareStatement(query);
+			
+			//SQL Parameter Mapping
+			stmt.setString(1, userEmail);
+			stmt.setString(2, userNickName);
+			stmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
 
 	private void loadOracleDriver() {
 		try {
@@ -70,9 +98,6 @@ public class StdMemberDAO {
 		}
 	}
 
-	public void updateMemberInfo(String userEmail, String userNickName) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }

@@ -185,6 +185,7 @@
 	</stdMember>
 	
 	<qa>
+	
 		<registerQuestionByStudent>
 			INSERT INTO CURTAIN.QA	(
 										QUESTION_ID
@@ -209,6 +210,7 @@
 										, ''
 									)
 		</registerQuestionByStudent>
+		
 		<registerQuestionByCompany>
 			INSERT INTO CURTAIN.QA	(
 										QUESTION_ID
@@ -233,6 +235,17 @@
 										, ?
 									)
 		</registerQuestionByCompany>
+		
+		<getMyQuestionsByStudentEmail>
+			SELECT	QUESTION_TITLE
+					, QUESTION_DESCRIPTION
+					, ANSWER_DESCRIPTION
+					, QUESTION_DATE
+					, ANSWER_DATE
+					, IS_CHECKED
+			FROM	CURTAIN.QA
+			WHERE	STUDENT_EMAIL = ?
+		</getMyQuestionsByStudentEmail>
 	</qa>
 	
 	<file>

@@ -47,10 +47,6 @@ public class MyLikesArticleServlet extends HttpServlet {
 		
 		//test 임의로 값 넣음
 		ArticleVO article = new ArticleVO();
-		article.setArticleTitle(articleTitle);
-		article.setArticleDesc(articleDescription);
-		article.setArticleTypeId(Integer.parseInt(articleTypeId));
-		article.setBoardId(Integer.parseInt(boardId));
 
 		article.setStudentEmail("test@smu.ac.kr");
 		article.setMemberTypeId(1);
@@ -62,7 +58,7 @@ public class MyLikesArticleServlet extends HttpServlet {
 		
 		
 		
-		List<ArticleVO> likesArticles = articleBiz.showLikesArticle(stdMember);
+		List<ArticleVO> likesArticles = articleBiz.showLikesArticle(article);
 		
 		request.setAttribute("likesArticles", likesArticles);
 		

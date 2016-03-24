@@ -83,6 +83,40 @@ public class UnivDAO {
 			return univId;
 	}
 	
+
+	public boolean isExistStdUnivEmail(String inputUnivEmail) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// univName에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/univ/isExistStdUnivEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, inputUnivEmail);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				count++;
+				return true;
+			}
+			System.out.println("중복되는 메일 있는 개수:" +count);
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return false;
+	}
+
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -111,5 +145,6 @@ public class UnivDAO {
 			}
 		}
 	}
+
 
 }

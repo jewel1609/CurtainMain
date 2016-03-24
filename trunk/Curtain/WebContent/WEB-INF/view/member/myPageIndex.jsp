@@ -52,7 +52,7 @@
 	    					position: relative; left:-13px;">
 	    					<p style="position:relative; top:-70px; left:0px;">test</p>
     					</div>
-    					<p style="position:relative; top:-20px;">게시글</p>
+    					<p style="position:relative; top:-22px;">게시글</p>
     				</div>
     				<div class="w3-container w3-third">
     					<div>
@@ -60,7 +60,7 @@
 	    					position: relative; left:-13px;">
 	    					<p style="position:relative; top:-70px; left:0px;">test</p>
     					</div>
-    					<p style="position:relative; top:-20px;">댓글</p>
+    					<p style="position:relative; top:-22px;">댓글</p>
     				</div>
     				<div class="w3-container w3-third">
     					<div>
@@ -68,7 +68,7 @@
 	    					position: relative; left:-13px;">
 	    					<p style="position:relative; top:-70px; left:0px;">test</p>
     					</div>
-    					<p style="position:relative; top:-20px;">투표참여</p>
+    					<p style="position:relative; top:-22px;">투표참여</p>
     				</div>
   				</div>
             </div>

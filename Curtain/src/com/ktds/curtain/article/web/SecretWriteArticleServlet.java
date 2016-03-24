@@ -76,25 +76,32 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		
 		boolean doWriteArticle = articleBiz.doWriteArticle(article);
 		
-		//최신 시퀀스 얻어오기
 		int articleId = articleBiz.getArticleId();
-		
-		if( articleId > 0){
-			
+		if( articleId > 0 ){
 			if( imgFile.getFileSize() != 0 ){
-				List<FileVO> fileList = new ArrayList<FileVO>();
+				
+				// 파일이 있을 경우
+			
+				//List<FileVO> fileList = new ArrayList<FileVO>();
 				FileVO file = new FileVO();
 				
 				file.setArticleId(articleId);
 				file.setFileName(imgFile.getFileName());
 				file.setFileLocation("D:\\"+imgFile.getFileName());
 				
-				fileList.add(file);
+				//fileList.add(file);
 				
-				fileBiz.insertFile(fileList);
+				fileBiz.insertFile(file);
 			}
-			
+			response.sendRedirect("/secretBoard");
+			return;
 		}
+		else{
+			System.out.println("articleId 가져오지 못함 - 등록 실패");
+		}
+		
+			
+	
 
 		
 		

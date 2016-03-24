@@ -59,7 +59,7 @@ public class ArticleBiz {
 
 	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {
 		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showMajorArticle(stdMember);
+		articles = articleDAO.showLikesArticle(stdMember);
 		return articles;
 	}
 

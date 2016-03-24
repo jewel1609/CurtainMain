@@ -9,7 +9,7 @@
     <a onclick="myAccordion('demo')" href="javascript:void(0)">학생 게시판<i class="fa fa-caret-down"></i></a>
     <div id="demo" class="w3-accordion-content w3-animate-left w3-padding">
       <a href="<c:url value="/studentMajorAritlce"/>">컴퓨터공학</a>
-      <a href="#">밀당대학교</a>
+      <a href="<c:url value="/studentUnivArticle"/>">밀당대학교</a>
     </div>
   </div>	
   <a href="#">홍보게시판</a>	

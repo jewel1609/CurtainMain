@@ -9,7 +9,7 @@ public class QuestionAndAnswerVO {
 	private String questionDate;
 	private String answerDate;
 	private String studentEmail;
-	private boolean isChecked;
+	private String isChecked;
 	private String companyEmail;
 	
 	public int getQuestionId() {
@@ -54,10 +54,10 @@ public class QuestionAndAnswerVO {
 	public void setStudentEmail(String studentEmail) {
 		this.studentEmail = studentEmail;
 	}
-	public boolean isChecked() {
+	public String isChecked() {
 		return isChecked;
 	}
-	public void setChecked(boolean isChecked) {
+	public void setChecked(String isChecked) {
 		this.isChecked = isChecked;
 	}
 	public String getCompanyEmail() {

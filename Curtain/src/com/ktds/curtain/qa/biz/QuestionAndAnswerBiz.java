@@ -1,5 +1,7 @@
 package com.ktds.curtain.qa.biz;
 
+import java.util.List;
+
 import com.ktds.curtain.qa.dao.QuestionAndAnswerDAO;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 
@@ -13,18 +15,17 @@ public class QuestionAndAnswerBiz {
 
 	public void registerQuestion(QuestionAndAnswerVO questionAndAnswerVO, String email, String memberType) {
 		
-		// TODO validation check 주석
 		if ( questionAndAnswerVO.getQuestionTitle() == null 
-				&& questionAndAnswerVO.getQuestionTitle().length() == 0 ) {
+				|| questionAndAnswerVO.getQuestionTitle().length() == 0 ) {
 			return;
 		}
 		
 		if ( questionAndAnswerVO.getQuestionDescription() == null
-				&& questionAndAnswerVO.getQuestionDescription().length() ==0 ) {
+				|| questionAndAnswerVO.getQuestionDescription().length() == 0 ) {
 			return;
 		}
 		
-		if ( email == null && email.length() == 0 ) {
+		if ( email == null || email.length() == 0 ) {
 			return;
 		}
 		
@@ -37,5 +38,14 @@ public class QuestionAndAnswerBiz {
 		else {
 			return;
 		}
+	}
+
+	public List<QuestionAndAnswerVO> getMyQuestionsByStudentEmail(String email) {
+		
+		if (email != null) {
+			return questionAndAnswerDAO.getMyQuestionsByStudentEmail(email);
+		}
+		
+		return null;
 	}
 }

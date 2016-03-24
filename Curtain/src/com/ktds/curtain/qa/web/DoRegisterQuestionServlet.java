@@ -40,7 +40,7 @@ public class DoRegisterQuestionServlet extends HttpServlet {
 		QuestionAndAnswerVO questionAndAnswerVO = new QuestionAndAnswerVO();
 		String memberType = request.getParameter("memberType");
 		
-		// TODO 세션에서 이메일을 받아와야 한다.
+		// TODO 준호 세션에서 이메일을 받아와야 한다.
 		questionAndAnswerVO.setQuestionDescription(request.getParameter("questionDescription"));
 		questionAndAnswerVO.setQuestionTitle(request.getParameter("questionTitle"));
 		String email = "sosdig@naver.com";

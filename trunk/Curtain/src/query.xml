@@ -216,6 +216,12 @@
 			WHERE	STUDENT_EMAIL = ?
 		</updateMemberInfo>
 		
+		<updateMemberPassword>
+			UPDATE	STD_MEMBER
+			SET		PASSWORD = ?
+			WHERE	STUDENT_EMAIL = ?
+		</updateMemberPassword>
+		
 	</stdMember>
 	
 	<qa>

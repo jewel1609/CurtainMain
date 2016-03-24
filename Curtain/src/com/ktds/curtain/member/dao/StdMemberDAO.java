@@ -69,5 +69,10 @@ public class StdMemberDAO {
 			}
 		}
 	}
+
+	public void updateMemberInfo(String userEmail, String userNickName) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

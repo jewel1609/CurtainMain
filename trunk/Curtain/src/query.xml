@@ -21,6 +21,11 @@
 		</checkMajorName>
 	</major>
 	<univ>
+		<isExistStdUnivEmail>
+			SELECT 	STUDENT_EMAIL
+			FROM	STD_MEMBER
+			WHERE	STUDENT_EMAIL = ?
+		</isExistStdUnivEmail>
 		<getUnivIdByUnivName>
 			SELECT	UNIV_ID		
 			FROM	UNIV

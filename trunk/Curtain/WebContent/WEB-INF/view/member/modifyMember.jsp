@@ -16,17 +16,30 @@
 		})
 		
 		$("#modifyMemberBtn").click( function () {
-			var form = $("#modifyMember");
-			form.attr("method", "post");
-			form.attr("action","/modifyMemberInfo");
-			form.submit();
+			
+			if ( confirm("수정 하시겠습니까?") == true ) {
+				var form = $("#modifyMember");
+				form.attr("method", "post");
+				form.attr("action","/modifyMemberInfo");
+				form.submit();
+			}
+			else {
+				return;
+			}
+				
 		});
 		
 		$("#modifyPasswordBtn").click( function () {
-			var form = $("#modifyMemberPassword");
-			form.attr("method", "post");
-			form.attr("action","/modifyMemberPassword");
-			form.submit();
+			
+			if ( confirm("입력한 내용으로 비밀번호를 변경하시겠습니까?") == true ) {
+				var form = $("#modifyMemberPassword");
+				form.attr("method", "post");
+				form.attr("action","/modifyMemberPassword");
+				form.submit();
+			}
+			else {
+				return;
+			}
 		});
 		
 	});	

@@ -6,10 +6,12 @@ import java.util.List;
 import com.ktds.curtain.article.dao.ArticleDAO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
+import com.ktds.curtain.file.dao.FileDAO;
 import com.ktds.curtain.member.vo.StdMemberVO;
 
 public class ArticleBiz {
 	private ArticleDAO articleDAO;
+	private FileDAO fileDAO;
 	private List<ArticleVO> articles;
 	
 	public ArticleBiz() {
@@ -50,6 +52,13 @@ public class ArticleBiz {
 		}
 		return doWriteArticle > 0;
 	}
+	
+	public int getArticleId() {
+		int articleId = articleDAO.getArticleId();
+		return articleId;
+	}
+
+	//
 	
 	/**
 	 * 내가 좋아요 한 글 

@@ -35,12 +35,12 @@ public class ModifyMemberInfoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//TODO 세션의 대학이메일(ID)의 사람의 이메일과 닉네임을 바꾸어준다. 
+		
 		String userEmail = request.getParameter("userEmail");
 		String userNickName = request.getParameter("userNickName");
 		
 		memberBiz.modifyMemberInfo(userEmail, userNickName);
-		
-		
 		
 	
 	

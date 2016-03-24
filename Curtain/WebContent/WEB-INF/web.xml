@@ -178,7 +178,6 @@
     <servlet-name>MyLikesArticleServlet</servlet-name>
     <url-pattern>/myPage/myLikesArticle</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>StudentUnivArticleServlet</display-name>
@@ -189,8 +188,7 @@
     <servlet-name>StudentUnivArticleServlet</servlet-name>
     <url-pattern>/studentUnivArticle</url-pattern>
   </servlet-mapping>
-
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>SecretWriteArticleServlet</display-name>
     <servlet-name>SecretWriteArticleServlet</servlet-name>
@@ -210,5 +208,14 @@
     <servlet-name>SecretBoardServlet</servlet-name>
     <url-pattern>/secretBoard</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>ModifyMemberInfoServlet</display-name>
+    <servlet-name>ModifyMemberInfoServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.ModifyMemberInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyMemberInfoServlet</servlet-name>
+    <url-pattern>/modifyMemberInfo</url-pattern>
+  </servlet-mapping>
 </web-app>

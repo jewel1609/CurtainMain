@@ -40,7 +40,6 @@ public class ModifyMemberPasswordServlet extends HttpServlet {
 		String userPw = request.getParameter("userPw");
 		
 		memberBiz.modifyMemberPassword(userPw);
-				
 	}
 
 }

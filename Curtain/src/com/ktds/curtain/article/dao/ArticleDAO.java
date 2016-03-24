@@ -31,7 +31,8 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showMajorArticle/text()");
 			stmt = conn.prepareStatement(query);
-//			stmt.setInt(1, stdMember.getMajorGroupId());
+			stmt.setInt(1, 1);
+//			stmt.setInt(2, stdMember.getMajorGroupId());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -58,7 +59,92 @@ public class ArticleDAO {
 		return articles;
 	}
 	
-	public void doWriteMajorArticle(ArticleVO article) {
+	// 대학
+	public List<ArticleVO> showUnivArticle(StdMemberVO stdMember, String boardId) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showUnivArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, Integer.parseInt(boardId));
+//			stmt.setInt(2, stdMember.getMajorGroupId());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, rs);
+		}
+		return articles;
+	}
+	
+	// 홍보
+	public List<ArticleVO> showAdArticle(StdMemberVO stdMember, String boardId) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showAdArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, Integer.parseInt(boardId));
+//			stmt.setInt(2, stdMember.getMajorGroupId());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, rs);
+		}
+		return articles;
+	}
+	public int doWriteMajorArticle(ArticleVO article) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -75,38 +161,38 @@ public class ArticleDAO {
 			stmt.setString(4, article.getStudentEmail());
 			stmt.setInt(5, article.getBoardId());
 			stmt.setInt(6, article.getMajorGroupId());
-			stmt.executeUpdate();
+			int insertCount = stmt.executeUpdate();
+			return insertCount;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			closeDB(conn, stmt, null);
 		}
-		
-		
+		return 0;
 	}
 	
-	public void doWriteUnivArticle(ArticleVO article) {
-		
+	public int doWriteUnivArticle(ArticleVO article) {
+		return 0;
 	}
 	
-	public void doWriteAdArticle(ArticleVO article) {
-		
+	public int doWriteAdArticle(ArticleVO article) {
+		return 0;
 	}
 	
 
-	public void doWriteSecretArticleOne(ArticleVO article) {
+	public int doWriteSecretArticleOne(ArticleVO article) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
-	public void doWriteSecretArticleTwo(ArticleVO article) {
+	public int doWriteSecretArticleTwo(ArticleVO article) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
-	public void doWriteSecretArticleThree(ArticleVO article) {
+	public int doWriteSecretArticleThree(ArticleVO article) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	
@@ -140,6 +226,7 @@ public class ArticleDAO {
 		}
 
 	}
+
 
 
 }

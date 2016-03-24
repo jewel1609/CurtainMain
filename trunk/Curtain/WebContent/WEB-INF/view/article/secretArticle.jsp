@@ -107,7 +107,7 @@
 										</div>
 										<button type="button" class="btn btn-default" id="doWrite"
 											style="border-color: #FF3300; color: #FF3300;">게시</button>
-										<div id="imagePreview"><img id="uploadImg" src=#"></div>
+										<div id="imagePreview"><img id="uploadImg" src=# width=300px;"></div>
 									</div>
 								</div>
 							</form>

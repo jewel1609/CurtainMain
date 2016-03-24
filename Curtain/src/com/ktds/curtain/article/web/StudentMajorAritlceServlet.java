@@ -45,6 +45,11 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		StdMemberVO stdMember = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
 		
+//		FavoVO favoriteVO = new FavoVO();
+//		favoriteVO.setArticleId(articleId);
+//		favoriteVO.setMemberId(member.getMemberId());
+//		boolean isExistsFavoriteData = favoriteBiz.isExistFavoriteData(favoriteVO);
+		
 
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember);
 		request.setAttribute("majorArticles", majorArticles);

@@ -32,4 +32,8 @@ public class StdMemberBiz {
 		stdMemberDAO.updateMemberInfo(userEmail, userNickName);
 	}
 
+	public void modifyMemberPassword(String userPw) {
+		stdMemberDAO.updateMemberPassword(userPw);
+	}
+
 }

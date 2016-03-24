@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
-<!DOCTYPE html>
-<html>
-<title>회원가입</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet"
-	href="http://www.w3schools.com/lib/w3-theme-teal.css">
-<link href='https://fonts.googleapis.com/css?family=RobotoDraft'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet"
-	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+
 <style>
 html, body, h1, h2, h3, h4, h5 {
 	font-family: "RobotoDraft", "Roboto", sans-serif;
@@ -30,17 +21,45 @@ html, body, h1, h2, h3, h4, h5 {
 	cursor: pointer;
 }
 </style>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resource/js/jquery-1.12.1.js"></script>
-<script type="text/javascript" src="/resource/js/json2.js"></script>
+
 <script type="text/javascript">
 
 	$(document).ready(function() {
+		
+		$("#inputUnivEmail").keyup(function(){
+			//AJAX 준비
+	         $.post(
+	        		 "<c:url value="/doUnivCheck" />"//갈 서블릿url
+	                  , {
+	                	  "inputUnivEmail" : $("#inputUnivEmail").val()
+	                	 }
+	                  , function(data) { //응답내용
+	                	 	 var jsonData3 = {};
+		                  
+		                     try {
+		                        jsonData3 = JSON.parse(data);
+		                     }
+		                     catch(e) {
+		                    	console.log(e);
+		                     }
+		                    console.log(jsonData3.inputUnivEmail);
+		                    
+	                        if(jsonData3.result){
+		                    	var text = $("#inputUnivEmail").text();
+		                    	if(jsonData3.isExistStdUnivEmail){
+		                    		$("#stdUnivEmailCheck").text("중복된 이메일입니다.");
+		                    		$('#registStdBtn').attr('disabled',true); // 버튼 비활성화
+		                    		$("#inputUnivEmail").focus();
+		                    	}
+		                    	if(!jsonData3.isExistStdUnivEmail){
+		                    		$("#stdUnivEmailCheck").text("가입가능한 이메일입니다.");
+		                    		$('#registStdBtn').attr('disabled',false); // 버튼 활성화
+		                    	}
+		                  }  
+	                  }
+	         );
+		    var text = $(this).text();
+		});
 		
 		//인증번호 보내기버튼 클릭시,
 		$("#authNumSendBtn").click(function(){
@@ -68,13 +87,15 @@ html, body, h1, h2, h3, h4, h5 {
 	                     if(jsonData3.result){
 		                    	var text = $("#inputUnivEmail").text();
 		                    	if(jsonData3.isSendCheck){
+		                    		$('#registStdBtn').attr('disabled',false);  //버튼 활성화 
 		                    		alert("메일전송이 성공하였습니다.");
 		                    	}
 		                    	if(!jsonData3.isSendCheck){
+		                    		$('#registStdBtn').attr('disabled',true);  //버튼 비활성화 
 		                    		$("#inputUnivEmail").focus();
-		                    		alert("메일전송이 실패하였습니다.");
+		                    		alert("메일전송이 실패하였습니다. 다시 전송해주세요.");
 		                    	}
-		                     } 
+		                  } 
 	                  }
 	         );
 	         var text = $(this).text();
@@ -110,8 +131,11 @@ html, body, h1, h2, h3, h4, h5 {
 	                    	var text = $("#inputNumberCheck").text();
 	                    	if(jsonData3.isUnivEmail){
 	                    		alert("인증되었습니다.");
+	                    		$('#registStdBtn').attr('disabled',false); // 버튼 활성화
+	                    		
 	                    	}
 	                    	if(!jsonData3.isUnivEmail){
+	                    		$('#registStdBtn').attr('disabled',true);  //버튼 비활성화 
 	                    		$("#inputNumberCheck").focus();
 	                    		alert("인증이 실패되었습니다.");
 	                    	}
@@ -129,10 +153,13 @@ html, body, h1, h2, h3, h4, h5 {
 				 return;
 			}
 			if($("#inputPassword").val() == $("#inputPasswordCheck").val()){
-				 $("#passwordCheckSpan").text("재확인 비밀번호가 같습니다.");
+				 $("#passwordCheckSpan").text("일치 합니다.");
+				 $('#registStdBtn').attr('disabled',false); // 버튼 활성화
+				 
 			}
 			if($("#inputPassword").val() != $("#inputPasswordCheck").val()){
-				 $("#passwordCheckSpan").text("재확인 비밀번호가 다릅니다.");
+				 $("#passwordCheckSpan").text("불일치 합니다.");
+				 $('#registStdBtn').attr('disabled',true); // 버튼 비활성화
 				 $("#inputPasswordCheck").focus();
 			}
 			
@@ -269,7 +296,7 @@ html, body, h1, h2, h3, h4, h5 {
 	});
 
 </script>
-<jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+
 
 	<div class="w3-container w3-center w3-main"
 		style="margin-top: 30px; margin-bottom: 20px;">
@@ -289,12 +316,14 @@ html, body, h1, h2, h3, h4, h5 {
 						<label class="col-sm-3 control-label" for="inputUnivEmail">대학교 이메일</label>
 						<div class="col-sm-6">
 							<div class="input-group">
-								<input class="form-control" id="inputUnivEmail" name="inputUnivEmail" type="email" 
+								<input class="form-control" id="inputUnivEmail" name="inputUnivEmail" type="text" 
 								placeholder="학교 이메일주소를 입력하세요. 일반이메일은 인증메일이 전송되지않습니다."/>
 									<span class="input-group-btn">
 										<input type="button" id="authNumSendBtn" class="btn btn-success" value="인증번호 전송">
 									</span>
 							</div>
+							<br/>
+							<span style="margin: 0 auto"class="col-sm-6" id="stdUnivEmailCheck"></span>
 						</div>
 					</div>
 					
@@ -328,8 +357,8 @@ html, body, h1, h2, h3, h4, h5 {
 							<input class="form-control" id="inputPasswordCheck" name="inputPasswordCheck"
 								type="password" placeholder="비밀번호 재확인">
 						</div>
-						<span id="passwordCheckSpan"></span>
 					</div>
+						<span class="col-sm-6" id="passwordCheckSpan"></span>
 					<hr>
 					
 					<!-- 대학교 -->
@@ -338,7 +367,7 @@ html, body, h1, h2, h3, h4, h5 {
 						<div class="col-sm-6">
 							<input class="form-control" id="inputUnivName" name="inputUnivName" type="text"
 								placeholder="대학교를 검색하세요">
-							<div class="col-sm-6" id="univSuggest"></div>
+							<span class="col-sm-6" id="univSuggest"></span>
 						</div>
 					</div>
 					
@@ -428,4 +457,3 @@ html, body, h1, h2, h3, h4, h5 {
 		}
 	</script>
 
-</html>

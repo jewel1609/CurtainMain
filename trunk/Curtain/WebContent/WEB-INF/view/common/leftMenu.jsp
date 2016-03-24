@@ -13,8 +13,8 @@
     </div>
   </div>
     <div class="w3-accordion">
-    <a onclick="myAccordion('demo')" href="javascript:void(0)">비밀게시판<i class="fa fa-caret-down"></i></a>
-    <div id="demo" class="w3-accordion-content w3-animate-left w3-padding">
+    <a onclick="myAccordion('demo1')" href="javascript:void(0)">비밀게시판<i class="fa fa-caret-down"></i></a>
+    <div id="demo1" class="w3-accordion-content w3-animate-left w3-padding">
       <a href="<c:url value="/secretArticleList"/>">한겹</a>
       <a href="<c:url value="/studentUnivArticle"/>">두겹</a>
        <a href="<c:url value="/studentUnivArticle"/>">세겹</a>

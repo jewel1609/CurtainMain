@@ -28,90 +28,27 @@ public class ArticleBiz {
  * @return
  */
 	public boolean doWriteArticle(ArticleVO article) {
-		boolean doWriteArticle = false;
+		int doWriteArticle = 0;
 		
-		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) {
-			doWriteArticle = doWriteMajorArticle(article);
+		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) { // 전공
+			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 		}
-		else if (article.getBoardId()== Integer.parseInt(BoardId.UNIV_BOARD)) {
-			doWriteArticle = doWriteUnivArticle(article);
+		else if (article.getBoardId()== Integer.parseInt(BoardId.UNIV_BOARD)) { // 대학
+			doWriteArticle = articleDAO.doWriteUnivArticle(article);
 		}
-		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) {
-			doWriteArticle = doWriteAdArticle(article);
+		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) { // 홍보
+			doWriteArticle = articleDAO.doWriteAdArticle(article);
 		}
-		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) {
-			doWriteArticle = doWriteSecretArticleOne(article);
+		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) { // 비밀 1
+			doWriteArticle = articleDAO.doWriteSecretArticleOne(article);
 		}
-		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {
-			doWriteArticle = doWriteSecretArticleTwo(article);
+		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
+			doWriteArticle = articleDAO.doWriteSecretArticleTwo(article);
 		}
-		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {
-			doWriteArticle = doWriteSecretArticleThree(article);
+		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {  // 비밀3
+			doWriteArticle = articleDAO.doWriteSecretArticleThree(article);
 		}
-		return doWriteArticle;
+		return doWriteArticle > 0;
 	}
 
-
-
-	/**
-	 * 전공
-	 * @param article
-	 * @return
-	 */
-	private boolean doWriteMajorArticle(ArticleVO article) {
-		articleDAO.doWriteMajorArticle(article);
-		return false;
-	}
-	
-	/**
-	 * 대학
-	 * @param article
-	 * @return
-	 */
-	private boolean doWriteUnivArticle(ArticleVO article) {
-		articleDAO.doWriteUnivArticle(article);
-		return false;
-	}
-	
-	/**
-	 * 홍보
-	 * @param article
-	 * @return
-	 */
-	private boolean doWriteAdArticle(ArticleVO article) {
-		articleDAO.doWriteAdArticle(article);
-		return false;
-}
-	
-	/**
-	 * 비밀게시판 등급1
-	 * @param article
-	 * @return
-	 */
-	private boolean doWriteSecretArticleOne(ArticleVO article) {
-		articleDAO.doWriteSecretArticleOne(article);
-		return false;
-	}
-
-	/**
-	 * 비밀게시판 등급2
-	 * @param article
-	 * @return
-	 */
-	private boolean doWriteSecretArticleTwo(ArticleVO article) {
-		articleDAO.doWriteSecretArticleTwo(article);
-		return false;
-	}
-	
-	/**
-	 * 비밀게시판 등급3
-	 * @param article
-	 * @return
-	 */
-	private boolean doWriteSecretArticleThree(ArticleVO article) {
-		articleDAO.doWriteSecretArticleThree(article);
-		return false;	
-	}
-
-	
 }

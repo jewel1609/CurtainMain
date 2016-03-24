@@ -141,9 +141,12 @@
 										</c:if>
 										<strong>${article.articleTitle}</strong>
 									</div>
+									
 									<p>${article.articleDesc}</p>
 									<p>${article.articleModifyDate}${article.nickName}</p>
-									<p></p>
+									<p><span class="glyphicon glyphicon-heart"></span>
+									좋아요 갯수
+									</p>
 								</div>
 							</div>
 						</div>

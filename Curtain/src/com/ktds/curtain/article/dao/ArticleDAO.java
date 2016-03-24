@@ -175,12 +175,11 @@ public class ArticleDAO {
 		return 0;
 	}
 
-
 	// 대학 게시판 글쓰기
 
 	public int doWriteUnivArticle(ArticleVO article) {
 		loadOracleDriver();
-		
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
@@ -210,7 +209,10 @@ public class ArticleDAO {
 		return 0;
 	}
 
-
+	/**
+	 * 가장 최근 게시물의 ArticleId 얻어오기
+	 * @return
+	 */
 	public int getArticleId() {
 		loadOracleDriver();
 
@@ -238,6 +240,52 @@ public class ArticleDAO {
 		} finally {
 			closeDB(conn, stmt, rs);
 		}
+	}
+
+	/**
+	 * 비밀게시판 리스트 얻어오기
+	 * @param stdMember
+	 * @return
+	 */
+	public List<ArticleVO> showSecretArticle(StdMemberVO stdMember) {
+
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showSecretArticle/text()");
+			stmt = conn.prepareStatement(query);
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, rs);
+		}
+		return articles;
 	}
 
 	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {

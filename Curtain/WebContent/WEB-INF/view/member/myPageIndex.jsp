@@ -40,12 +40,12 @@
           <div class="w3-card-2 w3-white w3-round-large">
             <div class="w3-container w3-padding w3-center-align">
             	<div class="w3-container w3-third">
-    				<h2>등급</h2>
-    				<p> 한겹커튼 </p> 
+    				<h2>회원 등급</h2>
+    				<p>회원님의 등급은 '한겹'입니다.</p> 
   				</div>
   				<div class="w3-container w3-third">
-    				<h2>보유 포인트</h2>
-    				<p>000 point</p> 
+    				<h2>포인트</h2>
+    				<p>1000 포인트</p> 
   				</div>
   				<div class="w3-container w3-third">
     				<h2>활동량</h2>
@@ -64,15 +64,15 @@
         </div>
       </div>
       
-      <div class="w3-row-padding w3-margin-top">
+        <div class="w3-row-padding w3-margin-top">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
-            <div class="w3-container">
-           		<a href="/myPage/myLikesArticle">
-           		<h4>
-					내가 좋아요 한 글            		
-           		</h4>
-           		</a>
+            <div class="w3-container w3-left-align">
+              <a href="/myPage/myWriteArticle">
+              <h4>
+              	내가 쓴 게시글/댓글 보기
+              </h4>
+              </a>
             </div>
           </div>
         </div>
@@ -81,12 +81,12 @@
       <div class="w3-row-padding w3-margin-top">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
-            <div class="w3-container">
-              <a href="/myPage/myWriteArticle">
-              <h4>
-              	내가 쓴 글
-              </h4>
-              </a>
+            <div class="w3-container w3-left-align">
+           		<a href="/myPage/myLikesArticle">
+           		<h4>
+					내가 좋아요 한 글  보기       		
+           		</h4>
+           		</a>
             </div>
           </div>
         </div>
@@ -95,10 +95,10 @@
       <div class="w3-row-padding w3-margin-top w3-margin-bottom">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
-            <div class="w3-container">
+            <div class="w3-container w3-left-align">
               <a href="/myPage/myScrabArticle">
               <h4>
-              	내가 스크랩 한 글
+              	내가 스크랩 한 글 보기
               </h4>
               </a>
             </div>

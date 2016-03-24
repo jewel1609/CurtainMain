@@ -172,6 +172,7 @@ public class ArticleDAO {
 		return 0;
 	}
 
+
 	public int doWriteUnivArticle(ArticleVO article) {
 		loadOracleDriver();
 		
@@ -203,20 +204,6 @@ public class ArticleDAO {
 		return 0;
 	}
 
-	public int doWriteSecretArticleOne(ArticleVO article) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int doWriteSecretArticleTwo(ArticleVO article) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int doWriteSecretArticleThree(ArticleVO article) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public int getArticleId() {
 		loadOracleDriver();

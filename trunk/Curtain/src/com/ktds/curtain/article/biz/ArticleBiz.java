@@ -11,7 +11,6 @@ import com.ktds.curtain.member.vo.StdMemberVO;
 
 public class ArticleBiz {
 	private ArticleDAO articleDAO;
-	private FileDAO fileDAO;
 	private List<ArticleVO> articles;
 	
 	public ArticleBiz() {
@@ -28,6 +27,17 @@ public class ArticleBiz {
 		articles = articleDAO.showMajorArticle(stdMember);
 		return articles;
 	}
+
+	/**
+	 * 해당 비밀 게시판 리스트 가져오기
+	 * @param stdMember
+	 * @return
+	 */
+	public List<ArticleVO> showSecretArticle(StdMemberVO stdMember) {
+		articles = new ArrayList<ArticleVO>();
+		articles = articleDAO.showSecretArticle(stdMember);
+		return articles;
+	}
 	
 	/**
 	 * 학교 게시판 보기
@@ -41,11 +51,11 @@ public class ArticleBiz {
 
 	}
 	
-/**
- * 글쓰기
- * @param article
- * @return
- */
+	/**
+	 * 글쓰기
+	 * @param article
+	 * @return
+	 */
 	public boolean doWriteArticle(ArticleVO article) {
 		int doWriteArticle = 0;
 		
@@ -59,13 +69,13 @@ public class ArticleBiz {
 			doWriteArticle = articleDAO.doWriteAdArticle(article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) { // 비밀 1
-			doWriteArticle = articleDAO.doWriteSecretArticleOne(article);
+			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
-			doWriteArticle = articleDAO.doWriteSecretArticleTwo(article);
+			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {  // 비밀3
-			doWriteArticle = articleDAO.doWriteSecretArticleThree(article);
+			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 		}
 		return doWriteArticle > 0;
 	}

@@ -194,8 +194,49 @@ public class ArticleDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	
+	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showLikesArticle/text()");
+			stmt = conn.prepareStatement(query);
+//			stmt.setInt(1, stdMember.getMajorGroupId());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, rs);
+		}
+		return articles;
+	}
 
 	private void loadOracleDriver() {
 		try {
@@ -226,6 +267,8 @@ public class ArticleDAO {
 		}
 
 	}
+
+	
 
 
 

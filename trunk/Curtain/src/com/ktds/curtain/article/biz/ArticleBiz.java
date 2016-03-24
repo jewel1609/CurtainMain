@@ -51,11 +51,23 @@ public class ArticleBiz {
 
 	}
 	
+
 	/**
-	 * 글쓰기
-	 * @param article
-	 * @return
+	 * 조회수 올리기
+	 * @param articleVO
 	 */
+	public boolean hitsCount(ArticleVO articleVO) {
+		int updateCount = 0;
+		updateCount = articleDAO.hitsCount(articleVO);
+		return updateCount > 0;
+	}
+	
+/**
+ * 글쓰기
+ * @param article
+ * @return
+ */
+
 	public boolean doWriteArticle(ArticleVO article) {
 		int doWriteArticle = 0;
 		
@@ -98,6 +110,7 @@ public class ArticleBiz {
 		articles = articleDAO.showLikesArticle(stdMember);
 		return articles;
 	}
+
 
 
 

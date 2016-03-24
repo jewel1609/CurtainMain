@@ -28,4 +28,8 @@ public class StdMemberBiz {
 		
 	}
 
+	public void modifyMemberInfo(String userEmail, String userNickName) {
+		stdMemberDAO.updateMemberInfo(userEmail, userNickName);
+	}
+
 }

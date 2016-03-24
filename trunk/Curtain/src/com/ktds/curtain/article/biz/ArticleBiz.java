@@ -18,10 +18,27 @@ public class ArticleBiz {
 		articleDAO = new ArticleDAO();
 	}
 	
+	/**
+	 * 학과 게시판 보기
+	 * @param stdMember
+	 * @return
+	 */
 	public List<ArticleVO> showMajorArticle(StdMemberVO stdMember) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
 		return articles;
+	}
+	
+	/**
+	 * 학교 게시판 보기
+	 * @param stdMember
+	 * @return
+	 */
+	public List<ArticleVO> showUnivArticle(StdMemberVO stdMember) {
+		articles = new ArrayList<ArticleVO>();
+		articles = articleDAO.showUnivArticle(stdMember);
+		return articles;
+
 	}
 	
 /**
@@ -71,5 +88,7 @@ public class ArticleBiz {
 		articles = articleDAO.showLikesArticle(stdMember);
 		return articles;
 	}
+
+
 
 }

@@ -56,9 +56,9 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		int boardId = Integer.parseInt(multipartRequest.getParameter("boardId"));
 		System.out.println(boardId+"/");
 		MultipartFile imgFile = multipartRequest.getFile("imgFile");
-		
+		File upImgFile = imgFile.write("D:\\" + imgFile.getFileName());
 		MultipartFile movieFile = multipartRequest.getFile("movieFile");
-	//	File upMovieFile = movieFiles.write("D:\\" + movieFiles.getFileName());
+		File upMovieFile = movieFile.write("D:\\" + movieFile.getFileName());
 		
 	//	HttpSession session = request.getSession();
 	//	StdMemberVO loginMember = (StdMemberVO) session.getAttribute("_MEMBER_");
@@ -93,7 +93,7 @@ public class SecretWriteArticleServlet extends HttpServlet {
 				
 				fileBiz.insertFile(file);
 			}
-			response.sendRedirect("/secretBoard");
+			response.sendRedirect("/secretArticleList");
 			return;
 		}
 		else{

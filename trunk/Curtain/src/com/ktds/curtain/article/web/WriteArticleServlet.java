@@ -66,10 +66,16 @@ public class WriteArticleServlet extends HttpServlet {
 		article.setMajorId(1);
 		article.setNickName("류연s");
 		article.setPassword("1");
+		
 
 		boolean doWriteArticle = articleBiz.doWriteArticle(article);
 		
-		response.sendRedirect("/studentMajorAritlce");
+		if ( boardId.equals(BoardId.MAJOR_BOARD)) {
+			response.sendRedirect("/studentMajorAritlce");
+		}
+		else if ( boardId.equals(BoardId.UNIV_BOARD)) {
+			response.sendRedirect("/studentUnivArticle");
+		}
 
 
 	}

@@ -6,26 +6,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ktds.curtain.member.biz.StdMemberBiz;
+
 /**
  * Servlet implementation class ModifyMemberInfoServlet
  */
 public class ModifyMemberInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private StdMemberBiz memberBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ModifyMemberInfoServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        memberBiz = new StdMemberBiz();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendError(HttpServletResponse.SC_FORBIDDEN,"잘못된 요청입니다.");
 	}
 
 	/**

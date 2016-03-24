@@ -9,14 +9,14 @@
 		};
 	});
 </script>
-
+	<div style="width: 2000px;">
 	<div class="w3-container w3-center w3-main"
 		style="margin-top: 30px; margin-bottom: 20px;">
 		<div class="w3-row">
 			<div class="w3-col m7 w3-main" style="margin-left: 350px;">
 				<div class="w3-row-padding w3-margin-top">
 					<div class="w3-col m12">
-						<div class="w3-card-2 w3-white w3-round-large" style="padding: 10px; height: 500px;">
+						<div class="w3-card-2 w3-white w3-round-large" style="padding: 10px; height: 750px; overflow: auto;">
 							<div style="display: inline-block; margin: 0px 0px 20px 0px">
 								<div style="float: left; margin-top: 7px;">
 									<h3
@@ -63,5 +63,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div style="clear: both;"></div>
 	</div>
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

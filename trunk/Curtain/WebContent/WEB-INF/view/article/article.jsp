@@ -4,6 +4,7 @@
 
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 
+
 <script type="text/javascript">
 
 	$(document).ready( function () {
@@ -14,6 +15,17 @@
 				form.submit();
 		});
 	});
+	
+	function readURL(input) {
+
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#uploadImg').attr("src", e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 
 </script>
 
@@ -38,11 +50,33 @@
 						      </select>
 						</div>
 							<div style="padding-top:4px;">
-							    <input type="text"  class="w3-col m10 input-lg" id="articleTitle" name="articleTitle" placeholder="제목"  />
+							    <input type="text"  class="w3-col m8 input-lg" id="articleTitle" name="articleTitle" placeholder="제목"  />
+							</div>
+							<div class="col-sm-2">
+
+										<input type="file" name="imgFile" style="display: none;"
+											onchange="readURL(this);">
+										<button type="button" class="btn btn-default btn-sm"
+											onclick="document.all.imgFile.click();">
+											<span class="glyphicon glyphicon-picture"
+												onclick="document.all.imgFile.click();"></span>
+										</button>
+
+
+										<input type="file" name="movieFile" style="display: none;">
+										<button type="button" class="btn btn-default btn-sm"
+											onclick="document.all.movieFile.click();">
+											<span class="glyphicon glyphicon-facetime-video"></span>
+										</button>
 							</div>
 						</div>
+						
 						<div style="padding-top:4px;">
 						  <textarea name="articleDescription" class="w3-col m12" rows="5" id="comment" style=" margin-bottom:5px;" placeholder="무슨 생각을 하고 계신가요?"></textarea>
+						</div>
+					
+						<div div class="w3-col m12">
+							<img id="uploadImg" src="/Curtain/resource/img/noimg.png" width="100" height="100">
 						</div>
 					</div>
 	               <div class="btn-group pull-right">
@@ -65,7 +99,7 @@
       
       <c:forEach items="${majorArticles}" var="article">
 	      <div class="w3-row-padding w3-margin-top">
-	      <a href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>">
+		   <a href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>">
 	        <div class="w3-col m12">
 	          <div class="w3-card-2 w3-white w3-round-large">
 	            <div class="w3-container">
@@ -78,11 +112,12 @@
 	              <p>${article.articleDesc}</p>
 	              <p>${article.articleModifyDate}  ${article.nickName}</p>
 	              <p>조회수  ${article.hits}</p>
+  				</div>
 	            </div>
-	          </div>
+
+	        	</div>
+	        	</a>
 	        </div>
-	        </a>
-	      </div>
       </c:forEach>
       
     </div> 

@@ -60,7 +60,7 @@ public class ArticleDAO {
 	}
 
 	// 대학
-	public List<ArticleVO> showUnivArticle(StdMemberVO stdMember, String boardId) {
+	public List<ArticleVO> showUnivArticle(StdMemberVO stdMember) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -74,7 +74,7 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showUnivArticle/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, Integer.parseInt(boardId));
+			stmt.setInt(1, 2);
 			// stmt.setInt(2, stdMember.getMajorGroupId());
 			rs = stmt.executeQuery();
 
@@ -173,6 +173,29 @@ public class ArticleDAO {
 	}
 
 	public int doWriteUnivArticle(ArticleVO article) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/doWriteUnivArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, article.getArticleTitle());
+			stmt.setString(2, article.getArticleDesc());
+			stmt.setInt(3, article.getArticleTypeId());
+			stmt.setString(4, article.getStudentEmail());
+			stmt.setInt(5, article.getBoardId());
+			stmt.setInt(6, article.getUnivId());
+			int insertCount = stmt.executeUpdate();
+			return insertCount;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
 		return 0;
 	}
 

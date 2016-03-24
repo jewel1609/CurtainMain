@@ -50,5 +50,17 @@ public class ArticleBiz {
 		}
 		return doWriteArticle > 0;
 	}
+	
+	/**
+	 * 내가 좋아요 한 글 
+	 * @param stdMember
+	 * @return
+	 */
+
+	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {
+		articles = new ArrayList<ArticleVO>();
+		articles = articleDAO.showMajorArticle(stdMember);
+		return articles;
+	}
 
 }

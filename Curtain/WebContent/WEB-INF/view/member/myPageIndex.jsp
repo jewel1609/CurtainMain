@@ -50,19 +50,25 @@
     					<div>
 	    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom w3-margin-right" style="width:110px; height: 90px;
 	    					position: relative; left:-13px;">
-	    					<div style="position:relative; top:-70px;">test</div>
+	    					<p style="position:relative; top:-70px; left:0px;">test</p>
     					</div>
-    					<p>게시글</p>
+    					<p style="position:relative; top:-20px;">게시글</p>
     				</div>
     				<div class="w3-container w3-third">
-    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom" style="width:110px; height: 90px;
-    					position: relative; left:-13px;">
-    					<p>댓글</p>
+    					<div>
+	    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom" style="width:110px; height: 90px;
+	    					position: relative; left:-13px;">
+	    					<p style="position:relative; top:-70px; left:0px;">test</p>
+    					</div>
+    					<p style="position:relative; top:-20px;">댓글</p>
     				</div>
     				<div class="w3-container w3-third">
-    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom" style="width:110px; height: 90px;
-    					position: relative; left:-13px;">
-    					<p>투표참여</p>
+    					<div>
+	    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom" style="width:110px; height: 90px;
+	    					position: relative; left:-13px;">
+	    					<p style="position:relative; top:-70px; left:0px;">test</p>
+    					</div>
+    					<p style="position:relative; top:-20px;">투표참여</p>
     				</div>
   				</div>
             </div>

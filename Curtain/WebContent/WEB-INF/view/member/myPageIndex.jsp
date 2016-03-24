@@ -38,7 +38,7 @@
       <div class="w3-row-padding w3-margin-top">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
-            <div class="w3-container w3-padding w3-left-align">
+            <div class="w3-container w3-padding w3-center-align">
             	<div class="w3-container w3-third">
     				<h2>등급</h2>
     				<p> 한겹커튼 </p> 
@@ -49,7 +49,15 @@
   				</div>
   				<div class="w3-container w3-third">
     				<h2>활동량</h2>
-    				<p> 000 (활동량에 따라 등급이 결정됩니다.) </p>
+    				<div class="w3-container w3-third">
+    					<p>게시글</p>
+    				</div>
+    				<div class="w3-container w3-third">
+    					<p>댓글</p>
+    				</div>
+    				<div class="w3-container w3-third">
+    					<p>투표참여</p>
+    				</div>
   				</div>
             </div>
           </div>

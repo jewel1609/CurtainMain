@@ -13,7 +13,21 @@
 		
 		$("#cancelBtn2").click(function() {
 			location.href = "/myPage";
-		})	
+		})
+		
+		$("#modifyMemberBtn").click( function () {
+			var form = $("#modifyMember");
+			form.attr("method", "post");
+			form.attr("action","/modifyMemberInfo");
+			form.submit();
+		});
+		
+		$("#modifyPasswordBtn").click( function () {
+			var form = $("#modifyMemberPassword");
+			form.attr("method", "post");
+			form.attr("action","/modifyMemberPassword");
+			form.submit();
+		});
 		
 	});	
 
@@ -33,7 +47,7 @@
       		<p>닉네임과 이메일 주소는 변경 시 꼭 회원  정보를 변경하여 주세요!</p>
       	</div>
       </div>
-      
+      <form id="modifyMember">
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-round w3-white">
@@ -202,11 +216,12 @@
             </div>
           </div>
         </div>
-      </div>   
+      </div>  
+      </form> 
      	
      <div class="w3-center-align">	
 		<div class="w3-btn-group">
-			<button type="button" class="btn btn-primary" tabindex="2" style="background-color:#FF3300; border:0px;">
+			<button type="button" id="modifyMemberBtn" class="btn btn-primary" tabindex="2" style="background-color:#FF3300; border:0px;">
 				회원 정보 변경하기
 			</button>
 			<button type="button" id="cancelBtn1" class="btn btn-primary" tabindex="3" style="background-color:#c0c0c0; border:0px;">
@@ -224,7 +239,7 @@
       	</div>
       </div>
 	
-      
+      <form id="modifyMemberPassword">
       <div class="w3-row-padding w3-margin-top w3-margin-bottom">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
@@ -275,10 +290,11 @@
           </div>
         </div>
       </div>
-      
+	  </form>	
+		      
       <div class="w3-center-align">	
 		<div class="w3-btn-group">
-			<button type="button" class="btn btn-primary " tabindex="7" style="background-color:#FF3300; border:0px;">
+			<button type="button" id="modifyPasswordBtn" class="btn btn-primary " tabindex="7" style="background-color:#FF3300; border:0px;">
 				비밀번호 변경하기
 			</button>
 			<button type="button" id="cancelBtn2" class="btn btn-primary" tabindex="8" style="background-color:#c0c0c0; border:0px;">

@@ -119,7 +119,7 @@
 			AND		A.STUDENT_EMAIL = ?
 		</myWriteArticle>
 		
-		<myLikesArticle>
+		<showLikesArticle>
 			SELECT	ARTICLE_TITLE
 					, ARTICLE_DESC
 					, ARTICLE_MODIFY_DATE
@@ -133,7 +133,7 @@
 					, ARTICLE_LIKE AL 
 			WHERE	A.STUDENT_EMAIL = SM.STUDENT_EMAIL
 			AND		A.ARTICLE_ID = AL.ARTICLE_ID
-		</myLikesArticle>
+		</showLikesArticle>
 		
 		<myScrabArticle>
 			SELECT	ARTICLE_TITLE

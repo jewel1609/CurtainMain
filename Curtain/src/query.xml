@@ -80,6 +80,27 @@
 			AND         A.MAJOR_GROUP_ID = 1
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showMajorArticle>
+		
+		<showSecretArticle>
+        	SELECT		ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.MAJOR_GROUP_ID
+						, HITS
+						, ARTICLE_LIKES
+			FROM 		ARTICLE A
+						, STD_MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE	    A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND         A.BOARD_ID = 4
+			AND         A.MAJOR_GROUP_ID = 20
+			ORDER		BY	A.ARTICLE_ID DESC
+		</showSecretArticle>
+		
 		<doWriteMajorArticle>
 			INSERT INTO 	ARTICLE (
   										 ARTICLE_ID
@@ -158,7 +179,7 @@
 		
 		<getArticleId>
 			SELECT ARTICLE_ID
-			FROM    ARTICLES
+			FROM    ARTICLE
 			WHERE   ROWNUM = 1
 			ORDER   BY ARTICLE_ID DESC
 		</getArticleId>

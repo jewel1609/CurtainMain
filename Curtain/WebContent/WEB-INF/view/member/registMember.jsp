@@ -297,12 +297,21 @@ html, body, h1, h2, h3, h4, h5 {
 
 </script>
 
-
+	<div style="width:2000px"> 
 	<div class="w3-container w3-center w3-main"
 		style="margin-top: 30px; margin-bottom: 20px;">
+		
+		
+		<div style="width: 100%;">
+			<ul class="nav nav-tabs" style="display: inline-block; margin-bottom: -8px;">
+				<li class="active" data-toggle="tab" style="width: 50%;"><a href="#inputMemberInfo">개인정보 입력</a></li>
+				<li data-toggle="tab" style="width: 50%;"><a href="#inputCompanyInfo">기업회원 입력</a></li>
+			</ul>
+		</div>
 
-		<article class="container">
-			<div class="col-md-12">
+		<article class="tab-content container w3-border">
+			
+			<div role="tabpanel" id="inputMemberInfo" name="inputMemberInfo" class="col-md-12 tab-pane fade active in">
 				<div class="page-header">
 					<h1>
 						개인정보 입력
@@ -423,11 +432,134 @@ html, body, h1, h2, h3, h4, h5 {
 				<hr>
 				
 			</div>
+		
+			<!-- 기업 ------------------------------------------------------------------------------------- -->
+			<div role="tabpanel" id="inputCompanyInfo" class="tab-pane fade col-md-12">
+				<div class="page-header">
+					<h1>
+						기업정보 입력
+					</h1>
+				</div>
+			
+				<form id=registStdForm class="form-horizontal">
+				
+					<!-- 회사 이메일 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputUnivEmail">회사 이메일</label>
+						<div class="col-sm-6">
+							<div class="input-group">
+								<input class="form-control" id="inputUnivEmail" name="inputUnivEmail" type="text" 
+									placeholder="회사 이메일주소를 입력하세요. 일반이메일은 인증메일이 전송되지않습니다."/>
+									<span class="input-group-btn">
+										<input type="button" id="authNumSendBtn" class="btn btn-success" value="인증번호 전송">
+									</span>
+							</div>
+							<br/>
+							<span style="margin: 0 auto"class="col-sm-6" id="stdUnivEmailCheck"></span>
+						</div>
+					</div>
+					
+					<!-- 인증번호확인 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호 확인</label>
+						<div class="col-sm-6">
+							<div class="input-group">
+								<input class="form-control" id="inputNumberCheck" name="inputNumberCheck" type="text" 
+								placeholder="전송된 인증번호를 입력해주세요."> 
+								<span class="input-group-btn">
+									<input type="button" id="authNumCheckBtn" class="btn btn-success" value="인증번호 확인">
+								</span>
+							</div>
+						</div>
+					</div>
+					
+					<!-- 비밀번호 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="inputPassword" name="inputPassword" type="password"
+								placeholder="8-20자리 영문 대소문자, 숫자를 혼합하여 사용.">
+						</div>
+					</div>
+					
+					<!-- 비밀번호 재확인 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 재확인</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="inputPasswordCheck" name="inputPasswordCheck"
+								type="password" placeholder="비밀번호 재확인">
+						</div>
+					</div>
+						<span class="col-sm-6" id="passwordCheckSpan"></span>
+					<hr>
+					
+					<!-- 회사명 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputUniv">회사명</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="inputUnivName" name="inputUnivName" type="text"
+								placeholder="회사명을 입력하세요.">
+							<span class="col-sm-6" id="univSuggest"></span>
+						</div>
+					</div>
+					
+					<!-- 개인 휴대폰 번호 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputMajor">개인 휴대폰 번호</label>
+						<div class="col-sm-6">
+							<input class="form-control" id="inputMajorName" name="inputMajorName" type="text"
+								placeholder="개인 휴대폰 번호를 입력하세요">
+							<div class="col-sm-6" id="majorSuggest"></div>
+						</div>
+					</div>
+					<hr>
+					
+					<!-- 보조 이메일 -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputSecondEmail">보조 이메일</label>
+						<div class="col-sm-6">
+								<input class="form-control" id="inputSecondEmail" name="inputSecondEmail" type="email" 
+								placeholder="비밀번호 분실 시 활용됩니다.">
+						</div>
+					</div>
+					<br/>
+					
+					<!-- 약관 동의 -->
+					<h1>
+						약관 동의
+					</h1><hr>
+					<div class="form-group">
+						<div class="col-sm-6" data-toggle="buttons">
+							개인화면 약관에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal">
+												  내용보기
+											  </button>
+								<input class="w3-check" id="agree" name="agree" type="checkbox" autocomplete="off">
+						</div>
+						
+						<div class="col-sm-6" data-toggle="buttons">
+							개인정보 수정 및 이용에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal2">
+														  내용보기
+													  </button>
+								<input class="w3-check" id="secondAgree" name="secondAgree" type="checkbox" autocomplete="off">
+						</div>
+					</div>
+					<br>
+					<!-- 가입하기 버튼 -->
+					<div class="form-group">
+						<div class="col-sm-12 text-center">
+							<input type="button" id="registStdBtn" class="btn btn-primary" value="가입하기">
+							<input type="button" id="cancleBtn" class="btn btn-danger" value="가입취소">
+						</div>
+					</div>
+				</form>
+				<hr>
+				
+			</div>
 		</article>
 
 	</div>
-
-
+	</div>
+	
 	<!-- 개인화면 약관 Modal -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -495,5 +627,11 @@ html, body, h1, h2, h3, h4, h5 {
 					.toggle("w3-theme");
 		}
 		
+		$(function(){
+		    $('ul.nav-tabs a').click(function (e) {
+		      e.preventDefault()
+		      $(this).tab('show')
+		    })
+		});
 	</script>
 

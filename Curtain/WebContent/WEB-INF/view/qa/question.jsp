@@ -22,7 +22,7 @@
 			
 			var form = $("#btnForm");
 			form.attr("method", "post");
-			form.attr("action", "<c:url value="/registerQuestion"/> ");
+			form.attr("action", "<c:url value="/doRegisterQuestion"/> ");
 			form.submit();
 		});
 		

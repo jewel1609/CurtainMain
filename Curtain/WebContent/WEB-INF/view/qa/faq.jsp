@@ -87,7 +87,7 @@
 									</h4>
 								</div>
 								<div style="float: right;">
-									<a href="<c:url value="/doQuestion" />" > 문의하기</a>
+									<a href="<c:url value="/registerQuestion" />" > 문의하기</a>
 								</div>
 							</div>
 							

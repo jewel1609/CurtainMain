@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
-
 import com.ktds.curtain.member.vo.StdMemberVO;
 
 /**
@@ -41,15 +40,20 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
 		StdMemberVO stdMember = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
 		
+
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember);
-		
 		request.setAttribute("majorArticles", majorArticles);
+
 		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/article.jsp");
 		rd.forward(request, response);
+
+
+
 	}
 
 }

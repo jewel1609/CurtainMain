@@ -41,18 +41,27 @@
   				</div>
   				<div class="w3-container w3-third">
     				<h2>포인트</h2>
-    				<img src="/resource/img/point.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 90px">
-    				<p>1000 포인트</p> 
+    				<img src="/resource/img/point.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 90px;">
+    				<p style="position:relative; top:10px;">1000 포인트</p> 
   				</div>
   				<div class="w3-container w3-third">
     				<h2>활동량</h2>
     				<div class="w3-container w3-third">
+    					<div>
+	    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom w3-margin-right" style="width:110px; height: 90px;
+	    					position: relative; left:-13px;">
+	    					<div style="position:relative; top:-70px;">test</div>
+    					</div>
     					<p>게시글</p>
     				</div>
     				<div class="w3-container w3-third">
+    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom" style="width:110px; height: 90px;
+    					position: relative; left:-13px;">
     					<p>댓글</p>
     				</div>
     				<div class="w3-container w3-third">
+    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom" style="width:110px; height: 90px;
+    					position: relative; left:-13px;">
     					<p>투표참여</p>
     				</div>
   				</div>

@@ -398,12 +398,16 @@ html, body, h1, h2, h3, h4, h5 {
 					</h1><hr>
 					<div class="form-group">
 						<div class="col-sm-6" data-toggle="buttons">
-							개인화면 약관에 동의 <a href="#">내용보기</a>
+							개인화면 약관에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal">
+												  내용보기
+											  </button>
 								<input class="w3-check" id="agree" name="agree" type="checkbox" autocomplete="off">
 						</div>
 						
 						<div class="col-sm-6" data-toggle="buttons">
-							개인정보 수정 및 이용에 동의 <a href="#">내용보기</a>
+							개인정보 수정 및 이용에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal2">
+														  내용보기
+													  </button>
 								<input class="w3-check" id="secondAgree" name="secondAgree" type="checkbox" autocomplete="off">
 						</div>
 					</div>
@@ -424,6 +428,41 @@ html, body, h1, h2, h3, h4, h5 {
 	</div>
 
 
+	<!-- 개인화면 약관 Modal -->
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal-lg" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">개인화면 약관</h4>
+	      </div>
+	      <div class="modal-body" style="overflow-y: auto; height: 250px">
+	    	개인화면 약관 내용
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- 개인정보 수정 및 이용 Modal2 -->
+	<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal-lg" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">개인정보 수정 및 이용</h4>
+	      </div>
+	      <div class="modal-body" style="overflow-y: auto; height: 250px">
+	      개인정보 수정 및 이용 내용
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 	<script>
 		function w3_open() {
@@ -455,5 +494,6 @@ html, body, h1, h2, h3, h4, h5 {
 			document.getElementById(id).previousElementSibling.classList
 					.toggle("w3-theme");
 		}
+		
 	</script>
 

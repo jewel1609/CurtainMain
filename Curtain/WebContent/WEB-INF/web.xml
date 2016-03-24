@@ -180,6 +180,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>DoUnivCheckServlet</display-name>
+    <servlet-name>DoUnivCheckServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.univ.web.DoUnivCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoUnivCheckServlet</servlet-name>
+    <url-pattern>/doUnivCheck</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>StudentUnivArticleServlet</display-name>
     <servlet-name>StudentUnivArticleServlet</servlet-name>
     <servlet-class>com.ktds.curtain.article.web.StudentUnivArticleServlet</servlet-class>

@@ -20,19 +20,14 @@
 
   <div class="w3-row" >
     <div class="w3-col m7 w3-main" style="margin-left:350px; margin-right: 100px;">
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card-2 w3-round w3-white">
-            <div class="w3-container w3-padding w3-left-align">
-          		<div class="w3-col" style="width:90%">
-          			<h3>닉네임 000 님의 마이페이지 입니다.</h3>
-          		</div>
-          		<div class="w3-col" style="width:10%">
-    				<button type="button" id="modifyBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원정보 변경</button>
-    			</div>
-            </div>
-          </div>
-        </div>
+      
+      <div class="w3-myfont w3-left-align">
+      	<div class="w3-col" style="width:90%">
+      		<h1>마이페이지</h1>
+      	</div>
+      	<div class="w3-col" style="width:10%; margin-top:30px;">
+      		<button type="button" id="alarmBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">알림!</button>
+      	</div>
       </div>
       
       <div class="w3-row-padding w3-margin-top">
@@ -104,9 +99,72 @@
             </div>
           </div>
         </div>
-      </div>     
+      </div>   
+      
+      <div class="w3-myfont w3-left-align">
+      	<div class="w3-col" style="width:90%">
+      		<h1>회원정보</h1>
+      	</div>
+      	<div class="w3-col" style="width:10%; margin-top:30px;">
+      		<button type="button" id="modifyBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원정보 변경</button>
+      	</div>
+      </div>
+      
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card-2 w3-round w3-white">
+            <div class="w3-container w3-padding w3-left-align">
+          		<div class="w3-col" style="width:90%">
+          			<div class="w3-col" style="width:20%">
+          				<b>이메일</b>
+          			</div>
+          			<div class="w3-col" style="width:80%">
+    					<p>jewel1609@gmail.com</p>
+    				</div>
+          		</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+       <div class="w3-row-padding w3-margin-top">
+        <div class="w3-col m12">
+          <div class="w3-card-2 w3-white w3-round-large">
+            <div class="w3-container w3-padding w3-left-align">
+              <div class="w3-col" style="width:90%">
+          			<div class="w3-col" style="width:20%">
+          				<b>학교 이름</b>
+          			</div>
+          			<div class="w3-col" style="width:80%">
+    					<p>00 대학교</p>
+    				</div>
+          		</div>
+            </div>
+          </div>
+        </div>
+       </div>
+      
+      <div class="w3-row-padding w3-margin-top w3-margin-bottom">
+        <div class="w3-col m12">
+          <div class="w3-card-2 w3-white w3-round-large">
+            <div class="w3-container w3-padding w3-left-align">
+              <div class="w3-col" style="width:90%">
+          			<div class="w3-col" style="width:20%">
+          				<b>학과 이름</b>
+          			</div>
+          			<div class="w3-col" style="width:80%">
+    					<p>미디어소프트웨어</p>
+    				</div>
+          		</div>
+            </div>
+          </div>
+        </div>
+      </div>   
+      
+      
+      
+        
     </div>
-  
 </div>
 
 </div>

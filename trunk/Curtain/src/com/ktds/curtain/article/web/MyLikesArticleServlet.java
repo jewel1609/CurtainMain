@@ -47,7 +47,7 @@ public class MyLikesArticleServlet extends HttpServlet {
 		
 		List<ArticleVO> likesArticles = articleBiz.showLikesArticle(stdMember);
 		
-		request.setAttribute("LikesArticles", likesArticles);
+		request.setAttribute("likesArticles", likesArticles);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/myLikesArticle.jsp");
 		rd.forward(request, response);

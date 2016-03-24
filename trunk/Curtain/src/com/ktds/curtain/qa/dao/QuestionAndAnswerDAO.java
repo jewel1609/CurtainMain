@@ -5,8 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
@@ -59,6 +60,50 @@ public class QuestionAndAnswerDAO {
 		}
 	}
 	
+	public List<QuestionAndAnswerVO> getMyQuestionsByStudentEmail(String email) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		List<QuestionAndAnswerVO> questions = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/qa/getMyQuestions/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, email);
+			
+			rs = stmt.executeQuery();
+			
+			questions = new ArrayList<QuestionAndAnswerVO> ();
+			QuestionAndAnswerVO question;
+			
+			while( rs.next() ) {
+				question = new QuestionAndAnswerVO();
+				question.setQuestionTitle(rs.getString("QUESTION_TITLE"));
+				question.setQuestionDescription(rs.getString("QUESTION_DESCRIPTION"));
+				question.setQuestionDate(rs.getString("QUESTION_DATE"));
+				question.setChecked(rs.getString("IS_CHECKED"));
+				question.setAnswerDate(rs.getString("ANSWER_DATE"));
+				question.setAnswerDescription(rs.getString("ANSWER_DESCRIPTION"));
+				
+				questions.add(question);
+			}
+			
+			return questions;
+
+		} catch (SQLException e) {
+			closeDB(conn, stmt, rs);
+		}
+		
+		return null;
+		
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -88,5 +133,7 @@ public class QuestionAndAnswerDAO {
 		}
 
 	}
+
+
 
 }

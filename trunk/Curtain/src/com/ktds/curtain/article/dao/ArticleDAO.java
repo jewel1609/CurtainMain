@@ -32,7 +32,7 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/showMajorArticle/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, 1);
-//			stmt.setInt(2, stdMember.getMajorGroupId());
+			// stmt.setInt(2, stdMember.getMajorGroupId());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -58,7 +58,7 @@ public class ArticleDAO {
 		}
 		return articles;
 	}
-	
+
 	// 대학
 	public List<ArticleVO> showUnivArticle(StdMemberVO stdMember, String boardId) {
 		loadOracleDriver();
@@ -75,7 +75,7 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/showUnivArticle/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, Integer.parseInt(boardId));
-//			stmt.setInt(2, stdMember.getMajorGroupId());
+			// stmt.setInt(2, stdMember.getMajorGroupId());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -101,7 +101,7 @@ public class ArticleDAO {
 		}
 		return articles;
 	}
-	
+
 	// 홍보
 	public List<ArticleVO> showAdArticle(StdMemberVO stdMember, String boardId) {
 		loadOracleDriver();
@@ -118,7 +118,7 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/showAdArticle/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, Integer.parseInt(boardId));
-//			stmt.setInt(2, stdMember.getMajorGroupId());
+			// stmt.setInt(2, stdMember.getMajorGroupId());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -144,9 +144,10 @@ public class ArticleDAO {
 		}
 		return articles;
 	}
+
 	public int doWriteMajorArticle(ArticleVO article) {
 		loadOracleDriver();
-		
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
@@ -170,15 +171,14 @@ public class ArticleDAO {
 		}
 		return 0;
 	}
-	
+
 	public int doWriteUnivArticle(ArticleVO article) {
 		return 0;
 	}
-	
+
 	public int doWriteAdArticle(ArticleVO article) {
 		return 0;
 	}
-	
 
 	public int doWriteSecretArticleOne(ArticleVO article) {
 		// TODO Auto-generated method stub
@@ -194,9 +194,38 @@ public class ArticleDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
+	public int getArticleId() {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/getArticleId/text()");
+			stmt = conn.prepareStatement(query);
+			rs = stmt.executeQuery();
+
+			int articleId = 0;
+
+			if (rs.next()) {
+				articleId = rs.getInt("ARTICLE_ID");
+			}
+
+			return articleId;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
 	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {
-		
+
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -210,7 +239,7 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showLikesArticle/text()");
 			stmt = conn.prepareStatement(query);
-//			stmt.setInt(1, stdMember.getMajorGroupId());
+			// stmt.setInt(1, stdMember.getMajorGroupId());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -267,9 +296,5 @@ public class ArticleDAO {
 		}
 
 	}
-
-	
-
-
 
 }

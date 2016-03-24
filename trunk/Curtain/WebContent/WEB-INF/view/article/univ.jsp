@@ -65,6 +65,7 @@
       
       <c:forEach items="${univArticles}" var="article">
 	      <div class="w3-row-padding w3-margin-top">
+	        <a href="<c:url value="/hitsCount?boardId=2&articleId=${article.articleId}"/>">
 	        <div class="w3-col m12">
 	          <div class="w3-card-2 w3-white w3-round-large">
 	            <div class="w3-container">
@@ -75,9 +76,11 @@
 	              
 	              <p>${article.articleDesc}</p>
 	              <p>${article.articleModifyDate}  ${article.nickName}</p>
+	               <p>조회수  ${article.hits}</p>
 	            </div>
 	          </div>
 	        </div>
+	         </a>
 	      </div>
       </c:forEach>
       

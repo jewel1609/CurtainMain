@@ -43,6 +43,7 @@ public class QuestionAndAnswerBiz {
 	public List<QuestionAndAnswerVO> getMyQuestionsByStudentEmail(String email) {
 		
 		if (email != null) {
+			
 			return questionAndAnswerDAO.getMyQuestionsByStudentEmail(email);
 		}
 		

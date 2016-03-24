@@ -3,6 +3,7 @@ package com.ktds.curtain.qa.web;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.curtain.qa.biz.QuestionAndAnswerBiz;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
+import com.ktds.curtain.util.Root;
 
 /**
  * Servlet implementation class PrintMyQuestionServlet
@@ -43,6 +45,9 @@ public class PrintMyQuestionServlet extends HttpServlet {
 		List<QuestionAndAnswerVO> questions = questionAndAnswerBiz.getMyQuestionsByStudentEmail(email);
 		
 		request.setAttribute("questions", questions);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/qa/myQuestion.jsp");
+		rd.forward(request, response);
 	}
 
 }

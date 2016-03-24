@@ -73,7 +73,7 @@ public class QuestionAndAnswerDAO {
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 			
-			String query = XML.getNodeString("//query/qa/getMyQuestions/text()");
+			String query = XML.getNodeString("//query/qa/getMyQuestionsByStudentEmail/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, email);
 			
@@ -87,7 +87,7 @@ public class QuestionAndAnswerDAO {
 				question.setQuestionTitle(rs.getString("QUESTION_TITLE"));
 				question.setQuestionDescription(rs.getString("QUESTION_DESCRIPTION"));
 				question.setQuestionDate(rs.getString("QUESTION_DATE"));
-				question.setChecked(rs.getString("IS_CHECKED"));
+				question.setCheckedQuestion(rs.getString("IS_CHECKED"));
 				question.setAnswerDate(rs.getString("ANSWER_DATE"));
 				question.setAnswerDescription(rs.getString("ANSWER_DESCRIPTION"));
 				

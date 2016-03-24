@@ -248,6 +248,16 @@
     <servlet-name>ModifyMemberInfoServlet</servlet-name>
     <url-pattern>/modifyMemberInfo</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>PrintMyQuestionServlet</display-name>
+    <servlet-name>PrintMyQuestionServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.qa.web.PrintMyQuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PrintMyQuestionServlet</servlet-name>
+    <url-pattern>/myQuestion</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>ModifyMemberPasswordServlet</display-name>

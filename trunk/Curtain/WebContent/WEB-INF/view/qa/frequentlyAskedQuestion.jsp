@@ -44,9 +44,9 @@
 							
 							<div id="btnFirstFAQ" class="w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;" >
 								<div style="float: left; margin-left: 20px;">
-									<h4 style="display: inline;">
-										<li>포인트는 어떻게 사용하나요?</li>
-									</h4>
+									<ul>
+										<li><h4 style="display: inline;">포인트는 어떻게 사용하나요?</h4></li>
+									</ul>
 								</div>
 								<div style="float: right;">▽</div>
 								<div style="clear: both;"></div>
@@ -56,9 +56,9 @@
 							</div>
 							<div id="btnSecondFAQ" class="w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;">
 								<div style="float: left; margin-left: 20px;">
-									<h4 style="display: inline;">
-										<li>포인트 유효기간은 어떻게 되나요?</li>
-									</h4>
+									<ul>
+										<li><h4 style="display: inline;">포인트 유효기간은 어떻게 되나요?</h4></li>
+									</ul>
 								</div>
 								<div style="float: right;">▽</div>
 								<div style="clear: both;"></div>
@@ -71,9 +71,9 @@
 							
 							<div class="w3-container w3-card-2" style="text-align: left; margin-bottom: 10px; padding: 10px 10px 10px 10px;">
 								<div style="float: left; margin-left: 20px;">
-									<h4 style="display: inline;">
-										<li>내가 질문한 글 보기</li>
-									</h4>
+									<ul>
+										<li><h4 style="display: inline;">내가 질문한 글 보기</h4></li>
+									</ul>
 								</div>
 								<div style="float: right;">
 									<a href="<c:url value="/myQuestion" />" > 확인하기</a>
@@ -82,9 +82,13 @@
 														
 							<div class="w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;">
 								<div style="float: left; margin-left: 20px;">
-									<h4 style="display: inline;">
-										<li>궁금한 항목에 대한 도움말이 없으시다면, 커튼고객센터로 문의해 주세요.</li>
-									</h4>
+									<ul>
+										<li>
+											<h4 style="display: inline;">
+												궁금한 항목에 대한 도움말이 없으시다면, 커튼고객센터로 문의해 주세요.
+											</h4>
+										</li>
+									</ul>
 								</div>
 								<div style="float: right;">
 									<a href="<c:url value="/registerQuestion" />" > 문의하기</a>
@@ -96,7 +100,6 @@
 						</div>
 					</div>
 				</div>
-	
 			</div>
 		</div>
 	</div>

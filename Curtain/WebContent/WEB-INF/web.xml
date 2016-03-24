@@ -218,7 +218,6 @@
     <servlet-name>SecretBoardServlet</servlet-name>
     <url-pattern>/secretBoard</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>SecretArticleListServlet</display-name>
@@ -229,7 +228,6 @@
     <servlet-name>SecretArticleListServlet</servlet-name>
     <url-pattern>/secretArticleList</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>ModifyMemberInfoServlet</display-name>
@@ -239,5 +237,15 @@
   <servlet-mapping>
     <servlet-name>ModifyMemberInfoServlet</servlet-name>
     <url-pattern>/modifyMemberInfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifyMemberPasswordServlet</display-name>
+    <servlet-name>ModifyMemberPasswordServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.ModifyMemberPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyMemberPasswordServlet</servlet-name>
+    <url-pattern>/modifyMemberPassword</url-pattern>
   </servlet-mapping>
 </web-app>

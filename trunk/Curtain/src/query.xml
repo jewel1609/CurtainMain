@@ -62,7 +62,8 @@
 	</mac>
 	<article>
 		<showMajorArticle>
-        	SELECT		ARTICLE_TITLE
+        	SELECT		ARTICLE_ID
+        				, ARTICLE_TITLE
 						, ARTICLE_DESC
 						, ARTICLE_MODIFY_DATE
 						, AT.ARTICLE_TYPE_NAME
@@ -76,10 +77,32 @@
 						, ARTICLE_TYPE AT
 			WHERE	    A.STUDENT_EMAIL = SM.STUDENT_EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-			AND         A.BOARD_ID = 1
+			AND         A.BOARD_ID = ?
 			AND         A.MAJOR_GROUP_ID = 1
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showMajorArticle>
+
+		<showUnivArticle>
+			SELECT		ARTICLE_ID
+						, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.UNIV_ID
+						, HITS
+						, ARTICLE_LIKES
+			FROM 		ARTICLE A
+						, STD_MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE	    A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND         A.BOARD_ID = ?
+			AND         A.UNIV_ID = 1
+			ORDER		BY	A.ARTICLE_ID DESC
+		</showUnivArticle>
+
 		
 		<showSecretArticle>
         	SELECT		ARTICLE_TITLE
@@ -101,6 +124,7 @@
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showSecretArticle>
 		
+>>>>>>> .r210
 		<doWriteMajorArticle>
 			INSERT INTO 	ARTICLE (
   										 ARTICLE_ID
@@ -125,7 +149,35 @@
 										, ?
 									)
 		</doWriteMajorArticle>
-		
+		<doWriteUnivArticle>
+			INSERT INTO 	ARTICLE (
+  										 ARTICLE_ID
+  										 , ARTICLE_TITLE
+  										 , ARTICLE_DESC
+  										 , ARTICLE_REGISTER_DATE
+  										 , ARTICLE_MODIFY_DATE
+  										 , ARTICLE_TYPE_ID
+  										 , STUDENT_EMAIL
+  										 , BOARD_ID
+  										 , UNIV_ID
+  									)	 
+			VALUES 					( 
+										ARTICLE_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, SYSDATE
+										, SYSDATE
+										, ?
+										, ?
+										, ?
+										, ?
+									)
+		</doWriteUnivArticle>
+		<hitsCount>
+			UPDATE	ARTICLE
+			SET		HITS = HITS + 1
+			WHERE	ARTICLE_ID = ?
+		</hitsCount>
 		
 		
 		

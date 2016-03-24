@@ -151,6 +151,12 @@
 			AND		A.ARTICLE_ID = AB.ARTICLE_ID
 		</myScrabArticle>
 		
+		<getArticleId>
+			SELECT ARTICLE_ID
+			FROM    ARTICLES
+			WHERE   ROWNUM = 1
+			ORDER   BY ARTICLE_ID DESC
+		</getArticleId>
 	</article>
 
 	<stdMember>
@@ -177,7 +183,6 @@
 									)
 		</addStdMember>
 	</stdMember>
-=======
 	
 	<qa>
 		<registerQuestionByStudent>
@@ -229,5 +234,21 @@
 									)
 		</registerQuestionByCompany>
 	</qa>
->>>>>>> .r116
+	
+	<file>
+		<insertOneFile>
+					INSERT INTO FILES (
+                       FILE_ID
+                       , ARTICLE_ID
+                       , FILE_NAME
+                       , FILE_LOCATION
+                       ) 
+			VALUES ( 
+					FILE_ID_SEQ.NEXTVAL
+			         , ?
+			         , ?
+			         , ?       
+			       )
+		</insertOneFile>
+	</file>
 </query>

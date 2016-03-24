@@ -37,6 +37,7 @@ public class ArticleDAO {
 
 			while (rs.next()) {
 				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
 				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
 				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
@@ -80,6 +81,7 @@ public class ArticleDAO {
 
 			while (rs.next()) {
 				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
 				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
 				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
@@ -145,6 +147,7 @@ public class ArticleDAO {
 		return articles;
 	}
 
+	//학과 게시판 글쓰기
 	public int doWriteMajorArticle(ArticleVO article) {
 		loadOracleDriver();
 
@@ -173,6 +176,8 @@ public class ArticleDAO {
 	}
 
 
+	// 대학 게시판 글쓰기
+
 	public int doWriteUnivArticle(ArticleVO article) {
 		loadOracleDriver();
 		
@@ -200,6 +205,7 @@ public class ArticleDAO {
 		return 0;
 	}
 
+	// 홍보 게시판 글쓰기
 	public int doWriteAdArticle(ArticleVO article) {
 		return 0;
 	}
@@ -276,6 +282,34 @@ public class ArticleDAO {
 		}
 		return articles;
 	}
+	
+	/**
+	 * 조회수 올리기
+	 * @param articleVO
+	 * @return
+	 */
+	public int hitsCount(ArticleVO article) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/hitsCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, article.getArticleId());
+			int updateCount = stmt.executeUpdate();
+			return updateCount;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+		return 0;
+	}
 
 	private void loadOracleDriver() {
 		try {
@@ -306,5 +340,6 @@ public class ArticleDAO {
 		}
 
 	}
+
 
 }

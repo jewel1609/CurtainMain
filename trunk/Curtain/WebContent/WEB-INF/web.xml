@@ -82,13 +82,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DoQuestionservlet</display-name>
-    <servlet-name>DoQuestionservlet</servlet-name>
-    <servlet-class>com.ktds.curtain.qa.web.DoQuestionServlet</servlet-class>
+    <display-name>RegisterQuestionServlet</display-name>
+    <servlet-name>RegisterQuestionServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.qa.web.RegisterQuestionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DoQuestionservlet</servlet-name>
-    <url-pattern>/doQuestion</url-pattern>
+    <servlet-name>RegisterQuestionServlet</servlet-name>
+    <url-pattern>/registerQuestion</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -122,13 +122,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>RegisterQuestionServlet</display-name>
-    <servlet-name>RegisterQuestionServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.qa.web.RegisterQuestionServlet</servlet-class>
+    <display-name>DoRegisterQuestionServlet</display-name>
+    <servlet-name>DoRegisterQuestionServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.qa.web.DoRegisterQuestionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RegisterQuestionServlet</servlet-name>
-    <url-pattern>/registerQuestion</url-pattern>
+    <servlet-name>DoRegisterQuestionServlet</servlet-name>
+    <url-pattern>/doRegisterQuestion</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

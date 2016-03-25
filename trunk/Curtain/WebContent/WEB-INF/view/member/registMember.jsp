@@ -25,7 +25,16 @@ html, body, h1, h2, h3, h4, h5 {
 <script type="text/javascript">
 
 	$(document).ready(function() {
+		$('#registStdBtn').attr('disabled',true); // 버튼 비활성화
+		$('#registCompBtn').attr('disabled',true); // 버튼 비활성화
 		
+		var emailCheck = false;
+		var authCheck = false;
+		var passwordCheck = false;
+		if( emailCheck == true && authCheck ==true && passwordCheck ==true){
+			$('#registStdBtn').attr('disabled',false); // 버튼 비활성화
+			$('#registCompBtn').attr('disabled',false); // 버튼 비활성화
+		}
 		$("#inputUnivEmail").keyup(function(){
 			//AJAX 준비
 	         $.post(
@@ -48,12 +57,12 @@ html, body, h1, h2, h3, h4, h5 {
 		                    	var text = $("#inputUnivEmail").text();
 		                    	if(jsonData3.isExistStdUnivEmail){
 		                    		$("#stdUnivEmailCheck").text("중복된 이메일입니다.");
-		                    		$('#registStdBtn').attr('disabled',true); // 버튼 비활성화
+		                    		
 		                    		$("#inputUnivEmail").focus();
 		                    	}
 		                    	if(!jsonData3.isExistStdUnivEmail){
 		                    		$("#stdUnivEmailCheck").text("가입가능한 이메일입니다.");
-		                    		$('#registStdBtn').attr('disabled',false); // 버튼 활성화
+		                    		emailCheck = true;
 		                    	}
 		                  }  
 	                  }
@@ -61,7 +70,43 @@ html, body, h1, h2, h3, h4, h5 {
 		    var text = $(this).text();
 		});
 		
-		//인증번호 보내기버튼 클릭시,
+		//기업중복되는지 AJAX
+   		$("#inputCompEmail").keyup(function(){
+     			//AJAX 준비
+     	         $.post(
+     	        		 "<c:url value="/doCompCheck" />"//갈 서블릿url
+     	                  , {
+     	                	  "inputCompEmail" : $("#inputCompEmail").val()
+     	                	 }
+     	                  , function(data) { //응답내용
+     	                	 	 var jsonData3 = {};
+     		                  
+     		                     try {
+     		                        jsonData3 = JSON.parse(data);
+     		                     }
+     		                     catch(e) {
+     		                    	console.log(e);
+     		                     }
+     		                    console.log(jsonData3.inputCompEmail);
+     		                    
+     	                        if(jsonData3.result){
+     		                    	var text = $("#inputCompEmail").text();
+     		                    	if(jsonData3.isExistCompEmail){
+     		                    		$("#compEmailCheck").text("중복된 이메일입니다.");
+     		                    		$("#inputCompEmail").focus();
+     		                    	}
+     		                    	if(!jsonData3.isExistCompEmail){
+     		                    		$("#compEmailCheck").text("가입가능한 이메일입니다.");
+     		                    		emailCheck = true;
+     		                    	}
+     		                  }  
+     	                  }
+     	         );
+     		    var text = $(this).text();
+     		});
+		
+   		
+		//대학 인증번호 보내기버튼 클릭시,
 		$("#authNumSendBtn").click(function(){
 			if( $("#inputUnivEmail").val() == ""){
 				alert("학교 이메일을 입력하세요");
@@ -87,11 +132,9 @@ html, body, h1, h2, h3, h4, h5 {
 	                     if(jsonData3.result){
 		                    	var text = $("#inputUnivEmail").text();
 		                    	if(jsonData3.isSendCheck){
-		                    		$('#registStdBtn').attr('disabled',false);  //버튼 활성화 
 		                    		alert("메일전송이 성공하였습니다.");
 		                    	}
 		                    	if(!jsonData3.isSendCheck){
-		                    		$('#registStdBtn').attr('disabled',true);  //버튼 비활성화 
 		                    		$("#inputUnivEmail").focus();
 		                    		alert("메일전송이 실패하였습니다. 다시 전송해주세요.");
 		                    	}
@@ -101,7 +144,47 @@ html, body, h1, h2, h3, h4, h5 {
 	         var text = $(this).text();
 	      });
 		
-		//인증확인버튼 클릭시,
+		
+   		// 회사 인증번호 보내기버튼 클릭시,
+   		$("#compAuthNumSendBtn").click(function(){
+   			if( $("#inputCompEmail").val() == ""){
+   				alert("학교 이메일을 입력하세요");
+   				return; // 더이상 밑의 이벤트를 진행하지 않음.
+   				} 
+   			//AJAX 준비
+   	         $.post(
+   	                  "<c:url value="/compAuthNumSend" />" //갈 서블릿url
+   	                  , { "inputCompEmail" : $("#inputCompEmail").val() }
+   	                  , function(data) { //응답내용
+   	                	  
+   	                     var jsonData3 = {};
+   	                  
+   	                     try {
+   	                        jsonData3 = JSON.parse(data);
+   	                     }
+   	                     catch(e) {
+   	                    	console.log(e);
+   	                        jsonData3.result = false;
+   	                     }
+   	                  
+   	                     console.log(jsonData3);
+   	                     if(jsonData3.result){
+   		                    	var text = $("#inputCompEmail").text();
+   		                    	if(jsonData3.isSendCheck){
+   		                    		alert("메일전송이 성공하였습니다.");
+   		                    	}
+   		                    	if(!jsonData3.isSendCheck){
+   		                    		$("#inputCompEmail").focus();
+   		                    		alert("메일전송이 실패하였습니다. 다시 전송해주세요.");
+   		                    	}
+   		                  } 
+   	                  }
+   	         );
+   	         var text = $(this).text();
+   	      });
+		                    		
+		                    		
+		// 대학 인증확인버튼 클릭시,
 		$("#authNumCheckBtn").click(function(){
 			if( $("#inputNumberCheck").val() == ""){
 				alert("인증번호를 입력하세요");
@@ -131,11 +214,10 @@ html, body, h1, h2, h3, h4, h5 {
 	                    	var text = $("#inputNumberCheck").text();
 	                    	if(jsonData3.isUnivEmail){
 	                    		alert("인증되었습니다.");
-	                    		$('#registStdBtn').attr('disabled',false); // 버튼 활성화
+	                    		authCheck = true;
 	                    		
 	                    	}
 	                    	if(!jsonData3.isUnivEmail){
-	                    		$('#registStdBtn').attr('disabled',true);  //버튼 비활성화 
 	                    		$("#inputNumberCheck").focus();
 	                    		alert("인증이 실패되었습니다.");
 	                    	}
@@ -145,22 +227,84 @@ html, body, h1, h2, h3, h4, h5 {
 	         var text = $(this).text();
 		});
 		
-		//패스워드 확인
+  		// 기업 인증확인버튼 클릭시,
+  		$("#compAuthNumCheckBtn").click(function(){
+  			if( $("#inputCompNumberCheck").val() == ""){
+  				alert("인증번호를 입력하세요");
+  				return; // 더이상 밑의 이벤트를 진행하지 않음.
+  				} 
+  			//AJAX 준비
+  	         $.post(
+  	        		 "<c:url value="/compAuthNumCheck" />" //갈 서블릿url
+  	                  , {
+  	                	  "inputCompEmail" : $("#inputCompEmail").val()  
+  	                	  , "inputCompNumberCheck" : $("#inputCompNumberCheck").val() 
+  	                	 }
+  	                  , function(data) { //응답내용
+  	                	  
+  	                     var jsonData3 = {};
+  	                  
+  	                     try {
+  	                        jsonData3 = JSON.parse(data);
+  	                     }
+  	                     catch(e) {
+  	                    	console.log(e);
+  	                        jsonData3.result = false;
+  	                     }
+  	                  
+  	                     console.log(jsonData3);
+  	                     if(jsonData3.result){
+  	                    	var text = $("#inputCompNumberCheck").text();
+  	                    	if(jsonData3.isCompEmail){
+  	                    		authCheck = true;
+  	                    		alert("인증되었습니다.");
+  	                    	}
+  	                    	if(!jsonData3.isCompEmail){
+  	                    		$("#inputCompNumberCheck").focus();
+  	                    		alert("인증이 실패되었습니다.");
+  	                    	}
+  	                     } 
+  	                  }
+  	         );
+  	         var text = $(this).text();
+  		});		
+		
+		// 대학 패스워드 확인
 		$("#inputPasswordCheck").keyup(function(){
-			
 			if ( $("#inputPasswordCheck").val() == ""){
-				 $("#passwordCheckSpan").text("");
+				 $("#PasswordCheckSpan").text("");
 				 return;
 			}
+			
 			if($("#inputPassword").val() == $("#inputPasswordCheck").val()){
 				 $("#passwordCheckSpan").text("일치 합니다.");
-				 $('#registStdBtn').attr('disabled',false); // 버튼 활성화
+				 passwordCheck = true;
 				 
 			}
+			
 			if($("#inputPassword").val() != $("#inputPasswordCheck").val()){
+				 
 				 $("#passwordCheckSpan").text("불일치 합니다.");
-				 $('#registStdBtn').attr('disabled',true); // 버튼 비활성화
 				 $("#inputPasswordCheck").focus();
+			}
+			
+		});
+
+		// 기업 패스워드 확인
+		$("#inputCompPasswordCheck").keyup(function(){
+			
+			if ( $("#inputCompPasswordCheck").val() == ""){
+				 $("#compPasswordCheckSpan").text("");
+				 return;
+			}
+			if($("#inputCompPassword").val() == $("#inputCompPasswordCheck").val()){
+				 $("#compPasswordCheckSpan").text("일치 합니다.");
+				 passwordCheck = true;
+				 
+			}
+			if($("#inputCompPassword").val() != $("#inputCompPasswordCheck").val()){
+				 $("#compPasswordCheckSpan").text("불일치 합니다.");
+				 $("#inputCompPasswordCheck").focus();
 			}
 			
 		});
@@ -241,7 +385,7 @@ html, body, h1, h2, h3, h4, h5 {
 			$("#majorSuggest").hide("slow");
 		});
 		
-		//회원가입 버튼 누를시,
+		// 학생 회원가입 버튼 누를시,
 		$("#registStdBtn").click(function(){
 			
 			// 유효성 검사 혹은 Validation Check
@@ -289,10 +433,98 @@ html, body, h1, h2, h3, h4, h5 {
 		
 		});
 		
+		////////// 기업///////////
+		// 기업 회원가입 버튼 누를시,
+		$("#registCompBtn").click(function(){
+			
+			// 유효성 검사 혹은 Validation Check
+			 if( $("#inputCompEmail").val() == ""){
+				alert("회사 이메일을 입력하세요!");
+				return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputCompNumberCheck").val() == ""){
+					alert("인증번호를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputCompPassword").val() == ""){
+					alert("비밀번호를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputCompPasswordCheck").val() == ""){
+					alert("재확인 비밀번호를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputCompName").val() == ""){
+					alert("회사명을 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputPhoneNum").val() == ""){
+					alert("휴대폰번호를 입력하세요!");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if( $("#inputCompSecondEmail").val() == ""){
+					alert("보조이메일을 입력하세요.");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+				} 
+			 if($("#compAgree").prop('checked') == false){
+				 	alert("이용약관을 체크해주세요.");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+			 	}
+			 if($("#compSecondAgree").prop('checked') == false){
+				 	alert("이용약관을 체크해주세요.");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+			 	}
+			 
+			var form = $("#registCompForm");
+			form.attr("method", "POST");
+			form.attr("action", "<c:url value="/doRegistCompMember" />");
+			form.submit();
+		
+		});
+		
 		$("#cancleBtn").click(function(){
 			window.history.back();
 		});
+		$("#cancleCompBtn").click(function(){
+			window.history.back();
+		});
 		
+		function w3_open() {
+			document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
+			document.getElementsByClassName("w3-overlay")[0].style.display = "block";
+		}
+		function w3_close() {
+			document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
+			document.getElementsByClassName("w3-overlay")[0].style.display = "none";
+		}
+	
+
+
+		window.onscroll = function() {
+			myFunction()
+		};
+
+		function myFunction() {
+			if (document.body.scrollTop > 80
+					|| document.documentElement.scrollTop > 80) {
+				document.getElementById("myTop").classList.add("w3-card-4");
+			} else {
+				document.getElementById("myTop").classList.remove("w3-card-4");
+			}
+		}
+
+		function myAccordion(id) {
+			document.getElementById(id).classList.toggle("w3-show");
+			document.getElementById(id).previousElementSibling.classList
+					.toggle("w3-theme");
+		}
+		
+		$(function(){
+		    $('ul.nav-tabs a').click(function (e) {
+		      e.preventDefault()
+		      $(this).tab('show')
+		    })
+		});
 	});
 
 </script>
@@ -311,7 +543,7 @@ html, body, h1, h2, h3, h4, h5 {
 
 		<article class="tab-content container w3-border">
 			
-			<div role="tabpanel" id="inputMemberInfo" name="inputMemberInfo" class="col-md-12 tab-pane fade active in">
+			<div role="tabpanel" id="inputMemberInfo" class="col-md-12 tab-pane fade active in">
 				<div class="page-header">
 					<h1>
 						개인정보 입력
@@ -332,7 +564,7 @@ html, body, h1, h2, h3, h4, h5 {
 									</span>
 							</div>
 							<br/>
-							<span style="margin: 0 auto"class="col-sm-6" id="stdUnivEmailCheck"></span>
+							<span style="margin: 0 auto" class="col-sm-6" id="stdUnivEmailCheck"></span>
 						</div>
 					</div>
 					
@@ -433,7 +665,7 @@ html, body, h1, h2, h3, h4, h5 {
 				
 			</div>
 		
-			<!-- 기업 ------------------------------------------------------------------------------------- -->
+			<!-- 기업 -->
 			<div role="tabpanel" id="inputCompanyInfo" class="tab-pane fade col-md-12">
 				<div class="page-header">
 					<h1>
@@ -441,21 +673,21 @@ html, body, h1, h2, h3, h4, h5 {
 					</h1>
 				</div>
 			
-				<form id=registStdForm class="form-horizontal">
+				<form id=registCompForm class="form-horizontal">
 				
 					<!-- 회사 이메일 -->
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputUnivEmail">회사 이메일</label>
+						<label class="col-sm-3 control-label" for="inputCompEmail">회사 이메일</label>
 						<div class="col-sm-6">
 							<div class="input-group">
-								<input class="form-control" id="inputUnivEmail" name="inputUnivEmail" type="text" 
+								<input class="form-control" id="inputCompEmail" name="inputCompEmail" type="text" 
 									placeholder="회사 이메일주소를 입력하세요. 일반이메일은 인증메일이 전송되지않습니다."/>
 									<span class="input-group-btn">
-										<input type="button" id="authNumSendBtn" class="btn btn-success" value="인증번호 전송">
+										<input type="button" id="compAuthNumSendBtn" class="btn btn-success" value="인증번호 전송">
 									</span>
 							</div>
 							<br/>
-							<span style="margin: 0 auto"class="col-sm-6" id="stdUnivEmailCheck"></span>
+							<span style="margin: 0 auto" class="col-sm-6" id="compEmailCheck"></span>
 						</div>
 					</div>
 					
@@ -464,10 +696,10 @@ html, body, h1, h2, h3, h4, h5 {
 						<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호 확인</label>
 						<div class="col-sm-6">
 							<div class="input-group">
-								<input class="form-control" id="inputNumberCheck" name="inputNumberCheck" type="text" 
+								<input class="form-control" id="inputCompNumberCheck" name="inputCompNumberCheck" type="text" 
 								placeholder="전송된 인증번호를 입력해주세요."> 
 								<span class="input-group-btn">
-									<input type="button" id="authNumCheckBtn" class="btn btn-success" value="인증번호 확인">
+									<input type="button" id="compAuthNumCheckBtn" class="btn btn-success" value="인증번호 확인">
 								</span>
 							</div>
 						</div>
@@ -477,39 +709,39 @@ html, body, h1, h2, h3, h4, h5 {
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputPassword" name="inputPassword" type="password"
+							<input class="form-control" id="inputCompPassword" name="inputCompPassword" type="password"
 								placeholder="8-20자리 영문 대소문자, 숫자를 혼합하여 사용.">
 						</div>
+						
+						<hr>
 					</div>
 					
 					<!-- 비밀번호 재확인 -->
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 재확인</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputPasswordCheck" name="inputPasswordCheck"
+							<input class="form-control" id="inputCompPasswordCheck" name="inputCompPasswordCheck"
 								type="password" placeholder="비밀번호 재확인">
 						</div>
 					</div>
-						<span class="col-sm-6" id="passwordCheckSpan"></span>
+						<span class="col-sm-6" id="compPasswordCheckSpan"></span>
 					<hr>
 					
 					<!-- 회사명 -->
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputUniv">회사명</label>
+						<label class="col-sm-3 control-label" for="inputComp">회사명</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputUnivName" name="inputUnivName" type="text"
+							<input class="form-control" id="inputCompName" name="inputCompName" type="text"
 								placeholder="회사명을 입력하세요.">
-							<span class="col-sm-6" id="univSuggest"></span>
 						</div>
 					</div>
 					
 					<!-- 개인 휴대폰 번호 -->
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputMajor">개인 휴대폰 번호</label>
+						<label class="col-sm-3 control-label" for="inputPhoneNum">개인 휴대폰 번호</label>
 						<div class="col-sm-6">
-							<input class="form-control" id="inputMajorName" name="inputMajorName" type="text"
+							<input class="form-control" id="inputPhoneNum" name="inputPhoneNum" type="text"
 								placeholder="개인 휴대폰 번호를 입력하세요">
-							<div class="col-sm-6" id="majorSuggest"></div>
 						</div>
 					</div>
 					<hr>
@@ -518,7 +750,7 @@ html, body, h1, h2, h3, h4, h5 {
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputSecondEmail">보조 이메일</label>
 						<div class="col-sm-6">
-								<input class="form-control" id="inputSecondEmail" name="inputSecondEmail" type="email" 
+								<input class="form-control" id="inputCompSecondEmail" name="inputCompSecondEmail" type="email" 
 								placeholder="비밀번호 분실 시 활용됩니다.">
 						</div>
 					</div>
@@ -533,22 +765,22 @@ html, body, h1, h2, h3, h4, h5 {
 							개인화면 약관에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal">
 												  내용보기
 											  </button>
-								<input class="w3-check" id="agree" name="agree" type="checkbox" autocomplete="off">
+								<input class="w3-check" id="compAgree" name="compAgree" type="checkbox" autocomplete="off">
 						</div>
 						
 						<div class="col-sm-6" data-toggle="buttons">
 							개인정보 수정 및 이용에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal2">
 														  내용보기
 													  </button>
-								<input class="w3-check" id="secondAgree" name="secondAgree" type="checkbox" autocomplete="off">
+								<input class="w3-check" id="compSecondAgree" name="compSecondAgree" type="checkbox" autocomplete="off">
 						</div>
 					</div>
 					<br>
 					<!-- 가입하기 버튼 -->
 					<div class="form-group">
 						<div class="col-sm-12 text-center">
-							<input type="button" id="registStdBtn" class="btn btn-primary" value="가입하기">
-							<input type="button" id="cancleBtn" class="btn btn-danger" value="가입취소">
+							<input type="button" id="registCompBtn" class="btn btn-primary" value="가입하기">
+							<input type="button" id="cancleCompBtn" class="btn btn-danger" value="가입취소">
 						</div>
 					</div>
 				</form>
@@ -596,42 +828,4 @@ html, body, h1, h2, h3, h4, h5 {
 	  </div>
 	</div>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
-	<script>
-		function w3_open() {
-			document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
-			document.getElementsByClassName("w3-overlay")[0].style.display = "block";
-		}
-		function w3_close() {
-			document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
-			document.getElementsByClassName("w3-overlay")[0].style.display = "none";
-		}
-	</script>
-
-	<script>
-		window.onscroll = function() {
-			myFunction()
-		};
-
-		function myFunction() {
-			if (document.body.scrollTop > 80
-					|| document.documentElement.scrollTop > 80) {
-				document.getElementById("myTop").classList.add("w3-card-4");
-			} else {
-				document.getElementById("myTop").classList.remove("w3-card-4");
-			}
-		}
-
-		function myAccordion(id) {
-			document.getElementById(id).classList.toggle("w3-show");
-			document.getElementById(id).previousElementSibling.classList
-					.toggle("w3-theme");
-		}
-		
-		$(function(){
-		    $('ul.nav-tabs a').click(function (e) {
-		      e.preventDefault()
-		      $(this).tab('show')
-		    })
-		});
-	</script>
 

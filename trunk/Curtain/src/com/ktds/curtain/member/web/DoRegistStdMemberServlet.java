@@ -50,6 +50,7 @@ public class DoRegistStdMemberServlet extends HttpServlet {
 		
 		memberVO.setEmail(inputUnivEmail);
 		memberVO.setPassword(inputPassword);
+		memberVO.setNickName("yo");
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("_MEMBER_", memberVO);

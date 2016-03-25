@@ -105,7 +105,8 @@
 
 		
 		<showSecretArticle>
-        	SELECT		ARTICLE_TITLE
+        	SELECT		ARTICLE_ID
+        				, ARTICLE_TITLE
 						, ARTICLE_DESC
 						, ARTICLE_MODIFY_DATE
 						, AT.ARTICLE_TYPE_NAME
@@ -124,7 +125,6 @@
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showSecretArticle>
 		
->>>>>>> .r210
 		<doWriteMajorArticle>
 			INSERT INTO 	ARTICLE (
   										 ARTICLE_ID

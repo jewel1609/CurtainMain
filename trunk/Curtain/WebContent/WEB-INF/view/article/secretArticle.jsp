@@ -14,6 +14,43 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
+		$("#likeBtn").click(function() {
+			
+			$.post(
+					
+				"/like"
+				, { "articleId" : "${article.articleId}" }
+				, function(data) {
+					
+					var jsonData = {};
+					
+					try {
+						jsonData = JSON.parse(data);
+						
+					}
+					catch(e) {
+						jsonData.result = false;
+					}
+					console.log(jsonData);
+					
+					if(jsonData.result){
+						if(jsonData.isFavorite){
+							$("#imgBtn").attr("src", "/resource/img/like_active_small.png");
+						}
+						else{
+							$("imgBtn").attr("src", "/resource/img/like_inactive_small.png");
+						}
+						
+					}
+					else{
+						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+						location.href="/secretArticleList";
+					}
+				}
+			)
+			
+		});
+		
 		$("#imagePreview").hide();
 
 		$("#doWrite").click(function() {
@@ -139,14 +176,36 @@
 										<c:if test="${article.articleTypeName eq '기타'}">
 											<span class="label label-default">${article.articleTypeName}</span>
 										</c:if>
+										<strong>${article.articleId }</strong>
 										<strong>${article.articleTitle}</strong>
 									</div>
 									
 									<p>${article.articleDesc}</p>
 									<p>${article.articleModifyDate}${article.nickName}</p>
-									<p><span class="glyphicon glyphicon-heart"></span>
-									좋아요 갯수
-									</p>
+									<div style="width: 780px; float:left; padding:5px;">
+										<c:if test="${isExistsLikeData}">
+											<img id="likeBtn" src="/resource/img/like_active_small.png" style="width:20px;">
+											좋아요 갯수 
+										</c:if>
+										<c:if test="${!isExistsLikeData}">
+											<img id="likeBtn" src="/resource/img/like_inactive_small.png" style="width:20px;">
+											좋아요 갯수
+										</c:if>
+										
+										<c:if test="${isExistsDislikeData}">
+											<img id="dislikeBtn" src="/resource/img/dislike_active_small.png" style="width:20px;">
+											싫어요 갯수
+										</c:if>
+										<c:if test="${!isExistsDislikeData}">
+											<img id="dislikeBtn" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
+											싫어요 갯수
+										</c:if>
+									</div>
+									<div style="float:left;">
+									<img src="/resource/img/reply_small.png" style="width:20px;">
+									댓글 수<img src="/resource/img/scrap_inactive_small.png" style="width:20px;">
+									스크랩하기
+									</div>
 								</div>
 							</div>
 						</div>

@@ -38,15 +38,12 @@ public class DoMajorSearchServlet extends HttpServlet {
 		String inputMajorName = request.getParameter("inputMajorName");
 		System.out.println(inputMajorName);
 		String checkMajorNameList = majorBiz.checkMajorName(inputMajorName);
-		System.out.println("과 이름 : " + checkMajorNameList);
 		
 		StringBuffer json = new StringBuffer();
 		PrintWriter out = response.getWriter();
 		
 		json.append("{");
 		json.append("\"checkMajorNameList\" : \""+ checkMajorNameList +"\"");
-		
-		System.out.println("과 JSP로 넘길거 : " + checkMajorNameList);
 		json.append("}");
 		
 		out.print(json.toString());

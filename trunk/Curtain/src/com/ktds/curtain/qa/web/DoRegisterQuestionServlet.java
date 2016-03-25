@@ -45,7 +45,6 @@ public class DoRegisterQuestionServlet extends HttpServlet {
 //		questionAndAnswerVO.setEmail(member.getEmail());
 //		questionAndAnswerVO.setMemberTypeId(member.getMemberTypeId());
 		questionAndAnswerVO.setEmail("sosdig@naver.com");
-		questionAndAnswerVO.setMemberTypeId(1);
 		
 		questionAndAnswerVO.setQuestionDescription(request.getParameter("questionDescription"));
 		questionAndAnswerVO.setQuestionTitle(request.getParameter("questionTitle"));

@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
@@ -98,6 +101,44 @@ public class DislikeDAO {
 		}	
 		
 	}
+	
+	   public List<ArticleDislikeVO> showSecretArticleDislike(MemberVO stdMember, int boardId) {
+		      
+		      loadOracleDriver();
+
+		      Connection conn = null;
+		      PreparedStatement stmt = null;
+		      ResultSet rs = null;
+		      List<ArticleDislikeVO> articleDislikes = new ArrayList<ArticleDislikeVO>();
+		      ArticleDislikeVO articleDislike = null;
+
+		      try {
+		         conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+		         String query = XML.getNodeString("//query/dislike/showSecretArticleDisLike/text()");
+		         stmt = conn.prepareStatement(query);
+		         stmt.setString(1, "shinmi@curtain.ac.kr");
+		         stmt.setInt(2, boardId);
+		         rs = stmt.executeQuery();
+
+		         while (rs.next()) {
+		            articleDislike = new ArticleDislikeVO();
+		            articleDislike.setArticleDislikeId(rs.getInt("ARTICLE_DISLIKE_ID"));
+		            articleDislike.setArticleId(rs.getInt("ARTICLE_ID"));
+		            articleDislike.setEmail(rs.getString("EMAIL"));
+		            articleDislike.setDislikeDate(rs.getString("DISLIKE_DATE"));
+		            articleDislike.setBoardId(rs.getInt("BOARD_ID"));
+		            articleDislikes.add(articleDislike);
+		         }
+
+		         return articleDislikes;
+
+		      } catch (SQLException e) {
+		         // TODO Auto-generated catch block
+		         closeDB(conn, stmt, rs);
+		      }
+		      return articleDislikes;
+		   }
 	
 	private void loadOracleDriver() {
 		try {

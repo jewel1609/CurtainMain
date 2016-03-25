@@ -96,6 +96,36 @@ public class StdMemberDAO {
 		
 	}
 
+	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, int inputPhoneNum,
+			String inputSecondEmail) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/compMember/addCompMember/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, inputCompEmail);
+			stmt.setInt(2, 4);
+			stmt.setString(3, inputSecondEmail);
+			stmt.setString(4, inputPassword);
+			stmt.setInt(5, inputPhoneNum);
+			stmt.setString(6, inputCompName);
+			stmt.executeUpdate();
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -125,8 +155,5 @@ public class StdMemberDAO {
 		}
 	}
 
-	
-
-	
 	
 }

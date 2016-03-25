@@ -27,7 +27,10 @@ public class StdMemberBiz {
 		stdMemberDAO.addStdMember(inputUnivEmail,univId,majorId,inputSecondEmail,inputPassword,majorGroupId);
 		
 	}
-
+	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, int inputPhoneNum,
+			String inputSecondEmail) {
+		stdMemberDAO.addCompMember(inputCompEmail,inputPassword,inputCompName,inputPhoneNum,inputSecondEmail);
+	}
 	public void modifyMemberInfo(String userEmail, String userNickName) {
 		stdMemberDAO.updateMemberInfo(userEmail, userNickName);
 	}
@@ -35,5 +38,4 @@ public class StdMemberBiz {
 	public void modifyMemberPassword(String userPw) {
 		stdMemberDAO.updateMemberPassword(userPw);
 	}
-
 }

@@ -51,7 +51,7 @@
 						</div>
 						<form id="btnForm">
 							<div style="float: right; width: 80px; margin-top: 60px;">
-								<div id="btnFAQ" name="btnDoRegisterQuestion" class="btn btn-primary" style="float: right;
+								<div id="btnFAQ" class="btn btn-primary" style="float: right;
 									 border: 0px currentColor; border-image: none; 
 									 background-color: rgb(255, 51, 0); color: white;">
 									뒤로가기

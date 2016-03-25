@@ -22,9 +22,9 @@
 	</major>
 	<univ>
 		<isExistStdUnivEmail>
-			SELECT 	STUDENT_EMAIL
-			FROM	STD_MEMBER
-			WHERE	STUDENT_EMAIL = ?
+			SELECT 	*
+			FROM	MEMBER
+			WHERE	EMAIL_ID = ?
 		</isExistStdUnivEmail>
 		<getUnivIdByUnivName>
 			SELECT	UNIV_ID		
@@ -239,26 +239,26 @@
 
 	<stdMember>
 		<addStdMember>
-			INSERT INTO STD_MEMBER (
-										   STUDENT_EMAIL
-										   , UNIV_ID
-										   , MAJOR_ID
-										   , SIGNUP_DATE
-										   , SECOND_EMAIL
-										   , RANK_MODIFY_DATE
-										   , PASSWORD
-										   , MAJOR_GROUP_ID
-									) 
-			VALUES 					( 
-											?
-											, ?
-											, ?
-											, SYSDATE
-										 	, ?
-											, SYSDATE
-											, ?
-											, ?
-									)
+			INSERT INTO MEMBER (
+									   EMAIL_ID
+									   , UNIV_ID
+									   , MAJOR_ID
+									   , SIGNUP_DATE
+									   , SECOND_EMAIL
+									   , RANK_MODIFY_DATE
+									   , PASSWORD
+									   , MAJOR_GROUP_ID
+								) 
+			VALUES 				( 
+										?
+										, ?
+										, ?
+										, SYSDATE
+									 	, ?
+										, SYSDATE
+										, ?
+										, ?
+								)
 		</addStdMember>
 		
 		<updateMemberInfo>
@@ -276,6 +276,30 @@
 		
 	</stdMember>
 	
+	<compMember>
+		<addCompMember>
+			INSERT INTO MEMBER (
+									   EMAIL_ID
+									   , MEMBER_TYPE_ID
+									   , SIGNUP_DATE
+									   , SECOND_EMAIL
+									   , RANK_MODIFY_DATE
+									   , PASSWORD
+									   , PHONE_NUMBER
+									   , COMPANY_NAME
+								) 
+			VALUES 				( 
+										?
+										, ?
+										, SYSDATE
+									 	, ?
+										, SYSDATE
+										, ?
+										, ?
+										, ?
+								)
+		</addCompMember>
+	</compMember>
 	<qa>
 	
 		<registerQuestionByStudent>

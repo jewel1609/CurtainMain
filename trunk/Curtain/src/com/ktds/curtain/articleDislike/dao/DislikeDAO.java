@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.ktds.curtain.articleDislike.vo.DislikeVO;
+import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
@@ -14,7 +14,7 @@ import com.ktds.curtain.util.xml.XML;
 
 public class DislikeDAO {
 
-	public int selectDislikeCount(DislikeVO dislikeVO) {
+	public int selectDislikeCount(ArticleDislikeVO dislikeVO) {
 		
 		loadOracleDriver();
 
@@ -29,7 +29,7 @@ public class DislikeDAO {
 			String query = XML.getNodeString("//query/dislike/selectDislikeCount/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, dislikeVO.getArticleId());
-			stmt.setString(2, dislikeVO.getStudentEmail());
+			stmt.setString(2, dislikeVO.getEmail());
 			stmt.setInt(3, dislikeVO.getBoardId());
 
 			rs = stmt.executeQuery();
@@ -46,7 +46,7 @@ public class DislikeDAO {
 	}
 
 
-	public void deleteDislike(DislikeVO dislikeVO) {
+	public void deleteDislike(ArticleDislikeVO dislikeVO) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -59,7 +59,7 @@ public class DislikeDAO {
 			String query = XML.getNodeString("//query/dislike/deleteDislike/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, dislikeVO.getArticleId());
-			stmt.setString(2, dislikeVO.getStudentEmail());
+			stmt.setString(2, dislikeVO.getEmail());
 			stmt.setInt(3, dislikeVO.getBoardId());
 
 			stmt.executeUpdate();
@@ -72,7 +72,7 @@ public class DislikeDAO {
 	}
 
 
-	public void insertDislike(DislikeVO dislikeVO) {
+	public void insertDislike(ArticleDislikeVO dislikeVO) {
 		
 		loadOracleDriver();
 
@@ -86,7 +86,7 @@ public class DislikeDAO {
 			String query = XML.getNodeString("//query/dislike/insertDislike/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, dislikeVO.getArticleId());
-			stmt.setString(2, dislikeVO.getStudentEmail());
+			stmt.setString(2, dislikeVO.getEmail());
 			stmt.setInt(3, dislikeVO.getBoardId());
 			
 			stmt.executeUpdate();

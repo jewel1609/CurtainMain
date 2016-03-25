@@ -13,7 +13,7 @@ public class QuestionAndAnswerBiz {
 		questionAndAnswerDAO = new QuestionAndAnswerDAO();
 	}
 
-	public void registerQuestion(QuestionAndAnswerVO questionAndAnswerVO, String memberType) {
+	public void registerQuestion(QuestionAndAnswerVO questionAndAnswerVO) {
 		
 		if ( questionAndAnswerVO.getQuestionTitle() == null 
 				|| questionAndAnswerVO.getQuestionTitle().length() == 0 ) {
@@ -29,22 +29,12 @@ public class QuestionAndAnswerBiz {
 			return;
 		}
 		
-		if ( memberType.equals("1") && questionAndAnswerVO.getMemberTypeId() > 3 
-				&& questionAndAnswerVO.getMemberTypeId() < 1) {
-			return;
-		}
-		else if ( memberType.equals("2") && questionAndAnswerVO.getMemberTypeId() == 4 ) {
-			return;
-		}
-		else {
-			questionAndAnswerDAO.registerQuestion(questionAndAnswerVO);
-		}
+		questionAndAnswerDAO.registerQuestion(questionAndAnswerVO);
 	}
 
 	public List<QuestionAndAnswerVO> getMyQuestionsByEmail(String email) {
 		
 		if (email != null) {
-			
 			return questionAndAnswerDAO.getMyQuestionsByEmail(email);
 		}
 		

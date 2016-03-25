@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.curtain.qa.biz.QuestionAndAnswerBiz;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
-import com.ktds.curtain.util.Root;
 
 /**
  * Servlet implementation class PrintMyQuestionServlet

@@ -27,7 +27,6 @@ public class ArticleLikeBiz {
 			articleLikeDAO.insertLike(articleLikeVO);
 			articleDAO.plusLikeCount(articleLikeVO);
 		}
-		
 	}
 	
 	public int getArticleLikes(ArticleLikeVO articleLikeVO) {

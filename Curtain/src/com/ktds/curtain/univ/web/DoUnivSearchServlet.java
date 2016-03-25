@@ -37,16 +37,14 @@ public class DoUnivSearchServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String inputUnivName = request.getParameter("inputUnivName");
+		
 		String checkUnivName = univBiz.checkUnivName(inputUnivName);
-		System.out.println("대학이름 : " + inputUnivName);
 		
 		StringBuffer json = new StringBuffer();
 		PrintWriter out = response.getWriter();
 		
 		json.append("{");
 		json.append("\"checkUnivName\" : \""+ checkUnivName +"\"");
-		
-		System.out.println("넘길거 : " + checkUnivName);
 		json.append("}");
 		
 		out.print(json.toString());

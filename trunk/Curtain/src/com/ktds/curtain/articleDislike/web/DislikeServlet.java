@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.articleDislike.biz.DislikeBiz;
-import com.ktds.curtain.articleDislike.vo.DislikeVO;
-import com.ktds.curtain.member.vo.StdMemberVO;
+import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class DislikeServlet
@@ -44,11 +44,11 @@ public class DislikeServlet extends HttpServlet {
 		System.out.println("articleId : " + articleId);
 		
 		HttpSession session = request.getSession();
-		StdMemberVO member = (StdMemberVO) session.getAttribute("_MEMBER_");
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		DislikeVO dislikeVO = new DislikeVO();
+		ArticleDislikeVO dislikeVO = new ArticleDislikeVO();
 		dislikeVO.setArticleId(articleId);
-		dislikeVO.setStudentEmail("shinmi@curtain.ac.kr");
+		dislikeVO.setEmail("shinmi@curtain.ac.kr");
 		//TODO 나중에 세션값 받아와서 바꿔주어야함
 		//dislikeVO.setStudentEmail(member.getStudentEmail());
 		

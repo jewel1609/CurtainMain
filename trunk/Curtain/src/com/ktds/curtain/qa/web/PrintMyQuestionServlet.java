@@ -42,7 +42,7 @@ public class PrintMyQuestionServlet extends HttpServlet {
 		// TODO 준호 세션에서 이메일을 받아와야 한다.
 		// 기업 회원인지 학생 회원인지 구분을 해주어야 한다.
 		String email = "sosdig@naver.com";
-		List<QuestionAndAnswerVO> questions = questionAndAnswerBiz.getMyQuestionsByStudentEmail(email);
+		List<QuestionAndAnswerVO> questions = questionAndAnswerBiz.getMyQuestionsByEmail(email);
 		
 		request.setAttribute("questions", questions);
 		

@@ -6,7 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.qa.biz.QuestionAndAnswerBiz;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 import com.ktds.curtain.util.Root;
@@ -41,10 +43,17 @@ public class DoRegisterQuestionServlet extends HttpServlet {
 		String memberType = request.getParameter("memberType");
 		
 		// TODO 준호 세션에서 이메일을 받아와야 한다.
+//		HttpSession session = request.getSession();
+//		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+//		questionAndAnswerVO.setEmail(member.getEmail());
+//		questionAndAnswerVO.setMemberTypeId(member.getMemberTypeId());
+		questionAndAnswerVO.setEmail("sosdig@naver.com");
+		questionAndAnswerVO.setMemberTypeId(1);
+		
 		questionAndAnswerVO.setQuestionDescription(request.getParameter("questionDescription"));
 		questionAndAnswerVO.setQuestionTitle(request.getParameter("questionTitle"));
-		String email = "sosdig@naver.com";
-		questionAndAnswerBiz.registerQuestion(questionAndAnswerVO, email, memberType);
+		
+		questionAndAnswerBiz.registerQuestion(questionAndAnswerVO, memberType);
 		
 		response.sendRedirect(Root.get(this) + "/questionAndAnswer");
 		

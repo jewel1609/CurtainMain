@@ -41,16 +41,16 @@
 	<mac>
 		<getMacDescByStudentEmail>
 			SELECT 	MAC_ID
-					, STUDENT_EMAIL
+					, EMAIL
 					, MAC_DESC
 			FROM	MAC
-			WHERE	STUDENT_EMAIL = ?					
+			WHERE	EMAIL = ?					
 		</getMacDescByStudentEmail>
 		
 		<addMacInfo>
 			INSERT INTO MAC (
 						  		MAC_ID
-						  		, STUDENT_EMAIL
+						  		, EMAIL
 						  		, MAC_DESC
 						  	) 
 			VALUES 			( 
@@ -61,6 +61,15 @@
 		</addMacInfo>
 	</mac>
 	<article>
+
+	
+		<getArticleDislikes>
+			SELECT  COUNT(ARTICLE_DISLIKES)
+			FROM    ARTICLE
+			WHERE   ARTICLE_ID = ?
+		</getArticleDislikes>
+		
+
 		<minusLikeCount>
 			UPDATE	ARTICLE
 			SET		ARTICLE_LIKES = ARTICLE_LIKES - 1
@@ -76,6 +85,7 @@
 			FROM	ARTICLE
 			WHERE	ARTICLE_ID = ?
 		</getArticleLikes>
+
 		<showMajorArticle>
         	SELECT		ARTICLE_ID
         				, ARTICLE_TITLE
@@ -89,9 +99,9 @@
 						, ARTICLE_LIKES
 						, ARTICLE_DISLIKES
 			FROM 		ARTICLE A
-						, STD_MEMBER SM
+						, MEMBER SM
 						, ARTICLE_TYPE AT
-			WHERE	    A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			WHERE	    A.EMAIL = SM.EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND         A.BOARD_ID = ?
 			AND         A.MAJOR_GROUP_ID = 1
@@ -111,9 +121,9 @@
 						, ARTICLE_LIKES
 						, ARTICLE_DISLIKES
 			FROM 		ARTICLE A
-						, STD_MEMBER SM
+						, MEMBER SM
 						, ARTICLE_TYPE AT
-			WHERE	    A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			WHERE	    A.EMAIL = SM.EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND         A.BOARD_ID = ?
 			AND         A.UNIV_ID = 1
@@ -132,13 +142,13 @@
 						, A.MAJOR_GROUP_ID
 						, HITS
 						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
 			FROM 		ARTICLE A
-						, STD_MEMBER SM
+						, MEMBER SM
 						, ARTICLE_TYPE AT
-			WHERE	    A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			WHERE	    A.EMAIL = SM.EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND         A.BOARD_ID = 4
-			AND         A.MAJOR_GROUP_ID = 20
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showSecretArticle>
 		<doWriteMajorArticle>
@@ -149,7 +159,7 @@
   										 , ARTICLE_REGISTER_DATE
   										 , ARTICLE_MODIFY_DATE
   										 , ARTICLE_TYPE_ID
-  										 , STUDENT_EMAIL
+  										 , EMAIL
   										 , BOARD_ID
   										 , MAJOR_GROUP_ID
   									)	 
@@ -173,7 +183,7 @@
   										 , ARTICLE_REGISTER_DATE
   										 , ARTICLE_MODIFY_DATE
   										 , ARTICLE_TYPE_ID
-  										 , STUDENT_EMAIL
+  										 , EMAIL
   										 , BOARD_ID
   										 , UNIV_ID
   									)	 
@@ -209,9 +219,9 @@
 						, HITS
 						, ARTICLE_LIKES
 			FROM	ARTICLE A
-                    , STD_MEMBER SM
+                    , MEMBER SM
                     , ARTICLE_TYPE AT
-			WHERE	A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			WHERE	A.EMAIL = SM.EMAIL
 			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND     BOARD_ID IN (1, 2)
 			AND		A.EMAIL = ?
@@ -229,11 +239,11 @@
 						, HITS
 						, ARTICLE_LIKES
 			FROM	ARTICLE A
-					, STD_MEMBER SM
+					, MEMBER SM
 					, ARTICLE_LIKE AL 
 					, ARTICLE_TYPE AT
 			WHERE	A.ARTICLE_ID = AL.ARTICLE_ID
-			AND		A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND		A.EMAIL = SM.EMAIL
 			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND 	AL.EMAIL = ?
 		</showLikesArticle>
@@ -250,11 +260,11 @@
 						, HITS
 						, ARTICLE_LIKES
 			FROM	ARTICLE A
-					, STD_MEMBER SM
+					, MEMBER SM
 					, ARTICLE_SCRAB AB
 					, ARTICLE_TYPE AT
 			WHERE	A.ARTICLE_ID = AB.ARTICLE_ID
-			AND		A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND		A.EMAIL = SM.EMAIL
 			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND		AB.EMAIL = ?
 		</showMyScrabArticle>
@@ -278,9 +288,9 @@
 						, HITS
 						, ARTICLE_LIKES
 			FROM 		ARTICLE A
-						, STD_MEMBER SM
+						, MEMBER SM
 						, ARTICLE_TYPE AT
-			WHERE	    A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			WHERE	    A.EMAIL = SM.EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND         A.ARTICLE_ID = ?
 		</showDetail>
@@ -289,30 +299,30 @@
 		<showMajorArticleLike>
 			SELECT 		ARTICLE_LIKE_ID
 						, ARTICLE_ID
-						, STUDENT_EMAIL
+						, EMAIL
 						, LIKE_DATE
 						, BOARD_ID
 			FROM 		ARTICLE_LIKE
-			WHERE		STUDENT_EMAIL = ?
+			WHERE		EMAIL = ?
 			AND			BOARD_ID = ?
 		</showMajorArticleLike>
 		<selectLikeCount>
 			SELECT	COUNT(ARTICLE_LIKE_ID)
 			FROM	ARTICLE_LIKE
 			WHERE	ARTICLE_ID = ?
-			AND		STUDENT_EMAIL = ?
+			AND		EMAIL = ?
 		</selectLikeCount>
 		<deleteLike>
 			DELETE
 			FROM	ARTICLE_LIKE
 			WHERE	ARTICLE_ID = ?
-			AND		STUDENT_EMAIL = ?
+			AND		EMAIL = ?
 		</deleteLike>
 		<insertLike>
 			INSERT INTO			ARTICLE_LIKE (
    										ARTICLE_LIKE_ID
    										, ARTICLE_ID
-   										, STUDENT_EMAIL
+   										, EMAIL
    										, LIKE_DATE
    										, BOARD_ID
    									) 
@@ -351,16 +361,16 @@
 		</addStdMember>
 		
 		<updateMemberInfo>
-			UPDATE	STD_MEMBER
+			UPDATE	MEMBER
 			SET		SECOND_EMAIL = ?
 					, NICK_NAME = ?
-			WHERE	STUDENT_EMAIL = ?
+			WHERE	EMAIL = ?
 		</updateMemberInfo>
 		
 		<updateMemberPassword>
-			UPDATE	STD_MEMBER
+			UPDATE	MEMBER
 			SET		PASSWORD = ?
-			WHERE	STUDENT_EMAIL = ?
+			WHERE	EMAIL = ?
 		</updateMemberPassword>
 		
 	</stdMember>
@@ -399,7 +409,7 @@
 										, ANSWER_DESCRIPTION
 										, QUESTION_DATE
 										, ANSWER_DATE
-										, STUDENT_EMAIL
+										, EMAIL
 										, IS_CHECKED
 										, COMPANY_EMAIL
 									) 
@@ -424,7 +434,7 @@
 										, ANSWER_DESCRIPTION
 										, QUESTION_DATE
 										, ANSWER_DATE
-										, STUDENT_EMAIL
+										, EMAIL
 										, IS_CHECKED
 										, COMPANY_EMAIL
 									) 
@@ -449,7 +459,7 @@
 					, ANSWER_DATE
 					, IS_CHECKED
 			FROM	CURTAIN.QA
-			WHERE	STUDENT_EMAIL = ?
+			WHERE	EMAIL = ?
 		</getMyQuestionsByStudentEmail>
 	</qa>
 	
@@ -469,4 +479,61 @@
 			       )
 		</insertOneFile>
 	</file>
+	
+	<dislike>
+		<selectDislikeCount>
+			SELECT	COUNT(ARTICLE_DISLIKE_ID)
+			FROM	ARTICLE_DISLIKE
+			WHERE	ARTICLE_ID = ?
+			AND		EMAIL = ?
+			AND		BOARD_ID = ?
+		</selectDislikeCount>
+		
+		<deleteDislike>
+			DELETE
+			FROM	ARTICLE_DISLIKE
+			WHERE	ARTICLE_ID = ?
+			AND		EMAIL = ?
+			AND		BOARD_ID = ?
+		</deleteDislike>
+		
+		<insertDislike>
+			INSERT INTO ARTICLE_DISLIKE (
+										   ARTICLE_DISLIKE_ID
+										   , ARTICLE_ID
+										   , EMAIL
+										   , DISLIKE_DATE
+										   , BOARD_ID
+									  ) 
+			VALUES 			 ( 
+										ARTICLE_DISLIKE_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, SYSDATE
+										, ?
+							 )
+		</insertDislike>
+		<showSecretArticleDisLike>
+			SELECT 		ARTICLE_DISLIKE_ID
+						, ARTICLE_ID
+						, EMAIL
+						, DISLIKE_DATE
+						, BOARD_ID
+			FROM 		ARTICLE_DISLIKE
+			WHERE		EMAIL = ?
+			AND			BOARD_ID = ?
+		</showSecretArticleDisLike>
+		
+		<minusDislikeCount>
+			UPDATE	ARTICLE
+			SET		ARTICLE_DISLIKES = ARTICLE_DISLIKES - 1
+			WHERE	ARTICLE_ID = ?
+		</minusDislikeCount>
+			UPDATE	ARTICLE
+			SET		ARTICLE_DISLIKES = ARTICLE_DISLIKES + 1
+			WHERE	ARTICLE_ID = ?		
+		<plusDislikeCount>
+		
+		</plusDislikeCount>
+	</dislike>
 </query>

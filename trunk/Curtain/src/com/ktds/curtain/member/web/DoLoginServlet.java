@@ -1,24 +1,30 @@
 package com.ktds.curtain.member.web;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.ktds.curtain.qa.web.RegisterQuestionServlet;
+import com.ktds.curtain.member.biz.MemberBiz;
+import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.util.Root;
 
 /**
  * Servlet implementation class DoLoginServlet
  */
 public class DoLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private MemberBiz memberBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DoLoginServlet() {
         super();
+        memberBiz = new MemberBiz();
     }
 
 	/**
@@ -32,7 +38,16 @@ public class DoLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		
+		MemberVO member = new MemberVO();
+		member.setEmail(request.getParameter("loginId"));
+		member.setPassword(request.getParameter("loginPassword"));
+		
+		memberBiz.isExistMember(member, session);
+		
+		response.sendRedirect(Root.get(this) + "/myPage");
+
 	}
 
 }

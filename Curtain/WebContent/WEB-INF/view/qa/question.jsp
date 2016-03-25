@@ -86,14 +86,14 @@
 								</table>
 								<div style="float: right; margin-top: 20px; width: 200px;">
 									<div style="float: right; width: 80px;">
-										<div id="btnFAQ" name="btnDoRegisterQuestion" class="btn btn-primary" style="float: right;
+										<div id="btnFAQ" class="btn btn-primary" style="float: right;
 											 border: 0px currentColor; border-image: none; 
 											 background-color: rgb(255, 51, 0); color: white;">
 											뒤로가기
 										</div>
 									</div>
 									<div style="float: right; width: 80px;">
-										<div id="btnDoRegisterQuestion" name="btnDoRegisterQuestion" class="btn btn-primary" style="float: right;
+										<div id="btnDoRegisterQuestion" class="btn btn-primary" style="float: right;
 											 border: 0px currentColor; border-image: none; 
 											 background-color: rgb(255, 51, 0); color: white;">
 											문의하기

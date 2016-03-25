@@ -151,7 +151,7 @@
 								</ul>
 							</div>
 							<form class="btnForm">
-								<div id="btnMyQuestion" name="btnMyQuestion" class="btn btn-primary" style="float: right;
+								<div id="btnMyQuestion" class="btn btn-primary" style="float: right;
 									 border: 0px currentColor; border-image: none; 
 									 background-color: rgb(255, 51, 0); color: white;">
 									확인하기
@@ -188,7 +188,7 @@
 							</div>
 							<div style="float: right; ">
 								<form class="btnForm">
-									<div id="btnDoRegisterQuestion" name="btnDoRegisterQuestion" class="btn btn-primary" style="float: right;
+									<div id="btnDoRegisterQuestion" class="btn btn-primary" style="float: right;
 										 border: 0px currentColor; border-image: none; 
 										 background-color: rgb(255, 51, 0); color: white;">
 										문의하기

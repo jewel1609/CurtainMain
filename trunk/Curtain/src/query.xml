@@ -124,7 +124,6 @@
 			AND         A.MAJOR_GROUP_ID = 20
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showSecretArticle>
-		
 		<doWriteMajorArticle>
 			INSERT INTO 	ARTICLE (
   										 ARTICLE_ID
@@ -235,7 +234,66 @@
 			WHERE   ROWNUM = 1
 			ORDER   BY ARTICLE_ID DESC
 		</getArticleId>
+		<showDetail>
+			SELECT		ARTICLE_ID
+        				, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.MAJOR_GROUP_ID
+						, A.UNIV_ID
+						, HITS
+						, ARTICLE_LIKES
+			FROM 		ARTICLE A
+						, STD_MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE	    A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND         A.ARTICLE_ID = ?
+		</showDetail>
 	</article>
+	<articleLikes>
+		<showMajorArticleLike>
+			SELECT 		ARTICLE_LIKE_ID
+						, ARTICLE_ID
+						, STUDENT_EMAIL
+						, LIKE_DATE
+						, BOARD_ID
+			FROM 		ARTICLE_LIKE
+			WHERE		STUDENT_EMAIL = ?
+			AND			BOARD_ID = ?
+		</showMajorArticleLike>
+		<selectLikeCount>
+			SELECT	COUNT(ARTICLE_LIKE_ID)
+			FROM	ARTICLE_LIKE
+			WHERE	ARTICLE_ID = ?
+			AND		STUDENT_EMAIL = ?
+		</selectLikeCount>
+		<deleteLike>
+			DELETE
+			FROM	ARTICLE_LIKE
+			WHERE	ARTICLE_ID = ?
+			AND		STUDENT_EMAIL = ?
+		</deleteLike>
+		<insertLike>
+			INSERT INTO			ARTICLE_LIKE (
+   										ARTICLE_LIKE_ID
+   										, ARTICLE_ID
+   										, STUDENT_EMAIL
+   										, LIKE_DATE
+   										, BOARD_ID
+   									) 
+			VALUES 					( 
+										ARTICLE_LIKE_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, SYSDATE
+										, ?
+									)
+		</insertLike>
+	</articleLikes>
 
 	<stdMember>
 		<addStdMember>

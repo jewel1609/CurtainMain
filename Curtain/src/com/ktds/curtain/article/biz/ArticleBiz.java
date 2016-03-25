@@ -132,7 +132,29 @@ public class ArticleBiz {
 		return article;
 	}
 
-
+	/**
+	 * 내가 좋아요 한 글
+	 * 
+	 * @param stdMember
+	 * @return
+	 */
+	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {
+		articles = new ArrayList<ArticleVO>();
+		articles = articleDAO.showLikesArticle(stdMember);
+		return articles;
+	}
+	
+	public List<ArticleVO> showMyScrabArticle(StdMemberVO stdMember) {
+		articles = new ArrayList<ArticleVO>();
+		articles = articleDAO.showMyScrabArticle(stdMember);
+		return articles;
+	}
+	
+	public List<ArticleVO> showMyWriteArticle(StdMemberVO stdMember) {
+		articles = new ArrayList<ArticleVO>();
+		articles = articleDAO.showMyWriteArticle(stdMember);
+		return articles;
+	}
 
 
 

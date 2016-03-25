@@ -34,7 +34,6 @@ public class MajorDAO {
 			if (rs.next()) {
 				majorId = rs.getInt("MAJOR_ID");
 			}
-			System.out.println("major id :  " + majorId);
 			
 			} catch (SQLException e) {
 				throw new RuntimeException(e.getMessage(), e);
@@ -65,7 +64,6 @@ public class MajorDAO {
 			if (rs.next()) {
 				majorGroupId = rs.getInt("MAJOR_GROUP_ID");
 			}
-			System.out.println("majorGroupId :  " + majorGroupId);
 			
 			} catch (SQLException e) {
 				throw new RuntimeException(e.getMessage(), e);
@@ -98,7 +96,6 @@ public class MajorDAO {
 		while (rs.next()) {
 			list.add(rs.getString("MAJOR_NAME"));
 		}
-		System.out.println("major List :  " + list);
 		
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
@@ -108,7 +105,6 @@ public class MajorDAO {
 		for (int i = 0; i<list.size(); i++){
 			majorList += list.get(i)+",";
 		}
-		System.out.println(majorList);
 		return majorList;
 	}
 

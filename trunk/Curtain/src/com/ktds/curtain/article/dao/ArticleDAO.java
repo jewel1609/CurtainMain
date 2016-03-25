@@ -307,7 +307,7 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showLikesArticle/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setString(1, stdMember.getStudentEmail());
+			stmt.setString(1, "test@smu.ac.kr");
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -351,7 +351,7 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showMyScrabArticle/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setString(1, stdMember.getStudentEmail());
+			stmt.setString(1, "test@smu.ac.kr");
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -395,7 +395,7 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showMyWriteArticle/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setString(1, stdMember.getStudentEmail());
+			stmt.setString(1, "test@smu.ac.kr");
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {

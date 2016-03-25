@@ -56,7 +56,7 @@ public class MyScrabArticleServlet extends HttpServlet {
 		article.setNickName("류연s");
 		article.setPassword("1");
 		
-		List<ArticleVO> scrabArticles = articleBiz.showLikesArticle(article);
+		List<ArticleVO> scrabArticles = articleBiz.showMyScrabArticle(stdMember);
 		
 		request.setAttribute("scrabArticles", scrabArticles);
 		

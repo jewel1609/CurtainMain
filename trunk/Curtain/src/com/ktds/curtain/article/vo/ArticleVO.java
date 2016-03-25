@@ -9,14 +9,33 @@ public class ArticleVO extends MemberVO {
 	private String articleRegisterDate;
 	private String articleModifyDate;
 	private int articleTypeId;
-	private String studentEmail;
+	private String email;
 	private int boardId;
 	private int majorGroupId;
 	private int univId;
 	private int hits;
 	private int articleLikes;
+
+	private int articleDisLikes;
+
 	private int articleDislikes;
+
 	private boolean like;
+
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getArticleDisLikes() {
+		return articleDisLikes;
+	}
+	public void setArticleDisLikes(int articleDisLikes) {
+		this.articleDisLikes = articleDisLikes;
+	}
+
 	private boolean dislike;
 
 
@@ -84,12 +103,6 @@ public class ArticleVO extends MemberVO {
 	}
 	public void setArticleTypeId(int articleTypeId) {
 		this.articleTypeId = articleTypeId;
-	}
-	public String getStudentEmail() {
-		return studentEmail;
-	}
-	public void setStudentEmail(String studentEmail) {
-		this.studentEmail = studentEmail;
 	}
 	public int getBoardId() {
 		return boardId;

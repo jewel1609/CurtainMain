@@ -319,9 +319,10 @@ public class ArticleDAO {
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
 				article.setNickName(rs.getString("NICK_NAME"));
 				article.setBoardId(rs.getInt("BOARD_ID"));
-				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				//article.setLike(false);
 
 				articles.add(article);
 			}

@@ -15,7 +15,14 @@ public class ArticleVO extends StdMemberVO {
 	private int univId;
 	private int hits;
 	private int articleLikes;
+	private boolean like;
 
+	public boolean getLike() {
+		return like;
+	}
+	public void setLike(boolean like) {
+		this.like = like;
+	}
 	private String articleTypeName;
 	
 	public String getArticleTypeName() {

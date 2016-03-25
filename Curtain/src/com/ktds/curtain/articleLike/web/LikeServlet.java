@@ -46,7 +46,7 @@ public class LikeServlet extends HttpServlet {
 		
 		ArticleLikeVO articleLikeVO = new ArticleLikeVO();
 		articleLikeVO.setArticleId(articleId);
-		articleLikeVO.setStudentEmail("test@smu.ac.kr");
+		articleLikeVO.setEmail("test@smu.ac.kr");
 		articleLikeVO.setBoradId(boardId);
 		articleLikeBiz.insertOrDeleteLikeData(articleLikeVO);
 		

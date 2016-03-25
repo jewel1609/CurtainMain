@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
+
 
 /**
  * Servlet implementation class WriteArticleServlet

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ktds.curtain.article.vo.ArticleVO;
-import com.ktds.curtain.articleDislike.vo.DislikeVO;
+import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
@@ -49,6 +49,7 @@ public class ArticleDAO {
 				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleLikes(rs.getInt("ARTICLE_DISLIKES"));
 				article.setLike(false);
 
 				articles.add(article);
@@ -137,6 +138,7 @@ public class ArticleDAO {
 				article.setMajorGroupId(rs.getInt("UNIV_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleLikes(rs.getInt("ARTICLE_DISLIKES"));
 
 				articles.add(article);
 			}
@@ -582,7 +584,7 @@ public class ArticleDAO {
 	 * @param dislikeVO
 	 * @return
 	 */
-	public int getArticleDislikes(DislikeVO dislikeVO) {
+	public int getArticleDislikes(ArticleDislikeVO dislikeVO) {
 		
 		loadOracleDriver();
 
@@ -607,7 +609,7 @@ public class ArticleDAO {
 		return 0;
 	}
 
-	public void minusDislikeCount(DislikeVO dislikeVO) {
+	public void minusDislikeCount(ArticleDislikeVO dislikeVO) {
 		
 		loadOracleDriver();
 		
@@ -630,7 +632,7 @@ public class ArticleDAO {
 		
 	}
 	
-	public void plusDislikeCount(DislikeVO dislikeVO) {
+	public void plusDislikeCount(ArticleDislikeVO dislikeVO) {
 		loadOracleDriver();
 		
 		Connection conn = null;

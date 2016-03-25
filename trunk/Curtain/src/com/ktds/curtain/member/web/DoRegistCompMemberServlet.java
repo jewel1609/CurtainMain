@@ -50,6 +50,7 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 		
 		memberVO.setEmail(inputCompEmail);
 		memberVO.setPassword(inputCompPassword);
+		memberVO.setNickName("yo");
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("_MEMBER_", memberVO);

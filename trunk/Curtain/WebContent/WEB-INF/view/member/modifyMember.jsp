@@ -19,6 +19,7 @@
 			
 			if ( confirm("수정 하시겠습니까?") == true ) {
 				var form = $("#modifyMember");
+				alert("##안내##\n\n회원정보를 수정 했습니다..");
 				form.attr("method", "post");
 				form.attr("action","/modifyMemberInfo");
 				form.submit();

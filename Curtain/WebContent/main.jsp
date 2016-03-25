@@ -23,6 +23,14 @@
 <!-- Custom Fonts -->
 <link href="<c:url value="resource/css/main/font-awesome.min.css"/>" rel="stylesheet"
 	type="text/css">
+	
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,9 +39,71 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head>
+<script>
 
+	$(document).ready( function () {
+		
+		$("#btnDoLogin").click( function () {
+			var loginId = $("#loginId").val();
+			loginId = $.trim(loginId);
+			if(loginId == "") {
+				$("#loginId").focus();
+				return;
+			}
+			
+			var loginPassword = $("#loginPassword").val();
+			loginPassword = $.trim(loginPassword);
+			if(loginPassword == "") {
+				$("#loginPassword").focus();
+				return;
+			}
+			
+			var form = $("#btnForm");
+			form.attr("method", "post");
+			form.attr("action", "<c:url value="/doLogin"/> ");
+			form.submit();
+		});
+		
+	});
+
+</script>
+
+</head>
 <body>
+
+	<!-- login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="margin-top: 250px;"
+		>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal-lg"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">로그인</h4>
+				</div>
+				<form id="btnForm">
+					<div class="modal-body" style="overflow-y: auto; height: 250px;">
+						아이디<input id="loginId" name="loginId" class="w3-input" type="text" placeholder="abc123@naver.com"/>
+						비밀번호<input id="loginPassword" name="loginPassword" class="w3-input" type="password" placeholder="********"/>
+					</div>
+					<div class="modal-footer" style="height: 70px;">
+						<div style="width: 140px; float:left;">
+							자동로그인 하기 <input id="autoLoginCheckBox" name="autoLoginCheckBox" type="checkbox" class="w3-check" />
+						</div>
+						<div style="width: 80px; margin-top: 60px; display: inline;">
+							<div id="btnDoLogin" class="btn btn-primary" style="float: right;
+								 border: 0px currentColor; border-image: none; margin-top: 5px;
+								 background-color: rgb(255, 51, 0); color: white;">
+								로그인
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -52,14 +122,16 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="login.jsp">로그인</a></li>
+					<li><a href="#loginModal" data-toggle="modal" type="button">로그인</a>
+					</li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container -->
 	</nav>
-
+	
+	
 	<!-- Header Carousel -->
 	<header id="myCarousel" class="carousel slide">
 		<!-- Indicators -->
@@ -151,7 +223,7 @@
 			</div>
 		</div>
 		<!-- /.row -->
-
+		
 		<!-- Footer -->
 		<footer>
 			<div class="well">

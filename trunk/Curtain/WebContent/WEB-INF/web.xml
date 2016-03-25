@@ -248,8 +248,6 @@
     <servlet-name>ModifyMemberInfoServlet</servlet-name>
     <url-pattern>/modifyMemberInfo</url-pattern>
   </servlet-mapping>
-
-
   <servlet>
     <description></description>
     <display-name>DoRegistCompMemberServlet</display-name>
@@ -290,7 +288,7 @@
     <servlet-name>DoCompCheckServlet</servlet-name>
     <url-pattern>/doCompCheck</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>PrintMyQuestionServlet</display-name>
     <servlet-name>PrintMyQuestionServlet</servlet-name>
@@ -339,5 +337,15 @@
   <servlet-mapping>
     <servlet-name>ArticleLikeBiz</servlet-name>
     <url-pattern>/ArticleLikeBiz</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoLoginServlet</display-name>
+    <servlet-name>DoLoginServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.DoLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoLoginServlet</servlet-name>
+    <url-pattern>/doLogin</url-pattern>
   </servlet-mapping>
 </web-app>

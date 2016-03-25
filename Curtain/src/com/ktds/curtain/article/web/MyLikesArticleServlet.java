@@ -45,18 +45,7 @@ public class MyLikesArticleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		StdMemberVO stdMember = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
 		
-		//test 임의로 값 넣음
-		ArticleVO article = new ArticleVO();
-
-		article.setStudentEmail("test@smu.ac.kr");
-		article.setMemberTypeId(1);
-		article.setUnivId(1);
-		article.setMajorGroupId(1);
-		article.setMajorId(1);
-		article.setNickName("류연s");
-		article.setPassword("1");
-		
-		List<ArticleVO> likesArticles = articleBiz.showLikesArticle(article);
+		List<ArticleVO> likesArticles = articleBiz.showLikesArticle(stdMember);
 		
 		request.setAttribute("likesArticles", likesArticles);
 		

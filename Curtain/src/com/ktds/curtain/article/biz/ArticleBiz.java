@@ -6,7 +6,8 @@ import java.util.List;
 import com.ktds.curtain.article.dao.ArticleDAO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
-import com.ktds.curtain.articleDislike.vo.DislikeVO;
+import com.ktds.curtain.articleDislike.dao.DislikeDAO;
+import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.articleLike.dao.ArticleLikeDAO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
@@ -15,10 +16,12 @@ public class ArticleBiz {
 	private ArticleDAO articleDAO;
 	private List<ArticleVO> articles;
 	private ArticleLikeDAO articleLikeDAO;
+	private DislikeDAO dislikeDAO;
 	
 	public ArticleBiz() {
 		articleDAO = new ArticleDAO();
 		articleLikeDAO = new ArticleLikeDAO();
+		dislikeDAO = new DislikeDAO();
 	}
 	
 	/**
@@ -59,17 +62,21 @@ public class ArticleBiz {
 	 * @return
 	 */
 
-	public List<ArticleVO> showSecretArticle(StdMemberVO stdMember, int boardId) {
 
-	public List<ArticleVO> showSecretArticle(MemberVO stdMember) {
+
+
+	public List<ArticleVO> showSecretArticle(MemberVO stdMember, int boardId) {
+
+	
+
 
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showSecretArticle(stdMember);
 		
-		List<DislikeVO> articleDislikes = showSecretArticleDislike(stdMember, boardId);
+		List<ArticleDislikeVO> articleDislikes = showSecretArticleDislike(stdMember, boardId);
 		
 		for(ArticleVO article : articles){
-			for(DislikeVO articleDislike : articleDislikes ) {
+			for(ArticleDislikeVO articleDislike : articleDislikes ) {
 				if( article.getArticleId() == articleDislike.getArticleId() ){
 					article.setLike(true);
 				}
@@ -84,8 +91,8 @@ public class ArticleBiz {
 	 * @param boardId
 	 * @return
 	 */
-	private List<DislikeVO> showSecretArticleDislike(StdMemberVO stdMember, int boardId) {
-		List<DislikeVO> articleDislikes = articleLikeDAO.showSecretArticleDislike(stdMember, boardId);
+	private List<ArticleDislikeVO> showSecretArticleDislike(MemberVO stdMember, int boardId) {
+		List<ArticleDislikeVO> articleDislikes = dislikeDAO.showSecretArticleDislike(stdMember, boardId);
 		return articleDislikes;
 	}
 
@@ -164,7 +171,9 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
+
 	public List<ArticleVO> showLikesArticle(MemberVO stdMember, String BoardId) {
+
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showLikesArticle(stdMember);
 		

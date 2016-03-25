@@ -43,7 +43,8 @@ public class StudentUnivArticleServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
-		MemberVO stdMember = (MemberVO) session.getAttribute("_STU_MEMBER_");
+		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+
 		
 
 		List<ArticleVO> univArticles = articleBiz.showUnivArticle(stdMember);

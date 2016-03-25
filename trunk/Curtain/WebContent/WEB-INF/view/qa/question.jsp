@@ -19,7 +19,7 @@
 					$("#questionDescription").focus();
 					return;
 				}
-	
+				
 				var form = $("#btnForm");
 				form.attr("method", "post");
 				form.attr("action", "<c:url value="/doRegisterQuestion"/> ");
@@ -61,13 +61,6 @@
 						<div class="w3-card-2 w3-white w3-round-large"
 							style="padding: 10px; height: 650px;">
 							<form id="btnForm" name="btnForm">
-								<div style="margin-bottom: 10px; float: left; clear: both;">
-									<select id="memberType" name="memberType" class="form-control"
-										style="width: 200px; padding-left: 20px;">
-										<option value="1">학생회원</option>
-										<option value="2">기업회원</option>
-									</select>
-								</div>
 								<table class="w3-table w3-border w3-bordered">
 									<tr>
 										<td width="200px"
@@ -80,7 +73,7 @@
 										<td style="padding-left: 20px; padding-top: 15px;">문의 내용</td>
 										<td><textarea id="questionDescription"
 												name="questionDescription" class="w3-col m12" rows="5"
-												style="height: 450px; margin-bottom: 5px; padding: 0 10px 0 10px;"
+												style="height: 500px; margin-bottom: 5px; padding: 0 10px 0 10px;"
 												placeholder="일요일 오전 10시경 포인트가 갑자기 사라졌어요."></textarea></td>
 									</tr>
 								</table>

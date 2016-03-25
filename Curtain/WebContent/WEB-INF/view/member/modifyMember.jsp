@@ -35,11 +35,12 @@
 			
 			
 				
-			if( $("userPw").val() == null ){
+			if( $("#userPw").val() == null ){
 				alert("기존 비밀번호를 입력하세요");
 				return;
 			}
-			if ( $("userNewPw").val() = null ) {
+			
+			if ( $("#userNewPw").val() == null || $("#userNewRePw").val() == null ) {
 				alert("비밀번호를 입력하세요.");
 				return;
 			}

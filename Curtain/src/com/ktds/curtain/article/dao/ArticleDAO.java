@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.StdMemberVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
@@ -495,6 +496,83 @@ public class ArticleDAO {
 		return article;
 	}
 
+	/**
+	 * 좋아요 -1
+	 * @param articleLikeVO
+	 */
+	public void minusLikeCount(ArticleLikeVO articleLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/minusLikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleLikeVO.getArticleId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+
+	/**
+	 * 좋아요 +1
+	 * @param articleLikeVO
+	 */
+	public void plusLikeCount(ArticleLikeVO articleLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/plusLikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleLikeVO.getArticleId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	
+	/**
+	 * 좋아요 수 가져오기
+	 */
+	public int getArticleLikes(ArticleLikeVO articleLikeVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/getArticleLikes/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleLikeVO.getArticleId());
+			rs = stmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, rs);
+		}
+		return 0;
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -524,6 +602,8 @@ public class ArticleDAO {
 		}
 
 	}
+
+
 
 	
 

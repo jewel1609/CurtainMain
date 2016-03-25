@@ -13,7 +13,7 @@ public class QuestionAndAnswerBiz {
 		questionAndAnswerDAO = new QuestionAndAnswerDAO();
 	}
 
-	public void registerQuestion(QuestionAndAnswerVO questionAndAnswerVO, String email, String memberType) {
+	public void registerQuestion(QuestionAndAnswerVO questionAndAnswerVO, String memberType) {
 		
 		if ( questionAndAnswerVO.getQuestionTitle() == null 
 				|| questionAndAnswerVO.getQuestionTitle().length() == 0 ) {
@@ -25,26 +25,27 @@ public class QuestionAndAnswerBiz {
 			return;
 		}
 		
-		if ( email == null || email.length() == 0 ) {
+		if ( questionAndAnswerVO.getEmail() == null || questionAndAnswerVO.getEmail().length() == 0 ) {
 			return;
 		}
 		
-		if ( memberType.equals("1") ) {
-			questionAndAnswerDAO.registerQuestionByStudent(questionAndAnswerVO, email);
+		if ( memberType.equals("1") && questionAndAnswerVO.getMemberTypeId() > 3 
+				&& questionAndAnswerVO.getMemberTypeId() < 1) {
+			return;
 		}
-		else if ( memberType.equals("2") ) {
-			questionAndAnswerDAO.registerQuestionByCompany(questionAndAnswerVO, email);
+		else if ( memberType.equals("2") && questionAndAnswerVO.getMemberTypeId() == 4 ) {
+			return;
 		}
 		else {
-			return;
+			questionAndAnswerDAO.registerQuestion(questionAndAnswerVO);
 		}
 	}
 
-	public List<QuestionAndAnswerVO> getMyQuestionsByStudentEmail(String email) {
+	public List<QuestionAndAnswerVO> getMyQuestionsByEmail(String email) {
 		
 		if (email != null) {
 			
-			return questionAndAnswerDAO.getMyQuestionsByStudentEmail(email);
+			return questionAndAnswerDAO.getMyQuestionsByEmail(email);
 		}
 		
 		return null;

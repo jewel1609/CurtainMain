@@ -14,7 +14,7 @@ import com.ktds.curtain.util.xml.XML;
 
 public class QuestionAndAnswerDAO {
 
-	public void registerQuestionByStudent(QuestionAndAnswerVO questionAndAnswerVO, String email) {
+	public void registerQuestion(QuestionAndAnswerVO questionAndAnswerVO) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -23,12 +23,12 @@ public class QuestionAndAnswerDAO {
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
-			String query = XML.getNodeString("//query/qa/registerQuestionByStudent/text()");
+			String query = XML.getNodeString("//query/qa/registerQuestion/text()");
 			stmt = conn.prepareStatement(query);
 			
 			stmt.setString(1, questionAndAnswerVO.getQuestionTitle());
 			stmt.setString(2, questionAndAnswerVO.getQuestionDescription());
-			stmt.setString(3, email);
+			stmt.setString(3, questionAndAnswerVO.getEmail());
 			
 			stmt.executeUpdate();
 
@@ -37,30 +37,7 @@ public class QuestionAndAnswerDAO {
 		}
 	}
 	
-	public void registerQuestionByCompany(QuestionAndAnswerVO questionAndAnswerVO, String email) {
-		loadOracleDriver();
-		
-		Connection conn = null;
-		PreparedStatement stmt = null;
-
-		try {
-			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
-
-			String query = XML.getNodeString("//query/qa/registerQuestionByCompany/text()");
-			stmt = conn.prepareStatement(query);
-			
-			stmt.setString(1, questionAndAnswerVO.getQuestionTitle());
-			stmt.setString(2, questionAndAnswerVO.getQuestionDescription());
-			stmt.setString(3, email);
-			
-			stmt.executeUpdate();
-
-		} catch (SQLException e) {
-			closeDB(conn, stmt, null);
-		}
-	}
-	
-	public List<QuestionAndAnswerVO> getMyQuestionsByStudentEmail(String email) {
+	public List<QuestionAndAnswerVO> getMyQuestionsByEmail(String email) {
 		
 		loadOracleDriver();
 		
@@ -73,7 +50,7 @@ public class QuestionAndAnswerDAO {
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 			
-			String query = XML.getNodeString("//query/qa/getMyQuestionsByStudentEmail/text()");
+			String query = XML.getNodeString("//query/qa/getMyQuestionsByEmail/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, email);
 			
@@ -87,7 +64,7 @@ public class QuestionAndAnswerDAO {
 				question.setQuestionTitle(rs.getString("QUESTION_TITLE"));
 				question.setQuestionDescription(rs.getString("QUESTION_DESCRIPTION"));
 				question.setQuestionDate(rs.getString("QUESTION_DATE"));
-				question.setCheckedQuestion(rs.getString("IS_CHECKED"));
+				question.setIsChecked(rs.getString("IS_CHECKED"));
 				question.setAnswerDate(rs.getString("ANSWER_DATE"));
 				question.setAnswerDescription(rs.getString("ANSWER_DESCRIPTION"));
 				

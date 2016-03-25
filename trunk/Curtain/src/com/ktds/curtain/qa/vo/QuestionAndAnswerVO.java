@@ -1,6 +1,8 @@
 package com.ktds.curtain.qa.vo;
 
-public class QuestionAndAnswerVO {
+import com.ktds.curtain.member.vo.MemberVO;
+
+public class QuestionAndAnswerVO extends MemberVO {
 
 	private int questionId;
 	private String questionTitle;
@@ -8,9 +10,8 @@ public class QuestionAndAnswerVO {
 	private String answerDescription;
 	private String questionDate;
 	private String answerDate;
-	private String studentEmail;
-	private String checkedQuestion;
-	private String companyEmail;
+	private String email;
+	private String isChecked;
 	
 	public int getQuestionId() {
 		return questionId;
@@ -48,23 +49,18 @@ public class QuestionAndAnswerVO {
 	public void setAnswerDate(String answerDate) {
 		this.answerDate = answerDate;
 	}
-	public String getStudentEmail() {
-		return studentEmail;
+	public String getEmail() {
+		return email;
 	}
-	public void setStudentEmail(String studentEmail) {
-		this.studentEmail = studentEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getCheckedQuestion() {
-		return checkedQuestion;
+	public String getIsChecked() {
+		return isChecked;
 	}
-	public void setCheckedQuestion (String checkedQuestion) {
-		this.checkedQuestion = checkedQuestion;
+	public void setIsChecked(String isChecked) {
+		this.isChecked = isChecked;
 	}
-	public String getCompanyEmail() {
-		return companyEmail;
-	}
-	public void setCompanyEmail(String companyEmail) {
-		this.companyEmail = companyEmail;
-	}
+	
 	
 }

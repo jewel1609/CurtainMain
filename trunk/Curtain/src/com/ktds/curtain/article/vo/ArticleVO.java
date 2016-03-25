@@ -1,7 +1,7 @@
 package com.ktds.curtain.article.vo;
-import com.ktds.curtain.member.vo.StdMemberVO;
+import com.ktds.curtain.member.vo.MemberVO;
 
-public class ArticleVO extends StdMemberVO {
+public class ArticleVO extends MemberVO {
 	
 	private int articleId;
 	private String articleTitle;

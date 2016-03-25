@@ -61,6 +61,21 @@
 		</addMacInfo>
 	</mac>
 	<article>
+		<minusLikeCount>
+			UPDATE	ARTICLE
+			SET		ARTICLE_LIKES = ARTICLE_LIKES - 1
+			WHERE	ARTICLE_ID = ?
+		</minusLikeCount>
+		<plusLikeCount>
+			UPDATE	ARTICLE
+			SET		ARTICLE_LIKES = ARTICLE_LIKES + 1
+			WHERE	ARTICLE_ID = ?
+		</plusLikeCount>
+		<getArticleLikes>
+			SELECT	ARTICLE_LIKES
+			FROM	ARTICLE
+			WHERE	ARTICLE_ID = ?
+		</getArticleLikes>
 		<showMajorArticle>
         	SELECT		ARTICLE_ID
         				, ARTICLE_TITLE
@@ -72,6 +87,7 @@
 						, A.MAJOR_GROUP_ID
 						, HITS
 						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
 			FROM 		ARTICLE A
 						, STD_MEMBER SM
 						, ARTICLE_TYPE AT
@@ -93,6 +109,7 @@
 						, A.UNIV_ID
 						, HITS
 						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
 			FROM 		ARTICLE A
 						, STD_MEMBER SM
 						, ARTICLE_TYPE AT

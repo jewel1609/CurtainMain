@@ -181,34 +181,42 @@
 		
 		
 		<showMyWriteArticle>
-			SELECT	ARTICLE_TITLE
-					, ARTICLE_DESC
-					, ARTICLE_MODIFY_DATE
-					, BOARD_ID
-					, SM.NICK_NAME
-					, A.MAJOR_GROUP_ID
-					, HITS
-					, ARTICLE_LIKES
+			SELECT	ARTICLE_ID
+        				, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.MAJOR_GROUP_ID
+						, HITS
+						, ARTICLE_LIKES
 			FROM	ARTICLE A
                     , STD_MEMBER SM
+                    , ARTICLE_TYPE AT
 			WHERE	A.STUDENT_EMAIL = SM.STUDENT_EMAIL
+			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND     BOARD_ID IN (1, 2)
 			AND		A.STUDENT_EMAIL = ?
 		</showMyWriteArticle>
 		
 		<showLikesArticle>
-			SELECT	ARTICLE_TITLE
-					, ARTICLE_DESC
-					, ARTICLE_MODIFY_DATE
-					, BOARD_ID
-					, SM.NICK_NAME
-					, A.MAJOR_GROUP_ID
-					, HITS
-					, ARTICLE_LIKES
+			SELECT	A.ARTICLE_ID
+        				, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.MAJOR_GROUP_ID
+						, HITS
+						, ARTICLE_LIKES
 			FROM	ARTICLE A
 					, ARTICLE_LIKE AL 
+					, ARTICLE_TYPE AT
 			WHERE	A.ARTICLE_ID = AL.ARTICLE_ID
-			AND 	A.STUDENT_EMAIL = ?
+			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND 	AL.STUDENT_EMAIL = ?
 		</showLikesArticle>
 		
 		<showMyScrabArticle>
@@ -224,8 +232,10 @@
 						, ARTICLE_LIKES
 			FROM	ARTICLE A
 					, ARTICLE_SCRAB AB
+					, ARTICLE_TYPE AT
 			WHERE	A.ARTICLE_ID = AB.ARTICLE_ID
-			AND		A.STUDENT_EMAIL = ?
+			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND		AB.STUDENT_EMAIL = ?
 		</showMyScrabArticle>
 		
 		<getArticleId>

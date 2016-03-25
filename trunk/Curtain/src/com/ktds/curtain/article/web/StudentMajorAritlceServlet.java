@@ -45,9 +45,7 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
-
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
-
 
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD);
 		

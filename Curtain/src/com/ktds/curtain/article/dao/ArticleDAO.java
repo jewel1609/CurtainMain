@@ -167,7 +167,7 @@ public class ArticleDAO {
 			stmt.setString(1, article.getArticleTitle());
 			stmt.setString(2, article.getArticleDesc());
 			stmt.setInt(3, article.getArticleTypeId());
-			stmt.setString(4, article.getStudentEmail());
+			stmt.setString(4, article.getEmail());
 			stmt.setInt(5, article.getBoardId());
 			stmt.setInt(6, article.getMajorGroupId());
 			int insertCount = stmt.executeUpdate();
@@ -196,7 +196,7 @@ public class ArticleDAO {
 			stmt.setString(1, article.getArticleTitle());
 			stmt.setString(2, article.getArticleDesc());
 			stmt.setInt(3, article.getArticleTypeId());
-			stmt.setString(4, article.getStudentEmail());
+			stmt.setString(4, article.getEmail());
 			stmt.setInt(5, article.getBoardId());
 			stmt.setInt(6, article.getUnivId());
 			int insertCount = stmt.executeUpdate();

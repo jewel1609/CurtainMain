@@ -44,19 +44,23 @@ public class LikeServlet extends HttpServlet {
 //		HttpSession session = request.getSession();
 //		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
 		
-		ArticleLikeVO articleLike = new ArticleLikeVO();
-		articleLike.setArticleId(articleId);
-		articleLike.setStudentEmail("test@smu.ac.kr");
-		articleLike.setBoradId(boardId);
-		articleLikeBiz.insertOrDeleteLikeData(articleLike);
+		ArticleLikeVO articleLikeVO = new ArticleLikeVO();
+		articleLikeVO.setArticleId(articleId);
+		articleLikeVO.setStudentEmail("test@smu.ac.kr");
+		articleLikeVO.setBoradId(boardId);
+		articleLikeBiz.insertOrDeleteLikeData(articleLikeVO);
 		
-		boolean isExistLikeData =  articleLikeBiz.isExistLikeData(articleLike);
+		boolean isExistLikeData =  articleLikeBiz.isExistLikeData(articleLikeVO);
+		int updateLikeCount = articleLikeBiz.getArticleLikes(articleLikeVO);
+		System.out.println(updateLikeCount);
 		
 // json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");
 		json.append(", \"doLike\" : "+isExistLikeData);
+		json.append(", \"updateLikeCount\" : "+updateLikeCount);
+		json.append(", \"articleId\" : "+articleId);
 		json.append("}");
 		
 		PrintWriter out = response.getWriter();

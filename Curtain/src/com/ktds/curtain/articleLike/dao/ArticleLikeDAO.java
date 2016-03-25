@@ -60,6 +60,89 @@ public class ArticleLikeDAO {
 		return articleLikes;
 	}
 	
+
+	public int selectLikeCount(ArticleLikeVO articleLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/articleLikes/selectLikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleLikeVO.getArticleId());
+			stmt.setString(2, articleLikeVO.getStudentEmail());
+			
+			rs = stmt.executeQuery();
+			rs.next();
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+	public void deleteLike(ArticleLikeVO articleLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/articleLikes/deleteLike/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setInt(1, articleLikeVO.getArticleId());
+			stmt.setString(2, articleLikeVO.getStudentEmail());
+
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+
+	public void insertLike(ArticleLikeVO articleLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/articleLikes/insertLike/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setInt(1, articleLikeVO.getArticleId());
+			stmt.setString(2, articleLikeVO.getStudentEmail());
+			stmt.setInt(3, articleLikeVO.getBoradId());
+
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -89,5 +172,6 @@ public class ArticleLikeDAO {
 		}
 
 	}
+
 
 }

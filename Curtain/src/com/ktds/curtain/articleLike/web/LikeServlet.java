@@ -39,21 +39,24 @@ public class LikeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
-		
-//		
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
+//		boardId
 //		HttpSession session = request.getSession();
 //		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
 		
 		ArticleLikeVO articleLike = new ArticleLikeVO();
 		articleLike.setArticleId(articleId);
 		articleLike.setStudentEmail("test@smu.ac.kr");
+		articleLike.setBoradId(boardId);
 		articleLikeBiz.insertOrDeleteLikeData(articleLike);
+		
+		boolean isExistLikeData =  articleLikeBiz.isExistLikeData(articleLike);
 		
 // json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");
-		json.append(", \"isFavorite\" : "+isExistFavoriteData);
+		json.append(", \"doLike\" : "+isExistLikeData);
 		json.append("}");
 		
 		PrintWriter out = response.getWriter();

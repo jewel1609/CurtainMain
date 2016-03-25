@@ -43,7 +43,20 @@ public class MyScrabArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		MemberVO stdMember = (MemberVO) session.getAttribute("_STU_MEMBER_");
+		
+		//test 임의로 값 넣음
+		ArticleVO article = new ArticleVO();
+
+		article.setStudentEmail("test@smu.ac.kr");
+		article.setMemberTypeId(1);
+		article.setUnivId(1);
+		article.setMajorGroupId(1);
+		article.setMajorId(1);
+		article.setNickName("류연s");
+		article.setPassword("1");
+
+		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+
 		
 		List<ArticleVO> scrabArticles = articleBiz.showMyScrabArticle(stdMember);
 		

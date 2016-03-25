@@ -44,12 +44,13 @@ public class MyWriteArticleServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+		
+		//test 임의로 값 넣음
+		ArticleVO article = new ArticleVO();
 
 		
-		List<ArticleVO> myWriteArticles = articleBiz.showMyWriteArticle(stdMember);
-		
-		request.setAttribute("myWriteArticles", myWriteArticles);
-		
+		List<ArticleVO> myWriteArticles = articleBiz.showMyWriteArticle(stdMember);	
+		request.setAttribute("myWriteArticles", myWriteArticles);	
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/myWriteArticle.jsp");
 		rd.forward(request, response);
 	}

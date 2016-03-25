@@ -15,7 +15,6 @@ import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.article.vo.BoardId;
 
-
 /**
  * Servlet implementation class MyLikesArticleServlet
  */
@@ -45,9 +44,11 @@ public class MyLikesArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();		
+		
+		//test 임의로 값 넣음
+		ArticleVO article = new ArticleVO();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
-
 		List<ArticleVO> myLikesArticle = articleBiz.showLikesArticle(stdMember, BoardId.MAJOR_BOARD);
 		
 		request.setAttribute("myLikesArticle", myLikesArticle);

@@ -1,6 +1,6 @@
 package com.ktds.curtain.member.vo;
 
-public class StdMemberVO {
+public class MemberVO {
 	private String studentEmail;
 	private int memberTypeId;
 	private int univId;

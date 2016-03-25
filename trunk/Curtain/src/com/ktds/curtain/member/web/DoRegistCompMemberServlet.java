@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ktds.curtain.member.biz.StdMemberBiz;
+import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.util.Root;
 
 /**
@@ -14,13 +14,13 @@ import com.ktds.curtain.util.Root;
  */
 public class DoRegistCompMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private StdMemberBiz stdMemberBiz;     
+	private MemberBiz stdMemberBiz;     
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DoRegistCompMemberServlet() {
         super();
-        stdMemberBiz = new StdMemberBiz();
+        stdMemberBiz = new MemberBiz();
     }
 
 	/**

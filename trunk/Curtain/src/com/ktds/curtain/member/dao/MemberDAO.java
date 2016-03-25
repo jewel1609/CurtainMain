@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
-public class StdMemberDAO {
+public class MemberDAO {
 
 	public void addStdMember(String inputUnivEmail, int univId, int majorId, String inputSecondEmail,
 			String inputPassword, int majorGroupId) {

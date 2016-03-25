@@ -1,5 +1,7 @@
 package com.ktds.curtain.member.biz;
 
+import javax.servlet.http.HttpSession;
+
 import com.ktds.curtain.major.dao.MajorDAO;
 import com.ktds.curtain.member.dao.MemberDAO;
 import com.ktds.curtain.member.vo.MemberVO;
@@ -39,16 +41,29 @@ public class MemberBiz {
 		memberDAO.updateMemberPassword(userPw);
 	}
 
-	public MemberVO existMember(MemberVO member) {
+	public boolean isExistMember(MemberVO member,HttpSession session) {
 		
-		if(member.getEmail() == null || member.getEmail().length() == 0) {
-			return null;
+		MemberVO sessionMember = (MemberVO) session.getAttribute("_MEMBER_");
+		
+		if(sessionMember.getEmail() == null || sessionMember.getEmail().length() == 0) {
+			if(member.getEmail() == null && member.getEmail().length() == 0) {
+				return false;
+			}
+
+			if(member.getPassword() == null || member.getPassword().length() == 0) {
+				return false;
+			}
+			
+			MemberVO currentMember = memberDAO.existMember(member);
+			
+			if ( currentMember == null) {
+				return false;
+			}
+			else {
+				session.setAttribute("_MEMBER_", currentMember);
+			}
 		}
 		
-		if(member.getPassword() == null || member.getPassword().length() == 0) {
-			return null;
-		}
-		
-		return null;
+		return true;
 	}
 }

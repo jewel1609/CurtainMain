@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
@@ -126,6 +127,38 @@ public class MemberDAO {
 		
 	}
 	
+	public MemberVO existMember(MemberVO member) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/existMember/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, member.getEmail());
+			stmt.setString(2, member.getPassword());
+			
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				member.setNickName(rs.getString("NICK_NAME"));
+				
+				return member;
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		return null;
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -154,6 +187,8 @@ public class MemberDAO {
 			}
 		}
 	}
+
+	
 
 	
 }

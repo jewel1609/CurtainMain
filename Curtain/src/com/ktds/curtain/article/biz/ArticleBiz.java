@@ -6,15 +6,18 @@ import java.util.List;
 import com.ktds.curtain.article.dao.ArticleDAO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
-import com.ktds.curtain.file.dao.FileDAO;
+import com.ktds.curtain.articleLike.dao.ArticleLikeDAO;
+import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.StdMemberVO;
 
 public class ArticleBiz {
 	private ArticleDAO articleDAO;
 	private List<ArticleVO> articles;
+	private ArticleLikeDAO articleLikeDAO;
 	
 	public ArticleBiz() {
 		articleDAO = new ArticleDAO();
+		articleLikeDAO = new ArticleLikeDAO();
 	}
 	
 	/**
@@ -22,10 +25,31 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showMajorArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showMajorArticle(StdMemberVO stdMember, String BoardId) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
+		
+		List<ArticleLikeVO> articleLikes = showMajorArticleLike(stdMember, BoardId);
+		
+		for (ArticleVO article : articles) {
+			for (ArticleLikeVO articleLike : articleLikes ) {
+				if ( article.getArticleId() == articleLike.getArticleId() ){
+					article.setLike(true);
+				}
+			}
+		}
+		
 		return articles;
+	}
+	
+	/**
+	 * 내가 좋아요 한 글
+	 * @param stdMember
+	 * @return
+	 */
+	private List<ArticleLikeVO> showMajorArticleLike(StdMemberVO stdMember, String BoardId) {
+		List<ArticleLikeVO> articleLikes = articleLikeDAO.showMajorArticleLike(stdMember, BoardId);
+		return articleLikes;
 	}
 
 	/**
@@ -51,7 +75,6 @@ public class ArticleBiz {
 
 	}
 	
-
 	/**
 	 * 조회수 올리기
 	 * @param articleVO
@@ -61,6 +84,8 @@ public class ArticleBiz {
 		updateCount = articleDAO.hitsCount(articleVO);
 		return updateCount > 0;
 	}
+	
+	
 	
 /**
  * 글쓰기
@@ -97,19 +122,16 @@ public class ArticleBiz {
 		return articleId;
 	}
 
-	//
-	
 	/**
-	 * 내가 좋아요 한 글 
-	 * @param stdMember
+	 * 글 상세 정보 보기
+	 * @param articleId
 	 * @return
 	 */
-
-	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {
-		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showLikesArticle(stdMember);
-		return articles;
+	public ArticleVO showDetail(int articleId) {
+		ArticleVO article = articleDAO.showDetail(articleId);
+		return article;
 	}
+
 
 
 

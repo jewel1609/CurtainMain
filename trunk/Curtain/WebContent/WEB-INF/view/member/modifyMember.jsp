@@ -9,11 +9,11 @@
 		
 		$("#cancelBtn1").click(function() {
 			location.href = "/myPage";
-		})	
+		});	
 		
 		$("#cancelBtn2").click(function() {
 			location.href = "/myPage";
-		})
+		});
 		
 		$("#modifyMemberBtn").click( function () {
 			
@@ -30,7 +30,19 @@
 				
 		});
 		
+		
 		$("#modifyPasswordBtn").click( function () {
+			
+			
+				
+			if( $("userPw").val() == null ){
+				alert("기존 비밀번호를 입력하세요");
+				return;
+			}
+			if ( $("userNewPw").val() = null ) {
+				alert("비밀번호를 입력하세요.");
+				return;
+			}
 			
 			if ( confirm("입력한 내용으로 비밀번호를 변경하시겠습니까?") == true ) {
 				var form = $("#modifyMemberPassword");
@@ -44,6 +56,12 @@
 		});
 		
 	});	
+	
+
+
+	
+	
+	
 
 </script>
 
@@ -280,7 +298,7 @@
           				<b>새로운 비밀번호</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<input type="password"  tabindex="5" id="userNewPw" name="userPw"/>
+    					<input type="password"  tabindex="5" id="userNewPw" name="userNewPw"/>
     				</div>
           		</div>
             </div>
@@ -297,7 +315,7 @@
           				<b>새로운 비밀번호 확인</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<input type="password"  tabindex="6" id="userNewRePw" name="userPw"/>
+    					<input type="password"  tabindex="6" id="userNewRePw" name="userNewRePw"/>
     				</div>
           		</div>
             </div>

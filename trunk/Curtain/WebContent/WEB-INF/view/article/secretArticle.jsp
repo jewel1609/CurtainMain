@@ -14,12 +14,16 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-		$("#likeBtn").click(function() {
+		$(".dislike").click(function() {
+			
 			
 			$.post(
 					
-				"/like"
-				, { "articleId" : "${article.articleId}" }
+				"/dislike"
+				, { "articleId" : $(this).attr("id")
+					, "boardId" : $("#boardId").val()
+					
+				}
 				, function(data) {
 					
 					var jsonData = {};
@@ -31,20 +35,26 @@
 					catch(e) {
 						jsonData.result = false;
 					}
-					console.log(jsonData);
+
 					
 					if(jsonData.result){
-						if(jsonData.isFavorite){
-							$("#imgBtn").attr("src", "/resource/img/like_active_small.png");
+						var articleId = jsonData.articleId;
+						var result = "#" + articleId;
+						if(jsonData.isDislike){
+							$(result).attr("src", "/resource/img/dislike_active_small.png");
+							var count = "#dislikeCount"+jsonData.articleId;
+							$(count).text(jsonData.updateDislikeCount);
 						}
 						else{
-							$("imgBtn").attr("src", "/resource/img/like_inactive_small.png");
+							$(result).attr("src", "/resource/img/dislike_inactive_small.png");
+							var count = "#dislikeCount"+jsonData.articleId;
+							$(count).text(jsonData.updateDislikeCount);
 						}
 						
 					}
 					else{
 						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-						location.href="/secretArticleList";
+						location.href="/";
 					}
 				}
 			)
@@ -77,7 +87,6 @@
 	}
 </script>
 
-<body>
 
 	<div class="w3-container w3-main"
 		style="margin-top: 30px; margin-bottom: 20px;">
@@ -144,7 +153,7 @@
 										</div>
 										<button type="button" class="btn btn-default" id="doWrite"
 											style="border-color: #FF3300; color: #FF3300;">게시</button>
-										<div id="imagePreview"><img id="uploadImg" src=# width=300px;"></div>
+										<div id="imagePreview"><img id="uploadImg" src="#" width="300px;"></div>
 									</div>
 								</div>
 							</form>
@@ -176,29 +185,46 @@
 										<c:if test="${article.articleTypeName eq '기타'}">
 											<span class="label label-default">${article.articleTypeName}</span>
 										</c:if>
-										<strong>${article.articleId }</strong>
+										
+									</div>
+									<div>
+										<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
+										<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
+										<strong>${article.articleId}</strong>
+										<strong>${article.boardId}</strong>
+										
+									</div>
+									<div>
 										<strong>${article.articleTitle}</strong>
 									</div>
 									
-									<p>${article.articleDesc}</p>
-									<p>${article.articleModifyDate}${article.nickName}</p>
+									<div>
+										${article.articleDesc}
+									</div>
+									
+									<div>
+										${article.articleModifyDate} | ${article.nickName}
+									</div>
 									<div style="width: 780px; float:left; padding:5px;">
-										<c:if test="${isExistsLikeData}">
-											<img id="likeBtn" src="/resource/img/like_active_small.png" style="width:20px;">
+										<c:if test="${article.like}">
+											
+											<img id="" src="/resource/img/like_active_small.png" style="width:20px;">
 											좋아요 갯수 
 										</c:if>
-										<c:if test="${!isExistsLikeData}">
+										<c:if test="${!article.like}">
 											<img id="likeBtn" src="/resource/img/like_inactive_small.png" style="width:20px;">
 											좋아요 갯수
 										</c:if>
 										
-										<c:if test="${isExistsDislikeData}">
-											<img id="dislikeBtn" src="/resource/img/dislike_active_small.png" style="width:20px;">
+										<c:if test="${article.dislike}">
+											<img class="dislike" id="${article.articleId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
 											싫어요 갯수
+											<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
 										</c:if>
-										<c:if test="${!isExistsDislikeData}">
-											<img id="dislikeBtn" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
+										<c:if test="${!article.dislike}">
+											<img class="dislike" id="${article.articleId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
 											싫어요 갯수
+											<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
 										</c:if>
 									</div>
 									<div style="float:left;">

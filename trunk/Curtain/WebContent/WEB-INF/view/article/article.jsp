@@ -60,6 +60,54 @@
 																}
 															});
 										});
+						
+						$(".disLike")
+						.click(
+								function() {
+								alert( $(this).attr("id"));
+
+									$.post(
+													"/like",
+													{
+														"articleId" : $(this).attr("id")
+														,"boardId" : $("#boardId").val()
+													},
+													function(data) {
+
+														var jsonData = {};
+
+														try {
+															jsonData = JSON
+																	.parse(data);
+														} catch (e) {
+															jsonData.result = false;
+														}
+
+														if (jsonData.result) {
+															var articleId = jsonData.articleId;
+															var result = "#"+articleId;
+															if (jsonData.doLike) {
+																$(result)
+																		.attr(
+																				"src",
+																				"<c:url value="/resource/img/like_active_small.png"/>");
+																				var count = "#disLikeCountlike"+jsonData.articleId;
+																				$(count).text(jsonData.updateLikeCount);
+															} else {
+																$(result)
+																		.attr(
+																				"src",
+																				"<c:url value="/resource/img/like_inactive_small.png"/>");
+																				var count = "#disLikeCountlike"+jsonData.articleId;
+																				$(count).text(jsonData.updateLikeCount);
+															}
+															
+														} else {
+															alert("세션이 만료되었습니다. 다시 로그인해주세요.")
+															location.href = "/";
+														}
+													});
+								});
 
 						$("#writeBtn").click(function() {
 							var form = $("#writeArticle");
@@ -208,9 +256,15 @@
 								<img class="like" id="${article.articleId}"
 										src="<c:url value="/resource/img/like_inactive_small.png"/>"  />
 								</c:if>
-								<div>
-									좋아요 <span id="likeCountlike${article.articleId}">${article.articleLikes}</span>
-								</div>
+								좋아요 <span id="likeCountlike${article.articleId}">${article.articleLikes}</span>
+
+								<c:if test="${isExistsDislikeData}">
+									<img class="dislike" id="d${article.articleId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
+								</c:if>
+								<c:if test="${!isExistsDislikeData}">
+									<img class="dislike" id="d${article.articleId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
+								</c:if>
+								싫어요 <span id="disLikeCountlike${article.articleId}">${article.articleDisLikes}</span>
 							</div>
 						</div>
 					</div>

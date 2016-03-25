@@ -2,15 +2,16 @@ package com.ktds.curtain.member.biz;
 
 import com.ktds.curtain.major.dao.MajorDAO;
 import com.ktds.curtain.member.dao.MemberDAO;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.univ.dao.UnivDAO;
 
 public class MemberBiz {
-	private MemberDAO stdMemberDAO;
+	private MemberDAO memberDAO;
 	private MajorDAO majorDAO;
 	private UnivDAO univDAO;
 	
 	public MemberBiz(){
-		stdMemberDAO = new MemberDAO();
+		memberDAO = new MemberDAO();
 		majorDAO = new MajorDAO();
 		univDAO = new UnivDAO();
 	}
@@ -23,18 +24,31 @@ public class MemberBiz {
 		
 		int univId = univDAO.getUnivIdByUnivName(inputUnivName);
 		
-		stdMemberDAO.addStdMember(inputUnivEmail,univId,majorId,inputSecondEmail,inputPassword,majorGroupId);
+		memberDAO.addStdMember(inputUnivEmail,univId,majorId,inputSecondEmail,inputPassword,majorGroupId);
 		
 	}
 	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, int inputPhoneNum,
 			String inputSecondEmail) {
-		stdMemberDAO.addCompMember(inputCompEmail,inputPassword,inputCompName,inputPhoneNum,inputSecondEmail);
+		memberDAO.addCompMember(inputCompEmail,inputPassword,inputCompName,inputPhoneNum,inputSecondEmail);
 	}
 	public void modifyMemberInfo(String userEmail, String userNickName) {
-		stdMemberDAO.updateMemberInfo(userEmail, userNickName);
+		memberDAO.updateMemberInfo(userEmail, userNickName);
 	}
 
 	public void modifyMemberPassword(String userPw) {
-		stdMemberDAO.updateMemberPassword(userPw);
+		memberDAO.updateMemberPassword(userPw);
+	}
+
+	public MemberVO existMember(MemberVO member) {
+		
+		if(member.getEmail() == null || member.getEmail().length() == 0) {
+			return null;
+		}
+		
+		if(member.getPassword() == null || member.getPassword().length() == 0) {
+			return null;
+		}
+		
+		return null;
 	}
 }

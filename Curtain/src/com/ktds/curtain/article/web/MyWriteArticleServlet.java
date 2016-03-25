@@ -43,7 +43,8 @@ public class MyWriteArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		MemberVO stdMember = (MemberVO) session.getAttribute("_STU_MEMBER_");
+		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+
 		
 		List<ArticleVO> myWriteArticles = articleBiz.showMyWriteArticle(stdMember);
 		

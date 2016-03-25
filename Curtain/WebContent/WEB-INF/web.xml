@@ -248,6 +248,46 @@
     <servlet-name>ModifyMemberInfoServlet</servlet-name>
     <url-pattern>/modifyMemberInfo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoRegistCompMemberServlet</display-name>
+    <servlet-name>DoRegistCompMemberServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.DoRegistCompMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoRegistCompMemberServlet</servlet-name>
+    <url-pattern>/doRegistCompMember</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CompAuthNumCheckServlet</display-name>
+    <servlet-name>CompAuthNumCheckServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.auth.web.CompAuthNumCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CompAuthNumCheckServlet</servlet-name>
+    <url-pattern>/compAuthNumCheck</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CompAuthNumSendServlet</display-name>
+    <servlet-name>CompAuthNumSendServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.auth.web.CompAuthNumSendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CompAuthNumSendServlet</servlet-name>
+    <url-pattern>/compAuthNumSend</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoCompCheckServlet</display-name>
+    <servlet-name>DoCompCheckServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.univ.web.DoCompCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoCompCheckServlet</servlet-name>
+    <url-pattern>/doCompCheck</url-pattern>
+  </servlet-mapping>
     <servlet>
     <description></description>
     <display-name>PrintMyQuestionServlet</display-name>

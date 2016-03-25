@@ -248,6 +248,8 @@
     <servlet-name>ModifyMemberInfoServlet</servlet-name>
     <url-pattern>/modifyMemberInfo</url-pattern>
   </servlet-mapping>
+
+
   <servlet>
     <description></description>
     <display-name>DoRegistCompMemberServlet</display-name>
@@ -307,5 +309,35 @@
   <servlet-mapping>
     <servlet-name>ModifyMemberPasswordServlet</servlet-name>
     <url-pattern>/modifyMemberPassword</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowDetailServlet</display-name>
+    <servlet-name>ShowDetailServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.ShowDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowDetailServlet</servlet-name>
+    <url-pattern>/showDetail</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LikeServlet</display-name>
+    <servlet-name>LikeServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.articleLike.web.LikeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LikeServlet</servlet-name>
+    <url-pattern>/like</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ArticleLikeBiz</display-name>
+    <servlet-name>ArticleLikeBiz</servlet-name>
+    <servlet-class>com.ktds.curtain.articleLike.biz.ArticleLikeBiz</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleLikeBiz</servlet-name>
+    <url-pattern>/ArticleLikeBiz</url-pattern>
   </servlet-mapping>
 </web-app>

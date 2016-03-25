@@ -6,9 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.qa.biz.QuestionAndAnswerBiz;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 import com.ktds.curtain.util.Root;
@@ -40,7 +38,6 @@ public class DoRegisterQuestionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		QuestionAndAnswerVO questionAndAnswerVO = new QuestionAndAnswerVO();
-		String memberType = request.getParameter("memberType");
 		
 		// TODO 준호 세션에서 이메일을 받아와야 한다.
 //		HttpSession session = request.getSession();
@@ -53,7 +50,7 @@ public class DoRegisterQuestionServlet extends HttpServlet {
 		questionAndAnswerVO.setQuestionDescription(request.getParameter("questionDescription"));
 		questionAndAnswerVO.setQuestionTitle(request.getParameter("questionTitle"));
 		
-		questionAndAnswerBiz.registerQuestion(questionAndAnswerVO, memberType);
+		questionAndAnswerBiz.registerQuestion(questionAndAnswerVO);
 		
 		response.sendRedirect(Root.get(this) + "/questionAndAnswer");
 		

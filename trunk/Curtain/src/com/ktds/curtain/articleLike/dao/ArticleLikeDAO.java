@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
-import com.ktds.curtain.member.vo.StdMemberVO;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
@@ -22,7 +22,7 @@ public class ArticleLikeDAO {
 	 * @param boardId
 	 * @return
 	 */
-	public List<ArticleLikeVO> showMajorArticleLike(StdMemberVO stdMember, String boardId) {
+	public List<ArticleLikeVO> showMajorArticleLike(MemberVO stdMember, String boardId) {
 		
 		loadOracleDriver();
 

@@ -6,20 +6,22 @@
 
 
 <script type="text/javascript">
+
 	$(document)
 			.ready(
 					function() {
 
 						$("#imagePreview").hide();
 
-						$("#like")
+						$(".like")
 								.click(
 										function() {
+										alert( $(this).attr("id"));
 
 											$.post(
 															"/like",
 															{
-																"articleId" : $("#articleId").val()
+																"articleId" : $(this).attr("id")
 																,"boardId" : $("#boardId").val()
 															},
 															function(data) {
@@ -34,19 +36,24 @@
 																}
 
 																if (jsonData.result) {
+																	var articleId = jsonData.articleId;
+																	var result = "#"+articleId;
 																	if (jsonData.doLike) {
-																		$(
-																				"#like")
+																		$(result)
 																				.attr(
 																						"src",
 																						"<c:url value="/resource/img/like_active_small.png"/>");
+																						var count = "#likeCountlike"+jsonData.articleId;
+																						$(count).text(jsonData.updateLikeCount);
 																	} else {
-																		$(
-																				"#like")
+																		$(result)
 																				.attr(
 																						"src",
 																						"<c:url value="/resource/img/like_inactive_small.png"/>");
+																						var count = "#likeCountlike"+jsonData.articleId;
+																						$(count).text(jsonData.updateLikeCount);
 																	}
+																	
 																} else {
 																	alert("세션이 만료되었습니다. 다시 로그인해주세요.")
 																	location.href = "/";
@@ -189,24 +196,20 @@
 									</div>
 								</a>
 								<p>조회수 ${article.hits}</p>
-								<c:if test="${article.like }">
-									<input type="hidden" id="articleId" name="articleId"
-											value="${article.articleId}" />
-									<input type="hidden" id="boardId" name="boardId"
+								<c:if test="${article.like}">
+									<input type="hidden" id="boardId" 
 											value="${article.boardId}" />
-									<img id="like"
-										src="<c:url value="/resource/img/like_active_small.png"/>" />
+									<img id="${article.articleId}"
+										class="like" src="<c:url value="/resource/img/like_active_small.png"/>" />
 								</c:if>
 								<c:if test="${!article.like }">
-									<input type="hidden" id="articleId" name="articleId"
-											value="${article.articleId}" />
-									<input type="hidden" id="boardId" name="boardId"
+									<input type="hidden" id="boardId" 
 											value="${article.boardId}" />
-									<img id="like"
-										src="<c:url value="/resource/img/like_inactive_small.png"/>" />
+								<img class="like" id="${article.articleId}"
+										src="<c:url value="/resource/img/like_inactive_small.png"/>"  />
 								</c:if>
 								<div>
-									좋아요 <span id="likeCount">${article.articleLikes}</span>
+									좋아요 <span id="likeCountlike${article.articleId}">${article.articleLikes}</span>
 								</div>
 							</div>
 						</div>

@@ -180,7 +180,7 @@
 		
 		
 		
-		<myWriteArticle>
+		<showMyWriteArticle>
 			SELECT	ARTICLE_TITLE
 					, ARTICLE_DESC
 					, ARTICLE_MODIFY_DATE
@@ -194,7 +194,7 @@
 			WHERE	A.STUDENT_EMAIL = SM.STUDENT_EMAIL
 			AND     BOARD_ID IN (1, 2)
 			AND		A.STUDENT_EMAIL = ?
-		</myWriteArticle>
+		</showMyWriteArticle>
 		
 		<showLikesArticle>
 			SELECT	ARTICLE_TITLE
@@ -212,7 +212,7 @@
 			AND		A.ARTICLE_ID = AL.ARTICLE_ID
 		</showLikesArticle>
 		
-		<myScrabArticle>
+		<showMyScrabArticle>
 			SELECT	ARTICLE_TITLE
 					, ARTICLE_DESC
 					, ARTICLE_MODIFY_DATE
@@ -226,7 +226,7 @@
 					, ARTICLE_SCRAB AB
 			WHERE	A.STUDENT_EMAIL = ?
 			AND		A.ARTICLE_ID = AB.ARTICLE_ID
-		</myScrabArticle>
+		</showMyScrabArticle>
 		
 		<getArticleId>
 			SELECT ARTICLE_ID

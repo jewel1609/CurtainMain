@@ -2,7 +2,7 @@ package com.ktds.curtain.articleDislike.biz;
 
 import com.ktds.curtain.article.dao.ArticleDAO;
 import com.ktds.curtain.articleDislike.dao.DislikeDAO;
-import com.ktds.curtain.articleDislike.vo.DislikeVO;
+import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 
 public class DislikeBiz {
 
@@ -18,7 +18,7 @@ public class DislikeBiz {
 	 * 싫어요 수 추가/삭제
 	 * @param dislikeVO
 	 */
-	public void insertOrDeleteDislikeData(DislikeVO dislikeVO) {
+	public void insertOrDeleteDislikeData(ArticleDislikeVO dislikeVO) {
 		if( isExistDislikeData(dislikeVO) ) { 
 			articleDAO.minusDislikeCount(dislikeVO);
 			dislikeDAO.deleteDislike(dislikeVO);
@@ -37,13 +37,13 @@ public class DislikeBiz {
 	 * @param dislikeVO
 	 * @return
 	 */
-	public boolean isExistDislikeData(DislikeVO dislikeVO) {	
+	public boolean isExistDislikeData(ArticleDislikeVO dislikeVO) {	
 		System.out.println("싫어요 수:"+dislikeDAO.selectDislikeCount(dislikeVO));
 		return dislikeDAO.selectDislikeCount(dislikeVO) > 0;
 		
 	}
 
-	public int getArticleDislikes(DislikeVO dislikeVO) {
+	public int getArticleDislikes(ArticleDislikeVO dislikeVO) {
 		return articleDAO.getArticleDislikes(dislikeVO);
 	}
 

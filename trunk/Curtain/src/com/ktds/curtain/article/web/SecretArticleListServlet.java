@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
-import com.ktds.curtain.member.vo.StdMemberVO;
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class SecretArticleListServlet
@@ -48,7 +48,7 @@ public class SecretArticleListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
-		StdMemberVO stdMember = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
+		MemberVO stdMember = (MemberVO) session.getAttribute("_STU_MEMBER_");
 
 		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember);
 		request.setAttribute("secretArticles", secretArticles);

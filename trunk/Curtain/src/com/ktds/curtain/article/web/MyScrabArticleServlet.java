@@ -49,7 +49,6 @@ public class MyScrabArticleServlet extends HttpServlet {
 		
 		request.setAttribute("scrabArticles", scrabArticles);
 		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/myScrabArticle.jsp");
 		rd.forward(request, response);
 	}

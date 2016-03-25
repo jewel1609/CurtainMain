@@ -67,7 +67,7 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		article.setArticleTitle(articleTitle);
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(articleTypeId);
-		article.setStudentEmail("shinmi@curtain.ac.kr");
+		article.setEmail("shinmi@curtain.ac.kr");
 		article.setBoardId(boardId);
 		article.setMajorGroupId(20);
 		article.setUnivId(1);

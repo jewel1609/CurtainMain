@@ -1,7 +1,7 @@
 package com.ktds.curtain.member.vo;
 
 public class MemberVO {
-	private String studentEmail;
+	private String email;
 	private int memberTypeId;
 	private int univId;
 	private int majorId;
@@ -12,19 +12,34 @@ public class MemberVO {
 	private String rankModifyDate;
 	private int Activity;
 	private String password;
+	private int phoneNumber;
+	private String companyName;
 	private int majorGroupId;
+	
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	public int getMajorGroupId() {
 		return majorGroupId;
 	}
 	public void setMajorGroupId(int majorGroupId) {
 		this.majorGroupId = majorGroupId;
-	}
-	public String getStudentEmail() {
-		return studentEmail;
-	}
-	public void setStudentEmail(String studentEmail) {
-		this.studentEmail = studentEmail;
 	}
 	public int getMemberTypeId() {
 		return memberTypeId;

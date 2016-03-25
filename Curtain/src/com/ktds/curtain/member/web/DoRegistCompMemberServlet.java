@@ -1,12 +1,15 @@
 package com.ktds.curtain.member.web;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.member.biz.MemberBiz;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.Root;
 
 /**
@@ -14,13 +17,15 @@ import com.ktds.curtain.util.Root;
  */
 public class DoRegistCompMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private MemberBiz stdMemberBiz;     
+	private MemberBiz stdMemberBiz;    
+	private MemberVO memberVO;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DoRegistCompMemberServlet() {
         super();
         stdMemberBiz = new MemberBiz();
+        memberVO = new MemberVO();
     }
 
 	/**
@@ -43,7 +48,12 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 		stdMemberBiz.addCompMember(inputCompEmail,inputCompPassword,inputCompName
 									,inputPhoneNum,inputCompSecondEmail);
 		
-		response.sendRedirect(Root.get(this) + "/main.jsp");
+		memberVO.setEmail(inputCompEmail);
+		memberVO.setPassword(inputCompPassword);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("_MEMBER_", memberVO);
+		response.sendRedirect(Root.get(this) + "/doLogin");
 	}
 
 }

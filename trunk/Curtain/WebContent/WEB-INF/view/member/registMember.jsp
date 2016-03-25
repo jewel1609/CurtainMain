@@ -28,13 +28,7 @@ html, body, h1, h2, h3, h4, h5 {
 		$('#registStdBtn').attr('disabled',true); // 버튼 비활성화
 		$('#registCompBtn').attr('disabled',true); // 버튼 비활성화
 		
-		var emailCheck = false;
-		var authCheck = false;
 		var passwordCheck = false;
-		if( emailCheck == true && authCheck ==true && passwordCheck ==true){
-			$('#registStdBtn').attr('disabled',false); // 버튼 비활성화
-			$('#registCompBtn').attr('disabled',false); // 버튼 비활성화
-		}
 		$("#inputUnivEmail").keyup(function(){
 			//AJAX 준비
 	         $.post(
@@ -62,7 +56,6 @@ html, body, h1, h2, h3, h4, h5 {
 		                    	}
 		                    	if(!jsonData3.isExistStdUnivEmail){
 		                    		$("#stdUnivEmailCheck").text("가입가능한 이메일입니다.");
-		                    		emailCheck = true;
 		                    	}
 		                  }  
 	                  }
@@ -97,7 +90,6 @@ html, body, h1, h2, h3, h4, h5 {
      		                    	}
      		                    	if(!jsonData3.isExistCompEmail){
      		                    		$("#compEmailCheck").text("가입가능한 이메일입니다.");
-     		                    		emailCheck = true;
      		                    	}
      		                  }  
      	                  }
@@ -214,7 +206,7 @@ html, body, h1, h2, h3, h4, h5 {
 	                    	var text = $("#inputNumberCheck").text();
 	                    	if(jsonData3.isUnivEmail){
 	                    		alert("인증되었습니다.");
-	                    		authCheck = true;
+	                    		$('#registStdBtn').attr('disabled',false); // 버튼 활성화
 	                    		
 	                    	}
 	                    	if(!jsonData3.isUnivEmail){
@@ -256,7 +248,7 @@ html, body, h1, h2, h3, h4, h5 {
   	                     if(jsonData3.result){
   	                    	var text = $("#inputCompNumberCheck").text();
   	                    	if(jsonData3.isCompEmail){
-  	                    		authCheck = true;
+	                    		$('#registCompBtn').attr('disabled',false); // 버튼 활성화
   	                    		alert("인증되었습니다.");
   	                    	}
   	                    	if(!jsonData3.isCompEmail){
@@ -342,7 +334,6 @@ html, body, h1, h2, h3, h4, h5 {
 		
 		//새로HTML이 추가되면 해줘야하는것 
 		$("body").on("click", ".univList",function(){
-			alert($(this).text());
 			$("#inputUnivName").val($(this).text());
 			$("#univSuggest").hide("slow");
 		});
@@ -425,6 +416,10 @@ html, body, h1, h2, h3, h4, h5 {
 				 	alert("이용약관을 체크해주세요.");
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
 			 	}
+			 if(passwordCheck == false){
+				 alert("두개의 비밀번호가 다릅니다. 확인해주세요.");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+			 }
 			 
 			var form = $("#registStdForm");
 			form.attr("method", "POST");
@@ -474,6 +469,10 @@ html, body, h1, h2, h3, h4, h5 {
 				 	alert("이용약관을 체크해주세요.");
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
 			 	}
+			 if(passwordCheck == false){
+				 alert("두개의 비밀번호가 다릅니다. 확인해주세요.");
+					return; // 더이상 밑의 이벤트를 진행하지 않음.
+			 }
 			 
 			var form = $("#registCompForm");
 			form.attr("method", "POST");
@@ -597,9 +596,11 @@ html, body, h1, h2, h3, h4, h5 {
 						<div class="col-sm-6">
 							<input class="form-control" id="inputPasswordCheck" name="inputPasswordCheck"
 								type="password" placeholder="비밀번호 재확인">
+								<br/>
+							<span style="margin: 0 auto" class="col-sm-6" id="passwordCheckSpan"></span>
 						</div>
 					</div>
-						<span class="col-sm-6" id="passwordCheckSpan"></span>
+						
 					<hr>
 					
 					<!-- 대학교 -->
@@ -722,9 +723,10 @@ html, body, h1, h2, h3, h4, h5 {
 						<div class="col-sm-6">
 							<input class="form-control" id="inputCompPasswordCheck" name="inputCompPasswordCheck"
 								type="password" placeholder="비밀번호 재확인">
+								<br/>
+							<span style="margin: 0 auto" class="col-sm-6" id="compPasswordCheckSpan"></span>
 						</div>
 					</div>
-						<span class="col-sm-6" id="compPasswordCheckSpan"></span>
 					<hr>
 					
 					<!-- 회사명 -->

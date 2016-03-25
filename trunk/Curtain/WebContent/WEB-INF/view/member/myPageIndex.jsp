@@ -7,7 +7,13 @@
 	$(document).ready( function(){
 		$("#modifyBtn").click(function() {
 			location.href = "/myPage/modifyMember";
-		})	
+		});
+		
+		$('[data-toggle="tooltip"]').tooltip();
+		
+		$("#alarmBtn").click(function () {
+			location.href = "/myQuestion";
+		});
 		
 	});
 		
@@ -26,7 +32,9 @@
       		<h1>마이페이지</h1>
       	</div>
       	<div class="w3-col" style="width:10%; margin-top:30px;">
-      		<button type="button" id="alarmBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">알림!</button>
+      		<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="문의하신 답변이 왔습니다!" >
+      			<button type="button" id="alarmBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;">알림!</button>
+      		</a>
       	</div>
       </div>
       

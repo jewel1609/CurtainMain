@@ -35,13 +35,13 @@
 			
 			
 				
-			if( $("#userPw").val() == null ){
-				alert("기존 비밀번호를 입력하세요");
+			if( $("#userPw").val() == "" ){
+				alert("기존 비밀번호를 입력해 주세요");
 				return;
 			}
 			
-			if ( $("#userNewPw").val() == null || $("#userNewRePw").val() == null ) {
-				alert("비밀번호를 입력하세요.");
+			if ( $("#userNewPw").val() == "" || $("#userNewRePw").val() == "" ) {
+				alert("비밀번호를 최소 8자리 입상으로 입력해 주십시오..");
 				return;
 			}
 			

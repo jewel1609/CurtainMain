@@ -289,7 +289,8 @@ public class ArticleDAO {
 		}
 		return articles;
 	}
-
+	
+	//내가좋아요한글
 	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {
 
 		loadOracleDriver();
@@ -310,16 +311,16 @@ public class ArticleDAO {
 
 			while (rs.next()) {
 				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
 				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
-				article.setBoardId(rs.getInt("BOARD_ID"));
-				article.setNickName(rs.getString("NICK_NAME"));
-				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
-				article.setHits(rs.getInt("HITS"));
-				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
 				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 
 				articles.add(article);
 			}
@@ -333,6 +334,7 @@ public class ArticleDAO {
 		return articles;
 	}
 	
+	//내가 스크랩한글
 	public List<ArticleVO> showMyScrabArticle(StdMemberVO stdMember) {
 
 		loadOracleDriver();
@@ -353,16 +355,16 @@ public class ArticleDAO {
 
 			while (rs.next()) {
 				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
 				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
-				article.setBoardId(rs.getInt("BOARD_ID"));
-				article.setNickName(rs.getString("NICK_NAME"));
-				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
-				article.setHits(rs.getInt("HITS"));
-				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
 				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 
 				articles.add(article);
 			}
@@ -376,6 +378,7 @@ public class ArticleDAO {
 		return articles;
 	}
 	
+	//내가 쓴글
 	public List<ArticleVO> showMyWriteArticle(StdMemberVO stdMember) {
 
 		loadOracleDriver();
@@ -396,16 +399,16 @@ public class ArticleDAO {
 
 			while (rs.next()) {
 				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
 				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
-				article.setBoardId(rs.getInt("BOARD_ID"));
-				article.setNickName(rs.getString("NICK_NAME"));
-				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
-				article.setHits(rs.getInt("HITS"));
-				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
 				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 
 				articles.add(article);
 			}

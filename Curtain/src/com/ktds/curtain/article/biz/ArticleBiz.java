@@ -8,7 +8,7 @@ import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.articleLike.dao.ArticleLikeDAO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
-import com.ktds.curtain.member.vo.StdMemberVO;
+import com.ktds.curtain.member.vo.MemberVO;
 
 public class ArticleBiz {
 	private ArticleDAO articleDAO;
@@ -25,7 +25,7 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showMajorArticle(StdMemberVO stdMember, String BoardId) {
+	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String BoardId) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
 		
@@ -47,7 +47,7 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	private List<ArticleLikeVO> showMajorArticleLike(StdMemberVO stdMember, String BoardId) {
+	private List<ArticleLikeVO> showMajorArticleLike(MemberVO stdMember, String BoardId) {
 		List<ArticleLikeVO> articleLikes = articleLikeDAO.showMajorArticleLike(stdMember, BoardId);
 		return articleLikes;
 	}
@@ -57,7 +57,7 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showSecretArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showSecretArticle(MemberVO stdMember) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showSecretArticle(stdMember);
 		return articles;
@@ -68,7 +68,7 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showUnivArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showUnivArticle(MemberVO stdMember) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showUnivArticle(stdMember);
 		return articles;
@@ -138,7 +138,7 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember, String BoardId) {
+	public List<ArticleVO> showLikesArticle(MemberVO stdMember, String BoardId) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showLikesArticle(stdMember);
 		
@@ -155,13 +155,13 @@ public class ArticleBiz {
 		return articles;
 	}
 	
-	public List<ArticleVO> showMyScrabArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showMyScrabArticle(MemberVO stdMember) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMyScrabArticle(stdMember);
 		return articles;
 	}
 	
-	public List<ArticleVO> showMyWriteArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showMyWriteArticle(MemberVO stdMember) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMyWriteArticle(stdMember);
 		return articles;

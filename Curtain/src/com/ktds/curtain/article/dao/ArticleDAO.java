@@ -10,14 +10,14 @@ import java.util.List;
 
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
-import com.ktds.curtain.member.vo.StdMemberVO;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
 public class ArticleDAO {
 
 	// 학과
-	public List<ArticleVO> showMajorArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showMajorArticle(MemberVO stdMember) {
 
 		loadOracleDriver();
 
@@ -63,7 +63,7 @@ public class ArticleDAO {
 	}
 
 	// 대학
-	public List<ArticleVO> showUnivArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showUnivArticle(MemberVO stdMember) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -107,7 +107,7 @@ public class ArticleDAO {
 	}
 
 	// 홍보
-	public List<ArticleVO> showAdArticle(StdMemberVO stdMember, String boardId) {
+	public List<ArticleVO> showAdArticle(MemberVO stdMember, String boardId) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -249,7 +249,7 @@ public class ArticleDAO {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showSecretArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showSecretArticle(MemberVO stdMember) {
 
 		loadOracleDriver();
 
@@ -292,7 +292,7 @@ public class ArticleDAO {
 	}
 	
 	//내가좋아요한글
-	public List<ArticleVO> showLikesArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showLikesArticle(MemberVO stdMember) {
 
 		loadOracleDriver();
 
@@ -337,7 +337,7 @@ public class ArticleDAO {
 	}
 	
 	//내가 스크랩한글
-	public List<ArticleVO> showMyScrabArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showMyScrabArticle(MemberVO stdMember) {
 
 		loadOracleDriver();
 
@@ -381,7 +381,7 @@ public class ArticleDAO {
 	}
 	
 	//내가 쓴글
-	public List<ArticleVO> showMyWriteArticle(StdMemberVO stdMember) {
+	public List<ArticleVO> showMyWriteArticle(MemberVO stdMember) {
 
 		loadOracleDriver();
 

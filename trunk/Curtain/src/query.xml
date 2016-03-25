@@ -214,7 +214,7 @@
 			WHERE	A.STUDENT_EMAIL = SM.STUDENT_EMAIL
 			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND     BOARD_ID IN (1, 2)
-			AND		A.STUDENT_EMAIL = ?
+			AND		A.EMAIL = ?
 		</showMyWriteArticle>
 		
 		<showLikesArticle>
@@ -235,7 +235,7 @@
 			WHERE	A.ARTICLE_ID = AL.ARTICLE_ID
 			AND		A.STUDENT_EMAIL = SM.STUDENT_EMAIL
 			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-			AND 	AL.STUDENT_EMAIL = ?
+			AND 	AL.EMAIL = ?
 		</showLikesArticle>
 		
 		<showMyScrabArticle>
@@ -256,7 +256,7 @@
 			WHERE	A.ARTICLE_ID = AB.ARTICLE_ID
 			AND		A.STUDENT_EMAIL = SM.STUDENT_EMAIL
 			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-			AND		AB.STUDENT_EMAIL = ?
+			AND		AB.EMAIL = ?
 		</showMyScrabArticle>
 		
 		<getArticleId>

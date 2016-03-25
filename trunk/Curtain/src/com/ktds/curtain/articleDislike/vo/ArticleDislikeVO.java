@@ -4,7 +4,7 @@ public class ArticleDislikeVO {
 
 	private int articleDislikeId;
 	private int articleId;
-	private String studentEmail;
+	private String email;
 	private String dislikeDate;
 	private int boardId;
 
@@ -24,14 +24,6 @@ public class ArticleDislikeVO {
 		this.articleId = articleId;
 	}
 
-	public String getStudentEmail() {
-		return studentEmail;
-	}
-
-	public void setStudentEmail(String studentEmail) {
-		this.studentEmail = studentEmail;
-	}
-
 	public String getDislikeDate() {
 		return dislikeDate;
 	}
@@ -48,4 +40,10 @@ public class ArticleDislikeVO {
 		this.boardId = boardId;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

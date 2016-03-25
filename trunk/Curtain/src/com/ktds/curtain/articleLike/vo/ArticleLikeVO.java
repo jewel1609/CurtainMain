@@ -4,10 +4,16 @@ public class ArticleLikeVO {
 	
 	private int articleLikeId;
 	private int articleId;
-	private String studentEmail;
+	private String email;
 	private String likeDate;
 	private int boradId;
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public int getBoradId() {
 		return boradId;
 	}
@@ -25,12 +31,6 @@ public class ArticleLikeVO {
 	}
 	public void setArticleId(int articleId) {
 		this.articleId = articleId;
-	}
-	public String getStudentEmail() {
-		return studentEmail;
-	}
-	public void setStudentEmail(String studentEmail) {
-		this.studentEmail = studentEmail;
 	}
 	public String getLikeDate() {
 		return likeDate;

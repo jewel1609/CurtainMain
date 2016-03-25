@@ -99,17 +99,7 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		else{
 			System.out.println("articleId 가져오지 못함 - 등록 실패");
 		}
-		
-			
-	
 
-		
-		
-
-		
-		
-		
-		
 		
 	}
 

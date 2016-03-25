@@ -27,6 +27,7 @@
 		});
 	}
 </script>
+
 	<div style="width: 2000px;">
 	<div class="w3-container w3-center w3-main"
 		style="margin-top: 30px; margin-bottom: 20px;">
@@ -94,4 +95,5 @@
 	</div>
 	<div style="clear: both;"></div>
 	</div>
+	
 	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

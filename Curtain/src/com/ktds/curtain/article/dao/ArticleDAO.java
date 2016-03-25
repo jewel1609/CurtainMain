@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.articleDislike.vo.DislikeVO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
@@ -278,6 +279,8 @@ public class ArticleDAO {
 				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setDislike(false);
 
 				articles.add(article);
 			}
@@ -574,6 +577,83 @@ public class ArticleDAO {
 		return 0;
 	}
 	
+	/**
+	 * 싫어요 수 가져오기 
+	 * @param dislikeVO
+	 * @return
+	 */
+	public int getArticleDislikes(DislikeVO dislikeVO) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/getArticleDislikes/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, dislikeVO.getArticleId());
+			rs = stmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, rs);
+		}
+		return 0;
+	}
+
+	public void minusDislikeCount(DislikeVO dislikeVO) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/minusDislikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, dislikeVO.getArticleId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+		
+	}
+	
+	public void plusDislikeCount(DislikeVO dislikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/plusDislikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, dislikeVO.getArticleId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+		
+	}
+
+	
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -603,6 +683,9 @@ public class ArticleDAO {
 		}
 
 	}
+
+
+
 
 
 

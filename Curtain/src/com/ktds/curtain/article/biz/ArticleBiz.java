@@ -6,6 +6,7 @@ import java.util.List;
 import com.ktds.curtain.article.dao.ArticleDAO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
+import com.ktds.curtain.articleDislike.vo.DislikeVO;
 import com.ktds.curtain.articleLike.dao.ArticleLikeDAO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
@@ -57,12 +58,37 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
+
+	public List<ArticleVO> showSecretArticle(StdMemberVO stdMember, int boardId) {
+
 	public List<ArticleVO> showSecretArticle(MemberVO stdMember) {
+
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showSecretArticle(stdMember);
+		
+		List<DislikeVO> articleDislikes = showSecretArticleDislike(stdMember, boardId);
+		
+		for(ArticleVO article : articles){
+			for(DislikeVO articleDislike : articleDislikes ) {
+				if( article.getArticleId() == articleDislike.getArticleId() ){
+					article.setLike(true);
+				}
+			}
+		}
 		return articles;
 	}
 	
+	/**
+	 * 내가 싫어요한 글
+	 * @param stdMember
+	 * @param boardId
+	 * @return
+	 */
+	private List<DislikeVO> showSecretArticleDislike(StdMemberVO stdMember, int boardId) {
+		List<DislikeVO> articleDislikes = articleLikeDAO.showSecretArticleDislike(stdMember, boardId);
+		return articleDislikes;
+	}
+
 	/**
 	 * 학교 게시판 보기
 	 * @param stdMember

@@ -15,7 +15,24 @@ public class ArticleVO extends MemberVO {
 	private int univId;
 	private int hits;
 	private int articleLikes;
+	private int articleDislikes;
 	private boolean like;
+	private boolean dislike;
+
+
+
+	public boolean isDislike() {
+		return dislike;
+	}
+	public void setDislike(boolean dislike) {
+		this.dislike = dislike;
+	}
+	public int getArticleDislikes() {
+		return articleDislikes;
+	}
+	public void setArticleDislikes(int articleDislikes) {
+		this.articleDislikes = articleDislikes;
+	}
 
 	public boolean getLike() {
 		return like;
@@ -23,6 +40,7 @@ public class ArticleVO extends MemberVO {
 	public void setLike(boolean like) {
 		this.like = like;
 	}
+
 	private String articleTypeName;
 	
 	public String getArticleTypeName() {

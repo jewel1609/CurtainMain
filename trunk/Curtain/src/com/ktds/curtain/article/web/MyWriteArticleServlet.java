@@ -56,7 +56,7 @@ public class MyWriteArticleServlet extends HttpServlet {
 		article.setNickName("류연s");
 		article.setPassword("1");
 		
-		List<ArticleVO> myWriteArticles = articleBiz.showLikesArticle(article);
+		List<ArticleVO> myWriteArticles = articleBiz.showMyWriteArticle(article);
 		
 		request.setAttribute("myWriteArticles", myWriteArticles);
 		

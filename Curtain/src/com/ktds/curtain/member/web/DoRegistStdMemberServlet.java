@@ -6,8 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.member.biz.MemberBiz;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.Root;
 
 /**
@@ -16,12 +18,14 @@ import com.ktds.curtain.util.Root;
 public class DoRegistStdMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private MemberBiz stdMemberBiz;  
+    private MemberVO memberVO;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DoRegistStdMemberServlet() {
         super();
         stdMemberBiz = new MemberBiz();
+        memberVO = new MemberVO();
     }
 
 	/**
@@ -44,7 +48,13 @@ public class DoRegistStdMemberServlet extends HttpServlet {
 		stdMemberBiz.addStdMember(inputUnivEmail,inputPassword,inputUnivName
 									,inputMajorName,inputSecondEmail);
 		
-		response.sendRedirect(Root.get(this) + "/main.jsp");
+		memberVO.setEmail(inputUnivEmail);
+		memberVO.setPassword(inputPassword);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("_MEMBER_", memberVO);
+		
+		response.sendRedirect(Root.get(this) + "/doLogin");
 	}
 
 }

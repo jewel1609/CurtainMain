@@ -401,7 +401,7 @@
 	</compMember>
 	<qa>
 	
-		<registerQuestionByStudent>
+		<registerQuestion>
 			INSERT INTO CURTAIN.QA	(
 										QUESTION_ID
 										, QUESTION_TITLE
@@ -411,7 +411,6 @@
 										, ANSWER_DATE
 										, EMAIL
 										, IS_CHECKED
-										, COMPANY_EMAIL
 									) 
 			VALUES					(
 										QUESTION_ID_SEQ.NEXTVAL
@@ -422,36 +421,10 @@
 										, ''
 										, ?
 										, 'N'
-										, ''
 									)
-		</registerQuestionByStudent>
+		</registerQuestion>
 		
-		<registerQuestionByCompany>
-			INSERT INTO CURTAIN.QA	(
-										QUESTION_ID
-										, QUESTION_TITLE
-										, QUESTION_DESCRIPTION
-										, ANSWER_DESCRIPTION
-										, QUESTION_DATE
-										, ANSWER_DATE
-										, EMAIL
-										, IS_CHECKED
-										, COMPANY_EMAIL
-									) 
-			VALUES					(
-										QUESTION_ID_SEQ.NEXTVAL
-										, ?
-										, ?
-										, ''
-										, SYSDATE
-										, ''
-										, ''
-										, 'N'
-										, ?
-									)
-		</registerQuestionByCompany>
-		
-		<getMyQuestionsByStudentEmail>
+		<getMyQuestionsByEmail>
 			SELECT	QUESTION_TITLE
 					, QUESTION_DESCRIPTION
 					, ANSWER_DESCRIPTION
@@ -460,7 +433,9 @@
 					, IS_CHECKED
 			FROM	CURTAIN.QA
 			WHERE	EMAIL = ?
-		</getMyQuestionsByStudentEmail>
+			ORDER	BY IS_CHECKED DESC
+					, QUESTION_DATE DESC
+		</getMyQuestionsByEmail>
 	</qa>
 	
 	<file>

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ktds.curtain.member.biz.StdMemberBiz;
+import com.ktds.curtain.member.biz.MemberBiz;
 
 /**
  * Servlet implementation class ModifyMemberPasswordServlet
@@ -14,14 +14,14 @@ import com.ktds.curtain.member.biz.StdMemberBiz;
 public class ModifyMemberPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private StdMemberBiz memberBiz;
+	private MemberBiz memberBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ModifyMemberPasswordServlet() {
         super();
-        memberBiz = new StdMemberBiz();
+        memberBiz = new MemberBiz();
     }
 
 	/**

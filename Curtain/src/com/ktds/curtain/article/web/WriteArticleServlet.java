@@ -6,12 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
-import com.ktds.curtain.member.vo.StdMemberVO;
+import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
+import com.ktds.curtain.util.MultipartHttpServletRequest;
 
 /**
  * Servlet implementation class WriteArticleServlet

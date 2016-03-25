@@ -308,6 +308,18 @@
     <servlet-name>ModifyMemberPasswordServlet</servlet-name>
     <url-pattern>/modifyMemberPassword</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>DislikeServlet</display-name>
+    <servlet-name>DislikeServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.articleDislike.web.DislikeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DislikeServlet</servlet-name>
+    <url-pattern>/dislike</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>ShowDetailServlet</display-name>
@@ -348,4 +360,5 @@
     <servlet-name>DoLoginServlet</servlet-name>
     <url-pattern>/doLogin</url-pattern>
   </servlet-mapping>
+
 </web-app>

@@ -47,6 +47,7 @@ public class ArticleDAO {
 				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setLike(false);
 
 				articles.add(article);
 			}
@@ -359,6 +360,51 @@ public class ArticleDAO {
 		
 		return 0;
 	}
+	
+	/**
+	 * 상세 글 내용 보기
+	 * @param articleId
+	 * @return
+	 */
+	public ArticleVO showDetail(int articleId) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showDetail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleId);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setBoardId(rs.getInt("MAJOR_GROUP_ID"));
+				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+			}
+
+			return article;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, rs);
+		}
+		return article;
+	}
 
 	private void loadOracleDriver() {
 		try {
@@ -389,6 +435,8 @@ public class ArticleDAO {
 		}
 
 	}
+
+	
 
 
 }

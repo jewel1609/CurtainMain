@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.articleDislike.biz.DislikeBiz;
+import com.ktds.curtain.articleDislike.vo.DislikeVO;
+import com.ktds.curtain.member.vo.StdMemberVO;
 import com.ktds.curtain.member.vo.MemberVO;
 
 /**
@@ -21,6 +24,8 @@ public class SecretArticleListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private ArticleBiz articleBiz;
+	private DislikeBiz dislikeBiz;
+	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -28,6 +33,7 @@ public class SecretArticleListServlet extends HttpServlet {
 	public SecretArticleListServlet() {
 		super();
 		articleBiz = new ArticleBiz();
+		dislikeBiz = new DislikeBiz();
 	}
 
 	/**
@@ -49,10 +55,10 @@ public class SecretArticleListServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_STU_MEMBER_");
-
-		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember);
+		
+		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, 4);
 		request.setAttribute("secretArticles", secretArticles);
-
+		
 		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/secretArticle.jsp");
 		rd.forward(request, response);
 

@@ -38,7 +38,6 @@ public class UnivDAO {
 			while (rs.next()) {
 				list.add(rs.getString("UNIV_NAME"));
 			}
-			System.out.println("Univ List :  " + list);
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
@@ -48,7 +47,6 @@ public class UnivDAO {
 		for (int i = 0; i<list.size(); i++){
 			univList += list.get(i)+",";
 		}
-		System.out.println(univList);
 		return univList;
 	}
 
@@ -73,7 +71,6 @@ public class UnivDAO {
 			if (rs.next()) {
 				univId = rs.getInt("UNIV_ID");
 			}
-			System.out.println("major id :  " + univId);
 			
 			} catch (SQLException e) {
 				throw new RuntimeException(e.getMessage(), e);
@@ -105,7 +102,6 @@ public class UnivDAO {
 				count++;
 				return true;
 			}
-			System.out.println("중복되는 메일 있는 개수:" +count);
 			
 			} catch (SQLException e) {
 				throw new RuntimeException(e.getMessage(), e);

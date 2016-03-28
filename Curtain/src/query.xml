@@ -399,8 +399,8 @@
 								)
 		</addCompMember>
 	</compMember>
-	<qa>
 	
+	<qa>
 		<registerQuestion>
 			INSERT INTO CURTAIN.QA	(
 										QUESTION_ID
@@ -437,6 +437,15 @@
 					, QUESTION_DATE DESC
 		</getMyQuestionsByEmail>
 	</qa>
+	
+	<member>
+		<existMember>
+			SELECT	NICK_NAME
+			FROM	MEMBER
+			WHERE	EMAIL = ?
+			AND		PASSWORD = ?
+		</existMember>
+	</member>
 	
 	<file>
 		<insertOneFile>

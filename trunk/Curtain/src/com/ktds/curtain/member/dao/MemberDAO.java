@@ -52,7 +52,7 @@ public class MemberDAO {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
 			// articleId에 맞는 데이터 불러오기
-			String query = XML.getNodeString("//query/stdMember/updateMemberInfo/text()");
+			String query = XML.getNodeString("//query/member/updateMemberInfo/text()");
 			stmt = conn.prepareStatement(query);
 			
 			//SQL Parameter Mapping

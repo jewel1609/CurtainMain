@@ -17,13 +17,13 @@ import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 /**
  * Servlet implementation class PrintMyQuestionServlet
  */
-public class PrintMyQuestionServlet extends HttpServlet {
+public class ShowMyQuestionsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private QuestionAndAnswerBiz questionAndAnswerBiz;
 	/**
      * @see HttpServlet#HttpServlet()
      */
-    public PrintMyQuestionServlet() {
+    public ShowMyQuestionsServlet() {
         super();
         questionAndAnswerBiz = new QuestionAndAnswerBiz();
     }

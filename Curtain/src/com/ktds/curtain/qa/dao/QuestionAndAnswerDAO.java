@@ -62,11 +62,13 @@ public class QuestionAndAnswerDAO {
 			
 			while( rs.next() ) {
 				question = new QuestionAndAnswerVO();
+				question.setQuestionId(rs.getInt("QUESTION_ID"));
 				question.setQuestionTitle(rs.getString("QUESTION_TITLE"));
 				question.setQuestionDescription(rs.getString("QUESTION_DESCRIPTION"));
 				question.setQuestionDate(rs.getString("QUESTION_DATE"));
 				question.setIsChecked(rs.getString("IS_CHECKED"));
 				question.setAnswerDate(rs.getString("ANSWER_DATE"));
+				question.setEmail(rs.getString("EMAIL"));
 				question.setAnswerDescription(rs.getString("ANSWER_DESCRIPTION"));
 				
 				questions.add(question);

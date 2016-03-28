@@ -44,4 +44,24 @@ public class QuestionAndAnswerBiz {
 		
 		return null;
 	}
+
+	public void isSetIsCheckedByQuestionId(String questionId) {
+		
+		try {
+			questionAndAnswerDAO.setIsCheckedByQuestionId(Integer.parseInt(questionId));
+		}
+		catch (NumberFormatException nfe) {
+			return;
+		}
+		
+	}
+
+	public QuestionAndAnswerVO getMyQuestionByQuestionId(String questionId) {
+		try {
+			return questionAndAnswerDAO.getMyQuestionByQuestionId(Integer.parseInt(questionId));
+		}
+		catch (NumberFormatException nfe) {
+			return null;
+		}
+	}
 }

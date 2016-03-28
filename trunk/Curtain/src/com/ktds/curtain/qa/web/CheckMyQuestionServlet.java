@@ -39,7 +39,7 @@ public class CheckMyQuestionServlet extends HttpServlet {
 		
 		questionAndAnswerBiz.isSetIsCheckedByQuestionId(questionId);
 		
-		response.sendRedirect(Root.get(this) + "showMyQuestionDetail?questionId=" + questionId);
+		response.sendRedirect(Root.get(this) + "/showDetailMyQuestion?questionId=" + questionId);
 	}
 
 }

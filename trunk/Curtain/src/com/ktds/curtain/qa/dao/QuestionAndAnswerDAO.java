@@ -84,6 +84,66 @@ public class QuestionAndAnswerDAO {
 		
 	}
 	
+	public void setIsCheckedByQuestionId(int questionId) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/qa/setIsCheckedByQuestionId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, questionId);
+			
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
+	public QuestionAndAnswerVO getMyQuestionByQuestionId(int questionId) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/qa/getMyQuestionByQuestionId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, questionId);
+			
+			rs = stmt.executeQuery();
+			
+			QuestionAndAnswerVO question = null;
+			
+			while( rs.next() ) {
+				question = new QuestionAndAnswerVO();
+				question.setQuestionId(rs.getInt("QUESTION_ID"));
+				question.setQuestionTitle(rs.getString("QUESTION_TITLE"));
+				question.setQuestionDescription(rs.getString("QUESTION_DESCRIPTION"));
+				question.setQuestionDate(rs.getString("QUESTION_DATE"));
+				question.setIsChecked(rs.getString("IS_CHECKED"));
+				question.setAnswerDate(rs.getString("ANSWER_DATE"));
+				question.setEmail(rs.getString("EMAIL"));
+				question.setAnswerDescription(rs.getString("ANSWER_DESCRIPTION"));
+			}
+			
+			return question;
+
+		} catch (SQLException e) {
+			closeDB(conn, stmt, rs);
+		}
+		
+		return null;
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -113,7 +173,5 @@ public class QuestionAndAnswerDAO {
 		}
 
 	}
-
-
 
 }

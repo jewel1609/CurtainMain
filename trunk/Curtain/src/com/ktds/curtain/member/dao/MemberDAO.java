@@ -127,7 +127,7 @@ public class MemberDAO {
 		
 	}
 	
-	public MemberVO existMember(MemberVO member) {
+	public MemberVO getMemberInfo(MemberVO member) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -137,7 +137,7 @@ public class MemberDAO {
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
-			String query = XML.getNodeString("//query/member/existMember/text()");
+			String query = XML.getNodeString("//query/member/getMemberInfo/text()");
 			
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, member.getEmail());
@@ -146,7 +146,19 @@ public class MemberDAO {
 			rs = stmt.executeQuery();
 			
 			if( rs.next()) {
+				member.setEmail(rs.getString("EMAIL"));
+				member.setMemberTypeId(rs.getInt("MEMBER_TYPE_ID"));
+				member.setUnivId(rs.getInt("UNIV_ID"));
+				member.setMajorId(rs.getInt("MAJOR_ID"));
+				member.setSignupDate(rs.getString("SIGNUP_DATE"));
 				member.setNickName(rs.getString("NICK_NAME"));
+				member.setSecondEmail(rs.getString("SECOND_EMAIL"));
+				member.setPoint(rs.getInt("POINT"));
+				member.setRankModifyDate(rs.getString("RANK_MODIFY_DATE"));
+				member.setActivity(rs.getInt("ACTIVITY"));
+				member.setPhoneNumber(rs.getInt("PHONE_NUMBER"));
+				member.setCompanyName(rs.getString("COMPANY_NAME"));
+				member.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				
 				return member;
 			}

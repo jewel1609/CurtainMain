@@ -22,7 +22,7 @@ public class ArticleLikeDAO {
 	 * @param boardId
 	 * @return
 	 */
-	public List<ArticleLikeVO> showMajorArticleLike(MemberVO stdMember, String boardId) {
+	public List<ArticleLikeVO> showArticleLike(MemberVO stdMember, String boardId) {
 		
 		loadOracleDriver();
 
@@ -35,9 +35,9 @@ public class ArticleLikeDAO {
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
-			String query = XML.getNodeString("//query/articleLikes/showMajorArticleLike/text()");
+			String query = XML.getNodeString("//query/articleLikes/showArticleLike/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setString(1, "test@smu.ac.kr");
+			stmt.setString(1, stdMember.getEmail());
 			stmt.setInt(2, Integer.parseInt(boardId));
 			rs = stmt.executeQuery();
 
@@ -54,7 +54,6 @@ public class ArticleLikeDAO {
 			return articleLikes;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			closeDB(conn, stmt, rs);
 		}
 		return articleLikes;

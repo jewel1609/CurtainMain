@@ -44,16 +44,10 @@ public class ArticleBiz {
 
 	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId){
 
-	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId) {
-
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
 		
-
 		List<ArticleLikeVO> articleLikes = showMajorArticleLike(stdMember, boardId);
-
-		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
-
 		
 		for (ArticleVO article : articles) {
 			for (ArticleLikeVO articleLike : articleLikes ) {
@@ -73,7 +67,7 @@ public class ArticleBiz {
 	 * @return
 	 */
 	private List<ArticleLikeVO> showMajorArticleLike(MemberVO stdMember, String boardId) {
-		List<ArticleLikeVO> articleLikes = articleLikeDAO.showMajorArticleLike(stdMember, boardId);
+		List<ArticleLikeVO> articleLikes = articleLikeDAO.showArticleLike(stdMember, boardId);
 		return articleLikes;
 	}
 

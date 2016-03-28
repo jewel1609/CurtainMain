@@ -7,6 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class ModifyMemberServlet
@@ -34,7 +37,14 @@ public class ModifyMemberServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//TODO 회원정보를 쿼리로 가져와서 jsp로 넘겨줘야함
+		// session을 받아온다.
+		HttpSession session = request.getSession();
+		
+		// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		
+		request.setAttribute("member", member);
+		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/modifyMember.jsp");
 		rd.forward(request, response);

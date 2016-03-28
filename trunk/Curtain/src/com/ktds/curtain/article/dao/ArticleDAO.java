@@ -284,6 +284,7 @@ public class ArticleDAO {
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
 				//article.setLike(false);
 				article.setDislike(false);
 

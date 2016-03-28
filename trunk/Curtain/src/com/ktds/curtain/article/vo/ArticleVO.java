@@ -16,12 +16,22 @@ public class ArticleVO extends MemberVO {
 	private int univId;
 	private int hits;
 	private int articleLikes;
-
 	private int articleDislikes;
 	private String articleTypeName;
+	private int articleScrab;
 	
 	private boolean dislike;
 	private boolean like;
+
+	
+	// setters and getters
+	public int getArticleScrab() {
+		return articleScrab;
+	}
+
+	public void setArticleScrab(int articleScrab) {
+		this.articleScrab = articleScrab;
+	}
 
 	public String getEmail() {
 		return email;

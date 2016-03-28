@@ -61,15 +61,11 @@
 		</addMacInfo>
 	</mac>
 	<article>
-
-	
 		<getArticleDislikes>
-			SELECT  COUNT(ARTICLE_DISLIKES)
+			SELECT  ARTICLE_DISLIKES
 			FROM    ARTICLE
 			WHERE   ARTICLE_ID = ?
 		</getArticleDislikes>
-		
-
 		<minusLikeCount>
 			UPDATE	ARTICLE
 			SET		ARTICLE_LIKES = ARTICLE_LIKES - 1
@@ -143,6 +139,7 @@
 						, HITS
 						, ARTICLE_LIKES
 						, ARTICLE_DISLIKES
+						, ARTICLE_SCRAB
 			FROM 		ARTICLE A
 						, MEMBER SM
 						, ARTICLE_TYPE AT
@@ -294,6 +291,30 @@
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND         A.ARTICLE_ID = ?
 		</showDetail>
+		
+		<showTopArticle>
+        	SELECT		ARTICLE_ID
+        				, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.MAJOR_GROUP_ID
+						, HITS
+						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
+						, ARTICLE_SCRAB
+			FROM 		ARTICLE A
+						, MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE	    A.EMAIL = SM.EMAIL
+			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND         A.BOARD_ID = 4
+			AND         ROWNUM = 1
+			ORDER		BY	HITS DESC,
+                        ARTICLE_MODIFY_DATE DESC
+		</showTopArticle>
 	</article>
 	<articleLikes>
 		<showMajorArticleLike>
@@ -544,11 +565,38 @@
 			SET		ARTICLE_DISLIKES = ARTICLE_DISLIKES - 1
 			WHERE	ARTICLE_ID = ?
 		</minusDislikeCount>
+		
+		<plusDislikeCount>
 			UPDATE	ARTICLE
 			SET		ARTICLE_DISLIKES = ARTICLE_DISLIKES + 1
-			WHERE	ARTICLE_ID = ?		
-		<plusDislikeCount>
-		
+			WHERE	ARTICLE_ID = ?
 		</plusDislikeCount>
 	</dislike>
+	
+	<scrab>
+		<deleteScrab>
+			DELETE
+			FROM	ARTICLE_SCRAB
+			WHERE	ARTICLE_ID = ?
+			AND		EMAIL = ?
+			AND		BOARD_ID = ?
+		</deleteScrab>
+		
+		<insertScrab>
+		INSERT INTO ARTICLE_SCRAB (
+									   ARTICLE_SCRAB_ID
+									   , ARTICLE_ID
+									   , EMAIL
+									   , SCRAB_DATE
+									   , BOARD_ID
+									   ) 
+		VALUES 					( 
+									ARTICLE_SCRAB_ID_SEQ.NEXTVAL
+									, ?
+									, ?
+									, SYSDATE
+									, ?
+								)
+		</insertScrab>
+	</scrab>
 </query>

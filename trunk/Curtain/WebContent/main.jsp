@@ -147,34 +147,32 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button id="closeModal" type="button" class="close" data-dismiss="modal-lg"
-						aria-hidden="true">&times;</button>
-					<a href="/registStdMember" class="btn btn-primary btn-lg" style="width: 40%;">
+					<a href="/registStdMember" class="btn btn-primary btn-lg" style="width: 49%;">
 						회원가입
 					</a>
-					<div class="btn btn-primary btn-lg" style="width: 40%;">
-						로그인
-					</div>
+					<button id="closeModal" type="button" class="btn btn-primary btn-lg"
+						data-dismiss="modal-lg" aria-hidden="true" style="width: 49%;">닫기</button>
 				</div>
 				<form id="btnForm">
 					<div class="arrow_box" style="width: 100%;">
-						<div class="modal-body" style="overflow-y: auto; height: 300px;">
+						<div class="modal-body" style="overflow-y: auto; height: 265px;">
 							아이디<input id="userId" name="userId" class="w3-input" type="text" placeholder="이메일을 입력하세요."/>
 							비밀번호<input id="userPassword" name="userPassword" class="w3-input" type="password" placeholder="비밀번호를 입력하세요"/>
 							<div style="width: 140px; float:left;">
 								자동로그인 하기 <input id="autoLoginCheckBox" name="autoLoginCheckBox" type="checkbox" class="w3-check" value="1"/>
 							</div>
-							<div id="btnDoLogin" class="btn btn-primary btn-lg" style="margin-top: 20px; width: 100%">로그인</div>
-							<p style="margin-top: 20px; text-align: center;"> 비밀번호를 잊으셨나요? </p>
+							<div id="btnDoLogin" class="btn btn-primary btn-lg" style="margin-top: 20px; margin-bottom:5px; width: 100%; text-align: center;">시작하기</div>
+							<a style=""> 비밀번호를 잊으셨나요? </a>
 						</div>
-						<div class="modal-footer" style="border-width:5px; height: 70px;">
-							<div style="width: 100%; text-align: center;">
-								<p>
-									페이스북으로 로그인하기
-								</p>
-							</div>
+						<div class="modal-footer" style="border-width:4px; height: 50px; text-align: center;">
+							<a style="padding-bottom: 10px;">
+								페이스북으로 로그인하기
+							</a>
+							
 						</div>
 					</div>
+					
+					<div style="clear: both; height: 10px;"></div>
 				</form>
 			</div>
 		</div>

@@ -445,6 +445,31 @@
 			WHERE	EMAIL = ?
 			AND		PASSWORD = ?
 		</getMemberInfo>
+		
+		<getUnivName>
+			SELECT  DISTINCT UNIV_NAME
+			FROM    MEMBER M
+        			, UNIV U
+			WHERE   M.UNIV_ID = U.UNIV_ID
+			AND     M.UNIV_ID = ?   
+		</getUnivName>
+		
+		<getMajorName>
+			SELECT  DISTINCT MAJOR_NAME
+			FROM    MEMBER M
+			        , MAJOR J
+			WHERE   M.MAJOR_ID = J.MAJOR_ID
+			AND     M.MAJOR_ID = ?
+		</getMajorName>
+		
+		<getMajorGroupName>
+			SELECT  MAJOR_GROUP_NAME
+			FROM    MAJOR_GROUP
+			WHERE   MAJOR_GROUP_ID = ?
+		</getMajorGroupName>
+		
+		
+		
 	</member>
 	
 	<file>

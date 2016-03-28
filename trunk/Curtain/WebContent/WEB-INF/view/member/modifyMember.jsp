@@ -90,7 +90,7 @@
           				<b>대학교 이메일</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>jewel1609@smu.ac.kr</p>
+    					<p>${ member.email }</p>
     				</div>
           		</div>
             </div>
@@ -107,7 +107,7 @@
           				<b>일반 이메일</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<input type="text" tabindex="0" id="userEmail" name="userEmail" placeholder="jewel1609@nate.com" />
+    					<input type="text" tabindex="0" id="userEmail" name="userEmail" placeholder="${ member.secondEmail }" />
     				</div>
           		</div>
             </div>
@@ -124,7 +124,7 @@
           				<b>닉네임</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<input type="text" tabindex="1" id="userNickName" name="userNickName" placeholder="갓피스" />
+    					<input type="text" tabindex="1" id="userNickName" name="userNickName" placeholder="${ member.nickName }" />
     				</div>
           		</div>
             </div>
@@ -158,7 +158,7 @@
           				<b>학교 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>00 대학교</p>
+    					<p>${ member.univId }</p>
     				</div>
           		</div>
             </div>
@@ -175,7 +175,7 @@
           				<b>학과 소계열명</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>ICT 융합</p>
+    					<p>${ member.majorGroupId }</p>
     				</div>
           		</div>
             </div>
@@ -192,7 +192,7 @@
           				<b>학과 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>미디어소프트웨어</p>
+    					<p>${ member.majorId }</p>
     				</div>
           		</div>
             </div>
@@ -209,7 +209,7 @@
           				<b>회원가입 날짜</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>2016/03/22</p>
+    					<p>${ member.signupDate }</p>
     				</div>
           		</div>
             </div>
@@ -226,7 +226,7 @@
           				<b>보유 포인트</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>000 point</p>
+    					<p>${ member.point }</p>
     				</div>
           		</div>
             </div>
@@ -243,7 +243,7 @@
           				<b>활동량</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>000</p>
+    					<p>${ member.activity }</p>
     				</div>
           		</div>
             </div>

@@ -156,6 +156,7 @@ public class MemberDAO {
 				member.setPoint(rs.getInt("POINT"));
 				member.setRankModifyDate(rs.getString("RANK_MODIFY_DATE"));
 				member.setActivity(rs.getInt("ACTIVITY"));
+				member.setPassword(rs.getString("PASSWORD"));
 				member.setPhoneNumber(rs.getInt("PHONE_NUMBER"));
 				member.setCompanyName(rs.getString("COMPANY_NAME"));
 				member.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));

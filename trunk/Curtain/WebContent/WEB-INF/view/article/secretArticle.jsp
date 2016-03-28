@@ -324,78 +324,82 @@
 				<c:forEach items="${secretArticles}" var="article">
 					<div class="w3-row-padding w3-margin-top">
 						<div class="w3-col m12">
-							<div class="w3-card w3-white w3-round-large">
-								<div class="w3-container">
-									<div class="w3-col m10 w3-padding-top">
-										<c:if test="${article.articleTypeName eq '연애'}">
-											<span class="label label-danger">${article.articleTypeName}</span>
-										</c:if>
-										<c:if test="${article.articleTypeName eq '고민'}">
-											<span class="label label-warning">${article.articleTypeName}</span>
-										</c:if>
-										<c:if test="${article.articleTypeName eq '질문'}">
-											<span class="label label-primary">${article.articleTypeName}</span>
-										</c:if>
-										<c:if test="${article.articleTypeName eq '취업'}">
-											<span class="label label-info">${article.articleTypeName}</span>
-										</c:if>
-										<c:if test="${article.articleTypeName eq '기타'}">
-											<span class="label label-default">${article.articleTypeName}</span>
-										</c:if>
-										<strong>${article.articleTitle}</strong>
-										
-									</div>
-									<div class="w3-col m1 w3-padding-top">
-										${article.nickName}
-									</div>
-									<div class="w3-col m1 w3-padding-top">
-										조회수 ${article.hits}
-										<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
-										<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
-									</div>
-									<div class="w3-col m12 w3-padding-top" style="height: 60px;">
-										${article.articleDesc}
-									</div>
+							<a href="<c:url value="/hitsCount?boardId=4&articleId=${article.articleId}"/>">
+								<div class="w3-card w3-white w3-round-large">
+									<div class="w3-container">
 									
-									<div>
-										${article.articleModifyDate} 
-									</div>
 									
-									<div class="w3-col m10 w3-padding-bottom">
-										<div style="float:left; margin-right:10px;">
-											<c:if test="${article.like}">
-												<img class="like" id="like${article.articleId}" src="/resource/img/like_active_small.png" style="width:20px;">	
-												<span id="likeCount${article.articleId}">${article.articleLikes}</span>
+										<div class="w3-col m10 w3-padding-top">
+											<c:if test="${article.articleTypeName eq '연애'}">
+												<span class="label label-danger">${article.articleTypeName}</span>
 											</c:if>
-											<c:if test="${!article.like}">
-												<img class="like" id="like${article.articleId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
-												<span id="likeCount${article.articleId}">${article.articleLikes}</span>
+											<c:if test="${article.articleTypeName eq '고민'}">
+												<span class="label label-warning">${article.articleTypeName}</span>
 											</c:if>
+											<c:if test="${article.articleTypeName eq '질문'}">
+												<span class="label label-primary">${article.articleTypeName}</span>
+											</c:if>
+											<c:if test="${article.articleTypeName eq '취업'}">
+												<span class="label label-info">${article.articleTypeName}</span>
+											</c:if>
+											<c:if test="${article.articleTypeName eq '기타'}">
+												<span class="label label-default">${article.articleTypeName}</span>
+											</c:if>
+											<strong>${article.articleTitle}</strong>
+											
 										</div>
+										<div class="w3-col m1 w3-padding-top">
+											${article.nickName}
+										</div>
+										<div class="w3-col m1 w3-padding-top">
+											조회수 ${article.hits}
+											<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
+											<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
+										</div>
+										<div class="w3-col m12 w3-padding-top" style="height: 60px;">
+											${article.articleDesc}
+										</div>							
 										<div>
-											<c:if test="${article.dislike}">
-												<img class="dislike" id="dislike${article.articleId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
-												<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
+											${article.articleModifyDate} 
+										</div>
+										<div class="w3-col m10 w3-padding-bottom">
+											<div style="float:left; margin-right:10px;">
+												<c:if test="${article.like}">
+													<img class="like" id="like${article.articleId}" src="/resource/img/like_active_small.png" style="width:20px;">	
+													<span id="likeCount${article.articleId}">${article.articleLikes}</span>
+												</c:if>
+												<c:if test="${!article.like}">
+													<img class="like" id="like${article.articleId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
+													<span id="likeCount${article.articleId}">${article.articleLikes}</span>
+												</c:if>
+											</div>
+											<div>
+												<c:if test="${article.dislike}">
+													<img class="dislike" id="dislike${article.articleId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
+													<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
+												</c:if>
+												<c:if test="${!article.dislike}">
+													<img class="dislike" id="dislike${article.articleId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
+													<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
+												</c:if>
+											</div>
+										</div>
+										<div class="w3-col m2">
+											<img src="/resource/img/reply_small.png" style="width:20px;">댓글 수 
+										
+											<c:if test="${article.scrab}">
+												<img class="scrab" id="scrab${article.articleId}" src="/resource/img/scrap_active_small.png" style="width:20px;">
 											</c:if>
-											<c:if test="${!article.dislike}">
-												<img class="dislike" id="dislike${article.articleId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
-												<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
+											
+											<c:if test="${!article.scrab}">
+												<img class="scrab" id="scrab${article.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">
 											</c:if>
 										</div>
-									</div>
-									<div class="w3-col m2">
-										<img src="/resource/img/reply_small.png" style="width:20px;">댓글 수 
 									
-										<c:if test="${article.scrab}">
-											<img class="scrab" id="scrab${article.articleId}" src="/resource/img/scrap_active_small.png" style="width:20px;">
-										</c:if>
-										
-										<c:if test="${!article.scrab}">
-											<img class="scrab" id="scrab${article.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">
-										</c:if>
 									</div>
+									
 								</div>
-							</div>
+							</a>
 						</div>
 					</div>
 				</c:forEach>

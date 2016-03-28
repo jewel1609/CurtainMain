@@ -41,14 +41,15 @@ public class MyWriteArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
+		
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		List<ArticleVO> myWriteArticle = articleBiz.showMyWriteArticle(member);	
 		
-		
-		List<ArticleVO> myWriteArticles = articleBiz.showMyWriteArticle(member);	
-		request.setAttribute("myWriteArticles", myWriteArticles);	
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/myWriteArticle.jsp");
+		request.setAttribute("myWriteArticle", myWriteArticle);	
+		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/myWriteArticle.jsp");
 		rd.forward(request, response);
 	}
 

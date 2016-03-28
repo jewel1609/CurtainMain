@@ -40,7 +40,10 @@ public class LikeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int articleId = Integer.parseInt(request.getParameter("articleId"));
+		
+		String likeArticleId = request.getParameter("articleId");
+		int articleId = Integer.parseInt(likeArticleId.substring(4));
+		
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 //		boardId
 		HttpSession session = request.getSession();
@@ -59,9 +62,9 @@ public class LikeServlet extends HttpServlet {
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");
-		json.append(", \"doLike\" : "+isExistLikeData);
-		json.append(", \"updateLikeCount\" : "+updateLikeCount);
-		json.append(", \"articleId\" : "+articleId);
+		json.append(", \"doLike\" : "+ isExistLikeData);
+		json.append(", \"updateLikeCount\" : "+ updateLikeCount);
+		json.append(", \"articleId\" : "+ articleId);
 		json.append("}");
 		
 		PrintWriter out = response.getWriter();

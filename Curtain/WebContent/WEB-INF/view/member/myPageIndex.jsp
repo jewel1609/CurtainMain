@@ -45,7 +45,7 @@
             	<div class="w3-container w3-third">
     				<h2>회원 등급</h2>
     				<img src="/resource/img/curtainGradeOne.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px">
-    				<p>회원님의 등급은 '한겹'입니다.</p> 
+    				<p>회원님의 등급은 ' ${ memberRank } '입니다.</p> 
   				</div>
   				<div class="w3-container w3-third">
     				<h2>포인트</h2>

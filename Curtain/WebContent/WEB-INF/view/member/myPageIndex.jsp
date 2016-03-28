@@ -161,7 +161,7 @@
           				<b>학교 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>${ member.secondEmail }</p>
+    					<p>${ member.univId }</p>
     				</div>
           		</div>
             </div>
@@ -178,7 +178,7 @@
           				<b>학과 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>미디어소프트웨어</p>
+    					<p>${ member.majorId }</p>
     				</div>
           		</div>
             </div>

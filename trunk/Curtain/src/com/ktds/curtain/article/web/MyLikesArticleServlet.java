@@ -47,7 +47,7 @@ public class MyLikesArticleServlet extends HttpServlet {
 		HttpSession session = request.getSession();		
 		
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
-		List<ArticleVO> myLikesArticle = articleBiz.showLikesArticle(member, BoardId.MAJOR_BOARD);
+		List<ArticleVO> myLikesArticle = articleBiz.showLikesArticle(member);
 		
 		request.setAttribute("myLikesArticle", myLikesArticle);
 		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/myLikesArticle.jsp");

@@ -172,6 +172,102 @@ public class MemberDAO {
 		return null;
 	}
 	
+	public String getUnivName(int univId) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String univName = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getUnivName/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, univId);
+			
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				univName = rs.getString("UNIV_NAME");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return univName;
+		
+	}
+	
+	public String getMajorName(int majorId) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String majorName = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getMajorName/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorId);
+			
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				majorName = rs.getString("MAJOR_NAME");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return majorName;
+	}
+	
+	public String getMajorGroupName(int majorGroupId) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String majorGroupName = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getMajorGroupName/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorGroupId);
+			
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				majorGroupName = rs.getString("MAJOR_GROUP_NAME");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return majorGroupName;
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -200,6 +296,12 @@ public class MemberDAO {
 			}
 		}
 	}
+
+	
+
+	
+
+	
 
 	
 

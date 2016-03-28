@@ -45,7 +45,7 @@ public class MemberBiz {
 		
 		MemberVO sessionMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		if(sessionMember.getEmail() == null || sessionMember.getEmail().length() == 0) {
+		if(sessionMember == null || sessionMember.getEmail() == null) {
 			if(member.getEmail() == null && member.getEmail().length() == 0) {
 				return false;
 			}

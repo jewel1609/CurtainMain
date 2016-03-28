@@ -1,6 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style type="text/css">
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	color: #868F84;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: #868F84;
+	opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #868F84;
+	opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #868F84;
+}
+
+</style>
+
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -73,8 +95,8 @@
 										<td style="padding-left: 20px; padding-top: 15px;">문의 내용</td>
 										<td><textarea id="questionDescription"
 												name="questionDescription" class="w3-col m12" rows="5"
-												style="height: 500px; margin-bottom: 5px; padding: 0 10px 0 10px;"
-												placeholder="일요일 오전 10시경 포인트가 갑자기 사라졌어요."></textarea></td>
+												style="height: 500px; margin-bottom: 5px; padding: 0 5px 0 5px;"
+												placeholder="일요일 오전 10시경 포인트가 갑자기 사라졌어요." ></textarea></td>
 									</tr>
 								</table>
 								<div style="float: right; margin-top: 20px; width: 200px;">

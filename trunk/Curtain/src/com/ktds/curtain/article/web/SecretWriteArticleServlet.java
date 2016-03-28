@@ -9,10 +9,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
 import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
 
@@ -60,21 +63,16 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		MultipartFile movieFile = multipartRequest.getFile("movieFile");
 		File upMovieFile = movieFile.write("D:\\" + movieFile.getFileName());
 		
-	//	HttpSession session = request.getSession();
-	//	StdMemberVO loginMember = (StdMemberVO) session.getAttribute("_MEMBER_");
+		HttpSession session = request.getSession();
+		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		ArticleVO article = new ArticleVO();
 		article.setArticleTitle(articleTitle);
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(articleTypeId);
-		article.setEmail("shinmi@curtain.ac.kr");
 		article.setBoardId(boardId);
-		article.setMajorGroupId(20);
-		article.setUnivId(1);
-		article.setNickName("송혜교");
-		article.setPassword("111");
-		
-//		boolean doWriteArticle = articleBiz.doWriteArticle(article);
+
+		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember);
 		
 		int articleId = articleBiz.getArticleId();
 		if( articleId > 0 ){

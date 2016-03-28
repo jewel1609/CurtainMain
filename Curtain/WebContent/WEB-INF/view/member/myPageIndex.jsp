@@ -144,7 +144,7 @@
           				<b>이메일</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>jewel1609@gmail.com</p>
+    					<p>${ member.secondEmail }</p>
     				</div>
           		</div>
             </div>
@@ -161,7 +161,7 @@
           				<b>학교 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>00 대학교</p>
+    					<p>${ member.secondEmail }</p>
     				</div>
           		</div>
             </div>

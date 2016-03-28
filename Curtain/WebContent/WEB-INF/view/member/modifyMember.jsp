@@ -32,8 +32,6 @@
 		
 		
 		$("#modifyPasswordBtn").click( function () {
-			
-			
 				
 			if( $("#userPw").val() == "" ){
 				alert("기존 비밀번호를 입력해 주세요");
@@ -125,6 +123,7 @@
           			</div>
           			<div class="w3-col" style="width:80%">
     					<input type="text" tabindex="2" id="userNickName" name="userNickName" placeholder="${ member.nickName }" />
+						<span id="duplicationNickName" style="color: red;"></span>				
     				</div>
           		</div>
             </div>

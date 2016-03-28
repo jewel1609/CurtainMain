@@ -439,12 +439,12 @@
 	</qa>
 	
 	<member>
-		<existMember>
-			SELECT	NICK_NAME
+		<getMemberInfo>
+			SELECT	*
 			FROM	MEMBER
 			WHERE	EMAIL = ?
 			AND		PASSWORD = ?
-		</existMember>
+		</getMemberInfo>
 	</member>
 	
 	<file>

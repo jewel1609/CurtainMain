@@ -2,6 +2,7 @@ package com.ktds.curtain.qa.biz;
 
 import java.util.List;
 
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.qa.dao.QuestionAndAnswerDAO;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 
@@ -32,10 +33,10 @@ public class QuestionAndAnswerBiz {
 		questionAndAnswerDAO.registerQuestion(questionAndAnswerVO);
 	}
 
-	public List<QuestionAndAnswerVO> getMyQuestionsByEmail(String email) {
+	public List<QuestionAndAnswerVO> getMyQuestionsByEmail(MemberVO member) {
 		
-		if (email != null) {
-			return questionAndAnswerDAO.getMyQuestionsByEmail(email);
+		if (member != null) {
+			return questionAndAnswerDAO.getMyQuestionsByEmail(member);
 		}
 		
 		return null;

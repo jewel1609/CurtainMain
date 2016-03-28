@@ -141,10 +141,10 @@
             <div class="w3-container w3-padding w3-left-align">
           		<div class="w3-col" style="width:90%">
           			<div class="w3-col" style="width:20%">
-          				<b>이메일</b>
+          				<b>대학교 이메일</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>${ member.secondEmail }</p>
+    					<p>${ member.email }</p>
     				</div>
           		</div>
             </div>

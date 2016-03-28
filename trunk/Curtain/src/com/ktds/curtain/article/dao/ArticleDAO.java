@@ -285,8 +285,9 @@ public class ArticleDAO {
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
 				article.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
-				//article.setLike(false);
+				article.setLike(false);
 				article.setDislike(false);
+				article.setScrab(false);
 
 				articles.add(article);
 			}
@@ -659,7 +660,52 @@ public class ArticleDAO {
 		
 	}
 
-	
+
+	/**
+	 * 가장 조회수 많은 게시글 정보 가져오기
+	 * @param stdMember
+	 * @return
+	 */
+	public ArticleVO showTopArticle(MemberVO stdMember) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ArticleVO article = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showTopArticle/text()");
+			stmt = conn.prepareStatement(query);
+			//stmt.setInt(1, boardId);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
+			}
+
+			return article;
+
+		} catch (SQLException e) {
+			closeDB(conn, stmt, rs);
+		}
+		return article;
+	}
+
 	
 	private void loadOracleDriver() {
 		try {

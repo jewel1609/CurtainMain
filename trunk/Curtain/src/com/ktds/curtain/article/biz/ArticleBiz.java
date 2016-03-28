@@ -10,6 +10,8 @@ import com.ktds.curtain.articleDislike.dao.DislikeDAO;
 import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.articleLike.dao.ArticleLikeDAO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
+import com.ktds.curtain.articleScrab.dao.ScrabDAO;
+import com.ktds.curtain.articleScrab.vo.ArticleScrabVO;
 import com.ktds.curtain.member.vo.MemberVO;
 
 public class ArticleBiz {
@@ -17,11 +19,13 @@ public class ArticleBiz {
 	private List<ArticleVO> articles;
 	private ArticleLikeDAO articleLikeDAO;
 	private DislikeDAO dislikeDAO;
+	private ScrabDAO scrabDAO;
 	
 	public ArticleBiz() {
 		articleDAO = new ArticleDAO();
 		articleLikeDAO = new ArticleLikeDAO();
 		dislikeDAO = new DislikeDAO();
+		scrabDAO = new ScrabDAO();
 	}
 	
 	/**
@@ -33,7 +37,7 @@ public class ArticleBiz {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
 		
-		List<ArticleLikeVO> articleLikes = showMajorArticleLike(stdMember, boardId);
+		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
 		
 		for (ArticleVO article : articles) {
 			for (ArticleLikeVO articleLike : articleLikes ) {
@@ -47,26 +51,19 @@ public class ArticleBiz {
 	}
 	
 	/**
-	 * 내가 좋아요 한 글
-	 * @param stdMember
-	 * @return
-	 */
-	private List<ArticleLikeVO> showMajorArticleLike(MemberVO stdMember, String BoardId) {
-		List<ArticleLikeVO> articleLikes = articleLikeDAO.showMajorArticleLike(stdMember, BoardId);
-		return articleLikes;
-	}
-
-	/**
 	 * 해당 비밀 게시판 리스트 가져오기
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showSecretArticle(MemberVO stdMember, int boardId) {
+	public List<ArticleVO> showSecretArticle(MemberVO stdMember, String boardId) {
 
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showSecretArticle(stdMember);
 		
-		List<ArticleDislikeVO> articleDislikes = showSecretArticleDislike(stdMember, boardId);
+		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
+		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
+		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
+		
 		
 		for(ArticleVO article : articles){
 			for(ArticleDislikeVO articleDislike : articleDislikes ) {
@@ -74,19 +71,59 @@ public class ArticleBiz {
 					article.setDislike(true);
 				}
 			}
+			
+		}
+		
+		for(ArticleVO article : articles){
+			for(ArticleLikeVO articleLike : articleLikes ){
+				if( article.getArticleId() == articleLike.getArticleId() ){
+					article.setLike(true);
+				}
+			}
+		}
+		
+		for(ArticleVO article : articles){
+			for(ArticleScrabVO articleScrab : articleScrabs ){
+				if( article.getArticleId() == articleScrab.getArticleId() ){
+					article.setScrab(true);
+				}
+			}
 		}
 		return articles;
 	}
-	
+
+
+	/**
+	 * 내가 좋아요 한 글
+	 * @param stdMember
+	 * @return
+	 */
+	private List<ArticleLikeVO> showArticleLike(MemberVO stdMember, String BoardId) {
+		List<ArticleLikeVO> articleLikes = articleLikeDAO.showArticleLike(stdMember, BoardId);
+		return articleLikes;
+	}
+
+
 	/**
 	 * 내가 싫어요한 글
 	 * @param stdMember
 	 * @param boardId
 	 * @return
 	 */
-	private List<ArticleDislikeVO> showSecretArticleDislike(MemberVO stdMember, int boardId) {
-		List<ArticleDislikeVO> articleDislikes = dislikeDAO.showSecretArticleDislike(stdMember, boardId);
+	private List<ArticleDislikeVO> showArticleDislike(MemberVO stdMember, String boardId) {
+		List<ArticleDislikeVO> articleDislikes = dislikeDAO.showArticleDislike(stdMember, boardId);
 		return articleDislikes;
+	}
+	
+	/**
+	 * 내가 스크랩한 글
+	 * @param stdMember
+	 * @param boardId
+	 * @return
+	 */
+	private List<ArticleScrabVO> showArticleScrab(MemberVO stdMember, String boardId){
+		List<ArticleScrabVO> articleScrabs = scrabDAO.showArticleScrab(stdMember, boardId);
+		return articleScrabs;
 	}
 
 	/**
@@ -164,10 +201,24 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-
-	public List<ArticleVO> showLikesArticle(MemberVO member) {
+	public List<ArticleVO> showLikesArticle(MemberVO member, String boardId) {
 		articles = new ArrayList<ArticleVO>();
+
 		articles = articleDAO.showLikesArticle(member);
+		
+		List<ArticleLikeVO> articleLikes = showArticleLike(member, boardId);
+		
+		for (ArticleVO article : articles) {
+			for (ArticleLikeVO articleLike : articleLikes ) {
+				if ( article.getArticleId() == articleLike.getArticleId() ){
+					article.setLike(true);
+				}
+			}
+		}
+		
+
+		articles = articleDAO.showLikesArticle(member);
+
 		return articles;
 	}
 	
@@ -181,6 +232,21 @@ public class ArticleBiz {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMyWriteArticle(member);
 		return articles;
+	}
+
+	
+	/**
+	 * 가장 조회수 많은 게시글 
+	 * @param stdMember
+	 * @param boardId
+	 * @return
+	 */
+	public ArticleVO showTopArticle(MemberVO stdMember, int boardId) {
+		
+		ArticleVO article = new ArticleVO();
+		article = articleDAO.showTopArticle(stdMember);
+		return article;
+		
 	}
 
 

@@ -6,13 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.member.vo.MemberVO;
-import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
-import com.ktds.curtain.util.MultipartHttpServletRequest;
 
 
 /**
@@ -51,24 +50,16 @@ public class WriteArticleServlet extends HttpServlet {
 		String boardId = request.getParameter("boardId");
 		System.out.println(boardId);
 		
-//		HttpSession session = request.getSession();
-//		StdMemberVO stdMember = (StdMemberVO) session.getAttribute("_STU_MEMBER_");
+		HttpSession session = request.getSession();
+		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		ArticleVO article = new ArticleVO();
 		article.setArticleTitle(articleTitle);
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(Integer.parseInt(articleTypeId));
 		article.setBoardId(Integer.parseInt(boardId));
-		article.setEmail("test@smu.ac.kr");
-		article.setMemberTypeId(1);
-		article.setUnivId(1);
-		article.setMajorGroupId(1);
-		article.setMajorId(1);
-		article.setNickName("류연s");
-		article.setPassword("1");
-		
 
-		boolean doWriteArticle = articleBiz.doWriteArticle(article);
+		boolean doWriteArticle = articleBiz.doWriteArticle(article, stdMember);
 		
 		if ( boardId.equals(BoardId.MAJOR_BOARD)) {
 			response.sendRedirect("/studentMajorAritlce");

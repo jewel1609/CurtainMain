@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 
 /**
@@ -17,12 +18,14 @@ import com.ktds.curtain.member.vo.MemberVO;
 public class ModifyMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private MemberBiz memberBiz;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ModifyMemberServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        memberBiz = new MemberBiz();
     }
 
 	/**
@@ -42,9 +45,14 @@ public class ModifyMemberServlet extends HttpServlet {
 		
 		// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		String univName = memberBiz.getUnivName(member.getUnivId());
+		String majorName = memberBiz.getMajorName(member.getMajorId());
+		String majorGroupName = memberBiz.getMajorGroupName(member.getMajorGroupId());
 		
 		request.setAttribute("member", member);
-		
+		request.setAttribute("univName", univName);
+		request.setAttribute("majorName", majorName);
+		request.setAttribute("majorGroupName", majorGroupName);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/modifyMember.jsp");
 		rd.forward(request, response);

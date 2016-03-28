@@ -99,8 +99,8 @@
 						, ARTICLE_TYPE AT
 			WHERE	    A.EMAIL = SM.EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-			AND         A.BOARD_ID = ?
-			AND         A.MAJOR_GROUP_ID = 1
+			AND         A.BOARD_ID = 1
+			AND         A.MAJOR_GROUP_ID = ?
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showMajorArticle>
 
@@ -572,6 +572,94 @@
 		</plusDislikeCount>
 	</dislike>
 	
+	<reply>
+		<insertReply>
+			INSERT INTO 	REPLY (
+   										REPLY_ID
+   										, ARTICLE_ID
+   										, EMAIL
+   										, REPLY_DESC
+   										, BOARD_ID
+   										, PARENT_REPLY_ID
+   										, REPLY_ORDER
+   										, REPLY_REGISTER_DATE
+   										, REPLY_MODIFY_DATE
+   									) 
+			VALUES 					( 
+										REPLY_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, ?
+										, ?
+										, REPLY_ID_SEQ.CURRVAL
+										, 0
+										, SYSDATE
+										, SYSDATE
+									)
+		</insertReply>
+		<getReplyListByArticleId>
+			SELECT	REPLY_ID
+			 		, ARTICLE_ID
+			 		, M.EMAIL
+			 		, M.NICK_NAME
+			 		, REPLY_DESC
+			 		, PARENT_REPLY_ID
+			 		, REPLY_ORDER
+			FROM 	REPLY R
+					, MEMBER M
+			WHERE	R.EMAIL = M.EMAIL
+			AND		R.ARTICLE_ID = ?
+			ORDER	BY PARENT_REPLY_ID ASC
+					, REPLY_ORDER ASC
+		</getReplyListByArticleId>
+		<selectCountParentReplyID>
+			SELECT	COUNT(REPLY_ID)
+			FROM	REPLY
+			WHERE	PARENT_REPLY_ID = ?
+		</selectCountParentReplyID>
+		<selectMaxOrderNoByParentReplyId>
+			SELECT 	MAX(REPLY_ORDER)
+			FROM	REPLY
+			WHERE   PARENT_REPLY_ID = ?
+			ORDER	BY REPLY_ORDER DESC
+		</selectMaxOrderNoByParentReplyId>
+		<selectLatestOrderNoByParentReplyId>
+			SELECT	REPLY_ORDER
+			FROM	REPLY 
+			WHERE	REPLY_ID = ?
+		</selectLatestOrderNoByParentReplyId>
+		<updateOrderNoByGroupId>
+			UPDATE	REPLY
+			SET		REPLY_ORDER = REPLY_ORDER + 1
+			WHERE	REPLY_ORDER >= ?
+			AND		PARENT_REPLY_ID = ?
+		</updateOrderNoByGroupId>
+		<insertReReply>
+			INSERT INTO 	REPLY (
+   										REPLY_ID
+   										, ARTICLE_ID
+   										, EMAIL
+   										, REPLY_DESC
+   										, BOARD_ID
+   										, PARENT_REPLY_ID
+   										, REPLY_ORDER
+   										, REPLY_REGISTER_DATE
+   										, REPLY_MODIFY_DATE
+   									) 
+			VALUES 					( 
+										REPLY_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, ?
+										, ?
+										, ?
+										, ?
+										, SYSDATE
+										, SYSDATE
+									)
+		</insertReReply>
+	</reply>
+	
 	<scrab>
 		<deleteScrab>
 			DELETE
@@ -598,4 +686,5 @@
 								)
 		</insertScrab>
 	</scrab>
+
 </query>

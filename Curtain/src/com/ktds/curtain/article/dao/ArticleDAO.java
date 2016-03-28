@@ -167,7 +167,9 @@ public class ArticleDAO {
 			stmt.setString(1, article.getArticleTitle());
 			stmt.setString(2, article.getArticleDesc());
 			stmt.setInt(3, article.getArticleTypeId());
+
 			stmt.setString(4, stdMember.getEmail());
+
 			stmt.setInt(5, article.getBoardId());
 			stmt.setInt(6, stdMember.getMajorGroupId());
 			int insertCount = stmt.executeUpdate();
@@ -282,6 +284,7 @@ public class ArticleDAO {
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				//article.setLike(false);
 				article.setDislike(false);
 
 				articles.add(article);
@@ -580,7 +583,7 @@ public class ArticleDAO {
 	}
 	
 	/**
-	 * 싫어요 수 가져오기 
+	 * 해당 article id 의 싫어요 수 가져오기 
 	 * @param dislikeVO
 	 * @return
 	 */
@@ -619,7 +622,7 @@ public class ArticleDAO {
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
-			String query = XML.getNodeString("//query/article/minusDislikeCount/text()");
+			String query = XML.getNodeString("//query/dislike/minusDislikeCount/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, dislikeVO.getArticleId());
 			stmt.executeUpdate();
@@ -641,13 +644,12 @@ public class ArticleDAO {
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
-			String query = XML.getNodeString("//query/article/plusDislikeCount/text()");
+			String query = XML.getNodeString("//query/dislike/plusDislikeCount/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, dislikeVO.getArticleId());
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			closeDB(conn, stmt, null);
 		}
 		

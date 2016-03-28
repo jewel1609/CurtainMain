@@ -6,6 +6,28 @@
 
 <head>
 
+<style type="text/css">
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	color: #868F84;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: #868F84;
+	opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #868F84;
+	opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #868F84;
+}
+
+</style>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">

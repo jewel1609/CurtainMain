@@ -81,7 +81,7 @@
 	<div class="w3-row">
 		<div class="w3-col m7 w3-main"
 			style="margin-left: 350px; margin-right: 100px; height: 705px; overflow: auto;">
-			<c:forEach items="${myLikesArticle}" var="article">
+			<c:forEach items="${myWriteArticles}" var="article">
 				<div class="w3-row-padding w3-margin-top">
 					<div class="w3-col m12">
 						<div class="w3-card-2 w3-white w3-round-large">

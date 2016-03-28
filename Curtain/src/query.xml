@@ -203,25 +203,24 @@
 		</hitsCount>
 		
 		
-		
 		<showMyWriteArticle>
 			SELECT	ARTICLE_ID
         				, ARTICLE_TITLE
 						, ARTICLE_DESC
 						, ARTICLE_MODIFY_DATE
 						, AT.ARTICLE_TYPE_NAME
-						, SM.NICK_NAME
+						, M.NICK_NAME
 						, BOARD_ID
 						, A.MAJOR_GROUP_ID
 						, HITS
 						, ARTICLE_LIKES
 			FROM	ARTICLE A
-                    , MEMBER SM
+                    , MEMBER M
                     , ARTICLE_TYPE AT
-			WHERE	A.EMAIL = SM.EMAIL
+			WHERE	A.EMAIL = M.EMAIL
 			AND     A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-			AND     BOARD_ID IN (1, 2)
-			AND		A.EMAIL = ?
+			AND		M.EMAIL = ?
+			ORDER	BY	A.ARTICLE_ID DESC
 		</showMyWriteArticle>
 		
 		<showLikesArticle>

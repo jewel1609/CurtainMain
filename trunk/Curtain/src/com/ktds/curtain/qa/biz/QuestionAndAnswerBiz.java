@@ -30,6 +30,9 @@ public class QuestionAndAnswerBiz {
 			return;
 		}
 		
+		questionAndAnswerVO.setQuestionDescription(
+				questionAndAnswerVO.getQuestionDescription().replace("\n", "<br />"));
+		
 		questionAndAnswerDAO.registerQuestion(questionAndAnswerVO);
 	}
 

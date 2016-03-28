@@ -1,6 +1,7 @@
 package com.ktds.curtain.article.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.reply.vo.ReplyVO;
 
 /**
  * Servlet implementation class ShowDetailServlet

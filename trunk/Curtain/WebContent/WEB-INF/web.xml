@@ -371,4 +371,14 @@
     <servlet-name>CheckMyQuestionServlet</servlet-name>
     <url-pattern>/checkMyQuestion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowDetailMyQuestionServlet</display-name>
+    <servlet-name>ShowDetailMyQuestionServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.qa.web.ShowDetailMyQuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowDetailMyQuestionServlet</servlet-name>
+    <url-pattern>/showDetailMyQuestion</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -33,8 +33,8 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showMajorArticle/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, 1);
-			// stmt.setInt(2, stdMember.getMajorGroupId());
+			stmt.setInt(1, stdMember.getMajorGroupId());
+			System.out.println(stdMember.getNickName());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -49,7 +49,7 @@ public class ArticleDAO {
 				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
-				article.setArticleLikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
 				article.setLike(false);
 
 				articles.add(article);
@@ -95,7 +95,7 @@ public class ArticleDAO {
 				article.setMajorGroupId(rs.getInt("UNIV_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
-
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
 				articles.add(article);
 			}
 
@@ -138,7 +138,7 @@ public class ArticleDAO {
 				article.setMajorGroupId(rs.getInt("UNIV_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
-				article.setArticleLikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
 
 				articles.add(article);
 			}
@@ -153,7 +153,7 @@ public class ArticleDAO {
 	}
 
 	//학과 게시판 글쓰기
-	public int doWriteMajorArticle(ArticleVO article) {
+	public int doWriteMajorArticle(ArticleVO article, MemberVO stdMember) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -167,9 +167,9 @@ public class ArticleDAO {
 			stmt.setString(1, article.getArticleTitle());
 			stmt.setString(2, article.getArticleDesc());
 			stmt.setInt(3, article.getArticleTypeId());
-			stmt.setString(4, article.getEmail());
+			stmt.setString(4, stdMember.getEmail());
 			stmt.setInt(5, article.getBoardId());
-			stmt.setInt(6, article.getMajorGroupId());
+			stmt.setInt(6, stdMember.getMajorGroupId());
 			int insertCount = stmt.executeUpdate();
 			return insertCount;
 
@@ -182,7 +182,7 @@ public class ArticleDAO {
 
 	// 대학 게시판 글쓰기
 
-	public int doWriteUnivArticle(ArticleVO article) {
+	public int doWriteUnivArticle(ArticleVO article, MemberVO stdMember) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -210,7 +210,7 @@ public class ArticleDAO {
 	}
 
 	// 홍보 게시판 글쓰기
-	public int doWriteAdArticle(ArticleVO article) {
+	public int doWriteAdArticle(ArticleVO article, MemberVO stdMember) {
 		return 0;
 	}
 

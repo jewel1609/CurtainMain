@@ -38,14 +38,13 @@ public class DoLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		
 		MemberVO member = new MemberVO();
 		member.setEmail(request.getParameter("loginId"));
 		member.setPassword(request.getParameter("loginPassword"));
 		
-		if (memberBiz.isExistMember(member, session) ) {
-			response.sendRedirect(Root.get(this) + "/myPage");
+		if (memberBiz.isExistMember(member, request) ) {
+			response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
 		}
 		else {
 			response.sendRedirect(Root.get(this) + "/main.jsp?errorCode=1");

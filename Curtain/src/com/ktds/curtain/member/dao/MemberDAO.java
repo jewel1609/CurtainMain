@@ -42,7 +42,7 @@ public class MemberDAO {
 			}
 	}
 	
-	public void updateMemberInfo(String userEmail, String userNickName) {
+	public void updateMemberInfo(String userEmail, String userNickName, String email) {
 		
 		loadOracleDriver();
 		
@@ -52,12 +52,13 @@ public class MemberDAO {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
 			// articleId에 맞는 데이터 불러오기
-			String query = XML.getNodeString("//query/member/updateMemberInfo/text()");
+			String query = XML.getNodeString("//query/stdMember/updateMemberInfo/text()");
 			stmt = conn.prepareStatement(query);
 			
 			//SQL Parameter Mapping
 			stmt.setString(1, userEmail);
 			stmt.setString(2, userNickName);
+			stmt.setString(3, email);
 			stmt.executeUpdate();
 			
 			
@@ -268,6 +269,39 @@ public class MemberDAO {
 		return majorGroupName;
 	}
 	
+	public String getMemberRank(int memberTypeId) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String memberRank = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getMemberRank/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, memberTypeId);
+			
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				memberRank = rs.getString("MEMBER_RANK");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return memberRank;
+		
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -296,6 +330,8 @@ public class MemberDAO {
 			}
 		}
 	}
+
+	
 
 	
 

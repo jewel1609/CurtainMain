@@ -231,24 +231,9 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showLikesArticle(MemberVO member, String boardId) {
+	public List<ArticleVO> showLikesArticle(MemberVO member) {
 		articles = new ArrayList<ArticleVO>();
-
 		articles = articleDAO.showLikesArticle(member);
-		
-		List<ArticleLikeVO> articleLikes = showArticleLike(member, boardId);
-		
-		for (ArticleVO article : articles) {
-			for (ArticleLikeVO articleLike : articleLikes ) {
-				if ( article.getArticleId() == articleLike.getArticleId() ){
-					article.setLike(true);
-				}
-			}
-		}
-		
-
-		articles = articleDAO.showLikesArticle(member);
-
 		return articles;
 	}
 	

@@ -360,6 +360,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>DuplicationCheckNickNameServlet</display-name>
+    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.dupl.web.DuplicationCheckNickNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
+    <url-pattern>/duplicationCheckNickName</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ArticleScrabServlet</display-name>
     <servlet-name>ArticleScrabServlet</servlet-name>
     <servlet-class>com.ktds.curtain.article.web.ArticleScrabServlet</servlet-class>

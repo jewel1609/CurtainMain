@@ -53,10 +53,13 @@ public class SecretArticleListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
-
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
-		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, 4);
+		
+		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, "4");
 
+		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, 4);
+		
+		request.setAttribute("topArticle", topArticle);
 		request.setAttribute("secretArticles", secretArticles);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/secretArticle.jsp");

@@ -13,19 +13,27 @@ import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.articleScrab.dao.ScrabDAO;
 import com.ktds.curtain.articleScrab.vo.ArticleScrabVO;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.reply.dao.ReplyDAO;
 
 public class ArticleBiz {
 	private ArticleDAO articleDAO;
 	private List<ArticleVO> articles;
 	private ArticleLikeDAO articleLikeDAO;
 	private DislikeDAO dislikeDAO;
+
+	private ReplyDAO replyDAO;
 	private ScrabDAO scrabDAO;
+
 	
 	public ArticleBiz() {
 		articleDAO = new ArticleDAO();
 		articleLikeDAO = new ArticleLikeDAO();
 		dislikeDAO = new DislikeDAO();
+
+		replyDAO = new ReplyDAO();
+
 		scrabDAO = new ScrabDAO();
+
 	}
 	
 	/**
@@ -33,11 +41,19 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
+
+	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId){
+
 	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId) {
+
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
 		
+
+		List<ArticleLikeVO> articleLikes = showMajorArticleLike(stdMember, boardId);
+
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
+
 		
 		for (ArticleVO article : articles) {
 			for (ArticleLikeVO articleLike : articleLikes ) {
@@ -51,10 +67,23 @@ public class ArticleBiz {
 	}
 	
 	/**
+
+	 * 내가 좋아요 한 글
+	 * @param stdMember
+	 * @return
+	 */
+	private List<ArticleLikeVO> showMajorArticleLike(MemberVO stdMember, String boardId) {
+		List<ArticleLikeVO> articleLikes = articleLikeDAO.showMajorArticleLike(stdMember, boardId);
+		return articleLikes;
+	}
+
+	/**
 	 * 해당 비밀 게시판 리스트 가져오기
 	 * @param stdMember
 	 * @return
 	 */
+
+
 	public List<ArticleVO> showSecretArticle(MemberVO stdMember, String boardId) {
 
 		articles = new ArrayList<ArticleVO>();
@@ -192,6 +221,7 @@ public class ArticleBiz {
 	 */
 	public ArticleVO showDetail(int articleId) {
 		ArticleVO article = articleDAO.showDetail(articleId);
+		article.setReplyList(replyDAO.getReplyListByArticleId(articleId));
 		return article;
 	}
 

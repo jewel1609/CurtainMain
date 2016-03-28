@@ -44,10 +44,13 @@ public class DoLoginServlet extends HttpServlet {
 		member.setEmail(request.getParameter("loginId"));
 		member.setPassword(request.getParameter("loginPassword"));
 		
-		memberBiz.isExistMember(member, session);
+		if (memberBiz.isExistMember(member, session) ) {
+			response.sendRedirect(Root.get(this) + "/myPage");
+		}
+		else {
+			response.sendRedirect(Root.get(this) + "/main.jsp?errorCode=1");
+		}
 		
-		response.sendRedirect(Root.get(this) + "/myPage");
-
 	}
 
 }

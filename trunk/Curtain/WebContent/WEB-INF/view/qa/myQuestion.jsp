@@ -61,33 +61,37 @@
 
 						<div style="clear: both;"></div>
 						
-						<div class="w3-white w3-round-large" style="padding: 10px; height: 650px; overflow: auto;">
-							<c:forEach items="${questions}" var="question">
-								<div class="w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;" >
-									<table class="w3-table">
-										<tr>
-											<td style="margin-left: 115px;">
-												<c:if test="${question.answerDescription ne null && question.checkedQuestion eq 'N' }">
-													<span class="eventNew" style="color: red;">new</span>
-												</c:if>
-												<span>${fn:substring(question.questionDate, 0, 16)}</span>
-											</td>
-											<td>
-												
-											</td>
-										</tr>
-									</table>
-									
-									<div style="float: left; margin-left: 20px; text-align: left;">
-										<h4 style="display: inline;">
-											문의 제목 : ${question.questionTitle}
-											<br />
-											문의 내용 : ${question.questionDescription}
-										</h4>
+						<form id="questionDetailForm"> 
+							<div class="w3-white w3-round-large" style="padding: 10px; height: 650px; overflow: auto;">
+								<c:forEach items="${questions}" var="question">
+									<div class="w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;" >
+										<table class="w3-table">
+											<tr>
+												<td style="margin-left: 115px;">
+													<c:if test="${question.answerDescription ne null && question.checkedQuestion eq 'N' }">
+														<span class="eventNew" style="color: red;">new</span>
+													</c:if>
+													<span>${fn:substring(question.questionDate, 0, 16)}</span>
+												</td>
+												<td>
+													<input type="button" value="${question.questionId}"/>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													문의 제목 : ${question.questionTitle}
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													문의 내용 : ${question.questionDescription}
+												</td>
+											</tr>
+										</table>
 									</div>
-								</div>
-							</c:forEach>
-						</div>
+								</c:forEach>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

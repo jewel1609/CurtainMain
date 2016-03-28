@@ -12,6 +12,8 @@ import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.Root;
 
+import oracle.net.aso.s;
+
 /**
  * Servlet implementation class DoLoginServlet
  */
@@ -40,10 +42,15 @@ public class DoLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberVO member = new MemberVO();
-		member.setEmail(request.getParameter("loginId"));
-		member.setPassword(request.getParameter("loginPassword"));
+		member.setEmail(request.getParameter("userId"));
+		member.setPassword(request.getParameter("userPassword"));
+		String autoLogin = request.getParameter("autoLoginCheckBox");
+	
 		
 		if (memberBiz.isExistMember(member, request) ) {
+			if(autoLogin != null) {
+				memberBiz.setCookie(member, response);
+			}
 			response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
 		}
 		else {

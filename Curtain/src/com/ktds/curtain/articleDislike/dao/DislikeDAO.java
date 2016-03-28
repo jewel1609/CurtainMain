@@ -17,6 +17,11 @@ import com.ktds.curtain.util.xml.XML;
 
 public class DislikeDAO {
 
+	/**
+	 * 내가 기존에 싫어요 한 카운트(0아니면 1)
+	 * @param dislikeVO
+	 * @return
+	 */
 	public int selectDislikeCount(ArticleDislikeVO dislikeVO) {
 		
 		loadOracleDriver();

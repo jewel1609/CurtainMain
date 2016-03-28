@@ -50,7 +50,7 @@ public class DislikeServlet extends HttpServlet {
 		ArticleDislikeVO dislikeVO = new ArticleDislikeVO();
 		dislikeVO.setArticleId(articleId);
 		dislikeVO.setEmail("shinmi@curtain.ac.kr");
-		//TODO 나중에 세션값 받아와서 바꿔주어야함
+		//TODO 세션값 받아와서 바꿔주어야함
 		//dislikeVO.setStudentEmail(member.getStudentEmail());
 		
 		dislikeVO.setBoardId(4);
@@ -60,24 +60,26 @@ public class DislikeServlet extends HttpServlet {
 		
 		//TODO 히스토리 체크
 		
+		// 바뀐 뒤 
 		boolean isExistDislikeData = dislikeBiz.isExistDislikeData(dislikeVO);
+		// 전체 싫어요 수 
 		int updateDislikeCount = dislikeBiz.getArticleDislikes(dislikeVO);
+		
 		System.out.println(updateDislikeCount);
+		
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");
 		json.append(", \"isDislike\" : " + isExistDislikeData);
 		json.append(", \"updateDislikeCount\" : "+ updateDislikeCount);
-		json.append(", \"articleId\" : " +articleId);
+		json.append(", \"articleId\" : " + articleId);
 		json.append("}");
 		
 		PrintWriter out = response.getWriter();
 		out.print( json.toString() );
 		out.flush();
 		out.close();
-		
-		
-		
+
 	}
 
 }

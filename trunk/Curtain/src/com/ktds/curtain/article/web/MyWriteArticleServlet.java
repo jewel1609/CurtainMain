@@ -43,13 +43,10 @@ public class MyWriteArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		//test 임의로 값 넣음
-		ArticleVO article = new ArticleVO();
-
 		
-		List<ArticleVO> myWriteArticles = articleBiz.showMyWriteArticle(stdMember);	
+		List<ArticleVO> myWriteArticles = articleBiz.showMyWriteArticle(member);	
 		request.setAttribute("myWriteArticles", myWriteArticles);	
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/myWriteArticle.jsp");
 		rd.forward(request, response);

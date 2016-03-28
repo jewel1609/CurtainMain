@@ -29,11 +29,11 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String BoardId) {
+	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
 		
-		List<ArticleLikeVO> articleLikes = showMajorArticleLike(stdMember, BoardId);
+		List<ArticleLikeVO> articleLikes = showMajorArticleLike(stdMember, boardId);
 		
 		for (ArticleVO article : articles) {
 			for (ArticleLikeVO articleLike : articleLikes ) {
@@ -61,14 +61,7 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-
-
-
-
 	public List<ArticleVO> showSecretArticle(MemberVO stdMember, int boardId) {
-
-	
-
 
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showSecretArticle(stdMember);
@@ -78,7 +71,7 @@ public class ArticleBiz {
 		for(ArticleVO article : articles){
 			for(ArticleDislikeVO articleDislike : articleDislikes ) {
 				if( article.getArticleId() == articleDislike.getArticleId() ){
-					article.setLike(true);
+					article.setDislike(true);
 				}
 			}
 		}

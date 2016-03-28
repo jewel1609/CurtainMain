@@ -165,33 +165,21 @@ public class ArticleBiz {
 	 * @return
 	 */
 
-	public List<ArticleVO> showLikesArticle(MemberVO member, String BoardId) {
-
+	public List<ArticleVO> showLikesArticle(MemberVO member) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showLikesArticle(member);
-		
-		List<ArticleLikeVO> articleLikes = showMajorArticleLike(member, BoardId);
-		
-		for (ArticleVO article : articles) {
-			for (ArticleLikeVO articleLike : articleLikes ) {
-				if ( article.getArticleId() == articleLike.getArticleId() ){
-					article.setLike(true);
-				}
-			}
-		}
-		
 		return articles;
 	}
 	
-	public List<ArticleVO> showMyScrabArticle(MemberVO stdMember) {
+	public List<ArticleVO> showMyScrabArticle(MemberVO member) {
 		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showMyScrabArticle(stdMember);
+		articles = articleDAO.showMyScrabArticle(member);
 		return articles;
 	}
 	
-	public List<ArticleVO> showMyWriteArticle(MemberVO stdMember) {
+	public List<ArticleVO> showMyWriteArticle(MemberVO member) {
 		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showMyWriteArticle(stdMember);
+		articles = articleDAO.showMyWriteArticle(member);
 		return articles;
 	}
 

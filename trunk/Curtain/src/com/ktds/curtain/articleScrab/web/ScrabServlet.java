@@ -41,10 +41,13 @@ public class ScrabServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int articleId = Integer.parseInt(request.getParameter("articleId"));
+		String scrabArticleId = request.getParameter("articleId");
+		int articleId = Integer.parseInt(scrabArticleId.substring(5));
+		
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
-		System.out.println("articleId" + articleId );
+		System.out.println("articleId : " + scrabArticleId);
+		System.out.println(" boardId : " + boardId);
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		

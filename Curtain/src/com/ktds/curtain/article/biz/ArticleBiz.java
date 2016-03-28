@@ -165,12 +165,12 @@ public class ArticleBiz {
 	 * @return
 	 */
 
-	public List<ArticleVO> showLikesArticle(MemberVO stdMember, String BoardId) {
+	public List<ArticleVO> showLikesArticle(MemberVO member, String BoardId) {
 
 		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showLikesArticle(stdMember);
+		articles = articleDAO.showLikesArticle(member);
 		
-		List<ArticleLikeVO> articleLikes = showMajorArticleLike(stdMember, BoardId);
+		List<ArticleLikeVO> articleLikes = showMajorArticleLike(member, BoardId);
 		
 		for (ArticleVO article : articles) {
 			for (ArticleLikeVO articleLike : articleLikes ) {

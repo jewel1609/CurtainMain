@@ -46,10 +46,8 @@ public class MyLikesArticleServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();		
 		
-		//test 임의로 값 넣음
-		ArticleVO article = new ArticleVO();
-		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
-		List<ArticleVO> myLikesArticle = articleBiz.showLikesArticle(stdMember, BoardId.MAJOR_BOARD);
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		List<ArticleVO> myLikesArticle = articleBiz.showLikesArticle(member, BoardId.MAJOR_BOARD);
 		
 		request.setAttribute("myLikesArticle", myLikesArticle);
 		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/myLikesArticle.jsp");

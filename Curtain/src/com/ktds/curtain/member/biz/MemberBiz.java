@@ -65,4 +65,16 @@ public class MemberBiz {
 		}
 
 	}
+
+	public String getUnivName(int univId) {
+		return memberDAO.getUnivName(univId);
+	}
+
+	public String getMajorName(int majorId) {
+		return memberDAO.getMajorName(majorId);
+	}
+
+	public String getMajorGroupName(int majorGroupId) {
+		return memberDAO.getMajorGroupName(majorGroupId);
+	}
 }

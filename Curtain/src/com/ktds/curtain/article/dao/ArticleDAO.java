@@ -301,7 +301,7 @@ public class ArticleDAO {
 	}
 	
 	//내가좋아요한글
-	public List<ArticleVO> showLikesArticle(MemberVO stdMember) {
+	public List<ArticleVO> showLikesArticle(MemberVO member) {
 
 		loadOracleDriver();
 
@@ -346,7 +346,7 @@ public class ArticleDAO {
 	}
 	
 	//내가 스크랩한글
-	public List<ArticleVO> showMyScrabArticle(MemberVO stdMember) {
+	public List<ArticleVO> showMyScrabArticle(MemberVO member) {
 
 		loadOracleDriver();
 
@@ -390,7 +390,7 @@ public class ArticleDAO {
 	}
 	
 	//내가 쓴글
-	public List<ArticleVO> showMyWriteArticle(MemberVO stdMember) {
+	public List<ArticleVO> showMyWriteArticle(MemberVO member) {
 
 		loadOracleDriver();
 

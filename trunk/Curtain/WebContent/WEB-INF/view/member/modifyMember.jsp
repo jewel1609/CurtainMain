@@ -141,7 +141,7 @@
           				<b>회원 등급</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>한겹 커튼</p>
+    					<p>${ memberRank }</p>
     				</div>
           		</div>
             </div>

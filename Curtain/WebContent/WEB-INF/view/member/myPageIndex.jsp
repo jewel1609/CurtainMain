@@ -50,7 +50,7 @@
   				<div class="w3-container w3-third">
     				<h2>포인트</h2>
     				<img src="/resource/img/point.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 90px;">
-    				<p style="position:relative; top:10px;">1000 포인트</p> 
+    				<p style="position:relative; top:10px;">${ member.point } 포인트</p> 
   				</div>
   				<div class="w3-container w3-third">
     				<h2>활동량</h2>
@@ -161,7 +161,7 @@
           				<b>학교 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>${ member.univId }</p>
+    					<p>${ univName }</p>
     				</div>
           		</div>
             </div>
@@ -178,7 +178,7 @@
           				<b>학과 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>${ member.majorId }</p>
+    					<p>${ majorName}</p>
     				</div>
           		</div>
             </div>

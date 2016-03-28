@@ -158,7 +158,7 @@
           				<b>학교 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>${ member.univId }</p>
+    					<p>${ univName }</p>
     				</div>
           		</div>
             </div>
@@ -175,7 +175,7 @@
           				<b>학과 소계열명</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>${ member.majorGroupId }</p>
+    					<p>${ majorGroupName }</p>
     				</div>
           		</div>
             </div>
@@ -192,7 +192,7 @@
           				<b>학과 이름</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>${ member.majorId }</p>
+    					<p>${ majorName }</p>
     				</div>
           		</div>
             </div>

@@ -46,9 +46,9 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
-		
 
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD);
+		
 		
 		request.setAttribute("majorArticles", majorArticles);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/article.jsp");

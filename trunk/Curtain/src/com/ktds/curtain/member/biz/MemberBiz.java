@@ -1,6 +1,8 @@
 package com.ktds.curtain.member.biz;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.major.dao.MajorDAO;
@@ -64,6 +66,20 @@ public class MemberBiz {
 			return true;
 		}
 
+	}
+
+	public void setCookie(MemberVO member, HttpServletResponse response) {
+		Cookie autoLogin = new Cookie("autoLogin", "true");
+		autoLogin.setMaxAge(30*24*60*60);
+		response.addCookie(autoLogin);
+
+		Cookie userId = new Cookie("userId", member.getEmail());
+		userId.setMaxAge(30*24*60*60);
+		response.addCookie(userId);
+		
+		Cookie password = new Cookie("userPassword", member.getPassword());
+		password.setMaxAge(30*24*60*60);
+		response.addCookie(password);
 	}
 
 	public String getUnivName(int univId) {

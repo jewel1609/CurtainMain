@@ -445,17 +445,25 @@
 		</registerQuestion>
 		
 		<getMyQuestionsByEmail>
-			SELECT	QUESTION_TITLE
-					, QUESTION_DESCRIPTION
-					, ANSWER_DESCRIPTION
-					, QUESTION_DATE
-					, ANSWER_DATE
-					, IS_CHECKED
+			SELECT	*
 			FROM	CURTAIN.QA
 			WHERE	EMAIL = ?
 			ORDER	BY IS_CHECKED DESC
 					, QUESTION_DATE DESC
 		</getMyQuestionsByEmail>
+		
+		<setIsCheckedByQuestionId>
+			UPDATE	QA
+			SET		IS_CHECKED = 'Y'
+			WHERE	QUESTION_ID = ?
+			AND		ANSWER_DESCRIPTION IS NOT NULL
+		</setIsCheckedByQuestionId>
+		
+		<getMyQuestionByQuestionId>
+			SELECT	*
+			FROM	CURTAIN.QA
+			WHERE	QUESTION_ID = ?
+		</getMyQuestionByQuestionId>
 	</qa>
 	
 	<member>

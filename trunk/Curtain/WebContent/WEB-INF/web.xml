@@ -360,5 +360,9 @@
     <servlet-name>DoLoginServlet</servlet-name>
     <url-pattern>/doLogin</url-pattern>
   </servlet-mapping>
+  
+  <session-config> 
+	<session-timeout>10</session-timeout> 
+  </session-config>
 
 </web-app>

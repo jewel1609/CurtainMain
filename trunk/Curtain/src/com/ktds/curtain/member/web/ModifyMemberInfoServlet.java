@@ -41,8 +41,6 @@ public class ModifyMemberInfoServlet extends HttpServlet {
 		String userNickName = request.getParameter("userNickName");
 		
 		memberBiz.modifyMemberInfo(userEmail, userNickName);
-		
-	
 	
 	}
 

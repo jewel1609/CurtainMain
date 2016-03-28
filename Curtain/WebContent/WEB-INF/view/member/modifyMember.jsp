@@ -7,6 +7,37 @@
 		
 	$(document).ready( function(){
 		
+		$("#send").click(function(e) {
+			var userNickName = $("#userNickName").val();
+			$.post(
+					"/duplicationCheckNickName"
+					, { "userNickName" : userNickName }
+					, function(data) {
+						
+						try{
+							jsonData3 = JSON.parse(data);
+						}
+						catch(e) { //자바스크립트는 타입이 없기때문에 e만 적으면 된다.
+						}
+						
+						if ( "${member.nickName}" == userNickName ) {
+							alert("현재 사용중인 닉네임입니다.(사용 가능)");
+							return;
+						}
+						if(jsonData3.isCheckId) {
+							alert("이미 존재하는 닉네임입니다.");
+							$("#userNickName").val("");
+						}
+						if(!jsonData3.isCheckId) {
+							alert("사용가능한 닉네임입니다.");
+						}
+					  }
+					);
+		}); 
+		
+		
+		
+		
 		$("#cancelBtn1").click(function() {
 			location.href = "/myPage";
 		});	
@@ -123,7 +154,9 @@
           			</div>
           			<div class="w3-col" style="width:80%">
     					<input type="text" tabindex="2" id="userNickName" name="userNickName" placeholder="${ member.nickName }" />
-						<span id="duplicationNickName" style="color: red;"></span>				
+						<button type="button" id="send" class="btn btn-primary" tabindex="3" style="background-color:#FF3300; border:0px;">
+							중복 체크
+						</button>	
     				</div>
           		</div>
             </div>

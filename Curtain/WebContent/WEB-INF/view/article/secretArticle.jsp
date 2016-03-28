@@ -144,6 +144,7 @@
 											<textarea class="w3-col m12" rows="5" id="comment"
 												name="articleDescription"
 												style="margin-bottom: 5px; overflow: visible;"
+												
 												placeholder="무슨 생각을 하고 계신가요?"></textarea>
 										</div>
 
@@ -153,7 +154,8 @@
 										</div>
 										<button type="button" class="btn btn-default" id="doWrite"
 											style="border-color: #FF3300; color: #FF3300;">게시</button>
-										<div id="imagePreview"><img id="uploadImg" src="#" width="300px;"></div>
+										
+										<div id="imagePreview"><img id="uploadImg" src="#" width="100px;"></div>
 									</div>
 								</div>
 							</form>
@@ -185,7 +187,7 @@
 										<c:if test="${article.articleTypeName eq '기타'}">
 											<span class="label label-default">${article.articleTypeName}</span>
 										</c:if>
-										
+										<strong>${article.articleTitle}</strong>
 									</div>
 									<div>
 										<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
@@ -193,9 +195,6 @@
 										<strong>${article.articleId}</strong>
 										<strong>${article.boardId}</strong>
 										
-									</div>
-									<div>
-										<strong>${article.articleTitle}</strong>
 									</div>
 									
 									<div>
@@ -228,9 +227,9 @@
 										</c:if>
 									</div>
 									<div style="float:left;">
-									<img src="/resource/img/reply_small.png" style="width:20px;">
-									댓글 수<img src="/resource/img/scrap_inactive_small.png" style="width:20px;">
-									스크랩하기
+									<img src="/resource/img/reply_small.png" style="width:20px;">댓글 수
+									<img src="/resource/img/scrap_inactive_small.png" style="width:20px;">스크랩하기
+									
 									</div>
 								</div>
 							</div>

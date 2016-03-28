@@ -220,6 +220,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>HitsCountServlet</display-name>
+    <servlet-name>HitsCountServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.HitsCountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HitsCountServlet</servlet-name>
+    <url-pattern>/hitsCount</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>SecretArticleListServlet</display-name>
     <servlet-name>SecretArticleListServlet</servlet-name>
     <servlet-class>com.ktds.curtain.article.web.SecretArticleListServlet</servlet-class>
@@ -280,12 +290,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>PrintMyQuestionServlet</display-name>
-    <servlet-name>PrintMyQuestionServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.qa.web.PrintMyQuestionServlet</servlet-class>
+    <display-name>ShowMyQuestionsServlet</display-name>
+    <servlet-name>ShowMyQuestionsServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.qa.web.ShowMyQuestionsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PrintMyQuestionServlet</servlet-name>
+    <servlet-name>ShowMyQuestionsServlet</servlet-name>
     <url-pattern>/myQuestion</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -348,60 +358,17 @@
     <servlet-name>DoLoginServlet</servlet-name>
     <url-pattern>/doLogin</url-pattern>
   </servlet-mapping>
-
-  <servlet>
-    <description></description>
-    <display-name>HitsCountServlet</display-name>
-    <servlet-name>HitsCountServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.article.web.HitsCountServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HitsCountServlet</servlet-name>
-    <url-pattern>/hitsCount</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>DoWriteReplyServlet</display-name>
-    <servlet-name>DoWriteReplyServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.reply.web.DoWriteReplyServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DoWriteReplyServlet</servlet-name>
-    <url-pattern>/doWriteReply</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <description></description>
-    <display-name>DuplicationCheckNickNameServlet</display-name>
-    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.dupl.web.DuplicationCheckNickNameServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
-    <url-pattern>/duplicationCheckNickName</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ArticleScrabServlet</display-name>
-    <servlet-name>ArticleScrabServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.article.web.ArticleScrabServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ArticleScrabServlet</servlet-name>
-    <url-pattern>/articleScrab</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ScrabServlet</display-name>
-    <servlet-name>ScrabServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.articleScrab.web.ScrabServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ScrabServlet</servlet-name>
-    <url-pattern>/scrab</url-pattern>
-  </servlet-mapping>
-  <session-config> 
-	<session-timeout>10</session-timeout> 
+  <session-config>
+    <session-timeout>10</session-timeout>
   </session-config>
-
+  <servlet>
+    <description></description>
+    <display-name>CheckMyQuestionServlet</display-name>
+    <servlet-name>CheckMyQuestionServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.qa.web.CheckMyQuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckMyQuestionServlet</servlet-name>
+    <url-pattern>/checkMyQuestion</url-pattern>
+  </servlet-mapping>
 </web-app>

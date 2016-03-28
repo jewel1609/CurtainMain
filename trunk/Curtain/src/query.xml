@@ -316,7 +316,7 @@
 		</showTopArticle>
 	</article>
 	<articleLikes>
-		<showMajorArticleLike>
+		<showArticleLike>
 			SELECT 		ARTICLE_LIKE_ID
 						, ARTICLE_ID
 						, EMAIL
@@ -325,7 +325,7 @@
 			FROM 		ARTICLE_LIKE
 			WHERE		EMAIL = ?
 			AND			BOARD_ID = ?
-		</showMajorArticleLike>
+		</showArticleLike>
 		<selectLikeCount>
 			SELECT	COUNT(ARTICLE_LIKE_ID)
 			FROM	ARTICLE_LIKE
@@ -548,7 +548,7 @@
 										, ?
 							 )
 		</insertDislike>
-		<showSecretArticleDisLike>
+		<showArticleDisLike>
 			SELECT 		ARTICLE_DISLIKE_ID
 						, ARTICLE_ID
 						, EMAIL
@@ -557,7 +557,7 @@
 			FROM 		ARTICLE_DISLIKE
 			WHERE		EMAIL = ?
 			AND			BOARD_ID = ?
-		</showSecretArticleDisLike>
+		</showArticleDisLike>
 		
 		<minusDislikeCount>
 			UPDATE	ARTICLE
@@ -661,6 +661,14 @@
 	</reply>
 	
 	<scrab>
+		<selectScrabCount>
+			SELECT	COUNT(ARTICLE_SCRAB_ID)
+			FROM	ARTICLE_SCRAB
+			WHERE	ARTICLE_ID = ?
+			AND		EMAIL = ?
+			AND		BOARD_ID = ?
+		</selectScrabCount>
+		
 		<deleteScrab>
 			DELETE
 			FROM	ARTICLE_SCRAB
@@ -685,6 +693,16 @@
 									, ?
 								)
 		</insertScrab>
+		<showArticleScrab>
+			SELECT 		ARTICLE_SCRAB_ID
+						, ARTICLE_ID
+						, EMAIL
+						, SCRAB_DATE
+						, BOARD_ID
+			FROM 		ARTICLE_SCRAB
+			WHERE		EMAIL = ?
+			AND			BOARD_ID = ?
+		</showArticleScrab>
 	</scrab>
 
 </query>

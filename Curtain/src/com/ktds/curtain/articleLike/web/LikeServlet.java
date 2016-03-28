@@ -7,9 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.articleLike.biz.ArticleLikeBiz;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
+import com.ktds.curtain.member.vo.MemberVO;
 
 
 /**
@@ -41,16 +43,15 @@ public class LikeServlet extends HttpServlet {
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 //		boardId
-//		HttpSession session = request.getSession();
-//		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
 		
 		ArticleLikeVO articleLikeVO = new ArticleLikeVO();
 		articleLikeVO.setArticleId(articleId);
-		articleLikeVO.setEmail("test@smu.ac.kr");
 		articleLikeVO.setBoradId(boardId);
-		articleLikeBiz.insertOrDeleteLikeData(articleLikeVO);
+		articleLikeBiz.insertOrDeleteLikeData(articleLikeVO, member);
 		
-		boolean isExistLikeData =  articleLikeBiz.isExistLikeData(articleLikeVO);
+		boolean isExistLikeData =  articleLikeBiz.isExistLikeData(articleLikeVO, member);
 		int updateLikeCount = articleLikeBiz.getArticleLikes(articleLikeVO);
 		System.out.println(updateLikeCount);
 		

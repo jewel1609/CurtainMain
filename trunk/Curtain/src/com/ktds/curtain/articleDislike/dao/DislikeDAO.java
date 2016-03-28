@@ -13,17 +13,16 @@ import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
-
-
 public class DislikeDAO {
 
 	/**
-	 * 내가 기존에 싫어요 한 카운트(0아니면 1)
+	 * 싫어요 여부(0아니면 1)
+	 * 
 	 * @param dislikeVO
 	 * @return
 	 */
 	public int selectDislikeCount(ArticleDislikeVO dislikeVO) {
-		
+
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -53,7 +52,11 @@ public class DislikeDAO {
 		}
 	}
 
-
+	/**
+	 * 싫어요 삭제
+	 * 
+	 * @param dislikeVO
+	 */
 	public void deleteDislike(ArticleDislikeVO dislikeVO) {
 		loadOracleDriver();
 
@@ -76,12 +79,11 @@ public class DislikeDAO {
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
 			closeDB(conn, stmt, null);
-		}	
+		}
 	}
 
-
 	public void insertDislike(ArticleDislikeVO dislikeVO) {
-		
+
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -96,55 +98,54 @@ public class DislikeDAO {
 			stmt.setInt(1, dislikeVO.getArticleId());
 			stmt.setString(2, dislikeVO.getEmail());
 			stmt.setInt(3, dislikeVO.getBoardId());
-			
+
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
 			closeDB(conn, stmt, null);
-		}	
-		
+		}
+
 	}
-	
-	   public List<ArticleDislikeVO> showSecretArticleDislike(MemberVO stdMember, int boardId) {
-		      
-		      loadOracleDriver();
 
-		      Connection conn = null;
-		      PreparedStatement stmt = null;
-		      ResultSet rs = null;
-		      List<ArticleDislikeVO> articleDislikes = new ArrayList<ArticleDislikeVO>();
-		      ArticleDislikeVO articleDislike = null;
+	public List<ArticleDislikeVO> showArticleDislike(MemberVO stdMember, String boardId) {
 
-		      try {
-		         conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+		loadOracleDriver();
 
-		         String query = XML.getNodeString("//query/dislike/showSecretArticleDisLike/text()");
-		         stmt = conn.prepareStatement(query);
-		         stmt.setString(1, "shinmi@curtain.ac.kr");
-		         stmt.setInt(2, boardId);
-		         rs = stmt.executeQuery();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleDislikeVO> articleDislikes = new ArrayList<ArticleDislikeVO>();
+		ArticleDislikeVO articleDislike = null;
 
-		         while (rs.next()) {
-		            articleDislike = new ArticleDislikeVO();
-		            articleDislike.setArticleDislikeId(rs.getInt("ARTICLE_DISLIKE_ID"));
-		            articleDislike.setArticleId(rs.getInt("ARTICLE_ID"));
-		            articleDislike.setEmail(rs.getString("EMAIL"));
-		            articleDislike.setDislikeDate(rs.getString("DISLIKE_DATE"));
-		            articleDislike.setBoardId(rs.getInt("BOARD_ID"));
-		            articleDislikes.add(articleDislike);
-		         }
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
-		         return articleDislikes;
+			String query = XML.getNodeString("//query/dislike/showArticleDisLike/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, stdMember.getEmail());
+			stmt.setInt(2, Integer.parseInt(boardId));
+			rs = stmt.executeQuery();
 
-		      } catch (SQLException e) {
-		         // TODO Auto-generated catch block
-		         closeDB(conn, stmt, rs);
-		      }
-		      return articleDislikes;
-		   }
-	
+			while (rs.next()) {
+				articleDislike = new ArticleDislikeVO();
+				articleDislike.setArticleDislikeId(rs.getInt("ARTICLE_DISLIKE_ID"));
+				articleDislike.setArticleId(rs.getInt("ARTICLE_ID"));
+				articleDislike.setEmail(rs.getString("EMAIL"));
+				articleDislike.setDislikeDate(rs.getString("DISLIKE_DATE"));
+				articleDislike.setBoardId(rs.getInt("BOARD_ID"));
+				articleDislikes.add(articleDislike);
+			}
+
+			return articleDislikes;
+
+		} catch (SQLException e) {
+			closeDB(conn, stmt, rs);
+		}
+		return articleDislikes;
+	}
+
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -174,6 +175,5 @@ public class DislikeDAO {
 		}
 
 	}
-
 
 }

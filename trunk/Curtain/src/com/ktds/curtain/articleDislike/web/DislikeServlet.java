@@ -41,8 +41,9 @@ public class DislikeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		int articleId = Integer.parseInt(request.getParameter("articleId"));
-		System.out.println("articleId : " + articleId);
+		String dislikeArticleId = request.getParameter("articleId");
+		int articleId = Integer.parseInt(dislikeArticleId.substring(7));
+
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");

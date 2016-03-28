@@ -19,11 +19,11 @@ public class ArticleVO extends MemberVO {
 	private int articleDislikes;
 	private String articleTypeName;
 	private int articleScrab;
-	
+
 	private boolean dislike;
 	private boolean like;
+	private boolean scrab;
 
-	
 	// setters and getters
 	public int getArticleScrab() {
 		return articleScrab;
@@ -44,7 +44,6 @@ public class ArticleVO extends MemberVO {
 	public boolean isDislike() {
 		return dislike;
 	}
-
 
 	public boolean getLike() {
 		return like;
@@ -164,6 +163,14 @@ public class ArticleVO extends MemberVO {
 
 	public boolean getDislike() {
 		return dislike;
+	}
+
+	public boolean isScrab() {
+		return scrab;
+	}
+
+	public void setScrab(boolean scrab) {
+		this.scrab = scrab;
 	}
 
 }

@@ -41,7 +41,7 @@ public class MyPageServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
-			MemberVO member = (MemberVO) session.getAttribute("_STU_MEMBER_");
+			MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 			
 			request.setAttribute("member", member);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/myPageIndex.jsp");

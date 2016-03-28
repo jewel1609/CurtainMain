@@ -7,6 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class MyPageServlet
@@ -33,6 +36,13 @@ public class MyPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+			// session을 받아온다.
+			HttpSession session = request.getSession();
+			
+			// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
+			MemberVO member = (MemberVO) session.getAttribute("_STU_MEMBER_");
+		
 		
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/myPageIndex.jsp");
 			rd.forward(request, response);

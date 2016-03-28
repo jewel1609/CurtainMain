@@ -51,7 +51,7 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD);
 		
 		request.setAttribute("majorArticles", majorArticles);
-		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/article.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/article.jsp");
 		rd.forward(request, response);
 	}
 

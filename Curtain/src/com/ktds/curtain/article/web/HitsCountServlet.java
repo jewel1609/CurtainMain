@@ -55,7 +55,15 @@ public class HitsCountServlet extends HttpServlet {
 		else if ( boardId == Integer.parseInt(BoardId.UNIV_BOARD)) {
 			response.sendRedirect("/studentUnivArticle");
 		}
-		
+		else if ( boardId == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) {
+			response.sendRedirect("/secretArticleList");
+		}
+		else if( boardId == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)){
+			
+		}
+		else if( boardId == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)){
+			
+		}
 	}
 
 }

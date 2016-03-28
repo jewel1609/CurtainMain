@@ -468,6 +468,12 @@
 			WHERE   MAJOR_GROUP_ID = ?
 		</getMajorGroupName>
 		
+		<getMemberRank>
+			SELECT	MEMBER_RANK
+			FROM	MEMBER_TYPE
+			WHERE	MEMBER_TYPE_ID = ?
+		</getMemberRank>
+		
 		
 		
 	</member>

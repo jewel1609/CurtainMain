@@ -16,6 +16,7 @@ public class ArticleVO extends MemberVO {
 	private int univId;
 	private int hits;
 	private int articleLikes;
+
 	private int articleDislikes;
 	private String articleTypeName;
 	
@@ -29,6 +30,11 @@ public class ArticleVO extends MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public boolean isDislike() {
+		return dislike;
+	}
+
 
 	public boolean getLike() {
 		return like;

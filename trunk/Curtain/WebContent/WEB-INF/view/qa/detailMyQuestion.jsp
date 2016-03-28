@@ -8,15 +8,7 @@
 		$("#btnFAQ").click(function() {
 			var form = $("#btnForm");
 			form.attr("method", "post");
-			form.attr("action", "<c:url value="/questionAndAnswer"/> ");
-			form.submit();
-		});
-		
-		$(".btnQuestion").click( function () {
-			
-			var form = $(this).parent();
-			form.attr("method", "post");
-			form.attr("action", "<c:url value="/checkMyQuestion"/> ");
+			form.attr("action", "<c:url value="/myQuestion"/> ");
 			form.submit();
 		});
 	});
@@ -48,7 +40,7 @@
 								<div id="btnFAQ" class="btn btn-primary" style="float: right;
 									 border: 0px currentColor; border-image: none; 
 									 background-color: rgb(255, 51, 0); color: white;">
-									뒤로가기
+									리스트 보기
 								</div>
 							</div>
 						</form>
@@ -56,36 +48,54 @@
 						<div style="clear: both;"></div>
 						
 						<div class="w3-white w3-round-large" style="padding: 10px; height: 650px; overflow: auto;">
-							<c:forEach items="${questions}" var="question">
-								<form> 
-									<div class="btnQuestion w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;" >
-										<table class="w3-table">
-											<tr>
-												<td style="margin-left: 115px;">
-													<c:if test="${question.answerDescription ne null && question.isChecked eq 'N' }">
-														<span class="eventNew" style="color: red;">new</span>
-													</c:if>
-													<span>${fn:substring(question.questionDate, 0, 16)}</span>
-												</td>
-												<td>
-													<input class="questionId" name="questionId" type="hidden" value="${question.questionId}"/>
-												</td>
-												
-											</tr>
-											<tr>
-												<td colspan="2">
-													문의 제목 : ${question.questionTitle}
-												</td>
-											</tr>
-											<tr>
-												<td colspan="2">
-													문의 내용 : ${question.questionDescription}
-												</td>
-											</tr>
-										</table>
-									</div>
-								</form>
-							</c:forEach>
+							<div class="w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;" >
+								<table class="w3-table">
+									<tr>
+										<td style="margin-left: 115px;">
+											<span>${fn:substring(question.questionDate, 0, 16)}</span>
+										</td>
+										<td style="text-align: right;">
+											<c:if test="${question.answerDescription ne null}">
+												<span class="eventNew" style="color: red;">답변완료</span>
+											</c:if>
+											<c:if test="${question.answerDescription eq null}">
+												<span class="eventNew" style="color: red;">답변 미완료</span>
+											</c:if>
+										</td>
+										
+									</tr>
+									<tr>
+										<td colspan="2">
+											문의 제목 : ${question.questionTitle}
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											문의 내용 : ${question.questionDescription}
+										</td>
+									</tr>
+								</table>
+							</div>
+							<c:if test="${question.answerDescription ne null}">
+								<div class="w3-container w3-card-2" style="margin:10px 0 10px 40px; padding: 10px 10px 10px 10px;" >
+									<table class="w3-table">
+										<tr>
+											<td style="margin-left: 115px;">
+												<span>${fn:substring(question.answerDate, 0, 16)}</span>
+											</td>
+											<td>
+											</td>
+											
+										</tr>
+										<tr>
+											<td colspan="2">
+												▶답변 내용 : ${question.answerDescription}
+											</td>
+										</tr>
+									</table>
+								</div>
+							</c:if>
+							
 						</div>
 					</div>
 				</div>

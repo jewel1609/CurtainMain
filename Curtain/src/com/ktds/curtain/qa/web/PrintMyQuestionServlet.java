@@ -8,7 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.qa.biz.QuestionAndAnswerBiz;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 
@@ -38,11 +40,10 @@ public class PrintMyQuestionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// TODO 준호 세션에서 이메일을 받아와야 한다.
-		// 기업 회원인지 학생 회원인지 구분을 해주어야 한다.
-		String email = "sosdig@naver.com";
-		List<QuestionAndAnswerVO> questions = questionAndAnswerBiz.getMyQuestionsByEmail(email);
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
+		List<QuestionAndAnswerVO> questions = questionAndAnswerBiz.getMyQuestionsByEmail(member);
 		request.setAttribute("questions", questions);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/qa/myQuestion.jsp");

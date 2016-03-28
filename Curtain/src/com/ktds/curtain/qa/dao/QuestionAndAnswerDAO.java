@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
@@ -37,7 +38,7 @@ public class QuestionAndAnswerDAO {
 		}
 	}
 	
-	public List<QuestionAndAnswerVO> getMyQuestionsByEmail(String email) {
+	public List<QuestionAndAnswerVO> getMyQuestionsByEmail(MemberVO member) {
 		
 		loadOracleDriver();
 		
@@ -52,7 +53,7 @@ public class QuestionAndAnswerDAO {
 			
 			String query = XML.getNodeString("//query/qa/getMyQuestionsByEmail/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setString(1, email);
+			stmt.setString(1, member.getEmail());
 			
 			rs = stmt.executeQuery();
 			

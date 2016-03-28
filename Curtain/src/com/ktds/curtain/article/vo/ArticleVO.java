@@ -1,6 +1,9 @@
 package com.ktds.curtain.article.vo;
 
+import java.util.List;
+
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.reply.vo.ReplyVO;
 
 public class ArticleVO extends MemberVO {
 
@@ -22,6 +25,18 @@ public class ArticleVO extends MemberVO {
 
 	private boolean dislike;
 	private boolean like;
+	
+	private List<ReplyVO> replyList;
+	
+
+	public List<ReplyVO> getReplyList() {
+		return replyList;
+	}
+
+	public void setReplyList(List<ReplyVO> replyList) {
+		this.replyList = replyList;
+	}
+
 	private boolean scrab;
 
 	// setters and getters
@@ -32,6 +47,7 @@ public class ArticleVO extends MemberVO {
 	public void setArticleScrab(int articleScrab) {
 		this.articleScrab = articleScrab;
 	}
+
 
 	public String getEmail() {
 		return email;

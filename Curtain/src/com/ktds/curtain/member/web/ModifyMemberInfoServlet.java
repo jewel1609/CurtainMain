@@ -5,8 +5,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.member.biz.MemberBiz;
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class ModifyMemberInfoServlet
@@ -35,12 +37,24 @@ public class ModifyMemberInfoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//TODO 세션의 대학이메일(ID)의 사람의 이메일과 닉네임을 바꾸어준다. 
+		// session을 받아온다.
+		HttpSession session = request.getSession();
 		
+		// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		System.out.println(member.getEmail());
 		String userEmail = request.getParameter("userEmail");
 		String userNickName = request.getParameter("userNickName");
 		
-		memberBiz.modifyMemberInfo(userEmail, userNickName);
+		member.setSecondEmail(userEmail);
+		member.setNickName(userNickName);
+		
+		session.setAttribute("_MEMBER_", member);
+		
+		memberBiz.modifyMemberInfo(userEmail, userNickName, member.getEmail());
+		
+		
+		response.sendRedirect("/myPage");
 	
 	}
 

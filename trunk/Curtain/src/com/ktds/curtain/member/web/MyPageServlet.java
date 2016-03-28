@@ -48,10 +48,12 @@ public class MyPageServlet extends HttpServlet {
 			
 			String univName = memberBiz.getUnivName(member.getUnivId());
 			String majorName = memberBiz.getMajorName(member.getMajorId());
+			String memberRank = memberBiz.getMemberRank(member.getMemberTypeId());
 			
 			request.setAttribute("member", member);
 			request.setAttribute("univName", univName);
 			request.setAttribute("majorName", majorName);
+			request.setAttribute("memberRank", memberRank);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/myPageIndex.jsp");
 			rd.forward(request, response);
 	}

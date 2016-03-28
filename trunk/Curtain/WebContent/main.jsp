@@ -54,40 +54,86 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 	
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
+<!-- 말풍선 -->
+<link rel="stylesheet" type="text/css" href="<c:url value="/resource/css/member/arrowBox.css" />" />
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+<%
+	Cookie[] cookies = request.getCookies();
+	String userId = "";
+	String userPassword = "";
+	String autoLogin = "";
+	
+	if ( cookies != null ) {
+		for ( Cookie cookie : cookies ) {
+			if ( cookie.getName().equals("userId")) {
+				userId = cookie.getValue();
+			}
+			else if ( cookie.getName().equals("userPassword")) {
+				userPassword = cookie.getValue();
+			}
+			else if ( cookie.getName().equals("autoLogin")) {
+				autoLogin = cookie.getValue();
+			}
+		}
+	}
+%>
 
 <script>
 
 	$(document).ready( function () {
 		
-		$("#btnDoLogin").click( function () {
-			var loginId = $("#loginId").val();
-			loginId = $.trim(loginId);
-			if(loginId == "") {
-				$("#loginId").focus();
+		var autoLogin = "<%=autoLogin%>";
+		if (autoLogin == "true") {
+			$("#userId").val("<%=userId%>");
+			$("#userPassword").val("<%=userPassword%>");
+			$("#autoLoginCheckBox").click();
+			
+/* 			var form = $("#btnForm");
+			form.attr("method", "post");
+			form.attr("action", "<c:url value="/doLogin"/> ");
+			form.submit(); */
+		}
+		
+		$("#closeModal").click(function() {
+			$("#loginModal").modal('hide');
+		});
+		
+		$("#btnDoLogin").click(function() {
+			var userId = $("#userId").val();
+			userId = $.trim(userId);
+			if (userId == "") {
+				$("#userId").focus();
 				return;
 			}
-			
-			var loginPassword = $("#loginPassword").val();
-			loginPassword = $.trim(loginPassword);
-			if(loginPassword == "") {
-				$("#loginPassword").focus();
+
+			var userPassword = $("#userPassword").val();
+			userPassword = $.trim(userPassword);
+			if (userPassword == "") {
+				$("#userPassword").focus();
 				return;
 			}
-			
+
 			var form = $("#btnForm");
 			form.attr("method", "post");
 			form.attr("action", "<c:url value="/doLogin"/> ");
 			form.submit();
 		});
 		
-	});
+		$("#userPassword").keyup(function(e) {
+			if (e.keyCode == 13) {
+				//Enter 입력했다면..
+				$("#btnDoLogin").click();
+			}
+		});
 
+	});
 </script>
 
 </head>
@@ -101,24 +147,31 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal-lg"
+					<button id="closeModal" type="button" class="close" data-dismiss="modal-lg"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">로그인</h4>
+					<a href="/registStdMember" class="btn btn-primary btn-lg" style="width: 40%;">
+						회원가입
+					</a>
+					<div class="btn btn-primary btn-lg" style="width: 40%;">
+						로그인
+					</div>
 				</div>
 				<form id="btnForm">
-					<div class="modal-body" style="overflow-y: auto; height: 250px;">
-						아이디<input id="loginId" name="loginId" class="w3-input" type="text" placeholder="abc123@naver.com"/>
-						비밀번호<input id="loginPassword" name="loginPassword" class="w3-input" type="password" placeholder="********"/>
-					</div>
-					<div class="modal-footer" style="height: 70px;">
-						<div style="width: 140px; float:left;">
-							자동로그인 하기 <input id="autoLoginCheckBox" name="autoLoginCheckBox" type="checkbox" class="w3-check" />
+					<div class="arrow_box" style="width: 100%;">
+						<div class="modal-body" style="overflow-y: auto; height: 300px;">
+							아이디<input id="userId" name="userId" class="w3-input" type="text" placeholder="이메일을 입력하세요."/>
+							비밀번호<input id="userPassword" name="userPassword" class="w3-input" type="password" placeholder="비밀번호를 입력하세요"/>
+							<div style="width: 140px; float:left;">
+								자동로그인 하기 <input id="autoLoginCheckBox" name="autoLoginCheckBox" type="checkbox" class="w3-check" value="1"/>
+							</div>
+							<div id="btnDoLogin" class="btn btn-primary btn-lg" style="margin-top: 20px; width: 100%">로그인</div>
+							<p style="margin-top: 20px; text-align: center;"> 비밀번호를 잊으셨나요? </p>
 						</div>
-						<div style="width: 80px; margin-top: 60px; display: inline;">
-							<div id="btnDoLogin" class="btn btn-primary" style="float: right;
-								 border: 0px currentColor; border-image: none; margin-top: 5px;
-								 background-color: rgb(255, 51, 0); color: white;">
-								로그인
+						<div class="modal-footer" style="border-width:5px; height: 70px;">
+							<div style="width: 100%; text-align: center;">
+								<p>
+									페이스북으로 로그인하기
+								</p>
 							</div>
 						</div>
 					</div>
@@ -126,7 +179,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Navigation -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -138,13 +191,13 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">커튼</a>
+				<a class="navbar-brand" href="main.jsp">커튼</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#loginModal" data-toggle="modal" type="button">로그인</a>
+					<li><a id="btnLoginModal" href="#loginModal" data-toggle="modal" type="button">로그인</a>
 					</li>
 				</ul>
 			</div>

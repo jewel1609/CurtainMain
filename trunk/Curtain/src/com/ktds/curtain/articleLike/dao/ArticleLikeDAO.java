@@ -45,7 +45,7 @@ public class ArticleLikeDAO {
 				articleLike = new ArticleLikeVO();
 				articleLike.setArticleLikeId(rs.getInt("ARTICLE_LIKE_ID"));
 				articleLike.setArticleId(rs.getInt("ARTICLE_ID"));
-				articleLike.setEmail(rs.getString("STUDENT_EMAIL"));
+				articleLike.setEmail(rs.getString("EMAIL"));
 				articleLike.setLikeDate(rs.getString("LIKE_DATE"));
 				articleLike.setBoradId(rs.getInt("BOARD_ID"));
 				articleLikes.add(articleLike);
@@ -61,7 +61,7 @@ public class ArticleLikeDAO {
 	}
 	
 
-	public int selectLikeCount(ArticleLikeVO articleLikeVO) {
+	public int selectLikeCount(ArticleLikeVO articleLikeVO, MemberVO member) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -75,7 +75,7 @@ public class ArticleLikeDAO {
 			String query = XML.getNodeString("//query/articleLikes/selectLikeCount/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, articleLikeVO.getArticleId());
-			stmt.setString(2, articleLikeVO.getEmail());
+			stmt.setString(2, member.getEmail());
 			
 			rs = stmt.executeQuery();
 			rs.next();
@@ -90,7 +90,7 @@ public class ArticleLikeDAO {
 		}
 	}
 
-	public void deleteLike(ArticleLikeVO articleLikeVO) {
+	public void deleteLike(ArticleLikeVO articleLikeVO, MemberVO member) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -104,7 +104,7 @@ public class ArticleLikeDAO {
 			stmt = conn.prepareStatement(query);
 			
 			stmt.setInt(1, articleLikeVO.getArticleId());
-			stmt.setString(2, articleLikeVO.getEmail());
+			stmt.setString(2, member.getEmail());
 
 			stmt.executeUpdate();
 			
@@ -116,7 +116,7 @@ public class ArticleLikeDAO {
 		}
 	}
 
-	public void insertLike(ArticleLikeVO articleLikeVO) {
+	public void insertLike(ArticleLikeVO articleLikeVO, MemberVO member) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -130,7 +130,7 @@ public class ArticleLikeDAO {
 			stmt = conn.prepareStatement(query);
 			
 			stmt.setInt(1, articleLikeVO.getArticleId());
-			stmt.setString(2, articleLikeVO.getEmail());
+			stmt.setString(2, member.getEmail());
 			stmt.setInt(3, articleLikeVO.getBoradId());
 
 			stmt.executeUpdate();

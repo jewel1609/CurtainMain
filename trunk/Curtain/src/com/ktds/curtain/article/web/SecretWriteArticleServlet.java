@@ -74,7 +74,7 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		article.setNickName("송혜교");
 		article.setPassword("111");
 		
-		boolean doWriteArticle = articleBiz.doWriteArticle(article);
+//		boolean doWriteArticle = articleBiz.doWriteArticle(article);
 		
 		int articleId = articleBiz.getArticleId();
 		if( articleId > 0 ){

@@ -34,8 +34,8 @@ public class MemberBiz {
 			String inputSecondEmail) {
 		memberDAO.addCompMember(inputCompEmail,inputPassword,inputCompName,inputPhoneNum,inputSecondEmail);
 	}
-	public void modifyMemberInfo(String userEmail, String userNickName) {
-		memberDAO.updateMemberInfo(userEmail, userNickName);
+	public void modifyMemberInfo(String userEmail, String userNickName, String email) {
+		memberDAO.updateMemberInfo(userEmail, userNickName, email);
 	}
 
 	public void modifyMemberPassword(String userPw) {
@@ -77,4 +77,10 @@ public class MemberBiz {
 	public String getMajorGroupName(int majorGroupId) {
 		return memberDAO.getMajorGroupName(majorGroupId);
 	}
+	
+	public String getMemberRank(int memberTypeId) {
+		return memberDAO.getMemberRank(memberTypeId);
+	}
+
+	
 }

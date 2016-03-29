@@ -448,7 +448,7 @@
 			SELECT	*
 			FROM	CURTAIN.QA
 			WHERE	EMAIL = ?
-			ORDER	BY IS_CHECKED DESC
+			ORDER	BY IS_CHECKED 
 					, QUESTION_DATE DESC
 		</getMyQuestionsByEmail>
 		

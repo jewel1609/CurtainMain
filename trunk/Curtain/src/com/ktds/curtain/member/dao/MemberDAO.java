@@ -99,6 +99,34 @@ public class MemberDAO {
 		
 	}
 	
+	//글 게시에 따른 포인트 추가
+	public void updatePoint(String email) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/stdMember/updatePoint/text()");
+			stmt = conn.prepareStatement(query);
+			
+			//SQL Parameter Mapping
+			stmt.setString(1,  email);
+			stmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	
 	public void updateMemberPasswordBySecondEmail(String email, String secondEmail, String userPw) {
 		
 		loadOracleDriver();

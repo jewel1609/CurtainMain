@@ -24,10 +24,6 @@
 	request.setAttribute("surveys", surveys);
 	
 %>
-
-<nav class="w3-sidenav w3-collapse w3-light-grey w3-white" style="z-index:3; width:250px; height:800px; margin-top:105px; right: 0px; border-right:1px solid #bababa; border-left:1px solid #bababa;">
-
-
 <script type="text/javascript">
 	
 	$(document).ready(function() {
@@ -62,7 +58,6 @@
 </script>
 
 <nav class="w3-sidenav w3-collapse w3-white w3-card" style="z-index:3; width:250px; height:800px; margin-top:110px; right: 0px;">
->>>>>>> .r559
   <a href="javascript:void(0)" onclick="w3_close()" 
   class="w3-text-teal w3-hide-large w3-closenav w3-large">Close ×</a>	
  <div class="w3-padding-medium">

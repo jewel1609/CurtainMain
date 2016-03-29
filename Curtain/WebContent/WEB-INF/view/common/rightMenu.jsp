@@ -62,8 +62,6 @@
   class="w3-text-teal w3-hide-large w3-closenav w3-large">Close ×</a>	
  <div class="w3-padding-medium">
 	 <div>
-	 
-	 
 	 	<div class="w3-card w3-round w3-white" style="padding:4px;">
 	 		<strong>게시판의 관심사</strong><br/>
 	 	</div>
@@ -102,8 +100,6 @@
 		<div class="w3-col" style="width:30%;">
 			<button id = "showSurveyResult" type="button" class="btn btn-primary btn-sm">결과보기</button>
 		</div>
-			
-			
 	  	
 	 
 	</div>

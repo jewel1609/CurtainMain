@@ -784,6 +784,7 @@
 					, SURVEY_ANSWER2
 					, SURVEY_ANSWER3
 					, SURVEY_ANSWER4
+					, SURVEY_DATE
 			FROM	SURVEY
 			WHERE	SURVEY_DATE	= ?
 		</selectTodaySurvey>

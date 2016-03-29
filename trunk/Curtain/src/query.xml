@@ -38,6 +38,14 @@
 			WHERE	UNIV_NAME LIKE '%' || ? || '%'			
 		</checkUnivName>
 	</univ>
+	
+	<dupl>
+		<isExistNickName>
+			SELECT 	COUNT(NICK_NAME)
+			FROM	MEMBER
+			WHERE	NICK_NAME = ?
+		</isExistNickName>
+	</dupl>
 	<mac>
 		<getMacDescByStudentEmail>
 			SELECT 	MAC_ID

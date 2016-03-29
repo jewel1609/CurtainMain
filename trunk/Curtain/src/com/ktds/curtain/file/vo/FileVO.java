@@ -9,8 +9,6 @@ public class FileVO extends ArticleVO {
 	private String fileLocation;
 	private int fileType; //1: 이미지, 2: 영상
 
-	
-	
 	public int getFileType() {
 		return fileType;
 	}

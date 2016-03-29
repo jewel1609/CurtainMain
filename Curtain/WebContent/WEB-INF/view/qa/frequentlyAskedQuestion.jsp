@@ -13,6 +13,10 @@
 		$("#firstFAQ").hide();
 		$("#secondFAQ").hide();
 		
+		$("#btnFirstFAQ").mouseover( function () {
+			$("#btnFirstFAQ").css("cursor","pointer");
+		});
+		
 		$("#btnFirstFAQ").click(function(){
 			
 			var span = $(this).children(":eq(1)");
@@ -26,6 +30,10 @@
 			}
 			
 			$("#firstFAQ").slideToggle();
+		});
+		
+		$("#btnSecondFAQ").mouseover( function () {
+			$("#btnSecondFAQ").css("cursor","pointer");
 		});
 		
 		$("#btnSecondFAQ").click(function(){
@@ -56,6 +64,8 @@
 			form.attr("action", "/registerQuestion");
 			form.submit();
 		});
+		
+		
 		
 	});
 	

@@ -85,7 +85,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 	}
 %>
 
-<script>
+<script type="text/javascript">
 
 	$(document).ready( function () {
 		
@@ -95,11 +95,30 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 			$("#userPassword").val("<%=userPassword%>");
 			$("#autoLoginCheckBox").click();
 			
-/* 			var form = $("#btnForm");
+			var div = $("#insertStartButton");
+			div.html("<button type=\"button\" id=\"btnStart\" class=\"btn btn-primary btn-lg\">시작하기</button>");
+			div.show();
+			
+		}
+		else {
+			var div = $("#insertStartButton");
+			div.html("<button type=\"button\" id=\"btnRegister\" class=\"btn btn-primary btn-lg\">가입하기</button>");
+			div.show();
+		}
+		
+		$(document).on("click","#btnRegister",function () {
+			var form = $("#btnForm");
+			form.attr("method", "get");
+			form.attr("action", "<c:url value="/registStdMember"/> ");
+			form.submit();
+		});
+		
+		$(document).on("click","#btnStart",function () {
+			var form = $("#btnForm");
 			form.attr("method", "post");
 			form.attr("action", "<c:url value="/doLogin"/> ");
-			form.submit(); */
-		}
+			form.submit();
+		});
 		
 		$("#closeModal").click(function() {
 			$("#loginModal").modal('hide');
@@ -254,10 +273,8 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">커튼 속으로 입장하세요!</h1>
-
 			</div>
-			<div>
-				<button type="button" class="btn btn-primary btn-lg">입장하기</button>
+			<div id="insertStartButton">
 			</div>
 		</div>
 

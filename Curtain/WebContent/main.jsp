@@ -181,7 +181,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 								자동로그인 하기 <input id="autoLoginCheckBox" name="autoLoginCheckBox" type="checkbox" class="w3-check" value="1"/>
 							</div>
 							<div id="btnDoLogin" class="btn btn-primary btn-lg" style="margin-top: 20px; margin-bottom:5px; width: 100%; text-align: center;">시작하기</div>
-							<a style=""> 비밀번호를 잊으셨나요? </a>
+							<a href="/findPassword" style=""> 비밀번호를 잊으셨나요? </a>
 						</div>
 						<div class="modal-footer" style="border-width:4px; height: 50px; text-align: center;">
 							<a style="padding-bottom: 10px;">

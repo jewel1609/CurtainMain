@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.articleScrab.vo.ArticleScrabVO;
 import com.ktds.curtain.member.vo.MemberVO;
@@ -31,11 +32,9 @@ public class ScrabDAO {
 
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
-			String query = XML.getNodeString("//query/dislike/deleteDislike/text()");
+			String query = XML.getNodeString("//query/scrab/deleteScrab/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, scrabVO.getArticleId());
-			stmt.setString(2, scrabVO.getEmail());
-			stmt.setInt(3, scrabVO.getBoardId());
 
 			stmt.executeUpdate();
 
@@ -149,6 +148,32 @@ public class ScrabDAO {
 	      }
 	      return articleScrabs;
 	}
+	
+	/**
+	 * 글 삭제시 스크랩한 글 삭제하기
+	 * @param articleVO
+	 */
+	public void deleteArticle(ArticleVO articleVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/scrab/deleteScrab/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleVO.getArticleId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+
 	
 	
 	private void loadOracleDriver() {

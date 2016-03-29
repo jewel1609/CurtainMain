@@ -73,6 +73,34 @@ public class MajorDAO {
 			return majorGroupId;
 	}
 	
+	public String getDateTimeByEmail(String inputUnivName) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String signUpDate = "";
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/date/getDateTimeByUnivName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, inputUnivName);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				signUpDate = rs.getString("SIGNUP_DATE");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		return signUpDate;
+	}
+	
 	//입력받는 학과에 맞는 학과들 출력
 	public String checkMajorName(String inputMajorName) {
 		System.out.println("DAO : " + inputMajorName);
@@ -137,5 +165,7 @@ public class MajorDAO {
 			}
 		}
 	}
+
+	
 	
 }

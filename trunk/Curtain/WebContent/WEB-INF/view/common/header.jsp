@@ -56,6 +56,23 @@
 	}
 </script>
 
+<script type="text/javascript">
+	$(document).ready( function () {
+		
+		$("#btnHome").mouseover(function () {
+			mouseOver="Mouse.cursor = MouseCursor.HAND;"
+			$("#btnHome").css("cursor","pointer");
+		});
+		
+		$("#btnHome").click(function () {
+			var form = $("#homeForm");
+			form.attr("method", "post");
+			form.attr("action", "<c:url value="/main.jsp" />")
+			form.submit();
+		});
+	});
+</script>
+
 <body>
 	<%-- 왼쪽 메뉴--%>
 	<jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
@@ -73,9 +90,12 @@
 		</div>
 		<header class="w3-container w3-padding-15"
 			style="background-color: #A9D039; border-bottom: 1px solid #94b8b8; padding: 20px;">
-			<div style="float: left; width: 200px;">
-				<h2 class="w3-xxlarge w3-padding-5" style="margin-left: 10px;">커튼</h2>
-			</div>
+			
+			<form id="homeForm">
+				<div id="btnHome" style="float: left; width: 200px;">
+					<h2 class="w3-xxlarge w3-padding-5" style="margin-left: 10px;">커튼</h2>
+				</div>
+			</form>
 
 		<c:if test="${sessionScope._MEMBER_ ne null }">
 			<div style="float: right; width: 100px; padding-top: 25px;">

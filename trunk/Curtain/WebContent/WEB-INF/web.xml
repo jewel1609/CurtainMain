@@ -260,17 +260,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DuplicationCheckNickNameServlet</display-name>
-    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.member.web.DuplicationCheckNickNameServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
-    <url-pattern>/duplicationCheckNickName</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <description></description>
     <display-name>DoRegistCompMemberServlet</display-name>
     <servlet-name>DoRegistCompMemberServlet</servlet-name>
     <servlet-class>com.ktds.curtain.member.web.DoRegistCompMemberServlet</servlet-class>
@@ -319,7 +308,6 @@
     <servlet-name>ShowMyQuestionsServlet</servlet-name>
     <url-pattern>/myQuestion</url-pattern>
   </servlet-mapping>
- 
   <servlet>
     <description></description>
     <display-name>DislikeServlet</display-name>
@@ -402,4 +390,14 @@
     <filter-name>SessionCheckFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DuplicationCheckNickNameServlet</display-name>
+    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.dupl.web.DuplicationCheckNickNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
+    <url-pattern>/duplicationCheckNickName</url-pattern>
+  </servlet-mapping>
 </web-app>

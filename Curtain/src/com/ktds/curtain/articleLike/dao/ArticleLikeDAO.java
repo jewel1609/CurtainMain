@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
@@ -44,10 +45,12 @@ public class ArticleLikeDAO {
 			while (rs.next()) {
 				articleLike = new ArticleLikeVO();
 				articleLike.setArticleLikeId(rs.getInt("ARTICLE_LIKE_ID"));
+				System.out.println(articleLike.getArticleLikeId());
 				articleLike.setArticleId(rs.getInt("ARTICLE_ID"));
 				articleLike.setEmail(rs.getString("EMAIL"));
 				articleLike.setLikeDate(rs.getString("LIKE_DATE"));
 				articleLike.setBoradId(rs.getInt("BOARD_ID"));
+				
 				articleLikes.add(articleLike);
 			}
 
@@ -141,6 +144,33 @@ public class ArticleLikeDAO {
 			closeDB(conn, stmt, null);
 		}
 	}
+	
+
+	/**
+	 * 글 삭제시 좋아요한 글 삭제
+	 * @param articleVO
+	 */
+	public void deleteArticle(ArticleVO articleVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/articleLikes/deleteArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleVO.getArticleId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+
 	
 	private void loadOracleDriver() {
 		try {

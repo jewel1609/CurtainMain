@@ -214,8 +214,16 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a id="btnLoginModal" href="#loginModal" data-toggle="modal" type="button">로그인</a>
-					</li>
+					<c:if test="${sessionScope._MEMBER_ eq null}">
+						<li>
+							<a id="btnLoginModal" href="#loginModal" data-toggle="modal" type="button">로그인</a>
+						</li>
+					</c:if>
+					<c:if test="${sessionScope._MEMBER_ ne null}">
+						<li>
+							<a id="btnLogout" href="<c:url value="/doLogout" />" type="button">로그아웃</a>
+						</li>
+					</c:if>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

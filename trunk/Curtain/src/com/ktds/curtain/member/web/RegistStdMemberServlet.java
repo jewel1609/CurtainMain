@@ -35,6 +35,7 @@ public class RegistStdMemberServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/registMember.jsp");
 		rd.forward(request, response);
+		
 	}
 
 }

@@ -460,6 +460,7 @@
     <servlet-name>UpdateArticleServlet</servlet-name>
     <url-pattern>/updateArticle</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>DeleteFileServlet</display-name>

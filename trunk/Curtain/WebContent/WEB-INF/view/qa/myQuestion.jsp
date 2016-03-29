@@ -12,8 +12,11 @@
 			form.submit();
 		});
 		
+		$(".btnQuestion").mouseover( function () {
+			$(".btnQuestion").css("cursor","pointer");
+		});
+		
 		$(".btnQuestion").click( function () {
-			
 			var form = $(this).parent();
 			form.attr("method", "post");
 			form.attr("action", "<c:url value="/checkMyQuestion"/> ");

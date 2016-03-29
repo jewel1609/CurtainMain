@@ -1,20 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+  
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css" />
+<script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.1.js" />"></script>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
-
-<link rel="stylesheet" type="text/css"
-	href="/resource/css/article/secretArticle.css" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="<c:url value="/resource/js/jquery-1.12.1.js" />"></script>
-
+  
 <script type="text/javascript">
 	$(document).ready(function() {
+
+		$("#movieBtn").popover({
+					title: "<h5>동영상 url을 입력하세요</h5>"
+					, content: $("#movieUrlForm").html()
+					, html: true
+					, placement: "bottom"	
+					, trigger: "click"
+		}).on('click', function(){
+			$('#movieUrlUploadBtn').click(function(){
+				$("#movieUrl").attr("value",$("#url").val());
+				alert("첨부되었습니다.");
+				
+			});			
+		});
 		
-	$(".like").click(function() {		
+		$(".like").click(function() {		
 			
 			$.post(		
 				"/like"
@@ -135,6 +144,18 @@
 		$("#imagePreview").hide();
 
 		$("#doWrite").click(function() {
+			
+			 if( $("#articleTitle").val() == ""){
+				alert("제목을 입력하세요!");
+				$("#articleTitle").focus();
+				return; // 더이상 밑의 이벤트를 진행하지 않음.
+			} 
+			 
+			 if( $("#articleDescription").val() == ""){
+				alert("내용을 입력하세요!");
+				$("#articleDescription").focus();
+				return; // 더이상 밑의 이벤트를 진행하지 않음.
+			} 
 
 			var form = $("#writeForm");
 			form.attr("method", "post");
@@ -142,6 +163,8 @@
 			form.submit();
 
 		});
+
+		
 
 	});
 
@@ -161,16 +184,19 @@
 
 	<div class="w3-container w3-main" style="margin-bottom: 20px;">
 
-		<div class="w3-row">
-			<div class="w3-col m7 w3-main" style="margin-left: 350px; border:1px solid; margin-right: 100px; height: 820px; overflow: auto; ">
+		<div>
+			<div class="w3-col m7 w3-main" style="margin-left: 350px; margin-right: 100px; height: 820px; overflow: auto; ">
+				<!-- 게시판 타이틀 시작 -->
 				<div style="float:left;">
-					<!-- 아이콘 -->
 					<h2>한겹커튼게시판입니다. </h2> 
 				</div> 
 				<div style="float:left; padding:20px;">
 					<h6>참여인원 명</h6> 
 				</div>
-				<div class="w3-row-padding" style="border:1px solid;">
+				<!-- 게시판 타이틀 끝 -->
+				
+				<!-- 글쓰기 시작 -->
+				<div class="w3-row-padding">
 					<div class="w3-col m12" align="left">
 						<div class="w3-card w3-round w3-white">
 
@@ -188,46 +214,43 @@
 													<option value="5">기타</option>
 												</select>
 											</div>
-											<div class="col-sm-9"
-												style="background-color: lavenderblush;">
-												<input class="w3-input" type="text" name="articleTitle"
+											<div class="col-sm-9">
+												<input class="w3-input" type="text" id="articleTitle" name="articleTitle"
 													placeholder="제목을 입력하세요." style="margin-bottom: 5px;">
-
 											</div>
-											<div class="col-sm-2">
-
-												<input type="file" name="imgFile" style="display: none;"
-													onchange="readURL(this);">
-												<button type="button" class="btn btn-default btn-sm"
-													onclick="document.all.imgFile.click();">
+											<div class="col-sm-2">					
+												<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
+												<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
 													<span class="glyphicon glyphicon-picture"></span>
 												</button>
-
-
-												<input type="file" name="movieFile" style="display: none;">
-												<button type="button" class="btn btn-default btn-sm"
-													onclick="document.all.movieFile.click();">
+												
+												<button type="button" id="movieBtn" class="btn btn-default btn-sm">
 													<span class="glyphicon glyphicon-facetime-video"></span>
 												</button>
-											</div>
-
-
-										</div>
-										<div class="form-group" style="margin-top: 30px;">
-
-											<textarea class="w3-col m12" rows="5" id="comment"
-												name="articleDescription"
-												style="margin-bottom: 5px; overflow: visible;"
 												
+												<div id="movieUrlForm" class="hide">
+													<div>
+														<label for="about">url</label>
+															<textarea rows="3" name="url" id="url" class="form-control input-md"></textarea>
+															<button type="button" id="movieUrlUploadBtn" class="btn btn-default">
+																<em class="icon-ok">첨부</em>
+															</button>
+													</div>
+												</div>
+												<input type="hidden" id="movieUrl" name="movieUrl" />
+												<input type="hidden" name="boardId" value="4">
+											</div>
+										</div>
+										
+										<div class="form-group" style="margin-top: 30px;">
+											<textarea class="w3-col m12" rows="5" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
 												placeholder="무슨 생각을 하고 계신가요?"></textarea>
 										</div>
-
-										<input type="hidden" name="boardId" value="4">
+										
 										<div style="margin-top: 20px;">
+											<button type="button" class="btn btn-default" id="doWrite" style="border-color: #FF3300; color: #FF3300;">게시</button>
 											
 										</div>
-										<button type="button" class="btn btn-default" id="doWrite"
-											style="border-color: #FF3300; color: #FF3300;">게시</button>
 										
 										<div id="imagePreview"><img id="uploadImg" src="#" width="100px;"></div>
 									</div>

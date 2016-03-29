@@ -17,14 +17,14 @@ import com.ktds.curtain.util.Root;
  */
 public class DoRegistCompMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private MemberBiz stdMemberBiz;    
+	private MemberBiz compMemberBiz;    
 	private MemberVO memberVO;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DoRegistCompMemberServlet() {
         super();
-        stdMemberBiz = new MemberBiz();
+        compMemberBiz = new MemberBiz();
         memberVO = new MemberVO();
     }
 
@@ -45,15 +45,23 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 		int inputPhoneNum = Integer.parseInt(request.getParameter("inputPhoneNum"));
 		String inputCompSecondEmail = request.getParameter("inputCompSecondEmail");
 		
-		stdMemberBiz.addCompMember(inputCompEmail,inputCompPassword,inputCompName
+		compMemberBiz.addCompMember(inputCompEmail,inputCompPassword,inputCompName
 									,inputPhoneNum,inputCompSecondEmail);
 		
 		memberVO.setEmail(inputCompEmail);
 		memberVO.setPassword(inputCompPassword);
 		memberVO.setNickName("yo");
+		memberVO.setSecondEmail(inputCompSecondEmail);
+		memberVO.setMemberTypeId(4);
+		memberVO.setActivity(0);
+		memberVO.setPoint(0);
+		memberVO.setCompanyName(inputCompName);
+		memberVO.setPhoneNumber(inputPhoneNum);
+		memberVO.setSignupDate(compMemberBiz.getDateTimeByEmail(inputCompEmail));
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("_MEMBER_", memberVO);
+		
 		response.sendRedirect(Root.get(this) + "/doLogin");
 	}
 

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <query>
+	<date>
+		<getDateTimeByUnivName>
+			SELECT	SIGNUP_DATE
+			FROM	MEMBER
+			WHERE	EMAIL = ?
+		</getDateTimeByUnivName>
+	</date>
 	<major>
 		<getMajorGroupIdByMajorId>
 			SELECT	MAJOR_GROUP_ID		
@@ -24,7 +31,7 @@
 		<isExistStdUnivEmail>
 			SELECT 	*
 			FROM	MEMBER
-			WHERE	EMAIL_ID = ?
+			WHERE	EMAIL = ?
 		</isExistStdUnivEmail>
 		<getUnivIdByUnivName>
 			SELECT	UNIV_ID		
@@ -46,6 +53,7 @@
 			WHERE	NICK_NAME = ?
 		</isExistNickName>
 	</dupl>
+>>>>>>> .r559
 	<mac>
 		<getMacDescByStudentEmail>
 			SELECT 	MAC_ID
@@ -421,9 +429,15 @@
 	</articleLikes>
 
 	<stdMember>
+		<updatePoint>
+			UPDATE	MEMBER
+			SET		POINT = POINT + 10
+			WHERE	EMAIL = ?
+		</updatePoint>
+		
 		<addStdMember>
 			INSERT INTO MEMBER (
-									   EMAIL_ID
+									   EMAIL
 									   , UNIV_ID
 									   , MAJOR_ID
 									   , SIGNUP_DATE
@@ -457,12 +471,19 @@
 			WHERE	EMAIL = ?
 		</updateMemberPassword>
 		
+		<updateMemberPasswordBySecondEmail>
+			UPDATE	MEMBER
+			SET		PASSWORD = ?
+			WHERE	EMAIL = ?
+			AND		SECOND_EMAIL = ?
+		</updateMemberPasswordBySecondEmail>
+		
 	</stdMember>
 	
 	<compMember>
 		<addCompMember>
 			INSERT INTO MEMBER (
-									   EMAIL_ID
+									   EMAIL
 									   , MEMBER_TYPE_ID
 									   , SIGNUP_DATE
 									   , SECOND_EMAIL

@@ -37,7 +37,7 @@ public class SurveyDAO {
 				survey = new SurveyVO();
 				
 				survey.setSurveyId(rs.getInt("SURVEY_ID"));
-				survey.setSuveyTitle(rs.getString("SURVEY_TITLE"));
+				survey.setSurveyTitle(rs.getString("SURVEY_TITLE"));
 				survey.setFirstAnswer(rs.getString("SURVEY_ANSWER1"));
 				survey.setSecondAnswer(rs.getString("SURVEY_ANSWER2"));
 				survey.setThirdAnswer(rs.getString("SURVEY_ANSWER3"));

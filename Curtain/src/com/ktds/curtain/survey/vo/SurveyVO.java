@@ -4,7 +4,7 @@ public class SurveyVO {
 	
 	private int surveyId;
 	
-	private String suveyTitle;
+	private String surveyTitle;
 	private String firstAnswer;
 	private String secondAnswer;
 	private String thirdAnswer;
@@ -17,11 +17,12 @@ public class SurveyVO {
 	public void setSurveyId(int surveyId) {
 		this.surveyId = surveyId;
 	}
-	public String getSuveyTitle() {
-		return suveyTitle;
+	
+	public String getSurveyTitle() {
+		return surveyTitle;
 	}
-	public void setSuveyTitle(String suveyTitle) {
-		this.suveyTitle = suveyTitle;
+	public void setSurveyTitle(String surveyTitle) {
+		this.surveyTitle = surveyTitle;
 	}
 	public String getFirstAnswer() {
 		return firstAnswer;

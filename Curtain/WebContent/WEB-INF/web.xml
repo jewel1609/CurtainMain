@@ -382,6 +382,26 @@
     <servlet-name>ShowDetailMyQuestionServlet</servlet-name>
     <url-pattern>/showDetailMyQuestion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FindPasswordServlet</display-name>
+    <servlet-name>FindPasswordServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.FindPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindPasswordServlet</servlet-name>
+    <url-pattern>/findPassword</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoSendPasswordServlet</display-name>
+    <servlet-name>DoSendPasswordServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.DoSendPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoSendPasswordServlet</servlet-name>
+    <url-pattern>/doSendPassword</url-pattern>
+  </servlet-mapping>
   <filter>
     <display-name>SessionCheckFilter</display-name>
     <filter-name>SessionCheckFilter</filter-name>

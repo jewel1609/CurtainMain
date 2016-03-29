@@ -42,6 +42,9 @@ public class UpdateArticleServlet extends HttpServlet {
 		
 		ArticleVO articleVO = new ArticleVO();
 		articleVO = articleBiz.showDetail(articleId);
+		String desc = articleVO.getArticleDesc().replaceAll("<br/>", "\n");
+		articleVO.setArticleDesc(desc);
+		
 		List<FileVO> files = articleBiz.getFileListByArticleId(articleId);
 		
 		request.setAttribute("article", articleVO);

@@ -8,13 +8,13 @@
 
 $(document).ready(function () {
 
-	$(this).click(function() {		
-		
+	$("#imagePreview").hide();
+	
+	$(".glyphicon-trash").click(function() {		
+
 		$.post(		
 			"/deleteFile"
-			, { "fileName" : $(this).attr("id")
-				, "articleId" : $("#articleId").val()
-			}
+			, { "fileId" : $(this).attr("id") }
 			, function(data) {
 				
 				var jsonData = {};		
@@ -27,7 +27,7 @@ $(document).ready(function () {
 				}
 				
 				if(jsonData.result){
-					var result = "#" + fileId;
+					var result = "#" + jsonData.fileId;
 					$(result).hide();
 				}
 				else{
@@ -38,15 +38,28 @@ $(document).ready(function () {
 		)	
 	});
 	
-	$(updateArticle).click(function () {
+
+	
+	$(updateArticleBtn).click(function () {
 		
-		
-		
-		
-		
+		var form = $(updateArticle);
+		form.attr("method", "post");
+		form.attr("action", "/doUpdateArticle");
+		form.submit();
 	});
 	
 });
+function readURL(input) {
+
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			$("#imagePreview").show();
+			$('#uploadImg').attr("src", e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
 
 </script>
    
@@ -59,7 +72,7 @@ $(document).ready(function () {
 				<div class="w3-col m12">
 					<div class="w3-card-2 w3-round w3-white">
 
-						<form id="writeArticle" enctype="multipart/form-data">
+						<form id="updateArticle" enctype="multipart/form-data">
 							<div class="w3-container w3-padding w3-left-align">
 								<div class="form-group1">
 								<div>
@@ -85,7 +98,7 @@ $(document).ready(function () {
 											class="like" src="<c:url value="/resource/img/like_active_small.png"/>" />${article.articleLikes}
 										</div>
 										<div style="padding-top: 4px;">
-											<input type="hidden" id="articleId" value="${article.articleId}"/>
+											<input type="hidden" id="articleId" name="articleId" value="${article.articleId}"/>
 											<input type="text" class="w3-col m10 input-lg"
 												id="articleTitle" name="articleTitle"  value="${article.articleTitle}"/>
 										</div>
@@ -110,10 +123,13 @@ $(document).ready(function () {
 										<textarea name="articleDescription" class="w3-col m12"
 											rows="5" id="comment" style="margin-bottom: 5px;">${article.articleDesc}</textarea>
 									</div>
-									
+									<div class="w3-col m12">
+										<img id="uploadImg" src="/Curtain/resource/img/noimg.png"
+											width="100" height="100"/>
+									</div>									
 									<div class="w3-col m12">
 										<c:forEach items="${files}" var="file">
-											<div id="${file.fileId}">${file.fileName}<span id="${file.fileName}" class="glyphicon glyphicon-trash"></span></div>
+											<span id="${file.fileId}" class="glyphicon glyphicon-trash">${file.fileName}</span>
 										</c:forEach>
 									</div>
 								</div>
@@ -121,7 +137,7 @@ $(document).ready(function () {
 									
 			            	<ul class="pager">
 							 	 <li class="previous"><a href="<c:url value="/showDetail?articleId=${article.articleId}"/>">뒤로가기</a></li>
-								<li id="updateArticle" class="next"><a href="">수정완료</a></li>
+								<li id="updateArticleBtn" class="next">수정완료</li>
 							</ul>  
 								</div>
 							</div>

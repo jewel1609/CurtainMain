@@ -15,5 +15,9 @@ public class FileBiz {
 		fileDAO.insertOneFile(file);
 		
 	}
+	
+	public void deleteFile(FileVO file) {
+		fileDAO.deleteFile(file);
+	}
 
 }

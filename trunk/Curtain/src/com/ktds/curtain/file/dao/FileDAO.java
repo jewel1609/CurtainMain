@@ -102,6 +102,41 @@ public class FileDAO {
 		}
 	}
 	
+	/**
+	 * 파일 삭제
+	 * @param file
+	 */
+	public void deleteFile(FileVO file) {
+		int deleteCount = 0;
+
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/file/deleteFile/text()");
+			stmt = conn.prepareStatement(query);
+
+			stmt.setInt(1, file.getFileId());
+
+			deleteCount = stmt.executeUpdate();
+
+			if (deleteCount > 0) {
+				stmt.close();
+				System.out.println("파일 삭제 성공");
+			}
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -131,6 +166,7 @@ public class FileDAO {
 		}
 
 	}
+
 
 
 }

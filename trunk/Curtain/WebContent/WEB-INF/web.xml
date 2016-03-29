@@ -430,7 +430,6 @@
     <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
     <url-pattern>/duplicationCheckNickName</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>SurveyServlet</display-name>
@@ -441,7 +440,6 @@
     <servlet-name>SurveyServlet</servlet-name>
     <url-pattern>/survey</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>DeleteArticleServlet</display-name>
@@ -472,7 +470,7 @@
     <servlet-name>DeleteFileServlet</servlet-name>
     <url-pattern>/deleteFile</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>DoWriteReplyServlet</display-name>
     <servlet-name>DoWriteReplyServlet</servlet-name>
@@ -481,5 +479,15 @@
   <servlet-mapping>
     <servlet-name>DoWriteReplyServlet</servlet-name>
     <url-pattern>/doWriteReply</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoUpdateArticleServlet</display-name>
+    <servlet-name>DoUpdateArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.DoUpdateArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoUpdateArticleServlet</servlet-name>
+    <url-pattern>/doUpdateArticle</url-pattern>
   </servlet-mapping>
 </web-app>

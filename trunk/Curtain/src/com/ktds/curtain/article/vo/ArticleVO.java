@@ -2,6 +2,7 @@ package com.ktds.curtain.article.vo;
 
 import java.util.List;
 
+import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.reply.vo.ReplyVO;
 
@@ -27,7 +28,17 @@ public class ArticleVO extends MemberVO {
 	private boolean like;
 	
 	private List<ReplyVO> replyList;
+	private List<FileVO> fileList;
 	
+	
+	public List<FileVO> getFileList() {
+		return fileList;
+	}
+
+	public void setFileList(List<FileVO> fileList) {
+		this.fileList = fileList;
+	}
+
 	public List<ReplyVO> getReplyList() {
 		return replyList;
 	}

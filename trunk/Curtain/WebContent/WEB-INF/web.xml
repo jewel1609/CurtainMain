@@ -466,10 +466,20 @@
     <description></description>
     <display-name>DeleteFileServlet</display-name>
     <servlet-name>DeleteFileServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.file.DeleteFileServlet</servlet-class>
+    <servlet-class>com.ktds.curtain.file.web.DeleteFileServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteFileServlet</servlet-name>
     <url-pattern>/deleteFile</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>DoWriteReplyServlet</display-name>
+    <servlet-name>DoWriteReplyServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.reply.web.DoWriteReplyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoWriteReplyServlet</servlet-name>
+    <url-pattern>/doWriteReply</url-pattern>
   </servlet-mapping>
 </web-app>

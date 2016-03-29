@@ -53,12 +53,14 @@ public class ModifyMemberServlet extends HttpServlet {
 		String majorName = memberBiz.getMajorName(member.getMajorId());
 		String majorGroupName = memberBiz.getMajorGroupName(member.getMajorGroupId());
 		String memberRank = memberBiz.getMemberRank(member.getMemberTypeId());
+		String memberPassword = member.getPassword();
 		
 		request.setAttribute("member", member);
 		request.setAttribute("univName", univName);
 		request.setAttribute("majorName", majorName);
 		request.setAttribute("majorGroupName", majorGroupName);
 		request.setAttribute("memberRank", memberRank);
+		request.setAttribute("memberPassword", memberPassword);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/modifyMember.jsp");
 		rd.forward(request, response);

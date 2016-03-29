@@ -69,6 +69,15 @@
 		</addMacInfo>
 	</mac>
 	<article>
+		<getTheLatestArticleId>
+			SELECT	ARTICLE_ID_SEQ.CURRVAL
+			FROM	DUAL
+		</getTheLatestArticleId>
+		<deleteArticle>
+			DELETE
+			FROM	ARTICLE
+			WHERE	ARTICLE_ID = ?
+		</deleteArticle>
 		<getArticleDislikes>
 			SELECT  ARTICLE_DISLIKES
 			FROM    ARTICLE
@@ -285,6 +294,7 @@
 						, ARTICLE_DESC
 						, ARTICLE_MODIFY_DATE
 						, AT.ARTICLE_TYPE_NAME
+						, SM.EMAIL
 						, SM.NICK_NAME
 						, BOARD_ID
 						, A.MAJOR_GROUP_ID
@@ -324,6 +334,11 @@
 		</showTopArticle>
 	</article>
 	<articleLikes>
+		<deleteArticle>
+			DELETE
+			FROM	ARTICLE_LIKE
+			WHERE	ARTICLE_ID = ?
+		</deleteArticle>
 		<showArticleLike>
 			SELECT 		ARTICLE_LIKE_ID
 						, ARTICLE_ID
@@ -529,9 +544,21 @@
 			         , ?       
 			       )
 		</insertOneFile>
+		<getFileListByArticleId>
+			SELECT	FILE_ID
+					, FILE_NAME
+					, FILE_LOCATION
+			FROM	FILES
+			WHERE	ARTICLE_ID = ?
+		</getFileListByArticleId>
 	</file>
 	
 	<dislike>
+		<deleteArticle>
+			DELETE
+			FROM	ARTICLE_DISLIKE
+			WHERE	ARTICLE_ID = ?
+		</deleteArticle>
 		<selectDislikeCount>
 			SELECT	COUNT(ARTICLE_DISLIKE_ID)
 			FROM	ARTICLE_DISLIKE
@@ -674,6 +701,11 @@
 										, SYSDATE
 									)
 		</insertReReply>
+		<deleteReply>
+			DELETE
+			FROM	REPLY
+			WHERE	ARTICLE_ID = ?
+		</deleteReply>
 	</reply>
 	
 	<scrab>
@@ -689,8 +721,6 @@
 			DELETE
 			FROM	ARTICLE_SCRAB
 			WHERE	ARTICLE_ID = ?
-			AND		EMAIL = ?
-			AND		BOARD_ID = ?
 		</deleteScrab>
 		
 		<insertScrab>

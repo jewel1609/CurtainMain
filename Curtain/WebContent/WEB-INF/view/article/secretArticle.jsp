@@ -1,14 +1,26 @@
+<%@page import="com.ktds.curtain.util.MultipartHttpServletRequest"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
+	
+
+
   
 <link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css" />
 <script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.1.js" />"></script>
+
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
   
+  
+
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		alert("욕설 금지!!!");
+		
 		$("#movieBtn").popover({
 					title: "<h5>동영상 url을 입력하세요</h5>"
 					, content: $("#movieUrlForm").html()
@@ -144,6 +156,11 @@
 		$("#imagePreview").hide();
 
 		$("#doWrite").click(function() {
+
+			if ( $("#isFword").val() ==  "yes" ) {
+				alert("욕설 금지!!!");
+				return;
+			}
 			
 			 if( $("#articleTitle").val() == ""){
 				alert("제목을 입력하세요!");
@@ -181,6 +198,7 @@
 	}
 </script>
 
+<input type="hidden" id="isFword" value="${ isFword }" />
 
 	<div class="w3-container w3-main" style="margin-bottom: 20px;">
 
@@ -430,5 +448,3 @@
 			</div>
 		</div>
 	</div>
-
-	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

@@ -46,6 +46,14 @@ public class ModifyMemberInfoServlet extends HttpServlet {
 		String userEmail = request.getParameter("userEmail");
 		String userNickName = request.getParameter("userNickName");
 		
+		if ( userEmail == null || userEmail == "" ) {
+			userEmail = member.getSecondEmail();
+		}
+		
+		if (userNickName == null || userNickName == "") {
+			userNickName = member.getNickName();
+		}
+		
 		
 		member.setSecondEmail(userEmail);
 		member.setNickName(userNickName);

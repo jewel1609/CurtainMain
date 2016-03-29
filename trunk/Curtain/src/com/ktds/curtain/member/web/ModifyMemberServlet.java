@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.dupl.biz.DuplBiz;
+import com.ktds.curtain.dupl.vo.DuplVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 
@@ -19,6 +21,7 @@ public class ModifyMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private MemberBiz memberBiz;
+	private DuplBiz duplBiz;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,6 +29,7 @@ public class ModifyMemberServlet extends HttpServlet {
     public ModifyMemberServlet() {
         super();
         memberBiz = new MemberBiz();
+        duplBiz = new DuplBiz();
     }
 
 	/**

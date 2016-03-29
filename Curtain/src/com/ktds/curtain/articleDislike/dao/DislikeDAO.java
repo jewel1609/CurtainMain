@@ -142,9 +142,10 @@ public class DislikeDAO {
 			return articleDislikes;
 
 		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articleDislikes;
 	}
 	
 	/**
@@ -166,7 +167,8 @@ public class DislikeDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
 		

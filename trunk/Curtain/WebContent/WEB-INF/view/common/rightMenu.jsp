@@ -1,5 +1,28 @@
+<%@page import="com.ktds.curtain.survey.vo.SurveyVO"%>
+<%@page import="com.ktds.curtain.survey.biz.SurveyBiz"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
+
+<%
+	SurveyBiz surveyBiz = new SurveyBiz();
+
+	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+	Date currentTime = new Date ( );
+	String mTime = mSimpleDateFormat.format ( currentTime );
+	System.out.println ( mTime );
+	
+	
+	SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
+	String surveys[] = { survey.getFirstAnswer(), survey.getSecondAnswer(), survey.getThirdAnswer(), survey.getFourthAnswer() }; 
+	
+	request.setAttribute("mTime", mTime);
+	request.setAttribute("survey", survey);
+	request.setAttribute("surveys", surveys);
+%>
 <nav class="w3-sidenav w3-collapse w3-white w3-card" style="z-index:3; width:250px; height:800px; margin-top:110px; right: 0px;">
   <a href="javascript:void(0)" onclick="w3_close()" 
   class="w3-text-teal w3-hide-large w3-closenav w3-large">Close ×</a>	
@@ -23,14 +46,15 @@
 	<div>
 	
 	  <div class="w3-card w3-round w3-white" style="margin-top:50px; padding:4px;">
-	  	<strong>오늘의 투표 ${ survey.surveyDate }</strong><br/>
+	  	<strong>오늘의 투표</strong><br/>  ${ mTime }
 	  </div>
 		<br/>
 		<p> ${ survey.surveyTitle }</p>
-		<input type="radio" name="todayVote" value="01"> ${ survey.firstAnswer}<br/><br/>
-		<input type="radio" name="todayVote" value="02"> ${ survey.secondAnswer } <br/><br/>
-		<input type="radio" name="todayVote" value="03"> ${ survey.thirdAnswer } <br/><br/>
-		<input type="radio" name="todayVote" value="04"> ${ survey.fourthAnswer } <br/><br/>
+		<c:forEach items="${surveys}" var="surveyList">
+			<c:if test="${ surveyList ne null }">
+			<input type="radio" name="todayVote" value="surveyList"> ${ surveyList }<br/><br/>
+			</c:if>
+		</c:forEach>
 		<div class="w3-col" style="width:60%">
 			<button id = "doVote" type="button" class="btn btn-primary btn-sm">투표하기</button>
 		</div>

@@ -67,7 +67,13 @@
 													</c:if>
 													<span>${fn:substring(question.questionDate, 0, 16)}</span>
 												</td>
-												<td>
+												<td style="text-align: right;">
+													<c:if test="${question.answerDescription ne null && question.isChecked eq 'Y' }">
+														<span class="eventNew" style="color: red;">답변완료</span>
+													</c:if>
+													<c:if test="${question.isChecked eq 'N' }">
+														<span class="eventNew" style="color: red;">답변 미완료</span>
+													</c:if>
 													<input class="questionId" name="questionId" type="hidden" value="${question.questionId}"/>
 												</td>
 												

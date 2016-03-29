@@ -176,9 +176,13 @@ public class ArticleBiz {
  * @return
  */
 
-	public int doWriteArticle(ArticleVO article) {
+	public boolean doWriteArticle(ArticleVO article, MemberVO stdMember) {
+		
 		int doWriteArticle = 0;
 		
+		String description = article.getArticleDesc().replaceAll("\n", "<br/>");
+		article.setArticleDesc(description);
+				
 		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) { // 전공
 			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 		}
@@ -189,15 +193,16 @@ public class ArticleBiz {
 			doWriteArticle = articleDAO.doWriteAdArticle(article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) { // 비밀 1
-			doWriteArticle = articleDAO.doWriteMajorArticle(article);
+			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
-//			doWriteArticle = articleDAO.doWriteMajorArticle(article);
+			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {  // 비밀3
-//			doWriteArticle = articleDAO.doWriteMajorArticle(article);
+			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 		}
-		return doWriteArticle;
+		
+		return doWriteArticle > 0;
 	}
 	
 	public int getArticleId() {

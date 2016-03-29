@@ -98,6 +98,35 @@ public class MemberDAO {
 		}
 		
 	}
+	
+	public void updateMemberPasswordBySecondEmail(String email, String secondEmail, String userPw) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/stdMember/updateMemberPasswordBySecondEmail/text()");
+			stmt = conn.prepareStatement(query);
+			
+			//SQL Parameter Mapping
+			stmt.setString(1, userPw);
+			stmt.setString(2, email);
+			stmt.setString(3, secondEmail);
+			stmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
 
 	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, int inputPhoneNum,
 			String inputSecondEmail) {
@@ -239,6 +268,12 @@ public class MemberDAO {
 		return majorName;
 	}
 	
+
+	public void sendPassword(String email, String secondEmail) {
+
+
+	}
+	
 	public String getMajorGroupName(int majorGroupId) {
 		loadOracleDriver();
 
@@ -332,15 +367,5 @@ public class MemberDAO {
 		}
 	}
 
-	
 
-	
-
-	
-
-	
-
-	
-
-	
 }

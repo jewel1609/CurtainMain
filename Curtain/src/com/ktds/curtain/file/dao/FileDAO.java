@@ -36,6 +36,7 @@ public class FileDAO {
 			stmt.setInt(1, file.getArticleId());
 			stmt.setString(2, file.getFileName());
 			stmt.setString(3, file.getFileLocation());
+			stmt.setInt(4, file.getFileType());
 
 			insertCount = stmt.executeUpdate();
 

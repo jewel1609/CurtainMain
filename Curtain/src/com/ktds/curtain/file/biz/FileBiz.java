@@ -1,7 +1,5 @@
 package com.ktds.curtain.file.biz;
 
-import java.util.List;
-
 import com.ktds.curtain.file.dao.FileDAO;
 import com.ktds.curtain.file.vo.FileVO;
 

@@ -7,6 +7,17 @@ public class FileVO extends ArticleVO {
 	private int fileId;
 	private String fileName;
 	private String fileLocation;
+	private int fileType; //1: 이미지, 2: 영상
+
+	
+	
+	public int getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(int fileType) {
+		this.fileType = fileType;
+	}
 
 	public int getFileId() {
 		return fileId;

@@ -63,6 +63,11 @@
 		
 		
 		$("#modifyPasswordBtn").click( function () {
+			
+			if ( $("#userPw").val() != "${ memberPassword }") {
+				
+			}
+			
 				
 			if( $("#userPw").val() == "" ){
 				alert("기존 비밀번호를 입력해 주세요");

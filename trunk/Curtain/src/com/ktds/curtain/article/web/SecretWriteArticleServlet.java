@@ -51,19 +51,16 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
 				
 		String articleTitle = multipartRequest.getParameter("articleTitle");
-		System.out.println(articleTitle+"/");
 		String articleDescription = multipartRequest.getParameter("articleDescription");
-		System.out.println(articleDescription+"/");
 		int articleTypeId = Integer.parseInt(multipartRequest.getParameter("articleTypeId"));
-		System.out.println(articleTypeId+"/");
 		int boardId = Integer.parseInt(multipartRequest.getParameter("boardId"));
-		System.out.println(boardId+"/");
+		
 		MultipartFile imgFile = multipartRequest.getFile("imgFile");
 		File upImgFile = imgFile.write("D:\\" + imgFile.getFileName());
-		MultipartFile movieFile = multipartRequest.getFile("movieFile");
-		File upMovieFile = movieFile.write("D:\\" + movieFile.getFileName());
 		
+		String movieUrl = multipartRequest.getParameter("movieUrl");
 		HttpSession session = request.getSession();
+		
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		ArticleVO article = new ArticleVO();
@@ -73,25 +70,34 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		article.setBoardId(boardId);
 		article.setEmail(loginMember.getEmail());
 
-		int doWriteArticle = articleBiz.doWriteArticle(article);
-		
+		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember);
+
+		FileVO file = null;
 		int articleId = articleBiz.getArticleId();
 		if( articleId > 0 ){
+			// 이미지 파일이 있을 경우
 			if( imgFile.getFileSize() != 0 ){
-				
-				// 파일이 있을 경우
-			
-				//List<FileVO> fileList = new ArrayList<FileVO>();
-				FileVO file = new FileVO();
-				
-				file.setArticleId(doWriteArticle);
+				file = new FileVO();
+				file.setArticleId(articleId);
 				file.setFileName(imgFile.getFileName());
 				file.setFileLocation("D:\\"+imgFile.getFileName());
-				
-				//fileList.add(file);
+				file.setFileType(1);
 				
 				fileBiz.insertFile(file);
+				System.out.println("이미지 등록 성공");
 			}
+			// 영상 url이 있을 경우
+			if( !movieUrl.equals("") ){
+				file = new FileVO();
+				file.setArticleId(articleId);
+				file.setFileName(movieUrl);
+				file.setFileLocation("");
+				file.setFileType(2);
+				
+				fileBiz.insertFile(file);
+				System.out.println("영상 등록 성공");
+			}
+
 			response.sendRedirect("/secretArticleList");
 			return;
 		}

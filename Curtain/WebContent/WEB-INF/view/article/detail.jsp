@@ -8,14 +8,13 @@
 
 $(document).ready(function () {
 
-	 <% System.out.println(request.getRealPath("/")); %> 
-
 /* 	$("#writeReplyBtn").click(function() {
 		var form = $("#writeReplyForm");
 		form.attr("method", "post");
 		form.attr("action", "/doWriteReply");
 		form.submit();
-	}); */
+	}); 
+*/
 	
 	/*새로 추가된것에 접근하는 방법*/
 	$("body").on ("click", "#writeReplyBtn", function() {

@@ -23,19 +23,37 @@ public class MemberBiz {
 	
 	public void addStdMember(String inputUnivEmail, String inputPassword, String inputUnivName, String inputMajorName,
 			String inputSecondEmail) {
-		int majorId = majorDAO.getMajorIdByMajorName(inputMajorName);
 		
-		int majorGroupId = majorDAO.getMajorGroupIdByMajorId(majorId);
-		
-		int univId = univDAO.getUnivIdByUnivName(inputUnivName);
-		
-		memberDAO.addStdMember(inputUnivEmail,univId,majorId,inputSecondEmail,inputPassword,majorGroupId);
+		memberDAO.addStdMember(inputUnivEmail
+								,univDAO.getUnivIdByUnivName(inputUnivName)
+								,majorDAO.getMajorIdByMajorName(inputMajorName)
+								,inputSecondEmail,inputPassword
+								,majorDAO.getMajorGroupIdByMajorId(majorDAO.getMajorIdByMajorName(inputMajorName)));
 		
 	}
+	
+	public int getMajorIdByMajorName(String inputMajorName){
+		return majorDAO.getMajorIdByMajorName(inputMajorName);
+	}
+	
+	public int getMajorGroupIdByMajorId(int majorId){
+		return majorDAO.getMajorGroupIdByMajorId(majorId);
+	}
+	
+	public int getUnivIdByUnivName(String inputUnivName){
+		return univDAO.getUnivIdByUnivName(inputUnivName);
+	}
+	
+	public String getDateTimeByEmail(String inputUnivEmail){
+		
+		return majorDAO.getDateTimeByEmail(inputUnivEmail);
+	}
+	
 	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, int inputPhoneNum,
 			String inputSecondEmail) {
 		memberDAO.addCompMember(inputCompEmail,inputPassword,inputCompName,inputPhoneNum,inputSecondEmail);
 	}
+	
 	public void modifyMemberInfo(String userEmail, String userNickName, String email) {
 		memberDAO.updateMemberInfo(userEmail, userNickName, email);
 	}
@@ -69,6 +87,12 @@ public class MemberBiz {
 
 	}
 
+	//비밀번호 분실시 전송하는 메소드
+	public void sendPassword(String email, String secondEmail) {
+
+		memberDAO.sendPassword(email,secondEmail);
+	}
+	
 	public void setCookie(MemberVO member, HttpServletResponse response) {
 		Cookie autoLogin = new Cookie("autoLogin", "true");
 		autoLogin.setMaxAge(30*24*60*60);
@@ -98,6 +122,7 @@ public class MemberBiz {
 	public String getMemberRank(int memberTypeId) {
 		return memberDAO.getMemberRank(memberTypeId);
 	}
+
 
 	
 }

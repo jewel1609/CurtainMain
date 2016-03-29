@@ -433,6 +433,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>SurveyServlet</display-name>
+    <servlet-name>SurveyServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.survey.web.SurveyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SurveyServlet</servlet-name>
+    <url-pattern>/survey</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>DeleteArticleServlet</display-name>
     <servlet-name>DeleteArticleServlet</servlet-name>
     <servlet-class>com.ktds.curtain.article.web.DeleteArticleServlet</servlet-class>

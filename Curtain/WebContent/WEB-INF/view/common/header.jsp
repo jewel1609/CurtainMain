@@ -6,7 +6,7 @@
 <title>커튼</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-teal.css">
+<link rel="stylesheet" href="/resource/css/article/theme.css">
 <link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
@@ -75,26 +75,25 @@
 
 	<%-- 헤더 --%>
 	<div class="w3-overlay w3-hide-large" onclick="w3_close()"
-		style="cursor: pointer"></div>
+		style="cursor: pointer;"></div>
 
 	<div class="w3-main">
-		<div id="myTop" class="w3-top w3-container w3-padding-8"
-			style="background-color: #A9D039; border: 0px;">
-			<i	class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left w3-margin-right" onclick="w3_open()"></i>
+		<div id="myTop" class="w3-top w3-container w3-padding-8" style="background-color: #F5F5F5; border: 0px;">
+			<i class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left w3-margin-right" onclick="w3_open()"></i>
 		</div>
 		<header class="w3-container w3-padding-15"
-			style="background-color: #A9D039; border-bottom: 1px solid #94b8b8; padding: 20px;">
+			style="background-color: #F5F5F5; border-bottom: 1px solid #bababa; padding: 10px; height:105px;">
 			
 			<form id="homeForm">
 				<div id="btnHome" style="float: left; width: 200px;">
-					<h2 class="w3-xxlarge w3-padding-5" style="margin-left: 10px;">커튼</h2>
+					<img src="/resource/img/title4.png" style="width:85%;">
 				</div>
 			</form>
 
 		<c:if test="${sessionScope._MEMBER_ ne null }">
 			<div style="float: right; width: 100px; padding-top: 25px;">
 				<form action="<c:url value="/doLogout" /> " method="post">
-					<button type="submit" class="btn btn-default" >로그아웃</button>
+					<button type="submit" class="btn btn-default" style="border-color: #FF3300; color: #FF3300;" >로그아웃</button>
 				</form>
 			</div>
 		</c:if>

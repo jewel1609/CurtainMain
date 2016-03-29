@@ -354,6 +354,25 @@
 			ORDER		BY	HITS DESC,
                         ARTICLE_MODIFY_DATE DESC
 		</showTopArticle>
+		<updateArticleOnlyTitle>
+			UPDATE	ARTICLE
+			SET		ARTICLE_TITLE = ?
+			WHERE	ARTICLE_ID = ?
+		</updateArticleOnlyTitle>
+		
+		<updateArticleOnlyDescription>
+			UPDATE	ARTICLE
+			SET		ARTICLE_DESC = ?
+			WHERE	ARTICLE_ID = ?
+		</updateArticleOnlyDescription>
+		
+		<updateArticle>
+			UPDATE	ARTICLE
+			SET		ARTICLE_TITLE = ?
+					, ARTICLE_DESC = ?
+			WHERE	ARTICLE_ID = ?
+		</updateArticle>
+		
 	</article>
 	<articleLikes>
 		<deleteArticle>
@@ -576,6 +595,11 @@
 			FROM	FILES
 			WHERE	ARTICLE_ID = ?
 		</getFileListByArticleId>
+		<deleteFile>
+			DELETE
+			FROM	FILES
+			WHERE 	FILE_ID = ?
+		</deleteFile>
 	</file>
 	
 	<dislike>

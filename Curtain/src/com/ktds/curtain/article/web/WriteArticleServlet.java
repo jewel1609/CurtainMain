@@ -2,6 +2,7 @@ package com.ktds.curtain.article.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,49 +50,51 @@ public class WriteArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// mutilpartHttpServletResquest 선언
-		MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
-		
-		String articleTitle = multipartRequest.getParameter("articleTitle");
-		System.out.println(articleTitle);
-		String articleDescription = multipartRequest.getParameter("articleDescription");
-		System.out.println(articleDescription);
-		String articleTypeId = multipartRequest.getParameter("articleTypeId");
-		System.out.println(articleTypeId);
-		String boardId = multipartRequest.getParameter("boardId");
-		System.out.println(boardId);
-		MultipartFile file = multipartRequest.getFile("imgFile");
-		System.out.println(file.getFileName());
-		
-		HttpSession session = request.getSession();
-		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
-		
-		ArticleVO article = new ArticleVO();
-		article.setArticleTitle(articleTitle);
-		article.setArticleDesc(articleDescription);
-		article.setArticleTypeId(Integer.parseInt(articleTypeId));
-		article.setBoardId(Integer.parseInt(boardId));
-		article.setEmail(stdMember.getEmail());
-		article.setMajorGroupId(stdMember.getMajorGroupId());
+				MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
+				
+				String articleTitle = multipartRequest.getParameter("articleTitle");
+				System.out.println(articleTitle);
+				String articleDescription = multipartRequest.getParameter("articleDescription");
+				System.out.println(articleDescription);
+				String articleTypeId = multipartRequest.getParameter("articleTypeId");
+				System.out.println(articleTypeId);
+				String boardId = multipartRequest.getParameter("boardId");
+				System.out.println(boardId);
+				MultipartFile file = multipartRequest.getFile("imgFile");
+				System.out.println(file.getFileName());
+				
+				HttpSession session = request.getSession();
+				MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+				
+				ArticleVO article = new ArticleVO();
+				article.setArticleTitle(articleTitle);
+				article.setArticleDesc(articleDescription);
+				article.setArticleTypeId(Integer.parseInt(articleTypeId));
+				article.setBoardId(Integer.parseInt(boardId));
+				article.setEmail(stdMember.getEmail());
+				article.setMajorGroupId(stdMember.getMajorGroupId());
 
-		boolean doWriteArticle = articleBiz.doWriteArticle(article, stdMember);
-		int articleId = articleBiz.getArticleId();
-		if ( !file.getFileName().equals("")) {
-			File upFile = file.write("D:\\"+file.getFileName());
-			FileVO fileVO = new FileVO();
-			fileVO.setFileName(file.getFileName());
-			fileVO.setFileLocation("D:\\"+file.getFileName());
-			fileVO.setArticleId(articleId);
-			
-			fileBiz.insertFile(fileVO);
-		}
-		if ( boardId.equals(BoardId.MAJOR_BOARD)) {
-			response.sendRedirect("/studentMajorAritlce");
-		}
-		else if ( boardId.equals(BoardId.UNIV_BOARD)) {
-			response.sendRedirect("/studentUnivArticle");
-		}
-
-
+				boolean doWriteArticle = articleBiz.doWriteArticle(article, stdMember);
+				
+				int articleId = articleBiz.getArticleId();
+				if ( !file.getFileName().equals("")) {
+					File upFile = file.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
+					FileVO fileVO = new FileVO();
+					fileVO.setFileName(file.getFileName());
+					fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
+					fileVO.setArticleId(articleId);
+					fileVO.setFileType(1);
+					
+					fileBiz.insertFile(fileVO);
+				}
+				if ( boardId.equals(BoardId.MAJOR_BOARD)) {
+					response.sendRedirect("/studentMajorAritlce");
+				}
+				else if ( boardId.equals(BoardId.UNIV_BOARD)) {
+					response.sendRedirect("/studentUnivArticle");
+				}
+				
+		
 	}
 
 }

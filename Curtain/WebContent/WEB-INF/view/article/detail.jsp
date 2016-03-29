@@ -8,7 +8,7 @@
 
 $(document).ready(function () {
 
-
+	 <% System.out.println(request.getRealPath("/")); %> 
 
 	$("#writeReplyBtn").click(function() {
 		var form = $("#writeReplyForm");
@@ -92,8 +92,9 @@ $(document).ready(function () {
 							<strong class="w3-center"><h2>${article.articleTitle}</h2></strong>
 						</div>
 			             <div>${article.articleDesc}
+			            
 				             <c:forEach items="${files}" var="file">									
-									<img src="/resource/img/${file.fileName} "/>
+									<img src="/resource/img/${file.fileName}"/>
 							</c:forEach>
 						</div>
 			             <div>${article.articleModifyDate}  ${article.nickName}</div>

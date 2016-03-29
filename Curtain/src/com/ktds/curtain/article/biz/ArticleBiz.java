@@ -288,6 +288,42 @@ public class ArticleBiz {
 		return file;
 	}
 
-
+	/**
+	 * 수정하기
+	 * @param article - 원래
+	 * @param articleVO - 수정한글
+	 * @return
+	 */
+	public boolean doUpdateArticle(ArticleVO article, ArticleVO articleVO) {
+		
+		ArticleVO originAticle = article;
+		
+		int changeCount = 0;
+		
+		String title = articleVO.getArticleTitle();
+		String description = articleVO.getArticleDesc();
+		
+		ArticleVO changedArticle = new ArticleVO();
+		// 원본과 지금 글이 다른가
+		if ( !originAticle.getArticleTitle().equals(title) ) {
+			changeCount++;
+			changedArticle.setArticleTitle(title);
+		}
+		
+		description = description.replaceAll("\n", "<br/>");
+		System.out.println(originAticle.getArticleDesc());
+		System.out.println(description);
+		if ( !originAticle.getArticleDesc().equals(description) ) {
+			changeCount++;
+			changedArticle.setArticleDesc(description);
+		}
+		
+		// 0이면 예외처리한다.
+		if ( changeCount != 0 ) {
+			changedArticle.setArticleId(article.getArticleId());
+			return articleDAO.updateArticle(changedArticle) > 0;
+		}
+		return true;
+	}
 
 }

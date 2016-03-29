@@ -58,10 +58,10 @@ public class ArticleDAO {
 			return articles;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articles;
 	}
 
 	// 대학
@@ -102,10 +102,10 @@ public class ArticleDAO {
 			return articles;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articles;
 	}
 
 	// 홍보
@@ -146,10 +146,10 @@ public class ArticleDAO {
 			return articles;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articles;
 	}
 
 	//학과 게시판 글쓰기
@@ -178,10 +178,10 @@ public class ArticleDAO {
 			return getTheLatestArticleId(conn);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
-		return 0;
 	}
 	
 	
@@ -364,10 +364,10 @@ public class ArticleDAO {
 			return articles;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articles;
 	}
 	
 	//내가좋아요한글
@@ -409,10 +409,10 @@ public class ArticleDAO {
 			return articles;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articles;
 	}
 	
 	//내가 스크랩한글
@@ -454,10 +454,10 @@ public class ArticleDAO {
 			return articles;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articles;
 	}
 	
 	//내가 쓴글
@@ -499,10 +499,10 @@ public class ArticleDAO {
 			return articles;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articles;
 	}
 	
 	/**
@@ -526,11 +526,10 @@ public class ArticleDAO {
 			return updateCount;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
-		
-		return 0;
 	}
 	
 	/**
@@ -573,10 +572,10 @@ public class ArticleDAO {
 			return article;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return article;
 	}
 
 	/**
@@ -598,7 +597,8 @@ public class ArticleDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
 		
@@ -623,7 +623,8 @@ public class ArticleDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
 		
@@ -650,10 +651,10 @@ public class ArticleDAO {
 			return rs.getInt(1);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return 0;
 	}
 	
 	/**
@@ -680,10 +681,10 @@ public class ArticleDAO {
 			return rs.getInt(1);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return 0;
 	}
 
 	public void minusDislikeCount(ArticleDislikeVO dislikeVO) {
@@ -702,7 +703,8 @@ public class ArticleDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
 		
@@ -724,9 +726,10 @@ public class ArticleDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
-		
 		
 	}
 
@@ -771,9 +774,10 @@ public class ArticleDAO {
 			return article;
 
 		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return article;
 	}
 
 	/**
@@ -796,10 +800,79 @@ public class ArticleDAO {
 			return stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
-		return 0;
+	}
+	
+	/**
+	 * update하기
+	 * @param changedArticle
+	 * @return
+	 */
+	public int updateArticle(ArticleVO changedArticle) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		int updateCount = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = "";
+			
+			if ( changedArticle.getArticleTitle() != null && changedArticle.getArticleTitle().length() > 0 ) {
+				
+				if ( changedArticle.getArticleDesc() != null && changedArticle.getArticleDesc().length() > 0 ) {
+					// 둘 다 있는 경우
+					query = XML.getNodeString("//query/article/updateArticle/text()");
+				}
+				else {
+					// title만 있는 경우
+					query = XML.getNodeString("//query/article/updateArticleOnlyTitle/text()");
+				}
+			}
+			else {
+				if ( changedArticle.getArticleDesc() != null && changedArticle.getArticleDesc().length() > 0 ) {
+					// Description만 있는 경우	
+				query = XML.getNodeString("//query/article/updateArticleOnlyDescription/text()");
+				}		
+			}
+			
+			stmt = conn.prepareStatement(query);
+			
+			if ( changedArticle.getArticleTitle() != null && changedArticle.getArticleTitle().length() > 0 ) {
+				
+				if ( changedArticle.getArticleDesc() != null && changedArticle.getArticleDesc().length() > 0 ) {
+					// 둘 다 있는 경우
+					stmt.setString(1, changedArticle.getArticleTitle());
+					stmt.setString(2, changedArticle.getArticleDesc());
+					stmt.setInt(3, changedArticle.getArticleId());
+				}
+				else {
+					// title만 있는 경우
+					stmt.setString(1, changedArticle.getArticleTitle());
+					stmt.setInt(2, changedArticle.getArticleId());
+				}
+			}
+			else {
+				if ( changedArticle.getArticleDesc() != null && changedArticle.getArticleDesc().length() > 0 ) {
+					// Description만 있는 경우
+					stmt.setString(1, changedArticle.getArticleDesc());
+					stmt.setInt(2, changedArticle.getArticleId());
+				}		
+			}
+			
+			updateCount = stmt.executeUpdate();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		return updateCount;
 	}
 	
 	private void loadOracleDriver() {
@@ -831,4 +904,5 @@ public class ArticleDAO {
 		}
 
 	}
+
 }

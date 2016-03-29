@@ -411,9 +411,6 @@
     <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
     <url-pattern>/duplicationCheckNickName</url-pattern>
   </servlet-mapping>
-  <session-config>
-    <session-timeout>10</session-timeout>
-  </session-config>
   <servlet>
     <description></description>
     <display-name>DeleteArticleServlet</display-name>

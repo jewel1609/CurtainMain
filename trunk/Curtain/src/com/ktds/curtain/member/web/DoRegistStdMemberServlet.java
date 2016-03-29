@@ -51,11 +51,18 @@ public class DoRegistStdMemberServlet extends HttpServlet {
 		memberVO.setEmail(inputUnivEmail);
 		memberVO.setPassword(inputPassword);
 		memberVO.setNickName("yo");
+		memberVO.setSecondEmail(inputSecondEmail);
+		memberVO.setMemberTypeId(1);
+		memberVO.setActivity(0);
+		memberVO.setPoint(0);
+		memberVO.setMajorGroupId(stdMemberBiz.getMajorGroupIdByMajorId(stdMemberBiz.getMajorIdByMajorName(inputMajorName)));
+		memberVO.setMajorId(stdMemberBiz.getMajorIdByMajorName(inputMajorName));
+		memberVO.setSignupDate(stdMemberBiz.getDateTimeByEmail(inputUnivEmail));
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("_MEMBER_", memberVO);
 		
-		response.sendRedirect(Root.get(this) + "/doLogin");
+		response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
 	}
 
 }

@@ -154,6 +154,7 @@ public class ArticleDAO {
 
 	//학과 게시판 글쓰기
 	public int doWriteMajorArticle(ArticleVO article) {
+		
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -243,12 +244,52 @@ public class ArticleDAO {
 	public int doWriteAdArticle(ArticleVO article) {
 		return 0;
 	}
+	
+	/**
+	 * 비밀 게시판 글쓰기
+	 * @param article
+	 * @param stdMember
+	 * @return
+	 */
+	public int doWriteSecretArticle(ArticleVO article, MemberVO stdMember) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/doWriteSecretArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, article.getArticleTitle());
+			stmt.setString(2, article.getArticleDesc());
+			stmt.setInt(3, article.getArticleTypeId());
+			stmt.setString(4, stdMember.getEmail());
+			stmt.setInt(5, article.getBoardId());
+			
+			int insertCount = stmt.executeUpdate();
+			
+			return insertCount;
+
+		} catch (SQLException e) {
+			closeDB(conn, stmt, null);
+		}
+		return 0;
+	}
+
+
+
+
+
 
 	/**
 	 * 가장 최근 게시물의 ArticleId 얻어오기
 	 * @return
 	 */
 	public int getArticleId() {
+		
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -790,5 +831,4 @@ public class ArticleDAO {
 		}
 
 	}
-
 }

@@ -92,7 +92,7 @@ $(document).ready(function () {
 							<strong class="w3-center"><h2>${article.articleTitle}</h2></strong>
 						</div>
 			             <div>${article.articleDesc}
-				             <c:forEach items="${files}" var="file">
+				             <c:forEach items="${files}" var="file">									
 									<img src="/resource/img/${file.fileName} "/>
 							</c:forEach>
 						</div>

@@ -49,12 +49,124 @@ public class SurveyDAO {
 			return survey;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			closeDB(conn, stmt, rs);
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, null);
 		}
 		
-		return survey;
 	}
+	
+	public void upDateFirst(int surveyId) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/survey/upDateFirst/text()");
+			stmt = conn.prepareStatement(query);
+			
+			//SQL Parameter Mapping
+			stmt.setInt(1, surveyId);
+			stmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+
+	public void upDateSecond(int surveyId) {
+
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/survey/upDateSecond/text()");
+			stmt = conn.prepareStatement(query);
+			
+			//SQL Parameter Mapping
+			stmt.setInt(1, surveyId);
+			stmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+
+	public void upDateThird(int surveyId) {
+		
+		System.out.println(surveyId + "DBDBDB");
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/survey/upDateThird/text()");
+			
+			System.out.println(query);
+			
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setInt(1, surveyId);
+			stmt.executeUpdate();
+			
+			System.out.println("여기가안되네?");
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+
+	public void upDateFourth(int surveyId) {
+		
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/survey/upDateFourth/text()");
+			stmt = conn.prepareStatement(query);
+			
+			//SQL Parameter Mapping
+			stmt.setInt(1, surveyId);
+			stmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
+	
 	
 	
 	private void loadOracleDriver() {
@@ -86,5 +198,8 @@ public class SurveyDAO {
 		}
 
 	}
+
+
+	
 
 }

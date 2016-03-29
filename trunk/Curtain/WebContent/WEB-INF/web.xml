@@ -218,7 +218,6 @@
     <servlet-name>SecretBoardServlet</servlet-name>
     <url-pattern>/secretBoard</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>SecretArticleListServlet</display-name>
@@ -431,6 +430,7 @@
     <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
     <url-pattern>/duplicationCheckNickName</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>SurveyServlet</display-name>
@@ -441,6 +441,7 @@
     <servlet-name>SurveyServlet</servlet-name>
     <url-pattern>/survey</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>DeleteArticleServlet</display-name>
@@ -460,5 +461,15 @@
   <servlet-mapping>
     <servlet-name>UpdateArticleServlet</servlet-name>
     <url-pattern>/updateArticle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteFileServlet</display-name>
+    <servlet-name>DeleteFileServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.file.DeleteFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteFileServlet</servlet-name>
+    <url-pattern>/deleteFile</url-pattern>
   </servlet-mapping>
 </web-app>

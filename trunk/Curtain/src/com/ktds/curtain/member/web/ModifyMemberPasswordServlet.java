@@ -5,8 +5,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import com.ktds.curtain.member.biz.MemberBiz;
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class ModifyMemberPasswordServlet
@@ -35,11 +38,36 @@ public class ModifyMemberPasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO 세션의 대학이메일(ID)의 사람의 이메일과 닉네임을 바꾸어준다. 
+		
+		HttpSession session = request.getSession();
+		
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		String userPassword = member.getPassword();
+		String email = member.getEmail();
 		
 		String userPw = request.getParameter("userPw");
+		String userNewPw = request.getParameter("userNewPw");
+		String userNewRePw = request.getParameter("userNewRePw");
 		
-		memberBiz.modifyMemberPassword(userPw);
+		System.out.println(userPw);
+		System.out.println(userNewPw);
+		System.out.println(userNewRePw);
+		
+		if ( userPw.equals(userPassword) && userNewPw.equals(userNewRePw) ) {
+			System.out.println("modifyTest");
+			System.out.println(email);
+			memberBiz.modifyMemberPassword(userNewPw, email);
+			
+			response.sendRedirect("/myPage");
+			return;
+		}
+		else {
+			response.sendRedirect("/?errorCode=1");
+			return;
+		}
+		
+		
+		
 	}
 
 }

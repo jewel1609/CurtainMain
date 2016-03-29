@@ -28,7 +28,6 @@ public class ArticleVO extends MemberVO {
 	
 	private List<ReplyVO> replyList;
 	
-
 	public List<ReplyVO> getReplyList() {
 		return replyList;
 	}

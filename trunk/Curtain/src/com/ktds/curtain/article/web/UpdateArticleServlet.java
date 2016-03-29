@@ -1,7 +1,6 @@
 package com.ktds.curtain.article.web;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,19 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
-import com.ktds.curtain.file.vo.FileVO;
 
 /**
- * Servlet implementation class ShowDetailServlet
+ * Servlet implementation class UpdateArticleServlet
  */
-public class ShowDetailServlet extends HttpServlet {
+public class UpdateArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArticleBiz articleBiz;
-       
+    private ArticleBiz articleBiz;   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowDetailServlet() {
+    public UpdateArticleServlet() {
         super();
         articleBiz = new ArticleBiz();
     }
@@ -40,13 +37,13 @@ public class ShowDetailServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
-		ArticleVO article = articleBiz.showDetail(articleId);
-		List<FileVO> files = articleBiz.getFileListByArticleId(articleId);
 		
-		request.setAttribute("article", article);
-		request.setAttribute("files", files);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/detail.jsp");
-		rd.forward(request, response);
+		ArticleVO articleVO = new ArticleVO();
+		articleVO = articleBiz.showDetail(articleId);
+		
+		request.setAttribute("article", articleVO);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/updateArticle.jsp");
+		rd.forward(request,response);
 	}
 
 }

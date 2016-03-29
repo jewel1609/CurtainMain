@@ -153,7 +153,7 @@ public class ArticleDAO {
 	}
 
 	//학과 게시판 글쓰기
-	public int doWriteMajorArticle(ArticleVO article, MemberVO stdMember) {
+	public int doWriteMajorArticle(ArticleVO article) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -168,12 +168,13 @@ public class ArticleDAO {
 			stmt.setString(2, article.getArticleDesc());
 			stmt.setInt(3, article.getArticleTypeId());
 
-			stmt.setString(4, stdMember.getEmail());
+			stmt.setString(4, article.getEmail());
 
 			stmt.setInt(5, article.getBoardId());
-			stmt.setInt(6, stdMember.getMajorGroupId());
+			stmt.setInt(6, article.getMajorGroupId());
 			int insertCount = stmt.executeUpdate();
-			return insertCount;
+			
+			return getTheLatestArticleId(conn);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -181,10 +182,37 @@ public class ArticleDAO {
 		}
 		return 0;
 	}
+	
+	
+	// 가장 최근글 가져오기
+	private int getTheLatestArticleId(Connection conn) {
+		loadOracleDriver();
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String query = XML.getNodeString("//query/article/getTheLatestArticleId/text()");
+			stmt = conn.prepareStatement(query);
+			// 물음표에 값 넣기 - 파라미터 매핑 (SQL Parameter Mapping)
+			// 결과 받아오기
+			rs = stmt.executeQuery();
+			rs.next();
+			int getArticleId = rs.getInt(1);
+
+			return getArticleId;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(null, stmt, rs);
+		}
+	}
 
 	// 대학 게시판 글쓰기
 
-	public int doWriteUnivArticle(ArticleVO article, MemberVO stdMember) {
+	public int doWriteUnivArticle(ArticleVO article) {
 		loadOracleDriver();
 
 		Connection conn = null;
@@ -212,7 +240,7 @@ public class ArticleDAO {
 	}
 
 	// 홍보 게시판 글쓰기
-	public int doWriteAdArticle(ArticleVO article, MemberVO stdMember) {
+	public int doWriteAdArticle(ArticleVO article) {
 		return 0;
 	}
 
@@ -492,6 +520,7 @@ public class ArticleDAO {
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
 				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setEmail(rs.getString("EMAIL"));
 				article.setNickName(rs.getString("NICK_NAME"));
 				article.setBoardId(rs.getInt("BOARD_ID"));
 				article.setBoardId(rs.getInt("MAJOR_GROUP_ID"));
@@ -706,6 +735,31 @@ public class ArticleDAO {
 		return article;
 	}
 
+	/**
+	 * 글 삭제하기
+	 * @param articleVO
+	 * @return
+	 */
+	public int deleteArticle(ArticleVO articleVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/deleteArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleVO.getArticleId());
+			return stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		return 0;
+	}
 	
 	private void loadOracleDriver() {
 		try {
@@ -736,13 +790,5 @@ public class ArticleDAO {
 		}
 
 	}
-
-
-
-
-
-
-	
-
 
 }

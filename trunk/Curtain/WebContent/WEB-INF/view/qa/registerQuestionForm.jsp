@@ -116,6 +116,14 @@
 										</div>
 									</div>
 								</div>
+								<div class="col-sm-2" style="float: left; margin-top: 25px;">
+									<input type="file" id="imgFile" name="imgFile" style="display: none;"
+										onchange="readURL(this);">
+									<button type="button" class="btn btn-default btn-sm"
+										onclick="document.all.imgFile.click();">
+										<span class="glyphicon glyphicon-picture"></span>
+									</button>
+								</div>
 							</form>
 						</div>
 					</div>

@@ -30,6 +30,7 @@ html, body, h1, h2, h3, h4, h5 {
 		
 		var passwordCheck = false;
 		$("#inputUnivEmail").keyup(function(){
+			
 			//AJAX 준비
 	         $.post(
 	        		 "<c:url value="/doUnivCheck" />"//갈 서블릿url
@@ -379,8 +380,8 @@ html, body, h1, h2, h3, h4, h5 {
 		// 학생 회원가입 버튼 누를시,
 		$("#registStdBtn").click(function(){
 			 // 정규식 - 이메일 유효성 검사
-	        var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-	        var regPassword =/^(?=\w{8,}$)(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).*/;
+	        //var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	        var regPassword =/^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])|(?=.*[a-z])(?=.*[A-Z])(?=.*\W)|...|...|...).{8,20}$/;
 			// 유효성 검사 혹은 Validation Check
 			 if( $("#inputUnivEmail").val() == ""){
 				alert("학교 이메일을 입력하세요!");
@@ -388,11 +389,11 @@ html, body, h1, h2, h3, h4, h5 {
 				return; // 더이상 밑의 이벤트를 진행하지 않음.
 				} 
 			
-			 if(!regEmail.test($("#inputUnivEmail").val())) {
+			/*  if(!regEmail.test($("#inputUnivEmail").val())) {
 	                alert('이메일 주소가 유효하지 않습니다');
 	                $("#inputUnivEmail").focus();
 	                return false;
-	            }
+	            } */
 			 
 			 if( $("#inputNumberCheck").val() == ""){
 					alert("인증번호를 입력하세요!");
@@ -430,11 +431,11 @@ html, body, h1, h2, h3, h4, h5 {
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
 				} 
 			 
-			 if(!regEmail.test($("#inputSecondEmail").val())) {
+			/*  if(!regEmail.test($("#inputSecondEmail").val())) {
 	                alert('이메일 주소가 유효하지 않습니다');
 	                $("#inputSecondEmail").focus();
 	                return false;
-	            }
+	            } */
 			 
 			 if($("#agree").prop('checked') == false){
 				 	alert("이용약관을 체크해주세요.");
@@ -459,20 +460,14 @@ html, body, h1, h2, h3, h4, h5 {
 		////////// 기업///////////
 		// 기업 회원가입 버튼 누를시,
 		$("#registCompBtn").click(function(){
-			 var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 			 // 정규식 -전화번호 유효성 검사
 	         var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
-			 var regPassword =/^(?=\w{8,}$)(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).*/;
+			 //var regPassword =/^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])|(?=.*[a-z])(?=.*[A-Z])(?=.*\W)|...|...|...).{8,20}$/;
 			// 유효성 검사 혹은 Validation Check
 			 if( $("#inputCompEmail").val() == ""){
 				alert("회사 이메일을 입력하세요!");
 				return; // 더이상 밑의 이벤트를 진행하지 않음.
 				} 
-			 if(!regEmail.test($("#inputCompEmail").val())) {
-	                alert('이메일 주소가 유효하지 않습니다');
-	                $("#inputCompEmail").focus();
-	                return false;
-	            }
 			 if( $("#inputCompNumberCheck").val() == ""){
 					alert("인증번호를 입력하세요!");
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
@@ -481,9 +476,9 @@ html, body, h1, h2, h3, h4, h5 {
 					alert("비밀번호를 입력하세요!");
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
 				} 
-			 if(!regPassword.test($("#inputCompPassword"))){
+			 /* if(!regPassword.test($("#inputCompPassword"))){
 				 alert("비밀번호 형식을 맞춰주세요!");
-			 }
+			 } */
 				 
 			 if( $("#inputCompPasswordCheck").val() == ""){
 					alert("재확인 비밀번호를 입력하세요!");
@@ -508,12 +503,6 @@ html, body, h1, h2, h3, h4, h5 {
 					alert("보조이메일을 입력하세요.");
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
 				} 
-			 
-			 if(!regEmail.test($("#inputCompSecondEmail").val())) {
-	                alert('이메일 주소가 유효하지 않습니다');
-	                $("#inputCompSecondEmail").focus();
-	                return false;
-	            }
 			 
 			 if($("#compAgree").prop('checked') == false){
 				 	alert("이용약관을 체크해주세요.");

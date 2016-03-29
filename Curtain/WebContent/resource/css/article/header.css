@@ -7,5 +7,6 @@ body, input, div, span, p, a, td, th, caption, lable, h1, h2, h3, h4, h5, h6, te
 }
 
 .w3-sidenav a {
-	padding:16px;font-weight:bold
+	padding:16px;
+	color: #333333;
 }

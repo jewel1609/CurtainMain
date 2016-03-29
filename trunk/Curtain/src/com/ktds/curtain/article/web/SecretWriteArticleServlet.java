@@ -77,8 +77,17 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		if( articleId > 0 ){
 			// 이미지 파일이 있을 경우
 			if( imgFile.getFileSize() != 0 ){
+
+				// 파일이 있을 경우
+			
+				//List<FileVO> fileList = new ArrayList<FileVO>();
+				file = new FileVO();
+				
+				file.setArticleId(articleId);
+
 				file = new FileVO();
 				file.setArticleId(articleId);
+
 				file.setFileName(imgFile.getFileName());
 				file.setFileLocation("D:\\"+imgFile.getFileName());
 				file.setFileType(1);

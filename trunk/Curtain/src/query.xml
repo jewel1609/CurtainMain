@@ -751,5 +751,19 @@
 			AND			BOARD_ID = ?
 		</showArticleScrab>
 	</scrab>
+	
+	<survey>
+		<selectTodaySurvey>
+			SELECT	SURVEY_ID
+					, SURVEY_TITLE
+					, SURVEY_ANSWER1
+					, SURVEY_ANSWER2
+					, SURVEY_ANSWER3
+					, SURVEY_ANSWER4
+			FROM	SURVEY
+			WHERE	SURVEY_DATE	= ?
+		</selectTodaySurvey>
+	</survey>
+	
 
 </query>

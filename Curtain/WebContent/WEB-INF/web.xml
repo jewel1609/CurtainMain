@@ -319,16 +319,7 @@
     <servlet-name>ShowMyQuestionsServlet</servlet-name>
     <url-pattern>/myQuestion</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ModifyMemberPasswordServlet</display-name>
-    <servlet-name>ModifyMemberPasswordServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.member.web.ModifyMemberPasswordServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ModifyMemberPasswordServlet</servlet-name>
-    <url-pattern>/modifyMemberPassword</url-pattern>
-  </servlet-mapping>
+ 
   <servlet>
     <description></description>
     <display-name>DislikeServlet</display-name>

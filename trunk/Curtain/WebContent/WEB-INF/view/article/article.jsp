@@ -159,8 +159,15 @@
 	<div>
 		<div class="w3-col m7 w3-main"
 			style="margin-left: 350px; margin-right: 100px; height: 705px; overflow: auto;">
+			<div style="float:left;">
+					<h2>학과 게시판입니다. </h2> 
+				</div> 
+				<div style="float:left; padding:20px;">
+					<h6>참여인원 명</h6> 
+				</div>
+			
 			<div class="w3-row-padding">
-				<div class="w3-col m12">
+				<div class="w3-col m12" align="left" >
 					<div class="w3-card-2 w3-round w3-white">
 
 						<form id="writeArticle" enctype="multipart/form-data">
@@ -168,9 +175,8 @@
 								<div class="form-group1">
 									<input type="hidden" id="boardId" name="boardId" value="1" />
 									<div>
-										<div class="container col-xs-2 input-lg"
-											style="padding-bottom: 10px; padding-left: 0px;">
-											<select class="form-control " id="sel1" name="articleTypeId">
+										<div class="col-sm-1">
+											<select name="articleTypeId">
 												<option value="1">고민</option>
 												<option value="2">취업</option>
 												<option value="3">연애</option>
@@ -178,55 +184,47 @@
 												<option value="5">기타</option>
 											</select>
 										</div>
-										<div style="padding-top: 4px;">
-											<input type="text" class="w3-col m8 input-lg"
-												id="articleTitle" name="articleTitle" placeholder="제목" />
+										<div class="col-sm-9">
+												<input class="w3-input" type="text" id="articleTitle" name="articleTitle"
+													placeholder="제목을 입력하세요." style="margin-bottom: 5px;">
 										</div>
-										<div class="col-sm-2">
-
-											<input type="file" id="file" name="imgFile" style="display: none;"
-												onchange="readURL(this);">
-											<button type="button" class="btn btn-default btn-sm"
-												onclick="document.all.imgFile.click();">
-												<span class="glyphicon glyphicon-picture"></span>
-											</button>
-
-
-											<input type="file" id="file" name="movieFile" style="display: none;">
-											<button type="button" class="btn btn-default btn-sm"
-												onclick="document.all.movieFile.click();">
-												<span class="glyphicon glyphicon-facetime-video"></span>
-											</button>
-										</div>
+											<div class="col-sm-2">					
+												<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
+												<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
+													<span class="glyphicon glyphicon-picture"></span>
+												</button>
+												
+												<button type="button" id="movieBtn" class="btn btn-default btn-sm">
+													<span class="glyphicon glyphicon-facetime-video"></span>
+												</button>
+												
+												<div id="movieUrlForm" class="hide">
+													<div>
+														<label for="about">url</label>
+															<textarea rows="3" name="url" id="url" class="form-control input-md"></textarea>
+															<button type="button" id="movieUrlUploadBtn" class="btn btn-default">
+																<em class="icon-ok">첨부</em>
+															</button>
+													</div>
+												</div>
+												<input type="hidden" id="movieUrl" name="movieUrl" />
+												<input type="hidden" name="boardId" value="4">
+											</div>
 									</div>
 
-									<div style="padding-top: 4px;">
-										<textarea name="articleDescription" class="w3-col m12"
-											rows="5" id="comment" style="margin-bottom: 5px;"
-											placeholder="무슨 생각을 하고 계신가요?"></textarea>
-									</div>
+									<div class="form-group" style="margin-top: 30px;">
+											<textarea class="w3-col m12" rows="5" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
+												placeholder="무슨 생각을 하고 계신가요?"></textarea>
+										</div>
 
-									<div class="w3-col m12">
-										<img id="uploadImg" src="/Curtain/resource/img/noimg.png"
-											width="100" height="100">
+										<div class="col-sm-9" style="margin-top: 20px;">
+											<button type="button" class="btn btn-default" id="writeBtn" style="border-color: #FF3300; color: #FF3300;">게시</button>
+											
+										</div>
+										
+										<div id="imagePreview"><img id="uploadImg" src="#" width="100px;"></div>
 									</div>
 								</div>
-								<div class="btn-group pull-right">
-									<div class="btn-group">
-										<button type="button" class="btn btn-primary dropdown-toggle"
-											data-toggle="dropdown"
-											style="background-color: #FF3300; border: 0px;">
-											파일첨부 <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="#">사진</a></li>
-											<li><a href="#">동영상</a></li>
-										</ul>
-									</div>
-									<button type="button" id="writeBtn" class="btn btn-primary"
-										style="background-color: #FF3300; border: 0px;">게시</button>
-								</div>
-							</div>
 						</form>
 
 					</div>

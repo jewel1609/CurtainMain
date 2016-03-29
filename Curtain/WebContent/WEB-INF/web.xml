@@ -250,6 +250,27 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ModifyMemberPasswordServlet</display-name>
+    <servlet-name>ModifyMemberPasswordServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.ModifyMemberPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyMemberPasswordServlet</servlet-name>
+    <url-pattern>/modifyMemberPassword</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DuplicationCheckNickNameServlet</display-name>
+    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.DuplicationCheckNickNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
+    <url-pattern>/duplicationCheckNickName</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
     <display-name>DoRegistCompMemberServlet</display-name>
     <servlet-name>DoRegistCompMemberServlet</servlet-name>
     <servlet-class>com.ktds.curtain.member.web.DoRegistCompMemberServlet</servlet-class>

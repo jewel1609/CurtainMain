@@ -143,10 +143,11 @@ public class ScrabDAO {
 
 	         return articleScrabs;
 
-	      } catch (SQLException e) {
-	         closeDB(conn, stmt, rs);
-	      }
-	      return articleScrabs;
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
 	}
 	
 	/**
@@ -168,7 +169,8 @@ public class ScrabDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
 		

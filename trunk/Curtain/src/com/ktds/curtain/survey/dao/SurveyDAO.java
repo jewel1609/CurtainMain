@@ -42,6 +42,7 @@ public class SurveyDAO {
 				survey.setSecondAnswer(rs.getString("SURVEY_ANSWER2"));
 				survey.setThirdAnswer(rs.getString("SURVEY_ANSWER3"));
 				survey.setFourthAnswer(rs.getString("SURVEY_ANSWER4"));
+				survey.setSurveyDate(rs.getString("SURVEY_DATE"));
 
 			}
 

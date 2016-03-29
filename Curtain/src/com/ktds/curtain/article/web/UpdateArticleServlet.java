@@ -1,6 +1,7 @@
 package com.ktds.curtain.article.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.file.vo.FileVO;
 
 /**
  * Servlet implementation class UpdateArticleServlet
@@ -40,8 +42,10 @@ public class UpdateArticleServlet extends HttpServlet {
 		
 		ArticleVO articleVO = new ArticleVO();
 		articleVO = articleBiz.showDetail(articleId);
+		List<FileVO> files = articleBiz.getFileListByArticleId(articleId);
 		
 		request.setAttribute("article", articleVO);
+		request.setAttribute("files", files);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/updateArticle.jsp");
 		rd.forward(request,response);
 	}

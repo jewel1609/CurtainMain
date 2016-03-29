@@ -71,7 +71,7 @@ public class MemberDAO {
 		
 	}
 	
-	public void updateMemberPassword(String userPw) {
+	public void updateMemberPassword(String userNewPw, String email) {
 		
 		loadOracleDriver();
 		
@@ -85,7 +85,8 @@ public class MemberDAO {
 			stmt = conn.prepareStatement(query);
 			
 			//SQL Parameter Mapping
-			stmt.setString(1, userPw);
+			stmt.setString(1, userNewPw);
+			stmt.setString(2,  email);
 			stmt.executeUpdate();
 			
 			

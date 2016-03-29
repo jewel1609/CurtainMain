@@ -35,8 +35,9 @@ public class SessionCheckFilter implements Filter {
     	// 모든 게스트가 필터를 지나쳐 갈 수 있는 URL
     	whiteList.add("/");
     	whiteList.add("/main.jsp");
-    	whiteList.add("/registStdMember");
     	whiteList.add("/doLogin");
+    	whiteList.add("/registStdMember");
+    	whiteList.add("/");
     	whiteList.add("/favicon.ico");
     	
     	staticResourceList = new ArrayList<String>();

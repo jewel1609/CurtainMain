@@ -40,8 +40,9 @@ public class MemberBiz {
 		memberDAO.updateMemberInfo(userEmail, userNickName, email);
 	}
 
-	public void modifyMemberPassword(String userPw) {
-		memberDAO.updateMemberPassword(userPw);
+	public void modifyMemberPassword(String userNewPw, String email) {
+		System.out.println("testBIZ");
+		memberDAO.updateMemberPassword(userNewPw, email);
 	}
 
 	public boolean isExistMember(MemberVO member, HttpServletRequest request) {

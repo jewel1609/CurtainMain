@@ -71,10 +71,10 @@
 													<span>${fn:substring(question.questionDate, 0, 16)}</span>
 												</td>
 												<td style="text-align: right;">
-													<c:if test="${question.answerDescription ne null && question.isChecked eq 'Y' }">
+													<c:if test="${question.answerDescription ne null}">
 														<span class="eventNew" style="color: red;">답변완료</span>
 													</c:if>
-													<c:if test="${question.isChecked eq 'N' }">
+													<c:if test="${question.answerDescription eq null }">
 														<span class="eventNew" style="color: red;">답변 미완료</span>
 													</c:if>
 													<input class="questionId" name="questionId" type="hidden" value="${question.questionId}"/>

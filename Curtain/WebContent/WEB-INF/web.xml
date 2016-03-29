@@ -218,16 +218,7 @@
     <servlet-name>SecretBoardServlet</servlet-name>
     <url-pattern>/secretBoard</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>HitsCountServlet</display-name>
-    <servlet-name>HitsCountServlet</servlet-name>
-    <servlet-class>com.ktds.curtain.article.web.HitsCountServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HitsCountServlet</servlet-name>
-    <url-pattern>/hitsCount</url-pattern>
-  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>SecretArticleListServlet</display-name>
@@ -358,6 +349,16 @@
     <servlet-name>DoLoginServlet</servlet-name>
     <url-pattern>/doLogin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HitsCountServlet</display-name>
+    <servlet-name>HitsCountServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.HitsCountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HitsCountServlet</servlet-name>
+    <url-pattern>/hitsCount</url-pattern>
+  </servlet-mapping>
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
@@ -409,5 +410,28 @@
   <servlet-mapping>
     <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
     <url-pattern>/duplicationCheckNickName</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+  <servlet>
+    <description></description>
+    <display-name>DeleteArticleServlet</display-name>
+    <servlet-name>DeleteArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.DeleteArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteArticleServlet</servlet-name>
+    <url-pattern>/deleteArticle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateArticleServlet</display-name>
+    <servlet-name>UpdateArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.UpdateArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateArticleServlet</servlet-name>
+    <url-pattern>/updateArticle</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -392,6 +392,16 @@
   </filter-mapping>
   <servlet>
     <description></description>
+    <display-name>DoLogoutServlet</display-name>
+    <servlet-name>DoLogoutServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.DoLogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoLogoutServlet</servlet-name>
+    <url-pattern>/doLogout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>DuplicationCheckNickNameServlet</display-name>
     <servlet-name>DuplicationCheckNickNameServlet</servlet-name>
     <servlet-class>com.ktds.curtain.dupl.web.DuplicationCheckNickNameServlet</servlet-class>

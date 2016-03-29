@@ -69,38 +69,47 @@ $(document).ready(function () {
 	        <div class="w3-col m12">
 	          <div class="w3-card-2 w3-white w3-round-large">
 	            <div class="w3-container">
-	           	 <div>
-	           	 <div>
-					<c:if test="${article.articleTypeName eq '연애'}">
-						<span class="label label-danger">${article.articleTypeName}</span>
-					</c:if>
-					<c:if test="${article.articleTypeName eq '고민'}">
-						<span class="label label-warning">${article.articleTypeName}</span>
-					</c:if>
-					<c:if test="${article.articleTypeName eq '질문'}">
-						<span class="label label-primary">${article.articleTypeName}</span>
-					</c:if>
-					<c:if test="${article.articleTypeName eq '취업'}">
-						<span class="label label-info">${article.articleTypeName}</span>
-					</c:if>
-					<c:if test="${article.articleTypeName eq '기타'}">
-						<span class="label label-default">${article.articleTypeName}</span>
-					</c:if>
-					 ${article.hits}
-					 <img id="${article.articleId}"
-										class="like" src="<c:url value="/resource/img/like_active_small.png"/>" />${article.articleLikes}
-					<strong class="w3-center"><h2>${article.articleTitle}</h2></strong>
-				</div>
-
-	              
-	              <p>${article.articleDesc}</p>
-	              <p>${article.articleModifyDate}  ${article.nickName}</p>
-	              
+	           	 	<div>
+			           	 <div>
+							<c:if test="${article.articleTypeName eq '연애'}">
+								<span class="label label-danger">${article.articleTypeName}</span>
+							</c:if>
+							<c:if test="${article.articleTypeName eq '고민'}">
+								<span class="label label-warning">${article.articleTypeName}</span>
+							</c:if>
+							<c:if test="${article.articleTypeName eq '질문'}">
+								<span class="label label-primary">${article.articleTypeName}</span>
+							</c:if>
+							<c:if test="${article.articleTypeName eq '취업'}">
+								<span class="label label-info">${article.articleTypeName}</span>
+							</c:if>
+							<c:if test="${article.articleTypeName eq '기타'}">
+								<span class="label label-default">${article.articleTypeName}</span>
+							</c:if>
+							 ${article.hits}
+							 <img id="${article.articleId}"
+												class="like" src="<c:url value="/resource/img/like_active_small.png"/>" />${article.articleLikes}
+							<strong class="w3-center"><h2>${article.articleTitle}</h2></strong>
+						</div>
+			             <div>${article.articleDesc}
+				             <c:forEach items="${files}" var="file">
+									<img src="/resource/img/${file.fileName}"/>
+							</c:forEach>
+						</div>
+			             <div>${article.articleModifyDate}  ${article.nickName}</div>
+			            	<ul class="pager">
+							  <li class="previous"><a href="/studentMajorAritlce">뒤로가기</a></li>
+							  	<c:set var="loginId" value="${ sessionScope._MEMBER_.email}"/>
+								<c:if test="${ loginId eq article.email }">
+								<li class="next"><a href="<c:url value="/updateArticle?articleId=${article.articleId}"/>">수정하기</a></li>
+								<li class="next"><a href="<c:url value="/deleteArticle?articleId=${article.articleId}&email=${article.email}"/>">삭제하기</a></li>
+								</c:if>
+							</ul>  
+  					</div>
   				</div>
-  				</div>
-	            </div>
+            </div>
 
-	        	</div>
+       	</div>
 	        </div>
 	        <div class="w3-row-padding w3-margin-top">
 				<div class="w3-col m12 w3-round-large">
@@ -126,8 +135,16 @@ $(document).ready(function () {
 										<div class="w3-col m12">
 											<div class="w3-card-2 w3-white w3-round-large">
 												<div class="w3-container">
+													<c:if test="${reply.parentReplyId ne reply.replyId}">
+													  <div> ==> ${reply.replyDesc}</div>
+													</c:if>
+													<c:if test="${reply.parentReplyId eq reply.replyId}">
 													${reply.replyDesc}
+													</c:if>
+													${reply.nickName}
+													<c:if test="${reply.parentReplyId eq reply.replyId}">
 													<span class="writeReReply" style="cursor:pointer;">댓글 달기</span>
+													</c:if>
 												</div>
 											</div>
 										</div>
@@ -136,13 +153,13 @@ $(document).ready(function () {
 	
 							</tr>
 							<tr>
-								<td class="parentReplyId">${reply.parentReplyId}</td>
+								<td class="hide parentReplyId">${reply.parentReplyId}</td>
 							</tr>
 							<tr>
-								<td class="orderNo">${reply.replyOrder}</td>
+								<td class="hide orderNo">${reply.replyOrder}</td>
 							</tr>
 							<tr >
-								<td colspan="2" class="replyId">${reply.replyId}</td>
+								<td colspan="2" class="hide replyId">${reply.replyId}</td>
 							</tr>
 						</table>
 						<div class="formAppender"></div>

@@ -16,6 +16,7 @@ import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
+import com.ktds.curtain.util.Root;
 import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
 
 
@@ -72,14 +73,14 @@ public class WriteArticleServlet extends HttpServlet {
 		article.setEmail(stdMember.getEmail());
 		article.setMajorGroupId(stdMember.getMajorGroupId());
 
-		int doWriteArticle = articleBiz.doWriteArticle(article);
-		
+		boolean doWriteArticle = articleBiz.doWriteArticle(article, stdMember);
+		int articleId = articleBiz.getArticleId();
 		if ( !file.getFileName().equals("")) {
-			File upFile = file.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\Curtain\\WebContent\\resource\\img\\"+file.getFileName());
+			File upFile = file.write("D:\\"+file.getFileName());
 			FileVO fileVO = new FileVO();
 			fileVO.setFileName(file.getFileName());
-			fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\Curtain\\WebContent\\resource\\img\\"+file.getFileName());
-			fileVO.setArticleId(doWriteArticle);
+			fileVO.setFileLocation("D:\\"+file.getFileName());
+			fileVO.setArticleId(articleId);
 			
 			fileBiz.insertFile(fileVO);
 		}

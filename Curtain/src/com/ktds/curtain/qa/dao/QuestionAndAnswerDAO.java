@@ -34,6 +34,8 @@ public class QuestionAndAnswerDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
 	}
@@ -77,10 +79,10 @@ public class QuestionAndAnswerDAO {
 			return questions;
 
 		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally{
 			closeDB(conn, stmt, rs);
 		}
-		
-		return null;
 		
 	}
 	
@@ -101,6 +103,8 @@ public class QuestionAndAnswerDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, null);
 		}
 	}
@@ -138,10 +142,11 @@ public class QuestionAndAnswerDAO {
 			return question;
 
 		} catch (SQLException e) {
-			closeDB(conn, stmt, rs);
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
 		}
 		
-		return null;
 	}
 	
 	private void loadOracleDriver() {

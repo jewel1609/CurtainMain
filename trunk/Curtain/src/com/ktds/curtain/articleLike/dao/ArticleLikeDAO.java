@@ -57,9 +57,10 @@ public class ArticleLikeDAO {
 			return articleLikes;
 
 		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
 			closeDB(conn, stmt, rs);
 		}
-		return articleLikes;
 	}
 	
 

@@ -57,7 +57,7 @@ public class ModifyMemberPasswordServlet extends HttpServlet {
 			System.out.println("modifyTest");
 			System.out.println(email);
 			memberBiz.modifyMemberPassword(userNewPw, email);
-			
+			member.setPassword(userNewPw);
 			response.sendRedirect("/myPage");
 			return;
 		}

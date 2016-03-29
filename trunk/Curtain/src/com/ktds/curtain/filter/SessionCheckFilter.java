@@ -36,6 +36,11 @@ public class SessionCheckFilter implements Filter {
     	whiteList.add("/");
     	whiteList.add("/main.jsp");
     	whiteList.add("/doLogin");
+    	whiteList.add("/registerMember");
+    	whiteList.add("/addNewMember");
+    	whiteList.add("/studentMajorAritlce");
+    	whiteList.add("/checkId");
+//    	whiteList.add("/favicon.ico");
     	whiteList.add("/registStdMember");
     	whiteList.add("/");
     	whiteList.add("/favicon.ico");

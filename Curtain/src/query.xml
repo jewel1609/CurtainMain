@@ -472,6 +472,7 @@
 			FROM	CURTAIN.QA
 			WHERE	EMAIL = ?
 			ORDER	BY IS_CHECKED 
+					, ANSWER_DESCRIPTION
 					, QUESTION_DATE DESC
 		</getMyQuestionsByEmail>
 		

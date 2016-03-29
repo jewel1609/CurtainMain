@@ -381,4 +381,13 @@
     <servlet-name>ShowDetailMyQuestionServlet</servlet-name>
     <url-pattern>/showDetailMyQuestion</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>SessionCheckFilter</display-name>
+    <filter-name>SessionCheckFilter</filter-name>
+    <filter-class>com.ktds.curtain.filter.SessionCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SessionCheckFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

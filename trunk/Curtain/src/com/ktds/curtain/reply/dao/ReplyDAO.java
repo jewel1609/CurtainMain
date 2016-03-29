@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.reply.vo.ReplyVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
@@ -218,6 +219,31 @@ public class ReplyDAO {
 		}
 	}
 	
+	/**
+	 * 게시글 삭제시 전체 댓글 삭제
+	 * @param articleVO
+	 */
+	public void deleteReply(ArticleVO articleVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/deleteReply/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleVO.getArticleId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -247,5 +273,6 @@ public class ReplyDAO {
 		}
 
 	}
+
 
 }

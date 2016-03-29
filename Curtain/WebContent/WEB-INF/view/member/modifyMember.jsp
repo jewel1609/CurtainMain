@@ -64,8 +64,14 @@
 		
 		$("#modifyPasswordBtn").click( function () {
 			
-			if ( $("#userPw").val() != "${ memberPassword }") {
-				
+			if ( $("#userNewPw").val().length < 6 ) {
+				alert("비밀번호는 최소 6자리 입상으로 입력해 주십시오.");
+				return;
+			}
+
+			if( $("#userNewPw").val() != $("#userNewRePw").val() ) {
+				alert("입력한 비밀번호가 서로 같지 않습니다");
+				return;
 			}
 			
 				
@@ -80,6 +86,13 @@
 			}
 			
 			if ( confirm("입력한 내용으로 비밀번호를 변경하시겠습니까?") == true ) {
+				
+				if ( $("#userPw").val() != "${ memberPassword }") {
+					alert("기존 비밀번호가 같지 않습니다");	
+					location.href = "/myPage";
+					return;
+				}
+				
 				var form = $("#modifyMemberPassword");
 				form.attr("method", "post");
 				form.attr("action","/modifyMemberPassword");

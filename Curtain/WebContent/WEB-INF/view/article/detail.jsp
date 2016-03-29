@@ -93,7 +93,7 @@ $(document).ready(function () {
 						</div>
 			             <div>${article.articleDesc}
 				             <c:forEach items="${files}" var="file">
-									<img src="/resource/img/${file.fileName}"/>
+									<img src="/resource/img/${file.fileName} "/>
 							</c:forEach>
 						</div>
 			             <div>${article.articleModifyDate}  ${article.nickName}</div>

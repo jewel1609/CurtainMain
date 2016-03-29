@@ -71,8 +71,9 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(articleTypeId);
 		article.setBoardId(boardId);
+		article.setEmail(loginMember.getEmail());
 
-		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember);
+		int doWriteArticle = articleBiz.doWriteArticle(article);
 		
 		int articleId = articleBiz.getArticleId();
 		if( articleId > 0 ){
@@ -83,7 +84,7 @@ public class SecretWriteArticleServlet extends HttpServlet {
 				//List<FileVO> fileList = new ArrayList<FileVO>();
 				FileVO file = new FileVO();
 				
-				file.setArticleId(articleId);
+				file.setArticleId(doWriteArticle);
 				file.setFileName(imgFile.getFileName());
 				file.setFileLocation("D:\\"+imgFile.getFileName());
 				

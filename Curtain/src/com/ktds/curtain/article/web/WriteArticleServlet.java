@@ -1,5 +1,6 @@
 package com.ktds.curtain.article.web;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,11 @@ import javax.servlet.http.HttpSession;
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
+import com.ktds.curtain.file.biz.FileBiz;
+import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.util.MultipartHttpServletRequest;
+import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
 
 
 /**
@@ -20,6 +25,7 @@ import com.ktds.curtain.member.vo.MemberVO;
 public class WriteArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleBiz articleBiz;
+	private FileBiz fileBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,6 +33,7 @@ public class WriteArticleServlet extends HttpServlet {
     public WriteArticleServlet() {
         super();
         articleBiz = new ArticleBiz();
+        fileBiz = new FileBiz();
     }
 
 	/**
@@ -40,15 +47,19 @@ public class WriteArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String articleTitle = request.getParameter("articleTitle");
+		// mutilpartHttpServletResquest 선언
+		MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
+		
+		String articleTitle = multipartRequest.getParameter("articleTitle");
 		System.out.println(articleTitle);
-		String articleDescription = request.getParameter("articleDescription");
+		String articleDescription = multipartRequest.getParameter("articleDescription");
 		System.out.println(articleDescription);
-		String articleTypeId = request.getParameter("articleTypeId");
+		String articleTypeId = multipartRequest.getParameter("articleTypeId");
 		System.out.println(articleTypeId);
-		String boardId = request.getParameter("boardId");
+		String boardId = multipartRequest.getParameter("boardId");
 		System.out.println(boardId);
+		MultipartFile file = multipartRequest.getFile("imgFile");
+		System.out.println(file.getFileName());
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
@@ -58,9 +69,20 @@ public class WriteArticleServlet extends HttpServlet {
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(Integer.parseInt(articleTypeId));
 		article.setBoardId(Integer.parseInt(boardId));
+		article.setEmail(stdMember.getEmail());
+		article.setMajorGroupId(stdMember.getMajorGroupId());
 
-		boolean doWriteArticle = articleBiz.doWriteArticle(article, stdMember);
+		int doWriteArticle = articleBiz.doWriteArticle(article);
 		
+		if ( !file.getFileName().equals("")) {
+			File upFile = file.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\Curtain\\WebContent\\resource\\img\\"+file.getFileName());
+			FileVO fileVO = new FileVO();
+			fileVO.setFileName(file.getFileName());
+			fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\Curtain\\WebContent\\resource\\img\\"+file.getFileName());
+			fileVO.setArticleId(doWriteArticle);
+			
+			fileBiz.insertFile(fileVO);
+		}
 		if ( boardId.equals(BoardId.MAJOR_BOARD)) {
 			response.sendRedirect("/studentMajorAritlce");
 		}

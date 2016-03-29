@@ -12,6 +12,8 @@ import com.ktds.curtain.articleLike.dao.ArticleLikeDAO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.articleScrab.dao.ScrabDAO;
 import com.ktds.curtain.articleScrab.vo.ArticleScrabVO;
+import com.ktds.curtain.file.dao.FileDAO;
+import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.reply.dao.ReplyDAO;
 
@@ -23,6 +25,7 @@ public class ArticleBiz {
 
 	private ReplyDAO replyDAO;
 	private ScrabDAO scrabDAO;
+	private FileDAO fileDAO;
 
 	
 	public ArticleBiz() {
@@ -33,6 +36,7 @@ public class ArticleBiz {
 		replyDAO = new ReplyDAO();
 
 		scrabDAO = new ScrabDAO();
+		fileDAO = new FileDAO();
 
 	}
 	
@@ -47,7 +51,10 @@ public class ArticleBiz {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
 		
-		List<ArticleLikeVO> articleLikes = showMajorArticleLike(stdMember, boardId);
+		System.out.println("여기"+stdMember.getEmail());
+		
+		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
+		
 		
 		for (ArticleVO article : articles) {
 			for (ArticleLikeVO articleLike : articleLikes ) {
@@ -56,20 +63,10 @@ public class ArticleBiz {
 				}
 			}
 		}
-		
 		return articles;
 	}
 	
-	/**
 
-	 * 내가 좋아요 한 글
-	 * @param stdMember
-	 * @return
-	 */
-	private List<ArticleLikeVO> showMajorArticleLike(MemberVO stdMember, String boardId) {
-		List<ArticleLikeVO> articleLikes = articleLikeDAO.showArticleLike(stdMember, boardId);
-		return articleLikes;
-	}
 
 	/**
 	 * 해당 비밀 게시판 리스트 가져오기
@@ -179,20 +176,20 @@ public class ArticleBiz {
  * @return
  */
 
-	public boolean doWriteArticle(ArticleVO article, MemberVO stdMember) {
+	public int doWriteArticle(ArticleVO article) {
 		int doWriteArticle = 0;
 		
 		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) { // 전공
-			doWriteArticle = articleDAO.doWriteMajorArticle(article, stdMember);
+			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.UNIV_BOARD)) { // 대학
-			doWriteArticle = articleDAO.doWriteUnivArticle(article, stdMember);
+			doWriteArticle = articleDAO.doWriteUnivArticle(article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) { // 홍보
-			doWriteArticle = articleDAO.doWriteAdArticle(article, stdMember);
+			doWriteArticle = articleDAO.doWriteAdArticle(article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) { // 비밀 1
-			doWriteArticle = articleDAO.doWriteMajorArticle(article, stdMember);
+			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
 //			doWriteArticle = articleDAO.doWriteMajorArticle(article);
@@ -200,7 +197,7 @@ public class ArticleBiz {
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {  // 비밀3
 //			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 		}
-		return doWriteArticle > 0;
+		return doWriteArticle;
 	}
 	
 	public int getArticleId() {
@@ -256,6 +253,34 @@ public class ArticleBiz {
 		article = articleDAO.showTopArticle(stdMember);
 		return article;
 		
+	}
+
+	/**
+	 * 자신의 글이면 삭제하기
+	 * @param articleVO
+	 */
+	public boolean deleteArticle(ArticleVO articleVO) {
+		// 게시글 중에 삭제
+		int deleteCount = articleDAO.deleteArticle(articleVO);
+		// 좋아요 목록에 있는 것 삭제
+		articleLikeDAO.deleteArticle(articleVO);
+		// 싫어요 목록에 있는 것 삭제
+		dislikeDAO.deleteArticle(articleVO);
+		// 스크랩 목록에 있는 것 삭제
+		scrabDAO.deleteArticle(articleVO);
+		// 댓글 삭제
+		replyDAO.deleteReply(articleVO);
+		return deleteCount > 0;
+	}
+
+	/**
+	 * 파일 가져오기
+	 * @param articleId
+	 * @return
+	 */
+	public List<FileVO> getFileListByArticleId(int articleId) {
+		List<FileVO> file = fileDAO.getFileListByArticleId(articleId);
+		return file;
 	}
 
 

@@ -12,7 +12,6 @@ public class MemberVO extends ProhibitedWordVO {
 	private String secondEmail;
 	private int point;
 	private String rankModifyDate;
-	private int Activity;
 	private String password;
 	private int phoneNumber;
 	private String companyName;
@@ -90,12 +89,6 @@ public class MemberVO extends ProhibitedWordVO {
 	}
 	public void setRankModifyDate(String rankModifyDate) {
 		this.rankModifyDate = rankModifyDate;
-	}
-	public int getActivity() {
-		return Activity;
-	}
-	public void setActivity(int activity) {
-		Activity = activity;
 	}
 	public String getPassword() {
 		return password;

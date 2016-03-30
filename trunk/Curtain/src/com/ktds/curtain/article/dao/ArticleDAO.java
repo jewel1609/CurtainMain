@@ -877,6 +877,34 @@ public class ArticleDAO {
 		return updateCount;
 	}
 	
+
+	public int countTodayArticle(String currentDate, MemberVO member) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			String query = XML.getNodeString("//query/article/countTodayArticle/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, currentDate);
+			stmt.setString(2, member.getEmail());
+			
+			rs = stmt.executeQuery();
+			rs.next();
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -906,5 +934,6 @@ public class ArticleDAO {
 		}
 
 	}
+
 
 }

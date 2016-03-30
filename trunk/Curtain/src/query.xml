@@ -205,7 +205,7 @@
 						, ARTICLE_TYPE AT
 			WHERE	    A.EMAIL = SM.EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-			AND         A.BOARD_ID = 4
+			AND         A.BOARD_ID = ?
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showSecretArticle>
 		<doWriteMajorArticle>
@@ -392,7 +392,7 @@
 						, ARTICLE_TYPE AT
 			WHERE	    A.EMAIL = SM.EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-			AND         A.BOARD_ID = 4
+			AND         A.BOARD_ID = ?
 			AND         ROWNUM = 1
 			ORDER		BY	HITS DESC,
                         ARTICLE_MODIFY_DATE DESC

@@ -5,6 +5,8 @@
 <link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css" />
 <script type="text/javascript" src="<c:url value="/resource/js/jquery-1.12.1.js" />"></script>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
 		
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -354,8 +356,6 @@
 							<a href="<c:url value="/hitsCount?boardId=4&articleId=${article.articleId}"/>">
 								<div class="w3-card w3-white w3-round-large">
 									<div class="w3-container">
-									
-									
 										<div class="w3-col m10 w3-padding-top">
 											<c:if test="${article.articleTypeName eq '연애'}">
 												<span class="label label-danger">${article.articleTypeName}</span>

@@ -187,7 +187,7 @@ public class MemberBiz {
 			if(articleDAO.countTodayArticle(currentDate, member) < 5) {
 				currentPoint = member.getPoint();
 				nextPoint = currentPoint + 10;
-				memberDAO.addPoint(nextPoint);
+				//memberDAO.addPoint(nextPoint);
 			}
 			
 		}

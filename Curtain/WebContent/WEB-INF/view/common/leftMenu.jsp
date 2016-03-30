@@ -7,12 +7,16 @@
 	});
 </script>
 
-<nav class="w3-sidenav w3-collapse w3-white w3-card" 
+
+	<nav class="w3-sidenav w3-collapse w3-white w3-card" 
 			style="z-index: 3; width: 250px; height: 100%; 
 			margin-top: 0px; border:0px; border-left:1px solid #bababa; 
 			border-right:1px solid #bababa;  left: 100px;" >
 			
+		<div style="padding: 20px; text-align: center; border-bottom:1px solid #BABABA;">
+			<strong><mark>${ sessionScope._MEMBER_.nickName }</mark></strong>님<br/> 환영합니다.
 			
+		</div>
 			
 	<a href="javascript:void(0)" onclick="w3_close()" class="w3-text-teal w3-hide-large w3-closenav w3-large">Close ×</a>
 
@@ -21,6 +25,7 @@
 	<c:set var="majorGroupId" value="${ sessionScope._MEMBER_.majorGroupId }" />
 	<c:set var="univName" value="${ sessionScope._UNIVNAME_}" />
 	<c:set var="majorGroupName" value="${ sessionScope._MAJORGROUPNAME_ }" />
+	<c:set var="nickName" value="${ sessionScope._MEMBER_.nickName }" />
 	 
 	<c:if test="${memberType eq 1 || memberType eq 2 || memberType eq 3}">
 		<div class="w3-accordion">

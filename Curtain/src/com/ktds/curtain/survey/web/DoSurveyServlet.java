@@ -2,6 +2,9 @@ package com.ktds.curtain.survey.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.survey.biz.SurveyBiz;
+import com.ktds.curtain.survey.vo.SurveyVO;
 
 /**
  * Servlet implementation class DoSurveyServlet
@@ -48,8 +52,31 @@ public class DoSurveyServlet extends HttpServlet {
 		int surveyId = Integer.parseInt(request.getParameter("surveyId"));
 		boolean isCheckId = false;
 		String checkCount = null;
+		boolean todayCheckVote =false;
+
+		
 		HttpSession session = request.getSession();
+		
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+		Date currentTime = new Date ( );
+		String mTime = mSimpleDateFormat.format ( currentTime );
+		System.out.println ( mTime );
+		
+		SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
+		
+		if ( member.getSurveyId() == survey.getSurveyId() ) {
+			//투표를 이미했다는 것이기때문에
+			//결과물만 보여준다.
+			todayCheckVote = true;
+			checkCount = "a";
+			session.setAttribute("_VOTE_", checkCount);
+		}
+		
+		
+		
+		
 		
 		
 		if ( userSelectSurvey == null) {
@@ -86,7 +113,7 @@ public class DoSurveyServlet extends HttpServlet {
 		System.out.println(isCheckId);
 		
 		if ( isCheckId ) { //투포했으면
-			surveyBiz.upDateIsVote(member.getEmail());
+			surveyBiz.upDateIsVote(member.getEmail(), surveyId);
 			session.setAttribute("_VOTE_", checkCount);
 			StringBuffer json = new StringBuffer(); 
 			json.append("{");

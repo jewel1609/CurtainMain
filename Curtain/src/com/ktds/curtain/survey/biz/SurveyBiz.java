@@ -41,8 +41,8 @@ public class SurveyBiz {
 		
 	}
 
-	public void upDateIsVote(String email) {
-		surveyDAO.upDateIsVote(email);
+	public void upDateIsVote(String email, int surveyId) {
+		surveyDAO.upDateIsVote(email, surveyId);
 	}
 	
 	

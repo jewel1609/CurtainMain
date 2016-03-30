@@ -158,7 +158,10 @@
 	});
 </script>
 
-<body>
+<body style="padding-top: 0">
+
+
+
 	
 <%--
 	
@@ -187,16 +190,9 @@
 	</nav>
 --%>
 
-
-	<%-- 헤더 --%>
+<%-- 헤더 --%>
 	<div class="w3-main">
-	
-		<div id="myTop" class="w3-top w3-padding-8" style="background-color: black; border: 0px;">
-			<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor: pointer;"></div>
-			<i class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left w3-margin-right" onclick="w3_open()"></i>
-		</div>
-		
-		<header class="w3-container" style="background-color: blue; border-bottom: 1px solid #bababa; height:105px;">
+		<header class="w3-container" style="margin-top:0px; background-color: blue; border-bottom: 1px solid #bababa; height:105px;">
 			<form id="homeForm">
 				<div id="btnHome" style="float: left; width: 200px;">
 					<a href="main.jsp"><img src="/resource/img/title4.png" style="width:85%;"></a>
@@ -225,10 +221,7 @@
 				</div>
 			</c:if>
 		</header>
-
-
 	</div>
-	
 
 	<!-- login Modal -->
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"

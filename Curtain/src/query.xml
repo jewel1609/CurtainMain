@@ -365,12 +365,14 @@
 		<updateArticleOnlyTitle>
 			UPDATE	ARTICLE
 			SET		ARTICLE_TITLE = ?
+					, ARTICLE_MODIFY_DATE = SYSDATE
 			WHERE	ARTICLE_ID = ?
 		</updateArticleOnlyTitle>
 		
 		<updateArticleOnlyDescription>
 			UPDATE	ARTICLE
 			SET		ARTICLE_DESC = ?
+					, ARTICLE_MODIFY_DATE = SYSDATE
 			WHERE	ARTICLE_ID = ?
 		</updateArticleOnlyDescription>
 		
@@ -378,6 +380,7 @@
 			UPDATE	ARTICLE
 			SET		ARTICLE_TITLE = ?
 					, ARTICLE_DESC = ?
+					, ARTICLE_MODIFY_DATE = SYSDATE
 			WHERE	ARTICLE_ID = ?
 		</updateArticle>
 		

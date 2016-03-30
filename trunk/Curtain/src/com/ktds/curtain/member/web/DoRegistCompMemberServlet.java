@@ -53,7 +53,6 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 		memberVO.setNickName("yo");
 		memberVO.setSecondEmail(inputCompSecondEmail);
 		memberVO.setMemberTypeId(4);
-		memberVO.setActivity(0);
 		memberVO.setPoint(0);
 		memberVO.setCompanyName(inputCompName);
 		memberVO.setPhoneNumber(inputPhoneNum);

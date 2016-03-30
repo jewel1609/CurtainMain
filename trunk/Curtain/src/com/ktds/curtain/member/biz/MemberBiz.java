@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.major.dao.MajorDAO;
 import com.ktds.curtain.member.dao.MemberDAO;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.reply.vo.ReplyVO;
 import com.ktds.curtain.prohibitedWord.dao.ProhibitedWordDAO;
 import com.ktds.curtain.univ.dao.UnivDAO;
 
@@ -130,6 +132,22 @@ public class MemberBiz {
 	
 	public String getMemberRank(int memberTypeId) {
 		return memberDAO.getMemberRank(memberTypeId);
+	}
+	
+	public void addPointAndActivity (HttpServletRequest request, ArticleVO article, ReplyVO reply) {
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		int currentPoint = 0;
+		int nextPoint = 0;
+		
+		if ( article != null ) {
+			currentPoint = member.getPoint();
+		}
+		else if ( reply != null ) {
+			
+		}
+		
 	}
 
 

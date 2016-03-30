@@ -204,10 +204,9 @@ public class ArticleDAO {
 			return getArticleId;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
-			closeDB(null, stmt, rs);
+			closeDB(conn, stmt, rs);
 		}
 	}
 
@@ -234,10 +233,11 @@ public class ArticleDAO {
 			return insertCount;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
 			closeDB(conn, stmt, null);
 		}
-		return 0;
 	}
 
 	// 홍보 게시판 글쓰기
@@ -313,7 +313,8 @@ public class ArticleDAO {
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
-		} finally {
+		}
+		finally {
 			closeDB(conn, stmt, rs);
 		}
 	}
@@ -609,6 +610,7 @@ public class ArticleDAO {
 	 * @param articleLikeVO
 	 */
 	public void plusLikeCount(ArticleLikeVO articleLikeVO) {
+		
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -621,7 +623,6 @@ public class ArticleDAO {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, articleLikeVO.getArticleId());
 			stmt.executeUpdate();
-
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
@@ -776,7 +777,7 @@ public class ArticleDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
-			closeDB(conn, stmt, rs);
+			closeDB(conn, stmt, null);
 		}
 	}
 

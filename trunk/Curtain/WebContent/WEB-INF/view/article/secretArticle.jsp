@@ -252,13 +252,12 @@
 											<textarea class="w3-col m12" rows="5" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
 												placeholder="무슨 생각을 하고 계신가요?"></textarea>
 										</div>
-										
-										<div style="margin-top: 20px;">
-											<button type="button" class="btn btn-default" id="doWrite" style="border-color: #FF3300; color: #FF3300;">게시</button>
-											
+										<div class="col-sm-12" id="imagePreview">
+											<img id="uploadImg" src="#" width="100px;">
 										</div>
-										
-										<div id="imagePreview"><img id="uploadImg" src="#" width="100px;"></div>
+										<div class="col-sm-12" style="margin-top:10px;">
+											<button type="button" class="btn btn-default" id="doWrite" style="border-color: #FF3300; color: #FF3300;">게시</button>
+										</div>
 									</div>
 								</div>
 							</form>
@@ -321,11 +320,11 @@
 										</c:if>
 									</div>
 									<div>
-										<c:if test="${article.dislike}">
+										<c:if test="${topArticle.dislike}">
 											<img class="dislike" id="dislike${topArticle.articleId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
 											<span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
 										</c:if>
-										<c:if test="${!article.dislike}">
+										<c:if test="${!topArticle.dislike}">
 											<img class="dislike" id="dislike${topArticle.articleId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
 											<span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
 										</c:if>
@@ -335,11 +334,11 @@
 									<img src="/resource/img/reply_small.png" style="width:20px;">댓글 수 
 								
 									<c:if test="${topArticle.scrab}">
-										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_active_small.png" style="width:20px;">스크랩하기
+										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_active_small.png" style="width:20px;">
 									</c:if>
 									
 									<c:if test="${!topArticle.scrab}">
-										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">스크랩하기
+										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">
 									</c:if>
 								</div>									
 							</div>
@@ -353,9 +352,10 @@
 				<c:forEach items="${secretArticles}" var="article">
 					<div class="w3-row-padding w3-margin-top">
 						<div class="w3-col m12">
-							<a href="<c:url value="/hitsCount?boardId=4&articleId=${article.articleId}"/>">
+							
 								<div class="w3-card w3-white w3-round-large">
 									<div class="w3-container">
+									<a href="<c:url value="/hitsCount?boardId=4&articleId=${article.articleId}"/>">
 										<div class="w3-col m10 w3-padding-top">
 											<c:if test="${article.articleTypeName eq '연애'}">
 												<span class="label label-danger">${article.articleTypeName}</span>
@@ -385,7 +385,8 @@
 										</div>
 										<div class="w3-col m12 w3-padding-top" style="height: 60px;">
 											${article.articleDesc}
-										</div>							
+										</div>	
+									</a>						
 										<div>
 											${article.articleModifyDate} 
 										</div>
@@ -426,7 +427,7 @@
 									</div>
 									
 								</div>
-							</a>
+							
 						</div>
 					</div>
 				</c:forEach>

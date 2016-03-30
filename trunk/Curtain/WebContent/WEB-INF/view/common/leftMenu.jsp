@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
+	$(document).ready( function (){
+		myAccordion('demo');
+	});
+</script>
 
 <nav class="w3-sidenav w3-collapse w3-white w3-card" 
 			style="z-index: 3; width: 250px; height: 100%; 
@@ -22,7 +27,7 @@
 			<a onclick="myAccordion('demo')" href="javascript:void(0)">
 				학생게시판<i class="fa fa-caret-down"></i>
 			</a>
-			<div id="demo" class="w3-accordion-content w3-animate-left w3-padding">
+			<div id="demo" class="w3-accordion-content">
 				<a href="<c:url value="/studentMajorAritlce?majorGroupId="/>${majorGroupId}">${majorGroupName}</a> 
 				<a href="<c:url value="/studentUnivArticle?univId="/>${univId}">${univName}</a>
 			</div>
@@ -31,7 +36,6 @@
 		<div class="w3-accordion">
 			<a onclick="myAccordion('demo1')" href="javascript:void(0)">비밀게시판<i class="fa fa-caret-down"></i></a>
 			<div id="demo1" class="w3-accordion-content w3-animate-left w3-padding">
-				<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
 				<c:if test="${memberType eq 2 || memberType eq 3}">
 					<a href="<c:url value="/studentUnivArticle"/>">한겹</a> 
 					<c:if test="${memberType eq 3 }">
@@ -43,6 +47,8 @@
 	</c:if>
 
 	<c:if test="${memberType eq 1 || memberType eq 2 || memberType eq 3 || memberType eq 4 || memberType eq 5}">
+		<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
+		
 		<a href="#">홍보게시판</a>
 
 		<a href="/myPage">마이페이지</a>

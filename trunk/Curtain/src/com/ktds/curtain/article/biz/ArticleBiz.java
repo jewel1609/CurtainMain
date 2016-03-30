@@ -14,6 +14,7 @@ import com.ktds.curtain.articleScrab.dao.ScrabDAO;
 import com.ktds.curtain.articleScrab.vo.ArticleScrabVO;
 import com.ktds.curtain.file.dao.FileDAO;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.reply.dao.ReplyDAO;
 
@@ -26,6 +27,8 @@ public class ArticleBiz {
 	private ReplyDAO replyDAO;
 	private ScrabDAO scrabDAO;
 	private FileDAO fileDAO;
+	
+	private MemberBiz memberBiz;
 
 	
 	public ArticleBiz() {
@@ -37,6 +40,8 @@ public class ArticleBiz {
 
 		scrabDAO = new ScrabDAO();
 		fileDAO = new FileDAO();
+		
+		memberBiz = new MemberBiz();
 
 	}
 	
@@ -199,21 +204,27 @@ public class ArticleBiz {
 				
 		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) { // 전공
 			doWriteArticle = articleDAO.doWriteMajorArticle(article);
+			memberBiz.addPointAndModifyMemberType(stdMember, article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.UNIV_BOARD)) { // 대학
 			doWriteArticle = articleDAO.doWriteUnivArticle(article);
+			memberBiz.addPointAndModifyMemberType(stdMember, article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) { // 홍보
 			doWriteArticle = articleDAO.doWriteAdArticle(article);
+			memberBiz.addPointAndModifyMemberType(stdMember, article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) { // 비밀 1
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
+			memberBiz.addPointAndModifyMemberType(stdMember, article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
+			memberBiz.addPointAndModifyMemberType(stdMember, article);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {  // 비밀3
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
+			memberBiz.addPointAndModifyMemberType(stdMember, article);
 		}
 		
 		return doWriteArticle > 0;

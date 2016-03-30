@@ -460,7 +460,16 @@
     <servlet-name>UpdateArticleServlet</servlet-name>
     <url-pattern>/updateArticle</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>DoTodaySurveyServlet</display-name>
+    <servlet-name>DoTodaySurveyServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.survey.web.DoTodaySurveyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoTodaySurveyServlet</servlet-name>
+    <url-pattern>/doTodaySurvey</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>DeleteFileServlet</display-name>

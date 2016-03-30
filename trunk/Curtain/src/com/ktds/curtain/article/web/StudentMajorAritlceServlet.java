@@ -1,7 +1,10 @@
 package com.ktds.curtain.article.web;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +18,8 @@ import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.survey.biz.SurveyBiz;
+import com.ktds.curtain.survey.vo.SurveyVO;
 
 /**
  * Servlet implementation class StudentMajorAritlceServlet
@@ -22,6 +27,8 @@ import com.ktds.curtain.member.vo.MemberVO;
 public class StudentMajorAritlceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleBiz articleBiz;
+	
+	private SurveyBiz surveyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -29,6 +36,7 @@ public class StudentMajorAritlceServlet extends HttpServlet {
     public StudentMajorAritlceServlet() {
         super();
         articleBiz = new ArticleBiz();
+        surveyBiz = new SurveyBiz();
     }
 
 	/**
@@ -49,10 +57,12 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD);
 		
-		
 		request.setAttribute("majorArticles", majorArticles);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/article.jsp");
 		rd.forward(request, response);
+		
+		
+		
 	}
 
 }

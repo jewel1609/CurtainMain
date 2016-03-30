@@ -147,29 +147,31 @@
 
    <%-- 헤더 --%>
    <div class="w3-main">
-   
-      <header class="w3-container" style="background-color: #F4F4F4; border-bottom: 1px solid #bababa; height:105px;">
-         <form id="homeForm">
-            <div id="btnHome" style="float: left; width: 200px;">
-               <img src="/resource/img/title4.png" style="width:85%;">
-            </div>
-         </form>
 
-            <div style="float: right; width: 100px; padding-top: 25px;">
-               <c:if test="${sessionScope._MEMBER_ eq null}">
-                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal" style="border-color: #FF3300; color: #FF3300;" >로그인</button>
-               </c:if>
-               <c:if test="${sessionScope._MEMBER_ ne null}">
-                  <form action="<c:url value="/doLogout" /> " method="post">
-                  	<button type="submit" class="btn btn-default" style="border-color: #FF3300; color: #FF3300;" >로그아웃</button>
-              	 </form>
-               </c:if>
-               
-            </div>
-      </header>
+		<header class="w3-container"
+			style="background-color: #F4F4F4; border-bottom: 1px solid #bababa; height: 105px;">
+			<div id="btnHome" style="float: left; width: 200px;">
+				<img src="/resource/img/title4.png" style="width: 85%;">
+			</div>
+
+			<div style="float: right; width: 100px; padding-top: 25px;">
+				<c:if test="${sessionScope._MEMBER_ eq null}">
+					<button type="button" class="btn btn-default" data-toggle="modal"
+						data-target="#loginModal"
+						style="border-color: #FF3300; color: #FF3300;">로그인</button>
+				</c:if>
+				<c:if test="${sessionScope._MEMBER_ ne null}">
+					<form action="<c:url value="/doLogout" /> " method="post">
+						<button type="submit" class="btn btn-default"
+							style="border-color: #FF3300; color: #FF3300;">로그아웃</button>
+					</form>
+				</c:if>
+
+			</div>
+		</header>
 
 
-   </div>
+	</div>
    
 
    <!-- login Modal -->

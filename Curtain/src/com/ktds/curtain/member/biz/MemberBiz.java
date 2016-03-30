@@ -96,13 +96,13 @@ public class MemberBiz {
 		}
 		
 		MemberVO currentMember = memberDAO.getMemberInfo(member);
-		String univName = univDAO.getUnivNameByUnivId(member.getUnivId());
-		String majorGroupName = majorDAO.getMajorGroupNameByMajorGroupId(member.getMajorGroupId());
 		
 		if ( currentMember == null) {
 			return false;
 		}
 		else {
+			String univName = univDAO.getUnivNameByUnivId(member.getUnivId());
+			String majorGroupName = majorDAO.getMajorGroupNameByMajorGroupId(member.getMajorGroupId());
 			//욕설이 담김
 			List<String> wordList = wordDAO.getAllWords();
 			session.setAttribute("_MEMBER_", currentMember);

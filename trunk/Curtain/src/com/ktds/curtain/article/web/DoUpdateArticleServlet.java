@@ -58,6 +58,7 @@ public class DoUpdateArticleServlet extends HttpServlet {
 		String articleTypeId = multipartRequest.getParameter("articleId");
 		String boardId = multipartRequest.getParameter("boardId");
 		MultipartFile file = multipartRequest.getFile("imgFile");
+		String movieUrl = multipartRequest.getParameter("movieUrl");
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
@@ -74,15 +75,28 @@ public class DoUpdateArticleServlet extends HttpServlet {
 
 		boolean doWriteArticle = articleBiz.doUpdateArticle(article, articleVO);
 
-		if ( !file.getFileName().equals("")) {
-			File upFile = file.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
-			FileVO fileVO = new FileVO();
-			fileVO.setFileName(file.getFileName());
-			fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
-			fileVO.setArticleId(articleId);
-			fileVO.setFileType(1);
-			
-			fileBiz.insertFile(fileVO);
+		if (articleId > 0) {
+			// 이미지 파일이 있을 경우
+			if ( !file.getFileName().equals("")) {
+				File upFile = file.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
+				FileVO fileVO = new FileVO();
+				fileVO.setFileName(file.getFileName());
+				fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
+				fileVO.setArticleId(articleId);
+				fileVO.setFileType(1);
+				fileBiz.insertFile(fileVO);
+			}
+			// 영상 url이 있을 경우
+			if (!movieUrl.equals("")) {
+				FileVO fileVO = new FileVO();
+				fileVO.setArticleId(articleId);
+				fileVO.setFileName(movieUrl);
+				fileVO.setFileLocation("");
+				fileVO.setFileType(2);
+
+				fileBiz.insertFile(fileVO);
+				System.out.println("영상 등록 성공");
+			}
 		}
 		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD)) {
 			response.sendRedirect("/showDetail?articleId="+articleId);

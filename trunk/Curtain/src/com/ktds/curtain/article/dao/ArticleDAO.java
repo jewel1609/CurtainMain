@@ -34,7 +34,6 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/showMajorArticle/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, stdMember.getMajorGroupId());
-			System.out.println(stdMember.getNickName());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -50,6 +49,7 @@ public class ArticleDAO {
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setMajorName(rs.getString("MAJOR_NAME"));
 				article.setLike(false);
 
 				articles.add(article);

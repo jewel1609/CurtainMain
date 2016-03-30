@@ -39,14 +39,28 @@ public class ShowDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int isFword = 0;
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
 		ArticleVO article = articleBiz.showDetail(articleId);
 		List<FileVO> files = articleBiz.getFileListByArticleId(articleId);
 		
-		request.setAttribute("article", article);
-		request.setAttribute("files", files);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/detail.jsp");
-		rd.forward(request, response);
+		try {
+			isFword = Integer.parseInt(request.getParameter("isFword"));
+			request.setAttribute("isFword", isFword);
+		}
+		catch (NumberFormatException nfe) {
+			isFword = 0;
+		}
+		finally {
+			request.setAttribute("article", article);
+			request.setAttribute("files", files);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/detail.jsp");
+			rd.forward(request, response);
+			
+		}
+
+	
 	}
 
 }

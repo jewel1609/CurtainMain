@@ -1,6 +1,7 @@
 package com.ktds.curtain.reply.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.curtain.reply.biz.ReplyBiz;
 import com.ktds.curtain.reply.vo.ReplyVO;
 
@@ -18,6 +20,7 @@ import com.ktds.curtain.reply.vo.ReplyVO;
 public class DoWriteReplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReplyBiz replyBiz;
+	private ProhibitedWordBiz proBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -25,6 +28,7 @@ public class DoWriteReplyServlet extends HttpServlet {
     public DoWriteReplyServlet() {
         super();
         replyBiz = new ReplyBiz();
+        proBiz = new ProhibitedWordBiz();
     }
 
 	/**
@@ -44,15 +48,25 @@ public class DoWriteReplyServlet extends HttpServlet {
 		int replyId = Integer.parseInt(request.getParameter("replyId"));
 		String reply = request.getParameter("replyDesc");
 		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		
+		List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
+
+		for (int i = 0; i < wordList.size(); i++) {
+			if (reply.contains(wordList.get(i))) {
+				response.sendRedirect("/showDetail?isFword=1&articleId="+articleId);
+				return;
+			}  	
+			break;
+		}
+		
 		ReplyVO replyInfo = new ReplyVO();
 		replyInfo.setArticleId(articleId);
 		replyInfo.setParentReplyId(parentReplyId);
 		replyInfo.setReplyOrder(orderNo);
 		replyInfo.setReplyId(replyId);
 		replyInfo.setReplyDesc(reply);
-		
-		HttpSession session = request.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		if ( member != null ) {
 			replyInfo.setEmail(member.getEmail());

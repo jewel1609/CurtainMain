@@ -188,26 +188,30 @@
 
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
-	<div class="w3-container w3-main" style="margin-bottom: 20px;">
-		<div>
-			<div class="w3-col m7 w3-main" style="margin-left: 350px; margin-right: 100px; height: 820px; overflow: auto; ">
-				<!-- 게시판 타이틀 시작 -->
-				<div style="float:left;">
-					<h2>한겹커튼게시판입니다. </h2> 
-				</div> 
-				<div style="float:left; padding:20px;">
-					<h6>참여인원 명</h6> 
+	<div class="w3-container w3-main" style="margin-top:0px;">
+		<div class="w3-row" >
+			<div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
+    			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 885px; overflow: auto; ">
+				
+				<!-- 게시판 헤더 -->
+				<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
+					<div class="w3-margin-4" style="float:left;">
+						<h2>자유게시판</h2> 
+					</div> 
+					<div style="float:left; padding-top:20px;">
+						<h6>참여인원 명</h6> 
+					</div>
 				</div>
 				<!-- 게시판 타이틀 끝 -->
 				
 				<!-- 글쓰기 시작 -->
-				<div class="w3-row-padding">
+				<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">
 					<div class="w3-col m12" align="left">
-						<div class="w3-card w3-round w3-white">
+						<div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
 
 							<form id="writeForm" enctype="multipart/form-data">
 								<div class="w3-container w3-padding w3-left-align">
-									<div class="form-group1">
+									<div class="form-group">
 
 										<div>
 											<div class="col-sm-1">
@@ -255,7 +259,7 @@
 											<img id="uploadImg" src="#" width="100px;">
 										</div>
 										<div class="col-sm-12" style="margin-top:10px;">
-											<button type="button" class="btn btn-default" id="doWrite" style="border-color: #FF3300; color: #FF3300;">게시</button>
+											<button type="button" class="btn btn-default" id="doWrite" style="float: right; border-color: #FF3300; color: #FF3300;">게시</button>
 										</div>
 									</div>
 								</div>
@@ -269,10 +273,12 @@
 				
 				
 				<!-- 가장 조회수 많은 게시글 시작-->
-				<div class="w3-row-padding w3-margin-top">
+				<div style="background-color: white;">
+				<div class="w3-row-padding w3-margin-top" >
 					<div class="w3-col m12">
 						<div class="w3-card w3-round-large" style="border-color: #a9d039;" >
 							<div class="w3-container">
+							<a href="<c:url value="/hitsCount?boardId=4&articleId=${article.articleId}"/>">
 								<div class="w3-col m10 w3-padding-top">
 										<span class="label label-default">HOT</span>
 										<c:if test="${topArticle.articleTypeName eq '연애'}">
@@ -303,7 +309,7 @@
 								<div class="w3-col m12 w3-padding-top" style="height: 60px;">
 									${topArticle.articleDesc}
 								</div>
-								
+								</a>
 								<div>
 									${topArticle.articleModifyDate} 
 								</div>
@@ -345,6 +351,9 @@
 					</div>
 				</div>	
 				<!-- 조회수 많은 게시글 끝 -->
+				
+				
+				
 				
 				<!-- 최신순 리스트 시작 -->
 				
@@ -430,6 +439,8 @@
 						</div>
 					</div>
 				</c:forEach>
+				
+				</div>
 
 			</div>
 		</div>

@@ -85,7 +85,7 @@ $(document).ready(function () {
 			
 			<!-- 게시판 body -->	
 	      <div class="w3-row-padding">
-	        <div>
+	        <div class="w3-col m12" align="left">
 	          <div class="w3-card w3-white w3-round-large" style="margin-top:10px; margin-bottom:10px;">
 	            <div class="w3-container">
 	           	 	<div>

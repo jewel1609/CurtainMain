@@ -1,5 +1,7 @@
 package com.ktds.curtain.member.biz;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,17 +10,20 @@ import javax.servlet.http.HttpSession;
 import com.ktds.curtain.major.dao.MajorDAO;
 import com.ktds.curtain.member.dao.MemberDAO;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.prohibitedWord.dao.ProhibitedWordDAO;
 import com.ktds.curtain.univ.dao.UnivDAO;
 
 public class MemberBiz {
 	private MemberDAO memberDAO;
 	private MajorDAO majorDAO;
 	private UnivDAO univDAO;
+	private ProhibitedWordDAO wordDAO;
 	
 	public MemberBiz(){
 		memberDAO = new MemberDAO();
 		majorDAO = new MajorDAO();
 		univDAO = new UnivDAO();
+		wordDAO = new ProhibitedWordDAO();
 	}
 	
 	public void addStdMember(String inputUnivEmail, String inputPassword, String inputUnivName, String inputMajorName,
@@ -77,11 +82,15 @@ public class MemberBiz {
 		
 		MemberVO currentMember = memberDAO.getMemberInfo(member);
 		
+		//욕설이 담김
+		List<String> wordList = wordDAO.getAllWords();
+		
 		if ( currentMember == null) {
 			return false;
 		}
 		else {
 			session.setAttribute("_MEMBER_", currentMember);
+			session.setAttribute("_WORDLIST_", wordList);
 			return true;
 		}
 

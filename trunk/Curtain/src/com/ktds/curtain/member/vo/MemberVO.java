@@ -17,6 +17,7 @@ public class MemberVO extends ProhibitedWordVO {
 	private String companyName;
 	private int majorGroupId;
 	private String isVote;
+	private int surveyId;
 	
 	public int getPhoneNumber() {
 		return phoneNumber;
@@ -102,6 +103,12 @@ public class MemberVO extends ProhibitedWordVO {
 	}
 	public void setIsVote(String isVote) {
 		this.isVote = isVote;
+	}
+	public int getSurveyId() {
+		return surveyId;
+	}
+	public void setSurveyId(int surveyId) {
+		this.surveyId = surveyId;
 	}
 	
 	

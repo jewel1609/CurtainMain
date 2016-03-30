@@ -221,7 +221,7 @@ public class MemberDAO {
 				member.setPhoneNumber(rs.getInt("PHONE_NUMBER"));
 				member.setCompanyName(rs.getString("COMPANY_NAME"));
 				member.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
-				member.setIsVote(rs.getString("IS_VOTE"));
+				member.setSurveyId(rs.getInt("SURVEY_ID"));
 				
 				return member;
 			}

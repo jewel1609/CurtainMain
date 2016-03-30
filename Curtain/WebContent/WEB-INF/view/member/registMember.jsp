@@ -32,10 +32,11 @@ html, body, h1, h2, h3, h4, h5 {
 		
 		var passwordCheck = false;
 		$("#inputUnivEmail").keyup(function(){
-			
+			console.log($("#inputUnivEmail").val());
 			//AJAX 준비
 	         $.post(
-	        		 "<c:url value="/doUnivCheck" />"//갈 서블릿url
+	        		 "/doUnivCheck"
+	        		//갈 서블릿url
 	                  , {
 	                	  "inputUnivEmail" : $("#inputUnivEmail").val()
 	                	 }
@@ -79,6 +80,7 @@ html, body, h1, h2, h3, h4, h5 {
      		                  
      		                     try {
      		                        jsonData3 = JSON.parse(data);
+     		                        console.log(data);
      		                     }
      		                     catch(e) {
      		                    	console.log(e);
@@ -532,36 +534,6 @@ html, body, h1, h2, h3, h4, h5 {
 		$("#cancleCompBtn").click(function(){
 			window.history.back();
 		});
-		
-		function w3_open() {
-			document.getElementsByClassName("w3-sidenav")[0].style.display = "block";
-			document.getElementsByClassName("w3-overlay")[0].style.display = "block";
-		}
-		function w3_close() {
-			document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
-			document.getElementsByClassName("w3-overlay")[0].style.display = "none";
-		}
-	
-
-
-		window.onscroll = function() {
-			myFunction()
-		};
-
-		function myFunction() {
-			if (document.body.scrollTop > 80
-					|| document.documentElement.scrollTop > 80) {
-				document.getElementById("myTop").classList.add("w3-card-4");
-			} else {
-				document.getElementById("myTop").classList.remove("w3-card-4");
-			}
-		}
-
-		function myAccordion(id) {
-			document.getElementById(id).classList.toggle("w3-show");
-			document.getElementById(id).previousElementSibling.classList
-					.toggle("w3-theme");
-		}
 		
 		$(function(){
 		    $('ul.nav-tabs a').click(function (e) {

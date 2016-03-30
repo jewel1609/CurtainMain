@@ -1,5 +1,5 @@
-<%@page import="com.ktds.curtain.survey.vo.SurveyVO"%>
 <%@page import="com.ktds.curtain.survey.vo.SurveyStatsVO"%>
+<%@page import="com.ktds.curtain.survey.vo.SurveyVO"%>
 <%@page import="com.ktds.curtain.survey.biz.SurveyBiz"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Locale"%>

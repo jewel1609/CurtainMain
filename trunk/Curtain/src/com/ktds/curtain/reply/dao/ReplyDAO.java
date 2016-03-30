@@ -245,7 +245,7 @@ public class ReplyDAO {
 		
 	}
 	
-	public int countReplyFromRankModifyDate(MemberVO member, String currentDate) {
+	public int countReplyFromRankModifyDate(MemberVO member) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -257,8 +257,7 @@ public class ReplyDAO {
 			String query = XML.getNodeString("//query/reply/countReplyFromRankModifyDate/text()");
 			stmt = conn.prepareStatement(query);
 			
-			stmt.setString(1, currentDate);
-			stmt.setString(2, member.getRankModifyDate().substring(2, 10));
+			stmt.setString(1, member.getRankModifyDate().substring(2, 10));
 			stmt.setString(2, member.getEmail());
 			
 			rs = stmt.executeQuery();

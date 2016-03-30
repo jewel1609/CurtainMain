@@ -905,7 +905,7 @@ public class ArticleDAO {
 		}
 	}
 	
-	public int countArticleFromRankModifyDate(MemberVO member, String currentDate) {
+	public int countArticleFromRankModifyDate(MemberVO member) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -917,8 +917,7 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/countArticleFromRankModifyDate/text()");
 			stmt = conn.prepareStatement(query);
 			
-			stmt.setString(1, currentDate);
-			stmt.setString(2, member.getRankModifyDate().substring(2, 10));
+			stmt.setString(1, member.getRankModifyDate().substring(2, 10));
 			stmt.setString(2, member.getEmail());
 			
 			rs = stmt.executeQuery();

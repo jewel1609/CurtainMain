@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ktds.curtain.survey.vo.SurveyStatsVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.survey.vo.SurveyVO;
 import com.ktds.curtain.util.web.Const;
@@ -53,7 +54,49 @@ public class SurveyDAO {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 		finally {
-			closeDB(conn, stmt, null);
+			closeDB(conn, stmt, rs);
+		}
+		
+	}
+	
+	public SurveyStatsVO selectSurveyStats(String mTime) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		SurveyStatsVO surveyStats = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/survey/selectSurveyStats/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, mTime);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				
+				surveyStats = new SurveyStatsVO();
+				
+				surveyStats.setSurveyStatsId(rs.getInt("SURVEY_STATS_ID"));
+				surveyStats.setSurveyId(rs.getInt("SURVEY_ID"));
+				surveyStats.setFirstStats(rs.getInt("FIRST_STATS"));
+				surveyStats.setSecondStats(rs.getInt("SECOND_STATS"));
+				surveyStats.setThirdStats(rs.getInt("THIRD_STATS"));
+				surveyStats.setFourthStats(rs.getInt("FOURTH_STATS"));
+
+			}
+
+			return surveyStats;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
 		}
 		
 	}

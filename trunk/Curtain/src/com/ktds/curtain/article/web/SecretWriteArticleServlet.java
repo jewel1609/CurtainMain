@@ -88,7 +88,7 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		article.setBoardId(boardId);
 		article.setEmail(loginMember.getEmail());
 
-		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember);
+		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember, request);
 
 		FileVO file = null;
 		int articleId = articleBiz.getArticleId();

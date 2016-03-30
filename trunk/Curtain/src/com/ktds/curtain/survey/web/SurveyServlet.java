@@ -1,6 +1,7 @@
 package com.ktds.curtain.survey.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -34,7 +35,7 @@ public class SurveyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		response.sendError(HttpServletResponse.SC_FORBIDDEN,"잘못된 요청입니다.");
 	}
 
 	/**
@@ -54,6 +55,9 @@ public class SurveyServlet extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/common/rightMenu.jsp");
 		rd.forward(request, response);
+		
+		
+		
 	}
 
 }

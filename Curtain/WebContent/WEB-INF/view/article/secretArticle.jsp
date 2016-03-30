@@ -189,7 +189,6 @@
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
 	<div class="w3-container w3-main" style="margin-bottom: 20px;">
-
 		<div>
 			<div class="w3-col m7 w3-main" style="margin-left: 350px; margin-right: 100px; height: 820px; overflow: auto; ">
 				<!-- 게시판 타이틀 시작 -->

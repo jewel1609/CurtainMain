@@ -61,11 +61,11 @@ $(document).ready(function () {
 
 </script>
    
-<div class="w3-container w3-main" style="margin-top:0px; margin-bottom:20px;">    
+<div class="w3-container w3-main" style="margin-top:0px;">    
 
   <div class="w3-row" >
     <div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
-    background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height:100%; overflow: auto;">
+    background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height:885px; overflow: auto;">
      		
      		<!-- 게시판 헤더 -->
      		<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
@@ -84,7 +84,7 @@ $(document).ready(function () {
 	            <div class="w3-container">
 	           	 	<div>
 			           	 <div class="col-sm-12" style="margin-top:10px; padding-bottom: 10px; border-bottom:1px solid #bababa;">
-			           	 	<div class="col-sm-1" style="padding-left:0px;">
+			           	 	<div class="col-sm-1" style="padding-left:0px; padding-top:4px;">
 								<c:if test="${article.articleTypeName eq '연애'}">
 								<span class="label label-danger">${article.articleTypeName}</span>
 								</c:if>
@@ -107,8 +107,20 @@ $(document).ready(function () {
 							</div>
 							
 						</div>
-						<div>${article.articleDesc}
-			            
+													
+						<div class="col-sm-12" style="margin-bottom:20px;">
+							<div class="col-sm-11" style="padding-left:0px;">
+							<span style="color: #FF3300;"><h5>${article.nickName}</h5></span>
+							</div>
+							<div class="col-sm-1"><h6>조회수 ${article.hits}</h6></div>
+						</div>
+						<div>
+
+							<div>
+							${article.articleDesc}
+							</div>
+							
+				            <br/>
 				             <c:forEach items="${files}" var="file">
 				             	<c:if test="${file.fileType eq '1'}">								
 									<img src="/resource/img/${file.fileName}"/>
@@ -119,61 +131,61 @@ $(document).ready(function () {
 							</c:forEach>
 
 						</div>
-			             <div>${article.articleModifyDate}  ${article.nickName}</div>
+			             <div><h6>${article.articleModifyDate} </h6></div>
 			            	<ul class="pager">
-							  <li class="previous"><a href="/studentMajorAritlce">뒤로가기</a></li>
+							  <li class="previous"><a href="/studentMajorAritlce" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
 							  	<c:set var="loginId" value="${ sessionScope._MEMBER_.email}"/>
 								<c:if test="${ loginId eq article.email }">
-								<li class="next"><a href="<c:url value="/updateArticle?articleId=${article.articleId}"/>">수정하기</a></li>
-								<li class="next"><a href="<c:url value="/deleteArticle?articleId=${article.articleId}&email=${article.email}"/>">삭제하기</a></li>
+								<li class="next"><a href="<c:url value="/updateArticle?articleId=${article.articleId}"/>"  style="color:#FF3300; font-size: 10pt;">수정하기</a></li>
+								<li class="next"><a href="<c:url value="/deleteArticle?articleId=${article.articleId}&email=${article.email}"/>"  style="color:#FF3300; font-size: 10pt;">삭제하기</a></li>
 								</c:if>
 							</ul>  
-							
-							<div class="col-sm-12">
-						<h6>조회수 ${article.hits}</h6>
-						</div>
-							
-						
-			        
   					</div>
   				</div>
             </div>
 
        	</div>
-	        </div>
-	        <div id="formWrapper" class="w3-row-padding w3-margin-top">
-				<div class="w3-col m12 w3-round-large">
-					<div  class="w3-container">
-						<form id="writeReplyForm">
-							<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
-							<input type="hidden" id="parentReplyId" name="parentReplyId" value="0"/>
-							<input type="hidden" id="orderNo" name="orderNo" value="0"/>
-							<input type="hidden" id="replyId" name="replyId" value="0"/>
-							<textarea id="replyDesc" name="replyDesc" class="w3-col m12"></textarea><br/>
-							<input type="button" id="writeReplyBtn" value="댓글 등록" />
-						</form>
-					</div>
+	  </div>
+	  
+	  <!-- 댓글부분 -->
+	  <div id="formWrapper" class="w3-margin-32" >
+			<div class="w3-col m12">
+				<div class="w3-container w3-card" style="background-color: white; margin-bottom:50px;">
+					<form id="writeReplyForm">
+						<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
+						<input type="hidden" id="parentReplyId" name="parentReplyId" value="0"/>
+						<input type="hidden" id="orderNo" name="orderNo" value="0"/>
+						<input type="hidden" id="replyId" name="replyId" value="0"/>
+						<textarea id="replyDesc" name="replyDesc" class="w3-col m12" style="border: none; margin-bottom:10px;"></textarea><br/>
+						<button type="button" class="btn btn-default" id="writeReplyBtn" style="float:right; color:#FF3300;">댓글 등록</button>
+					</form>
 				</div>
 			</div>
-			<div>
+		</div>
+			<div style="margin-top:30px;">
 				<c:forEach items="${article.replyList}" var="reply">
-					<div >
+					<div>
 						<table width="100%">
 							<tr>
 								<th>
-							     	<div class="w3-row-padding w3-margin-top">
+							     	<div class="w3-row-padding">
 										<div class="w3-col m12">
-											<div class="w3-card-2 w3-white w3-round-large">
+											<div class="w3-card w3-white">
 												<div class="w3-container">
+												
 													<c:if test="${reply.parentReplyId ne reply.replyId}">
-													  <div> ==> ${reply.replyDesc}</div>
+													  <div> ㄴ ${reply.replyDesc}</div>
 													</c:if>
+													
 													<c:if test="${reply.parentReplyId eq reply.replyId}">
-													${reply.replyDesc}
+														${reply.replyDesc}
 													</c:if>
-													${reply.nickName}
+													<span style="color: #FF3300;"><h5>${article.nickName}</h5></span>
+													
 													<c:if test="${reply.parentReplyId eq reply.replyId}">
-													<span class="writeReReply" style="cursor:pointer;">댓글 달기</span>
+														<button type="button" class="btn btn-default btn-xs writeReReply">
+															댓글쓰기
+														</button>
 													</c:if>
 												</div>
 											</div>

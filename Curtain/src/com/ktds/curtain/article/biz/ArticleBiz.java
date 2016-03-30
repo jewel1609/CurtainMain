@@ -59,8 +59,6 @@ public class ArticleBiz {
 			for (ArticleLikeVO articleLike : articleLikes ) {
 				if ( article.getArticleId() == articleLike.getArticleId() ){
 					article.setLike(true);
-					System.out.println(article.getArticleId());
-					System.out.println(article.getLike());
 				}
 			}
 		}
@@ -68,8 +66,6 @@ public class ArticleBiz {
 			for(ArticleDislikeVO articleDislike : articleDislikes ) {
 				if( article.getArticleId() == articleDislike.getArticleId() ){
 					article.setDislike(true);
-					System.out.println(article.getArticleId());
-					System.out.println(article.getDislike());
 				}
 			}
 			

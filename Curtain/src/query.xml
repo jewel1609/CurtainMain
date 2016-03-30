@@ -425,6 +425,14 @@
 			WHERE	ARTICLE_REGISTER_DATE LIKE '%' || ? || '%'	
 			AND		EMAIL = ?
 		</countTodayArticle>
+		
+		<countArticleFromRankModifyDate>
+			SELECT	COUNT(ARTICLE_ID)
+			FROM	ARTICLE
+			WHERE	ARTICLE_REGISTER_DATE &lt; ?
+			AND     ARTICLE_REGISTER_DATE &gt; ?
+			AND		EMAIL = ?
+		</countArticleFromRankModifyDate>
 	</article>
 	<articleLikes>
 		<deleteArticle>
@@ -657,7 +665,11 @@
 			WHERE	EMAIL = ?
 		</addPointByArticle>
 		
-		
+		<modifyMemberTypeId>
+			UPDATE	MEMBER
+			SET		MEMBER_TYPE_ID = MEMBER_TYPE_ID + 1
+			WHERE	EMAIL = ?
+		</modifyMemberTypeId>
 	</member>
 	
 	<file>
@@ -845,6 +857,14 @@
 			FROM	REPLY
 			WHERE	ARTICLE_ID = ?
 		</deleteReply>
+		
+		<countReplyFromRankModifyDate>
+			SELECT	COUNT(REPLY_ID)
+			FROM	REPLY
+			WHERE	REPLY_REGISTER_DATE &lt; ?
+			AND     REPLY_REGISTER_DATE &gt; ?
+			AND		EMAIL = ?
+		</countReplyFromRankModifyDate>
 	</reply>
 	
 	<scrab>
@@ -939,6 +959,16 @@
 										    , ?
 									    )
 		</upDateIsVote>
+		
+		<countSurveyFromRankModifyDate>
+			SELECT	COUNT(SURVEY_MEMBER_ID)
+			FROM	SURVEY_MEMBER SM
+					, SURVEY S
+			WHERE	SM.SURVEY_ID = S.SURVEY_ID
+			AND		SURVEY_DATE &lt; ?
+			AND     SURVEY_DATE &gt; ?
+			AND		EMAIL = ?
+		</countSurveyFromRankModifyDate>
 	</survey>
 	
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.reply.vo.ReplyVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
@@ -244,6 +245,34 @@ public class ReplyDAO {
 		
 	}
 	
+	public int countReplyFromRankModifyDate(MemberVO member, String currentDate) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			String query = XML.getNodeString("//query/reply/countReplyFromRankModifyDate/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, currentDate);
+			stmt.setString(2, member.getRankModifyDate().substring(2, 10));
+			stmt.setString(2, member.getEmail());
+			
+			rs = stmt.executeQuery();
+			rs.next();
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -273,6 +302,5 @@ public class ReplyDAO {
 		}
 
 	}
-
 
 }

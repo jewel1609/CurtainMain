@@ -21,7 +21,6 @@ public class DoLogoutServlet extends HttpServlet {
      */
     public DoLogoutServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

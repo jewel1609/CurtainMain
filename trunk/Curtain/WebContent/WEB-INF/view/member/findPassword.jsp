@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
 
 <link rel="stylesheet" type="text/css" href="/resource/css/member/modifyMember.css"/>
 <script type="text/javascript">
@@ -46,7 +44,7 @@
 			<form id="sendPasswordForm">
 				<div class="w3-row-padding w3-margin-top w3-margin-bottom">
 				        <div class="w3-col m12">
-				          <div class="w3-card-2 w3-white w3-round-large">
+				          <div class="w3-card w3-white w3-round-large">
 				            <div class="w3-container w3-padding w3-left-align">
 				              <div class="w3-col" style="width:90%">
 				          			<div class="w3-col" style="width:20%">
@@ -63,7 +61,7 @@
 				 </div>
 				<div class="w3-row-padding w3-margin-top w3-margin-bottom">
 			        <div class="w3-col m12">
-			          <div class="w3-card-2 w3-white w3-round-large">
+			          <div class="w3-card w3-white w3-round-large">
 			            <div class="w3-container w3-padding w3-left-align">
 			              <div class="w3-col" style="width:90%">
 			          			<div class="w3-col" style="width:20%">
@@ -85,8 +83,7 @@
 		      <div class="w3-center-align">	
 				<div class="w3-btn-group">
 					<input type="button" id="sendPasswordBtn" class="btn btn-primary" value="비밀번호 전송" style="background-color:#FF3300; border:0px;"/>
-						
-					<input type="button" id="cancelBtn" class="btn btn-primary" value="취소" style="background-color:#c0c0c0; border:0px;"/>
+					<a href="/main.jsp"><input type="button" id="cancelBtn" class="btn btn-primary" value="취소" style="background-color:#c0c0c0; border:0px;"/></a>
 				</div>
 			  </div>   
 		</div>

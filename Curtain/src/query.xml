@@ -432,8 +432,7 @@
 		<countArticleFromRankModifyDate>
 			SELECT	COUNT(ARTICLE_ID)
 			FROM	ARTICLE
-			WHERE	ARTICLE_REGISTER_DATE &lt; ?
-			AND     ARTICLE_REGISTER_DATE &gt; ?
+			WHERE	ARTICLE_REGISTER_DATE &gt;= ?
 			AND		EMAIL = ?
 		</countArticleFromRankModifyDate>
 	</article>
@@ -864,8 +863,7 @@
 		<countReplyFromRankModifyDate>
 			SELECT	COUNT(REPLY_ID)
 			FROM	REPLY
-			WHERE	REPLY_REGISTER_DATE &lt; ?
-			AND     REPLY_REGISTER_DATE &gt; ?
+			WHERE	REPLY_REGISTER_DATE &gt;= ?
 			AND		EMAIL = ?
 		</countReplyFromRankModifyDate>
 	</reply>
@@ -981,8 +979,7 @@
 			FROM	SURVEY_MEMBER SM
 					, SURVEY S
 			WHERE	SM.SURVEY_ID = S.SURVEY_ID
-			AND		SURVEY_DATE &lt; ?
-			AND     SURVEY_DATE &gt; ?
+			AND		SURVEY_DATE &gt;= ?
 			AND		EMAIL = ?
 		</countSurveyFromRankModifyDate>
 	</survey>

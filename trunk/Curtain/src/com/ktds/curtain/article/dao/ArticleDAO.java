@@ -324,7 +324,7 @@ public class ArticleDAO {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showSecretArticle(MemberVO stdMember) {
+	public List<ArticleVO> showSecretArticle(MemberVO stdMember, String boardId) {
 
 		loadOracleDriver();
 
@@ -339,6 +339,7 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showSecretArticle/text()");
 			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, Integer.parseInt(boardId));
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -740,7 +741,7 @@ public class ArticleDAO {
 	 * @param stdMember
 	 * @return
 	 */
-	public ArticleVO showTopArticle(MemberVO stdMember) {
+	public ArticleVO showTopArticle(MemberVO stdMember, String boardId) {
 		
 		loadOracleDriver();
 		
@@ -754,7 +755,7 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showTopArticle/text()");
 			stmt = conn.prepareStatement(query);
-			//stmt.setInt(1, boardId);
+			stmt.setInt(1, Integer.parseInt(boardId));
 			rs = stmt.executeQuery();
 
 			if (rs.next()) {

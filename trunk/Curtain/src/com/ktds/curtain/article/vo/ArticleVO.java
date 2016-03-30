@@ -26,6 +26,7 @@ public class ArticleVO extends MemberVO {
 
 	private boolean dislike;
 	private boolean like;
+	private boolean scrab;
 	
 	private List<ReplyVO> replyList;
 	private List<FileVO> fileList;
@@ -46,8 +47,6 @@ public class ArticleVO extends MemberVO {
 	public void setReplyList(List<ReplyVO> replyList) {
 		this.replyList = replyList;
 	}
-
-	private boolean scrab;
 
 	// setters and getters
 	public int getArticleScrab() {

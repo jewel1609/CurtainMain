@@ -177,7 +177,11 @@ public class MemberBiz {
 	 * @param request
 	 * @param article 게시글을 쓰는 페이지가 아니라면 null 값을 넣어주면 됩니다.
 	 */
-	public void addPointAndModifyMemberType (MemberVO member, ArticleVO article) {
+	public void addPointAndModifyMemberType (ArticleVO article, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		
 		Calendar calendar = Calendar.getInstance();
 		String currentDate = "";
 		currentDate += calendar.get(Calendar.YEAR) + "/";
@@ -197,7 +201,7 @@ public class MemberBiz {
 		}
 		
 		addPoint(member, currentDate, article);
-		modifyMemberType(member);
+		modifyMemberType(member, session);
 	}
 	
 	private void addPoint (MemberVO member, String currentDate, ArticleVO article) {
@@ -209,13 +213,17 @@ public class MemberBiz {
 		}
 	}
 	
-	private void modifyMemberType(MemberVO member) {
+	private void modifyMemberType(MemberVO member, HttpSession session) {
 		
 		if (member.getMemberTypeId() == 1 && isUpdateRankToTwo(member)) {
 			memberDAO.modifyMemberTypeId(member);
+			member.setMemberTypeId(member.getMemberTypeId() + 1);
+			session.setAttribute("_MEMBER_", member);
 		}
 		else if (member.getMemberTypeId() == 2 && isUpdateRankToThree(member)) {
 			memberDAO.modifyMemberTypeId(member);
+			member.setMemberTypeId(member.getMemberTypeId() + 1);
+			session.setAttribute("_MEMBER_", member);
 		}
 	}
 	

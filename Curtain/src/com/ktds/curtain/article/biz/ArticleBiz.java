@@ -3,6 +3,8 @@ package com.ktds.curtain.article.biz;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.ktds.curtain.article.dao.ArticleDAO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
@@ -195,7 +197,7 @@ public class ArticleBiz {
  * @return
  */
 
-	public boolean doWriteArticle(ArticleVO article, MemberVO stdMember) {
+	public boolean doWriteArticle(ArticleVO article, MemberVO stdMember, HttpServletRequest request) {
 		
 		int doWriteArticle = 0;
 		
@@ -204,27 +206,27 @@ public class ArticleBiz {
 				
 		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) { // 전공
 			doWriteArticle = articleDAO.doWriteMajorArticle(article);
-			memberBiz.addPointAndModifyMemberType(stdMember, article);
+			memberBiz.addPointAndModifyMemberType(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.UNIV_BOARD)) { // 대학
 			doWriteArticle = articleDAO.doWriteUnivArticle(article);
-			memberBiz.addPointAndModifyMemberType(stdMember, article);
+			memberBiz.addPointAndModifyMemberType(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) { // 홍보
 			doWriteArticle = articleDAO.doWriteAdArticle(article);
-			memberBiz.addPointAndModifyMemberType(stdMember, article);
+			memberBiz.addPointAndModifyMemberType(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) { // 비밀 1
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
-			memberBiz.addPointAndModifyMemberType(stdMember, article);
+			memberBiz.addPointAndModifyMemberType(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
-			memberBiz.addPointAndModifyMemberType(stdMember, article);
+			memberBiz.addPointAndModifyMemberType(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {  // 비밀3
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
-			memberBiz.addPointAndModifyMemberType(stdMember, article);
+			memberBiz.addPointAndModifyMemberType(article, request);
 		}
 		
 		return doWriteArticle > 0;

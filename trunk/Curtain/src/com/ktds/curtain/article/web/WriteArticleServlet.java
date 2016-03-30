@@ -88,7 +88,7 @@ public class WriteArticleServlet extends HttpServlet {
 				article.setEmail(stdMember.getEmail());
 				article.setMajorGroupId(stdMember.getMajorGroupId());
 
-				boolean doWriteArticle = articleBiz.doWriteArticle(article, stdMember);
+				boolean doWriteArticle = articleBiz.doWriteArticle(article, stdMember, request);
 				int articleId = articleBiz.getArticleId();
 				if (articleId > 0) {
 					// 이미지 파일이 있을 경우

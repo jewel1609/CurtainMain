@@ -1,6 +1,6 @@
 package com.ktds.curtain.articleScrab.biz;
 
-import com.ktds.curtain.article.dao.ArticleDAO;
+
 import com.ktds.curtain.articleScrab.dao.ScrabDAO;
 import com.ktds.curtain.articleScrab.vo.ArticleScrabVO;
 
@@ -20,15 +20,18 @@ public class ScrabBiz {
 	public void insertOrDeleteScrabData(ArticleScrabVO scrabVO) {
 		
 		if( isExistScrabData(scrabVO) ){
-			//articleDAO.minusScrabCount(scrabVO);
 			scrabDAO.deleteScrab(scrabVO);
 		}
 		else {
-			//articleDAO.plusScrabCount(scrabVO);
 			scrabDAO.insertScrab(scrabVO);
 		}
 	}
 
+	/**
+	 * 스크랩된 게시글인지 아닌지 여부
+	 * @param scrabVO
+	 * @return
+	 */
 	public boolean isExistScrabData(ArticleScrabVO scrabVO) {
 		return scrabDAO.selectScrabCount(scrabVO) > 0;
 	}

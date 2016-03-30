@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.ktds.curtain.survey.dao.SurveyDAO;
+import com.ktds.curtain.survey.vo.SurveyStatsVO;
 import com.ktds.curtain.survey.vo.SurveyVO;
 
 public class SurveyBiz {
@@ -17,6 +18,10 @@ public class SurveyBiz {
 
 	public SurveyVO showTodaySurvey(String mTime) {
 		return surveyDAO.selectTodaySurvey(mTime);
+	}
+	
+	public SurveyStatsVO getSurveyStats(String mTime) {
+		return surveyDAO.selectSurveyStats(mTime);
 	}
 
 	public boolean statsUpdateTodaySurvey(int choiceNumber, int surveyId) {

@@ -923,6 +923,19 @@
 			WHERE	SURVEY_DATE	= ?
 		</selectTodaySurvey>
 		
+		<selectSurveyStats>
+			SELECT	SURVEY_STATS_ID
+					, ST.SURVEY_ID
+					, FIRST_STATS
+					, SECOND_STATS
+					, THIRD_STATS
+					, FOURTH_STATS
+			FROM	SURVEY S
+					, SURVEY_STATS ST					
+			WHERE	S.SURVEY_ID = ST.SURVEY_ID
+			AND		SURVEY_DATE	= ?
+		</selectSurveyStats>
+		
 		<upDateFirst>
 			UPDATE	SURVEY_STATS
 			SET		FIRST_STATS = FIRST_STATS+1

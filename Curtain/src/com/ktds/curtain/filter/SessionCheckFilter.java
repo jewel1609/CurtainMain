@@ -57,6 +57,9 @@ public class SessionCheckFilter implements Filter {
     	
     	whiteList.add("/doRegistStdMember");
     	
+    	whiteList.add("/findPassword");
+    	whiteList.add("/doSendPassword");
+    	
     	whiteList.add("/");
     	whiteList.add("/favicon.ico");
     	

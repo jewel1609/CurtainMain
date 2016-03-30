@@ -1,5 +1,9 @@
 package com.ktds.curtain.survey.biz;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import com.ktds.curtain.survey.dao.SurveyDAO;
 import com.ktds.curtain.survey.vo.SurveyVO;
 
@@ -15,23 +19,32 @@ public class SurveyBiz {
 		return surveyDAO.selectTodaySurvey(mTime);
 	}
 
-	public void statsUpdateTodaySurvey(int choiceNumber, int surveyId) {
+	public boolean statsUpdateTodaySurvey(int choiceNumber, int surveyId) {
 		
 		if ( choiceNumber == 1) {
 			surveyDAO.upDateFirst(surveyId);
+			return true;
 		}
 		else if ( choiceNumber == 2 ) {
 			surveyDAO.upDateSecond(surveyId);
+			return true;
 		}
 		else if ( choiceNumber == 3 ) {
-			System.out.println("============");
 			surveyDAO.upDateThird(surveyId);
-			System.out.println("============");
+			return true;
 		}
 		else if ( choiceNumber == 4 ) {
 			surveyDAO.upDateFourth(surveyId);
+			return true;
 		}
+		return false;
 		
 	}
+
+	public void upDateIsVote(String email) {
+		surveyDAO.upDateIsVote(email);
+	}
+	
+	
 
 }

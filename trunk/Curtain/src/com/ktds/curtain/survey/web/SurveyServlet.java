@@ -43,18 +43,21 @@ public class SurveyServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
-		Date currentTime = new Date ( );
-		String mTime = mSimpleDateFormat.format ( currentTime );
-		System.out.println ( mTime );
 		
 		
-		SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
 		
-		request.setAttribute("survey", survey);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/common/rightMenu.jsp");
-		rd.forward(request, response);
+//		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+//		Date currentTime = new Date ( );
+//		String mTime = mSimpleDateFormat.format ( currentTime );
+//		System.out.println ( mTime );
+//		
+//		
+//		SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
+//		
+//		request.setAttribute("survey", survey);
+//		
+//		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/common/rightMenu.jsp");
+//		rd.forward(request, response);
 		
 		
 		

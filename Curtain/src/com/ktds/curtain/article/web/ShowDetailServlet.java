@@ -8,10 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class ShowDetailServlet
@@ -44,9 +46,10 @@ public class ShowDetailServlet extends HttpServlet {
 
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
 		
-		System.out.println(articleId);
+		HttpSession session = request.getSession();
+		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		ArticleVO article = articleBiz.showDetail(articleId);
+		ArticleVO article = articleBiz.showDetail(articleId, stdMember);
 		List<FileVO> files = articleBiz.getFileListByArticleId(articleId);
 
 		try {

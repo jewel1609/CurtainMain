@@ -73,8 +73,10 @@ public class WriteArticleServlet extends HttpServlet {
 				List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
 
 				for (int i = 0; i < wordList.size(); i++) {
-					if (articleDescription.contains(wordList.get(i))) {
-						response.sendRedirect("/secretArticleList?isFword=1");
+					if (articleTitle.contains(wordList.get(i)) || articleDescription.contains(wordList.get(i))) {
+						if ( boardId.equals(BoardId.MAJOR_BOARD)) {
+						response.sendRedirect("/studentMajorAritlce?isFword=1");
+						}
 						return;
 					}  	
 					break;

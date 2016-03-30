@@ -10,6 +10,10 @@
 
 $(document).ready(function () {
 
+	if($("#isFword").val() == '1'){
+		alert("비방글은 게시하실 수 없습니다.");
+	}
+	
 	$("#imagePreview").hide();
 	
 	$("#movieBtn").popover({
@@ -89,7 +93,7 @@ function readURL(input) {
 }
 
 </script>
-   
+<input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" /> 
 <div class="w3-container w3-main" style="margin-top:30px; margin-bottom:20px;">    
 
   <div class="w3-row" >

@@ -19,6 +19,11 @@ import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.reply.dao.ReplyDAO;
+import com.ktds.curtain.reply.vo.ReplyVO;
+import com.ktds.curtain.replyDislike.dao.ReplyDislikeDAO;
+import com.ktds.curtain.replyDislike.vo.ReplyDislikeVO;
+import com.ktds.curtain.replyLike.dao.ReplyLikeDAO;
+import com.ktds.curtain.replyLike.vo.ReplyLikeVO;
 
 public class ArticleBiz {
 	private ArticleDAO articleDAO;
@@ -31,6 +36,8 @@ public class ArticleBiz {
 	private FileDAO fileDAO;
 	
 	private MemberBiz memberBiz;
+	private ReplyLikeDAO replyLikeDAO;
+	private ReplyDislikeDAO replyDislikeDAO;
 
 	
 	public ArticleBiz() {
@@ -44,6 +51,8 @@ public class ArticleBiz {
 		fileDAO = new FileDAO();
 		
 		memberBiz = new MemberBiz();
+		replyLikeDAO = new ReplyLikeDAO();
+		replyDislikeDAO = new ReplyDislikeDAO();
 
 	}
 	
@@ -57,7 +66,6 @@ public class ArticleBiz {
 
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
-		
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
@@ -242,9 +250,27 @@ public class ArticleBiz {
 	 * @param articleId
 	 * @return
 	 */
-	public ArticleVO showDetail(int articleId) {
+	public ArticleVO showDetail(int articleId, MemberVO stdMember) {
 		ArticleVO article = articleDAO.showDetail(articleId);
-		article.setReplyList(replyDAO.getReplyListByArticleId(articleId));
+		List<ReplyVO> reply = replyDAO.getReplyListByArticleId(articleId);
+		List<ReplyLikeVO> replyLikes = replyLikeDAO.getReplyLikes(articleId, stdMember);
+		List<ReplyDislikeVO> replyDislikes = replyDislikeDAO.getReplyDislikes(articleId, stdMember);
+		for (ReplyVO replys : reply) {
+			for (ReplyLikeVO articleLike : replyLikes ) {
+				if ( replys.getReplyId() == articleLike.getReplyId() ){
+					replys.setLike(true);
+				}
+			}
+		}
+		for (ReplyVO replys : reply) {
+			for(ReplyDislikeVO replyDislike : replyDislikes ) {
+				if( replyDislike.getReplyDislikeId() == replyDislike.getReplyId() ){
+					replys.setDislike(true);
+				}
+			}
+			
+		}
+		article.setReplyList(reply);
 		return article;
 	}
 

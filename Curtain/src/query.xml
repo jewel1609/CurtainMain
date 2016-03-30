@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <query>
+	<replyLike>
+		<getReplyLikes>
+			SELECT		RL.REPLY_ID
+			FROM 		REPLY_LIKE RL
+						, REPLY R
+			WHERE		RL.REPLY_ID = R.REPLY_ID
+			AND			RL.EMAIL = ?
+			AND			R.ARTICLE_ID = ?
+		</getReplyLikes>
+	</replyLike>
+	<replyDislike>
+		<getReplyDislikes>
+			SELECT		RD.REPLY_ID
+			FROM 		REPLY_DISLIKE RD
+						, REPLY R
+			WHERE		RD.REPLY_ID = R.REPLY_ID
+			AND			RD.EMAIL = ?
+			AND			R.ARTICLE_ID = ?
+		</getReplyDislikes>
+	</replyDislike>
+
 	<articleClaim>
 		<doWriteClaim>
 			INSERT INTO		ARTICLE_CLAIM (
@@ -143,8 +164,8 @@
 		</getArticleLikes>
 
 		<showMajorArticle>
-        	SELECT		ARTICLE_ID
-        				, ARTICLE_TITLE
+			SELECT		ARTICLE_ID
+						, ARTICLE_TITLE
 						, ARTICLE_DESC
 						, ARTICLE_MODIFY_DATE
 						, AT.ARTICLE_TYPE_NAME
@@ -153,18 +174,15 @@
 						, A.MAJOR_GROUP_ID
 						, HITS
 						, ARTICLE_LIKES
-						, ARTICLE_DISLIKES
-						, M.MAJOR_NAME
+						, ARTICLE_DISLIKES 
 			FROM 		ARTICLE A
 						, MEMBER SM
 						, ARTICLE_TYPE AT
-						, MAJOR M
-			WHERE	    A.EMAIL = SM.EMAIL
-			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-			AND			A.MAJOR_GROUP_ID = M.MAJOR_GROUP_ID
-			AND         A.BOARD_ID = 1
-			AND         A.MAJOR_GROUP_ID = ?
-			ORDER		BY	A.ARTICLE_ID DESC
+			WHERE 		A.EMAIL = SM.EMAIL 
+			AND 		A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID 
+			AND 		A.BOARD_ID = 1 
+			AND 		A.MAJOR_GROUP_ID = ? 
+			ORDER 		BY A.ARTICLE_ID DESC
 		</showMajorArticle>
 
 		<showUnivArticle>

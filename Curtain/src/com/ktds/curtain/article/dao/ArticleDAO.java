@@ -49,7 +49,6 @@ public class ArticleDAO {
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
-				article.setMajorName(rs.getString("MAJOR_NAME"));
 				article.setLike(false);
 
 				articles.add(article);

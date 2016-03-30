@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
 
 <script type="text/javascript">
 
@@ -88,4 +90,3 @@
 </div>
 
 </div>
-<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

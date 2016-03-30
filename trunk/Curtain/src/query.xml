@@ -833,6 +833,30 @@
 			FROM	SURVEY
 			WHERE	SURVEY_DATE	= ?
 		</selectTodaySurvey>
+		
+		<upDateFirst>
+			UPDATE	SURVEY_STATS
+			SET		FIRST_STATS = FIRST_STATS+1
+			WHERE	SURVEY_ID = ?
+		</upDateFirst>
+		
+		<upDateSecond>
+			UPDATE	SURVEY_STATS
+			SET		SECOND_STATS = SECOND_STATS+1
+			WHERE	SURVEY_ID = ?
+		</upDateSecond>
+		
+		<upDateThird>
+			UPDATE	SURVEY_STATS
+			SET		THIRD_STATS = THIRD_STATS+1
+			WHERE	SURVEY_ID = ?
+		</upDateThird>
+		
+		<upDateFourth>
+			UPDATE	SURVEY_STATS
+			SET		FOURTH_STATS = FOURTH_STATS+1
+			WHERE	SURVEY_ID = ?
+		</upDateFourth>
 	</survey>
 	
 

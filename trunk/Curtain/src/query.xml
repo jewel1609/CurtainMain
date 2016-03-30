@@ -914,9 +914,16 @@
 		</upDateFourth>
 		
 		<upDateIsVote>
-			UPDATE	MEMBER
-			SET		IS_VOTE = 'Y'
-			WHERE	EMAIL = ?
+			INSERT INTO SURVEY_MEMBER (
+			   								SURVEY_MEMBER_ID
+			   								, EMAIL
+			   								, SURVEY_ID
+			   						   )
+			VALUES 					   ( 
+											SURVEY_MEMBER_ID_SEQ.NEXTVAL
+											, ?
+										    , ?
+									    )
 		</upDateIsVote>
 	</survey>
 	

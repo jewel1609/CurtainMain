@@ -61,6 +61,7 @@ public class SessionCheckFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
 		// request를 HttpServletRequest로 캐스팅 한 후
 		HttpServletRequest req = (HttpServletRequest) request;
 		

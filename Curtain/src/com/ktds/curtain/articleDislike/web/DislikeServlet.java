@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.articleDislike.biz.DislikeBiz;
 import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
+import com.ktds.curtain.articleLike.biz.ArticleLikeBiz;
+import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
 
 
@@ -19,14 +21,15 @@ import com.ktds.curtain.member.vo.MemberVO;
  */
 public class DislikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
 	private DislikeBiz dislikeBiz;
+	private ArticleLikeBiz articleLikeBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DislikeServlet() {
         super();
         dislikeBiz = new DislikeBiz();
+        articleLikeBiz = new ArticleLikeBiz();
     }
 
 	/**
@@ -51,21 +54,22 @@ public class DislikeServlet extends HttpServlet {
 		ArticleDislikeVO dislikeVO = new ArticleDislikeVO();
 		dislikeVO.setArticleId(articleId);
 		dislikeVO.setEmail(member.getEmail());
-		
 		dislikeVO.setBoardId(boardId);
 		//TODO jsp에서 넘겨받아와서 바꿔주어야함
 		
-		dislikeBiz.insertOrDeleteDislikeData(dislikeVO);
-		
-		//TODO 히스토리 체크
-		
+		ArticleLikeVO articleLikeVO = new ArticleLikeVO();
+		articleLikeVO.setArticleId(articleId);
+		articleLikeVO.setBoradId(boardId);		
 		// 바뀐 뒤 
-		boolean isExistDislikeData = dislikeBiz.isExistDislikeData(dislikeVO);
+		boolean isExistLikeData =  articleLikeBiz.isExistLikeData(articleLikeVO, member);
 		// 전체 싫어요 수 
-		int updateDislikeCount = dislikeBiz.getArticleDislikes(dislikeVO);
-		
-		System.out.println(updateDislikeCount);
-		
+		int updateDislikeCount = 0;
+		boolean isExistDislikeData = false;
+		if (!isExistLikeData) {
+			dislikeBiz.insertOrDeleteDislikeData(dislikeVO);
+			isExistDislikeData = dislikeBiz.isExistDislikeData(dislikeVO);
+			updateDislikeCount = dislikeBiz.getArticleDislikes(dislikeVO);
+		}		
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");

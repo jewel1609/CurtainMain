@@ -15,10 +15,8 @@
 	String mTime = mSimpleDateFormat.format ( currentTime );
 	System.out.println ( mTime );
 	
-	
 	SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
 	String surveys[] = { survey.getFirstAnswer(), survey.getSecondAnswer(), survey.getThirdAnswer(), survey.getFourthAnswer() }; 
-	
 	request.setAttribute("mTime", mTime);
 	request.setAttribute("survey", survey);
 	request.setAttribute("surveys", surveys);
@@ -28,6 +26,7 @@
 	
 	$(document).ready(function() {
 		
+		$("#surveyResultForm").hide();
 		
 		$("#doSurvey").click(function(e) {
 			var selectRadio = $(".todaySurvey:checked").val();
@@ -36,7 +35,6 @@
 			var survey3 = $("#survey3").val();
 			var survey4 = $("#survey4").val();
 			var surveyId = $("#surveyId").val();
-			
 			
 			$.post(
 					"/doSurvey"
@@ -49,28 +47,31 @@
 						}
 					, function(data) {
 						
-						try{
-							jsonData3 = JSON.parse(data);
-						}
-						catch(e) { //자바스크립트는 타입이 없기때문에 e만 적으면 된다.
-						}
-						
-						if ( selectRadio == "" ) {
-							alert("오늘의 투표를 선택하세요.");
-							return;
-						}
-						if(jsonData3.isCheckId) {
-							alert("##안내##\n\n투표했습니다!");
-							return;
+							try{
+								jsonData3 = JSON.parse(data);
+							}
+							catch(e) { //자바스크립트는 타입이 없기때문에 e만 적으면 된다.
+							}
 							
-						}
-						if(!jsonData3.isCheckId) {
-							alert("오늘의 투표를 선택하세요.");
-							return;
-						}
-					  }
-					);
+							if ( selectRadio == "" ) {
+								alert("오늘의 투표를 선택하세요.");
+								return;
+							} 
+							if(!jsonData3.isCheckId) {
+								alert("오늘의 투표를 선택하세요.");
+								return;
+							}
+							if(jsonData3.isCheckId) {
+								alert("##안내##\n\n투표했습니다!");
+								$("#todaySurveyForm").hide();
+								$("#surveyResultForm").show();
+								return;
+							}
+				  		}
+			);
 		}); 
+		
+		
 		
 		
 		/* $("#doSurvey").click( function () {
@@ -121,30 +122,35 @@
 	</div>	   
 	
 	<div>
-	
+		
+	  <input type="hidden" id="isVoteCheck" name="isVoteCheck" value= false />	
 	  <div class="w3-card w3-round w3-white" style="margin-top:50px; padding:4px;">
 	  	<strong>오늘의 투표</strong><br/>  ${ mTime }
 	  </div>
 		<br/>
+		<form id="todaySurveyForm">	
 		<p> ${ survey.surveyTitle }</p>
-		<form id="todaySurveyForm">
 			<c:forEach items="${surveys}" var="surveyList">
 				<c:if test="${ surveyList ne null }">
-				<input type="radio" class="todaySurvey" name="todaySurvey" value="${surveyList}"> ${ surveyList }<br/><br/>
+				<input type="radio" class="todaySurvey" name="todaySurvey" value="${surveyList}" /> ${ surveyList }<br/><br/>
 				</c:if>
 			</c:forEach>
-				<input type="hidden" id = "survey1" name="survey1" value="${ survey.firstAnswer }"/>
-				<input type="hidden" id = "survey2" name="survey2" value="${ survey.secondAnswer }"/>
-				<input type="hidden" id = "survey3" name="survey3" value="${ survey.thirdAnswer }"/>
-				<input type="hidden" id = "survey4" name="survey4" value="${ survey.fourthAnswer }"/>
-				<input type="hidden" id = "surveyId" name="surveyId" value="${ survey.surveyId }"/>
-		</form>
+				<input type="hidden" id = "survey1" name="survey1" value="${ survey.firstAnswer }" />
+				<input type="hidden" id = "survey2" name="survey2" value="${ survey.secondAnswer }" />
+				<input type="hidden" id = "survey3" name="survey3" value="${ survey.thirdAnswer }" />
+				<input type="hidden" id = "survey4" name="survey4" value="${ survey.fourthAnswer }" />
+				<input type="hidden" id = "surveyId" name="surveyId" value="${ survey.surveyId }" />
 		<div class="w3-col" style="width:60%">
 			<button id = "doSurvey" type="button" class="btn btn-primary btn-sm">투표하기</button>
 		</div>
 		<div class="w3-col" style="width:30%;">
 			<button id = "showSurveyResult" type="button" class="btn btn-primary btn-sm">결과보기</button>
 		</div>
+		</form>
+		
+		<form id="surveyResultForm">
+			결과보기
+		</form>
 	  	
 	 
 	</div>

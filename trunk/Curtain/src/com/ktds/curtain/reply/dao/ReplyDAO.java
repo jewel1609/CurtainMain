@@ -49,11 +49,6 @@ public class ReplyDAO {
 				replyList.add(reply);
 			}
 			
-			// 파일이 없으면 null
-			if ( reply == null ) {
-				return null;
-			}
-			
 			return replyList;
 			
 		} catch (SQLException e) {

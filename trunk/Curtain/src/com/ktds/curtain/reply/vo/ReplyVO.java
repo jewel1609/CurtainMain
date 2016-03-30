@@ -14,7 +14,22 @@ public class ReplyVO {
 	private int replyDislikes;
 	private String email;
 	private String nickName;
+	private boolean like;
+	private boolean dislike;
+	
 
+	public boolean isLike() {
+		return like;
+	}
+	public void setLike(boolean like) {
+		this.like = like;
+	}
+	public boolean isDislike() {
+		return dislike;
+	}
+	public void setDislike(boolean dislike) {
+		this.dislike = dislike;
+	}
 	public String getNickName() {
 		return nickName;
 	}

@@ -21,6 +21,89 @@ $(document).ready(function () {
 		alert("비방글은 게시하실 수 없습니다.");
 	}
 	
+$(".like").click(function() {		
+	
+	$.post(		
+		"/replyLike"
+		, { "replyId" : $(this).attr("id")
+			, "articleId" : $("#articleId").val()
+		}
+		, function(data) {
+			
+			var jsonData = {};		
+			
+			try {
+				jsonData = JSON.parse(data);
+			}
+			catch(e) {
+				jsonData.result = false;
+			}
+			
+			if(jsonData.result){
+				var replyId = jsonData.replyId;
+				var result = "#like" + replyId;
+				if(jsonData.doLike){
+					$(result).attr("src", "/resource/img/like_active_small.png");
+					var count = "#likeCount"+jsonData.replyId;
+					$(count).text(jsonData.updateLikeCount);
+				}
+				else{
+					$(result).attr("src", "/resource/img/like_inactive_small.png");
+					var count = "#likeCount"+jsonData.replyId;
+					$(count).text(jsonData.updateLikeCount);
+				}	
+			}
+			else{
+				alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+				location.href="/";
+			}
+		}
+	)	
+});
+
+
+
+$(".dislike").click(function() {		
+	
+	$.post(		
+		"/replyDislike"
+		, { "replyId" : $(this).attr("id")
+			, "articleId" : $("#articleId").val()
+		}
+		, function(data) {
+			
+			var jsonData = {};		
+			
+			try {
+				jsonData = JSON.parse(data);
+			}
+			catch(e) {
+				jsonData.result = false;
+			}
+			
+			if(jsonData.result){
+				var replyId = jsonData.replyId;
+				var result = "#dislike" + replyId;
+				if(jsonData.isDislike){
+					$(result).attr("src", "/resource/img/dislike_active_small.png");
+					var count = "#dislikeCount"+jsonData.replyId;
+					$(count).text(jsonData.updateDislikeCount);
+				}
+				else{
+					$(result).attr("src", "/resource/img/dislike_inactive_small.png");
+					var count = "#dislikeCount"+jsonData.replyId;
+					$(count).text(jsonData.updateDislikeCount);
+				}	
+			}
+			else{
+				alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+				location.href="/";
+			}
+		}
+	)	
+});
+	
+	
 	/*새로 추가된것에 접근하는 방법*/
 	$("body").on ("click", "#writeReplyBtn", function() {
 		var form = $("#writeReplyForm");
@@ -179,14 +262,40 @@ $(document).ready(function () {
 											<div class="w3-card w3-white">
 												<div class="w3-container">
 												
-													<c:if test="${reply.parentReplyId ne reply.replyId}">
-													  <div> ㄴ ${reply.replyDesc}</div>
-													</c:if>
+													<div>
+														<c:if test="${reply.parentReplyId ne reply.replyId}">
+														  <div> ㄴ ${reply.replyDesc}</div>
+														</c:if>
+														
+														<c:if test="${reply.parentReplyId eq reply.replyId}">
+															${reply.replyDesc}
+														</c:if>
+													</div>
 													
-													<c:if test="${reply.parentReplyId eq reply.replyId}">
-														${reply.replyDesc}
-													</c:if>
-													<span style="color: #FF3300;"><h5>${article.nickName}</h5></span>
+													<div class="w3-col m8 w3-padding-bottom">
+														<div style="float:left; margin-right:10px;">
+															<c:if test="${reply.like}">
+																<img class="like" id="like${reply.replyId}" src="/resource/img/like_active_small.png" style="width:20px;">	
+																<span id="likeCount${reply.replyId}">${reply.replyLikes}</span>
+															</c:if>
+															<c:if test="${!reply.like}">
+																<img class="like" id="like${reply.replyId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
+																<span id="likeCount${reply.replyId}">${reply.replyLikes}</span>
+															</c:if>
+														</div>
+														<div>
+															<c:if test="${reply.dislike}">
+																<img class="dislike" id="dislike${reply.replyId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
+																<span id="dislikeCount${reply.replyId}">${reply.replyDislikes}</span>
+															</c:if>
+															<c:if test="${!reply.dislike}">
+																<img class="dislike" id="dislike${reply.replyId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
+																<span id="dislikeCount${reply.replyId}">${reply.replyDislikes}</span>
+															</c:if>
+														</div>
+													</div>
+													
+													<span style="color: #FF3300;"><h5>${reply.nickName}</h5></span>
 													
 													<c:if test="${reply.parentReplyId eq reply.replyId}">
 														<button type="button" class="btn btn-default btn-xs writeReReply">

@@ -63,7 +63,10 @@ $(document).ready(function () {
 });
 
 </script>
-  <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" /> 
+ 
+<input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
+  
+
 <div class="w3-container w3-main" style="margin-top:0px;">    
 
   <div class="w3-row" >

@@ -905,6 +905,35 @@ public class ArticleDAO {
 		}
 	}
 	
+	public int countArticleFromRankModifyDate(MemberVO member, String currentDate) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			String query = XML.getNodeString("//query/article/countArticleFromRankModifyDate/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, currentDate);
+			stmt.setString(2, member.getRankModifyDate().substring(2, 10));
+			stmt.setString(2, member.getEmail());
+			
+			rs = stmt.executeQuery();
+			rs.next();
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+		
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

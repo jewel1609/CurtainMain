@@ -30,9 +30,10 @@ public class MemberDAO {
 			stmt.setString(1, inputUnivEmail);
 			stmt.setInt(2, univId);
 			stmt.setInt(3, majorId);
-			stmt.setString(4, inputSecondEmail);
-			stmt.setString(5, inputPassword);
-			stmt.setInt(6, majorGroupId);
+			stmt.setString(4, this.randomNickName());
+			stmt.setString(5, inputSecondEmail);
+			stmt.setString(6, inputPassword);
+			stmt.setInt(7, majorGroupId);
 			stmt.executeUpdate();
 			
 			} catch (SQLException e) {
@@ -365,6 +366,76 @@ public class MemberDAO {
 		
 	}
 	
+	public String randomNickName(){
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String randomNickName= "";
+		int nounId = 0; 
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/randomNickName/text()");
+			
+			for( int i = 0; i < 3; i++){
+				nounId = (int)(Math.random() * 3398 + 1);
+				stmt = conn.prepareStatement(query);
+				stmt.setInt(1, nounId);
+				
+				rs = stmt.executeQuery();
+				
+				if( rs.next()) {
+					randomNickName += rs.getString("NOUNNAME");
+				}
+				stmt.close();
+				rs.close();
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return randomNickName;
+	}
+	
+
+	public String getNickNameByEmail(String inputUnivName) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String nickName = "";
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getNickNameByEmail/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, inputUnivName);
+			
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				nickName = rs.getString("NICK_NAME");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return nickName;
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -393,6 +464,7 @@ public class MemberDAO {
 			}
 		}
 	}
+
 
 
 }

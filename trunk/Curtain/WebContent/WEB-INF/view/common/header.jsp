@@ -37,6 +37,13 @@
       }
    }
 %>
+<script type="text/javascript">
+	function myAccordion(id) {
+	    document.getElementById(id).classList.toggle("w3-show");
+	    document.getElementById(id).previousElementSibling.classList
+	          .toggle("w3-theme");
+	 }
+</script>
 
 <script type="text/javascript">
 
@@ -141,7 +148,7 @@
    <%-- 헤더 --%>
    <div class="w3-main">
    
-      <header class="w3-container" style="background-color: blue; border-bottom: 1px solid #bababa; height:105px;">
+      <header class="w3-container" style="background-color: #F4F4F4; border-bottom: 1px solid #bababa; height:105px;">
          <form id="homeForm">
             <div id="btnHome" style="float: left; width: 200px;">
                <img src="/resource/img/title4.png" style="width:85%;">

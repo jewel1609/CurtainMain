@@ -2,10 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<nav class="w3-sidenav w3-collapse w3-white w3-card"
-	style="z-index: 3; width: 250px; height: 800px; margin-top: 110px; left: 100px;">
-	<a href="javascript:void(0)" onclick="w3_close()"
-		class="w3-text-teal w3-hide-large w3-closenav w3-large">Close ×</a>
+<nav class="w3-sidenav w3-collapse w3-white w3-card" 
+			style="z-index: 3; width: 250px; height: 100%; 
+			margin-top: 0px; border:0px; border-left:1px solid #bababa; 
+			border-right:1px solid #bababa;  left: 100px;" >
+			
+			
+			
+	<a href="javascript:void(0)" onclick="w3_close()" class="w3-text-teal w3-hide-large w3-closenav w3-large">Close ×</a>
 
 	<c:set var="memberType" value="${ sessionScope._MEMBER_.memberTypeId }" />
 	<c:set var="univId" value="${ sessionScope._MEMBER_.univId }" />

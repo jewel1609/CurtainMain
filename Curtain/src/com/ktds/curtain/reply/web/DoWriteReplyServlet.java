@@ -68,6 +68,7 @@ public class DoWriteReplyServlet extends HttpServlet {
 		replyInfo.setReplyId(replyId);
 		replyInfo.setReplyDesc(reply);
 		
+
 		if ( member != null ) {
 			replyInfo.setEmail(member.getEmail());
 		}

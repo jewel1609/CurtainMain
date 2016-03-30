@@ -51,15 +51,34 @@ public class ArticleBiz {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showMajorArticle(stdMember);
 		
-		System.out.println("여기"+stdMember.getEmail());
-		
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
-		
+		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
+		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
 		
 		for (ArticleVO article : articles) {
 			for (ArticleLikeVO articleLike : articleLikes ) {
 				if ( article.getArticleId() == articleLike.getArticleId() ){
 					article.setLike(true);
+					System.out.println(article.getArticleId());
+					System.out.println(article.getLike());
+				}
+			}
+		}
+		for(ArticleVO article : articles){
+			for(ArticleDislikeVO articleDislike : articleDislikes ) {
+				if( article.getArticleId() == articleDislike.getArticleId() ){
+					article.setDislike(true);
+					System.out.println(article.getArticleId());
+					System.out.println(article.getDislike());
+				}
+			}
+			
+		}
+		
+		for(ArticleVO article : articles){
+			for(ArticleScrabVO articleScrab : articleScrabs ){
+				if( article.getArticleId() == articleScrab.getArticleId() ){
+					article.setScrab(true);
 				}
 			}
 		}

@@ -238,7 +238,7 @@ public class SurveyDAO {
 	}
 
 	
-	public int countSurveyFromRankModifyDate(MemberVO member, String currentDate) {
+	public int countSurveyFromRankModifyDate(MemberVO member) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -250,8 +250,7 @@ public class SurveyDAO {
 			String query = XML.getNodeString("//query/survey/countSurveyFromRankModifyDate/text()");
 			stmt = conn.prepareStatement(query);
 			
-			stmt.setString(1, currentDate);
-			stmt.setString(2, member.getRankModifyDate().substring(2, 10));
+			stmt.setString(1, member.getRankModifyDate().substring(2, 10));
 			stmt.setString(2, member.getEmail());
 			
 			rs = stmt.executeQuery();

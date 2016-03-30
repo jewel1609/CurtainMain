@@ -158,7 +158,7 @@
    });
 </script>
 
-<body>
+<body style="padding-top: 0;">
    
 <%--
    
@@ -187,12 +187,11 @@
    </nav>
 --%>
 
-
    <%-- 헤더 --%>
    <div class="w3-main">
    
       <div id="myTop" class="w3-top w3-padding-8" style="background-color: black; border: 0px;">
-         <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor: pointer;"></div>
+         <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor: pointer; "></div>
          <i class="fa fa-bars w3-opennav w3-hide-large w3-xlarge w3-margin-left w3-margin-right" onclick="w3_open()"></i>
       </div>
       
@@ -216,11 +215,11 @@
                   </li>
                </c:if>
             
-               <%-- 
+
                <form action="<c:url value="/doLogout" /> " method="post">
                   <button type="submit" class="btn btn-default" style="border-color: #FF3300; color: #FF3300;" >로그아웃</button>
                </form>
-               --%>
+
                
             </div>
          </c:if>

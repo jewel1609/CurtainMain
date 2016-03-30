@@ -39,6 +39,10 @@ public class MemberBiz {
 		
 	}
 	
+	public String getNickNameByEmail(String inputUnivName){
+		return memberDAO.getNickNameByEmail(inputUnivName);
+	}
+	
 	public int getMajorIdByMajorName(String inputMajorName){
 		return majorDAO.getMajorIdByMajorName(inputMajorName);
 	}
@@ -47,8 +51,17 @@ public class MemberBiz {
 		return majorDAO.getMajorGroupIdByMajorId(majorId);
 	}
 	
+	
 	public int getUnivIdByUnivName(String inputUnivName){
 		return univDAO.getUnivIdByUnivName(inputUnivName);
+	}
+	
+	public String getMajorGroupNameByMajorGroupId(int majorGroupId){
+		return majorDAO.getMajorGroupNameByMajorGroupId(majorGroupId);
+	}
+	
+	public String getUnivNameByUnivId(int univId){
+		return univDAO.getUnivNameByUnivId(univId);
 	}
 	
 	public String getDateTimeByEmail(String inputUnivEmail){
@@ -83,6 +96,8 @@ public class MemberBiz {
 		}
 		
 		MemberVO currentMember = memberDAO.getMemberInfo(member);
+		String univName = univDAO.getUnivNameByUnivId(member.getUnivId());
+		String majorGroupName = majorDAO.getMajorGroupNameByMajorGroupId(member.getMajorGroupId());
 		
 		//욕설이 담김
 		List<String> wordList = wordDAO.getAllWords();
@@ -92,6 +107,8 @@ public class MemberBiz {
 		}
 		else {
 			session.setAttribute("_MEMBER_", currentMember);
+			session.setAttribute("_UNIVNAME_", univName);
+			session.setAttribute("_MAJORGROUPNAME_", majorGroupName);
 			session.setAttribute("_WORDLIST_", wordList);
 			return true;
 		}

@@ -44,17 +44,15 @@ public class DislikeServlet extends HttpServlet {
 		String dislikeArticleId = request.getParameter("articleId");
 		int articleId = Integer.parseInt(dislikeArticleId.substring(7));
 
-		
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		ArticleDislikeVO dislikeVO = new ArticleDislikeVO();
 		dislikeVO.setArticleId(articleId);
-		dislikeVO.setEmail("shinmi@curtain.ac.kr");
-		//TODO 세션값 받아와서 바꿔주어야함
-		//dislikeVO.setStudentEmail(member.getStudentEmail());
+		dislikeVO.setEmail(member.getEmail());
 		
-		dislikeVO.setBoardId(4);
+		dislikeVO.setBoardId(boardId);
 		//TODO jsp에서 넘겨받아와서 바꿔주어야함
 		
 		dislikeBiz.insertOrDeleteDislikeData(dislikeVO);

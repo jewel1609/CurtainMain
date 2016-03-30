@@ -47,7 +47,7 @@ public class DoLoginServlet extends HttpServlet {
 		String autoLogin = request.getParameter("autoLoginCheckBox");
 	
 		
-		if (memberBiz.isExistMember(member, request) ) {
+		if (memberBiz.isExistMember(member, request)) {
 			if(autoLogin != null) {
 				memberBiz.setCookie(member, response);
 			}

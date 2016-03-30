@@ -52,8 +52,9 @@
 								}
 							)	
 						});
-					
+
 						
+
 						$(".dislike").click(function() {		
 							
 							$.post(		
@@ -93,6 +94,7 @@
 								}
 							)	
 						});
+
 						
 						$(".scrab").click(function(){
 							$.post(
@@ -239,7 +241,7 @@
 								<a
 									href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>">
 									<div>
-
+										<input type="hidden" id="${article.articleId}" value="${article.articleId}"/>
 										<div>
 											<c:if test="${article.articleTypeName eq '연애'}">
 												<span class="label label-danger">${article.articleTypeName}</span>

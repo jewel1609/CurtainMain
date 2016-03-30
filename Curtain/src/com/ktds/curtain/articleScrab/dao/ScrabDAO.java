@@ -143,7 +143,7 @@ public class ScrabDAO {
 
 	         return articleScrabs;
 
-			} catch (SQLException e) {
+	      	} catch (SQLException e) {
 				throw new RuntimeException(e.getMessage(), e);
 			} finally {
 				closeDB(conn, stmt, rs);

@@ -462,6 +462,29 @@ public class MemberDAO {
 		}
 	}
 	
+	public void modifyMemberTypeId(MemberVO member) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/modifyMemberTypeId/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, member.getEmail());
+			
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -490,5 +513,7 @@ public class MemberDAO {
 			}
 		}
 	}
+
+
 
 }

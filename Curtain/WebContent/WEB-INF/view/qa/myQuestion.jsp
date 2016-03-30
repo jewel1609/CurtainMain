@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#btnFAQ").click(function() {
@@ -104,4 +107,3 @@
 	<div style="clear: both;"></div>
 	</div>
 	
-	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

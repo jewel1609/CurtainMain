@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.articleDislike.biz.DislikeBiz;
+import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.articleLike.biz.ArticleLikeBiz;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
@@ -20,6 +22,7 @@ import com.ktds.curtain.member.vo.MemberVO;
 public class LikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleLikeBiz articleLikeBiz;
+	private DislikeBiz dislikeBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,6 +30,7 @@ public class LikeServlet extends HttpServlet {
     public LikeServlet() {
         super();
         articleLikeBiz = new ArticleLikeBiz();
+        dislikeBiz = new DislikeBiz();
     }
 
 	/**
@@ -49,14 +53,23 @@ public class LikeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
 		
+		ArticleDislikeVO dislikeVO = new ArticleDislikeVO();
+		dislikeVO.setArticleId(articleId);
+		dislikeVO.setEmail(member.getEmail());
+		dislikeVO.setBoardId(boardId);
+		boolean isExistDislikeData = dislikeBiz.isExistDislikeData(dislikeVO);
+		boolean isExistLikeData = false;
+		int updateLikeCount = 0;
+		
 		ArticleLikeVO articleLikeVO = new ArticleLikeVO();
 		articleLikeVO.setArticleId(articleId);
 		articleLikeVO.setBoradId(boardId);
-		articleLikeBiz.insertOrDeleteLikeData(articleLikeVO, member);
 		
-		boolean isExistLikeData =  articleLikeBiz.isExistLikeData(articleLikeVO, member);
-		int updateLikeCount = articleLikeBiz.getArticleLikes(articleLikeVO);
-		System.out.println(updateLikeCount);
+		if (!isExistDislikeData) {
+			articleLikeBiz.insertOrDeleteLikeData(articleLikeVO, member);
+			isExistLikeData = articleLikeBiz.isExistLikeData(articleLikeVO, member);
+			updateLikeCount = articleLikeBiz.getArticleLikes(articleLikeVO);
+		}
 		
 // json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();

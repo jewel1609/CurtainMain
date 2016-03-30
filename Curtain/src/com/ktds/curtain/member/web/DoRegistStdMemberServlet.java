@@ -50,7 +50,7 @@ public class DoRegistStdMemberServlet extends HttpServlet {
 		
 		memberVO.setEmail(inputUnivEmail);
 		memberVO.setPassword(inputPassword);
-		memberVO.setNickName("yo");
+		memberVO.setNickName(stdMemberBiz.getNickNameByEmail(inputUnivName));
 		memberVO.setSecondEmail(inputSecondEmail);
 		memberVO.setMemberTypeId(1);
 		memberVO.setPoint(1000);

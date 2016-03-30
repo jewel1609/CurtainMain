@@ -137,6 +137,37 @@ public class MajorDAO {
 	}
 
 
+	public String getMajorGroupNameByMajorGroupId(int majorGroupId) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String majorGroupName = "";
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/major/getMajorGroupNameByMajorGroupId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorGroupId);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				majorGroupName = rs.getString("MAJOR_GROUP_NAME");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return majorGroupName;
+	}
+
+
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

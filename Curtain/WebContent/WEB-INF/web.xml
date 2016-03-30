@@ -500,6 +500,19 @@
     <servlet-name>DoUpdateArticleServlet</servlet-name>
     <url-pattern>/doUpdateArticle</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>WriteClaimServlet</display-name>
+    <servlet-name>WriteClaimServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.articleClaim.web.WriteClaimServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WriteClaimServlet</servlet-name>
+    <url-pattern>/writeClaim</url-pattern>
+  </servlet-mapping>
+
+
   <servlet>
     <description></description>
     <display-name>DoSurveyServlet</display-name>
@@ -510,6 +523,7 @@
     <servlet-name>DoSurveyServlet</servlet-name>
     <url-pattern>/doSurvey</url-pattern>
   </servlet-mapping>
+
    <servlet>
     <description></description>
     <display-name>ScrabServlet</display-name>
@@ -520,4 +534,5 @@
     <servlet-name>ScrabServlet</servlet-name>
     <url-pattern>/scrab</url-pattern>
   </servlet-mapping>
+
 </web-app>

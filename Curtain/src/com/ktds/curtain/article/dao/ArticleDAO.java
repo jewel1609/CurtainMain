@@ -206,7 +206,7 @@ public class ArticleDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
-			closeDB(conn, stmt, rs);
+			closeDB(null, stmt, rs);
 		}
 	}
 

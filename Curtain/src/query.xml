@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <query>
+	<articleClaim>
+		<doWriteClaim>
+			INSERT INTO		ARTICLE_CLAIM (
+   												ARTICLE_CLAIM_ID
+   												, EMAIL
+   												, ARTICLE_ID
+   												, CLAIM_DATE
+   												, CLAIM_TEXT
+   										  ) 
+			VALUES 						  (
+												ARTICLE_CLAIM_ID_SEQ.NEXTVAL
+												, ?
+												, ?
+												, SYSDATE
+												, ?
+										)
+		</doWriteClaim>
+	</articleClaim>
 
 	<prohibitedWord>
 		<getAllWords>
@@ -649,6 +667,7 @@
 			SELECT	FILE_ID
 					, FILE_NAME
 					, FILE_LOCATION
+					, FILE_TYPE
 			FROM	FILES
 			WHERE	ARTICLE_ID = ?
 		</getFileListByArticleId>

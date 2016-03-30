@@ -141,9 +141,9 @@ $(document).ready(function () {
 
        	</div>
 	        </div>
-	        <div class="w3-row-padding w3-margin-top">
+	        <div id="formWrapper" class="w3-row-padding w3-margin-top">
 				<div class="w3-col m12 w3-round-large">
-					<div id="formWrapper" class="w3-container">
+					<div  class="w3-container">
 						<form id="writeReplyForm">
 							<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
 							<input type="hidden" id="parentReplyId" name="parentReplyId" value="0"/>

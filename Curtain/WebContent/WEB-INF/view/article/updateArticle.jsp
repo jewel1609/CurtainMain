@@ -12,6 +12,20 @@ $(document).ready(function () {
 
 	$("#imagePreview").hide();
 	
+	$("#movieBtn").popover({
+		title: "<h5>동영상 url을 입력하세요</h5>"
+		, content: $("#movieUrlForm").html()
+		, html: true
+		, placement: "bottom"	
+		, trigger: "click"
+	}).on('click', function(){
+		$('#movieUrlUploadBtn').click(function(){
+			$("#movieUrl").attr("value",$("#url").val());
+			alert("첨부되었습니다.");
+			
+		});			
+	});
+	
 	$(".glyphicon-trash").click(function() {		
 
 		$.post(		
@@ -44,6 +58,17 @@ $(document).ready(function () {
 	
 	$(updateArticleBtn).click(function () {
 		
+	 if( $("#articleTitle").val() == ""){
+			alert("제목을 입력하세요!");
+			$("#articleTitle").focus();
+			return; // 더이상 밑의 이벤트를 진행하지 않음.
+		} 
+		 
+		 if( $("#articleDescription").val() == ""){
+			alert("내용을 입력하세요!");
+			$("#articleDescription").focus();
+			return; // 더이상 밑의 이벤트를 진행하지 않음.
+		} 
 		var form = $(updateArticle);
 		form.attr("method", "post");
 		form.attr("action", "/doUpdateArticle");
@@ -105,41 +130,44 @@ function readURL(input) {
 												id="articleTitle" name="articleTitle"  value="${article.articleTitle}"/>
 										</div>
 										
-										<div class="col-sm-2">
-
-											<input type="file" id="file" name="imgFile" style="display: none;"
-												onchange="readURL(this);">
-											<button type="button" class="btn btn-default btn-sm"
-												onclick="document.all.imgFile.click();">
+										<div class="col-sm-2">					
+											<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
+											<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
 												<span class="glyphicon glyphicon-picture"></span>
 											</button>
-
-
-											<input type="file" id="file" name="movieFile" style="display: none;">
-											<button type="button" class="btn btn-default btn-sm"
-												onclick="document.all.movieFile.click();">
+											
+											<button type="button" id="movieBtn" class="btn btn-default btn-sm">
 												<span class="glyphicon glyphicon-facetime-video"></span>
 											</button>
+											
+											<div id="movieUrlForm" class="hide">
+												<div>
+													<label for="about">url</label>
+														<textarea rows="3" name="url" id="url" class="form-control input-md"></textarea>
+														<button type="button" id="movieUrlUploadBtn" class="btn btn-default">
+															<em class="icon-ok">첨부</em>
+														</button>
+												</div>
+											</div>
+											<input type="hidden" id="movieUrl" name="movieUrl" />
 										</div>
+										
 										<div style="padding-top: 4px;">
 										<textarea name="articleDescription" class="w3-col m12"
 											rows="5" id="comment" style="margin-bottom: 5px;">${article.articleDesc}</textarea>
 									</div>
-									<div class="w3-col m12">
-										<img id="uploadImg" src="/Curtain/resource/img/noimg.png"
-											width="100" height="100"/>
-									</div>									
+									<div class="col-sm-9"  id="imagePreview"><img id="uploadImg" src="#" width="100px;"></div>								
 									<div class="w3-col m12">
 										<c:forEach items="${files}" var="file">
-											<span id="${file.fileId}" class="glyphicon glyphicon-trash">${file.fileName}</span>
+											<span id="${file.fileId}" class="glyphicon glyphicon-trash col-sm-9">${file.fileName}</span>
 										</c:forEach>
 									</div>
 								</div>
 							</div>
 									
 			            	<ul class="pager">
-							 	 <li class="previous"><a href="<c:url value="/showDetail?articleId=${article.articleId}"/>">뒤로가기</a></li>
-								<li id="updateArticleBtn" class="next">수정완료</li>
+							 	 <li class="previous col-sm-10"><a href="<c:url value="/showDetail?articleId=${article.articleId}"/>">뒤로가기</a></li>
+								<li id="updateArticleBtn" class="col-sm-2">수정완료</li>
 							</ul>  
 								</div>
 							</div>

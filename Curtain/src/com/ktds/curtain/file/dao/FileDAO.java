@@ -83,6 +83,7 @@ public class FileDAO {
 				file.setFileId(rs.getInt("FILE_ID"));
 				file.setFileName(rs.getString("FILE_NAME"));
 				file.setFileLocation(rs.getString("FILE_LOCATION"));
+				file.setFileType(rs.getInt("FILE_TYPE"));
 				
 				fileList.add(file);
 			}

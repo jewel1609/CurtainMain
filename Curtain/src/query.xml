@@ -18,6 +18,11 @@
 	</date>
 
 	<major>
+		<getMajorGroupNameByMajorGroupId>
+			SELECT 	MAJOR_GROUP_NAME
+			FROM	MAJOR_GROUP
+			WHERE	MAJOR_GROUP_ID = ?
+		</getMajorGroupNameByMajorGroupId>
 		<getMajorGroupIdByMajorId>
 			SELECT	MAJOR_GROUP_ID		
 			FROM	MAJOR
@@ -37,6 +42,11 @@
 		</checkMajorName>
 	</major>
 	<univ>
+		<getUnivNameByUnivId>
+			SELECT 	UNIV_NAME
+			FROM	UNIV
+			WHERE	UNIV_ID = ?
+		</getUnivNameByUnivId>
 		<isExistStdUnivEmail>
 			SELECT 	*
 			FROM	MEMBER
@@ -54,7 +64,6 @@
 			WHERE	UNIV_NAME LIKE '%' || ? || '%'			
 		</checkUnivName>
 	</univ>
-	
 	<dupl>
 		<isExistNickName>
 			SELECT 	COUNT(NICK_NAME)
@@ -62,7 +71,6 @@
 			WHERE	NICK_NAME = ?
 		</isExistNickName>
 	</dupl>
->>>>>>> .r559
 	<mac>
 		<getMacDescByStudentEmail>
 			SELECT 	MAC_ID
@@ -156,7 +164,7 @@
 			WHERE	    A.EMAIL = SM.EMAIL
 			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
 			AND         A.BOARD_ID = ?
-			AND         A.UNIV_ID = 1
+			AND         A.UNIV_ID = ?
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showUnivArticle>
 
@@ -453,6 +461,7 @@
 									   , UNIV_ID
 									   , MAJOR_ID
 									   , SIGNUP_DATE
+									   , NICK_NAME
 									   , SECOND_EMAIL
 									   , RANK_MODIFY_DATE
 									   , PASSWORD
@@ -463,6 +472,7 @@
 										, ?
 										, ?
 										, SYSDATE
+										, ?
 									 	, ?
 										, SYSDATE
 										, ?
@@ -565,6 +575,18 @@
 	</qa>
 	
 	<member>
+		<getNickNameByEmail>
+			SELECT	NICK_NAME
+			FROM	MEMBER
+			WHERE	EMAIL = ?
+		</getNickNameByEmail>
+	
+		<randomNickName>
+			SELECT	NOUNNAME
+			FROM	NOUN
+			WHERE	NOUN_ID = ?
+		</randomNickName>
+	
 		<getMemberInfo>
 			SELECT	*
 			FROM	MEMBER

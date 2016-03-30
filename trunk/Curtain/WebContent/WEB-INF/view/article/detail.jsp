@@ -76,7 +76,7 @@ $(document).ready(function () {
      		<!-- 게시판 헤더 -->
      		<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 				<div class="w3-margin-4" style="float:left;">
-					<h2> 무슨무슨 게시판입니다. </h2> 
+					<h2> 무슨무슨 게시판</h2> 
 				</div> 
 				<div style="float:left; padding-top:20px;">
 					<h5>   참여인원 명</h5> 

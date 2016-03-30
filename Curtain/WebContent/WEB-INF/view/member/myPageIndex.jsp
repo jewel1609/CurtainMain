@@ -24,38 +24,42 @@
 </script>
 
 
-<div class="w3-container w3-center w3-main" style="margin-top:30px; margin-bottom:20px;">    
+<div class="w3-container w3-center w3-main" style="margin-top:0px;">    
 
   <div class="w3-row" >
-    <div class="w3-col m7 w3-main" style="margin-left:350px; margin-right: 100px; height: 750px; overflow: auto;">
+    <div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
+    background-color: #F3F3F3; margin-left:334px; margin-right: 100px; height: 885px; overflow: auto;">
       
-      <div class="w3-myfont w3-left-align">
-      	<div class="w3-col" style="width:90%">
-      		<h1>마이페이지</h1>
+      <div class="w3-myfont w3-left-align" >
+      	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
+	      	<div class="w3-margin-4" style="float:left;">
+	      		<h2>마이페이지</h2>
+	      	</div>
+	      	<div class="w3-col" style="width:10%; margin-top:30px;">
+	      		<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="문의하신 답변이 왔습니다!" >
+	      			<button type="button" id="alarmBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;">알림!</button>
+	      		</a>
+	      	</div>
       	</div>
-      	<div class="w3-col" style="width:10%; margin-top:30px;">
-      		<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="문의하신 답변이 왔습니다!" >
-      			<button type="button" id="alarmBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;">알림!</button>
-      		</a>
-      	</div>
+      	
       </div>
       
-      <div class="w3-row-padding w3-margin-top">
+      <div class="w3-row-padding">
         <div class="w3-col m12">
-          <div class="w3-card-2 w3-white w3-round-large">
+          <div class="w3-card w3-white w3-round-large" style="margin-top:10px; margin-bottom:10px;">
             <div class="w3-container w3-padding w3-center-align">
             	<div class="w3-container w3-third">
-    				<h2>회원 등급</h2>
+    				<h3>회원 등급</h3>
     				<img src="/resource/img/curtainGradeOne.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px">
     				<p>회원님의 등급은 ' ${ memberRank } '입니다.</p> 
   				</div>
   				<div class="w3-container w3-third">
-    				<h2>포인트</h2>
+    				<h3>포인트</h3>
     				<img src="/resource/img/point.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 90px;">
     				<p style="position:relative; top:10px;">${ member.point } 포인트</p> 
   				</div>
   				<div class="w3-container w3-third">
-    				<h2>활동량</h2>
+    				<h3>활동량</h3>
     				<div class="w3-container w3-third">
     					<div>
 	    					<img src="/resource/img/circle.png" class="w3-center w3-circle w3-margin-bottom w3-margin-right" style="width:110px; height: 90px;
@@ -87,59 +91,31 @@
       </div>
       
         <div class="w3-row-padding w3-margin-top">
-        <div class="w3-col m12">
-          <div class="w3-card-2 w3-white w3-round-large">
-            <div class="w3-container w3-left-align">
-              <a href="/myPage/myWriteArticle">
-              <h4>
-              	내가 쓴 게시글/댓글 보기
-              </h4>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="w3-row-padding w3-margin-top">
-        <div class="w3-col m12">
-          <div class="w3-card-2 w3-white w3-round-large">
-            <div class="w3-container w3-left-align">
-           		<a href="/myPage/myLikesArticle">
-           		<h4>
-					내가 좋아요 한 글  보기       		
-           		</h4>
-           		</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="w3-row-padding w3-margin-top w3-margin-bottom">
-        <div class="w3-col m12">
-          <div class="w3-card-2 w3-white w3-round-large">
-            <div class="w3-container w3-left-align">
-              <a href="/myPage/myScrabArticle">
-              <h4>
-              	내가 스크랩 한 글 보기
-              </h4>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>   
+       		 <div class="w3-col m12">
+            	<ul class="list-group w3-left-align">
+            		<li class="list-group-item"><a href="/myPage/myWriteArticle">내가 쓴 게시글/댓글 보기</a></li>
+            		<li class="list-group-item"><a href="/myPage/myLikesArticle">내가 좋아요 한 글  보기</a></li>
+            		<li class="list-group-item"><a href="/myPage/myScrabArticle">내가 스크랩 한 글 보기</a></li>
+            	</ul>
+       		 </div>
+      	</div>
+
       
       <div class="w3-myfont w3-left-align">
-      	<div class="w3-col" style="width:90%">
-      		<h1>회원정보</h1>
-      	</div>
-      	<div class="w3-col" style="width:10%; margin-top:30px;">
-      		<button type="button" id="modifyBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원정보 변경</button>
-      	</div>
-      </div>
+	      <div class="w3-row" style="background-color: white; border-top: 1px solid #bababa; border-bottom: 1px solid #bababa;">
+		        <div class="w3-margin-4" style="float:left;">
+		      		<h2>회원정보</h2>
+		      	</div>
+		      	<div class="w3-col" style="width:10%; margin-top:30px;">
+		      		<button type="button" id="modifyBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원정보 변경</button>
+		      	</div>
+		      </div>
+	      </div>
+
       
       <div class="w3-row-padding">
         <div class="w3-col m12">
-          <div class="w3-card-2 w3-round w3-white">
+          <div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
             <div class="w3-container w3-padding w3-left-align">
           		<div class="w3-col" style="width:90%">
           			<div class="w3-col" style="width:20%">
@@ -156,7 +132,7 @@
       
        <div class="w3-row-padding w3-margin-top">
         <div class="w3-col m12">
-          <div class="w3-card-2 w3-white w3-round-large">
+          <div class="w3-card w3-white w3-round-large">
             <div class="w3-container w3-padding w3-left-align">
               <div class="w3-col" style="width:90%">
           			<div class="w3-col" style="width:20%">
@@ -173,7 +149,7 @@
       
       <div class="w3-row-padding w3-margin-top w3-margin-bottom">
         <div class="w3-col m12">
-          <div class="w3-card-2 w3-white w3-round-large">
+          <div class="w3-card w3-white w3-round-large">
             <div class="w3-container w3-padding w3-left-align">
               <div class="w3-col" style="width:90%">
           			<div class="w3-col" style="width:20%">

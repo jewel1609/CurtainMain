@@ -419,6 +419,12 @@
 			WHERE	ARTICLE_ID = ?
 		</updateArticle>
 		
+		<countTodayArticle>
+			SELECT	COUNT(ARTICLE_ID)
+			FROM	ARTICLE
+			WHERE	ARTICLE_REGISTER_DATE LIKE '%' || ? || '%'	
+			AND		EMAIL = ?
+		</countTodayArticle>
 	</article>
 	<articleLikes>
 		<deleteArticle>
@@ -608,9 +614,12 @@
 		</randomNickName>
 	
 		<getMemberInfo>
-			SELECT	*
-			FROM	MEMBER
-			WHERE	EMAIL = ?
+			SELECT	M.*
+					, S.SURVEY_ID
+			FROM	MEMBER M
+					, SURVEY_MEMBER S 
+			WHERE 	M.EMAIL = S.EMAIL
+			AND		EMAIL = ?
 			AND		PASSWORD = ?
 		</getMemberInfo>
 		
@@ -642,6 +651,11 @@
 			WHERE	MEMBER_TYPE_ID = ?
 		</getMemberRank>
 		
+		<addPointByArticle>
+			UPDATE	MEMBER
+			SET		POINT = POINT + 10
+			WHERE	EMAIL = ?
+		</addPointByArticle>
 		
 		
 	</member>

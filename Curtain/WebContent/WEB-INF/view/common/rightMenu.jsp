@@ -28,7 +28,52 @@
 	
 	$(document).ready(function() {
 		
-		$("#doSurvey").click( function () {
+		
+		$("#doSurvey").click(function(e) {
+			var selectRadio = $(".todaySurvey:checked").val();
+			var survey1 = $("#survey1").val();
+			var survey2 = $("#survey2").val();
+			var survey3 = $("#survey3").val();
+			var survey4 = $("#survey4").val();
+			var surveyId = $("#surveyId").val();
+			
+			
+			$.post(
+					"/doSurvey"
+					, { "selectRadio" : selectRadio
+						, "survey1" : survey1
+						, "survey2" : survey2
+						, "survey3" : survey3
+						, "survey4" : survey4
+						, "surveyId" : surveyId
+						}
+					, function(data) {
+						
+						try{
+							jsonData3 = JSON.parse(data);
+						}
+						catch(e) { //자바스크립트는 타입이 없기때문에 e만 적으면 된다.
+						}
+						
+						if ( selectRadio == "" ) {
+							alert("오늘의 투표를 선택하세요.");
+							return;
+						}
+						if(jsonData3.isCheckId) {
+							alert("##안내##\n\n투표했습니다!");
+							return;
+							
+						}
+						if(!jsonData3.isCheckId) {
+							alert("오늘의 투표를 선택하세요.");
+							return;
+						}
+					  }
+					);
+		}); 
+		
+		
+		/* $("#doSurvey").click( function () {
 			
 			var selectRadio = $(".todaySurvey:checked").val();
 			selectRadio = $.trim(selectRadio);
@@ -50,7 +95,7 @@
 				return;
 			}
 			
-		});
+		}); */
 		
 	});
 	
@@ -88,11 +133,11 @@
 				<input type="radio" class="todaySurvey" name="todaySurvey" value="${surveyList}"> ${ surveyList }<br/><br/>
 				</c:if>
 			</c:forEach>
-				<input type="hidden" name="survey1" value="${ survey.firstAnswer }"/>
-				<input type="hidden" name="survey2" value="${ survey.secondAnswer }"/>
-				<input type="hidden" name="survey3" value="${ survey.thirdAnswer }"/>
-				<input type="hidden" name="survey4" value="${ survey.fourthAnswer }"/>
-				<input type="hidden" name="surveyId" value="${ survey.surveyId }"/>
+				<input type="hidden" id = "survey1" name="survey1" value="${ survey.firstAnswer }"/>
+				<input type="hidden" id = "survey2" name="survey2" value="${ survey.secondAnswer }"/>
+				<input type="hidden" id = "survey3" name="survey3" value="${ survey.thirdAnswer }"/>
+				<input type="hidden" id = "survey4" name="survey4" value="${ survey.fourthAnswer }"/>
+				<input type="hidden" id = "surveyId" name="surveyId" value="${ survey.surveyId }"/>
 		</form>
 		<div class="w3-col" style="width:60%">
 			<button id = "doSurvey" type="button" class="btn btn-primary btn-sm">투표하기</button>

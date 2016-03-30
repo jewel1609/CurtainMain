@@ -156,5 +156,3 @@
 	</div>
 
 </div>
-
-<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

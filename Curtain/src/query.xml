@@ -508,6 +508,7 @@
 									   EMAIL
 									   , MEMBER_TYPE_ID
 									   , SIGNUP_DATE
+									   , NICK_NAME
 									   , SECOND_EMAIL
 									   , RANK_MODIFY_DATE
 									   , PASSWORD
@@ -518,6 +519,7 @@
 										?
 										, ?
 										, SYSDATE
+										, ?
 									 	, ?
 										, SYSDATE
 										, ?

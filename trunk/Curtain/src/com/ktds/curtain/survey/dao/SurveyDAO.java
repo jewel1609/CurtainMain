@@ -167,7 +167,7 @@ public class SurveyDAO {
 	}
 	
 	
-	public void upDateIsVote(String email) {
+	public void upDateIsVote(String email, int surveyId) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -180,7 +180,8 @@ public class SurveyDAO {
 			stmt = conn.prepareStatement(query);
 			
 			//SQL Parameter Mapping
-			stmt.setString(1, email);
+			stmt.setInt(1, surveyId);
+			stmt.setString(2, email);
 			stmt.executeUpdate();
 			
 			

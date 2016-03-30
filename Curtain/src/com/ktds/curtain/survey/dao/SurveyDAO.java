@@ -180,8 +180,8 @@ public class SurveyDAO {
 			stmt = conn.prepareStatement(query);
 			
 			//SQL Parameter Mapping
-			stmt.setInt(1, surveyId);
-			stmt.setString(2, email);
+			stmt.setString(1, email);
+			stmt.setInt(2, surveyId);
 			stmt.executeUpdate();
 			
 			

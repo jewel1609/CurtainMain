@@ -16,7 +16,7 @@
 	<c:set var="majorGroupId" value="${ sessionScope._MEMBER_.majorGroupId }" />
 	<c:set var="univName" value="${ sessionScope._UNIVNAME_}" />
 	<c:set var="majorGroupName" value="${ sessionScope._MAJORGROUPNAME_ }" />
-
+	 
 	<c:if test="${memberType eq 1 || memberType eq 2 || memberType eq 3}">
 		<div class="w3-accordion">
 			<a onclick="myAccordion('demo')" href="javascript:void(0)">

@@ -165,6 +165,7 @@ public class MemberDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
+		String compNickName = inputCompName+"의 관리자";
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
 
@@ -173,10 +174,11 @@ public class MemberDAO {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, inputCompEmail);
 			stmt.setInt(2, 4);
-			stmt.setString(3, inputSecondEmail);
-			stmt.setString(4, inputPassword);
-			stmt.setInt(5, inputPhoneNum);
-			stmt.setString(6, inputCompName);
+			stmt.setString(3, compNickName);
+			stmt.setString(4, inputSecondEmail);
+			stmt.setString(5, inputPassword);
+			stmt.setInt(6, inputPhoneNum);
+			stmt.setString(7, inputCompName);
 			stmt.executeUpdate();
 			
 			} catch (SQLException e) {

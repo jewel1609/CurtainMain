@@ -44,13 +44,14 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 		String inputCompName = request.getParameter("inputCompName");
 		int inputPhoneNum = Integer.parseInt(request.getParameter("inputPhoneNum"));
 		String inputCompSecondEmail = request.getParameter("inputCompSecondEmail");
+		String compNickName = inputCompName+"의 관리자";
 		
 		compMemberBiz.addCompMember(inputCompEmail,inputCompPassword,inputCompName
 									,inputPhoneNum,inputCompSecondEmail);
 		
 		memberVO.setEmail(inputCompEmail);
 		memberVO.setPassword(inputCompPassword);
-		memberVO.setNickName("yo");
+		memberVO.setNickName(compNickName);
 		memberVO.setSecondEmail(inputCompSecondEmail);
 		memberVO.setMemberTypeId(4);
 		memberVO.setPoint(0);

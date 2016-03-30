@@ -1,5 +1,6 @@
 package com.ktds.curtain.member.biz;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -7,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.article.dao.ArticleDAO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.major.dao.MajorDAO;
 import com.ktds.curtain.member.dao.MemberDAO;
 import com.ktds.curtain.member.vo.MemberVO;
-import com.ktds.curtain.reply.vo.ReplyVO;
 import com.ktds.curtain.prohibitedWord.dao.ProhibitedWordDAO;
+import com.ktds.curtain.reply.vo.ReplyVO;
 import com.ktds.curtain.univ.dao.UnivDAO;
 
 public class MemberBiz {
@@ -20,12 +22,14 @@ public class MemberBiz {
 	private MajorDAO majorDAO;
 	private UnivDAO univDAO;
 	private ProhibitedWordDAO wordDAO;
+	private ArticleDAO articleDAO;
 	
 	public MemberBiz(){
 		memberDAO = new MemberDAO();
 		majorDAO = new MajorDAO();
 		univDAO = new UnivDAO();
 		wordDAO = new ProhibitedWordDAO();
+		articleDAO = new ArticleDAO();
 	}
 	
 	public void addStdMember(String inputUnivEmail, String inputPassword, String inputUnivName, String inputMajorName,
@@ -168,11 +172,24 @@ public class MemberBiz {
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+
+		Calendar calendar = Calendar.getInstance();
+		String currentDate = "";
+		currentDate += calendar.get(Calendar.YEAR) + "/";
+		currentDate = currentDate.substring(2, 5);
+		currentDate += (calendar.get(Calendar.MONTH) + 1) + "/";
+		currentDate += calendar.get(Calendar.DATE);
+		
 		int currentPoint = 0;
 		int nextPoint = 0;
 		
 		if ( article != null ) {
-			currentPoint = member.getPoint();
+			if(articleDAO.countTodayArticle(currentDate, member) < 5) {
+				currentPoint = member.getPoint();
+				nextPoint = currentPoint + 10;
+				memberDAO.addPoint(nextPoint);
+			}
+			
 		}
 		else if ( reply != null ) {
 			

@@ -618,7 +618,7 @@
 					, S.SURVEY_ID
 			FROM	MEMBER M
 					, SURVEY_MEMBER S 
-			WHERE 	M.EMAIL = S.EMAIL
+			WHERE 	M.EMAIL = S.EMAIL (+)
 			AND		M.EMAIL = ?
 			AND		PASSWORD = ?
 		</getMemberInfo>

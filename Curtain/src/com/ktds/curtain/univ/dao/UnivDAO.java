@@ -113,6 +113,36 @@ public class UnivDAO {
 	}
 
 	
+	public String getUnivNameByUnivId(int univId) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String univName = "";
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/univ/getUnivNameByUnivId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, univId);
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				univName = rs.getString("UNIV_NAME");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return univName;
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -141,6 +171,7 @@ public class UnivDAO {
 			}
 		}
 	}
+
 
 
 }

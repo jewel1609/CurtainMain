@@ -7,7 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.survey.biz.SurveyBiz;
 
 /**
@@ -45,6 +47,10 @@ public class DoSurveyServlet extends HttpServlet {
 		String survey4 = request.getParameter("survey4");
 		int surveyId = Integer.parseInt(request.getParameter("surveyId"));
 		boolean isCheckId = false;
+		String checkCount = null;
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		
 		
 		if ( userSelectSurvey == null) {
 			isCheckId = false;
@@ -70,6 +76,9 @@ public class DoSurveyServlet extends HttpServlet {
 			
 			if ( choiceNumber > 0 ) { 
 				isCheckId = surveyBiz.statsUpdateTodaySurvey(choiceNumber, surveyId);
+				if ( isCheckId == true ) {
+				checkCount = "a";
+				}
 			}
 		}	
 		
@@ -77,22 +86,23 @@ public class DoSurveyServlet extends HttpServlet {
 		System.out.println(isCheckId);
 		
 		if ( isCheckId ) { //투포했으면
+			surveyBiz.upDateIsVote(member.getEmail());
+			session.setAttribute("_VOTE_", checkCount);
 			StringBuffer json = new StringBuffer(); 
 			json.append("{");
 			json.append("\"isCheckId\" : " + isCheckId);
 			json.append("}");
-			
 			PrintWriter out = response.getWriter();
 			out.print(json.toString());
 			out.flush();
 			out.close();
 		}
 		else { //투표안했으면
+			session.setAttribute("_VOTE_", checkCount);
 			StringBuffer json = new StringBuffer(); 
 			json.append("{");
 			json.append("\"isCheckId\" : " + isCheckId);
 			json.append("}");
-			
 			PrintWriter out = response.getWriter();
 			out.print(json.toString());
 			out.flush();

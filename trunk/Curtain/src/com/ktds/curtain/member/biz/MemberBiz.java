@@ -14,8 +14,8 @@ import com.ktds.curtain.major.dao.MajorDAO;
 import com.ktds.curtain.member.dao.MemberDAO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.prohibitedWord.dao.ProhibitedWordDAO;
-import com.ktds.curtain.reply.vo.ReplyVO;
-import com.ktds.curtain.survey.vo.SurveyVO;
+import com.ktds.curtain.reply.dao.ReplyDAO;
+import com.ktds.curtain.survey.dao.SurveyDAO;
 import com.ktds.curtain.univ.dao.UnivDAO;
 
 public class MemberBiz {
@@ -24,6 +24,8 @@ public class MemberBiz {
 	private UnivDAO univDAO;
 	private ProhibitedWordDAO wordDAO;
 	private ArticleDAO articleDAO;
+	private ReplyDAO replyDAO;
+	private SurveyDAO surveyDAO;
 	
 	public MemberBiz(){
 		memberDAO = new MemberDAO();
@@ -31,6 +33,8 @@ public class MemberBiz {
 		univDAO = new UnivDAO();
 		wordDAO = new ProhibitedWordDAO();
 		articleDAO = new ArticleDAO();
+		replyDAO = new ReplyDAO();
+		surveyDAO = new SurveyDAO();
 	}
 	
 	public void addStdMember(String inputUnivEmail, String inputPassword, String inputUnivName, String inputMajorName,
@@ -172,11 +176,9 @@ public class MemberBiz {
 	/**
 	 * 
 	 * @param request
-	 * @param article
-	 * @param reply
-	 * @param isCheckId 투표 여부를 나타냄 투표를 하는 페이지가 아니라면 false
+	 * @param article 게시글을 쓰는 페이지가 아니라면 null 값을 넣어주면 됩니다.
 	 */
-	public void addPointAndModifyMemberType (HttpServletRequest request, ArticleVO article, ReplyVO reply, boolean isCheckId) {
+	public void addPointAndModifyMemberType (HttpServletRequest request, ArticleVO article) {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
@@ -187,25 +189,49 @@ public class MemberBiz {
 		currentDate += (calendar.get(Calendar.MONTH) + 1) + "/";
 		currentDate += calendar.get(Calendar.DATE);
 		
-		addPoint(member, currentDate, article, isCheckId);
+		addPoint(member, currentDate, article);
+		modifyMemberType(member, currentDate);
 	}
 	
 	private void modifyMemberType(MemberVO member, String currentDate) {
 		
-		//articleDAO.countArticleFromRankModifyDate();
-		//stmt.setString(2, member.getRankModifyDate().substring(2, 10));
+		
+		if (member.getMemberTypeId() == 1 || isUpdateRankToTwo(member, currentDate)) {
+			memberDAO.modifyMemberTypeId(member);
+		}
+		else if (member.getMemberTypeId() == 2 || isUpdateRankToThree(member, currentDate)) {
+			memberDAO.modifyMemberTypeId(member);
+		}
 	}
 	
-	private void addPoint (MemberVO member, String currentDate, ArticleVO article, boolean isCheckId) {
+	private boolean isUpdateRankToTwo (MemberVO member, String currentDate) {
+		
+		if(articleDAO.countArticleFromRankModifyDate(member, currentDate) >= 5 
+				&& replyDAO.countReplyFromRankModifyDate(member, currentDate) >= 10 
+				&& surveyDAO.countSurveyFromRankModifyDate(member, currentDate) >= 7) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private boolean isUpdateRankToThree (MemberVO member, String currentDate) {
+		
+		if(articleDAO.countArticleFromRankModifyDate(member, currentDate) >= 10 
+				&& replyDAO.countReplyFromRankModifyDate(member, currentDate) >= 20 
+				&& surveyDAO.countSurveyFromRankModifyDate(member, currentDate) >= 15) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private void addPoint (MemberVO member, String currentDate, ArticleVO article) {
 		
 		if ( article != null ) {
 			if(articleDAO.countTodayArticle(currentDate, member) < 5) {
 				memberDAO.addPointByArticle(member);
 			}
-			
-		}
-		else if ( isCheckId ) {
-			
 		}
 	}
 	

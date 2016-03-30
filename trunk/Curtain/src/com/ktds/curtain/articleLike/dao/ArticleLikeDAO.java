@@ -45,7 +45,6 @@ public class ArticleLikeDAO {
 			while (rs.next()) {
 				articleLike = new ArticleLikeVO();
 				articleLike.setArticleLikeId(rs.getInt("ARTICLE_LIKE_ID"));
-				System.out.println(articleLike.getArticleLikeId());
 				articleLike.setArticleId(rs.getInt("ARTICLE_ID"));
 				articleLike.setEmail(rs.getString("EMAIL"));
 				articleLike.setLikeDate(rs.getString("LIKE_DATE"));

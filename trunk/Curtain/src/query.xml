@@ -619,7 +619,7 @@
 			FROM	MEMBER M
 					, SURVEY_MEMBER S 
 			WHERE 	M.EMAIL = S.EMAIL
-			AND		EMAIL = ?
+			AND		M.EMAIL = ?
 			AND		PASSWORD = ?
 		</getMemberInfo>
 		

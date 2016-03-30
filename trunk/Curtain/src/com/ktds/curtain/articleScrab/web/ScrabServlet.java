@@ -46,8 +46,6 @@ public class ScrabServlet extends HttpServlet {
 		
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
-		System.out.println("articleId : " + scrabArticleId);
-		System.out.println(" boardId : " + boardId);
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		

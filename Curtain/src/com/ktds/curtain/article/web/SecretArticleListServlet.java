@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.articleDislike.biz.DislikeBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 
@@ -55,9 +56,8 @@ public class SecretArticleListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, "4");
-
-		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, 4);
+		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL1);
+		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.SECRET_BOARD_LEVEL1);
 		
 		request.setAttribute("topArticle", topArticle);
 		request.setAttribute("secretArticles", secretArticles);

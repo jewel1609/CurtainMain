@@ -53,8 +53,7 @@ public class DoRegistStdMemberServlet extends HttpServlet {
 		memberVO.setNickName("yo");
 		memberVO.setSecondEmail(inputSecondEmail);
 		memberVO.setMemberTypeId(1);
-		memberVO.setActivity(0);
-		memberVO.setPoint(0);
+		memberVO.setPoint(1000);
 		memberVO.setMajorGroupId(stdMemberBiz.getMajorGroupIdByMajorId(stdMemberBiz.getMajorIdByMajorName(inputMajorName)));
 		memberVO.setMajorId(stdMemberBiz.getMajorIdByMajorName(inputMajorName));
 		memberVO.setSignupDate(stdMemberBiz.getDateTimeByEmail(inputUnivEmail));

@@ -80,7 +80,7 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/showUnivArticle/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, 2);
-			// stmt.setInt(2, stdMember.getMajorGroupId());
+			stmt.setInt(2, stdMember.getUnivId());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {

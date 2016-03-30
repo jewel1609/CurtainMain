@@ -15,6 +15,7 @@ import com.ktds.curtain.member.dao.MemberDAO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.prohibitedWord.dao.ProhibitedWordDAO;
 import com.ktds.curtain.reply.vo.ReplyVO;
+import com.ktds.curtain.survey.vo.SurveyVO;
 import com.ktds.curtain.univ.dao.UnivDAO;
 
 public class MemberBiz {
@@ -168,11 +169,17 @@ public class MemberBiz {
 		return memberDAO.getMemberRank(memberTypeId);
 	}
 	
-	public void addPointAndActivity (HttpServletRequest request, ArticleVO article, ReplyVO reply) {
-		
+	/**
+	 * 
+	 * @param request
+	 * @param article
+	 * @param reply
+	 * @param isCheckId 투표 여부를 나타냄 투표를 하는 페이지가 아니라면 false
+	 */
+	public void addPointAndModifyMemberType (HttpServletRequest request, ArticleVO article, ReplyVO reply, boolean isCheckId) {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
-
+		
 		Calendar calendar = Calendar.getInstance();
 		String currentDate = "";
 		currentDate += calendar.get(Calendar.YEAR) + "/";
@@ -180,23 +187,26 @@ public class MemberBiz {
 		currentDate += (calendar.get(Calendar.MONTH) + 1) + "/";
 		currentDate += calendar.get(Calendar.DATE);
 		
-		int currentPoint = 0;
-		int nextPoint = 0;
+		addPoint(member, currentDate, article, isCheckId);
+	}
+	
+	private void modifyMemberType(MemberVO member, String currentDate) {
+		
+		//articleDAO.countArticleFromRankModifyDate();
+		//stmt.setString(2, member.getRankModifyDate().substring(2, 10));
+	}
+	
+	private void addPoint (MemberVO member, String currentDate, ArticleVO article, boolean isCheckId) {
 		
 		if ( article != null ) {
 			if(articleDAO.countTodayArticle(currentDate, member) < 5) {
-				currentPoint = member.getPoint();
-				nextPoint = currentPoint + 10;
-				//memberDAO.addPoint(nextPoint);
+				memberDAO.addPointByArticle(member);
 			}
 			
 		}
-		else if ( reply != null ) {
+		else if ( isCheckId ) {
 			
 		}
-		
 	}
-
-
 	
 }

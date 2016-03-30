@@ -132,10 +132,12 @@ public class DislikeDAO {
 			while (rs.next()) {
 				articleDislike = new ArticleDislikeVO();
 				articleDislike.setArticleDislikeId(rs.getInt("ARTICLE_DISLIKE_ID"));
+				System.out.println(articleDislike.getArticleDislikeId());
 				articleDislike.setArticleId(rs.getInt("ARTICLE_ID"));
 				articleDislike.setEmail(rs.getString("EMAIL"));
 				articleDislike.setDislikeDate(rs.getString("DISLIKE_DATE"));
 				articleDislike.setBoardId(rs.getInt("BOARD_ID"));
+				
 				articleDislikes.add(articleDislike);
 			}
 

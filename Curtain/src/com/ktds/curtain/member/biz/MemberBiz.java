@@ -134,6 +134,20 @@ public class MemberBiz {
 		password.setMaxAge(30*24*60*60);
 		response.addCookie(password);
 	}
+	
+	public void removeCookie(MemberVO member, HttpServletResponse response) {
+		Cookie autoLogin = new Cookie("autoLogin", "");
+		autoLogin.setMaxAge(0);
+		response.addCookie(autoLogin);
+
+		Cookie userId = new Cookie("userId", "");
+		userId.setMaxAge(0);
+		response.addCookie(userId);
+
+		Cookie password = new Cookie("userPassword", "");
+		password.setMaxAge(0);
+		response.addCookie(password);
+	}
 
 	public String getUnivName(int univId) {
 		return memberDAO.getUnivName(univId);

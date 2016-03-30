@@ -174,65 +174,71 @@ public class MemberBiz {
 	}
 	
 	/**
-	 * 
 	 * @param request
 	 * @param article 게시글을 쓰는 페이지가 아니라면 null 값을 넣어주면 됩니다.
 	 */
-	public void addPointAndModifyMemberType (HttpServletRequest request, ArticleVO article) {
-		HttpSession session = request.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
-		
+	public void addPointAndModifyMemberType (MemberVO member, ArticleVO article) {
 		Calendar calendar = Calendar.getInstance();
 		String currentDate = "";
 		currentDate += calendar.get(Calendar.YEAR) + "/";
 		currentDate = currentDate.substring(2, 5);
-		currentDate += (calendar.get(Calendar.MONTH) + 1) + "/";
-		currentDate += calendar.get(Calendar.DATE);
+		if((calendar.get(Calendar.MONTH) + 1) < 10) {
+			currentDate += "0" + (calendar.get(Calendar.MONTH) + 1) + "/";
+		}
+		else {
+			currentDate += (calendar.get(Calendar.MONTH) + 1) + "/";
+		}
+		
+		if(calendar.get(Calendar.DATE) < 10) {
+			currentDate += "0" + calendar.get(Calendar.DATE);
+		}
+		else {
+			currentDate += calendar.get(Calendar.DATE);
+		}
 		
 		addPoint(member, currentDate, article);
-		modifyMemberType(member, currentDate);
-	}
-	
-	private void modifyMemberType(MemberVO member, String currentDate) {
-		
-		
-		if (member.getMemberTypeId() == 1 || isUpdateRankToTwo(member, currentDate)) {
-			memberDAO.modifyMemberTypeId(member);
-		}
-		else if (member.getMemberTypeId() == 2 || isUpdateRankToThree(member, currentDate)) {
-			memberDAO.modifyMemberTypeId(member);
-		}
-	}
-	
-	private boolean isUpdateRankToTwo (MemberVO member, String currentDate) {
-		
-		if(articleDAO.countArticleFromRankModifyDate(member, currentDate) >= 5 
-				&& replyDAO.countReplyFromRankModifyDate(member, currentDate) >= 10 
-				&& surveyDAO.countSurveyFromRankModifyDate(member, currentDate) >= 7) {
-			return true;
-		}
-		
-		return false;
-	}
-	
-	private boolean isUpdateRankToThree (MemberVO member, String currentDate) {
-		
-		if(articleDAO.countArticleFromRankModifyDate(member, currentDate) >= 10 
-				&& replyDAO.countReplyFromRankModifyDate(member, currentDate) >= 20 
-				&& surveyDAO.countSurveyFromRankModifyDate(member, currentDate) >= 15) {
-			return true;
-		}
-		
-		return false;
+		modifyMemberType(member);
 	}
 	
 	private void addPoint (MemberVO member, String currentDate, ArticleVO article) {
 		
 		if ( article != null ) {
-			if(articleDAO.countTodayArticle(currentDate, member) < 5) {
+			if(articleDAO.countTodayArticle(currentDate, member) <= 5) {
 				memberDAO.addPointByArticle(member);
 			}
 		}
+	}
+	
+	private void modifyMemberType(MemberVO member) {
+		
+		if (member.getMemberTypeId() == 1 && isUpdateRankToTwo(member)) {
+			memberDAO.modifyMemberTypeId(member);
+		}
+		else if (member.getMemberTypeId() == 2 && isUpdateRankToThree(member)) {
+			memberDAO.modifyMemberTypeId(member);
+		}
+	}
+	
+	private boolean isUpdateRankToTwo (MemberVO member) {
+		
+		if(articleDAO.countArticleFromRankModifyDate(member) >= 5 
+				&& replyDAO.countReplyFromRankModifyDate(member) >= 10 
+				&& surveyDAO.countSurveyFromRankModifyDate(member) >= 7) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private boolean isUpdateRankToThree (MemberVO member) {
+		
+		if(articleDAO.countArticleFromRankModifyDate(member) >= 10 
+				&& replyDAO.countReplyFromRankModifyDate(member) >= 20 
+				&& surveyDAO.countSurveyFromRankModifyDate(member) >= 15) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 }

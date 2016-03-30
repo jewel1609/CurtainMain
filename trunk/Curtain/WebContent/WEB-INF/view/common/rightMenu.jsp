@@ -1,4 +1,5 @@
 <%@page import="com.ktds.curtain.survey.vo.SurveyVO"%>
+<%@page import="com.ktds.curtain.survey.vo.SurveyStatsVO"%>
 <%@page import="com.ktds.curtain.survey.biz.SurveyBiz"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Locale"%>
@@ -16,10 +17,17 @@
 	System.out.println ( mTime );
 	
 	SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
+	SurveyStatsVO surveyStats = surveyBiz.getSurveyStats(mTime);
+	
+	//int first = surveyStats.getFirstStats();
+			
+	double first =  (double)surveyStats.getFirstStats() / (surveyStats.getFirstStats()+ surveyStats.getSecondStats()+surveyStats.getThirdStats()) * 100  ;
+	
 	String surveys[] = { survey.getFirstAnswer(), survey.getSecondAnswer(), survey.getThirdAnswer(), survey.getFourthAnswer() }; 
 	request.setAttribute("mTime", mTime);
 	request.setAttribute("survey", survey);
 	request.setAttribute("surveys", surveys);
+	request.setAttribute("first", first);
 	
 %>
 <script type="text/javascript">
@@ -27,6 +35,8 @@
 	var check = null;
 	
 	$(document).ready(function() {
+		
+		var first = $("#first").val();
 		
 		
 		$("#doSurvey").click(function(e) {
@@ -107,6 +117,8 @@
   class="w3-text-teal w3-hide-large w3-closenav w3-large">Close ×</a>	
 	
  	<c:set var="voteCheck" value="${ sessionScope._VOTE_ }" />
+ 	<input type="hidden" id="first" value="${ first }" />
+ 	
  <div class="w3-padding-medium">
 	 <div>
 	 	<div class="w3-card w3-round w3-white" style="padding:4px;">
@@ -132,9 +144,9 @@
 		<input type="hidden" id="todaySurveyCheck" name="todaySurveyCheck" value= "0" />
 		
 		
+		<p> ${ survey.surveyTitle }</p>
 		<c:if test="${voteCheck eq null }">
 		<form id="todaySurveyForm" name="todaySurveyForm">	
-		<p> ${ survey.surveyTitle }</p>
 			<c:forEach items="${surveys}" var="surveyList">
 				<c:if test="${ surveyList ne null }">
 				<input type="radio" class="todaySurvey" name="todaySurvey" value="${surveyList}" /> ${ surveyList }<br/><br/>
@@ -157,26 +169,34 @@
 		<c:if test="${voteCheck ne null}">
 		<form id="surveyResultForm">
 			결과보기
-			<div class="progress">
-	    		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-	      			40% Complete (success)
-	    		</div>
-  			</div>
-  			<div class="progress">
-			    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-			      	50% Complete (info)
-			    </div>
-		  	</div>
-		  	<div class="progress">
-		    	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-		      		60% Complete (warning)
-		    	</div>
-		 	</div>
-		  	<div class="progress">
-			    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-			      70% Complete (danger)
-			    </div>
-		  	</div>
+			<c:if test="${ survey.firstAnswer ne null }">
+				<div class="progress">
+		    		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${first}%">
+		    		</div>
+	  			</div>
+		      			${ survey.firstAnswer } ${ first }
+  			</c:if>
+  			<c:if test="${ survey.secondAnswer ne null }">
+	  			<div class="progress">
+				    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+				      	${ survey.secondAnswer }
+				    </div>
+			  	</div>
+		  	</c:if>
+		  	<c:if test="${ survey.thirdAnswer ne null }">
+			  	<div class="progress">
+			    	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+			      		${ survey.thirdAnswer }
+			    	</div>
+			 	</div>
+		 	</c:if>
+		 	<c:if test="${ survey.fourthAnswer ne null }">
+			  	<div class="progress">
+				    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+				      ${ survey.fourthAnswer }
+				    </div>
+			  	</div>
+		  	</c:if>
 		</form>
 		</c:if>
 	  	

@@ -42,6 +42,21 @@ public class SessionCheckFilter implements Filter {
     	whiteList.add("/checkId");
 //    	whiteList.add("/favicon.ico");
     	whiteList.add("/registStdMember");
+    	
+    	whiteList.add("/doUnivCheck");
+    	whiteList.add("/doCompCheck");
+    	
+    	whiteList.add("/authNumSend");
+    	whiteList.add("/authNumCheck");
+    	
+    	whiteList.add("/compAuthNumSend");
+    	whiteList.add("/compAuthNumCheck");
+    	
+    	whiteList.add("/doUnivSearch");
+    	whiteList.add("/doMajorSearch");
+    	
+    	whiteList.add("/doRegistStdMember");
+    	
     	whiteList.add("/");
     	whiteList.add("/favicon.ico");
     	

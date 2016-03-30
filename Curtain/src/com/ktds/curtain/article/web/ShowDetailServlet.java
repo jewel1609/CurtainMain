@@ -39,11 +39,16 @@ public class ShowDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		int isFword = 0;
+
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
+		
+		System.out.println(articleId);
+		
 		ArticleVO article = articleBiz.showDetail(articleId);
 		List<FileVO> files = articleBiz.getFileListByArticleId(articleId);
-		
+
 		try {
 			isFword = Integer.parseInt(request.getParameter("isFword"));
 			request.setAttribute("isFword", isFword);
@@ -60,7 +65,6 @@ public class ShowDetailServlet extends HttpServlet {
 			
 		}
 
-	
 	}
 
 }

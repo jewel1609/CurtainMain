@@ -500,4 +500,15 @@
     <servlet-name>DoUpdateArticleServlet</servlet-name>
     <url-pattern>/doUpdateArticle</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <description></description>
+    <display-name>ScrabServlet</display-name>
+    <servlet-name>ScrabServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.articleScrab.web.ScrabServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ScrabServlet</servlet-name>
+    <url-pattern>/scrab</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,6 +1,8 @@
 package com.ktds.curtain.member.vo;
 
-public class MemberVO {
+import com.ktds.curtain.prohibitedWord.vo.ProhibitedWordVO;
+
+public class MemberVO extends ProhibitedWordVO {
 	private String email;
 	private int memberTypeId;
 	private int univId;

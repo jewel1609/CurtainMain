@@ -94,8 +94,13 @@ $(document).ready(function () {
 						</div>
 			             <div>${article.articleDesc}
 			            
-				             <c:forEach items="${files}" var="file">									
+				             <c:forEach items="${files}" var="file">
+				             	<c:if test="${file.fileType eq '1'}">								
 									<img src="/resource/img/${file.fileName}"/>
+								</c:if>
+								<c:if test="${file.fileType eq '2'}">
+									<iframe width="560" height="315" src="${file.fileName}" ></iframe>
+								</c:if>
 							</c:forEach>
 						</div>
 			             <div>${article.articleModifyDate}  ${article.nickName}</div>

@@ -166,7 +166,7 @@ function readURL(input) {
 							</div>
 									
 			            	<ul class="pager">
-							 	 <li class="previous col-sm-10"><a href="<c:url value="/showDetail?articleId=${article.articleId}"/>">뒤로가기</a></li>
+							 	 <li class="previous col-sm-2"><a href="<c:url value="/showDetail?articleId=${article.articleId}"/>">뒤로가기</a></li>
 								<li id="updateArticleBtn" class="col-sm-2">수정완료</li>
 							</ul>  
 								</div>

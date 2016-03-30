@@ -23,6 +23,7 @@ public class ArticleVO extends MemberVO {
 	private int articleDislikes;
 	private String articleTypeName;
 	private int articleScrab;
+	private String majorName;
 
 	private boolean dislike;
 	private boolean like;
@@ -32,6 +33,14 @@ public class ArticleVO extends MemberVO {
 	private List<FileVO> fileList;
 	
 	
+	public String getMajorName() {
+		return majorName;
+	}
+
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
+	}
+
 	public List<FileVO> getFileList() {
 		return fileList;
 	}

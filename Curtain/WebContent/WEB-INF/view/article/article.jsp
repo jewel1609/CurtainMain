@@ -11,6 +11,9 @@
 	$(document)
 			.ready(
 					function() {
+						if($("#isFword").val() == '1'){
+							alert("비방글은 게시하실 수 없습니다.");
+						}
 
 						$("#imagePreview").hide();
 						$(".claim").hide();
@@ -230,14 +233,21 @@
 	}
 </script>
 
+<input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
+
 <div class="w3-container w3-main"
 	style="margin-top: 30px; margin-bottom: 20px;">
+	<c:set var="memberType" value="${ sessionScope._MEMBER_.memberTypeId }" />
+	<c:set var="univId" value="${ sessionScope._MEMBER_.univId }" />
+	<c:set var="majorGroupId" value="${ sessionScope._MEMBER_.majorGroupId }" />
+	<c:set var="univName" value="${ sessionScope._UNIVNAME_}" />
+	<c:set var="majorGroupName" value="${ sessionScope._MAJORGROUPNAME_ }" />
 
 	<div>
 		<div class="w3-col m7 w3-main"
 			style="margin-left: 350px; margin-right: 100px; height: 705px; overflow: auto;">
 			<div style="float:left;">
-				<h2>학과 게시판입니다. </h2> 
+				<span><h2>${majorGroupName} 게시판입니다.</h2></span>
 				</div> 
 				<div style="float:left; padding:20px;">
 					<h6>참여인원 명</h6> 
@@ -309,6 +319,7 @@
 			</div>
 
 			<c:forEach items="${majorArticles}" var="article">
+			<input type="hidden" class="majorName" value="${article.majorName}"/>
 				<div class="w3-row-padding w3-margin-top">
 					<div class="w3-col m12">
 						<div class="w3-card-2 w3-white w3-round-large">

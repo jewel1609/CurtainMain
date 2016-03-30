@@ -17,6 +17,9 @@ $(document).ready(function () {
 		form.submit();
 	}); 
 */
+	if($("#isFword").val() == '1'){
+		alert("비방글은 게시하실 수 없습니다.");
+	}
 	
 	/*새로 추가된것에 접근하는 방법*/
 	$("body").on ("click", "#writeReplyBtn", function() {
@@ -60,7 +63,7 @@ $(document).ready(function () {
 });
 
 </script>
-   
+  <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" /> 
 <div class="w3-container w3-main" style="margin-top:0px;">    
 
   <div class="w3-row" >

@@ -16,6 +16,7 @@ import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
 import com.ktds.curtain.util.Root;
 import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
@@ -28,6 +29,7 @@ public class WriteArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleBiz articleBiz;
 	private FileBiz fileBiz;
+	private ProhibitedWordBiz proBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,6 +38,7 @@ public class WriteArticleServlet extends HttpServlet {
         super();
         articleBiz = new ArticleBiz();
         fileBiz = new FileBiz();
+        proBiz = new ProhibitedWordBiz();
     }
 
 	/**
@@ -66,6 +69,16 @@ public class WriteArticleServlet extends HttpServlet {
 				
 				HttpSession session = request.getSession();
 				MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+				
+				List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
+
+				for (int i = 0; i < wordList.size(); i++) {
+					if (articleDescription.contains(wordList.get(i))) {
+						response.sendRedirect("/secretArticleList?isFword=1");
+						return;
+					}  	
+					break;
+				}
 				
 				ArticleVO article = new ArticleVO();
 				article.setArticleTitle(articleTitle);

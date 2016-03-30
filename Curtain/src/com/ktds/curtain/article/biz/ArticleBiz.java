@@ -88,12 +88,10 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-
-
 	public List<ArticleVO> showSecretArticle(MemberVO stdMember, String boardId) {
 
 		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showSecretArticle(stdMember);
+		articles = articleDAO.showSecretArticle(stdMember, boardId);
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
@@ -124,6 +122,7 @@ public class ArticleBiz {
 				}
 			}
 		}
+	
 		return articles;
 	}
 
@@ -267,12 +266,34 @@ public class ArticleBiz {
 	 * @param boardId
 	 * @return
 	 */
-	public ArticleVO showTopArticle(MemberVO stdMember, int boardId) {
+	public ArticleVO showTopArticle(MemberVO stdMember, String boardId) {
 		
 		ArticleVO article = new ArticleVO();
-		article = articleDAO.showTopArticle(stdMember);
-		return article;
+		article = articleDAO.showTopArticle(stdMember, boardId);
 		
+		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
+		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
+		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
+		
+		for(ArticleDislikeVO articleDislike : articleDislikes ) {
+			if( article.getArticleId() == articleDislike.getArticleId() ){
+				article.setDislike(true);
+			}
+		}
+	
+		for(ArticleLikeVO articleLike : articleLikes ){
+			if( article.getArticleId() == articleLike.getArticleId() ){
+				article.setLike(true);
+			}
+		}
+
+		for(ArticleScrabVO articleScrab : articleScrabs ){
+			if( article.getArticleId() == articleScrab.getArticleId() ){
+				article.setScrab(true);
+			}
+		}
+
+		return article;
 	}
 
 	/**

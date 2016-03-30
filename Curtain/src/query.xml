@@ -891,6 +891,12 @@
 			SET		FOURTH_STATS = FOURTH_STATS+1
 			WHERE	SURVEY_ID = ?
 		</upDateFourth>
+		
+		<upDateIsVote>
+			UPDATE	MEMBER
+			SET		IS_VOTE = 'Y'
+			WHERE	EMAIL = ?
+		</upDateIsVote>
 	</survey>
 	
 

@@ -51,6 +51,9 @@ public class DoLoginServlet extends HttpServlet {
 			if(autoLogin != null) {
 				memberBiz.setCookie(member, response);
 			}
+			else {
+				memberBiz.removeCookie(member, response);
+			}
 			response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
 		}
 		else {

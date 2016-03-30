@@ -61,7 +61,7 @@
       
       $(document).on("click","#btnRegister",function () {
          var form = $("#btnForm");
-         form.attr("method", "get");
+         form.attr("method", "post");
          form.attr("action", "<c:url value="/registStdMember"/> ");
          form.submit();
       });

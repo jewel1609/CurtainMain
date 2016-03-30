@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <query>
+
+	<prohibitedWord>
+		<getAllWords>
+			SELECT  PROHIBITED_WORD_NAME
+			FROM    PROHIBITED_WORD
+		</getAllWords>
+	</prohibitedWord>
+
 	<date>
 		<getDateTimeByUnivName>
 			SELECT	SIGNUP_DATE
@@ -8,6 +16,7 @@
 			WHERE	EMAIL = ?
 		</getDateTimeByUnivName>
 	</date>
+
 	<major>
 		<getMajorGroupIdByMajorId>
 			SELECT	MAJOR_GROUP_ID		

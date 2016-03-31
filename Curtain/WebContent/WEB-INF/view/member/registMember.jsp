@@ -103,6 +103,19 @@ html, body, h1, h2, h3, h4, h5 {
    		
 		//대학 인증번호 보내기버튼 클릭시,
 		$("#authNumSendBtn").click(function(){
+			var domain = $("#inputUnivEmail").val().split('@');
+			alert(domain[1]);
+			
+			if(domain[1] == "naver.com" || domain[1] == "daum.com" || domain[1] == "hanmail.net"
+				|| domain[1] == "hotmail.com" || domain[1] == "nate.com" || domain[1] == "yahoo.co.kr"
+				|| domain[1] == "yahoo.com" || domain[1] == "empas.com" || domain[1] == "dreamwiz.com"
+				|| domain[1] == "freechal.com" || domain[1] == "lycos.co.kr" || domain[1] == "gmail.com"
+				|| domain[1] == "hanmir.com" || domain[1] == "paran.com") {
+				
+				alert("대학 이메일로 등록해주세요.");
+				return;
+			}
+			
 			if( $("#inputUnivEmail").val() == ""){
 				alert("학교 이메일을 입력하세요");
 				return; // 더이상 밑의 이벤트를 진행하지 않음.
@@ -142,6 +155,19 @@ html, body, h1, h2, h3, h4, h5 {
 		
    		// 회사 인증번호 보내기버튼 클릭시,
    		$("#compAuthNumSendBtn").click(function(){
+   			var domain = $("#inputUnivEmail").val().split('@');
+			alert(domain[1]);
+			
+			if(domain[1] == "naver.com" || domain[1] == "daum.com" || domain[1] == "hanmail.net"
+				|| domain[1] == "hotmail.com" || domain[1] == "nate.com" || domain[1] == "yahoo.co.kr"
+				|| domain[1] == "yahoo.com" || domain[1] == "empas.com" || domain[1] == "dreamwiz.com"
+				|| domain[1] == "freechal.com" || domain[1] == "lycos.co.kr" || domain[1] == "gmail.com"
+				|| domain[1] == "hanmir.com" || domain[1] == "paran.com") {
+				
+				alert("대학 이메일로 등록해주세요.");
+				return;
+			}
+   			
    			if( $("#inputCompEmail").val() == ""){
    				alert("학교 이메일을 입력하세요");
    				return; // 더이상 밑의 이벤트를 진행하지 않음.
@@ -266,42 +292,53 @@ html, body, h1, h2, h3, h4, h5 {
 		
 		// 대학 패스워드 확인
 		$("#inputPasswordCheck").keyup(function(){
+			//var passwordCheck =  "/^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/";
+			
 			if ( $("#inputPasswordCheck").val() == ""){
-				 $("#PasswordCheckSpan").text("");
+				 $("#PasswordCheckSpan").text("입력해주세요");
 				 return;
 			}
 			
 			if($("#inputPassword").val() == $("#inputPasswordCheck").val()){
-				 $("#passwordCheckSpan").text("일치 합니다.");
-				 passwordCheck = true;
-				 
+				if($("#inputPassword").val().length < 8 || $("#inputPassword").val().length > 20){
+					$("#passwordCheckSpan").text("비밀번호는 8~20자 영문,특수문자 조합으로 작성해주세요.");
+					 $('#registStdBtn').attr('disabled',true); // 버튼 비활성화
+					return;
+				}
+				$("#passwordCheckSpan").text("일치 합니다.");	
+				$('#registStdBtn').attr('disabled',false); // 버튼 활성화
 			}
 			
 			if($("#inputPassword").val() != $("#inputPasswordCheck").val()){
 				 
 				 $("#passwordCheckSpan").text("불일치 합니다.");
 				 $("#inputPasswordCheck").focus();
+				 $('#registStdBtn').attr('disabled',true); // 버튼 비활성화
 			}
-			
 		});
 
 		// 기업 패스워드 확인
 		$("#inputCompPasswordCheck").keyup(function(){
 			
 			if ( $("#inputCompPasswordCheck").val() == ""){
-				 $("#compPasswordCheckSpan").text("");
+				 $("#compPasswordCheckSpan").text("입력해주세요.");
 				 return;
 			}
 			if($("#inputCompPassword").val() == $("#inputCompPasswordCheck").val()){
-				 $("#compPasswordCheckSpan").text("일치 합니다.");
-				 passwordCheck = true;
+				if($("#inputCompPassword").val().length < 8 || $("#inputCompPassword").val().length > 20){
+					$("#compPasswordCheckSpan").text("비밀번호는 8~20자 영문,특수문자 조합으로 작성해주세요.");
+					$('#registCompBtn').attr('disabled',true); // 버튼 비활성화
+					return;
+				}
+				$("#compPasswordCheckSpan").text("일치 합니다.");	
+				$('#registCompBtn').attr('disabled',false); // 버튼 비활성화
 				 
 			}
 			if($("#inputCompPassword").val() != $("#inputCompPasswordCheck").val()){
 				 $("#compPasswordCheckSpan").text("불일치 합니다.");
 				 $("#inputCompPasswordCheck").focus();
+				 $('#registCompBtn').attr('disabled',false); // 버튼 비활성화
 			}
-			
 		});
 		
 		//대학이름 검색

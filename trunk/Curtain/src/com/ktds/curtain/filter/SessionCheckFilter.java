@@ -40,7 +40,7 @@ public class SessionCheckFilter implements Filter {
     	whiteList.add("/addNewMember");
     	whiteList.add("/studentMajorAritlce");
     	whiteList.add("/checkId");
-//    	whiteList.add("/favicon.ico");
+    	whiteList.add("/favicon.ico");
     	whiteList.add("/registStdMember");
     	
     	whiteList.add("/doUnivCheck");
@@ -59,9 +59,6 @@ public class SessionCheckFilter implements Filter {
     	
     	whiteList.add("/findPassword");
     	whiteList.add("/doSendPassword");
-    	
-    	whiteList.add("/");
-    	whiteList.add("/favicon.ico");
     	
     	staticResourceList = new ArrayList<String>();
     	

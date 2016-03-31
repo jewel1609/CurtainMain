@@ -1005,5 +1005,19 @@
 		
 	</survey>
 	
+	<keyword>
+		<setNounByArticleList>
+			INSERT INTO CURTAIN.KEYWORD (
+											KEYWORD_ID
+											, KEYWORD_NAME
+											, KEYWORD_DATE
+										) 
+			VALUES						( 
+											KEYWORD_ID_SEQ.NEXTVAL
+											, ?
+											, SYSDATE
+										)
+		</setNounByArticleList>
+	</keyword>
 
 </query>

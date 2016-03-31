@@ -17,8 +17,6 @@ import com.ktds.curtain.survey.biz.SurveyBiz;
 import com.ktds.curtain.survey.vo.SurveyVO;
 import com.ktds.curtain.util.Root;
 
-import oracle.net.aso.s;
-
 /**
  * Servlet implementation class DoLoginServlet
  */

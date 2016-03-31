@@ -1,13 +1,13 @@
 package com.ktds.curtain.qa.web;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.curtain.qa.biz.QuestionAndAnswerBiz;
-import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
 import com.ktds.curtain.util.Root;
 
 /**

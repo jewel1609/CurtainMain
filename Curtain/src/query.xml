@@ -991,6 +991,18 @@
 			AND		SURVEY_DATE &gt;= ?
 			AND		EMAIL = ?
 		</countSurveyFromRankModifyDate>
+		
+		<surveyCheck>
+			SELECT  COUNT(SM.SURVEY_ID)
+			FROM    SURVEY_MEMBER SM
+					, MEMBER M
+					, SURVEY SY
+			WHERE	SM.EMAIL = M.EMAIL
+			AND		SY.SURVEY_ID = SM.SURVEY_ID
+			AND		M.EMAIL = ?
+			AND		SURVEY_DATE = ?
+		</surveyCheck>
+		
 	</survey>
 	
 

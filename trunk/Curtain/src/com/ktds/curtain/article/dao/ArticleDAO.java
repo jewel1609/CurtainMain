@@ -241,6 +241,29 @@ public class ArticleDAO {
 
 	// 홍보 게시판 글쓰기
 	public int doWriteAdArticle(ArticleVO article) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/doWriteAdArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, article.getArticleTitle());
+			stmt.setString(2, article.getArticleDesc());
+			stmt.setInt(3, article.getArticleTypeId());
+			stmt.setString(4, article.getEmail());
+			stmt.setInt(5, article.getBoardId());
+			
+			int insertCount = stmt.executeUpdate();
+			
+			return insertCount;
+
+		} catch (SQLException e) {
+			closeDB(conn, stmt, null);
+		}
 		return 0;
 	}
 	

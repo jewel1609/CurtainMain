@@ -5,11 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.ktds.curtain.survey.vo.SurveyStatsVO;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.survey.vo.SurveyStatsVO;
 import com.ktds.curtain.survey.vo.SurveyVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;

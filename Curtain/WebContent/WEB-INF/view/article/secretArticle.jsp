@@ -7,7 +7,7 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
-		
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#freeArticle").mouseleave(function(){

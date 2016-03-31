@@ -143,6 +143,43 @@ public class UnivDAO {
 		return univName;
 	}
 	
+	
+	public List<String> getUnivNamesByMajorGroupId(int majorGroupId) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		List<String> univNames = new ArrayList<String>();
+		String univName = "";
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/univ/getUnivNamesByMajorGroupId/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorGroupId);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				univName = rs.getString("UNIV_NAME");
+				univNames.add(univName);
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return univNames;
+	
+	}
+
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -171,6 +208,8 @@ public class UnivDAO {
 			}
 		}
 	}
+
+
 
 
 

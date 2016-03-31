@@ -877,7 +877,7 @@ public class ArticleDAO {
 	}
 	
 
-	public int countTodayArticle(String currentDate, MemberVO member) {
+	public int countTodayArticle(String todayDate, MemberVO member) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -889,7 +889,7 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/countTodayArticle/text()");
 			stmt = conn.prepareStatement(query);
 			
-			stmt.setString(1, currentDate);
+			stmt.setString(1, todayDate);
 			stmt.setString(2, member.getEmail());
 			
 			rs = stmt.executeQuery();

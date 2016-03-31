@@ -323,6 +323,30 @@
 										, ?
 									)
 		</doWriteSecretArticle>
+		
+		<doWriteAdArticle>
+		INSERT INTO 	ARTICLE (
+  										 ARTICLE_ID
+  										 , ARTICLE_TITLE
+  										 , ARTICLE_DESC
+  										 , ARTICLE_REGISTER_DATE
+  										 , ARTICLE_MODIFY_DATE
+  										 , ARTICLE_TYPE_ID
+  										 , EMAIL
+  										 , BOARD_ID
+  									)	 
+			VALUES 					( 
+										ARTICLE_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, SYSDATE
+										, SYSDATE
+										, ?
+										, ?
+										, ?
+									)
+		</doWriteAdArticle>
+		
 		<hitsCount>
 			UPDATE	ARTICLE
 			SET		HITS = HITS + 1
@@ -647,6 +671,12 @@
 	</qa>
 	
 	<member>
+		<minusPointByPromotion>
+			UPDATE	MEMBER
+			SET		POINT = POINT - 10
+			WHERE	EMAIL = ?
+		</minusPointByPromotion>
+	
 		<getUnivMemberCount>
       		 SELECT  COUNT(EMAIL)
              FROM    MEMBER 

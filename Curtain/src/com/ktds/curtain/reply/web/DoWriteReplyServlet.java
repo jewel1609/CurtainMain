@@ -73,7 +73,7 @@ public class DoWriteReplyServlet extends HttpServlet {
 			replyInfo.setEmail(member.getEmail());
 		}
 		
-		replyBiz.addNewReply(replyInfo);
+		replyBiz.addNewReply(replyInfo, request);
 		
 		response.sendRedirect("/showDetail?articleId="+articleId);
 	}

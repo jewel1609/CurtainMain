@@ -108,7 +108,7 @@
 			<div class="w3-col m12">
 				<div class="w3-container w3-card" style="background-color: white; margin-bottom:25px;">
 					<form id="reasonSecede">
-						<textarea id="secedeDesc" name="secedeDesc" class="w3-col m12" style="border: none; margin-bottom:70;"></textarea><br/>
+						<textarea id="secedeDesc" name="secedeDesc" class="w3-col m12" rows="4" style="border: none; margin-bottom:70;"></textarea><br/>
 					</form>
 				</div>
 			</div>

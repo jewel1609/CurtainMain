@@ -3,11 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 	$(document).ready( function (){
-		myAccordion('demo');
+		//myAccordion('demo');
 		
+			
 	});
+	
+	
 </script>
 
+
+	
 
 	<nav class="w3-sidenav w3-collapse w3-white w3-card" 
 			style="z-index: 3; width: 250px; height: 100%; 
@@ -34,8 +39,8 @@
 				학생게시판<i class="fa fa-caret-down"></i>
 			</a>
 			<div id="demo" class="w3-accordion-content">
-				<a href="<c:url value="/studentMajorAritlce?majorGroupId="/>${majorGroupId}">${majorGroupName}</a> 
-				<a href="<c:url value="/studentUnivArticle?univId="/>${univId}">${univName}</a>
+				<a href="<c:url value="/studentMajorAritlce?majorGroupId="/>${majorGroupId}">&nbsp;&nbsp;&nbsp;${majorGroupName}</a> 
+				<a href="<c:url value="/studentUnivArticle?univId="/>${univId}">&nbsp;&nbsp;&nbsp;${univName}</a>
 			</div>
 		</div>
 
@@ -51,7 +56,8 @@
 			</div>
 		</div>
 	</c:if>
-
+		
+		
 	<c:if test="${memberType eq 1 || memberType eq 2 || memberType eq 3 || memberType eq 4 || memberType eq 5}">
 		<div class="w3-accordion">
 			<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
@@ -62,5 +68,7 @@
 
 		<a href="<c:url value="/questionAndAnswer" />">FAQ / Q&A</a>
 	</c:if>
+
 	
-</nav>
+	</nav>
+	

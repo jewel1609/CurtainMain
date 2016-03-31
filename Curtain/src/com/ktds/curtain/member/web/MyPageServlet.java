@@ -51,8 +51,13 @@ public class MyPageServlet extends HttpServlet {
 			String majorName = memberBiz.getMajorName(member.getMajorId());
 			String memberRank = memberBiz.getMemberRank(member.getMemberTypeId());
 			int countArticle = memberBiz.countArticle(member); 
-					
+			int countReply = memberBiz.countReply(member);
+			int countSurvey = memberBiz.countSurvey(member);
 			
+			
+			request.setAttribute("countArticle", countArticle);
+			request.setAttribute("countReply", countReply);
+			request.setAttribute("countSurvey", countSurvey);
 			
 			
 			

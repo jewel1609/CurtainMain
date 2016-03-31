@@ -19,15 +19,29 @@
 	SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
 	SurveyStatsVO surveyStats = surveyBiz.getSurveyStats(mTime);
 	
-	int first = surveyStats.getFirstStats();
-		
-	//double first =  (double)surveyStats.getFirstStats() / (surveyStats.getFirstStats()+ surveyStats.getSecondStats()+surveyStats.getThirdStats()) * 100  ;
+	int one = surveyStats.getFirstStats();
+	int two = surveyStats.getSecondStats();
+	int three = surveyStats.getThirdStats();
+	int four = surveyStats.getFourthStats();
+	int sumStats = one+two+three+four;
 	
+	double first2 = (double) one / sumStats * 100;
+	int first = (int) first2;
+	double second2 = (double) two / sumStats * 100;
+	int second = (int) second2;
+	double third2 = (double) three / sumStats * 100;
+	int third = (int)third2;
+	double fourth2 = (double) four / sumStats * 100;
+	int fourth = (int)fourth2;
+	int surveyCount[] = { one, two, three, four };
 	String surveys[] = { survey.getFirstAnswer(), survey.getSecondAnswer(), survey.getThirdAnswer(), survey.getFourthAnswer() }; 
 	request.setAttribute("mTime", mTime);
 	request.setAttribute("survey", survey);
 	request.setAttribute("surveys", surveys);
 	request.setAttribute("first", first); 
+	request.setAttribute("second", second); 
+	request.setAttribute("third", third); 
+	request.setAttribute("fourth", fourth); 
 	
 %>
 <script type="text/javascript">
@@ -172,29 +186,33 @@
 			<c:if test="${ survey.firstAnswer ne null }">
 				<div class="progress">
 		    		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${first}%">
+		    			${ first } %
 		    		</div>
+		      			<h>${ survey.firstAnswer }</h> 
 	  			</div>
-		      			${ survey.firstAnswer } ${ first }
   			</c:if>
   			<c:if test="${ survey.secondAnswer ne null }">
 	  			<div class="progress">
-				    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-				      	${ survey.secondAnswer }
+				    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${second}%">
+				    	${ second } %
 				    </div>
+				      	<h>${ survey.secondAnswer }</h> 
 			  	</div>
 		  	</c:if>
 		  	<c:if test="${ survey.thirdAnswer ne null }">
 			  	<div class="progress">
-			    	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-			      		${ survey.thirdAnswer }
+			    	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${third}%">
+						${ third } %
 			    	</div>
+			      		<h>${ survey.thirdAnswer }</h>
 			 	</div>
 		 	</c:if>
 		 	<c:if test="${ survey.fourthAnswer ne null }">
 			  	<div class="progress">
-				    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-				      ${ survey.fourthAnswer }
+				    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:${fourth}%">
+						${ fourth } %
 				    </div>
+				      <p>${ survey.fourthAnswer }</p>
 			  	</div>
 		  	</c:if>
 		</form>

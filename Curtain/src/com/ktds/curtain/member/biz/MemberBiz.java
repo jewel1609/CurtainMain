@@ -252,5 +252,13 @@ public class MemberBiz {
 	public int countArticle(MemberVO member) {
 		return articleDAO.countArticleFromRankModifyDate(member);
 	}
+
+	public int countReply(MemberVO member) {
+		return replyDAO.countReplyFromRankModifyDate(member);
+	}
+
+	public int countSurvey(MemberVO member) {
+		return surveyDAO.countSurveyFromRankModifyDate(member);
+	}
 	
 }

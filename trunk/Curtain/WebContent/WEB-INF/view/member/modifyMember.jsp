@@ -296,7 +296,6 @@
           				<b>활동량</b>
           			</div>
           			<div class="w3-col" style="width:80%">
-    					<p>${ member.activity }</p>
     				</div>
           		</div>
             </div>

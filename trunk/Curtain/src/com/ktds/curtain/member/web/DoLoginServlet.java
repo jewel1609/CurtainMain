@@ -73,15 +73,16 @@ public class DoLoginServlet extends HttpServlet {
 		
 		
 		
-		if ( surveyCheck) {
-			//투표를 이미했다는 것이기때문에
-			//결과물만 보여준다.
-			checkCount = "a";
-			session.setAttribute("_VOTE_", checkCount);
-
-		}
-
+			if ( surveyCheck) {
+				//투표를 이미했다는 것이기때문에
+				//결과물만 보여준다.
+				checkCount = "a";
+				session.setAttribute("_VOTE_", checkCount);
+				
+			}
+				
 			response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
+		
 		}
 		else {
 			response.sendRedirect(Root.get(this) + "/main.jsp?errorCode=1");

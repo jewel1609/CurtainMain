@@ -484,6 +484,198 @@ public class MemberDAO {
 			closeDB(conn, stmt, null);
 		}
 	}
+
+	public int getMajorMemberCount(int majorGroupId) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getMajorMemberCount/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorGroupId);
+			
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				count = rs.getInt("COUNT(EMAIL)");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return count;
+	}
+
+	public int getUnivMemberCount(int univId) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getUnivMemberCount/text()");
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, univId);
+			
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				count = rs.getInt("COUNT(EMAIL)");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return count;
+	}
+
+	public int getNoticeBoardMemberCount() {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getNoticeBoardMemberCount/text()");
+			
+			stmt = conn.prepareStatement(query);
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				count = rs.getInt("COUNT(EMAIL)");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return count;
+		
+	}
+
+	public int getFreeBoardMemberCount() {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getFreeBoardMemberCount/text()");
+			
+			stmt = conn.prepareStatement(query);
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				count = rs.getInt("COUNT(EMAIL)");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return count;
+	}
+
+	public int getOneLayerCurtainMemberCount() {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getOneLayerCurtainMemberCount/text()");
+			
+			stmt = conn.prepareStatement(query);
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				count = rs.getInt("COUNT(EMAIL)");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return count;
+	}
+
+	public int getTwoLayerCurtainMemberCount() {
+		
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getTwoLayerCurtainMemberCount/text()");
+			
+			stmt = conn.prepareStatement(query);
+			rs = stmt.executeQuery();
+			
+			if( rs.next()) {
+				count = rs.getInt("COUNT(EMAIL)");
+			}
+			
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			} finally {
+				closeDB(conn, stmt, rs);
+			}
+		
+		return count;
+	}
+
 	
 	
 	public void secedeMemberFromEmail(String memberEmail) {
@@ -537,7 +729,6 @@ public class MemberDAO {
 	}
 
 	
-
 
 
 }

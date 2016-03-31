@@ -7,11 +7,13 @@
 <script type="text/javascript">
 	
 	$(document).ready( function(){
+
+		$('[data-toggle="tooltip"]').tooltip();
+		
 		$("#modifyBtn").click(function() {
 			location.href = "/myPage/modifyMember";
 		});
 		
-		$('[data-toggle="tooltip"]').tooltip();
 		
 		$("#alarmBtn").click(function () {
 			location.href = "/myQuestion";

@@ -29,6 +29,7 @@ public class ArticleVO extends MemberVO {
 	private boolean like;
 	private boolean scrab;
 	
+	
 	private List<ReplyVO> replyList;
 	private List<FileVO> fileList;
 	

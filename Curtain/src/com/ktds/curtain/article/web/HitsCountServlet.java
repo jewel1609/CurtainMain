@@ -38,8 +38,10 @@ public class HitsCountServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
+		
 		System.out.println(boardId);
 		System.out.println(articleId);
 		

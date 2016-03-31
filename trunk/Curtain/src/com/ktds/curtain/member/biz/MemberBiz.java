@@ -187,10 +187,12 @@ public class MemberBiz {
 	}
 	
 	private void addPoint (MemberVO member, ArticleVO article) {
-		
-		String todayDate = getTodayDateFormatDB();
-		
-		if ( article != null ) {
+		if (article == null) {
+			return;
+		}
+		else {
+			String todayDate = getTodayDateFormatDB();
+			
 			if(articleDAO.countTodayArticle(todayDate, member) <= 5) {
 				memberDAO.addPointByArticle(member);
 			}

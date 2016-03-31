@@ -55,6 +55,8 @@ public class SessionCheckFilter implements Filter {
     	
     	whiteList.add("/findPassword");
     	whiteList.add("/doSendPassword");
+    	whiteList.add("/keywordTest");
+    	
     	
     	staticResourceList = new ArrayList<String>();
     	

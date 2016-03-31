@@ -47,6 +47,7 @@
 <script type="text/javascript">
 
    $(document).ready( function () {
+	   
       
       var autoLogin = "<%=autoLogin%>";
       if (autoLogin == "true") {
@@ -97,10 +98,10 @@
             $("#userPassword").focus();
             return;
          }
-
+         
          var form = $("#btnForm");
          form.attr("method", "post");
-         form.attr("action", "<c:url value="/doLogin"/> ");
+         form.attr("action", "/doLogin");
          form.submit();
       });
       

@@ -41,6 +41,7 @@ public class MyPageServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+			String companyCheck = null;
 			// session을 받아온다.
 			HttpSession session = request.getSession();
 			
@@ -53,6 +54,13 @@ public class MyPageServlet extends HttpServlet {
 			int countArticle = memberBiz.countArticle(member); 
 			int countReply = memberBiz.countReply(member);
 			int countSurvey = memberBiz.countSurvey(member);
+			
+
+			if (member.getCompanyName() != null ) { 
+				//기업회원이라면
+				companyCheck = "Y";
+				session.setAttribute("_COMPANY_", companyCheck);
+			}
 			
 			
 			request.setAttribute("countArticle", countArticle);

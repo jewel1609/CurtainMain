@@ -182,35 +182,40 @@ public class MemberBiz {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		Calendar calendar = Calendar.getInstance();
-		String currentDate = "";
-		currentDate += calendar.get(Calendar.YEAR) + "/";
-		currentDate = currentDate.substring(2, 5);
-		if((calendar.get(Calendar.MONTH) + 1) < 10) {
-			currentDate += "0" + (calendar.get(Calendar.MONTH) + 1) + "/";
-		}
-		else {
-			currentDate += (calendar.get(Calendar.MONTH) + 1) + "/";
-		}
-		
-		if(calendar.get(Calendar.DATE) < 10) {
-			currentDate += "0" + calendar.get(Calendar.DATE);
-		}
-		else {
-			currentDate += calendar.get(Calendar.DATE);
-		}
-		
-		addPoint(member, currentDate, article);
+		addPoint(member, article);
 		modifyMemberType(member, session);
 	}
 	
-	private void addPoint (MemberVO member, String currentDate, ArticleVO article) {
+	private void addPoint (MemberVO member, ArticleVO article) {
+		
+		String todayDate = getTodayDateFormatDB();
 		
 		if ( article != null ) {
-			if(articleDAO.countTodayArticle(currentDate, member) <= 5) {
+			if(articleDAO.countTodayArticle(todayDate, member) <= 5) {
 				memberDAO.addPointByArticle(member);
 			}
 		}
+	}
+	
+	private String getTodayDateFormatDB() {
+		Calendar calendar = Calendar.getInstance();
+		String todayDate = "";
+		todayDate += calendar.get(Calendar.YEAR) + "/";
+		todayDate = todayDate.substring(2, 5);
+		if((calendar.get(Calendar.MONTH) + 1) < 10) {
+			todayDate += "0" + (calendar.get(Calendar.MONTH) + 1) + "/";
+		}
+		else {
+			todayDate += (calendar.get(Calendar.MONTH) + 1) + "/";
+		}
+		
+		if(calendar.get(Calendar.DATE) < 10) {
+			todayDate += "0" + calendar.get(Calendar.DATE);
+		}
+		else {
+			todayDate += calendar.get(Calendar.DATE);
+		}
+		return todayDate;
 	}
 	
 	private void modifyMemberType(MemberVO member, HttpSession session) {

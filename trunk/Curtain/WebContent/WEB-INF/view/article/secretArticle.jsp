@@ -185,7 +185,10 @@
 		}
 	}
 </script>
-
+<div class="amung">
+    <a href="http://whos.amung.us/stats/cp8neo95czmf">
+    <img src="http://whos.amung.us/swidget/cp8neo95czmf" title="Click to see how many people are online" alt="실시간 방문자" /></a>
+</div>
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
 	<div class="w3-container w3-main" style="margin-top:0px;">
@@ -278,7 +281,7 @@
 					<div class="w3-col m12">
 						<div class="w3-card w3-round-large" style="border-color: #a9d039;" >
 							<div class="w3-container">
-							<a href="<c:url value="/hitsCount?boardId=4&articleId=${article.articleId}"/>">
+							<a href="<c:url value="/hitsCount?boardId=4&articleId=${topArticle.articleId}"/>">
 								<div class="w3-col m10 w3-padding-top">
 										<span class="label label-default">HOT</span>
 										<c:if test="${topArticle.articleTypeName eq '연애'}">

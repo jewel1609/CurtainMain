@@ -7,7 +7,26 @@
 <script type="text/javascript">
 	
 	$(document).ready( function(){
-
+	
+		$("#secedeBtn").click(function() {
+			
+			if ( $("#secedeDesc").val() == "" ) {
+				alert("탈퇴사유를 적어주세요. 서비스 향상을 위해 노력하겠습니다.");
+			}	
+			
+			location.href = "/doSecedeMember";
+			
+		});
+			
+		
+		$("#cancelSecedeBtn").click(function() {
+			
+			location.href = "/myPage";
+			
+		});
+		
+		
+		
 		
 	});
 		

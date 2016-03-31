@@ -1,6 +1,7 @@
 package com.ktds.curtain.member.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.curtain.util.Root;
 
 /**
@@ -19,6 +21,7 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberBiz compMemberBiz;    
 	private MemberVO memberVO;
+    private ProhibitedWordBiz prohibitedWordBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,6 +29,7 @@ public class DoRegistCompMemberServlet extends HttpServlet {
         super();
         compMemberBiz = new MemberBiz();
         memberVO = new MemberVO();
+        prohibitedWordBiz = new ProhibitedWordBiz();
     }
 
 	/**
@@ -59,8 +63,15 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 		memberVO.setPhoneNumber(inputPhoneNum);
 		memberVO.setSignupDate(compMemberBiz.getDateTimeByEmail(inputCompEmail));
 		
+		//각 게시판 참여 인원
+		memberVO.setNoticeBoardMemberCount(compMemberBiz.getNoticeBoardMemberCount());
+
+		//비방글 필터
+		List<String> wordList = prohibitedWordBiz.getProhibitedWordList();		
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("_MEMBER_", memberVO);
+		session.setAttribute("_WORDLIST_", wordList);
 		
 		response.sendRedirect(Root.get(this) + "/doLogin");
 	}

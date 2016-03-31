@@ -47,8 +47,13 @@
 <script type="text/javascript">
 
    $(document).ready( function () {
-	   
-      
+	  var errorCode = <%=request.getParameter("errorCode")%>;
+	  if (errorCode == 1) {
+		  $("#btnModal").click();
+		  $("#notEqualIdOrPasswordMessage").text("아이디 또는 비빌먼호를 다시 확인해주세요.");
+	  }
+	 
+	  
       var autoLogin = "<%=autoLogin%>";
       if (autoLogin == "true") {
          $("#userId").val("<%=userId%>");
@@ -78,6 +83,10 @@
          form.attr("method", "post");
          form.attr("action", "/doLogin");
          form.submit();
+      });
+      
+      $("#btnModal").click( function () {
+    	  $("#notEqualIdOrPasswordMessage").text(""); 
       });
       
       $("#closeModal").click(function() {
@@ -160,7 +169,7 @@
 						style="border-color: #FF3300; color: #FF3300;">회원가입</button></a>
 				</c:if>
 				<c:if test="${sessionScope._MEMBER_ eq null}">
-					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal"
+					<button id="btnModal" type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal"
 						style="border-color: #FF3300; color: #FF3300;">로그인</button>
 				</c:if>
 				<c:if test="${sessionScope._MEMBER_ ne null}">
@@ -177,7 +186,7 @@
    
 
    <!-- login Modal -->
-   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" 
       aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 250px;">
       <div class="modal-dialog">
          <div class="modal-content">
@@ -193,8 +202,10 @@
                      <br/>
                      <strong>비밀번호</strong>
                      <input id="userPassword" name="userPassword" class="w3-input" type="password" placeholder="비밀번호를 입력하세요"/>
+                     <div id="notEqualIdOrPasswordMessage" style="color: red;"></div>
                      <div style="width: 140px; float:left;">
-                        자동로그인하기 <input id="autoLoginCheckBox" name="autoLoginCheckBox" type="checkbox" class="w3-check" value="1"/>
+                        	자동로그인하기 
+                        	<input id="autoLoginCheckBox" name="autoLoginCheckBox" type="checkbox" class="w3-check" value="1"/>
                      </div>
                      <div id="btnDoLogin" class="btn btn-primary btn-lg" style=" background-color:#A9D039; margin-top: 20px; margin-bottom:15px; width: 100%; border:0px;">시작하기</div>
                      

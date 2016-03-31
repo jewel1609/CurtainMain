@@ -4,6 +4,7 @@
 <script type="text/javascript">
 	$(document).ready( function (){
 		myAccordion('demo');
+		
 	});
 </script>
 
@@ -52,9 +53,10 @@
 	</c:if>
 
 	<c:if test="${memberType eq 1 || memberType eq 2 || memberType eq 3 || memberType eq 4 || memberType eq 5}">
-		<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
-		
-		<a href="<c:url value="/noticeBoard"/>">홍보게시판</a>
+		<div class="w3-accordion">
+			<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
+		</div>
+		<a href="<c:url value="/promotionArticle"/>">홍보게시판</a>
 
 		<a href="/myPage">마이페이지</a>
 

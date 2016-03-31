@@ -550,4 +550,14 @@
     <servlet-name>ReplyDislikeServlet</servlet-name>
     <url-pattern>/replyDislike</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SecedeMemberServlet</display-name>
+    <servlet-name>SecedeMemberServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.SecedeMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SecedeMemberServlet</servlet-name>
+    <url-pattern>/myPage/secedeMember</url-pattern>
+  </servlet-mapping>
 </web-app>

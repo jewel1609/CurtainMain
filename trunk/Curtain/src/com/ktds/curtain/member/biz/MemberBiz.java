@@ -240,9 +240,9 @@ public class MemberBiz {
 	
 	private boolean isUpdateRankToThree (MemberVO member) {
 		
-		if(articleDAO.countArticleFromRankModifyDate(member) >= 10 
-				&& replyDAO.countReplyFromRankModifyDate(member) >= 20 
-				&& surveyDAO.countSurveyFromRankModifyDate(member) >= 15) {
+		if(articleDAO.countArticleFromRankModifyDate(member) >= 15
+				&& replyDAO.countReplyFromRankModifyDate(member) >= 30 
+				&& surveyDAO.countSurveyFromRankModifyDate(member) >= 21) {
 			return true;
 		}
 		

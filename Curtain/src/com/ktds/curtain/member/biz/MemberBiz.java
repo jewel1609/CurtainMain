@@ -248,5 +248,9 @@ public class MemberBiz {
 		
 		return false;
 	}
+
+	public int countArticle(MemberVO member) {
+		return articleDAO.countArticleFromRankModifyDate(member);
+	}
 	
 }

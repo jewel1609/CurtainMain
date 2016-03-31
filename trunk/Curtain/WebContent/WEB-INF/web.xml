@@ -560,4 +560,14 @@
     <servlet-name>SecedeMemberServlet</servlet-name>
     <url-pattern>/myPage/secedeMember</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoSecedeMemberServlet</display-name>
+    <servlet-name>DoSecedeMemberServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.DoSecedeMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoSecedeMemberServlet</servlet-name>
+    <url-pattern>/doSecedeMember</url-pattern>
+  </servlet-mapping>
 </web-app>

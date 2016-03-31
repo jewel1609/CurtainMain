@@ -10,6 +10,13 @@
 
 	$(document).ready(function() {
 		
+		$("#qna").mouseleave(function(){
+			$("#qna").css('background-color', '#a9d039');
+			$("#qna").css('color', '#ffffff');
+		});
+		$("#qna").css('background-color', '#a9d039');
+		$("#qna").css('color', '#ffffff');
+		
 		var degreeByBtnFirstFAQ = 180;
 		var degreeByBtnSecondFAQ = 180;
 		

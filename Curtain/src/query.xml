@@ -444,6 +444,8 @@
 			WHERE	ARTICLE_REGISTER_DATE &gt;= ?
 			AND		EMAIL = ?
 		</countArticleFromRankModifyDate>
+
+		
 	</article>
 	<articleLikes>
 		<deleteArticle>
@@ -543,6 +545,7 @@
 			AND		SECOND_EMAIL = ?
 		</updateMemberPasswordBySecondEmail>
 		
+			
 	</stdMember>
 	
 	<compMember>
@@ -620,6 +623,48 @@
 	</qa>
 	
 	<member>
+		<getUnivMemberCount>
+      		 SELECT  COUNT(EMAIL)
+             FROM    MEMBER 
+             WHERE   UNIV_ID = ?
+		</getUnivMemberCount>
+		
+		<getMajorMemberCount>
+       		 SELECT  COUNT(EMAIL)
+             FROM    MEMBER
+             WHERE   MAJOR_ID = ?
+		</getMajorMemberCount>
+		
+		<getNoticeBoardMemberCount>
+     		SELECT  COUNT(EMAIL)
+            FROM    MEMBER
+            WHERE   MEMBER_TYPE_ID = 1
+            OR      MEMBER_TYPE_ID = 2
+            OR      MEMBER_TYPE_ID = 3
+            OR      MEMBER_TYPE_ID = 4
+		</getNoticeBoardMemberCount>
+		
+		<getFreeBoardMemberCount>
+	        SELECT  COUNT(EMAIL)
+	        FROM    MEMBER
+	        WHERE   MEMBER_TYPE_ID = 1
+	        OR      MEMBER_TYPE_ID = 2
+	        OR      MEMBER_TYPE_ID = 3
+		</getFreeBoardMemberCount>
+		
+		<getOneLayerCurtainMemberCount>
+      		SELECT  COUNT(EMAIL)
+             FROM    MEMBER
+             WHERE   MEMBER_TYPE_ID = 2
+             OR      MEMBER_TYPE_ID = 3
+		</getOneLayerCurtainMemberCount>
+		
+		<getTwoLayerCurtainMemberCount>
+        	SELECT COUNT(EMAIL)
+            FROM    MEMBER
+            WHERE   MEMBER_TYPE_ID = 3
+		</getTwoLayerCurtainMemberCount>
+		
 		<getNickNameByEmail>
 			SELECT	NICK_NAME
 			FROM	MEMBER

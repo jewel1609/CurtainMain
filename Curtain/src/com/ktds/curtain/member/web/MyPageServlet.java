@@ -19,6 +19,7 @@ public class MyPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private MemberBiz memberBiz;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,6 +50,11 @@ public class MyPageServlet extends HttpServlet {
 			String univName = memberBiz.getUnivName(member.getUnivId());
 			String majorName = memberBiz.getMajorName(member.getMajorId());
 			String memberRank = memberBiz.getMemberRank(member.getMemberTypeId());
+			int countArticle = memberBiz.countArticle(member); 
+					
+			
+			
+			
 			
 			request.setAttribute("member", member);
 			request.setAttribute("univName", univName);

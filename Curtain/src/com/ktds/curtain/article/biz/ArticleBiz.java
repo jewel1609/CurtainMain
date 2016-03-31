@@ -224,15 +224,15 @@ public class ArticleBiz {
 			doWriteArticle = articleDAO.doWriteAdArticle(article);
 			//memberBiz.addPointAndModifyMemberType(article, request);
 		}
-		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) { // 비밀 1
+		else if (article.getBoardId()== Integer.parseInt(BoardId.FREE_BOARD)) { // 자유
+			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
+			memberBiz.addPointAndModifyMemberType(article, request);
+		}
+		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) {  // 비밀 1
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 			memberBiz.addPointAndModifyMemberType(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
-			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
-			memberBiz.addPointAndModifyMemberType(article, request);
-		}
-		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL3)) {  // 비밀3
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 			memberBiz.addPointAndModifyMemberType(article, request);
 		}

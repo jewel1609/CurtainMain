@@ -44,9 +44,35 @@
 	      			<button type="button" id="alarmBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;">알림!</button>
 	      		</a>
 	      	</div>
+	      	<div class="w3-col" style="width:10%; margin-top:30px;">
+      			<c:if test="${ companyCheck ne null }">
+      			<button type="button" id="alarmBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;"
+      			data-toggle="modal" data-target="#myModal" >포인트 결제</button>
+      			</c:if>
+	      	</div>
       	</div>
-      	
       </div>
+      
+      <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">포인트 결제 방법</h4>
+	        </div>
+	        <div class="modal-body">
+	          <p>1000point 기준 : 일만원</p> <br/>
+	          <p>국민은행 : 471202-04-004907</p> <br/>
+	          <p>'밀당컴퍼니' 로 입금하시면 됩니다.</p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
       
       <div class="w3-row-padding">
         <div class="w3-col m12">

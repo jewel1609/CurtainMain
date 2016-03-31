@@ -40,7 +40,6 @@ public class SessionCheckFilter implements Filter {
     	whiteList.add("/addNewMember");
     	whiteList.add("/checkId");
     	whiteList.add("/favicon.ico");
-    	whiteList.add("/registStdMember");
     	
     	whiteList.add("/doUnivCheck");
     	whiteList.add("/doCompCheck");

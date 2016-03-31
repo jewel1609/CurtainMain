@@ -28,7 +28,6 @@ html, body, h1, h2, h3, h4, h5 {
 		$('#registStdBtn').attr('disabled',true); // 버튼 비활성화
 		$('#registCompBtn').attr('disabled',true); // 버튼 비활성화
 		
-		var passwordCheck = false;
 		$("#inputUnivEmail").keyup(function(){
 			console.log($("#inputUnivEmail").val());
 			//AJAX 준비
@@ -104,7 +103,6 @@ html, body, h1, h2, h3, h4, h5 {
 		//대학 인증번호 보내기버튼 클릭시,
 		$("#authNumSendBtn").click(function(){
 			var domain = $("#inputUnivEmail").val().split('@');
-			alert(domain[1]);
 			
 			if(domain[1] == "naver.com" || domain[1] == "daum.com" || domain[1] == "hanmail.net"
 				|| domain[1] == "hotmail.com" || domain[1] == "nate.com" || domain[1] == "yahoo.co.kr"
@@ -484,10 +482,6 @@ html, body, h1, h2, h3, h4, h5 {
 				 	alert("이용약관을 체크해주세요.");
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
 			 	}
-			 if(passwordCheck == false){
-				 alert("두개의 비밀번호가 다릅니다. 확인해주세요.");
-					return; // 더이상 밑의 이벤트를 진행하지 않음.
-			 }
 			 
 			var form = $("#registStdForm");
 			form.attr("method", "POST");

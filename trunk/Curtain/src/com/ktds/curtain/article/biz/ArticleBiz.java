@@ -222,7 +222,7 @@ public class ArticleBiz {
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) { // 홍보
 			doWriteArticle = articleDAO.doWriteAdArticle(article);
-			memberBiz.addPointAndModifyMemberType(article, request);
+			//memberBiz.addPointAndModifyMemberType(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) { // 비밀 1
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);

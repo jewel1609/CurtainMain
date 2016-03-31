@@ -42,9 +42,9 @@
 			<a onclick="myAccordion('demo1')" href="javascript:void(0)">비밀게시판<i class="fa fa-caret-down"></i></a>
 			<div id="demo1" class="w3-accordion-content w3-animate-left w3-padding">
 				<c:if test="${memberType eq 2 || memberType eq 3}">
-					<a href="<c:url value="/studentUnivArticle"/>">한겹</a> 
+					<a href="<c:url value="/oneLayerCurtain"/>">한겹</a> 
 					<c:if test="${memberType eq 3 }">
-						<a href="<c:url value="/studentUnivArticle"/>">두겹</a>
+						<a href="<c:url value="/twoLayerCurtain"/>">두겹</a>
 					</c:if>
 				</c:if>
 			</div>
@@ -54,7 +54,7 @@
 	<c:if test="${memberType eq 1 || memberType eq 2 || memberType eq 3 || memberType eq 4 || memberType eq 5}">
 		<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
 		
-		<a href="#">홍보게시판</a>
+		<a href="<c:url value="/noticeBoard"/>">홍보게시판</a>
 
 		<a href="/myPage">마이페이지</a>
 

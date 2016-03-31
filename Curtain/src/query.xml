@@ -681,6 +681,12 @@
 			SET		MEMBER_TYPE_ID = MEMBER_TYPE_ID + 1
 			WHERE	EMAIL = ?
 		</modifyMemberTypeId>
+		
+		<secedeMemberFromEmail>
+			DELETE
+			FROM	MEMBER
+			WHERE 	EMAIL = ?
+		</secedeMemberFromEmail>
 	</member>
 	
 	<file>

@@ -20,6 +20,7 @@ import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.survey.biz.SurveyBiz;
 import com.ktds.curtain.survey.vo.SurveyVO;
+import com.ktds.curtain.univ.biz.UnivBiz;
 
 /**
  * Servlet implementation class StudentMajorAritlceServlet
@@ -27,7 +28,7 @@ import com.ktds.curtain.survey.vo.SurveyVO;
 public class StudentMajorAritlceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleBiz articleBiz;
-	
+	private UnivBiz univBiz;
 	private SurveyBiz surveyBiz;
        
     /**
@@ -37,6 +38,7 @@ public class StudentMajorAritlceServlet extends HttpServlet {
         super();
         articleBiz = new ArticleBiz();
         surveyBiz = new SurveyBiz();
+        univBiz = new UnivBiz();
     }
 
 	/**
@@ -54,11 +56,14 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
-
+		
+		List<String> univNames = univBiz.getUnivNameList(stdMember.getMajorGroupId());
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD);
 		
 		request.setAttribute("member", stdMember);
 		request.setAttribute("majorArticles", majorArticles);
+		request.setAttribute("univNames", univNames);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/article.jsp");
 		rd.forward(request, response);
 		

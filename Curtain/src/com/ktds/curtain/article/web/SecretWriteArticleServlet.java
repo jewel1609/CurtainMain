@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.member.vo.MemberVO;
@@ -61,13 +62,10 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		String articleTitle = multipartRequest.getParameter("articleTitle");
 		String articleDescription = multipartRequest.getParameter("articleDescription");
 		int articleTypeId = Integer.parseInt(multipartRequest.getParameter("articleTypeId"));
-		int boardId = Integer.parseInt(multipartRequest.getParameter("boardId"));
-
-		MultipartFile imgFile = multipartRequest.getFile("imgFile");
-		File upImgFile = imgFile.write("D:\\" + imgFile.getFileName());
-
+		String boardId = multipartRequest.getParameter("boardId");
+		MultipartFile file = multipartRequest.getFile("imgFile");
 		String movieUrl = multipartRequest.getParameter("movieUrl");
-
+		
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
@@ -85,44 +83,46 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		article.setArticleTitle(articleTitle);
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(articleTypeId);
-		article.setBoardId(boardId);
+		article.setBoardId(Integer.parseInt(boardId));
 		article.setEmail(loginMember.getEmail());
 
 		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember, request);
-
-		FileVO file = null;
 		int articleId = articleBiz.getArticleId();
 		if (articleId > 0) {
 			// 이미지 파일이 있을 경우
-			if (imgFile.getFileSize() != 0) {
-
-				file = new FileVO();
-				file.setArticleId(articleId);
-				file.setFileName(imgFile.getFileName());
-				file.setFileLocation("D:\\" + imgFile.getFileName());
-				file.setFileType(1);
-
-				fileBiz.insertFile(file);
-				System.out.println("이미지 등록 성공");
+			if ( !file.getFileName().equals("")) {
+				File upFile = file.write("C:\\Users\\206-001\\Documents\\curtain\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
+				FileVO fileVO = new FileVO();
+				fileVO.setFileName(file.getFileName());
+				fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\curtain\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
+				fileVO.setArticleId(articleId);
+				fileVO.setFileType(1);
+				fileBiz.insertFile(fileVO);
 			}
 			// 영상 url이 있을 경우
 			if (!movieUrl.equals("")) {
-				file = new FileVO();
-				file.setArticleId(articleId);
-				file.setFileName(movieUrl);
-				file.setFileLocation("");
-				file.setFileType(2);
+				FileVO fileVO = new FileVO();
+				fileVO.setArticleId(articleId);
+				fileVO.setFileName(movieUrl);
+				fileVO.setFileLocation("");
+				fileVO.setFileType(2);
 
-				fileBiz.insertFile(file);
+				fileBiz.insertFile(fileVO);
 				System.out.println("영상 등록 성공");
 			}
+		}
 
+		if ( boardId.equals(BoardId.FREE_BOARD) ) {
 			response.sendRedirect("/secretArticleList");
 			return;
-		} else {
-			System.out.println("articleId 가져오지 못함 - 등록 실패");
+		} 
+		else if( boardId.equals(BoardId.SECRET_BOARD_LEVEL1)) {
+			response.sendRedirect("/oneLayerCurtain");
+			return;
 		}
-			
+		else if( boardId.equals(BoardId.SECRET_BOARD_LEVEL2))
+			response.sendRedirect("/twoLayerCurtain");
+		return;
 		}
 
 	}

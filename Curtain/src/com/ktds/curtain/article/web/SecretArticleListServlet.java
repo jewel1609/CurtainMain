@@ -56,8 +56,8 @@ public class SecretArticleListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL1);
-		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.SECRET_BOARD_LEVEL1);
+		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.FREE_BOARD);
+		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.FREE_BOARD);
 		
 		request.setAttribute("topArticle", topArticle);
 		request.setAttribute("secretArticles", secretArticles);

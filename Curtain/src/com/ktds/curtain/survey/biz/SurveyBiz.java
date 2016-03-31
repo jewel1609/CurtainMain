@@ -20,6 +20,11 @@ public class SurveyBiz {
 		return surveyDAO.selectTodaySurvey(mTime);
 	}
 	
+	
+	public boolean surveyCheck(String email, String mTime) {
+		return surveyDAO.surveyCheck(email, mTime) > 0;
+	}
+	
 	public SurveyStatsVO getSurveyStats(String mTime) {
 		return surveyDAO.selectSurveyStats(mTime);
 	}
@@ -49,6 +54,8 @@ public class SurveyBiz {
 	public void upDateIsVote(String email, int surveyId) {
 		surveyDAO.upDateIsVote(email, surveyId);
 	}
+
+	
 	
 	
 

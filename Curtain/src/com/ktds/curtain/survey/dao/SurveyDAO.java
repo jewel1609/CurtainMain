@@ -263,6 +263,33 @@ public class SurveyDAO {
 		}
 	}
 	
+	public int surveyCheck(String email, String mTime) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			String query = XML.getNodeString("//query/survey/surveyCheck/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, email);
+			stmt.setString(2, mTime);
+			
+			rs = stmt.executeQuery();
+			rs.next();
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -292,6 +319,8 @@ public class SurveyDAO {
 		}
 
 	}
+
+	
 
 
 

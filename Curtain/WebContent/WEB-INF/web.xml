@@ -562,6 +562,37 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>NoticeBoardServlet</display-name>
+    <servlet-name>NoticeBoardServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.NoticeBoardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NoticeBoardServlet</servlet-name>
+    <url-pattern>/noticeBoard</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OneLayerCurtainBoardServlet</display-name>
+    <servlet-name>OneLayerCurtainBoardServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.OneLayerCurtainBoardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OneLayerCurtainBoardServlet</servlet-name>
+    <url-pattern>/oneLayerCurtain</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TwoLayerCurtainBoardServlet</display-name>
+    <servlet-name>TwoLayerCurtainBoardServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.TwoLayerCurtainBoardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TwoLayerCurtainBoardServlet</servlet-name>
+    <url-pattern>/twoLayerCurtain</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description></description>
     <display-name>DoSecedeMemberServlet</display-name>
     <servlet-name>DoSecedeMemberServlet</servlet-name>
     <servlet-class>com.ktds.curtain.member.web.DoSecedeMemberServlet</servlet-class>
@@ -570,4 +601,5 @@
     <servlet-name>DoSecedeMemberServlet</servlet-name>
     <url-pattern>/doSecedeMember</url-pattern>
   </servlet-mapping>
+
 </web-app>

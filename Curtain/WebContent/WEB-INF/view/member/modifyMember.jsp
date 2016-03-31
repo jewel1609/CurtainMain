@@ -296,6 +296,7 @@
           				<b>활동량</b>
           			</div>
           			<div class="w3-col" style="width:80%">
+          				<p>게시글 수 : ${ countArticle }, 댓글 수 : ${ countReply }, 투표 참여 수 : ${ countSurvey }</p>
     				</div>
           		</div>
             </div>

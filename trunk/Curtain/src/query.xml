@@ -116,7 +116,8 @@
 					, EMAIL
 					, MAC_DESC
 			FROM	MAC
-			WHERE	EMAIL = ?					
+			WHERE	EMAIL = ?
+			ORDER	BY MAC_ID DESC					
 		</getMacDescByStudentEmail>
 		
 		<addMacInfo>
@@ -229,6 +230,29 @@
 			AND         A.BOARD_ID = ?
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showSecretArticle>
+		
+		<showPromotionArticle>
+			SELECT		ARTICLE_ID
+        				, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.MAJOR_GROUP_ID
+						, HITS
+						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
+						, ARTICLE_SCRAB
+			FROM 		ARTICLE A
+						, MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE	    A.EMAIL = SM.EMAIL
+			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND         A.BOARD_ID = ?
+			ORDER		BY	A.ARTICLE_ID DESC
+		</showPromotionArticle>
+		
 		<doWriteMajorArticle>
 			INSERT INTO 	ARTICLE (
   										 ARTICLE_ID

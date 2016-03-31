@@ -305,5 +305,10 @@ public class MemberBiz {
 		memberDAO.secedeMemberFromEmail(memberEmail);
 	}
 
+	public void minusPointByPromotion(MemberVO loginMember) {
+		memberDAO.minusPointByPromotion(loginMember);
+		
+	}
+
 	
 }

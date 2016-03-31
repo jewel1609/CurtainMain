@@ -1,12 +1,15 @@
 package com.ktds.curtain.util.nanum;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
-import de.jetwick.snacktory.HtmlFetcher;
 import kr.ac.kaist.swrc.jhannanum.comm.Eojeol;
 import kr.ac.kaist.swrc.jhannanum.comm.Sentence;
 import kr.ac.kaist.swrc.jhannanum.hannanum.Workflow;
 import kr.ac.kaist.swrc.jhannanum.hannanum.WorkflowFactory;
+
+
 
 /**
  * This is a demo program of HanNanum that helps users to utilize the HanNanum library easily.
@@ -25,39 +28,40 @@ import kr.ac.kaist.swrc.jhannanum.hannanum.WorkflowFactory;
  */
 public class NounExtractor {
 	
-	public String[] nounExtractorByTitle (String title) {
+	public List<String> nounExtractorByTitle(String title) {
 		Workflow workflow = WorkflowFactory.getPredefinedWorkflow(WorkflowFactory.WORKFLOW_NOUN_EXTRACTOR);
-		
+
 		try {
-			
+
 			/* Activate the work flow in the thread mode */
 			workflow.activateWorkflow(true);
-			
+
 			/* Analysis using the work flow */
 			workflow.analyze(title);
-			
+
 			LinkedList<Sentence> resultList = workflow.getResultOfDocument(new Sentence(0, 0, false));
-			
+
 			Eojeol[] eojeolArray = null;
-			String[] morphemes = null;
+			List<String> nounList = new ArrayList<String>();
 			
 			for (Sentence s : resultList) {
 				eojeolArray = s.getEojeols();
 				for (int i = 0; i < eojeolArray.length; i++) {
 					if (eojeolArray[i].length > 0) {
-						morphemes = eojeolArray[i].getMorphemes();
+						nounList.add(eojeolArray[i].getMorphemes()[0]);
 					}
 				}
 			}
+			
 			workflow.close();
-			
-			return morphemes;
-			
+
+			return nounList;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		
+
 		/* Shutdown the work flow */
 		workflow.close();
 		return null;

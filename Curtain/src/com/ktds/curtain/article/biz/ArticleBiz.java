@@ -401,4 +401,41 @@ public class ArticleBiz {
 		return true;
 	}
 
+	public List<ArticleVO> showPromotionArticle(MemberVO stdMember, String promotionBoard) {
+		articles = new ArrayList<ArticleVO>();
+		articles = articleDAO.showPromotionArticle(stdMember, promotionBoard);
+		
+		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, promotionBoard);
+		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, promotionBoard);
+		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, promotionBoard);
+		
+		
+		for(ArticleVO article : articles){
+			for(ArticleDislikeVO articleDislike : articleDislikes ) {
+				if( article.getArticleId() == articleDislike.getArticleId() ){
+					article.setDislike(true);
+				}
+			}
+			
+		}
+		
+		for(ArticleVO article : articles){
+			for(ArticleLikeVO articleLike : articleLikes ){
+				if( article.getArticleId() == articleLike.getArticleId() ){
+					article.setLike(true);
+				}
+			}
+		}
+		
+		for(ArticleVO article : articles){
+			for(ArticleScrabVO articleScrab : articleScrabs ){
+				if( article.getArticleId() == articleScrab.getArticleId() ){
+					article.setScrab(true);
+				}
+			}
+		}
+	
+		return articles;
+	}
+
 }

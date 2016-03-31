@@ -51,7 +51,7 @@ public class DoLoginServlet extends HttpServlet {
 		member.setPassword(request.getParameter("userPassword"));
 		String autoLogin = request.getParameter("autoLoginCheckBox");
 		String checkCount = null;
-	
+		boolean surveyCheck = false;
 		
 		if (memberBiz.isExistMember(member, request)) {
 			if(autoLogin != null) {
@@ -61,24 +61,25 @@ public class DoLoginServlet extends HttpServlet {
 				memberBiz.removeCookie(member, response);
 			}
 			
-			HttpSession session = request.getSession();
-			
-			member = (MemberVO) session.getAttribute("_MEMBER_");
-			
-			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
-			Date currentTime = new Date ( );
-			String mTime = mSimpleDateFormat.format ( currentTime );
-			System.out.println ( mTime );
-			
-			SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
-			
-			if ( member.getSurveyId() == survey.getSurveyId() ) {
-				//투표를 이미했다는 것이기때문에
-				//결과물만 보여준다.
-				checkCount = "a";
-				session.setAttribute("_VOTE_", checkCount);
-			}
-			
+		HttpSession session = request.getSession();
+		
+		member = (MemberVO) session.getAttribute("_MEMBER_");
+		
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+		Date currentTime = new Date ( );
+		String mTime = mSimpleDateFormat.format ( currentTime );
+		System.out.println ( mTime );
+		
+		surveyCheck = surveyBiz.surveyCheck(member.getEmail() , mTime);
+		
+		if ( surveyCheck) {
+			//투표를 이미했다는 것이기때문에
+			//결과물만 보여준다.
+			checkCount = "a";
+			session.setAttribute("_VOTE_", checkCount);
+		}
+
+
 			response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
 		}
 		else {

@@ -242,17 +242,20 @@
 	<c:set var="majorGroupId" value="${ sessionScope._MEMBER_.majorGroupId }" />
 	<c:set var="univName" value="${ sessionScope._UNIVNAME_}" />
 	<c:set var="majorGroupName" value="${ sessionScope._MAJORGROUPNAME_ }" />
+	<c:set var="majorMemberCount" value="${ sessionScope._MEMBER_.majorMemberCount }" />
 
 	<div>
 		<div class="w3-col m7 w3-main"
 			style="margin-left: 350px; margin-right: 100px; height: 705px; overflow: auto;">
 			<div style="float:left;">
 				<span><h2>${majorGroupName} 게시판입니다.</h2></span>
-				</div> 
-				<div style="float:left; padding:20px;">
-					<h6>참여인원 명</h6> 
-				</div>
-			
+			</div> 
+			<div style="float:left; padding:20px;">
+				<h5>참여인원 ${majorMemberCount}명</h5> 
+			</div>
+			<div style="float:left; padding:20px;">
+				<h5>참여대학교</h5> 
+			</div>			
 			<div class="w3-row-padding">
 				<div class="w3-col m12" align="left" >
 					<div class="w3-card w3-round w3-white">

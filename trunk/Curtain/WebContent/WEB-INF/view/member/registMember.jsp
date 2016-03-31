@@ -418,7 +418,7 @@ html, body, h1, h2, h3, h4, h5 {
 		$("#registStdBtn").click(function(){
 			 // 정규식 - 이메일 유효성 검사
 	        //var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-	        var regPassword =/^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])|(?=.*[a-z])(?=.*[A-Z])(?=.*\W)|...|...|...).{8,20}$/;
+	       // var regPassword =/^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])|(?=.*[a-z])(?=.*[A-Z])(?=.*\W)|...|...|...).{8,20}$/;
 			// 유효성 검사 혹은 Validation Check
 			 if( $("#inputUnivEmail").val() == ""){
 				alert("학교 이메일을 입력하세요!");
@@ -443,9 +443,7 @@ html, body, h1, h2, h3, h4, h5 {
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
 				} 
 			
-			 if(!regPassword.test($("#inputCompPassword"))){
-				 alert("비밀번호 형식을 맞춰주세요!");
-			 }
+			
 			 if( $("#inputPasswordCheck").val() == ""){
 					alert("재확인 비밀번호를 입력하세요!");
 					$("#inputPasswordCheck").focus();
@@ -545,10 +543,7 @@ html, body, h1, h2, h3, h4, h5 {
 				 	alert("이용약관을 체크해주세요.");
 					return; // 더이상 밑의 이벤트를 진행하지 않음.
 			 	}
-			 if(passwordCheck == false){
-				 alert("두개의 비밀번호가 다릅니다. 확인해주세요.");
-					return; // 더이상 밑의 이벤트를 진행하지 않음.
-			 }
+			
 			 
 			var form = $("#registCompForm");
 			form.attr("method", "POST");

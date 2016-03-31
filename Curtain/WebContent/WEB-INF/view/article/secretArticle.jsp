@@ -10,7 +10,13 @@
 		
 <script type="text/javascript">
 	$(document).ready(function() {
-	
+		$("#freeArticle").mouseleave(function(){
+			$("#freeArticle").css('background-color', '#a9d039');
+			$("#freeArticle").css('color', '#ffffff');
+		});
+		$("#freeArticle").css('background-color', '#a9d039');
+		$("#freeArticle").css('color', '#ffffff');
+		
 		if($("#isFword").val() == '1'){
 			alert("비방글은 게시하실 수 없습니다.");
 		}

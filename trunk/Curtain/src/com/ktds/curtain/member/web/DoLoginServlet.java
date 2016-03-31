@@ -61,23 +61,23 @@ public class DoLoginServlet extends HttpServlet {
 				memberBiz.removeCookie(member, response);
 			}
 			
-			HttpSession session = request.getSession();
-			
-			member = (MemberVO) session.getAttribute("_MEMBER_");
-			
-			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
-			Date currentTime = new Date ( );
-			String mTime = mSimpleDateFormat.format ( currentTime );
-			System.out.println ( mTime );
-			
-			SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
-			
-			if ( member.getSurveyId() == survey.getSurveyId() ) {
-				//투표를 이미했다는 것이기때문에
-				//결과물만 보여준다.
-				checkCount = "a";
-				session.setAttribute("_VOTE_", checkCount);
-			}
+		HttpSession session = request.getSession();
+		
+		member = (MemberVO) session.getAttribute("_MEMBER_");
+		
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+		Date currentTime = new Date ( );
+		String mTime = mSimpleDateFormat.format ( currentTime );
+		System.out.println ( mTime );
+		
+		SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
+		System.out.println(survey);
+		if ( member.getSurveyId() == survey.getSurveyId() ) {
+			//투표를 이미했다는 것이기때문에
+			//결과물만 보여준다.
+			checkCount = "a";
+			session.setAttribute("_VOTE_", checkCount);
+		}
 			
 			
 			

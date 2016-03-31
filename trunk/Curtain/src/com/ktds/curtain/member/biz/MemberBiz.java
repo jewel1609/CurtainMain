@@ -26,6 +26,7 @@ public class MemberBiz {
 	private ArticleDAO articleDAO;
 	private ReplyDAO replyDAO;
 	private SurveyDAO surveyDAO;
+
 	
 	public MemberBiz(){
 		memberDAO = new MemberDAO();
@@ -35,6 +36,7 @@ public class MemberBiz {
 		articleDAO = new ArticleDAO();
 		replyDAO = new ReplyDAO();
 		surveyDAO = new SurveyDAO();
+
 	}
 	
 	public void addStdMember(String inputUnivEmail, String inputPassword, String inputUnivName, String inputMajorName,
@@ -128,6 +130,7 @@ public class MemberBiz {
 			session.setAttribute("_UNIVNAME_", univName);
 			session.setAttribute("_MAJORGROUPNAME_", majorGroupName);
 			session.setAttribute("_WORDLIST_", wordList);
+			
 			return true;
 		}
 

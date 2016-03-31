@@ -46,8 +46,6 @@ public class SecedeMemberServlet extends HttpServlet {
 		// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		String univName = memberBiz.getUnivName(member.getUnivId());
-		String majorName = memberBiz.getMajorName(member.getMajorId());
 		String memberRank = memberBiz.getMemberRank(member.getMemberTypeId());
 		int countArticle = memberBiz.countArticle(member); 
 		int countReply = memberBiz.countReply(member);
@@ -61,8 +59,6 @@ public class SecedeMemberServlet extends HttpServlet {
 		
 		
 		request.setAttribute("member", member);
-		request.setAttribute("univName", univName);
-		request.setAttribute("majorName", majorName);
 		request.setAttribute("memberRank", memberRank);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/secedeMember.jsp");
 		rd.forward(request, response);

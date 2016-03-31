@@ -14,6 +14,7 @@ import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
 import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
@@ -24,6 +25,7 @@ import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
 public class PromotionWriteArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleBiz articleBiz;
+	private MemberBiz memberBiz;
 	private FileBiz fileBiz;   
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,6 +34,7 @@ public class PromotionWriteArticleServlet extends HttpServlet {
         super();
         articleBiz = new ArticleBiz();
 		fileBiz = new FileBiz();
+		memberBiz = new MemberBiz();
     }
 
 	/**
@@ -78,7 +81,8 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 		article.setEmail(loginMember.getEmail());
 
 		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember, request);
-
+		memberBiz.minusPointByPromotion(loginMember);
+		
 		FileVO file = null;
 		int articleId = articleBiz.getArticleId();
 		if (articleId > 0) {

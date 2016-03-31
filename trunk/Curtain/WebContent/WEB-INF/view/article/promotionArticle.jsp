@@ -11,6 +11,13 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 	
+		$("#promotion").mouseleave(function(){
+			$("#promotion").css('background-color', '#a9d039');
+			$("#promotion").css('color', '#ffffff');
+		});
+		$("#promotion").css('background-color', '#a9d039');
+		$("#promotion").css('color', '#ffffff');
+		
 		if($("#isFword").val() == '1'){
 			alert("비방글은 게시하실 수 없습니다.");
 		}
@@ -148,8 +155,7 @@
 		$("#imagePreview").hide();
 
 		$("#doWrite").click(function() {
-		
-			
+			alert("클릭");
 			 if( $("#articleTitle").val() == ""){
 				alert("제목을 입력하세요!");
 				$("#articleTitle").focus();
@@ -206,7 +212,7 @@
 				</div>
 				<!-- 게시판 타이틀 끝 -->
 				
-				<!-- 글쓰기 시작 -->
+				<!-- 글쓰기 시작 -->	
 				<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">
 					<div class="w3-col m12" align="left">
 						<div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
@@ -261,7 +267,7 @@
 											<img id="uploadImg" src="#" width="100px;">
 										</div>
 										<div class="col-sm-12" style="margin-top:10px;">
-											<button type="button" class="btn btn-default" id="doWrite" style="float: right; border-color: #FF3300; color: #FF3300;">게시</button>
+											<input type="button" class="btn btn-default" id="doWrite" style="float: right; border-color: #FF3300; color: #FF3300;" value="게시">
 										</div>
 									</div>
 								</div>

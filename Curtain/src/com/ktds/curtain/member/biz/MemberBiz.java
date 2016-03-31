@@ -202,19 +202,17 @@ public class MemberBiz {
 		String todayDate = "";
 		todayDate += calendar.get(Calendar.YEAR) + "/";
 		todayDate = todayDate.substring(2, 5);
+		
 		if((calendar.get(Calendar.MONTH) + 1) < 10) {
-			todayDate += "0" + (calendar.get(Calendar.MONTH) + 1) + "/";
+			todayDate += "0";
 		}
-		else {
-			todayDate += (calendar.get(Calendar.MONTH) + 1) + "/";
-		}
+		todayDate += (calendar.get(Calendar.MONTH) + 1) + "/";
 		
 		if(calendar.get(Calendar.DATE) < 10) {
-			todayDate += "0" + calendar.get(Calendar.DATE);
+			todayDate += "0";
 		}
-		else {
-			todayDate += calendar.get(Calendar.DATE);
-		}
+		todayDate += calendar.get(Calendar.DATE);
+		
 		return todayDate;
 	}
 	

@@ -13,8 +13,15 @@
 			if ( $("#secedeDesc").val() == "" ) {
 				alert("탈퇴사유를 적어주세요. 서비스 향상을 위해 노력하겠습니다.");
 			}	
+			else if ( confirm("사용가능한 포인트가 ${ member.point } 남아있습니다. 탈퇴하시겠습니까?") == true ) {
+				
+				var form = $("#doSecedeMemberForm");
+				alert("##안내##\n\n탈퇴에 성공하셨습니다.");
+				form.attr("method", "post");
+				form.attr("action","/doSecedeMember");
+				form.submit();
+			}
 			
-			location.href = "/doSecedeMember";
 			
 		});
 			
@@ -34,21 +41,21 @@
 
 </script>
 
-
 <div class="w3-container w3-center w3-main" style="margin-top:0px;">    
-
   <div class="w3-row" >
     <div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
     background-color: #F3F3F3; margin-left:334px; margin-right: 100px; height: 885px; overflow: auto;">
       
+<form id="doSecedeMemberForm" >
       <div class="w3-myfont w3-left-align" >
       	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 	      	<div class="w3-margin-4" style="float:left;">
 	      		<h2>회원 탈퇴</h2>
+			   <input type="hidden" id="memberEmail" name="memberEmail" value="${ member.email }" />
 	      	</div>
       	</div>
       </div>
-      
+   
       <div class="w3-myfont w3-center-align" >
       	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 	      	<div class="w3-margin-4" >
@@ -110,7 +117,7 @@
           </div>
         </div>
       </div>
-      
+ </form>
       <div class="w3-myfont w3-left-align" >
       	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 	      	<div class="w3-margin-4" style="float:left;">

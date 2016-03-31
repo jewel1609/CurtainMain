@@ -106,14 +106,24 @@ public class MemberBiz {
 		
 		MemberVO currentMember = memberDAO.getMemberInfo(member);
 		
+		
 		if ( currentMember == null) {
 			return false;
 		}
 		else {
+			
+			currentMember.setMajorMemberCount(getMajorMemberCountByMajorGroupId(currentMember.getMajorGroupId()));
+			currentMember.setUnivMemberCount(getUnivMemberCountByUnivId(currentMember.getUnivId()));
+			currentMember.setNoticeBoardMemberCount(getNoticeBoardMemberCount());
+			currentMember.setFreeBoardMemberCount(getFreeBoardMemberCount());
+			currentMember.setOneLayerCurtainMemberCount(getOneLayerCurtainMemberCount());
+			currentMember.setTwoLayerCurtainMemberCount(getTwoLayerCurtainMemberCount());
+			
 			String univName = univDAO.getUnivNameByUnivId(member.getUnivId());
 			String majorGroupName = majorDAO.getMajorGroupNameByMajorGroupId(member.getMajorGroupId());
-			//욕설이 담김
+			
 			List<String> wordList = wordDAO.getAllWords();
+			
 			session.setAttribute("_MEMBER_", currentMember);
 			session.setAttribute("_UNIVNAME_", univName);
 			session.setAttribute("_MAJORGROUPNAME_", majorGroupName);
@@ -172,7 +182,7 @@ public class MemberBiz {
 	public String getMemberRank(int memberTypeId) {
 		return memberDAO.getMemberRank(memberTypeId);
 	}
-	
+
 	/**
 	 * @param request
 	 * @param article 게시글을 쓰는 페이지가 아니라면 null 값을 넣어주면 됩니다.
@@ -266,8 +276,34 @@ public class MemberBiz {
 		return surveyDAO.countSurveyFromRankModifyDate(member);
 	}
 
+	public int getMajorMemberCountByMajorGroupId(int majorGroupId) {
+		return memberDAO.getMajorMemberCount(majorGroupId);
+	}
+
+	public int getUnivMemberCountByUnivId(int univId) {
+		return memberDAO.getUnivMemberCount(univId);
+	}
+
+	public int getNoticeBoardMemberCount() {
+		return memberDAO.getNoticeBoardMemberCount();
+	}
+
+	public int getFreeBoardMemberCount() {
+		return memberDAO.getFreeBoardMemberCount();
+	}
+
+	public int getOneLayerCurtainMemberCount() {
+		return memberDAO.getOneLayerCurtainMemberCount();
+	}
+
+	public int getTwoLayerCurtainMemberCount() {
+		return memberDAO.getTwoLayerCurtainMemberCount();
+	}
+
+
 	public void secedeMember(String memberEmail) {
 		memberDAO.secedeMemberFromEmail(memberEmail);
 	}
+
 	
 }

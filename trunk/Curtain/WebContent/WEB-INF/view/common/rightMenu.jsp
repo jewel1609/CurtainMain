@@ -19,15 +19,15 @@
 	SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
 	SurveyStatsVO surveyStats = surveyBiz.getSurveyStats(mTime);
 	
-	//int first = surveyStats.getFirstStats();
-			
-	double first =  (double)surveyStats.getFirstStats() / (surveyStats.getFirstStats()+ surveyStats.getSecondStats()+surveyStats.getThirdStats()) * 100  ;
+	int first = surveyStats.getFirstStats();
+		
+	//double first =  (double)surveyStats.getFirstStats() / (surveyStats.getFirstStats()+ surveyStats.getSecondStats()+surveyStats.getThirdStats()) * 100  ;
 	
 	String surveys[] = { survey.getFirstAnswer(), survey.getSecondAnswer(), survey.getThirdAnswer(), survey.getFourthAnswer() }; 
 	request.setAttribute("mTime", mTime);
 	request.setAttribute("survey", survey);
 	request.setAttribute("surveys", surveys);
-	request.setAttribute("first", first);
+	request.setAttribute("first", first); 
 	
 %>
 <script type="text/javascript">

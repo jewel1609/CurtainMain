@@ -265,5 +265,9 @@ public class MemberBiz {
 	public int countSurvey(MemberVO member) {
 		return surveyDAO.countSurveyFromRankModifyDate(member);
 	}
+
+	public void secedeMember(String memberEmail) {
+		memberDAO.secedeMemberFromEmail(memberEmail);
+	}
 	
 }

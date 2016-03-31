@@ -485,6 +485,28 @@ public class MemberDAO {
 		}
 	}
 	
+	
+	public void secedeMemberFromEmail(String memberEmail) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/secedeMemberFromEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, memberEmail);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -513,6 +535,8 @@ public class MemberDAO {
 			}
 		}
 	}
+
+	
 
 
 

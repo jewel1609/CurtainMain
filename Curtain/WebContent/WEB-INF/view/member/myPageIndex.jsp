@@ -19,6 +19,11 @@
 			location.href = "/myQuestion";
 		});
 		
+		$("#secedeBtn").click(function() {
+			location.href= "/myPage/secedeMember"
+		});
+		
+		
 	});
 		
 	
@@ -166,7 +171,7 @@
         </div>
       </div>   
       
-      
+      <button type="button" id="secedeBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원 탈퇴</button>
       
         
     </div>

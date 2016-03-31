@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <query>
+	<board>
+		<getBoardName>
+			SELECT  BOARD_NAME
+			FROM    BOARD
+		</getBoardName>
+	</board>
 	<replyLike>
 		<getReplyLikes>
 			SELECT		RL.REPLY_ID
@@ -102,6 +108,15 @@
 			FROM	UNIV
 			WHERE	UNIV_NAME LIKE '%' || ? || '%'			
 		</checkUnivName>
+		
+		<getUnivNamesByMajorGroupId>
+			SELECT  UNIV_NAME
+			FROM    UNIV
+			WHERE   UNIV_ID IN ( SELECT UNIV_ID
+			                    FROM MEMBER
+			                    WHERE MAJOR_GROUP_ID = ?
+			                    )		
+		</getUnivNamesByMajorGroupId>
 	</univ>
 	<dupl>
 		<isExistNickName>

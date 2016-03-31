@@ -7,7 +7,13 @@
 <script type="text/javascript">
 	
 	$(document).ready( function(){
-
+		$("#myPage").mouseleave(function(){
+			$("#myPage").css('background-color', '#a9d039');
+			$("#myPage").css('color', '#ffffff');
+		});
+		$("#myPage").css('background-color', '#a9d039');
+		$("#myPage").css('color', '#ffffff');
+		
 		$('[data-toggle="tooltip"]').tooltip();
 		
 		$("#modifyBtn").click(function() {

@@ -1,6 +1,7 @@
 package com.ktds.curtain.member.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
+import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.curtain.util.Root;
 
 /**
@@ -19,6 +21,7 @@ public class DoRegistStdMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private MemberBiz stdMemberBiz;  
     private MemberVO memberVO;
+    private ProhibitedWordBiz prohibitedWordBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,6 +29,7 @@ public class DoRegistStdMemberServlet extends HttpServlet {
         super();
         stdMemberBiz = new MemberBiz();
         memberVO = new MemberVO();
+        prohibitedWordBiz = new ProhibitedWordBiz();
     }
 
 	/**
@@ -58,8 +62,20 @@ public class DoRegistStdMemberServlet extends HttpServlet {
 		memberVO.setMajorId(stdMemberBiz.getMajorIdByMajorName(inputMajorName));
 		memberVO.setSignupDate(stdMemberBiz.getDateTimeByEmail(inputUnivEmail));
 		
+		//각 게시판 참여 인원
+		memberVO.setMajorMemberCount(stdMemberBiz.getMajorMemberCountByMajorGroupId(memberVO.getMajorGroupId()));
+		memberVO.setUnivMemberCount(stdMemberBiz.getUnivMemberCountByUnivId(memberVO.getUnivId()));
+		memberVO.setNoticeBoardMemberCount(stdMemberBiz.getNoticeBoardMemberCount());
+		memberVO.setFreeBoardMemberCount(stdMemberBiz.getFreeBoardMemberCount());
+		memberVO.setOneLayerCurtainMemberCount(stdMemberBiz.getOneLayerCurtainMemberCount());
+		memberVO.setTwoLayerCurtainMemberCount(stdMemberBiz.getTwoLayerCurtainMemberCount());
+		
+		//비방글 필터
+		List<String> wordList = prohibitedWordBiz.getProhibitedWordList();
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("_MEMBER_", memberVO);
+		session.setAttribute("_WORDLIST_", wordList);
 		
 		response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
 	}

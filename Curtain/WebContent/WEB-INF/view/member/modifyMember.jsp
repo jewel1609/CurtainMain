@@ -3,7 +3,7 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
-
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resource/css/member/modifyMember.css"/>
 
 <script type="text/javascript">
@@ -116,7 +116,7 @@
 
 </script>
 
-
+<c:set var="companyCheck" value="${ sessionScope._COMPANY_ }" />
 <div class="w3-container w3-center w3-main" style="margin-top:30px; margin-bottom:20px;">    
 
   <div class="w3-row" >
@@ -131,6 +131,8 @@
       	</div>
       </div>
       <form id="modifyMember">
+      
+      <c:if test="${ companyCheck eq null }">
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-round w3-white">
@@ -147,6 +149,26 @@
           </div>
         </div>
       </div>
+      </c:if>
+      
+      <c:if test="${ companyCheck ne null }">
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card-2 w3-round w3-white">
+            <div class="w3-container w3-padding w3-left-align">
+          		<div class="w3-col" style="width:90%">
+          			<div class="w3-col" style="width:20%">
+          				<b>기업 이메일</b>
+          			</div>
+          			<div class="w3-col" style="width:80%">
+    					<p>${ member.email }</p>
+    				</div>
+          		</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </c:if>
       
       <div class="w3-row-padding w3-margin-top">
         <div class="w3-col m12">
@@ -202,6 +224,7 @@
         </div>
       </div>
       
+      <c:if test="${ companyCheck eq null }">
       <div class="w3-row-padding w3-margin-top">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
@@ -218,7 +241,28 @@
           </div>
         </div>
       </div>
+      </c:if>
       
+      <c:if test="${ companyCheck ne null }">
+      <div class="w3-row-padding w3-margin-top">
+        <div class="w3-col m12">
+          <div class="w3-card-2 w3-white w3-round-large">
+            <div class="w3-container w3-padding w3-left-align">
+              <div class="w3-col" style="width:90%">
+          			<div class="w3-col" style="width:20%">
+          				<b>기업 이름</b>
+          			</div>
+          			<div class="w3-col" style="width:80%">
+    					<p>${ member.companyName }</p>
+    				</div>
+          		</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </c:if>
+      
+      <c:if test="${ companyCheck eq null }">
       <div class="w3-row-padding w3-margin-top w3-margin-bottom">
         <div class="w3-col m12">
           <div class="w3-card-2 w3-white w3-round-large">
@@ -252,6 +296,7 @@
           </div>
         </div>
       </div>   
+      </c:if>
       
       <div class="w3-row-padding w3-margin-top w3-margin-bottom">
         <div class="w3-col m12">
@@ -397,4 +442,3 @@
 </div>
 
 
-<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

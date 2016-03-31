@@ -3,6 +3,7 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <script type="text/javascript">
 	
@@ -40,7 +41,6 @@
 	
 
 </script>
-
 <div class="w3-container w3-center w3-main" style="margin-top:0px;">    
   <div class="w3-row" >
     <div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;

@@ -152,6 +152,13 @@ $(".dislike").click(function() {
 
 <div class="w3-container w3-main" style="margin-top:0px;">    
 
+	<c:set var="memberType" value="${ sessionScope._MEMBER_.memberTypeId }" />
+	<c:set var="univId" value="${ sessionScope._MEMBER_.univId }" />
+	<c:set var="majorGroupId" value="${ sessionScope._MEMBER_.majorGroupId }" />
+	<c:set var="univName" value="${ sessionScope._UNIVNAME_}" />
+	<c:set var="majorGroupName" value="${ sessionScope._MAJORGROUPNAME_ }" />
+
+
   <div class="w3-row" >
     <div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
     background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height:885px; overflow: auto;">
@@ -159,11 +166,26 @@ $(".dislike").click(function() {
      		<!-- 게시판 헤더 -->
      		<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 				<div class="w3-margin-4" style="float:left;">
-					<h2> 무슨무슨 게시판</h2> 
+					<c:if test="${boardId eq 1}">
+						<h2>${majorGroupName} 게시판입니다.</h2>
+					</c:if>
+					<c:if test="${boardId eq 2}">
+						<h2>${univName} 게시판입니다.</h2> 
+					</c:if>
+					<c:if test="${boardId eq 3}">
+						<h2>홍보게시판입니다.</h2>
+					</c:if>
+					<c:if test="${boardId eq 4 }">
+						<h2>자유게시판입니다.</h2>
+					</c:if>
+					<c:if test="${boardId eq 5 }">
+						<h2>한겹커튼 게시판입니다.</h2>
+					</c:if>		
+					<c:if test="${boardId eq 6 }">
+						<h2>두겹커튼 게시판입니다.</h2>
+					</c:if>									
 				</div> 
-				<div style="float:left; padding-top:20px;">
-					<h5>   참여인원 명</h5> 
-				</div>
+
 			</div>
 			
 			<!-- 게시판 body -->	

@@ -16,15 +16,9 @@
 	});
 <<<<<<< .mine
 </script> -->
-		
-=======
-	
 	
 </script>
 
-
->>>>>>> .r803
-	
 
 	<nav class="w3-sidenav w3-collapse w3-white w3-card" 
 			style="z-index: 3; width: 250px; height: 100%; 

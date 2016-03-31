@@ -185,12 +185,14 @@
 		}
 	}
 </script>
-<div class="amung">
-    <img src="http://whos.amung.us/swidget/cp8neo95czmf" title="Click to see how many people are online" alt="실시간 방문자" /></a>
-</div>
+
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
 	<div class="w3-container w3-main" style="margin-top:0px;">
+	
+		<c:set var="freeBoardMemberCount" value="${ sessionScope._MEMBER_.freeBoardMemberCount }" />
+		
+		
 		<div class="w3-row" >
 			<div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
     			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 885px; overflow: auto; ">
@@ -198,10 +200,10 @@
 				<!-- 게시판 헤더 -->
 				<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 					<div class="w3-margin-4" style="float:left;">
-						<h2>자유게시판</h2> 
+						<h2>자유게시판입니다.</h2> 
 					</div> 
-					<div style="float:left; padding-top:20px;">
-						<h6>참여인원 명</h6> 
+					<div style="float:left; padding:20px;">
+						<h5>참여인원 ${freeBoardMemberCount}명</h5> 
 					</div>
 				</div>
 				<!-- 게시판 타이틀 끝 -->
@@ -214,10 +216,9 @@
 							<form id="writeForm" enctype="multipart/form-data">
 								<div class="w3-container w3-padding w3-left-align">
 									<div class="form-group">
-
 										<div>
-											<div class="col-sm-1">
-												<select name="articleTypeId">
+											<div class="container col-xs-2 input-lg" style="padding-bottom:10px; padding-left:0px;">
+												 <select class="form-control " id="sel1" name="articleTypeId">
 													<option value="1">고민</option>
 													<option value="2">취업</option>
 													<option value="3">연애</option>
@@ -225,9 +226,9 @@
 													<option value="5">기타</option>
 												</select>
 											</div>
-											<div class="col-sm-9">
+											<div class="col-sm-8">
 												<input class="w3-input" type="text" id="articleTitle" name="articleTitle"
-													placeholder="제목을 입력하세요." style="margin-bottom: 5px;">
+													placeholder="제목을 입력하세요." style="margin-bottom: 5px;" />
 											</div>
 											<div class="col-sm-2">					
 												<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
@@ -267,10 +268,7 @@
 								</div>
 							</form>
 						</div>
-
-
 					</div>
-
 				</div>
 				
 				

@@ -186,7 +186,6 @@
 	}
 </script>
 <div class="amung">
-    <a href="http://whos.amung.us/stats/cp8neo95czmf">
     <img src="http://whos.amung.us/swidget/cp8neo95czmf" title="Click to see how many people are online" alt="실시간 방문자" /></a>
 </div>
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />

@@ -53,6 +53,7 @@ public class DoLoginServlet extends HttpServlet {
 		String checkCount = null;
 		boolean surveyCheck = false;
 		
+		
 		if (memberBiz.isExistMember(member, request)) {
 			if(autoLogin != null) {
 				memberBiz.setCookie(member, response);
@@ -68,17 +69,17 @@ public class DoLoginServlet extends HttpServlet {
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
 		Date currentTime = new Date ( );
 		String mTime = mSimpleDateFormat.format ( currentTime );
-		System.out.println ( mTime );
-		
 		surveyCheck = surveyBiz.surveyCheck(member.getEmail() , mTime);
+		
+		
 		
 		if ( surveyCheck) {
 			//투표를 이미했다는 것이기때문에
 			//결과물만 보여준다.
 			checkCount = "a";
 			session.setAttribute("_VOTE_", checkCount);
-		}
 
+		}
 
 			response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
 		}

@@ -76,7 +76,7 @@
       $(document).on("click","#btnStart",function () {
          var form = $("#btnForm");
          form.attr("method", "post");
-         form.attr("action", "<c:url value="/doLogin"/> ");
+         form.attr("action", "/doLogin");
          form.submit();
       });
       

@@ -115,6 +115,22 @@ public class DoUpdateArticleServlet extends HttpServlet {
 			response.sendRedirect("/showDetail?articleId="+articleId);
 			return;
 		}
+		else if( article.getBoardId() == Integer.parseInt(BoardId.UNIV_BOARD)) {
+			response.sendRedirect("/showDetail?articleId="+articleId);
+			return;
+		}
+		else if( article.getBoardId() == Integer.parseInt(BoardId.FREE_BOARD)) {
+			response.sendRedirect("/showDetail?articleId="+articleId);
+			return;
+		}
+		else if( article.getBoardId() == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) {
+			response.sendRedirect("/showDetail?articleId="+articleId);
+			return;
+		}
+		else if( article.getBoardId() == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {
+			response.sendRedirect("/showDetail?articleId="+articleId);
+			return;
+		}
 
 
 		

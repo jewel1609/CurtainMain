@@ -3,7 +3,7 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
-
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 	
 	$(document).ready( function(){
@@ -29,14 +29,11 @@
 	
 
 </script>
-
-
 <div class="w3-container w3-center w3-main" style="margin-top:0px;">    
-
+<c:set var="companyCheck" value="${ sessionScope._COMPANY_ }" />
   <div class="w3-row" >
     <div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
     background-color: #F3F3F3; margin-left:334px; margin-right: 100px; height: 885px; overflow: auto;">
-      
       <div class="w3-myfont w3-left-align" >
       	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 	      	<div class="w3-margin-4" style="float:left;">
@@ -119,7 +116,7 @@
 		      </div>
 	      </div>
 
-      
+      <c:if test="${companyCheck eq null}"> 
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
@@ -136,6 +133,7 @@
           </div>
         </div>
       </div>
+      
       
        <div class="w3-row-padding w3-margin-top">
         <div class="w3-col m12">
@@ -170,6 +168,45 @@
           </div>
         </div>
       </div>   
+      </c:if>
+      
+      <c:if test="${companyCheck ne null}">
+		<div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
+            <div class="w3-container w3-padding w3-left-align">
+          		<div class="w3-col" style="width:90%">
+          			<div class="w3-col" style="width:20%">
+          				<b>기업 이메일</b>
+          			</div>
+          			<div class="w3-col" style="width:80%">
+    					<p>${ member.email }</p>
+    				</div>
+          		</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+       <div class="w3-row-padding w3-margin-top">
+        <div class="w3-col m12">
+          <div class="w3-card w3-white w3-round-large">
+            <div class="w3-container w3-padding w3-left-align">
+              <div class="w3-col" style="width:90%">
+          			<div class="w3-col" style="width:20%">
+          				<b>기업 이름</b>
+          			</div>
+          			<div class="w3-col" style="width:80%">
+    					<p>${ member.companyName }</p>
+    				</div>
+          		</div>
+            </div>
+          </div>
+        </div>
+       </div>
+       <br/>
+      </c:if> 
       
       <button type="button" id="secedeBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원 탈퇴</button>
       

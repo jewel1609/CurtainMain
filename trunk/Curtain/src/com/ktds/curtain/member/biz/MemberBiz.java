@@ -313,5 +313,9 @@ public class MemberBiz {
 		
 	}
 
+	public void secedeMemberAdd(String memberEmail, String mTime, String secedeDesc) {
+		memberDAO.insertSecedeMember(memberEmail, mTime, secedeDesc);
+	}
+
 	
 }

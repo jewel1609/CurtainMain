@@ -251,24 +251,25 @@
 	<c:set var="majorGroupName" value="${ sessionScope._MAJORGROUPNAME_ }" />
 	<c:set var="majorMemberCount" value="${ sessionScope._MEMBER_.majorMemberCount }" />
 
-	<div>
+	<div class="w3-row" >
 		<div class="w3-col m7 w3-main"
-			style="margin-left: 350px; margin-right: 100px; height: 705px; overflow: auto;">
-			<div style="float:left;">
+			style="border-right:1px solid #bababa;
+    			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 885px; overflow: auto; ">
+			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 				<span><h2>${univName} 게시판입니다.</h2></span>
 			</div> 
 		
-			<div class="w3-row-padding">
+	<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">s
 				<div class="w3-col m12" align="left" >
-					<div class="w3-card w3-round w3-white">
+					<div class="w3-card w3-round w3-white" style="margin-top:10px; margin-bottom:10px;">
 
 						<form id="writeArticle" enctype="multipart/form-data">
 							<div class="w3-container w3-padding w3-left-align">
 								<div class="form-group1">
 									<input type="hidden" id="boardId" name="boardId" value="2" />
 									<div>
-										<div class="col-sm-1">
-											<select name="articleTypeId">
+										<div class="container col-xs-2 input-lg" style="padding-bottom:10px; padding-left:0px;">
+											<select class="form-control " id="sel1" name="articleTypeId">
 												<option value="1">고민</option>
 												<option value="2">취업</option>
 												<option value="3">연애</option>
@@ -276,7 +277,7 @@
 												<option value="5">기타</option>
 											</select>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-8">
 												<input class="w3-input" type="text" id="articleTitle" name="articleTitle"
 													placeholder="제목을 입력하세요." style="margin-bottom: 5px;">
 										</div>
@@ -308,11 +309,12 @@
 												placeholder="무슨 생각을 하고 계신가요?"></textarea>
 										</div>
 
-										<div class="col-sm-9"  id="imagePreview"><img id="uploadImg" src="#" width="100px;"></div>
+									<div class="col-sm-12" id="imagePreview">
+											<img id="uploadImg" src="#" width="100px;">
+									</div>
 										
-										<div class="col-sm-9" style="margin-top: 20px;">
-											<button type="button" class="btn btn-default" id="writeBtn" style="border-color: #FF3300; color: #FF3300;">게시</button>
-											
+										<div class="col-sm-12" style="margin-top: 10px;">
+											<button type="button" class="btn btn-default" id="writeBtn" style="float: right; border-color: #FF3300; color: #FF3300;">게시</button>
 										</div>
 										
 									</div>
@@ -323,6 +325,96 @@
 				</div>
 			</div>
 
+	<div style="background-color: white;">
+		<div class="w3-row-padding w3-margin-top" >
+					<div class="w3-col m12">
+						<div class="w3-card w3-round-large" style="border-color: #a9d039;" >
+							<div class="w3-container">
+							<a href="<c:url value="/hitsCount?boardId=4&articleId=${topArticle.articleId}"/>">
+								<div class="w3-col m10 w3-padding-top">
+										<span class="label label-default">HOT</span>
+										<c:if test="${topArticle.articleTypeName eq '연애'}">
+											<span class="label label-danger">${topArticle.articleTypeName}</span>
+										</c:if>
+										<c:if test="${topArticle.articleTypeName eq '고민'}">
+											<span class="label label-warning">${topArticle.articleTypeName}</span>
+										</c:if>
+										<c:if test="${topArticle.articleTypeName eq '질문'}">
+											<span class="label label-primary">${topArticle.articleTypeName}</span>
+										</c:if>
+										<c:if test="${topArticle.articleTypeName eq '취업'}">
+											<span class="label label-info">${topArticle.articleTypeName}</span>
+										</c:if>
+										<c:if test="${topArticle.articleTypeName eq '기타'}">
+											<span class="label label-default">${topArticle.articleTypeName}</span>
+										</c:if>
+										<strong>${topArticle.articleTitle}</strong>
+								</div>
+								<div class="w3-col m1 w3-padding-top">
+									${topArticle.nickName}
+								</div>
+								<div class="w3-col m1 w3-padding-top">
+									조회수 ${topArticle.hits}
+									<input type="hidden" id="articleId" name="articleId" value="${topArticle.articleId}" />
+									<input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
+								</div>
+								<div class="w3-col m12 w3-padding-top" style="height: 60px;">
+									${topArticle.articleDesc}
+								</div>
+								</a>
+								<div>
+									${topArticle.articleModifyDate} 
+								</div>
+								<div class="w3-col m8 w3-padding-bottom">
+									<div style="float:left; margin-right:10px;">
+										<c:if test="${topArticle.like}">
+											<img class="like" id="like${topArticle.articleId}" src="/resource/img/like_active_small.png" style="width:20px;">	
+											<span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
+										</c:if>
+										<c:if test="${!topArticle.like}">
+											<img class="like" id="like${topArticle.articleId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
+											<span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
+										</c:if>
+									</div>
+									<div>
+										<c:if test="${topArticle.dislike}">
+											<img class="dislike" id="dislike${topArticle.articleId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
+											<span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
+										</c:if>
+										<c:if test="${!topArticle.dislike}">
+											<img class="dislike" id="dislike${topArticle.articleId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
+											<span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
+										</c:if>
+									</div>
+								</div>
+								<div class="w3-col m2">
+									<img src="/resource/img/reply_small.png" style="width:20px;">댓글 수 
+								
+									<c:if test="${topArticle.scrab}">
+										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_active_small.png" style="width:20px;">스크랩하기
+									</c:if>
+									
+									<c:if test="${!topArticle.scrab}">
+										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">스크랩하기
+									</c:if>
+								</div>
+								<div class="w3-col m1">
+										<span class="doClaim glyphicon glyphicon-send">신고하기</span>
+									</div>
+									<div class="claim w3-col m12">
+										<form class="claimWrite">
+											<input class="w3-input" type="text" class="claimCom" id="claimCom${topArticle.articleId}" name="claimCom${topArticle.articleId}"
+															placeholder="신고 사유를 입력하세요." style="margin-bottom: 5px;">
+											<span class="doClaimBtn" id="claim${topArticle.articleId}">신고하기</span>
+										</form>
+									</div>									
+							</div>
+						</div>
+					</div>
+				</div>	
+				<!-- 조회수 많은 게시글 끝 -->
+	
+	
 			<c:forEach items="${univArticles}" var="article">
 				<div class="w3-row-padding w3-margin-top">
 					<div class="w3-col m12">

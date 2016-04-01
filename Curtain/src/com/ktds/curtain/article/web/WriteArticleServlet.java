@@ -77,6 +77,9 @@ public class WriteArticleServlet extends HttpServlet {
 						if ( boardId.equals(BoardId.MAJOR_BOARD)) {
 						response.sendRedirect("/studentMajorAritlce?isFword=1");
 						}
+						else if (boardId.equals(BoardId.UNIV_BOARD)) {
+							response.sendRedirect("/studentUnivArticle?isFword=1");
+						}
 						return;
 					}  	
 					break;
@@ -89,6 +92,7 @@ public class WriteArticleServlet extends HttpServlet {
 				article.setBoardId(Integer.parseInt(boardId));
 				article.setEmail(stdMember.getEmail());
 				article.setMajorGroupId(stdMember.getMajorGroupId());
+				article.setUnivId(stdMember.getUnivId());
 
 				boolean doWriteArticle = articleBiz.doWriteArticle(article, stdMember, request);
 				int articleId = articleBiz.getArticleId();

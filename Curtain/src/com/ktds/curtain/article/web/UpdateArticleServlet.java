@@ -41,6 +41,7 @@ public class UpdateArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
@@ -49,6 +50,7 @@ public class UpdateArticleServlet extends HttpServlet {
 		articleVO = articleBiz.showDetail(articleId, stdMember);
 		String desc = articleVO.getArticleDesc().replaceAll("<br/>", "\n");
 		articleVO.setArticleDesc(desc);
+		articleVO.setBoardId(boardId);
 		
 		List<FileVO> files = articleBiz.getFileListByArticleId(articleId);
 		

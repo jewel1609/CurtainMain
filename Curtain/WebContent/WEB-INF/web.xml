@@ -560,7 +560,16 @@
     <servlet-name>SecedeMemberServlet</servlet-name>
     <url-pattern>/myPage/secedeMember</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>ShowKeywordTopSeven</display-name>
+    <servlet-name>ShowKeywordTopSeven</servlet-name>
+    <servlet-class>com.ktds.curtain.keyword.web.ShowKeywordTopSeven</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowKeywordTopSeven</servlet-name>
+    <url-pattern>/showKeyword</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>PromotionArticleServlet</display-name>
@@ -603,5 +612,4 @@
     <servlet-name>WriteReplyClaimServlet</servlet-name>
     <url-pattern>/writeReplyClaim</url-pattern>
   </servlet-mapping>
-
 </web-app>

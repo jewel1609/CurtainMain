@@ -227,29 +227,6 @@
 
 				});
 
-
-	$(document).ready( function () {
-		
-		myAccordion('demo');
-		
-		$("#univ").mouseleave(function(){
-			$("#univ").css('background-color', '#a9d039');
-			$("#univ").css('color', '#ffffff');
-		});
-		$("#univ").css('background-color', '#a9d039');
-		$("#univ").css('color', '#ffffff');
-		
-		$("#writeBtn").click( function () {
-				var form = $("#writeArticle");
-				form.attr("method", "post");
-				form.attr("action","/writeArticle");
-				form.submit();
-		});
-
-	});
-
-
-
 	function readURL(input) {
 
 		if (input.files && input.files[0]) {

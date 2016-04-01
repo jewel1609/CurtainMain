@@ -50,22 +50,9 @@ public class HitsCountServlet extends HttpServlet {
 		articleVO.setBoardId(boardId);
 		
 		articleBiz.hitsCount(articleVO);
-		
-		if ( boardId == Integer.parseInt(BoardId.MAJOR_BOARD)) {
+
 			response.sendRedirect("/showDetail?boardId="+boardId+"&articleId="+articleId);
-		}
-		else if ( boardId == Integer.parseInt(BoardId.UNIV_BOARD)) {
-			response.sendRedirect("/studentUnivArticle");
-		}
-		else if ( boardId == Integer.parseInt(BoardId.FREE_BOARD)) {
-			response.sendRedirect("/showDetail?boardId="+boardId+"&articleId="+articleId);
-		}
-		else if( boardId == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)){
-			response.sendRedirect("/showDetail?boardId="+boardId+"&articleId="+articleId);
-		}
-		else if( boardId == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)){
-			response.sendRedirect("/showDetail?boardId="+boardId+"&articleId="+articleId);
-		}
+
 	}
 
 }

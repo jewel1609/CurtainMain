@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query>
+	
+	<member>
+		<deleteMember>
+			DELETE 
+			FROM   MEMBER
+			WHERE  EMAIL = ?
+		</deleteMember>
+	
+		<getAllMemberCount>
+			SELECT	COUNT(EMAIL)
+			FROM 	MEMBER
+		</getAllMemberCount>
+	
+		<getAllMember>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	*
+										FROM 	MEMBER
+										ORDER	BY EMAIL DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllMember>
+		
+		<getMemberByIdAndPassword>
+			SELECT	*
+			FROM	MEMBER
+			WHERE	EMAIL = ?
+			AND		PASSWORD = ?
+		</getMemberByIdAndPassword>
+		
+		<registerMember>
+			INSERT INTO 	MEMBERS (
+   										MEMBER_ID
+   										, NICK_NAME
+										, PASSWORD
+										, EMAIL
+									) 
+			VALUES					 ( 
+										?
+										, ?
+										, ?
+										, ? 
+									)
+		</registerMember>
+	</member>
+	
+	<article>
+		<getAllArticleCount>
+			SELECT	COUNT(A.ARTICLE_ID)
+			FROM 	ARTICLE A, MEMBERS M
+			WHERE   A.MEMBER_ID = M.MEMBER_ID
+		</getAllArticleCount>
+		<getAllArticle>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	A.ARTICLE_ID
+												, TITLE
+												, M.NICK_NAME
+												, HITS
+												, RECOMMENDS
+										        , COUNT(FILE_ID) FILE_COUNT
+										FROM 	ARTICLE A
+										        , MEMBERS M
+										        , FILES F
+										WHERE   A.MEMBER_ID = M.MEMBER_ID
+										AND     A.ARTICLE_ID = F.ARTICLE_ID(+)
+										GROUP   BY A.ARTICLE_ID
+												, TITLE
+												, M.NICK_NAME
+												, HITS
+												, RECOMMENDS
+										ORDER	BY A.ARTICLE_ID DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllArticle>
+		<showDetail>
+			SELECT		ARTICLE_ID
+						, TITLE
+	       		 		, NICK_NAME
+	       		 		, M.MEMBER_ID
+	       		 		, DESCRIPT
+	        			, HITS
+	        			, RECOMMENDS
+			FROM    	ARTICLE A
+	        			, MEMBERS M
+			WHERE   	A.MEMBER_ID = M.MEMBER_ID
+			AND			ARTICLE_ID = ?
+		</showDetail>
+		
+		<addHit>
+			UPDATE	ARTICLE
+			SET		HITS = HITS + 1
+			WHERE	ARTICLE_ID = ?
+		</addHit>
+		
+		<addRecommend>
+			UPDATE	ARTICLE
+			SET		RECOMMENDS = RECOMMENDS + 1
+			WHERE	ARTICLE_ID = ?
+		</addRecommend>
+		
+		<doWrite>
+			INSERT INTO		ARTICLE (
+	   									ARTICLE_ID
+	   									, MEMBER_ID
+	   									, TITLE
+	   									, DESCRIPT
+	   								) 
+			VALUES 					(	
+										ARTICLE_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, ?
+								    )
+ 		</doWrite>
+ 		
+ 		<updateArticleOnlyTitle>
+			UPDATE	ARTICLE
+			SET		TITLE = ?
+			WHERE	ARTICLE_ID = ?
+		</updateArticleOnlyTitle>
+		
+		<updateArticleOnlyDescription>
+			UPDATE	ARTICLE
+			SET		DESCRIPT = ?
+			WHERE	ARTICLE_ID = ?
+		</updateArticleOnlyDescription>
+		
+		<updateArticle>
+			UPDATE	ARTICLE
+			SET		TITLE = ?
+					, DESCRIPT = ?
+			WHERE	ARTICLE_ID = ?
+		</updateArticle>
+		<latestArticleNo>
+			SELECT	ARTICLE_ID_SEQ.CURRVAL
+			FROM	DUAL
+		</latestArticleNo>
+		<deleteArticle>
+			DELETE
+			FROM	ARTICLE
+			WHERE	ARTICLE_ID = ?
+		</deleteArticle>
+	</article>
+	<file>
+		<doWriteFile>
+				INSERT INTO 	FILES (
+	   									FILE_ID
+	   									, ARTICLE_ID
+	   									, FILE_NAME
+	   									, FILE_LOCATION
+	   								   ) 
+				VALUES 				  ( 
+										FILE_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, ?
+	 								   )
+	 	</doWriteFile>
+	 	<showDetail>
+	 		SELECT		FILE_ID
+	 					, ARTICLE_ID
+	 					, FILE_NAME
+	 					, FILE_LOCATION
+			FROM 		FILES
+			WHERE		ARTICLE_ID = ?
+	 	</showDetail>
+	 	<deleteFile>
+	 		DELETE
+			FROM	FILES
+			WHERE	ARTICLE_ID = ?
+	 	</deleteFile>
+	</file>
+
+</query>

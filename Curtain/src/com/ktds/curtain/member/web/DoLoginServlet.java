@@ -78,18 +78,22 @@ public class DoLoginServlet extends HttpServlet {
 				//결과물만 보여준다.
 				checkCount = "a";
 				session.setAttribute("_VOTE_", checkCount);
-				if(member.getMemberTypeId() >= 1 && member.getMemberTypeId()<=3){
+				if(member.getMemberTypeId() == 1 || member.getMemberTypeId() == 2 || member.getMemberTypeId() == 3 ){
 					response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
+				} 
+				else{
+					response.sendRedirect(Root.get(this) + "/promotionArticle");
 				}
-				response.sendRedirect(Root.get(this) + "/promotionArticle");
 			}
 		
 			else if(!surveyCheck ){
 				session.setAttribute("_VOTE_", checkCount);
-				if(member.getMemberTypeId() >= 1 && member.getMemberTypeId()<=3){
+				if(member.getMemberTypeId() == 1 || member.getMemberTypeId() == 2 || member.getMemberTypeId() == 3){
 					response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
 				}
-				response.sendRedirect(Root.get(this) + "/promotionArticle");
+				else {
+					response.sendRedirect(Root.get(this) + "/promotionArticle");
+				}
 			}
 		}
 		

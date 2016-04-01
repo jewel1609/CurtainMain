@@ -122,9 +122,53 @@
 			
 		}); */
 		
+		setInterval(function(e) {
+			$.post(
+					"/showKeyword"
+					, { }
+					, function(data) {
+						var jsonData = {};
+						
+						try{
+							jsonData = JSON.parse(data);
+						}
+						catch(e) { 
+						}
+						
+						$("#keyword1").text("1. " + jsonData.keyword0);
+						$("#keyword2").text("2. " + jsonData.keyword1);
+						$("#keyword3").text("3. " + jsonData.keyword2);
+						$("#keyword4").text("4. " + jsonData.keyword3);
+						$("#keyword5").text("5. " + jsonData.keyword4);
+						$("#keyword6").text("6. " + jsonData.keyword5);
+						$("#keyword7").text("7. " + jsonData.keyword6);
+			  		}
+			);
+		}, 1000*5); 
+		
+		$.post(
+				"/showKeyword"
+				, { }
+				, function(data) {
+					var jsonData = {};
+					
+					try{
+						jsonData = JSON.parse(data);
+					}
+					catch(e) { 
+					}
+					
+					$("#keyword1").text("1. " + jsonData.keyword0);
+					$("#keyword2").text("2. " + jsonData.keyword1);
+					$("#keyword3").text("3. " + jsonData.keyword2);
+					$("#keyword4").text("4. " + jsonData.keyword3);
+					$("#keyword5").text("5. " + jsonData.keyword4);
+					$("#keyword6").text("6. " + jsonData.keyword5);
+					$("#keyword7").text("7. " + jsonData.keyword6);
+		  		}
+		);
+		
 	});
-	
-
 </script>
 <nav class="w3-sidenav w3-collapse w3-white w3-card" style="z-index:3; width:250px; height:100%; margin-top:0px; border:0px; border-left:1px solid #bababa; right: 0px;">
   <a href="javascript:void(0)" onclick="w3_close()" 
@@ -138,14 +182,15 @@
 	 	<div class="w3-card w3-round w3-white" style="padding:4px;">
 	 		<strong>게시판의 관심사</strong><br/>
 	 	</div>
-
-		  1.<br/>
-		  2.<br/>
-		  3.<br/>
-		  4.<br/>
-		  5.<br/>
-		  6.<br/>
-		   
+		<div id="wrapperKeywordList">
+			<p id="keyword1"></p>
+			<p id="keyword2"></p>
+			<p id="keyword3"></p>
+			<p id="keyword4"></p>
+			<p id="keyword5"></p>
+			<p id="keyword6"></p>
+			<p id="keyword7"></p>
+		</div>
 	</div>	   
 	
 	<div>

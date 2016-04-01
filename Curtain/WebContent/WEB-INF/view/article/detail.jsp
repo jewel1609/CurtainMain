@@ -287,10 +287,28 @@ $(document).ready(function () {
 						</div>
 			             <div><h6>${article.articleModifyDate} </h6></div>
 			            	<ul class="pager">
-							  <li class="previous"><a href="/studentMajorAritlce" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
-							  	<c:set var="loginId" value="${ sessionScope._MEMBER_.email}"/>
+			            			<c:if test="${article.boardId eq 1}">
+										 <li class="previous"><a href="/studentMajorAritlce" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+									</c:if>
+									<c:if test="${article.boardId eq 2}">
+										 <li class="previous"><a href="/studentUnivArticle" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+									</c:if>
+									<c:if test="${article.boardId eq 3}">
+										 <li class="previous"><a href="/promotionArticle" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+									</c:if>
+									<c:if test="${article.boardId eq 4 }">
+										 <li class="previous"><a href="/secretArticleList" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+									</c:if>
+									<c:if test="${article.boardId eq 5 }">
+										 <li class="previous"><a href="/oneLayerCurtain" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+									</c:if>		
+									<c:if test="${article.boardId eq 6 }">
+										 <li class="previous"><a href="/twoLayerCurtain" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+									</c:if>	
+							   	<c:set var="loginId" value="${ sessionScope._MEMBER_.email}"/>
 								<c:if test="${ loginId eq article.email }">
-								<li class="next"><a href="<c:url value="/updateArticle?articleId=${article.articleId}"/>"  style="color:#FF3300; font-size: 10pt;">수정하기</a></li>
+								${article.boardId}
+								<li class="next"><a href="<c:url value="/updateArticle?articleId=${article.articleId}&boardId=${article.boardId}"/>"  style="color:#FF3300; font-size: 10pt;">수정하기</a></li>
 								<li class="next"><a href="<c:url value="/deleteArticle?articleId=${article.articleId}&email=${article.email}"/>"  style="color:#FF3300; font-size: 10pt;">삭제하기</a></li>
 								</c:if>
 							</ul>  

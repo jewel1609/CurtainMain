@@ -14,16 +14,15 @@ import com.ktds.curtain.article.articleClaim.vo.ArticleClaimVO;
 import com.ktds.curtain.member.vo.MemberVO;
 
 /**
- * Servlet implementation class WriteClaimServlet
+ * Servlet implementation class WriteReplyClaimServlet
  */
-public class WriteClaimServlet extends HttpServlet {
+public class WriteReplyClaimServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private WriteClaimBiz writeClaimBiz;
-       
+	private WriteClaimBiz writeClaimBiz;    
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WriteClaimServlet() {
+    public WriteReplyClaimServlet() {
         super();
         writeClaimBiz = new WriteClaimBiz();
     }
@@ -40,20 +39,19 @@ public class WriteClaimServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String claimText = request.getParameter("claimText");
-		String articleClaim = request.getParameter("articleClaim");
+		String replyClaim = request.getParameter("replyClaim");
 
-		int articleId = Integer.parseInt(articleClaim.substring(5));
+		int replyId = Integer.parseInt(replyClaim.substring(5));
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
 		
 		ArticleClaimVO articleClaimVO = new ArticleClaimVO();
-		articleClaimVO.setArticleId(articleId);
+		articleClaimVO.setReplyId(replyId);
 		articleClaimVO.setEmail(member.getEmail());
 		articleClaimVO.setClaimText(claimText);
 		
-		boolean doWriteClaim = writeClaimBiz.doWriteClaim(articleClaimVO);
+		boolean doWriteClaim = writeClaimBiz.doWriteReplyClaim(articleClaimVO);
 
-		
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");
@@ -63,8 +61,6 @@ public class WriteClaimServlet extends HttpServlet {
 		out.print(json.toString()); //String으로 바껴서 간다.
 		out.flush();
 		out.close();
-		
-		
 	}
 
 }

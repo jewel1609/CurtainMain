@@ -12,6 +12,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 	
+		myAccordion('demo1');
+		
+		$("#oneLayerCurtain").mouseleave(function(){
+			$("#oneLayerCurtain").css('background-color', '#a9d039');
+			$("#oneLayerCurtain").css('color', '#ffffff');
+		});
+		$("#oneLayerCurtain").css('background-color', '#a9d039');
+		$("#oneLayerCurtain").css('color', '#ffffff');
+		
 		if($("#isFword").val() == '1'){
 			alert("비방글은 게시하실 수 없습니다.");
 		}

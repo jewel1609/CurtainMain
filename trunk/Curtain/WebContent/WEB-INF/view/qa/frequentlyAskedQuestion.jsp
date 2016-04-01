@@ -62,14 +62,14 @@
 		});
 		
 		$("#btnMyQuestion").click( function () {
-			var form = $(".btnForm");
+			var form = $(".btnFormByFreuentlyAskedQuestion");
 			form.attr("method", "post" );
 			form.attr("action", "/myQuestion");
 			form.submit();
 		});
 		
 		$("#btnDoRegisterQuestion").click( function () {
-			var form = $(".btnForm");
+			var form = $(".btnFormByFreuentlyAskedQuestion");
 			form.attr("method", "post" );
 			form.attr("action", "/registerQuestion");
 			form.submit();
@@ -170,7 +170,7 @@
 									<li><h4 style="display: inline;">내가 질문한 글 보기</h4></li>
 								</ul>
 							</div>
-							<form class="btnForm">
+							<form class="btnFormByFreuentlyAskedQuestion">
 								<div id="btnMyQuestion" class="btn btn-primary" style="float: right;
 									 border: 0px currentColor; border-image: none; 
 									 background-color: rgb(255, 51, 0); color: white;">
@@ -207,7 +207,7 @@
 								</ul>
 							</div>
 							<div style="float: right; ">
-								<form class="btnForm">
+								<form class="btnFormByFreuentlyAskedQuestion">
 									<div id="btnDoRegisterQuestion" class="btn btn-primary" style="float: right;
 										 border: 0px currentColor; border-image: none; 
 										 background-color: rgb(255, 51, 0); color: white;">

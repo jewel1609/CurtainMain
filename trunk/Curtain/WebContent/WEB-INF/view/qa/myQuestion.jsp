@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#btnFAQ").click(function() {
-			var form = $("#btnForm");
+			var form = $("#btnFormByMyQuestion");
 			form.attr("method", "post");
 			form.attr("action", "<c:url value="/questionAndAnswer"/> ");
 			form.submit();
@@ -49,7 +49,7 @@
 								</div>
 							</div>
 						</div>
-						<form id="btnForm">
+						<form id="btnFormByMyQuestion">
 							<div style="float: right; width: 80px; margin-top: 60px;">
 								<div id="btnFAQ" class="btn btn-primary" style="float: right;
 									 border: 0px currentColor; border-image: none; 

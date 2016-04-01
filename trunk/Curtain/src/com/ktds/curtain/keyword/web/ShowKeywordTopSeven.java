@@ -53,8 +53,6 @@ public class ShowKeywordTopSeven extends HttpServlet {
 		}
 		json.append("}");
 		
-		System.out.println(json.toString());
-		
 		PrintWriter out = response.getWriter();
 		out.print(json.toString());
 		out.flush();

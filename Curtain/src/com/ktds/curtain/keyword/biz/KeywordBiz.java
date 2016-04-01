@@ -24,7 +24,7 @@ public class KeywordBiz {
 		
 		List<String> nouns = nounExtractor.nounExtractorByTitle(article.getArticleTitle(), requestPathSplit);
 		
-		keywordDAO.setNounByArticleList(nouns);
+		keywordDAO.setNounByArticleList(nouns, article);
 	}
 	
 }

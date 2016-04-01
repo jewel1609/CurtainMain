@@ -721,7 +721,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public void insertSecedeMember(String memberEmail, String mTime) {
+	public void insertSecedeMember(String memberEmail, String mTime, String secedeDesc) {
 		
 		loadOracleDriver();
 
@@ -734,6 +734,7 @@ public class MemberDAO {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, memberEmail);
 			stmt.setString(2, mTime);
+			stmt.setString(3, secedeDesc);
 			
 			stmt.executeUpdate();
 			

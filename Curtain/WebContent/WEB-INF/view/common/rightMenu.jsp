@@ -144,7 +144,7 @@
 						$("#keyword7").text("7. " + jsonData.keyword6);
 			  		}
 			);
-		}, 1000*5); 
+		}, 1000*60); 
 		
 		$.post(
 				"/showKeyword"

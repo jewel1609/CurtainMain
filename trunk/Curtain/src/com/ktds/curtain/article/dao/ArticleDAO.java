@@ -587,7 +587,7 @@ public class ArticleDAO {
 				article.setEmail(rs.getString("EMAIL"));
 				article.setNickName(rs.getString("NICK_NAME"));
 				article.setBoardId(rs.getInt("BOARD_ID"));
-				article.setBoardId(rs.getInt("MAJOR_GROUP_ID"));
+				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				article.setMajorGroupId(rs.getInt("UNIV_ID"));
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));

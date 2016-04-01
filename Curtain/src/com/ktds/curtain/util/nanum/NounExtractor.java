@@ -7,7 +7,8 @@ import java.util.List;
 import kr.ac.kaist.swrc.jhannanum.comm.Eojeol;
 import kr.ac.kaist.swrc.jhannanum.comm.Sentence;
 import kr.ac.kaist.swrc.jhannanum.hannanum.Workflow;
-import kr.ac.kaist.swrc.jhannanum.hannanum.WorkflowFactory;
+import kr.ac.kaist.swrc.jhannanum.plugin.MajorPlugin.MorphAnalyzer.ChartMorphAnalyzer.ChartMorphAnalyzer;
+import kr.ac.kaist.swrc.jhannanum.plugin.MajorPlugin.PosTagger.HmmPosTagger.HMMTagger;
 
 
 
@@ -28,9 +29,27 @@ import kr.ac.kaist.swrc.jhannanum.hannanum.WorkflowFactory;
  */
 public class NounExtractor {
 	
-	public List<String> nounExtractorByTitle(String title) {
-		Workflow workflow = WorkflowFactory.getPredefinedWorkflow(WorkflowFactory.WORKFLOW_NOUN_EXTRACTOR);
-
+	private String getCurrentJavaPath (String[] requestPathSplit) {
+		String nanumClassPath = "";
+		
+		for (int i = 0; i < requestPathSplit.length; i++) {
+			nanumClassPath += requestPathSplit[i] + "\\";
+			
+			if (requestPathSplit[i].contains("workspace")) {
+				return nanumClassPath;
+			}
+		}
+		return null;
+	}
+	
+	public List<String> nounExtractorByTitle(String title, String[] requestPathSplit) {
+		
+		String currentClassPath = getCurrentJavaPath(requestPathSplit);
+		
+		Workflow workflow = new Workflow(currentClassPath + "Curtain\\WebContent\\resource\\nanum");
+		workflow.setMorphAnalyzer(new ChartMorphAnalyzer(), "conf\\plugin\\MajorPlugin\\MorphAnalyzer\\ChartMorphAnalyzer.json");
+		workflow.setPosTagger(new HMMTagger(), "conf\\plugin\\MajorPlugin\\PosTagger\\HmmPosTagger.json");
+		
 		try {
 
 			/* Activate the work flow in the thread mode */

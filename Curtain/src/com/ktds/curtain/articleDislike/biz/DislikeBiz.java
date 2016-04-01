@@ -39,8 +39,6 @@ public class DislikeBiz {
 	 * @return
 	 */
 	public boolean isExistDislikeData(ArticleDislikeVO dislikeVO) {	
-		System.out.print("기존에 싫어요 수 체크: ");
-		System.out.println(dislikeDAO.selectDislikeCount(dislikeVO) > 0);
 		return dislikeDAO.selectDislikeCount(dislikeVO) > 0;
 		
 	}

@@ -170,7 +170,7 @@
 
 			var form = $("#writeForm");
 			form.attr("method", "post");
-			form.attr("action", "/promotionWriteArticle");
+			form.attr("action", "/promotionWrite");
 			form.submit();
 
 		});

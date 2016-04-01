@@ -1,25 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- <script type="text/javascript">
-	$(document).ready( function (){
-<<<<<<< .mine
-		if(myAccordion('demo')==null){
-			return;
-		}
-		myAccordion('demo');
-=======
-		//myAccordion('demo');
->>>>>>> .r803
-		
-			
-	});
-<<<<<<< .mine
-</script> -->
-
-
-
-	
 
 	<nav class="w3-sidenav w3-collapse w3-white w3-card" 
 			style="z-index: 3; width: 250px; height: 100%; 
@@ -47,8 +28,12 @@
 				학생게시판<i class="fa fa-caret-down"></i>
 			</a>
 			<div id="demo" class="w3-accordion-content">
-				<a href="<c:url value="/studentMajorAritlce?majorGroupId="/>${majorGroupId}">&nbsp;&nbsp;&nbsp;${majorGroupName}</a> 
-				<a href="<c:url value="/studentUnivArticle?univId="/>${univId}">&nbsp;&nbsp;&nbsp;${univName}</a>
+				<div id="majorGroup">
+					<a href="<c:url value="/studentMajorAritlce?majorGroupId="/>${majorGroupId}">&nbsp;&nbsp;&nbsp;${majorGroupName}</a>
+				</div> 
+				<div id="univ">
+					<a href="<c:url value="/studentUnivArticle?univId="/>${univId}">&nbsp;&nbsp;&nbsp;${univName}</a>
+				</div>
 			</div>
 		</div>
 
@@ -56,9 +41,13 @@
 			<a onclick="myAccordion('demo1')" href="javascript:void(0)">비밀게시판<i class="fa fa-caret-down"></i></a>
 			<div id="demo1" class="w3-accordion-content w3-animate-left w3-padding">
 				<c:if test="${memberType eq 2 || memberType eq 3}">
-					<a href="<c:url value="/oneLayerCurtain"/>">한겹</a> 
+					<div id="oneLayerCurtain">
+						<a href="<c:url value="/oneLayerCurtain"/>">한겹</a> 
+					</div>
 					<c:if test="${memberType eq 3 }">
-						<a href="<c:url value="/twoLayerCurtain"/>">두겹</a>
+						<div id="twoLayerCurtain">
+							<a href="<c:url value="/twoLayerCurtain"/>">두겹</a>
+						</div>
 					</c:if>
 				</c:if>
 			</div>

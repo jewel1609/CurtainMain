@@ -50,6 +50,101 @@ public class ReplyDislikeDAO {
 		}
 	}
 	
+	/**
+	 * 이미 싫어요 되어있는지 없는지 보기
+	 * @param replyDislikeVO
+	 * @return
+	 */
+	public int selectDislikeCount(ReplyDislikeVO replyDislikeVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/replyDislike/selectDislikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyDislikeVO.getReplyId());
+			stmt.setString(2, replyDislikeVO.getEmail());
+
+			rs = stmt.executeQuery();
+			rs.next();
+
+			return rs.getInt(1);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+/**
+ * 댓글 싫어요 삭제하기
+ * @param replyDislikeVO
+ */
+	public void deleteDislike(ReplyDislikeVO replyDislikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/replyDislike/deleteDislike/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setInt(1, replyDislikeVO.getReplyId());
+			stmt.setString(2, replyDislikeVO.getEmail());
+
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+
+	/**
+	 * 댓글 싫어요 삽입
+	 * @param replyDislikeVO
+	 */
+	public void insertDislike(ReplyDislikeVO replyDislikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/replyDislike/insertDislike/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setInt(1, replyDislikeVO.getReplyId());
+			stmt.setString(2, replyDislikeVO.getEmail());
+			stmt.setInt(3, replyDislikeVO.getArticleId());
+
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -79,5 +174,7 @@ public class ReplyDislikeDAO {
 		}
 
 	}
+
+
 
 }

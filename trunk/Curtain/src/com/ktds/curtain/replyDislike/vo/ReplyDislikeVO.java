@@ -6,7 +6,14 @@ public class ReplyDislikeVO {
 	private String dislikeDate;
 	private int replyId;
 	private String email;
+	private int articleId;
 	
+	public int getArticleId() {
+		return articleId;
+	}
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
+	}
 	public int getReplyDislikeId() {
 		return replyDislikeId;
 	}

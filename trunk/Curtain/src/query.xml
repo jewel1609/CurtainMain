@@ -508,6 +508,13 @@
 			AND		EMAIL = ?
 		</countArticleFromRankModifyDate>
 
+		<getArticleIdByTitleAndDesc>
+			SELECT	ARTICLE_ID
+			FROM	ARTICLE
+			WHERE	ARTICLE_TITLE = ?
+			AND		ARTICLE_DESC = ?
+			ORDER	BY ARTICLE_REGISTER_DATE DESC
+		</getArticleIdByTitleAndDesc>
 		
 	</article>
 	<articleLikes>

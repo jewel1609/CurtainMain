@@ -70,7 +70,7 @@ public class DoUpdateArticleServlet extends HttpServlet {
 
 		for (int i = 0; i < wordList.size(); i++) {
 			if (articleTitle.contains(wordList.get(i)) || articleDescription.contains(wordList.get(i))) {
-				response.sendRedirect("/showDetail?isFword=1&articleId="+articleId);
+				response.sendRedirect("/showDetail?isFword=1&articleId="+articleId+"&boardId="+boardId);
 				return;
 			}  	
 			break;
@@ -83,6 +83,7 @@ public class DoUpdateArticleServlet extends HttpServlet {
 		articleVO.setArticleDesc(articleDescription);
 		articleVO.setArticleTypeId(Integer.parseInt(articleTypeId));
 		articleVO.setBoardId(Integer.parseInt(boardId));
+		System.out.println(article.getBoardId());
 		articleVO.setEmail(stdMember.getEmail());
 		articleVO.setMajorGroupId(stdMember.getMajorGroupId());
 
@@ -111,29 +112,8 @@ public class DoUpdateArticleServlet extends HttpServlet {
 				System.out.println("영상 등록 성공");
 			}
 		}
-		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD)) {
-			response.sendRedirect("/showDetail?articleId="+articleId);
-			return;
-		}
-		else if( article.getBoardId() == Integer.parseInt(BoardId.UNIV_BOARD)) {
-			response.sendRedirect("/showDetail?articleId="+articleId);
-			return;
-		}
-		else if( article.getBoardId() == Integer.parseInt(BoardId.FREE_BOARD)) {
-			response.sendRedirect("/showDetail?articleId="+articleId);
-			return;
-		}
-		else if( article.getBoardId() == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) {
-			response.sendRedirect("/showDetail?articleId="+articleId);
-			return;
-		}
-		else if( article.getBoardId() == Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {
-			response.sendRedirect("/showDetail?articleId="+articleId);
-			return;
-		}
+			response.sendRedirect("/showDetail?articleId="+articleId+"&boardId="+article.getBoardId());
 
-
-		
 	}
 
 }

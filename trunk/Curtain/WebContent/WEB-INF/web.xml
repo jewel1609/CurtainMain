@@ -560,4 +560,27 @@
     <servlet-name>SecedeMemberServlet</servlet-name>
     <url-pattern>/myPage/secedeMember</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>PromotionArticleServlet</display-name>
+    <servlet-name>PromotionArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.PromotionArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PromotionArticleServlet</servlet-name>
+    <url-pattern>/promotionArticle</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>PromotionWriteArticleServlet</display-name>
+    <servlet-name>PromotionWriteArticleServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.PromotionWriteArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PromotionWriteArticleServlet</servlet-name>
+    <url-pattern>/promotionWrite</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

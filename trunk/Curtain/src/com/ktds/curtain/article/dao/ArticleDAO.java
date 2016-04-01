@@ -778,6 +778,7 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/showTopArticle/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, Integer.parseInt(boardId));
+			stmt.setInt(2, Integer.parseInt(boardId));
 			rs = stmt.executeQuery();
 
 			if (rs.next()) {

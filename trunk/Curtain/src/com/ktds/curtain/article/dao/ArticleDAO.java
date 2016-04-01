@@ -85,7 +85,7 @@ public class ArticleDAO {
 			while (rs.next()) {
 				article = new ArticleVO();
 				article.setArticleId(rs.getInt("ARTICLE_ID"));
-				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));	
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
 				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));

@@ -84,7 +84,9 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(articleTypeId);
 		article.setBoardId(Integer.parseInt(boardId));
+		System.out.println("보드 아이디: "+ article.getBoardId());
 		article.setEmail(loginMember.getEmail());
+
 
 		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember, request);
 		int articleId = articleBiz.getArticleId();

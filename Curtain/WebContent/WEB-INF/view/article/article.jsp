@@ -10,6 +10,15 @@
 
 	$(document).ready(function() {
 		
+				myAccordion('demo');
+		
+				$("#majorGroup").mouseleave(function(){
+					$("#majorGroup").css('background-color', '#a9d039');
+					$("#majorGroup").css('color', '#ffffff');
+				});
+				$("#majorGroup").css('background-color', '#a9d039');
+				$("#majorGroup").css('color', '#ffffff');
+		
 				$('[data-toggle="popover"]').popover();  
 				
 				if($("#isFword").val() == '1'){

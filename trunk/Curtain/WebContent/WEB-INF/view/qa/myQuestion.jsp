@@ -8,6 +8,13 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#qna").mouseleave(function(){
+			$("#qna").css('background-color', '#a9d039');
+			$("#qna").css('color', '#ffffff');
+		});
+		$("#qna").css('background-color', '#a9d039');
+		$("#qna").css('color', '#ffffff');
+		
 		$("#btnFAQ").click(function() {
 			var form = $("#btnFormByMyQuestion");
 			form.attr("method", "post");

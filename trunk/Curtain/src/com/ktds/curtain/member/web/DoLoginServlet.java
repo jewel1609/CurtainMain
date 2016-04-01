@@ -73,15 +73,26 @@ public class DoLoginServlet extends HttpServlet {
 		
 		
 
-		if ( surveyCheck) {
-			//투표를 이미했다는 것이기때문에
-			//결과물만 보여준다.
-			checkCount = "a";
-			session.setAttribute("_VOTE_", checkCount);
-		}
-			response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
+			if ( surveyCheck) {
+				//투표를 이미했다는 것이기때문에
+				//결과물만 보여준다.
+				checkCount = "a";
+				session.setAttribute("_VOTE_", checkCount);
+				if(member.getMemberTypeId() >= 1 && member.getMemberTypeId()<=3){
+					response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
+				}
+				response.sendRedirect(Root.get(this) + "/promotionArticle");
+			}
 		
+			else if(!surveyCheck ){
+				session.setAttribute("_VOTE_", checkCount);
+				if(member.getMemberTypeId() >= 1 && member.getMemberTypeId()<=3){
+					response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
+				}
+				response.sendRedirect(Root.get(this) + "/promotionArticle");
+			}
 		}
+		
 		else {
 			response.sendRedirect(Root.get(this) + "/main.jsp?errorCode=1");
 		}

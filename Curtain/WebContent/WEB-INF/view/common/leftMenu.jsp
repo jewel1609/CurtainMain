@@ -16,9 +16,10 @@
 	});
 <<<<<<< .mine
 </script> -->
-	
-</script>
 
+
+
+	
 
 	<nav class="w3-sidenav w3-collapse w3-white w3-card" 
 			style="z-index: 3; width: 250px; height: 100%; 
@@ -62,13 +63,13 @@
 				</c:if>
 			</div>
 		</div>
+		<div id="freeArticle">
+			<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
+		</div>
 	</c:if>
 		
 		
 	<c:if test="${memberType eq 1 || memberType eq 2 || memberType eq 3 || memberType eq 4 || memberType eq 5}">
-		<div id="freeArticle">
-			<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
-		</div>
 		<div id="promotion">
 			<a href="<c:url value="/promotionArticle"/>">홍보게시판</a>
 		</div>

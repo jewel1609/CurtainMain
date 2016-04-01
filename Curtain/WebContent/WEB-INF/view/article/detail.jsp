@@ -9,6 +9,9 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
+	
+    $(window).resize(function() {
+        $(".wrapper").css("height", window.innerHeight - 200);
 
 /* 	$("#writeReplyBtn").click(function() {
 		var form = $("#writeReplyForm");
@@ -203,7 +206,7 @@ $(document).ready(function () {
 
 
   <div class="w3-row" >
-    <div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
+    <div class="w3-col m7 w3-main wrapper" style="border-right:1px solid #bababa;
     background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height:885px; overflow: auto;">
      		
      		<!-- 게시판 헤더 -->

@@ -582,5 +582,26 @@
     <servlet-name>PromotionWriteArticleServlet</servlet-name>
     <url-pattern>/promotionWrite</url-pattern>
   </servlet-mapping>
-  
+
+  <servlet>
+    <description></description>
+    <display-name>DoSecedeMemberServlet</display-name>
+    <servlet-name>DoSecedeMemberServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.member.web.DoSecedeMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoSecedeMemberServlet</servlet-name>
+    <url-pattern>/doSecedeMember</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WriteReplyClaimServlet</display-name>
+    <servlet-name>WriteReplyClaimServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.articleClaim.web.WriteReplyClaimServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WriteReplyClaimServlet</servlet-name>
+    <url-pattern>/writeReplyClaim</url-pattern>
+  </servlet-mapping>
+
 </web-app>

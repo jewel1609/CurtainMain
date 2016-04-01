@@ -1147,6 +1147,20 @@
 											, ?
 										)
 		</setNounByArticleList>
+		
+		<getKeywordTopSeven>
+			SELECT  *
+			FROM    (
+			            SELECT  COUNT(KEYWORD_ID) COUNT_KEY_ID
+			                    , KEYWORD_NAME
+			            FROM    KEYWORD
+			            GROUP   BY KEYWORD_NAME
+			                    , KEYWORD_DATE
+			            HAVING  KEYWORD_DATE &gt; SYSDATE - 1
+			            ORDER   BY COUNT_KEY_ID DESC
+			        )
+			WHERE   ROWNUM &lt; 7
+		</getKeywordTopSeven>
 	</keyword>
 
 </query>

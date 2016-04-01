@@ -38,6 +38,32 @@ public class ArticleClaimDAO {
 		}
 	}
 	
+	public int doWriteReplyClaim(ArticleClaimVO articleClaimVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/articleClaim/doWriteReplyClaim/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, articleClaimVO.getEmail());
+			stmt.setInt(2, articleClaimVO.getReplyId());
+			stmt.setString(3, articleClaimVO.getClaimText());
+
+			int insertCount = stmt.executeUpdate();
+			
+			return insertCount;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -67,5 +93,7 @@ public class ArticleClaimDAO {
 		}
 
 	}
+
+
 
 }

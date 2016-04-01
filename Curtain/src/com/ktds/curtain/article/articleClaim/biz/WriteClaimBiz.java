@@ -15,4 +15,9 @@ public class WriteClaimBiz {
 		return insertClaim > 0;
 	}
 
+	public boolean doWriteReplyClaim(ArticleClaimVO articleClaimVO) {
+		int insertClaim = articleClaimDAO.doWriteReplyClaim(articleClaimVO);
+		return insertClaim > 0;
+	}
+
 }

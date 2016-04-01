@@ -117,7 +117,6 @@
           </div>
         </div>
       </div>
- </form>
       <div class="w3-myfont w3-left-align" >
       	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 	      	<div class="w3-margin-4" style="float:left;">
@@ -133,12 +132,11 @@
       <div id="formWrapper" class="w3-margin-32" >
 			<div class="w3-col m12">
 				<div class="w3-container w3-card" style="background-color: white; margin-bottom:25px;">
-					<form id="reasonSecede">
 						<textarea id="secedeDesc" name="secedeDesc" class="w3-col m12" rows="4" style="border: none; margin-bottom:70;"></textarea><br/>
-					</form>
 				</div>
 			</div>
 		</div>
+ </form>
 		
       <div class="w3-center-align">	
 		<div class="w3-btn-group">

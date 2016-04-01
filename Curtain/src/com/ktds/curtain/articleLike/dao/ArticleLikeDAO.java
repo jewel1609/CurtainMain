@@ -62,7 +62,12 @@ public class ArticleLikeDAO {
 		}
 	}
 	
-
+	/**
+	 * 좋아요 이미 되어잇는지 아닌지
+	 * @param articleLikeVO
+	 * @param member
+	 * @return
+	 */
 	public int selectLikeCount(ArticleLikeVO articleLikeVO, MemberVO member) {
 		loadOracleDriver();
 		

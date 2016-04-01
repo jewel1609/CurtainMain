@@ -202,7 +202,7 @@
 
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
-	<div class="w3-container w3-main" style="margin-top:0px;">
+	<div class="w3-container w3-main" style="margin-top: 30px; margin-bottom: 20px;">
 	
 		<c:set var="freeBoardMemberCount" value="${ sessionScope._MEMBER_.freeBoardMemberCount }" />
 		
@@ -412,7 +412,7 @@
 										<div>
 											${article.articleModifyDate} 
 										</div>
-										<div class="w3-col m10 w3-padding-bottom">
+										<div class="w3-col m w3-padding-bottom">
 											<div style="float:left; margin-right:10px;">
 												<c:if test="${article.like}">
 													<img class="like" id="like${article.articleId}" src="/resource/img/like_active_small.png" style="width:20px;">	

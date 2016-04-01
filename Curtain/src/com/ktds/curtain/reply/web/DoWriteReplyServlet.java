@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.article.biz.ArticleBiz;
+import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.curtain.reply.biz.ReplyBiz;
@@ -21,6 +23,7 @@ public class DoWriteReplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReplyBiz replyBiz;
 	private ProhibitedWordBiz proBiz;
+	private ArticleBiz articleBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -29,6 +32,7 @@ public class DoWriteReplyServlet extends HttpServlet {
         super();
         replyBiz = new ReplyBiz();
         proBiz = new ProhibitedWordBiz();
+        articleBiz = new ArticleBiz();
     }
 
 	/**
@@ -52,10 +56,12 @@ public class DoWriteReplyServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
-
+		
+		ArticleVO articleVO = articleBiz.showDetail(articleId, member);
+		
 		for (int i = 0; i < wordList.size(); i++) {
 			if (reply.contains(wordList.get(i))) {
-				response.sendRedirect("/showDetail?isFword=1&articleId="+articleId);
+				response.sendRedirect("/showDetail?isFword=1&articleId="+articleId+"&boardId="+articleVO.getBoardId());
 				return;
 			}  	
 			break;
@@ -75,7 +81,7 @@ public class DoWriteReplyServlet extends HttpServlet {
 		
 		replyBiz.addNewReply(replyInfo, request);
 		
-		response.sendRedirect("/showDetail?articleId="+articleId);
+		response.sendRedirect("/showDetail?articleId="+articleId+"&boardId="+articleVO.getBoardId());
 	}
 
 }

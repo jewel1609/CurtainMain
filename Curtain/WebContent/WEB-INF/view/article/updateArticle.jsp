@@ -107,7 +107,7 @@ function readURL(input) {
 							<div class="w3-container w3-padding w3-left-align">
 								<div class="form-group1">
 								<div>
-									<input type="hidden" id="boardId" name="boardId" value="1" />
+									<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
 									<div>
 										 <div>
 											<c:if test="${article.articleTypeName eq '연애'}">
@@ -170,7 +170,7 @@ function readURL(input) {
 							</div>
 									
 			            	<ul class="pager">
-							 	 <li class="previous col-sm-2"><a href="<c:url value="/showDetail?articleId=${article.articleId}"/>">뒤로가기</a></li>
+							 	 <li class="previous col-sm-2"><a href="<c:url value="/showDetail?articleId=${article.articleId}&boardId=${article.boardId}"/>">뒤로가기</a></li>
 								<li id="updateArticleBtn" class="col-sm-2">수정완료</li>
 							</ul>  
 								</div>

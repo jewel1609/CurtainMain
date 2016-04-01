@@ -45,7 +45,7 @@ public class ShowDetailServlet extends HttpServlet {
 		int isFword = 0;
 
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
-		int boardId = Integer.parseInt(request.getParameter("boardId"));
+//		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
@@ -62,7 +62,7 @@ public class ShowDetailServlet extends HttpServlet {
 		}
 		finally {
 			request.setAttribute("article", article);
-			request.setAttribute("boardId", boardId);
+//			request.setAttribute("boardId", boardId);
 			request.setAttribute("files", files);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/detail.jsp");

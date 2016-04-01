@@ -49,6 +49,101 @@ public class ReplyLikeDAO {
 		}
 	}
 	
+	/**
+	 * 리플 좋아요 삭제
+	 * @param replyLikeVO
+	 */
+	public void deleteLike(ReplyLikeVO replyLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/replyLike/deleteLike/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setInt(1, replyLikeVO.getReplyId());
+			stmt.setString(2, replyLikeVO.getEmail());
+
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
+	/**
+	 * 리플 좋아요 삽입
+	 * @param replyLikeVO
+	 */
+	public void insertLike(ReplyLikeVO replyLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/replyLike/insertLike/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setInt(1, replyLikeVO.getReplyId());
+			stmt.setString(2, replyLikeVO.getEmail());
+			stmt.setInt(3, replyLikeVO.getArticleId());
+
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
+	/**
+	 * 이미 좋아요 있는지 없는지 보기
+	 * 1이면 있는것
+	 * 0이면 없는것
+	 * @param replyLikeVO
+	 * @return
+	 */
+	public int selectLikeCount(ReplyLikeVO replyLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/replyLike/selectLikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyLikeVO.getReplyId());
+			stmt.setString(2, replyLikeVO.getEmail());
+			
+			rs = stmt.executeQuery();
+			rs.next();
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -78,5 +173,10 @@ public class ReplyLikeDAO {
 		}
 
 	}
+
+
+
+
+
 
 }

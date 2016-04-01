@@ -1131,11 +1131,13 @@
 											KEYWORD_ID
 											, KEYWORD_NAME
 											, KEYWORD_DATE
+											, ARTICLE_ID
 										) 
 			VALUES						( 
 											KEYWORD_ID_SEQ.NEXTVAL
 											, ?
 											, SYSDATE
+											, ?
 										)
 		</setNounByArticleList>
 	</keyword>

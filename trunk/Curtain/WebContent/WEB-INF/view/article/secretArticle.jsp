@@ -9,7 +9,15 @@
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
+		 $("#shortDescription").append(" <b>Appended text</b>.");
+		
+/* 		if( $(".desc").val().length > 100){
+			$(".desc").append(tag);
+		}
+ */
+		
 		$("#freeArticle").mouseleave(function(){
 			$("#freeArticle").css('background-color', '#a9d039');
 			$("#freeArticle").css('color', '#ffffff');
@@ -312,7 +320,7 @@
 									<input type="hidden" id="articleId" name="articleId" value="${topArticle.articleId}" />
 									<input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
 								</div>
-								<div class="w3-col m12 w3-padding-top" style="height: 60px;">
+								<div class="w3-col m12 w3-padding-top" id="shortDescription" style="height: 60px;">
 									${topArticle.articleDesc}
 								</div>
 								</a>
@@ -397,7 +405,7 @@
 											<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
 											<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
 										</div>
-										<div class="w3-col m12 w3-padding-top" style="height: 60px;">
+										<div class="w3-col m12 w3-padding-top desc" style="height: 60px; text-overflow: ellipsis; ">
 											${article.articleDesc}
 										</div>	
 									</a>						

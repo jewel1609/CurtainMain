@@ -11,6 +11,8 @@
 
 	$(document).ready(function() {
 				
+				myAccordion('demo');
+		
 				$("#univ").mouseleave(function(){
 					$("#univ").css('background-color', '#a9d039');
 					$("#univ").css('color', '#ffffff');
@@ -19,7 +21,7 @@
 				$("#univ").css('color', '#ffffff');
 		
 				$('[data-toggle="popover"]').popover();  
-				
+							
 				if($("#isFword").val() == '1'){
 					alert("비방글은 게시하실 수 없습니다.");
 				}

@@ -1003,6 +1003,36 @@ public class ArticleDAO {
 		}
 	}
 	
+	public int getArticleIdByTitleAndDesc (ArticleVO article) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int articleId = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			String query = XML.getNodeString("//query/article/getArticleIdByTitleAndDesc/text()");
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, article.getArticleTitle());
+			stmt.setString(2, article.getArticleDesc());
+			
+			rs = stmt.executeQuery();
+		
+			if(rs.next()){
+				articleId = rs.getInt("ARTICLE_ID");
+			}
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+		return articleId;
+	}
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

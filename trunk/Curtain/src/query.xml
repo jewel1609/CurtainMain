@@ -808,6 +808,18 @@
 			FROM	MEMBER
 			WHERE 	EMAIL = ?
 		</secedeMemberFromEmail>
+		
+		<insertSecedeMember>
+		INSERT INTO SECEDE_MEMBER (
+		   							SECEDE_MEMBER_ID
+		   							, EMAIL
+		   							, SECEDE_DATE
+		   						  ) 
+		VALUES 					  ( SECEDE_MEMBER_ID_SEQ.NEXTVAL
+									, ?
+									, ?
+		 						  )
+		</insertSecedeMember>
 	</member>
 	
 	<file>

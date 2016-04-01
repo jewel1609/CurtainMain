@@ -373,7 +373,7 @@
 								<div class="w3-col m10 w3-padding-bottom">
 									<div style="float:left; margin-right:10px;">
 										<c:if test="${topArticle.like}">
-											<img class="like" id="like${topArticle.articleId}" src="/resource/img/like_active_small.png" style="width:20px;">	
+											<span class="like" id="like${topArticle.articleId}" src="/resource/img/like_active_small.png" style="width:20px;">	
 											<span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
 										</c:if>
 										<c:if test="${!topArticle.like}">

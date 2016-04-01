@@ -320,7 +320,7 @@
 									<input type="hidden" id="articleId" name="articleId" value="${topArticle.articleId}" />
 									<input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
 								</div>
-								<div class="w3-col m12 w3-padding-top" style="height: 60px;">
+								<div class="w3-col m12 w3-padding-top desc" style="height: 60px;">
 									${topArticle.articleDesc}
 								</div>
 								</a>
@@ -405,7 +405,7 @@
 											<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
 											<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
 										</div>
-										<div class="w3-col m12 w3-padding-top" style="height: 60px;">
+										<div class="w3-col m12 w3-padding-top desc" style="height: 60px;">
 											${article.articleDesc}
 										</div>	
 									</a>						

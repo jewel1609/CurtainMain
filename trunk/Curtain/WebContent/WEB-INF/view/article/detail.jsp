@@ -21,87 +21,130 @@ $(document).ready(function () {
 		alert("비방글은 게시하실 수 없습니다.");
 	}
 	
-$(".like").click(function() {		
+	$(".claim").hide();
 	
-	$.post(		
-		"/replyLike"
-		, { "replyId" : $(this).attr("id")
-			, "articleId" : $("#articleId").val()
-		}
-		, function(data) {
-			
-			var jsonData = {};		
-			
-			try {
-				jsonData = JSON.parse(data);
+	$(".doClaim").click(function () {
+		
+		var root = $(this).parent().parent().children(":eq(4)");
+		
+		
+		root.slideToggle();
+		
+	});
+	
+	$(".doClaimBtn").click(function() {		
+		
+		var root = $(this).parent().children(":eq(0)");
+
+		$.post(		
+			"/writeReplyClaim"
+			, { "claimText" : root.val()
+				, "replyClaim" : $(this).attr("id")
 			}
-			catch(e) {
-				jsonData.result = false;
-			}
-			
-			if(jsonData.result){
-				var replyId = jsonData.replyId;
-				var result = "#like" + replyId;
-				if(jsonData.doLike){
-					$(result).attr("src", "/resource/img/like_active_small.png");
-					var count = "#likeCount"+jsonData.replyId;
-					$(count).text(jsonData.updateLikeCount);
+			, function(data) {
+				
+				var jsonData = {};		
+				
+				try {
+					jsonData = JSON.parse(data);
+				}
+				catch(e) {
+					jsonData.result = false;
+				}
+				
+				if(jsonData.result){
+					$(".claim").hide();
+					alert("신고 완료");
 				}
 				else{
-					$(result).attr("src", "/resource/img/like_inactive_small.png");
-					var count = "#likeCount"+jsonData.replyId;
-					$(count).text(jsonData.updateLikeCount);
-				}	
+					alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+					location.href="/";
+				}
 			}
-			else{
-				alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-				location.href="/";
+		)	
+	});
+		
+	$(".like").click(function() {		
+		
+		$.post(		
+			"/replyLike"
+			, { "replyId" : $(this).attr("id")
+				, "articleId" : $("#articleId").val()
 			}
-		}
-	)	
-});
-
-
-
-$(".dislike").click(function() {		
-	
-	$.post(		
-		"/replyDislike"
-		, { "replyId" : $(this).attr("id")
-			, "articleId" : $("#articleId").val()
-		}
-		, function(data) {
-			
-			var jsonData = {};		
-			
-			try {
-				jsonData = JSON.parse(data);
-			}
-			catch(e) {
-				jsonData.result = false;
-			}
-			
-			if(jsonData.result){
-				var replyId = jsonData.replyId;
-				var result = "#dislike" + replyId;
-				if(jsonData.isDislike){
-					$(result).attr("src", "/resource/img/dislike_active_small.png");
-					var count = "#dislikeCount"+jsonData.replyId;
-					$(count).text(jsonData.updateDislikeCount);
+			, function(data) {
+				
+				var jsonData = {};		
+				
+				try {
+					jsonData = JSON.parse(data);
+				}
+				catch(e) {
+					jsonData.result = false;
+				}
+				
+				if(jsonData.result){
+					var replyId = jsonData.replyId;
+					var result = "#like" + replyId;
+					if(jsonData.doLike){
+						$(result).attr("src", "/resource/img/like_active_small.png");
+						var count = "#likeCount"+jsonData.replyId;
+						$(count).text(jsonData.updateLikeCount);
+					}
+					else{
+						$(result).attr("src", "/resource/img/like_inactive_small.png");
+						var count = "#likeCount"+jsonData.replyId;
+						$(count).text(jsonData.updateLikeCount);
+					}	
 				}
 				else{
-					$(result).attr("src", "/resource/img/dislike_inactive_small.png");
-					var count = "#dislikeCount"+jsonData.replyId;
-					$(count).text(jsonData.updateDislikeCount);
-				}	
+					alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+					location.href="/";
+				}
 			}
-			else{
-				alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-				location.href="/";
+		)	
+	});
+	
+	
+	
+	$(".dislike").click(function() {		
+		
+		$.post(		
+			"/replyDislike"
+			, { "replyId" : $(this).attr("id")
+				, "articleId" : $("#articleId").val()
 			}
-		}
-	)	
-});
+			, function(data) {
+				
+				var jsonData = {};		
+				
+				try {
+					jsonData = JSON.parse(data);
+				}
+				catch(e) {
+					jsonData.result = false;
+				}
+				
+				if(jsonData.result){
+					var replyId = jsonData.replyId;
+					var result = "#dislike" + replyId;
+					if(jsonData.isDislike){
+						$(result).attr("src", "/resource/img/dislike_active_small.png");
+						var count = "#dislikeCount"+jsonData.replyId;
+						$(count).text(jsonData.updateDislikeCount);
+					}
+					else{
+						$(result).attr("src", "/resource/img/dislike_inactive_small.png");
+						var count = "#dislikeCount"+jsonData.replyId;
+						$(count).text(jsonData.updateDislikeCount);
+					}	
+				}
+				else{
+					alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+					location.href="/";
+				}
+			}
+		)	
+	});
 	
 	
 	/*새로 추가된것에 접근하는 방법*/
@@ -318,9 +361,19 @@ $(".dislike").click(function() {
 													</div>
 													
 													<span style="color: #FF3300;"><h5>${reply.nickName}</h5></span>
+													<div class="w3-col m1">
+														<span class="doClaim glyphicon glyphicon-send">신고하기</span>
+													</div>
+													<div class="claim w3-col m12">
+														<form class="claimWrite">
+															<input class="w3-input" type="text" class="claimCom" id="claimCom${reply.replyId}" name="claimCom${reply.replyId}"
+																			placeholder="신고 사유를 입력하세요." style="margin-bottom: 5px;">
+															<span class="doClaimBtn" id="claim${reply.replyId}">신고하기</span>
+														</form>
+													</div>
 													
 													<c:if test="${reply.parentReplyId eq reply.replyId}">
-														<button type="button" class="btn btn-default btn-xs writeReReply">
+														<button type="button" class="btn btn-default btn-xs writeReReply ">
 															댓글쓰기
 														</button>
 													</c:if>

@@ -42,9 +42,18 @@ public class ShowKeywordTopSeven extends HttpServlet {
 		
 		StringBuffer json = new StringBuffer();
 		
+		int i = 0;
+		
 		json.append("{");
-		json.append("\"keywords\" : " + keywords);
+		for (String keyword : keywords) {
+			json.append("\"keyword"+ (i++) + "\" : " + "\"" +keyword + "\"");
+			if (i != keywords.size()) {
+				json.append(",");
+			}
+		}
 		json.append("}");
+		
+		System.out.println(json.toString());
 		
 		PrintWriter out = response.getWriter();
 		out.print(json.toString());

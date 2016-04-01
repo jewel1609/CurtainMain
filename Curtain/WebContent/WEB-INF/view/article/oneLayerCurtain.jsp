@@ -159,7 +159,6 @@
 
 		$("#doWrite").click(function() {
 		
-			
 			 if( $("#articleTitle").val() == ""){
 				alert("제목을 입력하세요!");
 				$("#articleTitle").focus();
@@ -260,7 +259,7 @@
 													</div>
 												</div>
 												<input type="hidden" id="movieUrl" name="movieUrl" />
-												<input type="hidden" name="boardId" value="4">
+												<input type="hidden" name="boardId" value="5">
 											</div>
 										</div>
 										

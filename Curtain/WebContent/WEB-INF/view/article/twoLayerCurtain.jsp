@@ -259,7 +259,7 @@
 													</div>
 												</div>
 												<input type="hidden" id="movieUrl" name="movieUrl" />
-												<input type="hidden" name="boardId" value="4">
+												<input type="hidden" name="boardId" value="6">
 											</div>
 										</div>
 										

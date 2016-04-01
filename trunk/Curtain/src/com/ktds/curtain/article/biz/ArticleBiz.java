@@ -279,7 +279,8 @@ public class ArticleBiz {
 		}
 		for (ReplyVO replys : reply) {
 			for(ReplyDislikeVO replyDislike : replyDislikes ) {
-				if( replyDislike.getReplyDislikeId() == replyDislike.getReplyId() ){
+				if( replys.getReplyId() == replyDislike.getReplyId() ){
+					System.out.println("싫어요"+replyDislike.getReplyId());
 					replys.setDislike(true);
 				}
 			}

@@ -466,11 +466,14 @@
 		        , MEMBER M
 		        , ARTICLE_TYPE AT
 		WHERE   A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
-		AND     M.EMAIL = A.EMAIL   
-		AND     HITS = ( SELECT MAX(HITS)
-		                    FROM ARTICLE
-		                    WHERE BOARD_ID = ?
+		AND     M.EMAIL = A.EMAIL 
+		AND     BOARD_ID = ? 
+		AND     HITS = (    SELECT  MAX(HITS)
+		                    FROM    ARTICLE
+		                    WHERE   BOARD_ID = ?
 		                )
+		ORDER BY ARTICLE_MODIFY_DATE DESC,
+                 ARTICLE_LIKES DESC
 		</showTopArticle>
 		<updateArticleOnlyTitle>
 			UPDATE	ARTICLE

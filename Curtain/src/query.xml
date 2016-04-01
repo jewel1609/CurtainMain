@@ -814,8 +814,10 @@
 		   							SECEDE_MEMBER_ID
 		   							, EMAIL
 		   							, SECEDE_DATE
+		   							, SECEDE_DESC
 		   						  ) 
 		VALUES 					  ( SECEDE_MEMBER_ID_SEQ.NEXTVAL
+									, ?
 									, ?
 									, ?
 		 						  )

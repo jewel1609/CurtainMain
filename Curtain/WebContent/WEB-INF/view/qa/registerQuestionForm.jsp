@@ -46,14 +46,14 @@
 					return;
 				}
 				
-				var form = $("#btnForm");
+				var form = $("#btnFormByQuestion");
 				form.attr("method", "post");
 				form.attr("action", "<c:url value="/doRegisterQuestion"/> ");
 				form.submit();
 			});
 	
 			$("#btnFAQ").click(function() {
-				var form = $("#btnForm");
+				var form = $("#btnFormByQuestion");
 				form.attr("method", "post");
 				form.attr("action", "<c:url value="/questionAndAnswer"/> ");
 				form.submit();
@@ -86,7 +86,7 @@
 						
 						<div class="w3-card-2 w3-white w3-round-large"
 							style="padding: 10px; height: 650px;">
-							<form id="btnForm" name="btnForm">
+							<form id="btnFormByQuestion">
 								<table class="w3-table w3-border w3-bordered">
 									<tr>
 										<td width="200px"
@@ -118,14 +118,6 @@
 											문의하기
 										</div>
 									</div>
-								</div>
-								<div class="col-sm-2" style="float: left; margin-top: 25px;">
-									<input type="file" id="imgFile" name="imgFile" style="display: none;"
-										onchange="readURL(this);">
-									<button type="button" class="btn btn-default btn-sm"
-										onclick="document.all.imgFile.click();">
-										<span class="glyphicon glyphicon-picture"></span>
-									</button>
 								</div>
 							</form>
 						</div>

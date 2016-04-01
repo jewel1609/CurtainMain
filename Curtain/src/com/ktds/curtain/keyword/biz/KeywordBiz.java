@@ -26,5 +26,9 @@ public class KeywordBiz {
 		
 		keywordDAO.setNounByArticleList(nouns, article);
 	}
+
+	public List<String> getKeywordTopSeven() {
+		return keywordDAO.getKeywordTopSeven();
+	}
 	
 }

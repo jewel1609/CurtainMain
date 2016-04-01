@@ -45,15 +45,18 @@ public class DoSecedeMemberServlet extends HttpServlet {
 
 		
 		String memberEmail = request.getParameter("memberEmail");
+		String secedeDesc = request.getParameter("secedeDesc");
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
 		Date currentTime = new Date ( );
 		String mTime = mSimpleDateFormat.format ( currentTime );
 		
 		System.out.println(memberEmail+"<탈퇴회원 이메일");
 		System.out.println(mTime+"<탈퇴한 날짜");
+		System.out.println(secedeDesc + "<탈퇴사유");
+		
 		
 		memberBiz.secedeMember(memberEmail);
-		memberBiz.secedeMemberAdd(memberEmail, mTime);
+		memberBiz.secedeMemberAdd(memberEmail, mTime, secedeDesc);
 		
 		
 		

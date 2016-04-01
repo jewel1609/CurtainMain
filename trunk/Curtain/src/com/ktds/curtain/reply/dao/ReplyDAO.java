@@ -10,6 +10,8 @@ import java.util.List;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.reply.vo.ReplyVO;
+import com.ktds.curtain.replyDislike.vo.ReplyDislikeVO;
+import com.ktds.curtain.replyLike.vo.ReplyLikeVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
@@ -45,6 +47,8 @@ public class ReplyDAO {
 				reply.setReplyDesc(rs.getString("REPLY_DESC"));
 				reply.setParentReplyId(rs.getInt("PARENT_REPLY_ID"));
 				reply.setReplyOrder(rs.getInt("REPLY_ORDER"));
+				reply.setReplyLikes(rs.getInt("REPLY_LIKES"));
+				reply.setReplyDislikes(rs.getInt("REPLY_DISLIKES"));
 				
 				replyList.add(reply);
 			}
@@ -267,6 +271,167 @@ public class ReplyDAO {
 		}
 	}
 	
+	/**
+	 * 전체 댓글 좋아요에서 -1
+	 * @param replyLikeVO
+	 */
+	public void minusLikeCount(ReplyLikeVO replyLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/minusLikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyLikeVO.getReplyId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	
+	/**
+	 * 전체 댓글 좋아요에서 +1
+	 * @param replyLikeVO
+	 */
+	public void plusLikeCount(ReplyLikeVO replyLikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/plusLikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyLikeVO.getReplyId());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	
+	/**
+	 * 그 댓글의 총 좋아요 수
+	 * @param replyLikeVO
+	 * @return
+	 */
+	public int getReplyLikes(ReplyLikeVO replyLikeVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/getReplyLikes/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyLikeVO.getReplyId());
+			rs = stmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+	/**
+	 * 댓글의 총 싫어요 중에 -1
+	 * @param replyDislikeVO
+	 */
+	public void minusDislikeCount(ReplyDislikeVO replyDislikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/minusDislikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyDislikeVO.getReplyId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+
+	/**
+	 * 댓글 총 싫어요 중에 +1
+	 * @param replyDislikeVO
+	 */
+	public void plusDislikeCount(ReplyDislikeVO replyDislikeVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/plusDislikeCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyDislikeVO.getReplyId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+
+	/**
+	 * 댓글의 총 싫어요 수
+	 * @param replyDislikeVO
+	 * @return
+	 */
+	public int getReplyDislikes(ReplyDislikeVO replyDislikeVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/getReplyDislikes/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyDislikeVO.getReplyId());
+			rs = stmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -296,5 +461,7 @@ public class ReplyDAO {
 		}
 
 	}
+
+
 
 }

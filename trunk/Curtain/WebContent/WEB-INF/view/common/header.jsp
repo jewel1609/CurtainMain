@@ -72,14 +72,14 @@
       }
       
       $(document).on("click","#btnRegister",function () {
-         var form = $("#btnForm");
+         var form = $("#btnFormByHeader");
          form.attr("method", "post");
          form.attr("action", "<c:url value="/registStdMember"/> ");
          form.submit();
       });
       
       $(document).on("click","#btnStart",function () {
-         var form = $("#btnForm");
+         var form = $("#btnFormByHeader");
          form.attr("method", "post");
          form.attr("action", "/doLogin");
          form.submit();
@@ -108,7 +108,7 @@
             return;
          }
          
-         var form = $("#btnForm");
+         var form = $("#btnFormByHeader");
          form.attr("method", "post");
          form.attr("action", "/doLogin");
          form.submit();
@@ -194,7 +194,7 @@
                   <button id="closeModal" type="button" class="close"
                   data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <form id="btnForm">
+            <form id="btnFormByHeader">
                <div style="width: 100%;">
                   <div class="modal-body" style="overflow-y: auto; height: 350px;">
                      <strong>아이디</strong>

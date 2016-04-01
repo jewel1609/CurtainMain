@@ -16,6 +16,7 @@ import com.ktds.curtain.articleScrab.dao.ScrabDAO;
 import com.ktds.curtain.articleScrab.vo.ArticleScrabVO;
 import com.ktds.curtain.file.dao.FileDAO;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.keyword.biz.KeywordBiz;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.reply.dao.ReplyDAO;
@@ -38,7 +39,8 @@ public class ArticleBiz {
 	private MemberBiz memberBiz;
 	private ReplyLikeDAO replyLikeDAO;
 	private ReplyDislikeDAO replyDislikeDAO;
-
+	
+	private KeywordBiz keywordBiz;
 	
 	public ArticleBiz() {
 		articleDAO = new ArticleDAO();
@@ -53,6 +55,8 @@ public class ArticleBiz {
 		memberBiz = new MemberBiz();
 		replyLikeDAO = new ReplyLikeDAO();
 		replyDislikeDAO = new ReplyDislikeDAO();
+		
+		keywordBiz = new KeywordBiz();
 
 	}
 	
@@ -215,26 +219,31 @@ public class ArticleBiz {
 		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) { // 전공
 			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.UNIV_BOARD)) { // 대학
 			doWriteArticle = articleDAO.doWriteUnivArticle(article);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) { // 홍보
 			doWriteArticle = articleDAO.doWriteAdArticle(article);
-			//memberBiz.addPointAndModifyMemberType(article, request);
+			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.FREE_BOARD)) { // 자유
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) {  // 비밀 1
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			keywordBiz.setNounByArticle(article, request);
 		}
 		
 		return doWriteArticle > 0;

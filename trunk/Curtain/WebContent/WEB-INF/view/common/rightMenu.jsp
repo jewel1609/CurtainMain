@@ -42,6 +42,10 @@
 	request.setAttribute("second", second); 
 	request.setAttribute("third", third); 
 	request.setAttribute("fourth", fourth); 
+	request.setAttribute("one", one);
+	request.setAttribute("two", two);
+	request.setAttribute("three", three);
+	request.setAttribute("four", four);
 	
 %>
 <script type="text/javascript">
@@ -49,6 +53,8 @@
 	var check = null;
 	
 	$(document).ready(function() {
+		
+		$('[data-toggle="tooltip"]').tooltip();
 		
 		var first = $("#first").val();
 		
@@ -231,7 +237,8 @@
 			<c:if test="${ survey.firstAnswer ne null }">
 				<div class="progress">
 		    		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${first}%">
-		    			${ first } %
+		    			<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="${ first }%, ${ one }표" >
+				    	</a>
 		    		</div>
 		      			<h>${ survey.firstAnswer }</h> 
 	  			</div>
@@ -239,7 +246,8 @@
   			<c:if test="${ survey.secondAnswer ne null }">
 	  			<div class="progress">
 				    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${second}%">
-				    	${ second } %
+	  				<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="${ second }%, ${ two }표" >
+				    </a>
 				    </div>
 				      	<h>${ survey.secondAnswer }</h> 
 			  	</div>
@@ -247,7 +255,8 @@
 		  	<c:if test="${ survey.thirdAnswer ne null }">
 			  	<div class="progress">
 			    	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${third}%">
-						${ third } %
+						<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="${ third }%, ${ three }표" >
+				    	</a>
 			    	</div>
 			      		<h>${ survey.thirdAnswer }</h>
 			 	</div>
@@ -255,7 +264,8 @@
 		 	<c:if test="${ survey.fourthAnswer ne null }">
 			  	<div class="progress">
 				    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:${fourth}%">
-						${ fourth } %
+						<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="${ fourth }%, ${ four }표" >
+				    	</a>
 				    </div>
 				      <p>${ survey.fourthAnswer }</p>
 			  	</div>

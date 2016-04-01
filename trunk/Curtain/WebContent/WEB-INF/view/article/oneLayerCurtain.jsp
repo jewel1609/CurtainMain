@@ -11,6 +11,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+	      $(window).resize(function() {
+	          $(".wrapper").css("height", window.innerHeight - 200);
+	       });
+	      
 	
 		myAccordion('demo1');
 		
@@ -197,7 +202,7 @@
 
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
-	<div class="w3-container w3-main" style="margin-top:0px;">
+	<div class="w3-container w3-main wrapper" style="margin-top:0px;">
 	
 		<c:set var="oneLayerCurtainMemberCount" value="${ sessionScope._MEMBER_.oneLayerCurtainMemberCount }" />
 		

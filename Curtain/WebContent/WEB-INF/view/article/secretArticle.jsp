@@ -10,13 +10,13 @@
 
 <script type="text/javascript">
 
+
 	$(document).ready(function() {
-		 $("#shortDescription").append(" <b>Appended text</b>.");
 		
-/* 		if( $(".desc").val().length > 100){
-			$(".desc").append(tag);
-		}
- */
+	      $(window).resize(function() {
+	          $(".wrapper").css("height", window.innerHeight - 200);
+	       });
+	      
 		
 		$("#freeArticle").mouseleave(function(){
 			$("#freeArticle").css('background-color', '#a9d039');
@@ -42,6 +42,40 @@
 				
 			});			
 		});
+		
+		
+		$(".doClaimBtn").click(function() {		
+			
+			var root = $(this).parent().children(":eq(0)");
+
+			$.post(		
+				"/writeClaim"
+				, { "claimText" : root.val()
+					, "articleClaim" : $(this).attr("id")
+				}
+				, function(data) {
+					
+					var jsonData = {};		
+					
+					try {
+						jsonData = JSON.parse(data);
+					}
+					catch(e) {
+						jsonData.result = false;
+					}
+					
+					if(jsonData.result){
+						$(".claim").hide();
+						alert("신고 완료");
+					}
+					else{
+						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+						location.href="/";
+					}
+				}
+			)	
+		});
+		
 		
 		$(".like").click(function() {		
 			
@@ -160,6 +194,12 @@
 		});
 		
 		$("#imagePreview").hide();
+		$(".claim").hide();
+		
+		$(".doClaim").click(function () {
+			var root = $(this).parent().parent().children(":eq(5)");
+			root.slideToggle();
+		});
 
 		$("#doWrite").click(function() {
 		
@@ -208,10 +248,11 @@
 		
 		
 		<div class="w3-row" >
-			<div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
+			<div class="w3-col m7 w3-main wrapper" style="border-right:1px solid #bababa;
     			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 885px; overflow: auto; ">
 				
 				<!-- 게시판 헤더 -->
+				
 				<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 					<div class="w3-margin-4" style="float:left;">
 						<h2>자유게시판입니다.</h2> 
@@ -292,7 +333,7 @@
 					<div class="w3-col m12">
 						<div class="w3-card w3-round-large" style="border-color: #a9d039;" >
 							<div class="w3-container">
-							<a href="<c:url value="/hitsCount?boardId=4&articleId=${topArticle.articleId}"/>">
+							
 								<div class="w3-col m10 w3-padding-top">
 										<span class="label label-default">HOT</span>
 										<c:if test="${topArticle.articleTypeName eq '연애'}">
@@ -311,16 +352,18 @@
 											<span class="label label-default">${topArticle.articleTypeName}</span>
 										</c:if>
 										<strong>${topArticle.articleTitle}</strong>
+										
 								</div>
 								<div class="w3-col m1 w3-padding-top">
 									${topArticle.nickName}
 								</div>
 								<div class="w3-col m1 w3-padding-top">
-									조회수 ${topArticle.hits}
+									<h6>조회수 ${topArticle.hits}</h6>
 									<input type="hidden" id="articleId" name="articleId" value="${topArticle.articleId}" />
 									<input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
 								</div>
-								<div class="w3-col m12 w3-padding-top" id="shortDescription" style="height: 60px;">
+								<a href="<c:url value="/hitsCount?boardId=4&articleId=${topArticle.articleId}"/>">
+								<div class="w3-col m12 w3-padding-top desc" id="desc${topArticle.articleId}" style="height: 60px;">
 									${topArticle.articleDesc}
 								</div>
 								</a>
@@ -359,6 +402,16 @@
 									<c:if test="${!topArticle.scrab}">
 										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">
 									</c:if>
+								</div>
+								<div class="w3-col m1">
+									<span class="doClaim glyphicon glyphicon-send"><h6>신고하기</h6></span>
+								</div>
+								<div class="claim w3-col m12">
+									<form class="claimWrite">
+										<input class="w3-input" type="text" class="claimCom" id="claimCom${topArticle.articleId}" name="claimCom${topArticle.articleId}"
+														placeholder="신고 사유를 입력하세요." style="margin-bottom: 5px;">
+										<span class="doClaimBtn" id="claim${topArticle.articleId}">신고하기</span>
+									</form>
 								</div>									
 							</div>
 						</div>
@@ -405,7 +458,7 @@
 											<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
 											<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
 										</div>
-										<div class="w3-col m12 w3-padding-top desc" style="height: 60px; text-overflow: ellipsis; ">
+										<div class="w3-col m12 w3-padding-top desc" style="height: 60px;">
 											${article.articleDesc}
 										</div>	
 									</a>						
@@ -445,7 +498,16 @@
 												<img class="scrab" id="scrab${article.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">
 											</c:if>
 										</div>
-									
+										<div class="w3-col m1">
+										<span class="doClaim glyphicon glyphicon-send" style="cursor:pointer;"><h6>신고하기</h6></span>
+										</div>
+										<div class="claim w3-col m12">
+											<form class="claimWrite">
+												<input class="w3-input" type="text" class="claimCom" id="claimCom${article.articleId}" name="claimCom${article.articleId}"
+																placeholder="신고 사유를 입력하세요." style="margin-bottom: 5px;">
+												<span class="doClaimBtn" id="claim${article.articleId}" style="cursor:pointer;">신고하기</span>
+											</form>
+										</div>	
 									</div>
 									
 								</div>

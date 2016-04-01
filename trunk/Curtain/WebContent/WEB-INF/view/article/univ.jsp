@@ -10,6 +10,13 @@
 
 
 	$(document).ready(function() {
+				
+				$("#univ").mouseleave(function(){
+					$("#univ").css('background-color', '#a9d039');
+					$("#univ").css('color', '#ffffff');
+				});
+				$("#univ").css('background-color', '#a9d039');
+				$("#univ").css('color', '#ffffff');
 		
 				$('[data-toggle="popover"]').popover();  
 				

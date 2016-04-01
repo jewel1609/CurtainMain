@@ -44,6 +44,7 @@ public class StudentUnivArticleServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+		
 		List<ArticleVO> univArticles = articleBiz.showUnivArticle(stdMember);
 		request.setAttribute("univArticles", univArticles);
 

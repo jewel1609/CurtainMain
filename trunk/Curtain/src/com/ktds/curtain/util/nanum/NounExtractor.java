@@ -67,7 +67,12 @@ public class NounExtractor {
 				eojeolArray = s.getEojeols();
 				for (int i = 0; i < eojeolArray.length; i++) {
 					if (eojeolArray[i].length > 0) {
-						nounList.add(eojeolArray[i].getMorphemes()[0]);
+						String[] morphemes = eojeolArray[i].getMorphemes();
+						String str = "";
+						for (int j = 0; j < morphemes.length; j++) {
+							str += morphemes[j];
+						}
+						nounList.add(str);
 					}
 				}
 			}

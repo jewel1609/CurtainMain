@@ -219,30 +219,36 @@ public class ArticleBiz {
 		if ( article.getBoardId() == Integer.parseInt(BoardId.MAJOR_BOARD) ) { // 전공
 			doWriteArticle = articleDAO.doWriteMajorArticle(article);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			article.setArticleId(articleDAO.getArticleIdByTitleAndDesc(article));
 			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.UNIV_BOARD)) { // 대학
 			doWriteArticle = articleDAO.doWriteUnivArticle(article);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			article.setArticleId(articleDAO.getArticleIdByTitleAndDesc(article));
 			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.AD_BOARD)) { // 홍보
 			doWriteArticle = articleDAO.doWriteAdArticle(article);
+			article.setArticleId(articleDAO.getArticleIdByTitleAndDesc(article));
 			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.FREE_BOARD)) { // 자유
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			article.setArticleId(articleDAO.getArticleIdByTitleAndDesc(article));
 			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL1)) {  // 비밀 1
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			article.setArticleId(articleDAO.getArticleIdByTitleAndDesc(article));
 			keywordBiz.setNounByArticle(article, request);
 		}
 		else if (article.getBoardId()== Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {  // 비밀 2
 			doWriteArticle = articleDAO.doWriteSecretArticle(article, stdMember);
 			memberBiz.addPointAndModifyMemberType(article, request);
+			article.setArticleId(articleDAO.getArticleIdByTitleAndDesc(article));
 			keywordBiz.setNounByArticle(article, request);
 		}
 		

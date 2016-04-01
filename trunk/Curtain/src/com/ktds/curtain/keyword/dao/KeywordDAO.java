@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
 public class KeywordDAO {
 
-	public void setNounByArticleList(List<String> nouns) {
+	public void setNounByArticleList(List<String> nouns, ArticleVO article) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -26,6 +27,7 @@ public class KeywordDAO {
 			for (String noun : nouns) {
 				stmt = conn.prepareStatement(query);
 				stmt.setString(1, noun);
+				stmt.setInt(2, article.getArticleId());
 				stmt.executeUpdate();
 				stmt.close();
 			}

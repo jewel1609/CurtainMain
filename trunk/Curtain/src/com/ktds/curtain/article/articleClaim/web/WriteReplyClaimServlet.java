@@ -11,6 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.articleClaim.biz.WriteClaimBiz;
 import com.ktds.curtain.article.articleClaim.vo.ArticleClaimVO;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 
 /**
@@ -19,12 +24,14 @@ import com.ktds.curtain.member.vo.MemberVO;
 public class WriteReplyClaimServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private WriteClaimBiz writeClaimBiz;    
+	private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public WriteReplyClaimServlet() {
         super();
         writeClaimBiz = new WriteClaimBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -51,6 +58,17 @@ public class WriteReplyClaimServlet extends HttpServlet {
 		articleClaimVO.setClaimText(claimText);
 		
 		boolean doWriteClaim = writeClaimBiz.doWriteReplyClaim(articleClaimVO);
+		
+		if ( doWriteClaim ) {
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.DO_CLAIM_REPLY);
+			historyVO.setDescription( BuildDescription.get(Description.DO_CLAIM_REPLY, member.getNickName(), request.getParameter("articleId") ) );
+			
+			historyBiz.addHistory(historyVO);
+		}
 
 		StringBuffer json = new StringBuffer();
 		json.append("{");

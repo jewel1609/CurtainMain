@@ -50,6 +50,7 @@ public class TwoLayerCurtainBoardServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+		session.setAttribute("_BOARD_ID_", 6);
 		
 		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL2);
 		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.SECRET_BOARD_LEVEL2);

@@ -22,6 +22,7 @@ public interface ActionCode {
 	public static final String WRITE_TWO_LAYER = "WT_T_L";
 	public static final String WRITE_PROMOTION = "WT_P";
 	
+	public static final String DETAIL_PAGE = "DT_P";
 	
 	
 }

@@ -160,7 +160,7 @@ function readURL(input) {
 										<textarea name="articleDescription" class="w3-col m12"
 											rows="5" id="comment" style="margin-bottom: 5px;">${article.articleDesc}</textarea>
 									</div>
-									<div class="col-sm-9"  id="imagePreview"><img id="uploadImg" src="" width="100px;"></div>								
+									<div class="col-sm-9"  id="imagePreview"><img id="uploadImg" src="" width="100px;"></div>
 									<div class="w3-col m12">
 										<c:forEach items="${files}" var="file">
 											<span id="${file.fileId}" class="glyphicon glyphicon-trash col-sm-9">${file.fileName}</span>

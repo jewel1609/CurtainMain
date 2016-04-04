@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.ktds.curtain.article.dao.ArticleDAO;
+import com.ktds.curtain.article.vo.ArticleSearchVO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.articleDislike.dao.DislikeDAO;
@@ -66,10 +67,19 @@ public class ArticleBiz {
 	 * @return
 	 */
 
-	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId){
+	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId, ArticleSearchVO searchVO){
 
 		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showMajorArticle(stdMember);
+		if ( searchVO.getSearchType().equals("1")) {
+			articles = articleDAO.showMajorArticleByTitle(stdMember, searchVO);
+		}
+		else if (searchVO.getSearchType().equals("2")) {
+			articles = articleDAO.showMajorArticleByDesc(stdMember, searchVO);
+		}
+		else {
+			articles = articleDAO.showMajorArticle(stdMember);
+		}
+		
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);

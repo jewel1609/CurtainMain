@@ -9,10 +9,10 @@
 	$(document).ready( function(){
 		
 		$(".wrapper").css("height", window.innerHeight - 130);
-		   
-	      $(window).resize(function() {
-	         $(".wrapper").css("height", window.innerHeight - 130);
-	      });
+		
+		$(window).resize(function() {
+			$(".wrapper").css("height", window.innerHeight - 130);
+		});
 		
 		$("#myPage").mouseleave(function(){
 			$("#myPage").css('background-color', '#a9d039');
@@ -46,7 +46,7 @@
 <c:set var="companyCheck" value="${ sessionScope._COMPANY_ }" />
   <div class="w3-row" >
     <div class="w3-col m7 w3-main wrapper" style="border-right:1px solid #bababa;
-    background-color: #F3F3F3; margin-left:334px; margin-right: 100px; height: 885px; overflow: auto;">
+    background-color: #F3F3F3; margin-left:334px; margin-right: 100px; overflow: auto;">
       <div class="w3-myfont w3-left-align" >
       	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 	      	<div class="w3-margin-4" style="float:left;">

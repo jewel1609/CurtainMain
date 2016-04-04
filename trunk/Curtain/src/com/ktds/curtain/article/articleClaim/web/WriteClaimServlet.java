@@ -66,7 +66,8 @@ public class WriteClaimServlet extends HttpServlet {
 			historyVO.setEmail(member.getEmail());
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.DO_CLAIM_ARTICLE);
-			historyVO.setDescription( BuildDescription.get(Description.DO_CLAIM_ARTICLE, member.getNickName(), request.getParameter("articleId") ) );
+			historyVO.setDescription( BuildDescription.get(Description.DO_CLAIM_ARTICLE, member.getNickName(), articleClaim.substring(5) ) );
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_CLAIM_ARTICLE, claimText));
 			
 			historyBiz.addHistory(historyVO);
 		}

@@ -13,11 +13,11 @@
 					function() {
 						
 						$(".wrapper").css("height", window.innerHeight - 130);
-						   
-					      $(window).resize(function() {
-					         $(".wrapper").css("height", window.innerHeight - 130);
-					      });
-
+						
+						$(window).resize(function() {
+							$(".wrapper").css("height", window.innerHeight - 130);
+						});
+						
 						$("#imagePreview").hide();
 
 						$(".like")

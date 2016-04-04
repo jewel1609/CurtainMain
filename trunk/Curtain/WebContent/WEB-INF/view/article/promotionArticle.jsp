@@ -12,10 +12,10 @@
 	$(document).ready(function() {
 		
 		$(".wrapper").css("height", window.innerHeight - 130);
-		   
-	      $(window).resize(function() {
-	         $(".wrapper").css("height", window.innerHeight - 130);
-	      });
+		
+		$(window).resize(function() {
+			$(".wrapper").css("height", window.innerHeight - 130);
+		});
 	
 		$("#promotion").mouseleave(function(){
 			$("#promotion").css('background-color', '#a9d039');

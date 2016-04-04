@@ -46,7 +46,7 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 		String inputCompEmail = request.getParameter("inputCompEmail");
 		String inputCompPassword = request.getParameter("inputCompPassword");
 		String inputCompName = request.getParameter("inputCompName");
-		int inputPhoneNum = Integer.parseInt(request.getParameter("inputPhoneNum"));
+		String inputPhoneNum = request.getParameter("inputPhoneNum");
 		String inputCompSecondEmail = request.getParameter("inputCompSecondEmail");
 		String compNickName = inputCompName+"의 관리자";
 		

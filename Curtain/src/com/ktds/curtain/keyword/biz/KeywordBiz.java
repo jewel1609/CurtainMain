@@ -6,14 +6,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.keyword.dao.KeywordDAO;
-import com.ktds.curtain.util.nanum.NounExtractor;
+import com.ktds.curtain.util.nanum.NounExtractByTitle;
+
+import kr.ac.kaist.swrc.jhannanum.plugin.SupplementPlugin.PosProcessor.NounExtractor.NounExtractor;
 
 public class KeywordBiz {
-	NounExtractor nounExtractor;
+	NounExtractByTitle nounExtractor;
 	KeywordDAO keywordDAO;
 	
 	public KeywordBiz () {
-		nounExtractor = new NounExtractor();
+		nounExtractor = new NounExtractByTitle();
 		keywordDAO = new KeywordDAO();
 	}
 	

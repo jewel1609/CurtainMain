@@ -42,6 +42,8 @@ public class PromotionArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+		session.setAttribute("_BOARD_ID_", 3);
+		
 		System.out.println(stdMember.getCompanyName() + "========");
 		List<ArticleVO> promotionArticles = articleBiz.showPromotionArticle(stdMember, BoardId.AD_BOARD);
 		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.AD_BOARD);

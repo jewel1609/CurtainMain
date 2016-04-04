@@ -48,7 +48,8 @@ public interface Description {
 	public static final String MODIFY_MEMBER_PASSWORD_FAIL = "[%s] 님이 비밀번호를 변경에 실패했습니다.";
 	
 	public static final String SECEDE_MEMBER = "[%s]님이 회원탈퇴하셨습니다.";
-	
+
+	public static final String DO_SURVEY = "[%s] 님이 투표했습니다.";
 	
 			
 	public static final String LIST = "[%s]님이 목록보기 페이지에 접근했습니다.";
@@ -62,6 +63,7 @@ public interface Description {
 	public static final String DETAIL_SECEDE_MEMBER = "탈퇴 이메일 : [%s] <br/> 탈퇴 사유 : [%s]";
 	public static final String DETAIL_REGIST_STD_MEMBER = "가입 학생 대학 : [%s] <br/> 학과 : [%s] <br/> 이메일 : [%s] <br/> 닉네임: [%s]";
 	public static final String DETAIL_REGIST_COMP_MEMBER = "가입 기업 회사명 : [%s] <br/> 핸드폰 번호 : [%s] <br/> 회사이메일 : [%s] <br/> 닉네임: [%s]";
+	public static final String DETAIL_DO_SURVEY = "선택한 투표 : [%s]";
 	
 	
 }

@@ -41,6 +41,8 @@ public interface ActionCode {
 	
 	public static final String SECEDE_MEMBER = "S_M";
 	
+	public static final String DO_SURVEY = "D_S";
+	
 	
 	
 	public static final String DETAIL_PAGE = "DT_P";

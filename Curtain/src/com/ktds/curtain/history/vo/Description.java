@@ -62,6 +62,8 @@ public interface Description {
 	public static final String DO_CLAIM_ARTICLE = "[%s] 님이 [%s]번글을 신고했습니다.";
 	public static final String DO_CLAIM_REPLY = "[%s] 님이 [%s]번 댓글을 신고했습니다.";
 	
+	public static final String DO_REPLY = "[%s] 님이 [%s]번글에 댓글을 달았습니다.";
+	
 			
 	public static final String LIST = "[%s]님이 목록보기 페이지에 접근했습니다.";
 	public static final String LIST_PAGING = "[%s]님이 [%s]번째 페이지로 이동했습니다.";
@@ -84,6 +86,8 @@ public interface Description {
 	
 	public static final String DETAIL_CLAIM_ARTICLE = "글 신고사유 : [%s]";
 	public static final String DETAIL_CLAIM_REPLY = "댓글 신고사유 : [%s]";
+	
+	public static final String DETAIL_DO_REPLY = "댓글 내용 : [%s]";
 	
 	
 }

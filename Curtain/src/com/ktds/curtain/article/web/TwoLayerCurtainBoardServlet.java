@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
+import com.ktds.curtain.article.vo.ArticleSearchVO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.articleDislike.biz.DislikeBiz;
@@ -52,12 +53,24 @@ public class TwoLayerCurtainBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		session.setAttribute("_BOARD_ID_", 6);
+		
+		ArticleSearchVO searchVO = new ArticleSearchVO();
+
+		if(request.getParameter("searchKeyword") == null) {
+			searchVO.setSearchKeyword("");
+		}
+		else {
+			searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+		}
+		if(request.getParameter("articleTypeId") == null) {
+			searchVO.setSearchType("0");
+		}
+		else {
+			searchVO.setSearchType(request.getParameter("articleTypeId"));
+		}
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();
 		historyVO.setIp(request.getRemoteHost());
@@ -69,7 +82,7 @@ public class TwoLayerCurtainBoardServlet extends HttpServlet {
 		historyBiz.addHistory(historyVO);
 		
 		
-		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL2);
+		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL2, searchVO);
 		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.SECRET_BOARD_LEVEL2);
 		
 		request.setAttribute("topArticle", topArticle);

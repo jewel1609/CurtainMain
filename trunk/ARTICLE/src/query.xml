@@ -2,6 +2,20 @@
 <query>
 	
 	<member>
+		<modifyMember>
+			UPDATE	MEMBER
+			SET		MEMBER_TYPE_ID = ?
+					, POINT = ?
+					, PASSWORD = ?
+			WHERE	EMAIL = ?
+		</modifyMember>
+		<getMemberInfoByEmail>
+		
+			SELECT	*
+			FROM	MEMBER
+			WHERE	EMAIL = ?
+		</getMemberInfoByEmail>
+		
 		<deleteMember>
 			DELETE 
 			FROM   MEMBER

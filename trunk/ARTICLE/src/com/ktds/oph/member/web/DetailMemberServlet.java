@@ -1,7 +1,6 @@
 package com.ktds.oph.member.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,18 +15,19 @@ import com.ktds.oph.member.vo.MemberSearchVO;
 import com.ktds.oph.member.vo.MemberVO;
 
 /**
- * Servlet implementation class ShowMemberServlet
+ * Servlet implementation class DetailMemberServlet
  */
-public class ShowMemberServlet extends HttpServlet {
+public class DetailMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private MemberBiz memberBiz;
-       
+	private MemberBiz memberBiz; 
+	private MemberVO memberInfo;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowMemberServlet() {
+    public DetailMemberServlet() {
         super();
         memberBiz = new MemberBiz();
+        memberInfo = new MemberVO();
     }
 
 	/**
@@ -42,37 +42,17 @@ public class ShowMemberServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String memberEmail = request.getParameter("memberEmail");
+		System.out.println(memberEmail);
+		
 		HttpSession session = request.getSession();
-		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		if(!memberBiz.isAdmin(loginMember)){
-			response.setContentType("text/html; charset=UTF-8");
-			 
-			PrintWriter out = response.getWriter();
-			 
-			out.println("<script>"); 
-			out.println("alert('관리자가 아닙니다.');"); 
-			out.println("window.history.back();");
-			out.println("</script>"); 
-			out.close();
-		}
-		else if(memberBiz.isAdmin(loginMember)){
-			int pageNo = 0;
+		memberInfo = memberBiz.getMemberInfoByEmail(memberEmail, member);
 		
-			try {
-				pageNo = Integer.parseInt(request.getParameter("pageNo"));
-			}
-			catch (NumberFormatException nfe) {}
-			
-			MemberSearchVO searchVO = new MemberSearchVO();
-			searchVO.setPageNo(pageNo);
-			
-			MemberListVO members = memberBiz.getAllMember(searchVO);
-			
-			request.setAttribute("members", members);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/memberList.jsp");
-			rd.forward(request, response);
-		}
+		request.setAttribute("member", memberInfo);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/detailMember.jsp");
+		rd.forward(request, response);
 	}
 
 }

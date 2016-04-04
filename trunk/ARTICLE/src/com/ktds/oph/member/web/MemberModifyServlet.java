@@ -13,15 +13,15 @@ import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.util.Root;
 
 /**
- * Servlet implementation class MassiveDeleteServlet
+ * Servlet implementation class MassiveModifyServlet
  */
-public class MassiveDeleteServlet extends HttpServlet {
+public class MemberModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private MemberBiz memberBiz;
+    private MemberBiz memberBiz;   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MassiveDeleteServlet() {
+    public MemberModifyServlet() {
         super();
         memberBiz = new MemberBiz();
     }
@@ -37,13 +37,20 @@ public class MassiveDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] deleteMemberEmail = request.getParameterValues("memberEmail");
+		String modifyMemberEmail = request.getParameter("memberEmail");
+		String modifyMemberTypeId = request.getParameter("memberTypeId");
+		String modifyMemberPoint = request.getParameter("memberPoint");
+		String modifyMemberPassword = request.getParameter("memberPassword");
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		System.out.println("deleteList : " + deleteMemberEmail[0]);
-		memberBiz.deleteMembers(deleteMemberEmail, member);
+		System.out.println("ModifyList : " + modifyMemberEmail);
+		System.out.println("ModifyList : " + modifyMemberTypeId);
+		System.out.println("ModifyList : " + modifyMemberPoint);
+		System.out.println("ModifyList : " + modifyMemberPassword);
+		
+		memberBiz.modifyMember(modifyMemberEmail,modifyMemberTypeId,modifyMemberPoint, modifyMemberPassword,member);
 		
 		response.sendRedirect(Root.get(this) + "/showMember");
 	}

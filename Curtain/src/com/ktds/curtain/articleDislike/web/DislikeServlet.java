@@ -13,6 +13,11 @@ import com.ktds.curtain.articleDislike.biz.DislikeBiz;
 import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.articleLike.biz.ArticleLikeBiz;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 
 
@@ -23,6 +28,7 @@ public class DislikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DislikeBiz dislikeBiz;
 	private ArticleLikeBiz articleLikeBiz;
+	private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,6 +36,7 @@ public class DislikeServlet extends HttpServlet {
         super();
         dislikeBiz = new DislikeBiz();
         articleLikeBiz = new ArticleLikeBiz();
+        historyBiz= new OperationHistoryBiz();
     }
 
 	/**
@@ -69,7 +76,19 @@ public class DislikeServlet extends HttpServlet {
 			dislikeBiz.insertOrDeleteDislikeData(dislikeVO);
 			isExistDislikeData = dislikeBiz.isExistDislikeData(dislikeVO);
 			updateDislikeCount = dislikeBiz.getArticleDislikes(dislikeVO);
-		}		
+		}	
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.DO_DISLIKE);
+		historyVO.setDescription( BuildDescription.get(Description.DO_DISLIKE, member.getNickName(), request.getParameter("articleId") ) );
+		
+		historyBiz.addHistory(historyVO);
+		
+		
+		
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");

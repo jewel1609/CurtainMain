@@ -39,6 +39,12 @@ public interface ActionCode {
 	public static final String MODIFY_MEMBER_PASSWORD = "MD_M_PS";
 	public static final String MODIFY_MEMBER_PASSWORD_FAIL = "MD_M_PS_F";
 	
+	public static final String UPDATE_ARTICLE = "UP_A";
+	public static final String DELETE_ARTICLE = "DT_A";
+	public static final String DELETE_ARTICLE_FAIL = "DT_A_F";
+	
+	
+	
 	public static final String SECEDE_MEMBER = "S_M";
 	
 	public static final String DO_SURVEY = "D_S";

@@ -313,7 +313,7 @@
 										</div>
 
 									<div class="col-sm-12" id="imagePreview">
-											<img id="uploadImg" src="#" width="100px;">
+											<img id="uploadImg" src="" width="100px;">
 									</div>
 										
 										<div class="col-sm-12" style="margin-top: 10px;">

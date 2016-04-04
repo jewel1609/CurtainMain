@@ -272,7 +272,7 @@
 												placeholder="무슨 생각을 하고 계신가요?"></textarea>
 										</div>
 										<div class="col-sm-12" id="imagePreview">
-											<img id="uploadImg" src="#" width="100px;">
+											<img id="uploadImg" src="" width="100px;">
 										</div>
 										<div class="col-sm-12" style="margin-top:10px;">
 											<button type="button" class="btn btn-default" id="doWrite" style="float: right; border-color: #FF3300; color: #FF3300;">게시</button>

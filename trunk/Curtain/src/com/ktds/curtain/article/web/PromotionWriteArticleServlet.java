@@ -15,6 +15,11 @@ import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
@@ -28,6 +33,7 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 	private ArticleBiz articleBiz;
 	private MemberBiz memberBiz;
 	private FileBiz fileBiz;   
+	private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,6 +42,7 @@ public class PromotionWriteArticleServlet extends HttpServlet {
         articleBiz = new ArticleBiz();
 		fileBiz = new FileBiz();
 		memberBiz = new MemberBiz();
+		historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -86,6 +93,18 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 		article.setEmail(loginMember.getEmail());
 
 		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember, request);
+		
+		if ( doWriteArticle ) {
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(loginMember.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.WRITE_PROMOTION);
+			historyVO.setDescription( BuildDescription.get(Description.WRITE_PROMOTION, loginMember.getEmail()));
+			historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, loginMember.getNickName(), articleDescription ));
+			
+			historyBiz.addHistory(historyVO);
+		}
 		
 		
 		memberBiz.minusPointByPromotion(loginMember);

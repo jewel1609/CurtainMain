@@ -136,7 +136,7 @@ public class WriteArticleServlet extends HttpServlet {
 					historyVO.setUrl(request.getRequestURI());
 					historyVO.setActionCode(ActionCode.WRITE_MAJOR);
 					historyVO.setDescription( BuildDescription.get(Description.WRITE_MAJOR, stdMember.getEmail()));
-					historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, articleDescription, stdMember.getNickName()));
+					historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, stdMember.getNickName(), articleDescription ));
 					
 					historyBiz.addHistory(historyVO);
 					
@@ -152,7 +152,7 @@ public class WriteArticleServlet extends HttpServlet {
 					historyVO.setUrl(request.getRequestURI());
 					historyVO.setActionCode(ActionCode.WRITE_UNIV);
 					historyVO.setDescription( BuildDescription.get(Description.WRITE_UNIV, stdMember.getEmail()));
-					historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, articleDescription, stdMember.getNickName()));
+					historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, stdMember.getNickName(), articleDescription ));
 					
 					historyBiz.addHistory(historyVO);
 					

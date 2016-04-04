@@ -11,6 +11,12 @@
 	$(document)
 			.ready(
 					function() {
+						
+						$(".wrapper").css("height", window.innerHeight - 130);
+						   
+					      $(window).resize(function() {
+					         $(".wrapper").css("height", window.innerHeight - 130);
+					      });
 
 						$("#imagePreview").hide();
 
@@ -83,7 +89,7 @@
 	}
 </script>
 
-<div class="w3-container w3-main"
+<div class="w3-container w3-main wrapper"
 	style="margin-top: 30px; margin-bottom: 20px;">
 
 	<div class="w3-row">

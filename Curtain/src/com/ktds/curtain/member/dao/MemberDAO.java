@@ -157,7 +157,7 @@ public class MemberDAO {
 		
 	}
 
-	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, int inputPhoneNum,
+	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, String inputPhoneNum,
 			String inputSecondEmail) {
 		loadOracleDriver();
 
@@ -177,7 +177,7 @@ public class MemberDAO {
 			stmt.setString(3, compNickName);
 			stmt.setString(4, inputSecondEmail);
 			stmt.setString(5, inputPassword);
-			stmt.setInt(6, inputPhoneNum);
+			stmt.setString(6, inputPhoneNum);
 			stmt.setString(7, inputCompName);
 			stmt.executeUpdate();
 			
@@ -218,7 +218,7 @@ public class MemberDAO {
 				member.setPoint(rs.getInt("POINT"));
 				member.setRankModifyDate(rs.getString("RANK_MODIFY_DATE"));
 				member.setPassword(rs.getString("PASSWORD"));
-				member.setPhoneNumber(rs.getInt("PHONE_NUMBER"));
+				member.setPhoneNumber(rs.getString("PHONE_NUMBER"));
 				member.setCompanyName(rs.getString("COMPANY_NAME"));
 				member.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				member.setSurveyId(rs.getInt("SURVEY_ID"));

@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 
 /**
@@ -20,6 +25,7 @@ import com.ktds.curtain.member.vo.MemberVO;
 public class StudentUnivArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleBiz articleBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,6 +33,7 @@ public class StudentUnivArticleServlet extends HttpServlet {
     public StudentUnivArticleServlet() {
         super();
         articleBiz = new ArticleBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -45,6 +52,15 @@ public class StudentUnivArticleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		session.setAttribute("_BOARD_ID_", 2);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(stdMember.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.ARTICLE_UNIV);
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_UNIV, stdMember.getEmail()));
+		
+		historyBiz.addHistory(historyVO);
 		
 		List<ArticleVO> univArticles = articleBiz.showUnivArticle(stdMember);
 		request.setAttribute("univArticles", univArticles);

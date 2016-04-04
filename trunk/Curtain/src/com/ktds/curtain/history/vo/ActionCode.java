@@ -9,6 +9,7 @@ public interface ActionCode {
 	
 	
 	public static final String LOGIN ="MB_L";
+	public static final String LOGOUT ="MB_LO";
 	public static final String ARTICLE_MAJOR = "AT_M";
 	public static final String ARTICLE_UNIV = "AT_U";
 	public static final String ARTICLE_FREE = "AT_F";

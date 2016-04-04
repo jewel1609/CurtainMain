@@ -203,9 +203,19 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showUnivArticle(MemberVO stdMember) {
+	public List<ArticleVO> showUnivArticle(MemberVO stdMember, ArticleSearchVO searchVO) {
 		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showUnivArticle(stdMember);
+		
+		if ( searchVO.getSearchType().equals("1")) {
+			articles = articleDAO.showUnivArticleByTitle(stdMember, searchVO);
+		}
+		else if (searchVO.getSearchType().equals("2")) {
+			articles = articleDAO.showUnivArticleByDesc(stdMember, searchVO);
+		}
+		else {
+			articles = articleDAO.showUnivArticle(stdMember);
+		}
+		
 		return articles;
 
 	}

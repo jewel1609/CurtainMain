@@ -134,9 +134,8 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 			 
 			out.println("<script>"); 
 			out.println("alert('포인트가 부족합니다.');"); 
+			out.println("window.history.back();");
 			out.println("</script>"); 
 			out.close();
-			
-			response.sendRedirect("/promotionArticle");
 	}
 }

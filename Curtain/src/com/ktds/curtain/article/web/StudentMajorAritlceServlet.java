@@ -56,6 +56,7 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+		session.setAttribute("_BOARD_ID_", 1);
 		
 		List<String> univNames = univBiz.getUnivNameList(stdMember.getMajorGroupId());
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD);

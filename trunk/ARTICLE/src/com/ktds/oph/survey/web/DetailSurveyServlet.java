@@ -1,7 +1,6 @@
 package com.ktds.oph.survey.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,49 +12,46 @@ import javax.servlet.http.HttpSession;
 import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.survey.biz.SurveyBiz;
 import com.ktds.oph.survey.vo.SurveyVO;
-import com.ktds.oph.util.Root;
 
 /**
- * Servlet implementation class DoInsertSurveyServlet
+ * Servlet implementation class DetailSurveyServlet
  */
-public class DoInsertSurveyServlet extends HttpServlet {
+public class DetailSurveyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private SurveyVO surveyVO;   
-    private SurveyBiz surveyBiz;
+	private SurveyBiz surveyBiz;
+	private SurveyVO surveyInfo;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DoInsertSurveyServlet() {
+    public DetailSurveyServlet() {
         super();
-        surveyVO = new SurveyVO();
         surveyBiz = new SurveyBiz();
+        surveyInfo = new SurveyVO();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError(HttpServletResponse.SC_FORBIDDEN, "잘못된 요청입니다.");
+		this.doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String surveyTitle = request.getParameter("surveyTitle");
-		String surveyAnswer1 = request.getParameter("surveyAnswer1");
-		String surveyAnswer2 = request.getParameter("surveyAnswer2");
-		String surveyAnswer3 = request.getParameter("surveyAnswer3");
-		String surveyAnswer4 = request.getParameter("surveyAnswer4");
-		String surveyDate = request.getParameter("surveyDate");
-	
+		String surveyId = request.getParameter("surveyId");
+		System.out.println(surveyId);
+		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		surveyBiz.insertSurvey(surveyTitle,surveyAnswer1,surveyAnswer2,surveyAnswer3,surveyAnswer4,surveyDate, member);
+		surveyInfo = surveyBiz.getSurveyInfoBySurveyId(surveyId, member);
 		
-		response.sendRedirect(Root.get(this) + "/insertSurvey");
-		
+		request.setAttribute("survey", surveyInfo);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/survey/detailSurvey.jsp");
+		rd.forward(request, response);
 	}
 
 }

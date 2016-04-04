@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.keyword.biz.KeywordBiz;
 
@@ -38,7 +39,12 @@ public class ShowKeywordTopSeven extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<String> keywords = keywordBiz.getKeywordTopSeven();
+		HttpSession session = request.getSession();
+		int boardId = (int) session.getAttribute("_BOARD_ID_");
+		
+		System.out.println(boardId);
+		
+		List<String> keywords = keywordBiz.getKeywordTopSeven(boardId);
 		
 		StringBuffer json = new StringBuffer();
 		

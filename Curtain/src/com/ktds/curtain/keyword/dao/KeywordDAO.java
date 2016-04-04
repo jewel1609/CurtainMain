@@ -40,7 +40,7 @@ public class KeywordDAO {
 		}
 	}
 	
-	public List<String> getKeywordTopSeven() {
+	public List<String> getKeywordTopSeven(int boardId) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -54,6 +54,7 @@ public class KeywordDAO {
 
 			String query = XML.getNodeString("//query/keyword/getKeywordTopSeven/text()");
 			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, boardId);
 			rs = stmt.executeQuery();
 			
 			keywords = new ArrayList<String> ();

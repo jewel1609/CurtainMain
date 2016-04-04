@@ -30,6 +30,10 @@ public interface ActionCode {
 	public static final String WRITE_QUESTION = "WT_Q";
 	
 	public static final String MODIFY_MEMBER_INFO = "MD_M_I";
+	public static final String MODIFY_MEMBER_PASSWORD = "MD_M_PS";
+	public static final String MODIFY_MEMBER_PASSWORD_FAIL = "MD_M_PS_F";
+	
+	public static final String SECEDE_MEMBER = "S_M";
 	
 	
 	

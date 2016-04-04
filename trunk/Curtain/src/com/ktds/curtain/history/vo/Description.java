@@ -36,7 +36,10 @@ public interface Description {
 	public static final String WRITE_QUESTION = "[%s] 님이 문의글을 작성했습니다.";
 
 	public static final String MODIFY_MEMBER_INFO = "[%s] 님이 회원정보를 변경했습니다.";
+	public static final String MODIFY_MEMBER_PASSWORD = "[%s] 님이 비밀번호를 변경했습니다.";
+	public static final String MODIFY_MEMBER_PASSWORD_FAIL = "[%s] 님이 비밀번호를 변경에 실패했습니다.";
 	
+	public static final String SECEDE_MEMBER = "[%s]님이 회원탈퇴하셨습니다.";
 	
 	
 			
@@ -47,6 +50,8 @@ public interface Description {
 	
 	public static final String DETAIL_DESCRIPTION ="제목 : [%s]<br/>글쓴이 : [%s]<br/>내용 : [%s]<br/>";
 	public static final String DETAIL_MEMBER_INFO = "변경한 일반이메일 : [%s]<br/> 변경한 닉네임 : [%s]";
+	public static final String DETAIL_MEMBER_PASSWORD = "변경한 패스워드 : [%s]";
+	public static final String DETAIL_SECEDE_MEMBER = "탈퇴 이메일 : [%s] <br/> 탈퇴 사유 : [%s]";
 	
 	
 }

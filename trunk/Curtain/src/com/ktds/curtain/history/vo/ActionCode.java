@@ -29,6 +29,9 @@ public interface ActionCode {
 	public static final String WRITE_PROMOTION = "WT_P";
 	public static final String WRITE_QUESTION = "WT_Q";
 	
+	public static final String MODIFY_MEMBER_INFO = "MD_M_I";
+	
+	
 	
 	public static final String DETAIL_PAGE = "DT_P";
 	public static final String DETAIL_QUESTION = "DT_Q";

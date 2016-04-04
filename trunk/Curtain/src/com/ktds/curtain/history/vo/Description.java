@@ -34,6 +34,8 @@ public interface Description {
 	public static final String WRITE_TWO_LAYER = "[%s] 님이 비밀게시판(두겹)에 글을 작성했습니다.";
 	public static final String WRITE_PROMOTION = "[%s] 님이 홍보게시판에 글을 작성했습니다.";
 	public static final String WRITE_QUESTION = "[%s] 님이 문의글을 작성했습니다.";
+
+	public static final String MODIFY_MEMBER_INFO = "[%s] 님이 회원정보를 변경했습니다.";
 	
 	
 	
@@ -44,6 +46,7 @@ public interface Description {
 	public static final String LIST_SEARCH = "[%s]님이 목록보기 페이지에서 [%s]로 [%s]를 검색했습니다.";
 	
 	public static final String DETAIL_DESCRIPTION ="제목 : [%s]<br/>글쓴이 : [%s]<br/>내용 : [%s]<br/>";
+	public static final String DETAIL_MEMBER_INFO = "변경한 일반이메일 : [%s]<br/> 변경한 닉네임 : [%s]";
 	
 	
 }

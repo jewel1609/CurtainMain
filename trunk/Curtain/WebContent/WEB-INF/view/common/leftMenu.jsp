@@ -24,14 +24,12 @@
 	
 	<c:if test="${ companyName eq null}">
 		<div class="w3-accordion">
-			<a onclick="myAccordion('demo')" href="javascript:void(0)">
-				학생게시판<i class="fa fa-caret-down"></i>
-			</a>
-			<div id="demo" class="w3-accordion-content">
+			<a onclick="myAccordion('demo')" href="javascript:void(0)">학생게시판<i class="fa fa-caret-down"></i></a>
+			<div id="demo" class="w3-accordion-content w3-animate-left w3-padding">
 				<div id="majorGroup">
 					<a href="<c:url value="/studentMajorAritlce?majorGroupId="/>${majorGroupId}">&nbsp;&nbsp;&nbsp;${majorGroupName}</a>
 				</div> 
-				<div id="univ">
+				<div id="univFill">
 					<a href="<c:url value="/studentUnivArticle?univId="/>${univId}">&nbsp;&nbsp;&nbsp;${univName}</a>
 				</div>
 			</div>

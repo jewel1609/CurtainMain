@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.qa.biz.QuestionAndAnswerBiz;
 import com.ktds.curtain.qa.vo.QuestionAndAnswerVO;
@@ -19,12 +24,14 @@ import com.ktds.curtain.util.Root;
 public class DoRegisterQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private QuestionAndAnswerBiz questionAndAnswerBiz;
+	private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DoRegisterQuestionServlet() {
         super();
         questionAndAnswerBiz = new QuestionAndAnswerBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -49,6 +56,17 @@ public class DoRegisterQuestionServlet extends HttpServlet {
 		questionAndAnswerVO.setQuestionTitle(request.getParameter("questionTitle"));
 		
 		questionAndAnswerBiz.registerQuestion(questionAndAnswerVO);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.WRITE_QUESTION);
+		historyVO.setDescription( BuildDescription.get(Description.WRITE_QUESTION, member.getNickName()) );
+		historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, questionAndAnswerVO.getQuestionTitle(), member.getNickName(), questionAndAnswerVO.getQuestionDescription()));
+		
+		historyBiz.addHistory(historyVO);
+		
 		
 		response.sendRedirect(Root.get(this) + "/questionAndAnswer");
 		

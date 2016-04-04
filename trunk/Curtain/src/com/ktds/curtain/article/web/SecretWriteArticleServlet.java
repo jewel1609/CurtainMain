@@ -159,7 +159,7 @@ public class SecretWriteArticleServlet extends HttpServlet {
 			historyVO.setEmail(loginMember.getEmail());
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.WRITE_TWO_LAYER);
-			historyVO.setDescription( BuildDescription.get(Description.WRITE_TWO_LAYER, loginMember.getEmail()));
+			historyVO.setDescription( BuildDescription.get(Description.WRITE_TWO_LAYER, loginMember.getNickName()));
 			historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, loginMember.getNickName(), articleDescription ));
 			
 			historyBiz.addHistory(historyVO);

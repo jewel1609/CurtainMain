@@ -56,7 +56,7 @@ public class PromotionArticleServlet extends HttpServlet {
 		historyVO.setEmail(stdMember.getEmail());
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.ARTICLE_PRO);
-		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_PRO, stdMember.getEmail()));
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_PRO, stdMember.getNickName()));
 		
 		historyBiz.addHistory(historyVO);
 		

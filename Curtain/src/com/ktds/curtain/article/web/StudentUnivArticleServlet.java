@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.history.biz.OperationHistoryBiz;
 import com.ktds.curtain.history.vo.ActionCode;
 import com.ktds.curtain.history.vo.BuildDescription;
@@ -63,6 +64,9 @@ public class StudentUnivArticleServlet extends HttpServlet {
 		historyBiz.addHistory(historyVO);
 		
 		List<ArticleVO> univArticles = articleBiz.showUnivArticle(stdMember);
+		ArticleVO topArticle = articleBiz.showTopUnivArticle(stdMember, BoardId.UNIV_BOARD);
+		
+		request.setAttribute("topArticle", topArticle);
 		request.setAttribute("univArticles", univArticles);
 
 		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/univ.jsp");

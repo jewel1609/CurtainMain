@@ -52,6 +52,9 @@ public interface ActionCode {
 	public static final String CANCEL_SCRAB = "CC_SB";
 	public static final String DO_LIKE = "D_L";
 	public static final String DO_DISLIKE = "D_DL";
+	public static final String DO_CLAIM_ARTICLE = "D_CL_AT";
+	public static final String DO_CLAIM_REPLY = "D_CL_RP";
+	
 	
 	
 	

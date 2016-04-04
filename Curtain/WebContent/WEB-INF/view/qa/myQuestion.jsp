@@ -74,7 +74,7 @@
 
 						<div style="clear: both;"></div>
 						
-						<div class="w3-white w3-round-large" style="padding: 10px; height: 650px; overflow: auto;">
+						<div class="w3-white w3-round-large" style="padding: 10px;">
 							<c:forEach items="${questions}" var="question">
 								<form> 
 									<div class="btnQuestion w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;" >

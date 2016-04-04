@@ -21,6 +21,8 @@ public interface Description {
 	public static final String VISIT_SECEDE_PAGE = "[%s] 님이 회원 탈퇴페이지에 접근했습니다.";
 	
 	public static final String VISIT_FAQ_QNA = "[%s] 님이 FAQ/Q&A페이지에 접근했습니다.";
+	public static final String VISIT_MY_QUESTION = "[%s] 님이 내가 한 질문들 페이지에 접근했습니다.";
+	public static final String VISIT_REGIST_QUESTION = "[%s] 님이 문의하기 페이지에 접근했습니다.";
 	
 	public static final String VISIT_DETAIL = "[%s] 님이 [%s]번의 글을 읽었습니다.";
 	

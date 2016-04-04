@@ -17,6 +17,9 @@ public interface ActionCode {
 	public static final String SECEDE_PAGE = "SD_P";
 	
 	public static final String FAQ_QNA = "FQ_QA";
+	public static final String MY_QUESTION = "MY_QT";
+	public static final String REGIST_QUESTION = "RG_QT";
+	
 	
 	public static final String WRITE_MAJOR = "WT_M";
 	public static final String WRITE_UNIV = "WT_U";

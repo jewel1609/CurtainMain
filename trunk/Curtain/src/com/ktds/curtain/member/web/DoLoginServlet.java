@@ -70,7 +70,6 @@ public class DoLoginServlet extends HttpServlet {
 			}
 			
 		HttpSession session = request.getSession();
-		
 		member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
@@ -97,9 +96,11 @@ public class DoLoginServlet extends HttpServlet {
 				session.setAttribute("_VOTE_", checkCount);
 				if(member.getMemberTypeId() == 1 || member.getMemberTypeId() == 2 || member.getMemberTypeId() == 3 ){
 					response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
+					session.setAttribute("_BOARD_ID_", 1);
 				} 
 				else{
 					response.sendRedirect(Root.get(this) + "/promotionArticle");
+					session.setAttribute("_BOARD_ID_", 3);
 				}
 			}
 		
@@ -107,9 +108,11 @@ public class DoLoginServlet extends HttpServlet {
 				session.setAttribute("_VOTE_", checkCount);
 				if(member.getMemberTypeId() == 1 || member.getMemberTypeId() == 2 || member.getMemberTypeId() == 3){
 					response.sendRedirect(Root.get(this) + "/studentMajorAritlce");
+					session.setAttribute("_BOARD_ID_", 1);
 				}
 				else {
 					response.sendRedirect(Root.get(this) + "/promotionArticle");
+					session.setAttribute("_BOARD_ID_", 3);
 				}
 			}
 		}

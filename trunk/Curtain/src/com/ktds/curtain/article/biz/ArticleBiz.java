@@ -446,9 +446,19 @@ public class ArticleBiz {
 		return true;
 	}
 
-	public List<ArticleVO> showPromotionArticle(MemberVO stdMember, String promotionBoard) {
+	public List<ArticleVO> showPromotionArticle(MemberVO stdMember, String promotionBoard, ArticleSearchVO searchVO) {
 		articles = new ArrayList<ArticleVO>();
 		articles = articleDAO.showPromotionArticle(stdMember, promotionBoard);
+		
+		if ( searchVO.getSearchType().equals("1")) {
+			articles = articleDAO.showPromotionArticleByTitle(stdMember, promotionBoard, searchVO);
+		}
+		else if (searchVO.getSearchType().equals("2")) {
+			articles = articleDAO.showPromotionArticleByDesc(stdMember, promotionBoard, searchVO);
+		}
+		else {
+			articles = articleDAO.showPromotionArticle(stdMember, promotionBoard);
+		}
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, promotionBoard);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, promotionBoard);

@@ -228,6 +228,7 @@
 						form.submit();
 
 				});
+	});
 
 	function readURL(input) {
 

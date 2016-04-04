@@ -53,6 +53,7 @@ public class WriteArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// mutilpartHttpServletResquest 선언
+			System.out.println("넘어오니");
 				MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
 				
 				String articleTitle = multipartRequest.getParameter("articleTitle");
@@ -122,9 +123,11 @@ public class WriteArticleServlet extends HttpServlet {
 
 				if ( boardId.equals(BoardId.MAJOR_BOARD)) {
 					response.sendRedirect("/studentMajorAritlce");
+					return;
 				}
 				else if ( boardId.equals(BoardId.UNIV_BOARD)) {
 					response.sendRedirect("/studentUnivArticle");
+					return;
 				}
 				
 	}

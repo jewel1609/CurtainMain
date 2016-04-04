@@ -117,10 +117,19 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showSecretArticle(MemberVO stdMember, String boardId) {
+	public List<ArticleVO> showSecretArticle(MemberVO stdMember, String boardId, ArticleSearchVO searchVO) {
 
 		articles = new ArrayList<ArticleVO>();
-		articles = articleDAO.showSecretArticle(stdMember, boardId);
+		
+		if ( searchVO.getSearchType().equals("1")) {
+			articles = articleDAO.showSecretArticleByTitle(stdMember, boardId, searchVO);
+		}
+		else if (searchVO.getSearchType().equals("2")) {
+			articles = articleDAO.showSecretArticleByDesc(stdMember, boardId, searchVO);
+		}
+		else {
+			articles = articleDAO.showSecretArticle(stdMember, boardId);
+		}
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);

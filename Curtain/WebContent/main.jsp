@@ -5,7 +5,6 @@
 <%@page import="com.ktds.curtain.history.vo.BuildDescription"%>
 <%@page import="com.ktds.curtain.history.vo.Description"%>
 <%@page import="com.ktds.curtain.history.biz.OperationHistoryBiz"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>

@@ -128,10 +128,13 @@
 			
 		}); */
 		
+		
 		setInterval(function(e) {
 			$.post(
 					"/showKeyword"
-					, { }
+					, {
+						"boardId" : <%=request.getParameter("boardId")%>
+					}
 					, function(data) {
 						var jsonData = {};
 						
@@ -196,7 +199,9 @@
 		
 		$.post(
 				"/showKeyword"
-				, { }
+				, { 
+					"boardId" : <%=request.getParameter("boardId")%>
+				}
 				, function(data) {
 					var jsonData = {};
 					
@@ -265,8 +270,10 @@
 	
  	<c:set var="voteCheck" value="${ sessionScope._VOTE_ }" />
  	<input type="hidden" id="first" value="${ first }" />
- 	
+ 
+
  <div class="w3-padding-medium">
+	 <c:if test="${ sessionScope._BOARD_ID_ ne 0 }">
 	 <div>
 	 	<div class="w3-card w3-round w3-white" style="padding:4px;">
 	 		<strong>게시판의 관심사</strong><br/>
@@ -280,7 +287,8 @@
 			<p id="keyword6"></p>
 			<p id="keyword7"></p>
 		</div>
-	</div>	   
+	</div>	
+	</c:if>   
 	
 	<div>
 		

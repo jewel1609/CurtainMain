@@ -745,6 +745,35 @@ public class MemberDAO {
 		}
 	}
 	
+	
+	public int getPointbyEmail(MemberVO loginMember) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int point  = 0;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getPointbyEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, loginMember.getEmail());
+			rs = stmt.executeQuery();
+			rs.next();
+			point = rs.getInt(1);
+			return point;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+		
+	}
+	
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -773,8 +802,6 @@ public class MemberDAO {
 			}
 		}
 	}
-
-	
 
 
 	

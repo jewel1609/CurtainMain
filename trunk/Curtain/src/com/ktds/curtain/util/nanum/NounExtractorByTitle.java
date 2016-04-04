@@ -14,7 +14,7 @@ import kr.ac.kaist.swrc.jhannanum.plugin.SupplementPlugin.PlainTextProcessor.Inf
 import kr.ac.kaist.swrc.jhannanum.plugin.SupplementPlugin.PlainTextProcessor.SentenceSegmentor.SentenceSegmentor;
 import kr.ac.kaist.swrc.jhannanum.plugin.SupplementPlugin.PosProcessor.NounExtractor.NounExtractor;
 
-public class NounExtractByTitle {
+public class NounExtractorByTitle {
 
 	/** the buffer for noun morphemes */
 	private LinkedList<String> nounMorphemes = null;

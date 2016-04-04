@@ -8,25 +8,25 @@ public interface Description {
 	public static final String LOGIN_FAIL = "[%s]가 [%s]로 로그인을 시도했지만, 실패 했습니다.";
 	public static final String ALREADY_LOGIN = "[%s] 님이 이미 로그인되어, 학과 게시판으로 이동합니다.";
 	
-	public static final String VISIT_ARTICLE_MAJOR = "[%s]가 학과 게시판에 접근했습니다.";
-	public static final String VISIT_ARTICLE_UNIV = "[%s]가 대학 게시판에 접근했습니다.";
-	public static final String VISIT_ARTICLE_FREE = "[%s]가 자유 게시판에 접근했습니다.";
-	public static final String VISIT_ARTICLE_PRO = "[%s]가 홍보 게시판에 접근했습니다.";
+	public static final String VISIT_ARTICLE_MAJOR = "[%s] 님이 학과 게시판에 접근했습니다.";
+	public static final String VISIT_ARTICLE_UNIV = "[%s] 님이 대학 게시판에 접근했습니다.";
+	public static final String VISIT_ARTICLE_FREE = "[%s] 님이 자유 게시판에 접근했습니다.";
+	public static final String VISIT_ARTICLE_PRO = "[%s] 님이 홍보 게시판에 접근했습니다.";
 	
-	public static final String VISIT_ARTICLE_SECRET_ONE = "[%s]가 비밀게시판(한겹)에 접근했습니다.";
-	public static final String VISIT_ARTICLE_SECRET_TWO = "[%s]가 비밀게시판(두겹)에 접근했습니다.";
+	public static final String VISIT_ARTICLE_SECRET_ONE = "[%s] 님이 비밀게시판(한겹)에 접근했습니다.";
+	public static final String VISIT_ARTICLE_SECRET_TWO = "[%s] 님이 비밀게시판(두겹)에 접근했습니다.";
 	
-	public static final String VISIT_MY_PAGE = "[%s]가 마이페이지에 접근했습니다.";
-	public static final String VISIT_FAQ_QNA = "[%s]가 FAQ/Q&A페이지에 접근했습니다.";
+	public static final String VISIT_MY_PAGE = "[%s] 님이 마이페이지에 접근했습니다.";
+	public static final String VISIT_FAQ_QNA = "[%s] 님이 FAQ/Q&A페이지에 접근했습니다.";
 	
-	public static final String VISIT_DETAIL = "[%s]가 [%s]번의 글을 읽었습니다.";
+	public static final String VISIT_DETAIL = "[%s] 님이 [%s]번의 글을 읽었습니다.";
 	
-	public static final String WRITE_MAJOR = "[%s]가 학과 게시판에 글을 작성했습니다.";
-	public static final String WRITE_UNIV = "[%s]가 대학 게시판에 글을 작성했습니다.";
-	public static final String WRITE_FREE = "[%s]가 자유게시판에 글을 작성했습니다.";
-	public static final String WRITE_ONE_LAYER = "[%s]가 비밀게시판(한겹)에 글을 작성했습니다.";
-	public static final String WRITE_TWO_LAYER = "[%s]가 비밀게시판(두겹)에 글을 작성했습니다.";
-	public static final String WRITE_PROMOTION = "[%s]가 홍보게시판에 글을 작성했습니다.";
+	public static final String WRITE_MAJOR = "[%s] 님이 학과 게시판에 글을 작성했습니다.";
+	public static final String WRITE_UNIV = "[%s] 님이 대학 게시판에 글을 작성했습니다.";
+	public static final String WRITE_FREE = "[%s] 님이 자유게시판에 글을 작성했습니다.";
+	public static final String WRITE_ONE_LAYER = "[%s] 님이 비밀게시판(한겹)에 글을 작성했습니다.";
+	public static final String WRITE_TWO_LAYER = "[%s] 님이 비밀게시판(두겹)에 글을 작성했습니다.";
+	public static final String WRITE_PROMOTION = "[%s] 님이 홍보게시판에 글을 작성했습니다.";
 	
 	
 	

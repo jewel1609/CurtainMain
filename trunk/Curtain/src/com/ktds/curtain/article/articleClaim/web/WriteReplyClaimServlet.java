@@ -66,7 +66,7 @@ public class WriteReplyClaimServlet extends HttpServlet {
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.DO_CLAIM_REPLY);
 			historyVO.setDescription( BuildDescription.get(Description.DO_CLAIM_REPLY, member.getNickName(), replyClaim.substring(5) ) );
-			historyVO.setEtc( BuildDescription.get(Description.DETAIL_CLAIM_ARTICLE, claimText));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_CLAIM_REPLY, claimText));
 			
 			historyBiz.addHistory(historyVO);
 		}

@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.replyDislike.biz.ReplyDislikeBiz;
 import com.ktds.curtain.replyDislike.vo.ReplyDislikeVO;
@@ -22,6 +27,7 @@ public class ReplyDislikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReplyDislikeBiz replyDislikeBiz;
 	private ReplyLikeBiz replyLikeBiz;
+	private OperationHistoryBiz historyBiz;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -30,6 +36,7 @@ public class ReplyDislikeServlet extends HttpServlet {
         super();
         replyDislikeBiz = new ReplyDislikeBiz();
         replyLikeBiz = new ReplyLikeBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -68,6 +75,16 @@ public class ReplyDislikeServlet extends HttpServlet {
 			isExistDislikeReply = replyDislikeBiz.isExistDislikeReply(replyDislikeVO);
 			updateDislikeCount = replyDislikeBiz.getReplyDislikes(replyDislikeVO);
 		}
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.DO_REPLY_DISLIKE);
+		historyVO.setDescription( BuildDescription.get(Description.DO_REPLY_DISLIKE, member.getNickName(), request.getParameter("replyId") ) );
+		
+		historyBiz.addHistory(historyVO);
+		
 		
 // json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();

@@ -6,8 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.ktds.oph.article.vo.ArticleListVO;
-import com.ktds.oph.article.vo.ArticleVO;
 import com.ktds.oph.member.dao.MemberDAO;
 import com.ktds.oph.member.vo.MemberListVO;
 import com.ktds.oph.member.vo.MemberSearchVO;
@@ -22,6 +20,14 @@ public class MemberBiz {
 		memberDAO = new MemberDAO();
 	}
 
+	public boolean isAdmin(MemberVO loginMember){
+		MemberVO member = memberDAO.getMemberByIdAndPassword(loginMember);
+		if(member.getMemberTypeId() == 6){
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean login(MemberVO loginMember, HttpServletRequest request) {
 		
 			// 1. 회원 정보를 가져온다. (task)
@@ -69,7 +75,22 @@ public class MemberBiz {
 				System.out.println("Biz : " + memberEmail);
 			}
 		}
-		System.out.println("멤버등급이 관리자가 아님..?");
+		
+	}
+
+	public MemberVO getMemberInfoByEmail(String memberEmail, MemberVO member) {
+		if( member.getMemberTypeId() == 6 ) {
+			return memberDAO.getMemberInfoByEmail(memberEmail);
+		}
+		return null;
+	}
+
+	public void modifyMember(String modifyMemberEmail, String modifyMemberTypeId, String modifyMemberPoint,
+			String modifyMemberPassword, MemberVO member) {
+		if( member.getMemberTypeId() == 6 ) {
+			memberDAO.modifyMember(modifyMemberEmail,modifyMemberTypeId,modifyMemberPoint,modifyMemberPassword,member);
+		}
+		
 	}
 
 }

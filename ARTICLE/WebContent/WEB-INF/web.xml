@@ -217,4 +217,24 @@
     <servlet-name>MassiveDeleteServlet</servlet-name>
     <url-pattern>/massiveDelete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberModifyServlet</display-name>
+    <servlet-name>MemberModifyServlet</servlet-name>
+    <servlet-class>com.ktds.oph.member.web.MemberModifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberModifyServlet</servlet-name>
+    <url-pattern>/memberModify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailMemberServlet</display-name>
+    <servlet-name>DetailMemberServlet</servlet-name>
+    <servlet-class>com.ktds.oph.member.web.DetailMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailMemberServlet</servlet-name>
+    <url-pattern>/detailMember</url-pattern>
+  </servlet-mapping>
 </web-app>

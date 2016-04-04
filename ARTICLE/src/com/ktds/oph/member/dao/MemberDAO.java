@@ -175,8 +175,77 @@ public class MemberDAO {
 		
 	}
 
+	public MemberVO getMemberInfoByEmail(String memberEmail) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/member/getMemberInfoByEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1,memberEmail);
+			rs = stmt.executeQuery();
+			MemberVO memberVO = null;
+			if(rs.next()){
+				memberVO = new MemberVO();
+				memberVO.setEmail(rs.getString("EMAIL"));
+				memberVO.setMemberTypeId(rs.getInt("MEMBER_TYPE_ID"));
+				memberVO.setUnivId(rs.getInt("UNIV_ID"));
+				memberVO.setMajorId(rs.getInt("MAJOR_ID"));
+				memberVO.setSignupDate(rs.getString("SIGNUP_DATE"));
+				memberVO.setNickName(rs.getString("NICK_NAME"));
+				memberVO.setSecondEmail(rs.getString("SECOND_EMAIL"));
+				memberVO.setPoint(rs.getInt("POINT"));
+				memberVO.setRankModifyDate(rs.getString("RANK_MODIFY_DATE"));
+				memberVO.setPassword(rs.getString("PASSWORD"));
+				memberVO.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+				memberVO.setCompanyName(rs.getString("COMPANY_NAME"));
+				memberVO.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				
+			}
+			return memberVO;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+	}
 
 
+
+
+	public void modifyMember(String modifyMemberEmail, String modifyMemberTypeId, String modifyMemberPoint,
+			String modifyMemberPassword, MemberVO member) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/member/modifyMember/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1,Integer.parseInt(modifyMemberTypeId));
+			stmt.setInt(2, Integer.parseInt(modifyMemberPoint));
+			stmt.setString(3, modifyMemberPassword);
+			stmt.setString(4, modifyMemberEmail);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+		
+	}
+
+
+
+	
 	///////////////////////////////////////////
 	/**
 	 * 오라클 드라이버
@@ -219,6 +288,9 @@ public class MemberDAO {
 			catch ( SQLException e ) {}
 		}
 	}
+
+
+
 
 
 

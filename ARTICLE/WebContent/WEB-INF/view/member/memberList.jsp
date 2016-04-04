@@ -28,7 +28,7 @@
 		
 		$("#massiveDeleteBtn").click(function() {
 			var isChecked = false;
-			$(".deleteMemberEmail").each(function (index, data) {
+			$(".memberEmail").each(function (index, data) {
 				if(data.checked){
 					isChecked = data.checked;
 				}
@@ -40,9 +40,31 @@
 			}
 			
 			if (confirm("정말 삭제하시겠습니까?")) {
-				var form = $("#massiveDeleteForm");
+				var form = $("#massiveForm");
 				form.attr("method", "post");
 				form.attr("action", "<c:url value="/massiveDelete" />");
+				form.submit();
+			}
+		});
+		
+		//수정
+		$("#modifyMemberInfoBtn").click(function() {
+			var isChecked = false;
+			$(".memberEmail").each(function (index, data) {
+				if(data.checked){
+					isChecked = data.checked;
+				}
+			});
+			
+			if(!isChecked) {
+				alert("삭제할 대상을 선택하세요.")
+				return;
+			}
+			
+			if (confirm("정말 삭제하시겠습니까?")) {
+				var form = $("#massiveForm");
+				form.attr("method", "post");
+				form.attr("action", "<c:url value="/massiveModify" />");
 				form.submit();
 			}
 		});
@@ -75,14 +97,15 @@
     </thead>
     
     <tbody>
-    	<form id="massiveDeleteForm">
+    	<form id="massiveForm">
 	    	<c:forEach items="${members.memberList}" var="member"> 
+			      
 			      <tr>
 			     	 <td>
-						<input class="deleteMemberEmail" name="deleteMemberEmail" value="${member.email}" type="checkbox"/>
+						<input class="memberEmail" name="memberEmail" value="${member.email}" type="checkbox"/>
 					</td>
-			        <td>${member.email}</td>
-			        <td>${member.memberTypeId}</td>
+			        <td><a href="/detailMember?memberEmail=${member.email}">${member.email}</a></td>  
+			        <td>${member.memberTypeId} </td>
 			        <td>${member.univId}</td>
 			       	<td>${member.majorId}</td>
 			        <td>${member.signupDate}</td>
@@ -95,6 +118,7 @@
 			        <td>${member.companyName}</td>
 			        <td>${member.majorGroupId}</td>
 			      </tr>
+			    
 	    	</c:forEach> 
     	</form>
    		<tr>

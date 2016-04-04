@@ -1,6 +1,7 @@
 <%@page import="com.ktds.curtain.survey.vo.SurveyStatsVO"%>
 <%@page import="com.ktds.curtain.survey.vo.SurveyVO"%>
 <%@page import="com.ktds.curtain.survey.biz.SurveyBiz"%>
+<%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -145,54 +146,53 @@
 						}
 						
 						if ( jsonData.keyword0 != null ) {
-							$("#keyword1").text("1. " + jsonData.keyword0);
+							$("#keyword1").html("1. <span class=\"topKeyword\">" + jsonData.keyword0 + "</span>");
 						}
 						else {
-							$("#keyword1").text("1. ");
+							$("#keyword1").html("1. ");
 						}
 						
 						if ( jsonData.keyword1 != null ) {
-							$("#keyword2").text("2. " + jsonData.keyword1);
+							$("#keyword2").html("2. <span class=\"topKeyword\">" + jsonData.keyword1 + "</span>");
 						}
 						else {
-							$("#keyword2").text("2. ");
+							$("#keyword2").html("2. ");
 						}
 						
 						if ( jsonData.keyword2 != null ) {
-							$("#keyword3").text("3. " + jsonData.keyword2);
+							$("#keyword3").html("3. <span class=\"topKeyword\">" + jsonData.keyword2 + "</span>");
 						}
 						else {
-							$("#keyword3").text("3. ");
+							$("#keyword3").html("3. ");
 						}
 						
 						if (jsonData.keyword3 != null ) {
-							$("#keyword4").text("4. " + jsonData.keyword3);
+							$("#keyword4").html("4. <span class=\"topKeyword\">" + jsonData.keyword3 + "</span>");
 						}
 						else {
-							$("#keyword4").text("4. ");
+							$("#keyword4").html("4. ");
 						}
 						
 						if (jsonData.keyword4 != null ) {
-							$("#keyword5").text("5. " + jsonData.keyword4);
+							$("#keyword5").html("5. <span class=\"topKeyword\">" + jsonData.keyword4 + "</span>");
 						}
 						else {
-							$("#keyword5").text("5. ");
+							$("#keyword5").html("5. ");
 						}
 						
 						if (jsonData.keyword5 != null ) {
-							$("#keyword6").text("6. " + jsonData.keyword5);
+							$("#keyword6").html("6. <span class=\"topKeyword\">" + jsonData.keyword5 + "</span>");
 						}
 						else {
-							$("#keyword6").text("6. ");
+							$("#keyword6").html("6. ");
 						}
 						
 						if (jsonData.keyword6 != null ) {
-							$("#keyword7").text("7. " + jsonData.keyword6);
+							$("#keyword7").html("7. <span class=\"topKeyword\">" + jsonData.keyword6 + "</span>");
 						}
 						else {
-							$("#keyword7").text("7. ");
+							$("#keyword7").html("7. ");
 						}
-						
 			  		}
 			);
 		}, 1000*60*5); 
@@ -212,56 +212,90 @@
 					}
 					
 					if ( jsonData.keyword0 != null ) {
-						$("#keyword1").text("1. " + jsonData.keyword0);
+						$("#keyword1").html("1. <span class=\"topKeyword\">" + jsonData.keyword0 + "</span>");
 					}
 					else {
-						$("#keyword1").text("1. ");
+						$("#keyword1").html("1. ");
 					}
 					
 					if ( jsonData.keyword1 != null ) {
-						$("#keyword2").text("2. " + jsonData.keyword1);
+						$("#keyword2").html("2. <span class=\"topKeyword\">" + jsonData.keyword1 + "</span>");
 					}
 					else {
-						$("#keyword2").text("2. ");
+						$("#keyword2").html("2. ");
 					}
 					
 					if ( jsonData.keyword2 != null ) {
-						$("#keyword3").text("3. " + jsonData.keyword2);
+						$("#keyword3").html("3. <span class=\"topKeyword\">" + jsonData.keyword2 + "</span>");
 					}
 					else {
-						$("#keyword3").text("3. ");
+						$("#keyword3").html("3. ");
 					}
 					
 					if (jsonData.keyword3 != null ) {
-						$("#keyword4").text("4. " + jsonData.keyword3);
+						$("#keyword4").html("4. <span class=\"topKeyword\">" + jsonData.keyword3 + "</span>");
 					}
 					else {
-						$("#keyword4").text("4. ");
+						$("#keyword4").html("4. ");
 					}
 					
 					if (jsonData.keyword4 != null ) {
-						$("#keyword5").text("5. " + jsonData.keyword4);
+						$("#keyword5").html("5. <span class=\"topKeyword\">" + jsonData.keyword4 + "</span>");
 					}
 					else {
-						$("#keyword5").text("5. ");
+						$("#keyword5").html("5. ");
 					}
 					
 					if (jsonData.keyword5 != null ) {
-						$("#keyword6").text("6. " + jsonData.keyword5);
+						$("#keyword6").html("6. <span class=\"topKeyword\">" + jsonData.keyword5 + "</span>");
 					}
 					else {
-						$("#keyword6").text("6. ");
+						$("#keyword6").html("6. ");
 					}
 					
 					if (jsonData.keyword6 != null ) {
-						$("#keyword7").text("7. " + jsonData.keyword6);
+						$("#keyword7").html("7. <span class=\"topKeyword\">" + jsonData.keyword6 + "</span>");
 					}
 					else {
-						$("#keyword7").text("7. ");
+						$("#keyword7").html("7. ");
 					}
 		  		}
 		);
 		
+		
+		$("body").on ("click", ".topKeyword", function() {
+			var form = $("#topKeywordForm");
+			form.attr("method", "post");
+			var boardId = $(".boardId").val();
+			
+			$(".articleTypeId").val("1");
+			$(".searchKeyword").val($(this).text());
+			
+			if(boardId == "1") {
+				form.attr("action", "/studentMajorAritlce");
+			}
+			else if ( boardId == "2" ) {
+				form.attr("action", "/studentUnivArticle");
+			}
+			else if ( boardId == "3" ) {
+				form.attr("action", "/promotionArticle");
+			}
+			else if ( boardId == "4" ) {
+				form.attr("action", "/secretArticleList");
+			}
+			else if ( boardId == "5" ) {
+				form.attr("action", "/oneLayerCurtain");
+			}
+			else if ( boardId == "6" ) {
+				form.attr("action", "/twoLayerCurtain");
+			}
+			
+			form.submit();
+		});
+		
+		$("body").on ("mouseover", ".topKeyword", function() {
+			$(".topKeyword").css("cursor","pointer");
+		});
 	});
 </script>
 <nav class="w3-sidenav w3-collapse w3-white w3-card" style="z-index:3; width:250px; height:100%; margin-top:0px; border:0px; border-left:1px solid #bababa; right: 0px;">
@@ -279,13 +313,18 @@
 	 		<strong>게시판의 관심사</strong><br/>
 	 	</div>
 		<div id="wrapperKeywordList">
-			<p id="keyword1"></p>
-			<p id="keyword2"></p>
-			<p id="keyword3"></p>
-			<p id="keyword4"></p>
-			<p id="keyword5"></p>
-			<p id="keyword6"></p>
-			<p id="keyword7"></p>
+			<form id="topKeywordForm">
+				<input type="hidden" name="searchKeyword" class="searchKeyword" value="" />
+				<input type="hidden" name="articleTypeId" class="articleTypeId" value="" />
+				<input type="hidden" name="boardId" class="boardId" value="${ sessionScope._BOARD_ID_ }" />
+				<p id="keyword1"></p>
+				<p id="keyword2"></p>
+				<p id="keyword3"></p>
+				<p id="keyword4"></p>
+				<p id="keyword5"></p>
+				<p id="keyword6"></p>
+				<p id="keyword7"></p>
+			</form>
 		</div>
 	</div>	
 	</c:if>   

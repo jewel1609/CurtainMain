@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <query>
+	<major>
+		<getAllMajorCount>
+			SELECT	COUNT(MAJOR_ID)
+			FROM	MAJOR
+			WHERE	MAJOR_GROUP_ID = ?
+		</getAllMajorCount>
+		<getAllMajor>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	MAJOR_ID
+												, MAJOR_NAME
+										FROM	MAJOR
+										WHERE	MAJOR_GROUP_ID = ?
+										ORDER	BY MAJOR_ID DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllMajor>
+	</major>
+	<majorGroup>
+		<getAllMajorGroupCount>
+			SELECT	COUNT(MAJOR_GROUP_ID)
+			FROM	MAJOR_GROUP
+		</getAllMajorGroupCount>
+		<getAllMajorGroup>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	MAJOR_GROUP_ID
+												, MAJOR_GROUP_NAME
+										FROM	MAJOR_GROUP
+										ORDER	BY MAJOR_GROUP_ID DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllMajorGroup>
+	</majorGroup>
+
 	<univ>
 		<getAllUnivCount>
 			SELECT	COUNT(UNIV_ID)

@@ -35,6 +35,7 @@
         <li class="active"><a href="/successLogin">Home</a></li>
         <li><a href="/showMember">회원관리</a></li>
         <li><a href="/univList">대학관리</a></li>
+        <li><a href="/majorGroupList">학과관리</a></li>
         <li><a href="/showClaimArticle">신고된글</a></li>
         <li><a href="/insertSurvey">설문등록</a></li>
         <li><a href="/surveyList">설문리스트</a></li>

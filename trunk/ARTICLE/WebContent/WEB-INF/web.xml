@@ -237,7 +237,6 @@
     <servlet-name>DetailMemberServlet</servlet-name>
     <url-pattern>/detailMember</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>UnivListServlet</display-name>
@@ -278,7 +277,6 @@
     <servlet-name>RegisterNewUnivServlet</servlet-name>
     <url-pattern>/registerNewUniv</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>ShowClaimArticleServlet</display-name>
@@ -329,6 +327,28 @@
     <servlet-name>DoInsertSurveyServlet</servlet-name>
     <url-pattern>/doInsertSurvey</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>MajorGroupListServlet</display-name>
+    <servlet-name>MajorGroupListServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.MajorGroupListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MajorGroupListServlet</servlet-name>
+    <url-pattern>/majorGroupList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailMajorServlet</display-name>
+    <servlet-name>DetailMajorServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.DetailMajorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailMajorServlet</servlet-name>
+    <url-pattern>/detailMajor</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>SurveyListServlet</display-name>
@@ -369,4 +389,5 @@
     <servlet-name>SurveyMassiveDeleteServlet</servlet-name>
     <url-pattern>/surveyMassiveDelete</url-pattern>
   </servlet-mapping>
+
 </web-app>

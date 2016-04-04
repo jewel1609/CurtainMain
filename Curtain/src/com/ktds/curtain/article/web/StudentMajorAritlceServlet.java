@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
+import com.ktds.curtain.article.vo.ArticleSearchVO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
@@ -65,8 +66,23 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		session.setAttribute("_BOARD_ID_", 1);
 		
+		ArticleSearchVO searchVO = new ArticleSearchVO();
+
+		if(request.getParameter("searchKeyword") == null) {
+			searchVO.setSearchKeyword("");
+		}
+		else {
+			searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+		}
+		if(request.getParameter("articleTypeId") == null) {
+			searchVO.setSearchType("0");
+		}
+		else {
+			searchVO.setSearchType(request.getParameter("articleTypeId"));
+		}
+		
 		List<String> univNames = univBiz.getUnivNameList(stdMember.getMajorGroupId());
-		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD);
+		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD, searchVO);
 		ArticleVO topArticle = articleBiz.showTopMajorArticle(stdMember, BoardId.MAJOR_BOARD);
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();

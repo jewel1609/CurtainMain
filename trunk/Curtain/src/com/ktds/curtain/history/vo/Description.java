@@ -19,6 +19,10 @@ public interface Description {
 	public static final String VISIT_MY_PAGE = "[%s]가 마이페이지에 접근했습니다.";
 	public static final String VISIT_FAQ_QNA = "[%s]가 FAQ/Q&A페이지에 접근했습니다.";
 	
+	public static final String WRITE_MAJOR = "[%s]가 학과 게시판에 글을 작성했습니다.";
+	public static final String WRITE_UNIV = "[%s]가 대학 게시판에 글을 작성했습니다.";
+	
+	
 	
 	
 	public static final String LIST = "[%s]님이 목록보기 페이지에 접근했습니다.";

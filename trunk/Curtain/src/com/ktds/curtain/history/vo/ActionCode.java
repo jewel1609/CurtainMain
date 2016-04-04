@@ -15,5 +15,8 @@ public interface ActionCode {
 	public static final String MY_PAGE = "MY_P";
 	public static final String FAQ_QNA = "FQ_QA";
 	
+	public static final String WRITE_MAJOR = "WT_M";
+	public static final String WRITE_UNIV = "WT_U";
+	
 	
 }

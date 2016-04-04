@@ -1315,5 +1315,30 @@
 			WHERE   ROWNUM &lt; 8
 		</getKeywordTopSeven>
 	</keyword>
-
+	
+	<operationHistory>
+		<insertHistory>
+			INSERT INTO OPER_HIST	(
+				   						HISTORY_ID
+				   						, IP
+				   						, CRTD_DATE
+				   						, URL
+				   						, ACTION_CODE
+				   						, DESCRIPTION
+				   						, ETC
+				   						, EMAIL
+			   						) 
+			VALUES 					( 
+										HISTORY_ID_SEQ.NEXTVAL
+										, ?
+										, SYSDATE
+										, ?
+										, ?
+										, ?
+										, ?
+										, ?
+									)		
+		</insertHistory>
+	</operationHistory>
+	
 </query>

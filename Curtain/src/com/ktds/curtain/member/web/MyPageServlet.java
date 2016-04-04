@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 
@@ -19,6 +24,7 @@ public class MyPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private MemberBiz memberBiz;
+	private OperationHistoryBiz historyBiz;
 	
        
     /**
@@ -27,6 +33,7 @@ public class MyPageServlet extends HttpServlet {
     public MyPageServlet() {
         super();
         memberBiz = new MemberBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -55,6 +62,15 @@ public class MyPageServlet extends HttpServlet {
 			int countArticle = memberBiz.countArticle(member); 
 			int countReply = memberBiz.countReply(member);
 			int countSurvey = memberBiz.countSurvey(member);
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.MY_PAGE);
+			historyVO.setDescription( BuildDescription.get(Description.VISIT_MY_PAGE, member.getEmail()));
+			
+			historyBiz.addHistory(historyVO);
 			
 
 			if (member.getCompanyName() != null ) { 

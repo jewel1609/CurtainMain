@@ -308,7 +308,7 @@
 							<input id="btnSearch" class="searchEvent btn btn-default" style="float: right; border-color: #FF3300; color: #FF3300;" type="button" value="검색"/>
 						</div>
 						<div style="float:right; padding-bottom: 5px;">
-							<input name="searchKeyword" class="searchKeyword w3-input" type="text" style="width: 0px;"/>
+							<input name="searchKeyword" class="searchEvent searchKeyword w3-input" type="text" style="width: 0px;"/>
 						</div>
 						<select class="searchEvent form-control" id="sel1" name="articleTypeId" style="float: right; margin-right: 5px; width: 80px;">
 							<option value="1">제목</option>

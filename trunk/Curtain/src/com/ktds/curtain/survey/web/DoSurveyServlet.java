@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.survey.biz.SurveyBiz;
 import com.ktds.curtain.survey.vo.SurveyVO;
@@ -23,6 +28,7 @@ public class DoSurveyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private SurveyBiz surveyBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -30,6 +36,7 @@ public class DoSurveyServlet extends HttpServlet {
     public DoSurveyServlet() {
         super();
         surveyBiz = new SurveyBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -103,6 +110,18 @@ public class DoSurveyServlet extends HttpServlet {
 			
 			if ( choiceNumber > 0 ) { 
 				isCheckId = surveyBiz.statsUpdateTodaySurvey(choiceNumber, surveyId);
+				
+				OperationHistoryVO historyVO = new OperationHistoryVO();
+				historyVO.setIp(request.getRemoteHost());
+				historyVO.setEmail(member.getEmail());
+				historyVO.setUrl(request.getRequestURI());
+				historyVO.setActionCode(ActionCode.DO_SURVEY);
+				historyVO.setDescription( BuildDescription.get(Description.DO_SURVEY, member.getNickName()) );
+				historyVO.setEtc(BuildDescription.get(Description.DETAIL_DO_SURVEY, userSelectSurvey ));
+				
+				historyBiz.addHistory(historyVO);
+				
+				
 				if ( isCheckId == true ) {
 				checkCount = "a";
 				}

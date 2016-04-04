@@ -14,6 +14,11 @@ import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.article.vo.BoardId;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 
 /**
  * Servlet implementation class MyLikesArticleServlet
@@ -22,13 +27,14 @@ public class MyLikesArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private ArticleBiz articleBiz;
-	
+	private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public MyLikesArticleServlet() {
         super();
         articleBiz = new ArticleBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -48,6 +54,16 @@ public class MyLikesArticleServlet extends HttpServlet {
 		
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		List<ArticleVO> myLikesArticle = articleBiz.showLikesArticle(member);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.MY_LIKES_ARTICLE);
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_MY_LIKES_ARTICLE, member.getNickName()) );
+		
+		historyBiz.addHistory(historyVO);
+		
 		
 		request.setAttribute("myLikesArticle", myLikesArticle);
 		RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/article/myLikesArticle.jsp");

@@ -28,8 +28,7 @@
 </script>
 
 <div class="container">
-  <h2>회원리스트</h2>
-  <p>자유롭게 이용하세요</p>
+  <h2>회원</h2>
   <table class="table">
     <thead>
       <tr>

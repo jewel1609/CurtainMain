@@ -454,4 +454,39 @@ public class ArticleBiz {
 		return articles;
 	}
 
+	/**
+	 * 학과에서 가장 조회수가 많은 글
+	 * @param stdMember
+	 * @param majorBoard
+	 * @return
+	 */
+	public ArticleVO showTopMajorArticle(MemberVO stdMember, String boardId) {
+		ArticleVO article = new ArticleVO();
+		article = articleDAO.showTopMajorArticle(stdMember, boardId);
+		
+		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
+		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
+		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
+		
+		for(ArticleDislikeVO articleDislike : articleDislikes ) {
+			if( article.getArticleId() == articleDislike.getArticleId() ){
+				article.setDislike(true);
+			}
+		}
+	
+		for(ArticleLikeVO articleLike : articleLikes ){
+			if( article.getArticleId() == articleLike.getArticleId() ){
+				article.setLike(true);
+			}
+		}
+
+		for(ArticleScrabVO articleScrab : articleScrabs ){
+			if( article.getArticleId() == articleScrab.getArticleId() ){
+				article.setScrab(true);
+			}
+		}
+
+		return article;
+	}
+
 }

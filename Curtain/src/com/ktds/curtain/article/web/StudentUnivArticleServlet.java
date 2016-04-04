@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
+import com.ktds.curtain.article.vo.ArticleSearchVO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.history.biz.OperationHistoryBiz;
@@ -48,11 +49,24 @@ public class StudentUnivArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		session.setAttribute("_BOARD_ID_", 2);
+		
+		ArticleSearchVO searchVO = new ArticleSearchVO();
+
+		if(request.getParameter("searchKeyword") == null) {
+			searchVO.setSearchKeyword("");
+		}
+		else {
+			searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+		}
+		if(request.getParameter("articleTypeId") == null) {
+			searchVO.setSearchType("0");
+		}
+		else {
+			searchVO.setSearchType(request.getParameter("articleTypeId"));
+		}
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();
 		historyVO.setIp(request.getRemoteHost());
@@ -63,7 +77,7 @@ public class StudentUnivArticleServlet extends HttpServlet {
 		
 		historyBiz.addHistory(historyVO);
 		
-		List<ArticleVO> univArticles = articleBiz.showUnivArticle(stdMember);
+		List<ArticleVO> univArticles = articleBiz.showUnivArticle(stdMember, searchVO);
 		ArticleVO topArticle = articleBiz.showTopUnivArticle(stdMember, BoardId.UNIV_BOARD);
 		
 		request.setAttribute("topArticle", topArticle);

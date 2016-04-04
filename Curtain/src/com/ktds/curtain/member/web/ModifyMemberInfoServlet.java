@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 
@@ -15,6 +20,7 @@ import com.ktds.curtain.member.vo.MemberVO;
  */
 public class ModifyMemberInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private OperationHistoryBiz historyBiz;
        
 	private MemberBiz memberBiz;
     /**
@@ -23,6 +29,7 @@ public class ModifyMemberInfoServlet extends HttpServlet {
     public ModifyMemberInfoServlet() {
         super();
         memberBiz = new MemberBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -54,13 +61,24 @@ public class ModifyMemberInfoServlet extends HttpServlet {
 			userNickName = member.getNickName();
 		}
 		
-		
+		String beforeNickName = member.getNickName();
 		member.setSecondEmail(userEmail);
 		member.setNickName(userNickName);
 		
 		session.setAttribute("_MEMBER_", member);
 		
 		memberBiz.modifyMemberInfo(userEmail, userNickName, member.getEmail());
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.MODIFY_MEMBER_INFO);
+		historyVO.setDescription( BuildDescription.get(Description.MODIFY_MEMBER_INFO, beforeNickName) );
+		historyVO.setEtc(BuildDescription.get(Description.DETAIL_MEMBER_INFO, userEmail, userNickName ));
+		
+		historyBiz.addHistory(historyVO);
+		
 		
 		
 		response.sendRedirect("/myPage");

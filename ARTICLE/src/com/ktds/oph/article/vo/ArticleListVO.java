@@ -7,6 +7,13 @@ import com.ktds.oph.util.web.Paging;
 public class ArticleListVO {
 	
 	private List<ArticleVO> articleList;
+	private List<ClaimArticleVO> claimArticleList;
+	public List<ClaimArticleVO> getClaimArticleList() {
+		return claimArticleList;
+	}
+	public void setClaimArticleList(List<ClaimArticleVO> claimArticleList) {
+		this.claimArticleList = claimArticleList;
+	}
 	private Paging paging;
 	
 	public List<ArticleVO> getArticleList() {

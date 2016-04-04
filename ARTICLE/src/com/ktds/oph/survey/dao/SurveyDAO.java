@@ -1,0 +1,95 @@
+package com.ktds.oph.survey.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.ktds.oph.member.dao.Const;
+import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.survey.vo.SurveyVO;
+import com.ktds.oph.util.xml.XML;
+
+public class SurveyDAO {
+
+	private SurveyVO surveyVO;
+
+	public SurveyDAO() {
+		surveyVO = new SurveyVO();
+	}
+
+
+
+	public void insertSurvey(String surveyTitle, String surveyAnswer1, String surveyAnswer2, String surveyAnswer3,
+			String surveyAnswer4, String surveyDate, MemberVO member) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/survey/insertSurvey/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, surveyTitle);
+			stmt.setString(2, surveyAnswer1);
+			stmt.setString(3, surveyAnswer2);
+			stmt.setString(4, surveyAnswer3);
+			stmt.setString(5, surveyAnswer4);
+			stmt.setString(6, surveyDate);
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+		
+	}
+	
+	/**
+	 * 오라클 드라이버
+	 */
+	private void loadOracleDriver() {
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
+	/**
+	 * db접속 close
+	 * 
+	 * @param conn
+	 * @param stmt
+	 * @param rs
+	 */
+	private void closeDB(Connection conn, PreparedStatement stmt, ResultSet rs) {
+
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
+		}
+		if (stmt != null) {
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+			}
+		}
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
+
+
+}

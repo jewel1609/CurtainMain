@@ -15,20 +15,14 @@ import com.ktds.oph.member.vo.MemberVO;
 public class ArticleVO extends MemberVO{
 	
 	private int articleId;
-	private String memberId;
-	private String title;
-	private String descript;
+	private String articleTitle;
+	private String articleDesc;
+	private String articleRegisterDate;
+	private String articleModifyDate;
+	private int articleTypeId;
+	private int boardId;
 	private int hits;
-	private int recommends;
-	
-	private List<FileVO> fileList;
-	
-	public List<FileVO> getFileList() {
-		return fileList;
-	}
-	public void setFileList(List<FileVO> fileList) {
-		this.fileList = fileList;
-	}
+	private int articleLikes;
 	
 	public int getArticleId() {
 		return articleId;
@@ -36,23 +30,41 @@ public class ArticleVO extends MemberVO{
 	public void setArticleId(int articleId) {
 		this.articleId = articleId;
 	}
-	public String getMemberId() {
-		return memberId;
+	public String getArticleTitle() {
+		return articleTitle;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setArticleTitle(String articleTitle) {
+		this.articleTitle = articleTitle;
 	}
-	public String getTitle() {
-		return title;
+	public String getArticleDesc() {
+		return articleDesc;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setArticleDesc(String articleDesc) {
+		this.articleDesc = articleDesc;
 	}
-	public String getDescript() {
-		return descript;
+	public String getArticleRegisterDate() {
+		return articleRegisterDate;
 	}
-	public void setDescript(String descript) {
-		this.descript = descript;
+	public void setArticleRegisterDate(String articleRegisterDate) {
+		this.articleRegisterDate = articleRegisterDate;
+	}
+	public String getArticleModifyDate() {
+		return articleModifyDate;
+	}
+	public void setArticleModifyDate(String articleModifyDate) {
+		this.articleModifyDate = articleModifyDate;
+	}
+	public int getArticleTypeId() {
+		return articleTypeId;
+	}
+	public void setArticleTypeId(int articleTypeId) {
+		this.articleTypeId = articleTypeId;
+	}
+	public int getBoardId() {
+		return boardId;
+	}
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
 	}
 	public int getHits() {
 		return hits;
@@ -60,11 +72,25 @@ public class ArticleVO extends MemberVO{
 	public void setHits(int hits) {
 		this.hits = hits;
 	}
-	public int getRecommends() {
-		return recommends;
+	public int getArticleLikes() {
+		return articleLikes;
 	}
-	public void setRecommends(int recommends) {
-		this.recommends = recommends;
+	public void setArticleLikes(int articleLikes) {
+		this.articleLikes = articleLikes;
 	}
+	public int getArticleDislike() {
+		return articleDislike;
+	}
+	public void setArticleDislike(int articleDislike) {
+		this.articleDislike = articleDislike;
+	}
+	public int getArticleScrab() {
+		return articleScrab;
+	}
+	public void setArticleScrab(int articleScrab) {
+		this.articleScrab = articleScrab;
+	}
+	private int articleDislike;
+	private int articleScrab;
 
 }

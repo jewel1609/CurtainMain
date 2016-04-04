@@ -2,51 +2,56 @@ package com.ktds.oph.article.web;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.article.biz.ArticleBiz;
 import com.ktds.oph.article.vo.ArticleVO;
-import com.ktds.oph.util.MultipartHttpServletRequest;
+import com.ktds.oph.member.vo.MemberVO;
 
 /**
- * Servlet implementation class DoUpdateServlet
+ * Servlet implementation class DetailClaimArticleServlet
  */
-public class DoUpdateServlet extends HttpServlet {
+public class DetailClaimArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private ArticleBiz articleBiz;
+	private ArticleBiz articleBiz;
+	private ArticleVO claimArticleInfo;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DoUpdateServlet() {
+    public DetailClaimArticleServlet() {
         super();
         articleBiz = new ArticleBiz();
+        claimArticleInfo = new ArticleVO();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError(HttpServletResponse.SC_FORBIDDEN, "수정 불가합니다.");
+		this.doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// mutilpartHttpServletResquest 선언
-		MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
-		boolean doUpdate = articleBiz.doUpdate(multipartRequest);
+		String articleId = request.getParameter("articleId");
+		System.out.println(articleId);
 		
-		if ( doUpdate ) {
-			response.sendRedirect("/list");
-		}
-		else {
-			response.sendRedirect("/detail");
-		}
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
+		claimArticleInfo = articleBiz.getClaimArticleInfoByArticleId(articleId, member);
+		
+		request.setAttribute("claimArticleInfo", claimArticleInfo);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/detailClaimArticle.jsp");
+		rd.forward(request, response);
 	}
 
 }

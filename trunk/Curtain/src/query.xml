@@ -341,6 +341,52 @@
 			AND         A.UNIV_ID = ?
 			ORDER		BY	A.ARTICLE_ID DESC
 		</showUnivArticle>
+		
+		<showUnivArticleByTitle>
+			SELECT		ARTICLE_ID
+						, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.UNIV_ID
+						, HITS
+						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
+			FROM 		ARTICLE A
+						, MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE	    A.EMAIL = SM.EMAIL
+			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND         A.BOARD_ID = ?
+			AND         A.UNIV_ID = ?
+			AND			A.ARTICLE_TITLE LIKE '%' || ? || '%'
+			ORDER		BY	A.ARTICLE_ID DESC
+		</showUnivArticleByTitle>
+		
+		<showUnivArticleByDesc>
+			SELECT		ARTICLE_ID
+						, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.UNIV_ID
+						, HITS
+						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
+			FROM 		ARTICLE A
+						, MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE	    A.EMAIL = SM.EMAIL
+			AND         A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+			AND         A.BOARD_ID = ?
+			AND         A.UNIV_ID = ?
+			AND			A.ARTICLE_DESC LIKE '%' || ? || '%'
+			ORDER		BY	A.ARTICLE_ID DESC
+		</showUnivArticleByDesc>
 
 		
 		<showSecretArticle>

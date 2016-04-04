@@ -10,11 +10,11 @@
 
 $(document).ready(function () {
 	
-	  $(".wrapper").css("height", window.innerHeight - 130);
-	   
-      $(window).resize(function() {
-         $(".wrapper").css("height", window.innerHeight - 130);
-      });
+	$(".wrapper").css("height", window.innerHeight - 130);
+	
+	$(window).resize(function() {
+		$(".wrapper").css("height", window.innerHeight - 130);
+	});
 /* 	$("#writeReplyBtn").click(function() {
 		var form = $("#writeReplyForm");
 		form.attr("method", "post");

@@ -68,7 +68,7 @@ public class MyPageServlet extends HttpServlet {
 			historyVO.setEmail(member.getEmail());
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.MY_PAGE);
-			historyVO.setDescription( BuildDescription.get(Description.VISIT_MY_PAGE, member.getEmail()));
+			historyVO.setDescription( BuildDescription.get(Description.VISIT_MY_PAGE, member.getNickName()));
 			
 			historyBiz.addHistory(historyVO);
 			

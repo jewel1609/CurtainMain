@@ -183,6 +183,35 @@
 
 		});
 
+		var searchFlag = 0;
+		$(".searchEvent").hide();
+		
+		$(".btnSearch").click(function () {
+			
+			if (searchFlag == 0) {
+				$(".searchEvent").show();
+				$(".searchKeyword").animate({ width : "120px"});
+				searchFlag = 1;
+			}
+			else {
+				$(".searchEvent").hide();
+				$(".searchKeyword").animate({ width : "0px"});
+				$(".searchKeyword").val("");
+				searchFlag = 0;
+			}
+			
+		});
+		
+		$("#btnSearch").click(function () {
+			var form = $(".searchForm");
+			form.attr("method", "post");
+			form.attr("action", "/oneLayerCurtain");
+			form.submit();
+		});
+		
+		$(".btnSearch").mouseover( function () {
+			$(".btnSearch").css("cursor","pointer");
+		});
 		
 
 	});
@@ -218,6 +247,24 @@
 					</div> 
 					<div style="float:left; padding:20px;">
 						<h5>참여인원 ${oneLayerCurtainMemberCount}명</h5> 
+					</div>
+					<div style="width: 400px; float: right; margin: 20px 20px 0 0; text-align: right;">
+						<form class="searchForm">
+							<div class="btnSearch material-icons w3-xlarge" style="float:right; padding-top: 5px;">search</div>
+							<div style="float:right; padding-bottom: 5px;">
+								<input id="btnSearch" class="searchEvent btn btn-default" style="float: right; border-color: #FF3300; color: #FF3300;" type="button" value="검색"/>
+							</div>
+							<div style="float:right; padding-bottom: 5px;">
+								<input name="searchKeyword" class="searchEvent searchKeyword w3-input" type="text" style="width: 0px;"/>
+							</div>
+							<select class="searchEvent form-control" id="sel1" name="articleTypeId" style="float: right; margin-right: 5px; width: 80px;">
+								<option value="1">제목</option>
+								<option value="2">내용</option>
+							</select>
+							<div style="width: 100px; float: right; margin: 7px 10px 0 0;">
+								<a href="/oneLayerCurtain">검색초기화</a>
+							</div>
+						</form>
 					</div>
 				</div>
 				<!-- 게시판 타이틀 끝 -->

@@ -618,6 +618,29 @@
 		                    AND MAJOR_GROUP_ID = ?
 		                )
 		</showTopMajorArticle>
+		<showTopUnivArticle>
+		SELECT 			ARTICLE_ID
+        				, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, M.NICK_NAME
+						, BOARD_ID
+						, HITS
+						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
+						, ARTICLE_SCRAB
+		FROM    ARTICLE A
+		        , MEMBER M
+		        , ARTICLE_TYPE AT
+		WHERE   A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+		AND     M.EMAIL = A.EMAIL   
+		AND     HITS = ( SELECT MAX(HITS)
+		                    FROM ARTICLE
+		                    WHERE BOARD_ID = ?
+		                    AND UNIV_ID = ?
+		                )
+		</showTopUnivArticle>
 		<updateArticleOnlyTitle>
 			UPDATE	ARTICLE
 			SET		ARTICLE_TITLE = ?

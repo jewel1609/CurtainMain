@@ -56,6 +56,8 @@ public interface Description {
 	public static final String DO_SURVEY = "[%s] 님이 투표했습니다.";
 	public static final String DO_SCRAB = "[%s] 님이 [%s]번글을 스크랩했습니다.";
 	public static final String CANCEL_SCRAB = "[%s] 님이 [%s]번글 스크랩을 취소했습니다.";
+	public static final String DO_LIKE = "[%s] 님이 [%s]번글을 좋아합니다.";
+	public static final String DO_DISLIKE = "[%s] 님이 [%s]번글을 싫어합니다.";
 	
 			
 	public static final String LIST = "[%s]님이 목록보기 페이지에 접근했습니다.";

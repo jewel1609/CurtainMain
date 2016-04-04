@@ -17,12 +17,12 @@
 		
 				myAccordion('demo');
 		
-				$("#univ").mouseleave(function(){
-					$("#univ").css('background-color', '#a9d039');
-					$("#univ").css('color', '#ffffff');
+				$("#univFill").mouseleave(function(){
+					$("#univFill").css('background-color', '#a9d039');
+					$("#univFill").css('color', '#ffffff');
 				});
-				$("#univ").css('background-color', '#a9d039');
-				$("#univ").css('color', '#ffffff');
+				$("#univFill").css('background-color', '#a9d039');
+				$("#univFill").css('color', '#ffffff');
 		
 				$('[data-toggle="popover"]').popover();  
 							

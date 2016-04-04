@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.survey.biz.SurveyBiz;
-import com.ktds.curtain.survey.vo.SurveyVO;
 import com.ktds.curtain.util.Root;
 
 /**

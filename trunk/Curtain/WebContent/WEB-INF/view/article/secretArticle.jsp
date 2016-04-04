@@ -271,8 +271,8 @@
 							<form id="writeForm" enctype="multipart/form-data">
 								<div class="w3-container w3-padding w3-left-align">
 									<div class="form-group">
-										<div>
-											<div class="container col-xs-2 input-lg" style="padding-bottom:10px; padding-left:0px;">
+										<div style="padding:10px;">
+											<div class="col-sm-2 input" style="padding-left:0px;">
 												 <select class="form-control " id="sel1" name="articleTypeId">
 													<option value="1">고민</option>
 													<option value="2">취업</option>
@@ -283,14 +283,13 @@
 											</div>
 											<div class="col-sm-8">
 												<input class="w3-input" type="text" id="articleTitle" name="articleTitle"
-													placeholder="제목을 입력하세요." style="margin-bottom: 5px;" />
+													placeholder="제목을 입력하세요."/>
 											</div>
-											<div class="col-sm-2">					
+											<div class="col-sm-2" align="right" style="padding-right:0px;">					
 												<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
 												<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
 													<span class="glyphicon glyphicon-picture"></span>
 												</button>
-												
 												<button type="button" id="movieBtn" class="btn btn-default btn-sm">
 													<span class="glyphicon glyphicon-facetime-video"></span>
 												</button>
@@ -309,8 +308,8 @@
 											</div>
 										</div>
 										
-										<div class="form-group" style="margin-top: 30px;">
-											<textarea class="w3-col m12" rows="5" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
+										<div class="form-group" style="margin-top: 30px; padding:10px;">
+											<textarea class="form-control w3-col m12" rows="7" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
 												placeholder="무슨 생각을 하고 계신가요?"></textarea>
 										</div>
 										<div class="col-sm-12" id="imagePreview">

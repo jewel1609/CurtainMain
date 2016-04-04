@@ -258,9 +258,10 @@
 		<div class="w3-col m7 w3-main wrapper"
 			style="border-right:1px solid #bababa;
     			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 885px; overflow: auto; ">
+			
 			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 				<div class="w3-margin-4" style="float:left;">
-					<span><h2>${majorGroupName} 게시판입니다.</h2></span>
+					<h2>${majorGroupName} 게시판입니다.</h2>
 				</div> 
 				<div style="float:left; padding:20px;">
 					<h5>참여인원 ${majorMemberCount}명</h5> 
@@ -279,8 +280,8 @@
 							<div class="w3-container w3-padding w3-left-align">
 								<div class="form-group1">
 									<input type="hidden" id="boardId" name="boardId" value="1" />
-									<div>
-										<div class="container col-xs-2 input-lg" style="padding-bottom:10px; padding-left:0px;">
+									<div style="padding:10px;">
+										<div class="col-sm-2 input" style="padding-left:0px;">
 											<select class="form-control " id="sel1" name="articleTypeId">
 												<option value="1">고민</option>
 												<option value="2">취업</option>
@@ -293,31 +294,31 @@
 												<input class="w3-input" type="text" id="articleTitle" name="articleTitle"
 													placeholder="제목을 입력하세요." style="margin-bottom: 5px;">
 										</div>
-											<div class="col-sm-2">					
-												<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
-												<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
-													<span class="glyphicon glyphicon-picture"></span>
-												</button>
-												
-												<button type="button" id="movieBtn" class="btn btn-default btn-sm">
-													<span class="glyphicon glyphicon-facetime-video"></span>
-												</button>
-												
-												<div id="movieUrlForm" class="hide">
-													<div>
-														<label for="about">url</label>
-															<textarea rows="3" name="url" id="url" class="form-control input-md"></textarea>
-															<button type="button" id="movieUrlUploadBtn" class="btn btn-default">
-																<em class="icon-ok">첨부</em>
-															</button>
-													</div>
+										<div class="col-sm-2" align="right" style="padding-right:0px;">					
+											<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
+											<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
+												<span class="glyphicon glyphicon-picture"></span>
+											</button>
+											
+											<button type="button" id="movieBtn" class="btn btn-default btn-sm">
+												<span class="glyphicon glyphicon-facetime-video"></span>
+											</button>
+											
+											<div id="movieUrlForm" class="hide">
+												<div>
+													<label for="about">url</label>
+														<textarea rows="3" name="url" id="url" class="form-control input-md"></textarea>
+														<button type="button" id="movieUrlUploadBtn" class="btn btn-default">
+															<em class="icon-ok">첨부</em>
+														</button>
 												</div>
-												<input type="hidden" id="movieUrl" name="movieUrl" />
 											</div>
+											<input type="hidden" id="movieUrl" name="movieUrl" />
+										</div>
 									</div>
 
-									<div class="form-group" style="margin-top: 30px;">
-											<textarea class="w3-col m12" rows="5" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
+									<div class="form-group" style="margin-top: 30px; padding:10px;">
+											<textarea class="form-control w3-col m12" rows="7" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
 												placeholder="무슨 생각을 하고 계신가요?"></textarea>
 										</div>
 

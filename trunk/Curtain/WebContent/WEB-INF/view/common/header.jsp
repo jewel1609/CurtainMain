@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/resource/css/article/theme.css">
 <link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <link rel="stylesheet" type="text/css" href="/resource/css/article/header.css" />
 <link rel="stylesheet" type="text/css" href="/resource/css/common/leftMenu.css" />

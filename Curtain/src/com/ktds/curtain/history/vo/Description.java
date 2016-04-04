@@ -4,6 +4,8 @@ public interface Description {
 
 	public static final String VISIT_MAIN_PAGE = "[%s]가 메인 페이지에 접근했습니다.";
 	public static final String VISIT_LOGIN_PAGE ="[%s]가 로그인 페이지에 접근했습니다.";
+	public static final String VISIT_REGIST_PAGE ="[%s]가 회원가입 페이지에 접근했습니다.";
+	
 	public static final String LOGIN ="[%s] 님이 로그인 했습니다.";
 	public static final String LOGIN_FAIL = "[%s]가 [%s]로 로그인을 시도했지만, 실패 했습니다.";
 	public static final String ALREADY_LOGIN = "[%s] 님이 이미 로그인되어, 학과 게시판으로 이동합니다.";

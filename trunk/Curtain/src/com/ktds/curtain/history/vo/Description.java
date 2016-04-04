@@ -82,5 +82,8 @@ public interface Description {
 	public static final String DETAIL_DO_SCRAB = "스크랩한 글 제목 : [%s] <br/ 내용 : [%s] <br/>";
 	public static final String DETAIL_CANCEL_SCRAB = "스크랩취소한 글 제목 : [%s] <br/ 내용 : [%s] <br/>";
 	
+	public static final String DETAIL_CLAIM_ARTICLE = "글 신고사유 : [%s]";
+	public static final String DETAIL_CLAIM_REPLY = "댓글 신고사유 : [%s]";
+	
 	
 }

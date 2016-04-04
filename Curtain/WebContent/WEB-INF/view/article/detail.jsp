@@ -32,7 +32,6 @@ $(document).ready(function () {
 		
 		var root = $(this).parent().parent().children(":eq(4)");
 		
-		
 		root.slideToggle();
 		
 	});
@@ -154,6 +153,12 @@ $(document).ready(function () {
 	
 	/*새로 추가된것에 접근하는 방법*/
 	$("body").on ("click", "#writeReplyBtn", function() {
+		
+		if($("#replyDesc").text() == "") {
+			alert("내용을 입력하세요.");
+			return;
+		}
+		
 		var form = $("#writeReplyForm");
 		form.attr("method", "post");
 		form.attr("action", "/doWriteReply");

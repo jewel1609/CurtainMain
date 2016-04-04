@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<nav class="w3-sidenav w3-collapse w3-white w3-card" 
@@ -7,7 +6,7 @@
 			margin-top: 0px; border:0px; border-left:1px solid #bababa; 
 			border-right:1px solid #bababa;  left: 100px;" >
 			
-		<div style="padding: 20px; text-align: center; border-bottom:1px solid #BABABA;">
+		<div style="padding: 40px; text-align: center; border-bottom:1px solid #BABABA;">
 			<strong><mark>${ sessionScope._MEMBER_.nickName }</mark></strong>님<br/> 환영합니다.
 			
 		</div>

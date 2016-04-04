@@ -338,7 +338,7 @@
 			</div>
 
 	<div style="background-color: white;">
-					<div class="w3-row-padding w3-margin-top" >
+				<div class="w3-row-padding w3-margin-top" >
 					<div class="w3-col m12">
 						<div class="w3-card w3-round-large" style="border-color: #a9d039;" >
 							<div class="w3-container">

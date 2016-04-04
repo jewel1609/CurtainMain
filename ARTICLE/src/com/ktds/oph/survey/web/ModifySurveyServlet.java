@@ -1,9 +1,7 @@
 package com.ktds.oph.survey.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,22 +10,20 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.survey.biz.SurveyBiz;
-import com.ktds.oph.survey.vo.SurveyVO;
 import com.ktds.oph.util.Root;
 
 /**
- * Servlet implementation class DoInsertSurveyServlet
+ * Servlet implementation class ModifySurveyServlet
  */
-public class DoInsertSurveyServlet extends HttpServlet {
+public class ModifySurveyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private SurveyVO surveyVO;   
-    private SurveyBiz surveyBiz;
+	private SurveyBiz surveyBiz;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DoInsertSurveyServlet() {
+    public ModifySurveyServlet() {
         super();
-        surveyVO = new SurveyVO();
         surveyBiz = new SurveyBiz();
     }
 
@@ -42,20 +38,18 @@ public class DoInsertSurveyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String surveyId = request.getParameter("surveyId");
 		String surveyTitle = request.getParameter("surveyTitle");
 		String surveyAnswer1 = request.getParameter("surveyAnswer1");
 		String surveyAnswer2 = request.getParameter("surveyAnswer2");
 		String surveyAnswer3 = request.getParameter("surveyAnswer3");
 		String surveyAnswer4 = request.getParameter("surveyAnswer4");
-		String surveyDate = request.getParameter("surveyDate");
-	
+		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		surveyBiz.insertSurvey(surveyTitle,surveyAnswer1,surveyAnswer2,surveyAnswer3,surveyAnswer4,surveyDate, member);
-		
-		response.sendRedirect(Root.get(this) + "/insertSurvey");
-		
+		surveyBiz.modifySurvey(surveyId,surveyTitle,surveyAnswer1,surveyAnswer2,surveyAnswer3,surveyAnswer4,member);
+		response.sendRedirect(Root.get(this) + "/surveyList");
 	}
 
 }

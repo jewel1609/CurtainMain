@@ -13,7 +13,7 @@ public class MemberVO extends ProhibitedWordVO {
 	private int point;
 	private String rankModifyDate;
 	private String password;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String companyName;
 	private int majorGroupId;
 	private String isVote;
@@ -74,11 +74,13 @@ public class MemberVO extends ProhibitedWordVO {
 		this.twoLayerCurtainMemberCount = twoLayerCurtainMemberCount;
 	}
 
-	public int getPhoneNumber() {
+
+
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

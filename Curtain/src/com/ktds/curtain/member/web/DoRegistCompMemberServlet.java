@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
@@ -22,6 +27,7 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 	private MemberBiz compMemberBiz;    
 	private MemberVO memberVO;
     private ProhibitedWordBiz prohibitedWordBiz;
+    private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,6 +36,7 @@ public class DoRegistCompMemberServlet extends HttpServlet {
         compMemberBiz = new MemberBiz();
         memberVO = new MemberVO();
         prohibitedWordBiz = new ProhibitedWordBiz();
+        historyBiz= new OperationHistoryBiz();
     }
 
 	/**
@@ -72,6 +79,17 @@ public class DoRegistCompMemberServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("_MEMBER_", memberVO);
 		session.setAttribute("_WORDLIST_", wordList);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(inputCompEmail);
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.REGIST_COMP_MEMBER);
+		historyVO.setDescription( BuildDescription.get(Description.REGIST_COMP_MEMBER, request.getRemoteHost()) );
+		historyVO.setEtc(BuildDescription.get(Description.DETAIL_REGIST_COMP_MEMBER, inputCompName, inputPhoneNum, inputCompEmail, compNickName ));
+		
+		historyBiz.addHistory(historyVO);
+		
 		
 		response.sendRedirect(Root.get(this) + "/doLogin");
 	}

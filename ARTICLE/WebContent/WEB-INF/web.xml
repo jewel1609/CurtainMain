@@ -329,5 +329,44 @@
     <servlet-name>DoInsertSurveyServlet</servlet-name>
     <url-pattern>/doInsertSurvey</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>SurveyListServlet</display-name>
+    <servlet-name>SurveyListServlet</servlet-name>
+    <servlet-class>com.ktds.oph.survey.web.SurveyListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SurveyListServlet</servlet-name>
+    <url-pattern>/surveyList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailSurveyServlet</display-name>
+    <servlet-name>DetailSurveyServlet</servlet-name>
+    <servlet-class>com.ktds.oph.survey.web.DetailSurveyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailSurveyServlet</servlet-name>
+    <url-pattern>/detailSurvey</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifySurveyServlet</display-name>
+    <servlet-name>ModifySurveyServlet</servlet-name>
+    <servlet-class>com.ktds.oph.survey.web.ModifySurveyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifySurveyServlet</servlet-name>
+    <url-pattern>/modifySurvey</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SurveyMassiveDeleteServlet</display-name>
+    <servlet-name>SurveyMassiveDeleteServlet</servlet-name>
+    <servlet-class>com.ktds.oph.survey.web.SurveyMassiveDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SurveyMassiveDeleteServlet</servlet-name>
+    <url-pattern>/surveyMassiveDelete</url-pattern>
+  </servlet-mapping>
 </web-app>

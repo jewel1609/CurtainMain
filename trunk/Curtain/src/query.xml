@@ -272,6 +272,53 @@
 			AND 		A.MAJOR_GROUP_ID = ? 
 			ORDER 		BY A.ARTICLE_ID DESC
 		</showMajorArticle>
+		
+		<showMajorArticleByTitle>
+			SELECT		ARTICLE_ID
+						, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.MAJOR_GROUP_ID
+						, HITS
+						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES 
+			FROM 		ARTICLE A
+						, MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE 		A.EMAIL = SM.EMAIL 
+			AND 		A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID 
+			AND 		A.BOARD_ID = 1 
+			AND 		A.MAJOR_GROUP_ID = ? 
+			AND			A.ARTICLE_TITLE LIKE '%' || ? || '%'
+			ORDER 		BY A.ARTICLE_ID DESC
+		</showMajorArticleByTitle>
+		
+		<showMajorArticleByDesc>
+			SELECT		ARTICLE_ID
+						, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, SM.NICK_NAME
+						, BOARD_ID
+						, A.MAJOR_GROUP_ID
+						, HITS
+						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES 
+			FROM 		ARTICLE A
+						, MEMBER SM
+						, ARTICLE_TYPE AT
+			WHERE 		A.EMAIL = SM.EMAIL 
+			AND 		A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID 
+			AND 		A.BOARD_ID = 1 
+			AND 		A.MAJOR_GROUP_ID = ? 
+			AND			A.ARTICLE_DESC LIKE '%' || ? || '%'
+			ORDER 		BY A.ARTICLE_ID DESC
+		</showMajorArticleByDesc>
+	
 
 		<showUnivArticle>
 			SELECT		ARTICLE_ID

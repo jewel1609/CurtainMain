@@ -80,7 +80,7 @@ public class MemberBiz {
 		return majorDAO.getDateTimeByEmail(inputUnivEmail);
 	}
 	
-	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, int inputPhoneNum,
+	public void addCompMember(String inputCompEmail, String inputPassword, String inputCompName, String inputPhoneNum,
 			String inputSecondEmail) {
 		memberDAO.addCompMember(inputCompEmail,inputPassword,inputCompName,inputPhoneNum,inputSecondEmail);
 	}

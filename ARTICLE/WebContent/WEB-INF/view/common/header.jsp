@@ -29,6 +29,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
+        <li><a href="/univList">대학관리</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       		<li><a href="/register">아직 커튼의 회원이 아니십니까?<span class="glyphicon glyphicon-user"></span></a></li>

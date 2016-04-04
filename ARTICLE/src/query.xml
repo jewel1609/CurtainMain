@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <query>
-	
+	<univ>
+		<getAllUnivCount>
+			SELECT	COUNT(UNIV_ID)
+			FROM	UNIV
+		</getAllUnivCount>
+		<getAllUniv>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	UNIV_ID
+												, UNIV_NAME
+										FROM	UNIV
+										ORDER	BY UNIV_ID DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllUniv>
+		<deleteUniv>
+			DELETE
+			FROM	UNIV
+			WHERE	UNIV_ID = ?
+		</deleteUniv>
+		<updateUnivName>
+			UPDATE	UNIV
+			SET		UNIV_NAME = ?
+			WHERE	UNIV_ID = ?
+		</updateUnivName>
+		<registerUniv>
+			INSERT INTO		UNIV (
+  									 UNIV_ID
+  									 , UNIV_NAME
+  								) 
+			VALUES 				( 
+									UNIV_ID_SEQ.NEXTVAL
+									, ?
+								)
+		</registerUniv>
+		<getUnivName>
+			SELECT	UNIV_NAME
+			FROM	UNIV
+			WHERE	UNIV_ID = ?
+		</getUnivName>
+	</univ>
 	<survey>
 		<insertSurvey>
 			INSERT INTO		SURVEY (

@@ -16,12 +16,6 @@ import kr.ac.kaist.swrc.jhannanum.plugin.SupplementPlugin.PosProcessor.NounExtra
 
 public class NounExtractorByTitle {
 
-	/** the buffer for noun morphemes */
-	private LinkedList<String> nounMorphemes = null;
-	
-	/** the buffer for tags of the morphemes */
-	private LinkedList<String> nounTags = null;
-	
 	private String getCurrentJavaPath (String[] requestPathSplit) {
 		String nanumClassPath = "";
 		
@@ -89,50 +83,5 @@ public class NounExtractorByTitle {
 		workflow.close();
 		return null;
 	}
-	
-	public void initialize(String baseDir, String configFile) throws Exception {
-		nounMorphemes = new LinkedList<String>();
-		nounTags = new LinkedList<String>();
-	}
-
-	public void shutdown() {
-		
-	}
-
-	/**
-	 * It extracts the morphemes which were recognized as noun after POS tagging.
-	 * @param st - the POS tagged sentence
-	 * @return the sentence in which only nouns were remained
-	 */
-	public Sentence doProcess(Sentence st) {
-		Eojeol[] eojeols = st.getEojeols();
-		
-		for (int i = 0; i < eojeols.length; i++) {
-			String[] morphemes = eojeols[i].getMorphemes();
-			String[] tags = eojeols[i].getTags();
-			nounMorphemes.clear();
-			nounTags.clear();
-			
-			for (int j = 0; j < tags.length; j++) {
-				char c = tags[j].charAt(0);
-				if (c == 'n') {
-					nounMorphemes.add(morphemes[j]);
-					nounTags.add(tags[j]);
-				} else if (c == 'f') {
-					nounMorphemes.add(morphemes[j]);
-					nounTags.add("ncn");
-				}
-			}
-			
-			eojeols[i].setMorphemes(nounMorphemes.toArray(new String[0]));
-			eojeols[i].setTags(nounTags.toArray(new String[0]));
-		}
-		
-		st.setEojeols(eojeols);
-		
-		return st;
-	}
-	
-	
 	
 }

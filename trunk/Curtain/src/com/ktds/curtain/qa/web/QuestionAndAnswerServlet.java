@@ -53,7 +53,7 @@ public class QuestionAndAnswerServlet extends HttpServlet {
 		historyVO.setEmail(member.getEmail());
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.FAQ_QNA);
-		historyVO.setDescription( BuildDescription.get(Description.VISIT_FAQ_QNA, member.getEmail()));
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_FAQ_QNA, member.getNickName()));
 		
 		historyBiz.addHistory(historyVO);
 		

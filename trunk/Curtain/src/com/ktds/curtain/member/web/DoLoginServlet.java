@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.survey.biz.SurveyBiz;
@@ -23,6 +28,7 @@ public class DoLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberBiz memberBiz;
 	private SurveyBiz surveyBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,6 +37,8 @@ public class DoLoginServlet extends HttpServlet {
         super();
         memberBiz = new MemberBiz();
         surveyBiz = new SurveyBiz();
+        historyBiz = new OperationHistoryBiz();
+        
     }
 
 	/**
@@ -70,6 +78,16 @@ public class DoLoginServlet extends HttpServlet {
 		String mTime = mSimpleDateFormat.format ( currentTime );
 		surveyCheck = surveyBiz.surveyCheck(member.getEmail() , mTime);
 		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.LOGIN);
+		historyVO.setDescription( BuildDescription.get(Description.LOGIN, member.getEmail()));
+		
+		historyBiz.addHistory(historyVO);
+		
+		
 		
 
 			if ( surveyCheck) {
@@ -97,6 +115,16 @@ public class DoLoginServlet extends HttpServlet {
 		}
 		
 		else {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail("");
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.LOGIN);
+			historyVO.setDescription( BuildDescription.get(Description.LOGIN_FAIL, request.getRemoteHost() ,member.getEmail()));
+			
+			historyBiz.addHistory(historyVO);
+			
 			response.sendRedirect(Root.get(this) + "/main.jsp?errorCode=1");
 		}
 		

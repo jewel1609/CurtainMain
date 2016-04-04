@@ -10,221 +10,248 @@
 
 	$(document).ready(function() {
 		
-	      $(window).resize(function() {
-	          $(".wrapper").css("height", window.innerHeight - 200);
-	       });
-	      
-				myAccordion('demo');
+		$(window).resize(function() {
+			$(".wrapper").css("height", window.innerHeight - 200);
+		});
 		
-				$("#majorGroup").mouseleave(function(){
-					$("#majorGroup").css('background-color', '#a9d039');
-					$("#majorGroup").css('color', '#ffffff');
-				});
-				$("#majorGroup").css('background-color', '#a9d039');
-				$("#majorGroup").css('color', '#ffffff');
+		myAccordion('demo');
+
+		$("#majorGroup").mouseleave(function(){
+			$("#majorGroup").css('background-color', '#a9d039');
+			$("#majorGroup").css('color', '#ffffff');
+		});
+		$("#majorGroup").css('background-color', '#a9d039');
+		$("#majorGroup").css('color', '#ffffff');
+
+		$('[data-toggle="popover"]').popover();  
 		
-				$('[data-toggle="popover"]').popover();  
+		if($("#isFword").val() == '1'){
+			alert("비방글은 게시하실 수 없습니다.");
+		}
+
+		$("#imagePreview").hide();
+		$(".claim").hide();
+		
+		$(".doClaim").click(function () {
+			var root = $(this).parent().parent().children(":eq(5)");
+			root.slideToggle();
+		});
+
+		$("#movieBtn").popover({
+			title: "<h5>동영상 url을 입력하세요</h5>"
+			, content: $("#movieUrlForm").html()
+			, html: true
+			, placement: "bottom"	
+			, trigger: "click"
+		}).on('click', function(){
+			$('#movieUrlUploadBtn').click(function(){
+				$("#movieUrl").attr("value",$("#url").val());
+				alert("첨부되었습니다.");
 				
-				if($("#isFword").val() == '1'){
-					alert("비방글은 게시하실 수 없습니다.");
+			});			
+		});
+		
+		$(".doClaimBtn").click(function() {		
+			
+			var root = $(this).parent().children(":eq(0)");
+
+			$.post(		
+				"/writeClaim"
+				, { "claimText" : root.val()
+					, "articleClaim" : $(this).attr("id")
 				}
+				, function(data) {
+					
+					var jsonData = {};		
+					
+					try {
+						jsonData = JSON.parse(data);
+					}
+					catch(e) {
+						jsonData.result = false;
+					}
+					
+					if(jsonData.result){
+						$(".claim").hide();
+						alert("신고 완료");
+					}
+					else{
+						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+						location.href="/";
+					}
+				}
+			)	
+		});
+		
+		$(".like").click(function() {		
+			
+			$.post(		
+				"/like"
+				, { "articleId" : $(this).attr("id")
+					, "boardId" : $("#boardId").val()
+				}
+				, function(data) {
+					
+					var jsonData = {};		
+					
+					try {
+						jsonData = JSON.parse(data);
+					}
+					catch(e) {
+						jsonData.result = false;
+					}
+					
+					if(jsonData.result){
+						var articleId = jsonData.articleId;
+						var result = "#like" + articleId;
+						if(jsonData.doLike){
+							$(result).attr("src", "/resource/img/like_active_small.png");
+							var count = "#likeCount"+jsonData.articleId;
+							$(count).text(jsonData.updateLikeCount);
+						}
+						else{
+							$(result).attr("src", "/resource/img/like_inactive_small.png");
+							var count = "#likeCount"+jsonData.articleId;
+							$(count).text(jsonData.updateLikeCount);
+						}	
+					}
+					else{
+						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+						location.href="/";
+					}
+				}
+			)	
+		});
 
-				$("#imagePreview").hide();
-				$(".claim").hide();
-				
-				$(".doClaim").click(function () {
-					var root = $(this).parent().parent().children(":eq(5)");
-					root.slideToggle();
-				});
+		
 
-				$("#movieBtn").popover({
-					title: "<h5>동영상 url을 입력하세요</h5>"
-					, content: $("#movieUrlForm").html()
-					, html: true
-					, placement: "bottom"	
-					, trigger: "click"
-				}).on('click', function(){
-					$('#movieUrlUploadBtn').click(function(){
-						$("#movieUrl").attr("value",$("#url").val());
-						alert("첨부되었습니다.");
+		$(".dislike").click(function() {		
+			
+			$.post(		
+				"/dislike"
+				, { "articleId" : $(this).attr("id")
+					, "boardId" : $("#boardId").val()
+				}
+				, function(data) {
+					
+					var jsonData = {};		
+					
+					try {
+						jsonData = JSON.parse(data);
+					}
+					catch(e) {
+						jsonData.result = false;
+					}
+					
+					if(jsonData.result){
+						var articleId = jsonData.articleId;
+						var result = "#dislike" + articleId;
+						if(jsonData.isDislike){
+							$(result).attr("src", "/resource/img/dislike_active_small.png");
+							var count = "#dislikeCount"+jsonData.articleId;
+							$(count).text(jsonData.updateDislikeCount);
+						}
+						else{
+							$(result).attr("src", "/resource/img/dislike_inactive_small.png");
+							var count = "#dislikeCount"+jsonData.articleId;
+							$(count).text(jsonData.updateDislikeCount);
+						}	
+					}
+					else{
+						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+						location.href="/";
+					}
+				}
+			)	
+		});
+
+		
+		$(".scrab").click(function(){
+			$.post(
+				"/scrab"
+				, { "articleId" : $(this).attr("id")
+					, "boardId" : $("#boardId").val()	
+				}
+				, function(data){
+					var jsonData = {};
+					try{
+						jsonData = JSON.parse(data);
 						
-					});			
-				});
-				
-				$(".doClaimBtn").click(function() {		
+					}
+					catch(e){
+						jsonData.result = false;
+					}
+					if(jsonData.result){
+						var articleId = jsonData.articleId;
+						var result = "#scrab" + articleId;
+						if(jsonData.isScrab){
+							console.log(jsonData.isScrab);
+							alert("스크랩되었습니다.");
+							$(result).attr("src", "/resource/img/scrap_active_small.png");
+						}
+						else{
+							alert("스크랩 해제 되었습니다.");
+							$(result).attr("src", "/resource/img/scrap_inactive_small.png");
+						}
+					}
+					else{
+						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+						location.href="/";
+					}
 					
-					var root = $(this).parent().children(":eq(0)");
+				}
+			)
+			
+		});
+		
+		$("#writeBtn").click(function() {
+			
+			
+			 if( $("#articleTitle").val() == ""){
+				alert("제목을 입력하세요!");
+				$("#articleTitle").focus();
+				return; // 더이상 밑의 이벤트를 진행하지 않음.
+			} 
+			 
+			 if( $("#articleDescription").val() == ""){
+				alert("내용을 입력하세요!");
+				$("#articleDescription").focus();
+				return; // 더이상 밑의 이벤트를 진행하지 않음.
+			} 
 
-					$.post(		
-						"/writeClaim"
-						, { "claimText" : root.val()
-							, "articleClaim" : $(this).attr("id")
-						}
-						, function(data) {
-							
-							var jsonData = {};		
-							
-							try {
-								jsonData = JSON.parse(data);
-							}
-							catch(e) {
-								jsonData.result = false;
-							}
-							
-							if(jsonData.result){
-								$(".claim").hide();
-								alert("신고 완료");
-							}
-							else{
-								alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-								location.href="/";
-							}
-						}
-					)	
-				});
-				
-				$(".like").click(function() {		
-					
-					$.post(		
-						"/like"
-						, { "articleId" : $(this).attr("id")
-							, "boardId" : $("#boardId").val()
-						}
-						, function(data) {
-							
-							var jsonData = {};		
-							
-							try {
-								jsonData = JSON.parse(data);
-							}
-							catch(e) {
-								jsonData.result = false;
-							}
-							
-							if(jsonData.result){
-								var articleId = jsonData.articleId;
-								var result = "#like" + articleId;
-								if(jsonData.doLike){
-									$(result).attr("src", "/resource/img/like_active_small.png");
-									var count = "#likeCount"+jsonData.articleId;
-									$(count).text(jsonData.updateLikeCount);
-								}
-								else{
-									$(result).attr("src", "/resource/img/like_inactive_small.png");
-									var count = "#likeCount"+jsonData.articleId;
-									$(count).text(jsonData.updateLikeCount);
-								}	
-							}
-							else{
-								alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-								location.href="/";
-							}
-						}
-					)	
-				});
+				var form = $("#writeArticle");
+				form.attr("method", "post");
+				form.attr("action", "/writeArticle");
+				form.submit();
 
-				
+		});
+		
+		var searchFlag = 0;
+		$(".searchEvent").hide();
+		
+		$(".btnSearch").click(function () {
+			
+			if (searchFlag == 0) {
+				$(".searchEvent").show();
+				$(".searchKeyword").animate({ width : "150px"});
+				searchFlag = 1;
+			}
+			else {
+				$(".searchEvent").hide();
+				$(".searchKeyword").animate({ width : "0px"});
+				$(".searchKeyword").val("");
+				searchFlag = 0;
+			}
+			
+		});
+		
+		$("#btnSearch").click(function () {
+			var form = $(".searchForm");
+			form.attr("method", "post");
+			form.attr("action", "/studentMajorAritlce");
+			form.submit();
+		});
 
-				$(".dislike").click(function() {		
-					
-					$.post(		
-						"/dislike"
-						, { "articleId" : $(this).attr("id")
-							, "boardId" : $("#boardId").val()
-						}
-						, function(data) {
-							
-							var jsonData = {};		
-							
-							try {
-								jsonData = JSON.parse(data);
-							}
-							catch(e) {
-								jsonData.result = false;
-							}
-							
-							if(jsonData.result){
-								var articleId = jsonData.articleId;
-								var result = "#dislike" + articleId;
-								if(jsonData.isDislike){
-									$(result).attr("src", "/resource/img/dislike_active_small.png");
-									var count = "#dislikeCount"+jsonData.articleId;
-									$(count).text(jsonData.updateDislikeCount);
-								}
-								else{
-									$(result).attr("src", "/resource/img/dislike_inactive_small.png");
-									var count = "#dislikeCount"+jsonData.articleId;
-									$(count).text(jsonData.updateDislikeCount);
-								}	
-							}
-							else{
-								alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-								location.href="/";
-							}
-						}
-					)	
-				});
-
-				
-				$(".scrab").click(function(){
-					$.post(
-						"/scrab"
-						, { "articleId" : $(this).attr("id")
-							, "boardId" : $("#boardId").val()	
-						}
-						, function(data){
-							var jsonData = {};
-							try{
-								jsonData = JSON.parse(data);
-								
-							}
-							catch(e){
-								jsonData.result = false;
-							}
-							if(jsonData.result){
-								var articleId = jsonData.articleId;
-								var result = "#scrab" + articleId;
-								if(jsonData.isScrab){
-									console.log(jsonData.isScrab);
-									alert("스크랩되었습니다.");
-									$(result).attr("src", "/resource/img/scrap_active_small.png");
-								}
-								else{
-									alert("스크랩 해제 되었습니다.");
-									$(result).attr("src", "/resource/img/scrap_inactive_small.png");
-								}
-							}
-							else{
-								alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-								location.href="/";
-							}
-							
-						}
-					)
-					
-				});
-				
-				$("#writeBtn").click(function() {
-					
-					
-					 if( $("#articleTitle").val() == ""){
-						alert("제목을 입력하세요!");
-						$("#articleTitle").focus();
-						return; // 더이상 밑의 이벤트를 진행하지 않음.
-					} 
-					 
-					 if( $("#articleDescription").val() == ""){
-						alert("내용을 입력하세요!");
-						$("#articleDescription").focus();
-						return; // 더이상 밑의 이벤트를 진행하지 않음.
-					} 
-
-						var form = $("#writeArticle");
-						form.attr("method", "post");
-						form.attr("action", "/writeArticle");
-						form.submit();
-
-				});
 
 	});
 

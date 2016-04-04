@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ktds.curtain.article.vo.ArticleSearchVO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
@@ -30,10 +31,103 @@ public class ArticleDAO {
 
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
-
+			
 			String query = XML.getNodeString("//query/article/showMajorArticle/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, stdMember.getMajorGroupId());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setLike(false);
+
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+	
+
+	public List<ArticleVO> showMajorArticleByTitle(MemberVO stdMember, ArticleSearchVO searchVO) {
+
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/article/showMajorArticleByTitle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, stdMember.getMajorGroupId());
+			stmt.setString(2, searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setLike(false);
+
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+	public List<ArticleVO> showMajorArticleByDesc(MemberVO stdMember, ArticleSearchVO searchVO) {
+
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/article/showMajorArticleByDesc/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, stdMember.getMajorGroupId());
+			stmt.setString(2, searchVO.getSearchKeyword());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -892,7 +986,6 @@ public class ArticleDAO {
 			
 			updateCount = stmt.executeUpdate();			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new RuntimeException(e.getMessage(), e);
 		} finally {
 			closeDB(conn, stmt, null);
@@ -1110,8 +1203,6 @@ public class ArticleDAO {
 		}
 
 	}
-
-
 
 
 }

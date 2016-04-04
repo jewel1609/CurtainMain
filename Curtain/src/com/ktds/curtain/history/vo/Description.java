@@ -54,6 +54,8 @@ public interface Description {
 	public static final String SECEDE_MEMBER = "[%s]님이 회원탈퇴하셨습니다.";
 
 	public static final String DO_SURVEY = "[%s] 님이 투표했습니다.";
+	public static final String DO_SCRAB = "[%s] 님이 [%s]번글을 스크랩했습니다.";
+	public static final String CANCEL_SCRAB = "[%s] 님이 [%s]번글 스크랩을 취소했습니다.";
 	
 			
 	public static final String LIST = "[%s]님이 목록보기 페이지에 접근했습니다.";
@@ -71,6 +73,9 @@ public interface Description {
 	public static final String DETAIL_UPDATE_ARTICLE = "수정한 글 제목 : [%s] <br/ 내용 : [%s] <br/>";
 	public static final String DETAIL_DELETE_ARTICLE = "삭제한 글 제목 : [%s] <br/ 내용 : [%s] <br/>";
 	public static final String DETAIL_DELETE_ARTICLE_FAIL = "삭제실패한 글 제목 : [%s] <br/ 내용 : [%s] <br/>";
+	
+	public static final String DETAIL_DO_SCRAB = "스크랩한 글 제목 : [%s] <br/ 내용 : [%s] <br/>";
+	public static final String DETAIL_CANCEL_SCRAB = "스크랩취소한 글 제목 : [%s] <br/ 내용 : [%s] <br/>";
 	
 	
 }

@@ -48,6 +48,8 @@ public interface ActionCode {
 	public static final String SECEDE_MEMBER = "S_M";
 	
 	public static final String DO_SURVEY = "D_S";
+	public static final String DO_SCRAB = "DO_SB";
+	public static final String CANCEL_SCRAB = "CC_SB";
 	
 	
 	

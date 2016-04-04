@@ -11,13 +11,12 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-	      $(window).resize(function() {
-	          $(".wrapper").css("height", window.innerHeight - 200);
-	       });
-	      
-	
-		myAccordion('demo1');
+		$(window).resize(function() {
+			$(".wrapper").css("height", window.innerHeight - 200);
+		});
 		
+		myAccordion('demo');
+	
 		$("#twoLayerCurtain").mouseleave(function(){
 			$("#twoLayerCurtain").css('background-color', '#a9d039');
 			$("#twoLayerCurtain").css('color', '#ffffff');

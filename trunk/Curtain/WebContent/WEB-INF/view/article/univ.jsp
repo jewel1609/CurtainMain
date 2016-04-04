@@ -289,9 +289,7 @@
 	
 	
 	<div class="w3-row" >
-		<div class="w3-col m7 w3-main wrapper"
-			style="border-right:1px solid #bababa;
-<<<<<<< .mine
+		<div class="w3-col m7 w3-main wrapper" style="border-right:1px solid #bababa;
     			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
 		
 				<div class="w3-row" style="border-bottom: 1px solid #bababa;">
@@ -302,13 +300,7 @@
 					<div style="float:left; padding:20px">
 						<h5>참여인원 ${univMemberCount}명</h5>
 					</div> 
-				</div>
-=======
-    			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 885px; overflow: auto; ">
-			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
-				<span><h2>${univName} 게시판입니다.</h2></span>
-				
-				<div style="width: 400px; float: right; margin: 20px 20px 0 0; text-align: right;">
+					<div style="width: 400px; float: right; margin: 20px 20px 0 0; text-align: right;">
 					<form class="searchForm">
 						<div class="btnSearch material-icons w3-xlarge" style="float:right; padding-top: 5px;">search</div>
 						<div style="float:right; padding-bottom: 5px;">
@@ -326,11 +318,8 @@
 						</div>
 					</form>
 				</div>
-				
-			</div> 
->>>>>>> .r1078
-
-			
+				</div>
+		
 		
 	<div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
 				<div class="w3-col m12" align="left" >

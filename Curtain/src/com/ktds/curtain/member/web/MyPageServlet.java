@@ -47,6 +47,7 @@ public class MyPageServlet extends HttpServlet {
 			
 			// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
 			MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+			session.setAttribute("_BOARD_ID_", 0);
 			
 			String univName = memberBiz.getUnivName(member.getUnivId());
 			String majorName = memberBiz.getMajorName(member.getMajorId());

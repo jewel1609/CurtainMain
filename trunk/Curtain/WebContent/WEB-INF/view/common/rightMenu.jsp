@@ -141,13 +141,55 @@
 						catch(e) { 
 						}
 						
-						$("#keyword1").text("1. " + jsonData.keyword0);
-						$("#keyword2").text("2. " + jsonData.keyword1);
-						$("#keyword3").text("3. " + jsonData.keyword2);
-						$("#keyword4").text("4. " + jsonData.keyword3);
-						$("#keyword5").text("5. " + jsonData.keyword4);
-						$("#keyword6").text("6. " + jsonData.keyword5);
-						$("#keyword7").text("7. " + jsonData.keyword6);
+						if ( jsonData.keyword0 != null ) {
+							$("#keyword1").text("1. " + jsonData.keyword0);
+						}
+						else {
+							$("#keyword1").text("1. ");
+						}
+						
+						if ( jsonData.keyword1 != null ) {
+							$("#keyword2").text("2. " + jsonData.keyword1);
+						}
+						else {
+							$("#keyword2").text("2. ");
+						}
+						
+						if ( jsonData.keyword2 != null ) {
+							$("#keyword3").text("3. " + jsonData.keyword2);
+						}
+						else {
+							$("#keyword3").text("3. ");
+						}
+						
+						if (jsonData.keyword3 != null ) {
+							$("#keyword4").text("4. " + jsonData.keyword3);
+						}
+						else {
+							$("#keyword4").text("4. ");
+						}
+						
+						if (jsonData.keyword4 != null ) {
+							$("#keyword5").text("5. " + jsonData.keyword4);
+						}
+						else {
+							$("#keyword5").text("5. ");
+						}
+						
+						if (jsonData.keyword5 != null ) {
+							$("#keyword6").text("6. " + jsonData.keyword5);
+						}
+						else {
+							$("#keyword6").text("6. ");
+						}
+						
+						if (jsonData.keyword6 != null ) {
+							$("#keyword7").text("7. " + jsonData.keyword6);
+						}
+						else {
+							$("#keyword7").text("7. ");
+						}
+						
 			  		}
 			);
 		}, 1000*60*5); 
@@ -164,13 +206,54 @@
 					catch(e) { 
 					}
 					
-					$("#keyword1").text("1. " + jsonData.keyword0);
-					$("#keyword2").text("2. " + jsonData.keyword1);
-					$("#keyword3").text("3. " + jsonData.keyword2);
-					$("#keyword4").text("4. " + jsonData.keyword3);
-					$("#keyword5").text("5. " + jsonData.keyword4);
-					$("#keyword6").text("6. " + jsonData.keyword5);
-					$("#keyword7").text("7. " + jsonData.keyword6);
+					if ( jsonData.keyword0 != null ) {
+						$("#keyword1").text("1. " + jsonData.keyword0);
+					}
+					else {
+						$("#keyword1").text("1. ");
+					}
+					
+					if ( jsonData.keyword1 != null ) {
+						$("#keyword2").text("2. " + jsonData.keyword1);
+					}
+					else {
+						$("#keyword2").text("2. ");
+					}
+					
+					if ( jsonData.keyword2 != null ) {
+						$("#keyword3").text("3. " + jsonData.keyword2);
+					}
+					else {
+						$("#keyword3").text("3. ");
+					}
+					
+					if (jsonData.keyword3 != null ) {
+						$("#keyword4").text("4. " + jsonData.keyword3);
+					}
+					else {
+						$("#keyword4").text("4. ");
+					}
+					
+					if (jsonData.keyword4 != null ) {
+						$("#keyword5").text("5. " + jsonData.keyword4);
+					}
+					else {
+						$("#keyword5").text("5. ");
+					}
+					
+					if (jsonData.keyword5 != null ) {
+						$("#keyword6").text("6. " + jsonData.keyword5);
+					}
+					else {
+						$("#keyword6").text("6. ");
+					}
+					
+					if (jsonData.keyword6 != null ) {
+						$("#keyword7").text("7. " + jsonData.keyword6);
+					}
+					else {
+						$("#keyword7").text("7. ");
+					}
 		  		}
 		);
 		

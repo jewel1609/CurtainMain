@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <query>
 	
+	<survey>
+		<insertSurvey>
+			INSERT INTO		SURVEY (
+	   									SURVEY_ID
+	   									, SURVEY_TITLE
+	   									, SURVEY_ANSWER1
+	   									, SURVEY_ANSWER2
+	   									, SURVEY_ANSWER3
+	   									, SURVEY_ANSWER4
+	   									, SURVEY_DATE
+	   								) 
+			VALUES 					(	
+										SURVEY_ID_SEQ.NEXTVAL
+										, ?
+										, ?
+										, ?
+										, ?
+										, ?
+										, ?
+								    )
+		</insertSurvey>
+	</survey>
+	
 	<member>
 		<modifyMember>
 			UPDATE	MEMBER
@@ -66,6 +89,32 @@
 	</member>
 	
 	<article>
+		<getClaimArticleCountByArticleId>
+			SELECT	COUNT(ARTICLE_ID)
+			FROM	ARTICLE_CLAIM
+			WHERE	ARTICLE_ID = ?			
+		</getClaimArticleCountByArticleId>
+	
+		<getAllClaimArticleCount>
+			SELECT	COUNT(ARTICLE_CLAIM_ID)
+			FROM	ARTICLE_CLAIM
+		</getAllClaimArticleCount>
+	
+		<getAllClaimArticle>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	*
+										FROM 	ARTICLE_CLAIM
+										ORDER	BY CLAIM_DATE DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllClaimArticle>
+	
 		<getAllArticleCount>
 			SELECT	COUNT(A.ARTICLE_ID)
 			FROM 	ARTICLE A, MEMBERS M
@@ -197,5 +246,19 @@
 			WHERE	ARTICLE_ID = ?
 	 	</deleteFile>
 	</file>
+
+	<reply>
+		<getClaimReplyInfoByReplyId>
+			SELECT	*
+			FROM	REPLY
+			WHERE	REPLY_ID = ?
+		</getClaimReplyInfoByReplyId>
+		
+		<getAllClaimReplyCountByReplyId>
+			SELECT	COUNT(REPLY_ID)
+			FROM	ARTICLE_CLAIM
+			WHERE	REPLY_ID = ?			
+		</getAllClaimReplyCountByReplyId>
+	</reply>
 
 </query>

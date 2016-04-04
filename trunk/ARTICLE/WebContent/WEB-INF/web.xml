@@ -237,4 +237,54 @@
     <servlet-name>DetailMemberServlet</servlet-name>
     <url-pattern>/detailMember</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowClaimArticleServlet</display-name>
+    <servlet-name>ShowClaimArticleServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.ShowClaimArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowClaimArticleServlet</servlet-name>
+    <url-pattern>/showClaimArticle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailClaimArticleServlet</display-name>
+    <servlet-name>DetailClaimArticleServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.DetailClaimArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailClaimArticleServlet</servlet-name>
+    <url-pattern>/detailClaimArticle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailClaimReplyServlet</display-name>
+    <servlet-name>DetailClaimReplyServlet</servlet-name>
+    <servlet-class>com.ktds.oph.reply.web.DetailClaimReplyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailClaimReplyServlet</servlet-name>
+    <url-pattern>/detailClaimReply</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertSurveyServlet</display-name>
+    <servlet-name>InsertSurveyServlet</servlet-name>
+    <servlet-class>com.ktds.oph.survey.web.InsertSurveyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertSurveyServlet</servlet-name>
+    <url-pattern>/insertSurvey</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoInsertSurveyServlet</display-name>
+    <servlet-name>DoInsertSurveyServlet</servlet-name>
+    <servlet-class>com.ktds.oph.survey.web.DoInsertSurveyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoInsertSurveyServlet</servlet-name>
+    <url-pattern>/doInsertSurvey</url-pattern>
+  </servlet-mapping>
 </web-app>

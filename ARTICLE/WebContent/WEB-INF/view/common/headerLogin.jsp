@@ -36,7 +36,8 @@
         <li><a href="/showMember">회원관리</a></li>
         <li><a href="/univList">대학관리</a></li>
         <li><a href="/showClaimArticle">신고된글</a></li>
-        <li><a href="/insertSurvey">투표등록</a></li>
+        <li><a href="/insertSurvey">설문등록</a></li>
+        <li><a href="/surveyList">설문리스트</a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">

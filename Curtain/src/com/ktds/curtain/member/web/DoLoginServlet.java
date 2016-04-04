@@ -69,26 +69,23 @@ public class DoLoginServlet extends HttpServlet {
 				memberBiz.removeCookie(member, response);
 			}
 			
-		HttpSession session = request.getSession();
-		member = (MemberVO) session.getAttribute("_MEMBER_");
+			HttpSession session = request.getSession();
+			member = (MemberVO) session.getAttribute("_MEMBER_");
+			
+			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+			Date currentTime = new Date ( );
+			String mTime = mSimpleDateFormat.format ( currentTime );
+			surveyCheck = surveyBiz.surveyCheck(member.getEmail() , mTime);
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.LOGIN);
+			historyVO.setDescription( BuildDescription.get(Description.LOGIN, member.getEmail()));
+			
+			historyBiz.addHistory(historyVO);
 		
-		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
-		Date currentTime = new Date ( );
-		String mTime = mSimpleDateFormat.format ( currentTime );
-		surveyCheck = surveyBiz.surveyCheck(member.getEmail() , mTime);
-		
-		OperationHistoryVO historyVO = new OperationHistoryVO();
-		historyVO.setIp(request.getRemoteHost());
-		historyVO.setEmail(member.getEmail());
-		historyVO.setUrl(request.getRequestURI());
-		historyVO.setActionCode(ActionCode.LOGIN);
-		historyVO.setDescription( BuildDescription.get(Description.LOGIN, member.getNickName()));
-		
-		historyBiz.addHistory(historyVO);
-		
-		
-		
-
 			if ( surveyCheck) {
 				//투표를 이미했다는 것이기때문에
 				//결과물만 보여준다.
@@ -103,7 +100,6 @@ public class DoLoginServlet extends HttpServlet {
 					session.setAttribute("_BOARD_ID_", 3);
 				}
 			}
-		
 			else if(!surveyCheck ){
 				session.setAttribute("_VOTE_", checkCount);
 				if(member.getMemberTypeId() == 1 || member.getMemberTypeId() == 2 || member.getMemberTypeId() == 3){
@@ -116,7 +112,6 @@ public class DoLoginServlet extends HttpServlet {
 				}
 			}
 		}
-		
 		else {
 			
 			OperationHistoryVO historyVO = new OperationHistoryVO();

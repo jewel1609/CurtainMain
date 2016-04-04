@@ -313,11 +313,8 @@
 				<input type="hidden" id = "survey3" name="survey3" value="${ survey.thirdAnswer }" />
 				<input type="hidden" id = "survey4" name="survey4" value="${ survey.fourthAnswer }" />
 				<input type="hidden" id = "surveyId" name="surveyId" value="${ survey.surveyId }" />
-		<div class="w3-col" style="width:60%">
+		<div class="w3-container w3-center-align" style="margin-left: 45px;">
 			<button id = "doSurvey" type="button" class="btn btn-primary btn-sm">투표하기</button>
-		</div>
-		<div class="w3-col" style="width:30%;">
-			<button id = "showSurveyResult" type="button" class="btn btn-primary btn-sm">결과보기</button>
 		</div>
 		</form>
 		</c:if>

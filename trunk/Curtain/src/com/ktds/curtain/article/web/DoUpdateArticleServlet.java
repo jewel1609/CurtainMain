@@ -15,6 +15,11 @@ import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
@@ -28,6 +33,7 @@ public class DoUpdateArticleServlet extends HttpServlet {
 	private ArticleBiz articleBiz;
 	private FileBiz fileBiz;
 	private ProhibitedWordBiz proBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,6 +43,7 @@ public class DoUpdateArticleServlet extends HttpServlet {
         articleBiz = new ArticleBiz();
         fileBiz = new FileBiz();
         proBiz = new ProhibitedWordBiz();
+        historyBiz= new OperationHistoryBiz();
     }
 
 	/**
@@ -88,6 +95,21 @@ public class DoUpdateArticleServlet extends HttpServlet {
 		articleVO.setMajorGroupId(stdMember.getMajorGroupId());
 
 		boolean doWriteArticle = articleBiz.doUpdateArticle(article, articleVO);
+		
+		if ( doWriteArticle ) {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(stdMember.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.UPDATE_ARTICLE);
+			historyVO.setDescription( BuildDescription.get(Description.UPDATE_ARTICLE, stdMember.getNickName(), multipartRequest.getParameter("articleId")) );
+			historyVO.setEtc(BuildDescription.get(Description.DETAIL_UPDATE_ARTICLE, articleTitle, articleDescription));
+			
+			historyBiz.addHistory(historyVO);
+			
+		}
+		
 
 		if (articleId > 0) {
 			// 이미지 파일이 있을 경우

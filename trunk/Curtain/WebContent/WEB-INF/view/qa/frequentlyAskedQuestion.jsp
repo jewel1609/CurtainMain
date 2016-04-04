@@ -75,8 +75,6 @@
 			form.submit();
 		});
 		
-		
-		
 	});
 	
 	function rotate(div, degree) {

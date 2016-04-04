@@ -21,10 +21,14 @@ public interface Description {
 	
 	public static final String WRITE_MAJOR = "[%s]가 학과 게시판에 글을 작성했습니다.";
 	public static final String WRITE_UNIV = "[%s]가 대학 게시판에 글을 작성했습니다.";
+	public static final String WRITE_FREE = "[%s]가 자유게시판에 글을 작성했습니다.";
+	public static final String WRITE_ONE_LAYER = "[%s]가 비밀게시판(한겹)에 글을 작성했습니다.";
+	public static final String WRITE_TWO_LAYER = "[%s]가 비밀게시판(두겹)에 글을 작성했습니다.";
+	public static final String WRITE_PROMOTION = "[%s]가 홍보게시판에 글을 작성했습니다.";
 	
 	
 	
-	
+			
 	public static final String LIST = "[%s]님이 목록보기 페이지에 접근했습니다.";
 	public static final String LIST_PAGING = "[%s]님이 [%s]번째 페이지로 이동했습니다.";
 	public static final String DETAIL = "[%s]님이 [%s]번째 글을 읽었습니다.";

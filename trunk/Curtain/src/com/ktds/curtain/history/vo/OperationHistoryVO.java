@@ -7,8 +7,8 @@ public class OperationHistoryVO extends MemberVO {
 	private int historyId;
 	private String ip;
 	private String createdDate;
-	private String actionCode;
 	private String url;
+	private String actionCode;
 	private String description;
 	private String etc;
 	

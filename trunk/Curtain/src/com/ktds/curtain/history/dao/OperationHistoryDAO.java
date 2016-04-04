@@ -26,11 +26,11 @@ public class OperationHistoryDAO {
 			
 			//SQL Parameter Mapping
 			stmt.setString(1, historyVO.getIp());
-			stmt.setString(2, historyVO.getEmail());
-			stmt.setString(3, historyVO.getUrl());
-			stmt.setString(4, historyVO.getActionCode());
-			stmt.setString(5, historyVO.getDescription());
-			stmt.setString(6, historyVO.getEtc());
+			stmt.setString(2, historyVO.getUrl());
+			stmt.setString(3, historyVO.getActionCode());
+			stmt.setString(4, historyVO.getDescription());
+			stmt.setString(5, historyVO.getEtc());
+			stmt.setString(6, historyVO.getEmail());
 			
 			stmt.executeUpdate();
 			

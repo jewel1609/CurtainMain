@@ -310,11 +310,14 @@ public class MemberBiz {
 
 	public void minusPointByPromotion(MemberVO loginMember) {
 		memberDAO.minusPointByPromotion(loginMember);
-		
 	}
 
 	public void secedeMemberAdd(String memberEmail, String mTime, String secedeDesc) {
 		memberDAO.insertSecedeMember(memberEmail, mTime, secedeDesc);
+	}
+	
+	public int getPointbyEmail(MemberVO loginMember) {
+		return memberDAO.getPointbyEmail(loginMember);
 	}
 
 	

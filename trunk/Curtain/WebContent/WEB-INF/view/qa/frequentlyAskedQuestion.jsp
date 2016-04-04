@@ -10,6 +10,12 @@
 
 	$(document).ready(function() {
 		
+		$(".wrapper").css("height", window.innerHeight - 130);
+		   
+	      $(window).resize(function() {
+	         $(".wrapper").css("height", window.innerHeight - 130);
+	      });
+		
 		$("#qna").mouseleave(function(){
 			$("#qna").css('background-color', '#a9d039');
 			$("#qna").css('color', '#ffffff');
@@ -93,10 +99,9 @@
 	}
 </script>
 	
-	<div class="w3-container w3-center w3-main"
-		style="margin-top: 30px; margin-bottom: 20px; ">
+	<div class="w3-container w3-center w3-main">
 		<div class="w3-row">
-			<div class="w3-col m7 w3-main" style="margin-left: 350px;">
+			<div class="w3-col m7 w3-main wrapper" style="margin-left: 350px; overflow: auto;">
 				<div class="w3-row-padding w3-margin-top">
 					<div class="w3-col m12">
 					

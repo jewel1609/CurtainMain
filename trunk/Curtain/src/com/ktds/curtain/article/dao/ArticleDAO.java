@@ -200,6 +200,94 @@ public class ArticleDAO {
 			closeDB(conn, stmt, rs);
 		}
 	}
+	
+	public List<ArticleVO> showUnivArticleByTitle(MemberVO stdMember, ArticleSearchVO searchVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showUnivArticleByTitle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, 2);
+			stmt.setInt(2, stdMember.getUnivId());
+			stmt.setString (3, searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));	
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+	
+	public List<ArticleVO> showUnivArticleByDesc (MemberVO stdMember, ArticleSearchVO searchVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showUnivArticleByDesc/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, 2);
+			stmt.setInt(2, stdMember.getUnivId());
+			stmt.setString (3, searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));	
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("UNIV_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
 
 	// 홍보
 	public List<ArticleVO> showAdArticle(MemberVO stdMember, String boardId) {

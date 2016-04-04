@@ -2,6 +2,7 @@ package com.ktds.curtain.article.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -63,6 +64,10 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
+		
+		if(memberBiz.getPointbyEmail(loginMember) > 100){
+			
+		
 		List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
 
 		for (int i = 0; i < wordList.size(); i++) {
@@ -81,7 +86,10 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 		article.setEmail(loginMember.getEmail());
 
 		boolean doWriteArticle = articleBiz.doWriteArticle(article, loginMember, request);
+		
+		
 		memberBiz.minusPointByPromotion(loginMember);
+	
 		
 		FileVO file = null;
 		int articleId = articleBiz.getArticleId();
@@ -116,6 +124,19 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 			System.out.println("articleId 가져오지 못함 - 등록 실패");
 		}
 			
-		}
-
+		} // 포인트가 100이 넘을경우
+		
+		else
+			System.out.println("포인트 부족");
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>"); 
+			out.println("alert('포인트가 부족합니다.');"); 
+			out.println("</script>"); 
+			out.close();
+			
+			response.sendRedirect("/promotionArticle");
+	}
 }

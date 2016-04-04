@@ -237,6 +237,48 @@
     <servlet-name>DetailMemberServlet</servlet-name>
     <url-pattern>/detailMember</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>UnivListServlet</display-name>
+    <servlet-name>UnivListServlet</servlet-name>
+    <servlet-class>com.ktds.oph.univ.web.UnivListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UnivListServlet</servlet-name>
+    <url-pattern>/univList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MassiveUnivDeleteServlet</display-name>
+    <servlet-name>MassiveUnivDeleteServlet</servlet-name>
+    <servlet-class>com.ktds.oph.univ.web.MassiveUnivDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MassiveUnivDeleteServlet</servlet-name>
+    <url-pattern>/massiveUnivDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateUnivNameServlet</display-name>
+    <servlet-name>UpdateUnivNameServlet</servlet-name>
+    <servlet-class>com.ktds.oph.univ.web.UpdateUnivNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateUnivNameServlet</servlet-name>
+    <url-pattern>/updateUnivName</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterNewUnivServlet</display-name>
+    <servlet-name>RegisterNewUnivServlet</servlet-name>
+    <servlet-class>com.ktds.oph.univ.web.RegisterNewUnivServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterNewUnivServlet</servlet-name>
+    <url-pattern>/registerNewUniv</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>ShowClaimArticleServlet</display-name>
@@ -287,4 +329,5 @@
     <servlet-name>DoInsertSurveyServlet</servlet-name>
     <url-pattern>/doInsertSurvey</url-pattern>
   </servlet-mapping>
+
 </web-app>

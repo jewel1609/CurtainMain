@@ -10,8 +10,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.biz.MemberBiz;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.Root;
 
 /**
@@ -21,6 +28,7 @@ public class DoSecedeMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private MemberBiz memberBiz;
+	private OperationHistoryBiz historyBiz;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,6 +36,7 @@ public class DoSecedeMemberServlet extends HttpServlet {
     public DoSecedeMemberServlet() {
         super();
         memberBiz = new MemberBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -42,7 +51,10 @@ public class DoSecedeMemberServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+		HttpSession session = request.getSession();
+		
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+			
 		
 		String memberEmail = request.getParameter("memberEmail");
 		String secedeDesc = request.getParameter("secedeDesc");
@@ -58,7 +70,15 @@ public class DoSecedeMemberServlet extends HttpServlet {
 		memberBiz.secedeMember(memberEmail);
 		memberBiz.secedeMemberAdd(memberEmail, mTime, secedeDesc);
 		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.SECEDE_MEMBER);
+		historyVO.setDescription( BuildDescription.get(Description.SECEDE_MEMBER, member.getNickName()) );
+		historyVO.setEtc(BuildDescription.get(Description.DETAIL_SECEDE_MEMBER, member.getEmail(), secedeDesc ));
 		
+		historyBiz.addHistory(historyVO);
 		
 		request.getSession().invalidate();
 		response.sendRedirect(Root.get(this) + "/main.jsp");

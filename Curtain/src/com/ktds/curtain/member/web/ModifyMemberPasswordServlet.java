@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 
@@ -18,6 +23,7 @@ public class ModifyMemberPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private MemberBiz memberBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -25,6 +31,7 @@ public class ModifyMemberPasswordServlet extends HttpServlet {
     public ModifyMemberPasswordServlet() {
         super();
         memberBiz = new MemberBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -58,10 +65,31 @@ public class ModifyMemberPasswordServlet extends HttpServlet {
 			System.out.println(email);
 			memberBiz.modifyMemberPassword(userNewPw, email);
 			member.setPassword(userNewPw);
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.MODIFY_MEMBER_PASSWORD);
+			historyVO.setDescription( BuildDescription.get(Description.MODIFY_MEMBER_PASSWORD, member.getNickName()) );
+			historyVO.setEtc(BuildDescription.get(Description.DETAIL_MEMBER_PASSWORD, userNewPw ));
+			
+			historyBiz.addHistory(historyVO);
+			
 			response.sendRedirect("/myPage");
 			return;
 		}
 		else {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.MODIFY_MEMBER_PASSWORD_FAIL);
+			historyVO.setDescription( BuildDescription.get(Description.MODIFY_MEMBER_PASSWORD_FAIL, member.getNickName()) );
+			
+			historyBiz.addHistory(historyVO);
+			
 			response.sendRedirect("/?errorCode=1");
 			return;
 		}

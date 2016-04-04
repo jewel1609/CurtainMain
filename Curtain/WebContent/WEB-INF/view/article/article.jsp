@@ -251,6 +251,10 @@
 			form.attr("action", "/studentMajorAritlce");
 			form.submit();
 		});
+		
+		$(".btnSearch").mouseover( function () {
+			$(".btnSearch").css("cursor","pointer");
+		});
 
 
 	});
@@ -295,6 +299,22 @@
 				</div>
 				<div style="float:left; padding:20px;">
 					<a href="#" title="참여 대학 목록입니다." data-toggle="popover" data-placement="bottom" data-content="${univNames}"><h5>참여대학교</h5></a>
+				</div>
+				
+				<div style="width: 350px; float: right; margin: 20px 20px 0 0; text-align: right;">
+					<form class="searchForm">
+						<div class="btnSearch material-icons w3-xlarge" style="float:right; padding-top: 5px;">search</div>
+						<div style="float:right; padding-bottom: 5px;">
+							<input id="btnSearch" class="searchEvent btn btn-default" style="float: right; border-color: #FF3300; color: #FF3300;" type="button" value="검색"/>
+						</div>
+						<div style="float:right; padding-bottom: 5px;">
+							<input name="searchKeyword" class="searchKeyword w3-input" type="text" style="width: 0px;"/>
+						</div>
+						<select class="searchEvent form-control" id="sel1" name="articleTypeId" style="width: 100px;">
+							<option value="1">제목</option>
+							<option value="2">내용</option>
+						</select>
+					</form>
 				</div>	
 			</div>		
 			

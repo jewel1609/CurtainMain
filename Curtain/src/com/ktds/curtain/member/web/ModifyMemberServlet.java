@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.dupl.biz.DuplBiz;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
 
@@ -21,6 +26,7 @@ public class ModifyMemberServlet extends HttpServlet {
        
 	private MemberBiz memberBiz;
 	private DuplBiz duplBiz;
+	private OperationHistoryBiz historyBiz;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -29,6 +35,7 @@ public class ModifyMemberServlet extends HttpServlet {
         super();
         memberBiz = new MemberBiz();
         duplBiz = new DuplBiz();
+        historyBiz= new OperationHistoryBiz();
     }
 
 	/**
@@ -57,6 +64,15 @@ public class ModifyMemberServlet extends HttpServlet {
 		int countArticle = memberBiz.countArticle(member); 
 		int countReply = memberBiz.countReply(member);
 		int countSurvey = memberBiz.countSurvey(member);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.MODIFY_PAGE);
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_MODIFY_PAGE, member.getNickName()));
+		
+		historyBiz.addHistory(historyVO);
 		
 		
 		request.setAttribute("countArticle", countArticle);

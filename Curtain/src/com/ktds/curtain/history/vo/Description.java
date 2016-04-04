@@ -63,6 +63,8 @@ public interface Description {
 	public static final String DO_CLAIM_REPLY = "[%s] 님이 [%s]번 댓글을 신고했습니다.";
 	
 	public static final String DO_REPLY = "[%s] 님이 [%s]번글에 댓글을 달았습니다.";
+	public static final String DO_REPLY_LIKE = "[%s] 님이 [%s]번 댓글을 좋아합니다.";
+	public static final String DO_REPLY_DISLIKE = "[%s] 님이 [%s]번 댓글을 싫어합니다.";
 	
 			
 	public static final String LIST = "[%s]님이 목록보기 페이지에 접근했습니다.";

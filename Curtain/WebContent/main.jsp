@@ -1,3 +1,8 @@
+<%@page import="com.ktds.curtain.history.vo.OperationHistoryVO"%>
+<%@page import="com.ktds.curtain.history.vo.ActionCode"%>
+<%@page import="com.ktds.curtain.history.vo.BuildDescription"%>
+<%@page import="com.ktds.curtain.history.vo.Description"%>
+<%@page import="com.ktds.curtain.history.biz.OperationHistoryBiz"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -24,7 +29,16 @@
 }
 
 </style>
-
+<%
+	OperationHistoryBiz historyBiz = new OperationHistoryBiz();
+	OperationHistoryVO historyVO = new OperationHistoryVO();
+	historyVO.setIp(request.getRemoteHost());
+	historyVO.setUrl(request.getRequestURI());
+	historyVO.setActionCode(ActionCode.MAIN);
+	historyVO.setDescription( BuildDescription.get(Description.VISIT_MAIN_PAGE, request.getRemoteHost()));
+	System.out.println("메인접근");
+	historyBiz.addHistory(historyVO);
+%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">

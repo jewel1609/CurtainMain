@@ -17,6 +17,11 @@ public interface ActionCode {
 	
 	public static final String WRITE_MAJOR = "WT_M";
 	public static final String WRITE_UNIV = "WT_U";
+	public static final String WRITE_FREE = "WT_F";
+	public static final String WRITE_ONE_LAYER = "WT_O_L";
+	public static final String WRITE_TWO_LAYER = "WT_T_L";
+	public static final String WRITE_PROMOTION = "WT_P";
+	
 	
 	
 }

@@ -499,4 +499,34 @@ public class ArticleBiz {
 		return article;
 	}
 
+
+	public ArticleVO showTopUnivArticle(MemberVO stdMember, String majorBoard) {
+		ArticleVO article = new ArticleVO();
+		article = articleDAO.showTopUnivArticle(stdMember, majorBoard);
+		
+		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, majorBoard);
+		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, majorBoard);
+		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, majorBoard);
+		
+		for(ArticleDislikeVO articleDislike : articleDislikes ) {
+			if( article.getArticleId() == articleDislike.getArticleId() ){
+				article.setDislike(true);
+			}
+		}
+	
+		for(ArticleLikeVO articleLike : articleLikes ){
+			if( article.getArticleId() == articleLike.getArticleId() ){
+				article.setLike(true);
+			}
+		}
+
+		for(ArticleScrabVO articleScrab : articleScrabs ){
+			if( article.getArticleId() == articleScrab.getArticleId() ){
+				article.setScrab(true);
+			}
+		}
+
+		return article;
+	}
+
 }

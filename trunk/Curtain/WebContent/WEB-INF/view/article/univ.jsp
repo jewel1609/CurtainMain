@@ -11,6 +11,10 @@
 
 	$(document).ready(function() {
 				
+	      $(window).resize(function() {
+	          $(".wrapper").css("height", window.innerHeight - 200);
+	       });
+		
 				myAccordion('demo');
 		
 				$("#univ").mouseleave(function(){
@@ -32,8 +36,6 @@
 				$(".doClaim").click(function () {
 					
 					var root = $(this).parent().parent().children(":eq(5)");
-					
-					
 					root.slideToggle();
 					
 				});
@@ -252,14 +254,14 @@
 	<c:set var="majorMemberCount" value="${ sessionScope._MEMBER_.majorMemberCount }" />
 
 	<div class="w3-row" >
-		<div class="w3-col m7 w3-main"
+		<div class="w3-col m7 w3-main wrapper"
 			style="border-right:1px solid #bababa;
     			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 885px; overflow: auto; ">
 			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 				<span><h2>${univName} 게시판입니다.</h2></span>
 			</div> 
 		
-	<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">s
+	<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">
 				<div class="w3-col m12" align="left" >
 					<div class="w3-card w3-round w3-white" style="margin-top:10px; margin-bottom:10px;">
 
@@ -422,9 +424,9 @@
 							<div class="w3-container">
 								<a
 									href="<c:url value="/hitsCount?boardId=2&articleId=${article.articleId}"/>">
-									<div>
+							
 										
-										<div>
+										<div class="w3-col m10 w3-padding-top">
 											<c:if test="${article.articleTypeName eq '연애'}">
 												<span class="label label-danger">${article.articleTypeName}</span>
 											</c:if>
@@ -443,12 +445,19 @@
 											<strong>${article.articleTitle}</strong>
 										</div>
 
-
+										<div class="w3-col m1 w3-padding-top">
+											${article.nickName}
+										</div>
+										<div class="w3-col m1 w3-padding-top">
+											조회수 ${article.hits}
+										</div>
+										<div class="w3-col m12 w3-padding-top" style="height: 60px;">
 										<p>${article.articleDesc}</p>
-										<p>${article.articleModifyDate}${article.nickName}</p>
-									</div>
+										</div>
 								</a>
-								<p>조회수 ${article.hits}</p>
+										<div>
+											${article.articleModifyDate} 
+										</div>
 									<div class="w3-col m8 w3-padding-bottom">
 										<div style="float:left; margin-right:10px;">
 											<c:if test="${article.like}">
@@ -498,7 +507,7 @@
 
 				</div>
 			</c:forEach>
-
+			</div>
 		</div>
 	</div>
 

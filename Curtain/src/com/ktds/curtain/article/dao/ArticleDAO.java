@@ -50,6 +50,7 @@ public class ArticleDAO {
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setReplyCount(rs.getInt("COUNT(REPLY_ID)"));
 				article.setLike(false);
 
 				articles.add(article);
@@ -559,7 +560,8 @@ public class ArticleDAO {
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
-				article.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
+				//article.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
+				article.setReplyCount(rs.getInt("COUNT(REPLY_ID)"));
 				article.setLike(false);
 				article.setDislike(false);
 				article.setScrab(false);

@@ -80,6 +80,7 @@ public class ArticleBiz {
 			articles = articleDAO.showMajorArticle(stdMember);
 		}
 		
+		
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
@@ -110,7 +111,6 @@ public class ArticleBiz {
 		return articles;
 	}
 	
-
 
 	/**
 	 * 해당 비밀 게시판 리스트 가져오기

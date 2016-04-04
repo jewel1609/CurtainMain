@@ -24,16 +24,24 @@ public class ArticleVO extends MemberVO {
 	private String articleTypeName;
 	private int articleScrab;
 	private String majorName;
+	private int replyCount;
 
 	private boolean dislike;
 	private boolean like;
 	private boolean scrab;
 	
-	
 	private List<ReplyVO> replyList;
 	private List<FileVO> fileList;
 	
 	
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
 	public String getMajorName() {
 		return majorName;
 	}

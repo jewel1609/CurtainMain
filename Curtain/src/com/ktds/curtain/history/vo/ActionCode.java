@@ -4,6 +4,10 @@ public interface ActionCode {
 	
 	public static final String MAIN = "MAIN_A";
 	public static final String REGIST_PAGE = "RG_P";
+	public static final String REGIST_STD_MEMBER = "RG_STD_M";
+	public static final String REGIST_COMP_MEMBER = "RG_STD_C";
+	
+	
 	public static final String LOGIN ="MB_L";
 	public static final String ARTICLE_MAJOR = "AT_M";
 	public static final String ARTICLE_UNIV = "AT_U";

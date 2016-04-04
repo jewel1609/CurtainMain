@@ -5,6 +5,11 @@ public interface Description {
 	public static final String VISIT_MAIN_PAGE = "[%s]가 메인 페이지에 접근했습니다.";
 	public static final String VISIT_LOGIN_PAGE ="[%s]가 로그인 페이지에 접근했습니다.";
 	public static final String VISIT_REGIST_PAGE ="[%s]가 회원가입 페이지에 접근했습니다.";
+
+	public static final String REGIST_STD_MEMBER ="[%s]가 학생회원으로 가입했습니다.";
+	public static final String REGIST_COMP_MEMBER ="[%s]가 기업회원으로 가입했습니다.";
+	
+	
 	
 	public static final String LOGIN ="[%s] 님이 로그인 했습니다.";
 	public static final String LOGIN_FAIL = "[%s]가 [%s]로 로그인을 시도했지만, 실패 했습니다.";
@@ -54,6 +59,8 @@ public interface Description {
 	public static final String DETAIL_MEMBER_INFO = "변경한 일반이메일 : [%s]<br/> 변경한 닉네임 : [%s]";
 	public static final String DETAIL_MEMBER_PASSWORD = "변경한 패스워드 : [%s]";
 	public static final String DETAIL_SECEDE_MEMBER = "탈퇴 이메일 : [%s] <br/> 탈퇴 사유 : [%s]";
+	public static final String DETAIL_REGIST_STD_MEMBER = "가입 학생 대학 : [%s] <br/> 학과 : [%s] <br/> 이메일 : [%s] <br/> 닉네임: [%s]";
+	public static final String DETAIL_REGIST_COMP_MEMBER = "가입 기업 회사명 : [%s] <br/> 핸드폰 번호 : [%s] <br/> 회사이메일 : [%s] <br/> 닉네임: [%s]";
 	
 	
 }

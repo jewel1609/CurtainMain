@@ -15,7 +15,7 @@
 			$(".wrapper").css("height", window.innerHeight - 200);
 		});
 		
-		myAccordion('demo');
+		myAccordion('demo1');
 	
 		$("#twoLayerCurtain").mouseleave(function(){
 			$("#twoLayerCurtain").css('background-color', '#a9d039');

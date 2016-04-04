@@ -12,7 +12,9 @@ $(document).ready(function () {
 	
     $(window).resize(function() {
         $(".wrapper").css("height", window.innerHeight - 200);
-
+        
+     
+    });
 /* 	$("#writeReplyBtn").click(function() {
 		var form = $("#writeReplyForm");
 		form.attr("method", "post");
@@ -188,6 +190,7 @@ $(document).ready(function () {
 		formAppender.show();
 		
 	});
+  
 
 });
 

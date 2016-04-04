@@ -171,6 +171,12 @@
 	</member>
 	
 	<article>
+		<getClaimArticleInfoByArticleId>
+			SELECT	*
+			FROM	ARTICLE_CLAIM
+			WHERE	ARTICLE_ID = ?
+		
+		</getClaimArticleInfoByArticleId>
 		<getClaimArticleCountByArticleId>
 			SELECT	COUNT(ARTICLE_ID)
 			FROM	ARTICLE_CLAIM

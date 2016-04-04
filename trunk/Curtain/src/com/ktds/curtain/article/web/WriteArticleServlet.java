@@ -15,6 +15,11 @@ import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
@@ -30,6 +35,7 @@ public class WriteArticleServlet extends HttpServlet {
 	private ArticleBiz articleBiz;
 	private FileBiz fileBiz;
 	private ProhibitedWordBiz proBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,6 +45,7 @@ public class WriteArticleServlet extends HttpServlet {
         articleBiz = new ArticleBiz();
         fileBiz = new FileBiz();
         proBiz = new ProhibitedWordBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -122,10 +129,33 @@ public class WriteArticleServlet extends HttpServlet {
 				}
 
 				if ( boardId.equals(BoardId.MAJOR_BOARD)) {
+					
+					OperationHistoryVO historyVO = new OperationHistoryVO();
+					historyVO.setIp(request.getRemoteHost());
+					historyVO.setEmail(stdMember.getEmail());
+					historyVO.setUrl(request.getRequestURI());
+					historyVO.setActionCode(ActionCode.WRITE_MAJOR);
+					historyVO.setDescription( BuildDescription.get(Description.WRITE_MAJOR, stdMember.getEmail()));
+					historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, articleDescription, stdMember.getNickName()));
+					
+					historyBiz.addHistory(historyVO);
+					
+					
 					response.sendRedirect("/studentMajorAritlce");
 					return;
 				}
 				else if ( boardId.equals(BoardId.UNIV_BOARD)) {
+					
+					OperationHistoryVO historyVO = new OperationHistoryVO();
+					historyVO.setIp(request.getRemoteHost());
+					historyVO.setEmail(stdMember.getEmail());
+					historyVO.setUrl(request.getRequestURI());
+					historyVO.setActionCode(ActionCode.WRITE_UNIV);
+					historyVO.setDescription( BuildDescription.get(Description.WRITE_UNIV, stdMember.getEmail()));
+					historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, articleDescription, stdMember.getNickName()));
+					
+					historyBiz.addHistory(historyVO);
+					
 					response.sendRedirect("/studentUnivArticle");
 					return;
 				}

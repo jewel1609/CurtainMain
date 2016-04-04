@@ -9,6 +9,12 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
+	
+	$(".wrapper").css("height", window.innerHeight - 130);
+	
+	$(window).resize(function() {
+		$(".wrapper").css("height", window.innerHeight - 130);
+	});
 
 	if($("#isFword").val() == '1'){
 		alert("비방글은 게시하실 수 없습니다.");
@@ -94,10 +100,10 @@ function readURL(input) {
 
 </script>
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" /> 
-<div class="w3-container w3-main" style="margin-top:30px; margin-bottom:20px;">    
+<div class="w3-container w3-main">    
 
   <div class="w3-row" >
-    <div class="w3-col m7 w3-main" style="margin-left: 350px; margin-right: 100px; height: 705px; overflow: auto;">
+    <div class="w3-col m7 w3-main wrapper" style="margin-left: 350px; margin-right: 100px; overflow: auto;">
      
      <div class="w3-row-padding">
 				<div class="w3-col m12">

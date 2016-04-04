@@ -13,6 +13,9 @@ public interface ActionCode {
 	public static final String ARTICLE_SECRET_TWO = "ATS_T";
 	
 	public static final String MY_PAGE = "MY_P";
+	public static final String MODIFY_PAGE = "MD_P";
+	public static final String SECEDE_PAGE = "SD_P";
+	
 	public static final String FAQ_QNA = "FQ_QA";
 	
 	public static final String WRITE_MAJOR = "WT_M";

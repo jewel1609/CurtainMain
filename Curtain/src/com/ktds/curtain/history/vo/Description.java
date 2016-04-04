@@ -17,6 +17,9 @@ public interface Description {
 	public static final String VISIT_ARTICLE_SECRET_TWO = "[%s] 님이 비밀게시판(두겹)에 접근했습니다.";
 	
 	public static final String VISIT_MY_PAGE = "[%s] 님이 마이페이지에 접근했습니다.";
+	public static final String VISIT_MODIFY_PAGE = "[%s] 님이 회원정보변경페이지에 접근했습니다.";
+	public static final String VISIT_SECEDE_PAGE = "[%s] 님이 회원 탈퇴페이지에 접근했습니다.";
+	
 	public static final String VISIT_FAQ_QNA = "[%s] 님이 FAQ/Q&A페이지에 접근했습니다.";
 	
 	public static final String VISIT_DETAIL = "[%s] 님이 [%s]번의 글을 읽었습니다.";

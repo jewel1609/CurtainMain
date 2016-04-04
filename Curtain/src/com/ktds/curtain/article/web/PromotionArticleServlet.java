@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
+import com.ktds.curtain.article.vo.ArticleSearchVO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.history.biz.OperationHistoryBiz;
@@ -51,6 +52,21 @@ public class PromotionArticleServlet extends HttpServlet {
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		session.setAttribute("_BOARD_ID_", 3);
 		
+		ArticleSearchVO searchVO = new ArticleSearchVO();
+
+		if(request.getParameter("searchKeyword") == null) {
+			searchVO.setSearchKeyword("");
+		}
+		else {
+			searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+		}
+		if(request.getParameter("articleTypeId") == null) {
+			searchVO.setSearchType("0");
+		}
+		else {
+			searchVO.setSearchType(request.getParameter("articleTypeId"));
+		}
+		
 		OperationHistoryVO historyVO = new OperationHistoryVO();
 		historyVO.setIp(request.getRemoteHost());
 		historyVO.setEmail(stdMember.getEmail());
@@ -61,7 +77,7 @@ public class PromotionArticleServlet extends HttpServlet {
 		historyBiz.addHistory(historyVO);
 		
 		System.out.println(stdMember.getCompanyName() + "========");
-		List<ArticleVO> promotionArticles = articleBiz.showPromotionArticle(stdMember, BoardId.AD_BOARD);
+		List<ArticleVO> promotionArticles = articleBiz.showPromotionArticle(stdMember, BoardId.AD_BOARD, searchVO);
 		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.AD_BOARD);
 		
 		request.setAttribute("topArticle", topArticle);

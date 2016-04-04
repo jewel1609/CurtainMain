@@ -64,7 +64,7 @@ public class TwoLayerCurtainBoardServlet extends HttpServlet {
 		historyVO.setEmail(stdMember.getEmail());
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.ARTICLE_SECRET_TWO);
-		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_SECRET_TWO, stdMember.getEmail()));
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_SECRET_TWO, stdMember.getNickName()));
 		
 		historyBiz.addHistory(historyVO);
 		

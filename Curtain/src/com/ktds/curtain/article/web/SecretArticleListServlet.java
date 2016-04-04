@@ -70,7 +70,7 @@ public class SecretArticleListServlet extends HttpServlet {
 		historyVO.setEmail(stdMember.getEmail());
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.ARTICLE_FREE);
-		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_FREE, stdMember.getEmail()));
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_FREE, stdMember.getNickName()));
 		
 		historyBiz.addHistory(historyVO);
 		

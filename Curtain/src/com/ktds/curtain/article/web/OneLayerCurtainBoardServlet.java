@@ -63,7 +63,7 @@ public class OneLayerCurtainBoardServlet extends HttpServlet {
 		historyVO.setEmail(stdMember.getEmail());
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.ARTICLE_SECRET_ONE);
-		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_SECRET_ONE, stdMember.getEmail()));
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_SECRET_ONE, stdMember.getNickName()));
 		
 		historyBiz.addHistory(historyVO);
 		

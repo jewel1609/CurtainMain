@@ -100,7 +100,7 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 			historyVO.setEmail(loginMember.getEmail());
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.WRITE_PROMOTION);
-			historyVO.setDescription( BuildDescription.get(Description.WRITE_PROMOTION, loginMember.getEmail()));
+			historyVO.setDescription( BuildDescription.get(Description.WRITE_PROMOTION, loginMember.getNickName()));
 			historyVO.setEtc(BuildDescription.get(Description.DETAIL_DESCRIPTION, articleTitle, loginMember.getNickName(), articleDescription ));
 			
 			historyBiz.addHistory(historyVO);

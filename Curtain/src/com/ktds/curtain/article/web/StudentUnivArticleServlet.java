@@ -58,7 +58,7 @@ public class StudentUnivArticleServlet extends HttpServlet {
 		historyVO.setEmail(stdMember.getEmail());
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.ARTICLE_UNIV);
-		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_UNIV, stdMember.getEmail()));
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_ARTICLE_UNIV, stdMember.getNickName()));
 		
 		historyBiz.addHistory(historyVO);
 		

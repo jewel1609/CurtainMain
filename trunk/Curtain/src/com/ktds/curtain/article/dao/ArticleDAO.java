@@ -1282,6 +1282,105 @@ public class ArticleDAO {
 		}
 	}
 	
+	public List<ArticleVO> showPromotionArticleByTitle(MemberVO stdMember, String promotionBoardId,
+			ArticleSearchVO searchVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showPromotionArticleByTitle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, Integer.parseInt(promotionBoardId));
+			stmt.setString(2, searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
+				article.setLike(false);
+				article.setDislike(false);
+				article.setScrab(false);
+
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+
+	public List<ArticleVO> showPromotionArticleByDesc(MemberVO stdMember, String promotionBoardId,
+			ArticleSearchVO searchVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		ArticleVO article = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/showPromotionArticleByDesc/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, Integer.parseInt(promotionBoardId));
+			stmt.setString(2, searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				article = new ArticleVO();
+				article.setArticleId(rs.getInt("ARTICLE_ID"));
+				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
+				article.setNickName(rs.getString("NICK_NAME"));
+				article.setBoardId(rs.getInt("BOARD_ID"));
+				article.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				article.setHits(rs.getInt("HITS"));
+				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
+				article.setLike(false);
+				article.setDislike(false);
+				article.setScrab(false);
+
+				articles.add(article);
+			}
+
+			return articles;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+	
 	public int getArticleIdByTitleAndDesc (ArticleVO article) {
 		loadOracleDriver();
 

@@ -16,6 +16,34 @@
 			AND			RL.EMAIL = ?
 			AND			R.ARTICLE_ID = ?
 		</getReplyLikes>
+		<deleteLike>
+			DELETE
+			FROM	REPLY_LIKE
+			WHERE	REPLY_ID = ?
+			AND		EMAIL = ?
+		</deleteLike>
+		<insertLike>
+			INSERT INTO		REPLY_LIKE (
+  											 REPLY_LIKE_ID
+  											 , LIKE_DATE
+  											 , REPLY_ID
+  											 , EMAIL
+  											 , ARTICLE_ID
+  										) 
+			VALUES						 ( 	
+												REPLY_LIKE_ID_SEQ.NEXTVAL
+												, SYSDATE
+												, ?
+												, ?
+												, ?
+										)
+		</insertLike>
+		<selectLikeCount>
+			SELECT	COUNT(REPLY_LIKE_ID)
+			FROM	REPLY_LIKE
+			WHERE	REPLY_ID = ?
+			AND		EMAIL = ?
+		</selectLikeCount>
 	</replyLike>
 	<replyDislike>
 		<getReplyDislikes>
@@ -26,6 +54,34 @@
 			AND			RD.EMAIL = ?
 			AND			R.ARTICLE_ID = ?
 		</getReplyDislikes>
+		<selectDislikeCount>
+			SELECT	COUNT(REPLY_DISLIKE_ID)
+			FROM	REPLY_DISLIKE
+			WHERE	REPLY_ID = ?
+			AND		EMAIL = ?
+		</selectDislikeCount>
+		<deleteDislike>
+			DELETE
+			FROM	REPLY_DISLIKE
+			WHERE	REPLY_ID = ?
+			AND		EMAIL = ?
+		</deleteDislike>
+		<insertDislike>
+			INSERT INTO		REPLY_DISLIKE (
+   												REPLY_DISLIKE_ID
+   												, DISLIKE_DATE
+   												, REPLY_ID
+   												, EMAIL
+   												, ARTICLE_ID
+   										) 
+			VALUES 						( 
+												REPLY_DISLIKE_ID_SEQ.NEXTVAL
+												, SYSDATE
+												, ?
+												, ?
+												, ?
+										)
+		</insertDislike>
 	</replyDislike>
 
 	<articleClaim>
@@ -45,6 +101,22 @@
 												, ?
 										)
 		</doWriteClaim>
+		<doWriteReplyClaim>
+			INSERT INTO		ARTICLE_CLAIM (
+   												ARTICLE_CLAIM_ID
+   												, EMAIL
+   												, REPLY_ID
+   												, CLAIM_DATE
+   												, CLAIM_TEXT
+   										  ) 
+			VALUES 						  (
+												ARTICLE_CLAIM_ID_SEQ.NEXTVAL
+												, ?
+												, ?
+												, SYSDATE
+												, ?
+										)
+		</doWriteReplyClaim>
 	</articleClaim>
 
 	<prohibitedWord>
@@ -475,6 +547,30 @@
 		ORDER BY ARTICLE_MODIFY_DATE DESC,
                  ARTICLE_LIKES DESC
 		</showTopArticle>
+		<showTopMajorArticle>
+		SELECT 			ARTICLE_ID
+        				, ARTICLE_TITLE
+						, ARTICLE_DESC
+						, ARTICLE_MODIFY_DATE
+						, AT.ARTICLE_TYPE_NAME
+						, M.NICK_NAME
+						, BOARD_ID
+						, HITS
+						, ARTICLE_LIKES
+						, ARTICLE_DISLIKES
+						, A.MAJOR_GROUP_ID
+						, ARTICLE_SCRAB
+		FROM    ARTICLE A
+		        , MEMBER M
+		        , ARTICLE_TYPE AT
+		WHERE   A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID
+		AND     M.EMAIL = A.EMAIL   
+		AND     HITS = ( SELECT MAX(HITS)
+		                    FROM ARTICLE
+		                    WHERE BOARD_ID = ?
+		                    AND MAJOR_GROUP_ID = ?
+		                )
+		</showTopMajorArticle>
 		<updateArticleOnlyTitle>
 			UPDATE	ARTICLE
 			SET		ARTICLE_TITLE = ?
@@ -922,6 +1018,36 @@
 	</dislike>
 	
 	<reply>
+		<minusDislikeCount>
+			UPDATE	REPLY
+			SET		REPLY_DISLIKES = REPLY_DISLIKES - 1
+			WHERE	REPLY_ID = ?
+		</minusDislikeCount>
+		<plusDislikeCount>
+			UPDATE	REPLY
+			SET		REPLY_DISLIKES = REPLY_DISLIKES + 1
+			WHERE	REPLY_ID = ?
+		</plusDislikeCount>
+		<getReplyDislikes>
+			SELECT	REPLY_DISLIKES
+			FROM	REPLY
+			WHERE	REPLY_ID = ?
+		</getReplyDislikes>
+		<minusLikeCount>
+			UPDATE	REPLY
+			SET		REPLY_LIKES = REPLY_LIKES - 1
+			WHERE	REPLY_ID = ?
+		</minusLikeCount>
+		<plusLikeCount>
+			UPDATE	REPLY
+			SET		REPLY_LIKES = REPLY_LIKES + 1
+			WHERE	REPLY_ID = ?
+		</plusLikeCount>
+		<getReplyLikes>
+			SELECT	REPLY_LIKES
+			FROM	REPLY
+			WHERE	REPLY_ID = ?
+		</getReplyLikes>
 		<insertReply>
 			INSERT INTO 	REPLY (
    										REPLY_ID
@@ -954,6 +1080,8 @@
 			 		, REPLY_DESC
 			 		, PARENT_REPLY_ID
 			 		, REPLY_ORDER
+			 		, REPLY_LIKES
+			 		, REPLY_DISLIKES
 			FROM 	REPLY R
 					, MEMBER M
 			WHERE	R.EMAIL = M.EMAIL

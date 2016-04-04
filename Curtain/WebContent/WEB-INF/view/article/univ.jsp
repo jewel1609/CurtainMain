@@ -12,8 +12,10 @@
 
 	$(document).ready(function() {
 				
+		$(".wrapper").css("height", window.innerHeight - 130);
+		
 		$(window).resize(function() {
-			$(".wrapper").css("height", window.innerHeight - 200);
+			$(".wrapper").css("height", window.innerHeight - 130);
 		});
 		
 		myAccordion('demo');

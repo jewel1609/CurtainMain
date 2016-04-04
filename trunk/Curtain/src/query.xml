@@ -794,9 +794,15 @@
 	<member>
 		<minusPointByPromotion>
 			UPDATE	MEMBER
-			SET		POINT = POINT - 10
+			SET		POINT = POINT - 100
 			WHERE	EMAIL = ?
 		</minusPointByPromotion>
+	
+		<getPointbyEmail>
+			SELECT	POINT
+			FROM	MEMBER
+			WHERE	EMAIL = ?
+		</getPointbyEmail>
 	
 		<getUnivMemberCount>
       		 SELECT  COUNT(EMAIL)

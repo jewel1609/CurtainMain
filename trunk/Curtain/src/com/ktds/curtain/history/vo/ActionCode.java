@@ -7,6 +7,10 @@ public interface ActionCode {
 	public static final String REGIST_STD_MEMBER = "RG_STD_M";
 	public static final String REGIST_COMP_MEMBER = "RG_STD_C";
 	
+	public static final String MY_WRITE_ARTICLE = "MY_W_A";
+	public static final String MY_SCRAB_ARTICLE = "MY_S_A";
+	public static final String MY_LIKES_ARTICLE = "MY_L_A";
+	
 	
 	public static final String LOGIN ="MB_L";
 	public static final String LOGOUT ="MB_LO";

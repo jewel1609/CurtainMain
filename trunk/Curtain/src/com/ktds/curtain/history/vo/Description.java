@@ -35,6 +35,10 @@ public interface Description {
 	public static final String VISIT_DETAIL = "[%s] 님이 [%s]번의 글을 읽었습니다.";
 	public static final String VISIT_DETAIL_QUESTION = "[%s] 님이  문의한 글 [%s]번을 읽었습니다.";
 	
+	public static final String VISIT_MY_WRITE_ARTICLE = "[%s]님이 내가 쓴 게시글/댓글 보기 페이지에 접근했습니다.";
+	public static final String VISIT_MY_SCRAB_ARTICLE = "[%s]님이 내가 스크랩 한 글 보기 페이지에 접근했습니다.";
+	public static final String VISIT_MY_LIKES_ARTICLE = "[%s]님이 내가 좋아요 한 글 보기 페이지에 접근했습니다.";
+	
 	public static final String WRITE_MAJOR = "[%s] 님이 학과 게시판에 글을 작성했습니다.";
 	public static final String WRITE_UNIV = "[%s] 님이 대학 게시판에 글을 작성했습니다.";
 	public static final String WRITE_FREE = "[%s] 님이 자유게시판에 글을 작성했습니다.";

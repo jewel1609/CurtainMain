@@ -76,11 +76,6 @@ public class NounExtractorByTitle {
 				}
 			}
 			
-			System.out.println("한나눔 테스트");
-			for(String s : nounList) {
-				System.out.println(s);
-			}
-			
 			workflow.close();
 
 			return nounList;

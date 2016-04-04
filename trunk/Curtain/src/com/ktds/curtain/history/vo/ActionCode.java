@@ -54,6 +54,7 @@ public interface ActionCode {
 	public static final String DO_DISLIKE = "D_DL";
 	public static final String DO_CLAIM_ARTICLE = "D_CL_AT";
 	public static final String DO_CLAIM_REPLY = "D_CL_RP";
+	public static final String DO_REPLY = "D_RPY";
 	
 	
 	

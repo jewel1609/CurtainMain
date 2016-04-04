@@ -82,7 +82,7 @@ public class DoLoginServlet extends HttpServlet {
 			historyVO.setEmail(member.getEmail());
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.LOGIN);
-			historyVO.setDescription( BuildDescription.get(Description.LOGIN, member.getEmail()));
+			historyVO.setDescription( BuildDescription.get(Description.LOGIN, member.getNickName()));
 			
 			historyBiz.addHistory(historyVO);
 		

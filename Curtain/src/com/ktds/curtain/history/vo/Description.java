@@ -25,6 +25,7 @@ public interface Description {
 	public static final String VISIT_REGIST_QUESTION = "[%s] 님이 문의하기 페이지에 접근했습니다.";
 	
 	public static final String VISIT_DETAIL = "[%s] 님이 [%s]번의 글을 읽었습니다.";
+	public static final String VISIT_DETAIL_QUESTION = "[%s] 님이  문의한 글 [%s]번을 읽었습니다.";
 	
 	public static final String WRITE_MAJOR = "[%s] 님이 학과 게시판에 글을 작성했습니다.";
 	public static final String WRITE_UNIV = "[%s] 님이 대학 게시판에 글을 작성했습니다.";

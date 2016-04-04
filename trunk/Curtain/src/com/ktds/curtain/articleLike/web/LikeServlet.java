@@ -13,6 +13,11 @@ import com.ktds.curtain.articleDislike.biz.DislikeBiz;
 import com.ktds.curtain.articleDislike.vo.ArticleDislikeVO;
 import com.ktds.curtain.articleLike.biz.ArticleLikeBiz;
 import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 
 
@@ -23,6 +28,7 @@ public class LikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleLikeBiz articleLikeBiz;
 	private DislikeBiz dislikeBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,6 +37,7 @@ public class LikeServlet extends HttpServlet {
         super();
         articleLikeBiz = new ArticleLikeBiz();
         dislikeBiz = new DislikeBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -70,6 +77,16 @@ public class LikeServlet extends HttpServlet {
 			isExistLikeData = articleLikeBiz.isExistLikeData(articleLikeVO, member);
 			updateLikeCount = articleLikeBiz.getArticleLikes(articleLikeVO);
 		}
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.DO_LIKE);
+		historyVO.setDescription( BuildDescription.get(Description.DO_LIKE, member.getNickName(), request.getParameter("articleId") ) );
+		
+		historyBiz.addHistory(historyVO);
+		
 		
 // json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();

@@ -47,6 +47,43 @@
 		</getUnivName>
 	</univ>
 	<survey>
+		<deleteSurvey>
+			DELETE 
+			FROM   SURVEY
+			WHERE  SURVEY_ID = ?
+		</deleteSurvey>
+		<modifySurvey>
+			UPDATE	SURVEY
+			SET		SURVEY_TITLE = ?
+					, SURVEY_ANSWER1 = ?
+					, SURVEY_ANSWER2 = ?
+					, SURVEY_ANSWER3 = ?
+					, SURVEY_ANSWER4 = ?
+			WHERE	SURVEY_ID = ?
+		</modifySurvey>
+		<getSurveyInfoBySurveyId>
+			SELECT	*
+			FROM	SURVEY
+			WHERE	SURVEY_ID = ?
+		</getSurveyInfoBySurveyId>
+		<getAllSurveyCount>
+			SELECT	COUNT(SURVEY_ID)
+			FROM 	SURVEY
+		</getAllSurveyCount>
+		<getAllSurvey>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	*
+										FROM 	SURVEY
+										ORDER	BY SURVEY_ID DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllSurvey>
 		<insertSurvey>
 			INSERT INTO		SURVEY (
 	   									SURVEY_ID

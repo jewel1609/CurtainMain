@@ -8,6 +8,12 @@
 
 	$(document).ready(function() {
 		
+		$(".wrapper").css("height", window.innerHeight - 130);
+		
+		$(window).resize(function() {
+			$(".wrapper").css("height", window.innerHeight - 130);
+		});
+		
 		//비밀번호 전송버튼 누를시
 		$("#sendPasswordBtn").click(function(){
 			 
@@ -40,7 +46,7 @@
 <div class="w3-container w3-center w3-main" style="margin-top:30px; margin-bottom:20px;">    
 
   	<div class="w3-row" >
-		<div class="w3-col m7 w3-main" style="margin-left:350px; margin-right: 100px; margin-right: 100px; height: 750px; overflow: auto;">
+		<div class="w3-col m7 w3-main wrapper" style="margin-left:350px; margin-right: 100px; margin-right: 100px; overflow: auto;">
 			<form id="sendPasswordForm">
 				<div class="w3-row-padding w3-margin-top w3-margin-bottom">
 				        <div class="w3-col m12">

@@ -33,6 +33,7 @@ public interface Description {
 	public static final String WRITE_ONE_LAYER = "[%s] 님이 비밀게시판(한겹)에 글을 작성했습니다.";
 	public static final String WRITE_TWO_LAYER = "[%s] 님이 비밀게시판(두겹)에 글을 작성했습니다.";
 	public static final String WRITE_PROMOTION = "[%s] 님이 홍보게시판에 글을 작성했습니다.";
+	public static final String WRITE_QUESTION = "[%s] 님이 문의글을 작성했습니다.";
 	
 	
 	

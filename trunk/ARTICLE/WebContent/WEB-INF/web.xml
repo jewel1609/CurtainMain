@@ -479,5 +479,14 @@
     <servlet-name>DoInsertProhibitedWordServlet</servlet-name>
     <url-pattern>/doInsertProhibitedWord</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>QuestionAndAnswerServlet</display-name>
+    <servlet-name>QuestionAndAnswerServlet</servlet-name>
+    <servlet-class>com.ktds.oph.questionAndAnswer.web.QuestionAndAnswerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuestionAndAnswerServlet</servlet-name>
+    <url-pattern>/questionAndAnswer</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -7,6 +7,8 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css" />
+
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -44,6 +46,47 @@
 			});			
 		});
 		
+		$("#imagePreview").hide();
+		$(".claim").hide();
+	      
+      	$(".doClaim").click(function (){
+         var root = $(this).parent().children(":eq(3)");
+         root.slideToggle();
+      	});
+      	 $(".doClaimBtn").click(function() {      
+             
+            var root = $(this).parent().children(":eq(0)");
+                  
+                 $.post(      
+                    "/writeClaim"
+                    , { "claimText" : root.val()
+                       , "articleClaim" : $(this).attr("id")
+                    }
+                    , function(data) {
+                       
+                       var jsonData = {};      
+                       
+                       try {
+                          jsonData = JSON.parse(data);
+                       }
+                       catch(e) {
+                          jsonData.result = false;
+                       }
+                       
+                       if(jsonData.result){
+                          $(".claim").hide();
+                          alert("신고가 완료되었습니다.");
+                       }
+                       else{
+                          alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+                          location.href="/";
+                       }
+                    }
+                 )   
+              });
+                
+
+		
 		$(".like").click(function() {		
 			
 			$.post(		
@@ -66,12 +109,12 @@
 						var articleId = jsonData.articleId;
 						var result = "#like" + articleId;
 						if(jsonData.doLike){
-							$(result).attr("src", "/resource/img/like_active_small.png");
+							 $(result).attr("style", "color:#a9d039");
 							var count = "#likeCount"+jsonData.articleId;
 							$(count).text(jsonData.updateLikeCount);
 						}
 						else{
-							$(result).attr("src", "/resource/img/like_inactive_small.png");
+							$(result).attr("style", "color:#7d7d7d");
 							var count = "#likeCount"+jsonData.articleId;
 							$(count).text(jsonData.updateLikeCount);
 						}	
@@ -107,12 +150,12 @@
 						var articleId = jsonData.articleId;
 						var result = "#dislike" + articleId;
 						if(jsonData.isDislike){
-							$(result).attr("src", "/resource/img/dislike_active_small.png");
+							 $(result).attr("style", "color:#a9d039");
 							var count = "#dislikeCount"+jsonData.articleId;
 							$(count).text(jsonData.updateDislikeCount);
 						}
 						else{
-							$(result).attr("src", "/resource/img/dislike_inactive_small.png");
+							$(result).attr("style", "color:#7d7d7d");
 							var count = "#dislikeCount"+jsonData.articleId;
 							$(count).text(jsonData.updateDislikeCount);
 						}	
@@ -145,11 +188,11 @@
 						var result = "#scrab" + articleId;
 						if(jsonData.isScrab){
 							alert("스크랩되었습니다.");
-							$(result).attr("src", "/resource/img/scrap_active_small.png");
+							 $(result).attr("style", "color:#a9d039");
 						}
 						else{
 							alert("스크랩 해제 되었습니다.");
-							$(result).attr("src", "/resource/img/scrap_inactive_small.png");
+							 $(result).attr("style", "color:#7d7d7d");
 						}
 					}
 					else{
@@ -160,7 +203,7 @@
 			)
 		});
 		
-		$("#imagePreview").hide();
+		
 
 		$("#doWrite").click(function() {
 		
@@ -232,17 +275,15 @@
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
 	<div class="w3-container w3-main wrapper" style="margin-top:0px;">
-	
 		<c:set var="twoLayerCurtainMemberCount" value="${ sessionScope._MEMBER_.twoLayerCurtainMemberCount }" />
 		
-		
 		<div class="w3-row" >
-			<div class="w3-col m7 w3-main" style="border-right:1px solid #bababa;
-    			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 885px; overflow: auto; ">
-				
+			 <div class="w3-col m7 w3-main wrapper"
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+      		
 				<!-- 게시판 헤더 -->
-				<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
-					<div class="w3-margin-4" style="float:left;">
+				 <div class="w3-row" style="border-bottom: 1px solid #bababa;">
+          		  <div class="w3-margin-4" style="float:left; padding-left:10px;">
 						<h2>두겹커튼 게시판입니다.</h2> 
 					</div> 
 					<div style="float:left; padding:20px;">
@@ -271,15 +312,15 @@
 				<!-- 게시판 타이틀 끝 -->
 				
 				<!-- 글쓰기 시작 -->
-				<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">
-					<div class="w3-col m12" align="left">
-						<div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
+				 <div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
+           			 <div class="w3-col m12" align="left" >
+						   <div class="w3-card w3-round w3-white" style="margin-top:10px; margin-bottom:10px;">
 
 							<form id="writeForm" enctype="multipart/form-data">
 								<div class="w3-container w3-padding w3-left-align">
 									<div class="form-group">
-										<div>
-											<div class="container col-xs-2 input-lg" style="padding-bottom:10px; padding-left:0px;">
+										<div style="padding:10px;">
+											<div class="col-sm-2 input" style="padding-left:0px;">
 												 <select class="form-control " id="sel1" name="articleTypeId">
 													<option value="1">고민</option>
 													<option value="2">취업</option>
@@ -292,7 +333,7 @@
 												<input class="w3-input" type="text" id="articleTitle" name="articleTitle"
 													placeholder="제목을 입력하세요." style="margin-bottom: 5px;" />
 											</div>
-											<div class="col-sm-2">					
+											 <div class="col-sm-2" align="right" style="padding-right:0px;">     				
 												<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
 												<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
 													<span class="glyphicon glyphicon-picture"></span>
@@ -316,15 +357,15 @@
 											</div>
 										</div>
 										
-										<div class="form-group" style="margin-top: 30px;">
-											<textarea class="w3-col m12" rows="5" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
-												placeholder="무슨 생각을 하고 계신가요?"></textarea>
+										<div class="form-group" style="margin-top: 30px; padding:10px;">
+											    <textarea class="form-control w3-col m12" rows="7" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
+                                   				 placeholder="무슨 생각을 하고 계신가요?"></textarea>
 										</div>
 										<div class="col-sm-12" id="imagePreview">
 											<img id="uploadImg" src="" width="100px;">
 										</div>
-										<div class="col-sm-12" style="margin-top:10px;">
-											<button type="button" class="btn btn-default" id="doWrite" style="float: right; border-color: #FF3300; color: #FF3300;">게시</button>
+										 <div class="col-sm-12" align="right">
+											<button type="button" class="btn btn-default" id="writeBtn">게시</button>
 										</div>
 									</div>
 								</div>
@@ -338,13 +379,29 @@
 				<div style="background-color: white;">
 				<div class="w3-row-padding w3-margin-top" >
 					<div class="w3-col m12">
+					
+					<!-- 게시글이 없을 경우 -->
+					<c:if test="${ empty topArticle.articleId }">
+						<div class="w3-container">
+								<div class="w3-col m12 w3-padding-top">
+									<div style="height:100px;" align="center">
+										<h3 style="color:#7d7d7d;">게시글이 없습니다.<br/><br/>
+										게시글을 작성해주세요.</h3>
+									
+									</div>
+								</div>
+						</div>
+					</c:if>
+					
+					<!-- 게시글이 있을 경우 -->
+					 <c:if test="${ not empty topArticle.articleId }">
 						<div class="w3-card w3-round-large" style="border-color: #a9d039;" >
 							<div class="w3-container">
 							<a href="<c:url value="/hitsCount?boardId=4&articleId=${topArticle.articleId}"/>">
 								<div class="w3-col m10 w3-padding-top">
-										<span class="label label-default">HOT</span>
+										<span class="label label-danger">HOT</span>
 										<c:if test="${topArticle.articleTypeName eq '연애'}">
-											<span class="label label-danger">${topArticle.articleTypeName}</span>
+											<span class="label label-default">${topArticle.articleTypeName}</span>
 										</c:if>
 										<c:if test="${topArticle.articleTypeName eq '고민'}">
 											<span class="label label-warning">${topArticle.articleTypeName}</span>
@@ -360,64 +417,75 @@
 										</c:if>
 										<strong>${topArticle.articleTitle}</strong>
 								</div>
-								<div class="w3-col m1 w3-padding-top">
-									${topArticle.nickName}
-								</div>
-								<div class="w3-col m1 w3-padding-top">
-									조회수 ${topArticle.hits}
+							
+								 <div class="w3-col m2" align="right">
+									<h6>조회수 ${topArticle.hits}</h6>
 									<input type="hidden" id="articleId" name="articleId" value="${topArticle.articleId}" />
 									<input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
 								</div>
-								<div class="w3-col m12 w3-padding-top" style="height: 60px;">
+								<div class="desc w3-col m12 w3-padding-top" style="height:70px;">
 									${topArticle.articleDesc}
 								</div>
 								</a>
-								<div>
-									${topArticle.articleModifyDate} 
-								</div>
-								<div class="w3-col m10 w3-padding-bottom">
+								<div class="w3-col m12" align="left">
+		                           <h6>${topArticle.nickName} &nbsp;&nbsp;&nbsp;&nbsp;${topArticle.articleModifyDate}</h6>
+		                        </div>
+		                        
+								  <div class="w3-col m6 w3-padding-bottom" style="color:#7d7d7d;">
 									<div style="float:left; margin-right:10px;">
 										<c:if test="${topArticle.like}">
-											<img class="like" id="like${topArticle.articleId}" src="/resource/img/like_active_small.png" style="width:20px;">	
-											<span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
-										</c:if>
-										<c:if test="${!topArticle.like}">
-											<img class="like" id="like${topArticle.articleId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
-											<span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
-										</c:if>
+			                                 <span class="like glyphicon glyphicon-thumbs-up" id="like${topArticle.articleId}" style="color:#a9d039;"></span>
+			                                 <span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>&nbsp; &nbsp;
+			                              </c:if>
+			                              <c:if test="${!topArticle.like}">
+			                                 <span class="like glyphicon glyphicon-thumbs-up" id="like${topArticle.articleId}" style="color:#7d7d7d;"></span>
+			                                 <span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
+			                              </c:if>
 									</div>
 									<div>
-										<c:if test="${topArticle.dislike}">
-											<img class="dislike" id="dislike${topArticle.articleId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
-											<span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
-										</c:if>
-										<c:if test="${!topArticle.dislike}">
-											<img class="dislike" id="dislike${topArticle.articleId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
-											<span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
-										</c:if>
+										 <c:if test="${topArticle.dislike}">
+			                              	<span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${topArticle.articleId}" style="color:#a9d039;"></span>
+			                                 <span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
+			                              </c:if>
+			                              <c:if test="${!topArticle.dislike}">
+			                            	  <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${topArticle.articleId}" style="color:#7d7d7d;"></span>
+			                                 <span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
+			                              </c:if>
 									</div>
 								</div>
-								<div class="w3-col m2">
-									<img src="/resource/img/reply_small.png" style="width:20px;">댓글 수 
-								
-									<c:if test="${topArticle.scrab}">
-										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_active_small.png" style="width:20px;">
-									</c:if>
-									
-									<c:if test="${!topArticle.scrab}">
-										<img class="scrab" id="scrab${topArticle.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">
-									</c:if>
-								</div>									
-							</div>
-						</div>
+								 <div class="w3-col m6" align="right" style="color:#7d7d7d;">
+                           <span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span>  ${topArticle.replyCount}&nbsp; &nbsp;
+                        
+                           <c:if test="${topArticle.scrab}">
+                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${topArticle.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;
+                           </c:if>
+                           
+                           <c:if test="${!topArticle.scrab}">
+                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${topArticle.articleId}" style="color:#7d7d7d;"></span>  스크랩하기&nbsp; &nbsp;
+                           </c:if>
+                        
+                           <span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기
+                              
+                           
+                           <div class="claim w3-col m12">
+                              <form class="claimWrite">
+                                 <input class="w3-input" type="text" class="claimCom" id="claimCom${topArticle.articleId}" name="claimCom${topArticle.articleId}"
+                                             placeholder="신고 사유를 입력하세요." style="margin-bottom:5px;">
+                                 <span class="doClaimBtn" id="claim${topArticle.articleId}" style="cursor:pointer;">신고하기</span>
+                              </form>
+                           </div>   
+                        </div>       								
 					</div>
-				</div>	
-				<!-- 조회수 많은 게시글 끝 -->
+				</div>
+				</c:if>
+			</div>
+		</div>	
+	<!-- 조회수 많은 게시글 끝 -->
 				
 				
 				
 				
-				<!-- 최신순 리스트 시작 -->
+				<!-- 게시글 리스트 시작 -->
 				
 				<c:forEach items="${secretArticles}" var="article">
 					<div class="w3-row-padding w3-margin-top">
@@ -445,55 +513,65 @@
 											<strong>${article.articleTitle}</strong>
 											
 										</div>
-										<div class="w3-col m1 w3-padding-top">
-											${article.nickName}
-										</div>
-										<div class="w3-col m1 w3-padding-top">
-											조회수 ${article.hits}
+										
+										 <div class="w3-col m2" align="right">
+											<h6>조회수 ${article.hits}</h6>
 											<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
 											<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
 										</div>
-										<div class="w3-col m12 w3-padding-top" style="height: 60px;">
-											${article.articleDesc}
-										</div>	
+										 <div class="desc w3-col m12 w3-padding-top" style="height: 70px;">
+			                                 <p>${article.articleDesc}</p>
+			                              </div>
 									</a>						
-										<div>
-											${article.articleModifyDate} 
-										</div>
-										<div class="w3-col m10 w3-padding-bottom">
+										<div class="w3-col-m12" align="left">
+		                               		<h6>${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;${article.articleModifyDate}</h6>
+		                              </div>
+										 <div class="w3-col m6 w3-padding-bottom" style="color:#7d7d7d;">
 											<div style="float:left; margin-right:10px;">
 												<c:if test="${article.like}">
-													<img class="like" id="like${article.articleId}" src="/resource/img/like_active_small.png" style="width:20px;">	
-													<span id="likeCount${article.articleId}">${article.articleLikes}</span>
-												</c:if>
-												<c:if test="${!article.like}">
-													<img class="like" id="like${article.articleId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
-													<span id="likeCount${article.articleId}">${article.articleLikes}</span>
-												</c:if>
+				                                    <span class="like glyphicon glyphicon-thumbs-up" id="like${article.articleId}" style="color:#a9d039;"></span>
+				                                    <span id="likeCount${article.articleId}">${article.articleLikes}</span>
+				                                 </c:if>
+				                                 <c:if test="${!article.like}">
+				                                    <span class="like glyphicon glyphicon-thumbs-up" id="like${article.articleId}" style="color:#7d7d7d;"></span>
+				                                    <!-- 
+				                                    <img class="like" id="like${article.articleId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
+				                                     -->
+				                                    <span id="likeCount${article.articleId}">${article.articleLikes}</span>
+				                                 </c:if>
 											</div>
 											<div>
-												<c:if test="${article.dislike}">
-													<img class="dislike" id="dislike${article.articleId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
-													<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
-												</c:if>
-												<c:if test="${!article.dislike}">
-													<img class="dislike" id="dislike${article.articleId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
-													<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
-												</c:if>
+											 <c:if test="${article.dislike}">
+			                                    <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${article.articleId}" style="color:#a9d039;"></span>
+			                                    <span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
+			                                 </c:if>
+			                                 <c:if test="${!article.dislike}">
+			                                    <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${article.articleId}" style="color:#7d7d7d;"></span>
+			                                    <span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
+			                                 </c:if>
 											</div>
 										</div>
-										<div class="w3-col m2">
-											<img src="/resource/img/reply_small.png" style="width:20px;">댓글 수 
-										
-											<c:if test="${article.scrab}">
-												<img class="scrab" id="scrab${article.articleId}" src="/resource/img/scrap_active_small.png" style="width:20px;">
-											</c:if>
-											
-											<c:if test="${!article.scrab}">
-												<img class="scrab" id="scrab${article.articleId}" src="/resource/img/scrap_inactive_small.png" style="width:20px;">
-											</c:if>
-										</div>
-									
+										<div class="w3-col m6" align="right" style="color:#7d7d7d;">
+				                           <a href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>"><span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span></a>  ${article.replyCount} &nbsp; &nbsp;
+				                        
+				                           <c:if test="${article.scrab}">
+				                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;
+				                           </c:if>
+				                           
+				                           <c:if test="${!article.scrab}">
+				                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId}" style="color:#7d7d7d;"></span>  스크랩하기&nbsp; &nbsp;
+				                           </c:if>
+				                           
+				                           <span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기
+				                        
+				                           <div class="claim w3-col m12">
+				                              <form class="claimWrite">
+				                                 <input class="w3-input" type="text" class="claimCom" id="claimCom${article.articleId}" name="claimCom${article.articleId}"
+				                                             placeholder="신고 사유를 입력하세요." style="margin-bottom:5px;">
+				                                 <span class="doClaimBtn" id="claim${article.articleId}" style="cursor:pointer;">신고하기</span>
+				                              </form>
+				                           </div>
+				                        </div>
 									</div>
 									
 								</div>

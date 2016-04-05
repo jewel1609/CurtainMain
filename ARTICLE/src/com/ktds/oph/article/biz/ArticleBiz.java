@@ -96,5 +96,24 @@ public class ArticleBiz {
 		return articleList;
 	}
 
+
+	public void deleteArticles(String[] deleteArticleId, MemberVO member) {
+		if( member.getMemberTypeId() == 6 ) {
+			for (String articleId : deleteArticleId ) {
+				articleDAO.deleteArticle(articleId);
+				System.out.println("article : " + articleId);
+			}
+		}
+		
+	}
+
+
+	public ArticleVO getArticleInfoByArticleId(String articleId, MemberVO member) {
+		if( member.getMemberTypeId() == 6 ) {
+			return articleDAO.getArticleInfoByArticleId(articleId);
+		}
+		return null;
+	}
+
 	//////////////////////////////////////////////////////////////////////
 }

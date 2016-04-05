@@ -71,8 +71,10 @@ public class WriteArticleServlet extends HttpServlet {
 				System.out.println(articleTypeId);
 				String boardId = multipartRequest.getParameter("boardId");
 				System.out.println(boardId);
-				MultipartFile file = multipartRequest.getFile("imgFile");
-				System.out.println(file.getFileName());
+				
+				MultipartFile file0 = multipartRequest.getFile("imgFile0");
+				MultipartFile file1 = multipartRequest.getFile("imgFile1");
+				MultipartFile file2 = multipartRequest.getFile("imgFile2");
 				String movieUrl = multipartRequest.getParameter("movieUrl");
 				
 				HttpSession session = request.getSession();
@@ -107,11 +109,29 @@ public class WriteArticleServlet extends HttpServlet {
 				int articleId = articleBiz.getArticleId();
 				if (articleId > 0) {
 					// 이미지 파일이 있을 경우
-					if ( !file.getFileName().equals("")) {
-						File upFile = file.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
+					if ( !file0.getFileName().equals("")) {
+						File upFile = file0.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file0.getFileName());
 						FileVO fileVO = new FileVO();
-						fileVO.setFileName(file.getFileName());
-						fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
+						fileVO.setFileName(file0.getFileName());
+						fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file0.getFileName());
+						fileVO.setArticleId(articleId);
+						fileVO.setFileType(1);
+						fileBiz.insertFile(fileVO);
+					}
+					if ( !file1.getFileName().equals("")) {
+						File upFile = file1.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file1.getFileName());
+						FileVO fileVO = new FileVO();
+						fileVO.setFileName(file1.getFileName());
+						fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file1.getFileName());
+						fileVO.setArticleId(articleId);
+						fileVO.setFileType(1);
+						fileBiz.insertFile(fileVO);
+					}
+					if ( !file2.getFileName().equals("")) {
+						File upFile = file2.write("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file2.getFileName());
+						FileVO fileVO = new FileVO();
+						fileVO.setFileName(file2.getFileName());
+						fileVO.setFileLocation("C:\\Users\\206-001\\Documents\\workspace-sts-3.7.2.RELEASE_web\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file2.getFileName());
 						fileVO.setArticleId(articleId);
 						fileVO.setFileType(1);
 						fileBiz.insertFile(fileVO);

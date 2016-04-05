@@ -2,7 +2,7 @@ package com.ktds.oph.questionAndAnswer.vo;
 
 import com.ktds.oph.member.vo.MemberVO;
 
-public class QuestionAndAnswerVO extends MemberVO {
+public class QuestionAndAnswerVO {
 
 	private int questionId;
 	private String questionTitle;
@@ -61,6 +61,5 @@ public class QuestionAndAnswerVO extends MemberVO {
 	public void setIsChecked(String isChecked) {
 		this.isChecked = isChecked;
 	}
-	
 	
 }

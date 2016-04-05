@@ -429,7 +429,65 @@ public class ArticleDAO {
 			this.closeDB(conn, stmt, rs);
 		}
 	}
+	public void deleteArticle(String articleId) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/article/deleteArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1,articleId);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+	}
 
+	public ArticleVO getArticleInfoByArticleId(String articleId) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/article/getArticleInfoByArticleId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1,Integer.parseInt(articleId));
+			rs = stmt.executeQuery();
+			ArticleVO articleVO = null;
+			if(rs.next()){
+				articleVO = new ArticleVO();
+				articleVO.setArticleId(rs.getInt("ARTICLE_ID"));
+				articleVO.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				articleVO.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				articleVO.setArticleRegisterDate(rs.getString("ARTICLE_REGISTER_DATE"));
+				articleVO.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				articleVO.setArticleTypeId(rs.getInt("ARTICLE_TYPE_ID"));
+				articleVO.setEmail(rs.getString("EMAIL"));
+				articleVO.setBoardId(rs.getInt("BOARD_ID"));
+				articleVO.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				articleVO.setUnivId(rs.getInt("UNIV_ID"));
+				articleVO.setHits(rs.getInt("HITS"));
+				articleVO.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				articleVO.setArticleDislike(rs.getInt("ARTICLE_DISLIKES"));
+				articleVO.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
+			}
+			return articleVO;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+	}
 
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -476,6 +534,8 @@ public class ArticleDAO {
 			catch ( SQLException e ) {}
 		}
 	}
+
+	
 
 
 

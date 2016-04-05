@@ -50,7 +50,6 @@ public class ArticleDAO {
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
-				article.setReplyCount(rs.getInt("COUNT(REPLY_ID)"));
 				article.setLike(false);
 
 				articles.add(article);
@@ -561,7 +560,6 @@ public class ArticleDAO {
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
 				//article.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
-				article.setReplyCount(rs.getInt("COUNT(REPLY_ID)"));
 				article.setLike(false);
 				article.setDislike(false);
 				article.setScrab(false);
@@ -1434,6 +1432,8 @@ public class ArticleDAO {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, Integer.parseInt(boardId));
 			stmt.setInt(2, stdMember.getMajorGroupId());
+			stmt.setInt(3, stdMember.getMajorGroupId());
+			
 			rs = stmt.executeQuery();
 
 			if (rs.next()) {

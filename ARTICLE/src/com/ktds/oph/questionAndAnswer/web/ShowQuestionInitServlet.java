@@ -34,7 +34,7 @@ public class ShowQuestionInitServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.removeAttribute("_SEARCH_");
+		session.removeAttribute("_QUESTION_SEARCH_");
 		
 		response.sendRedirect(Root.get(this) + "/showQuestion");
 	}

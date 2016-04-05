@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import com.ktds.oph.member.vo.MemberSearchVO;
 import com.ktds.oph.member.vo.MemberVO;
@@ -217,6 +220,36 @@ public class MemberDAO {
 
 
 
+	public void modifyRankDate(String modifyMemberEmail) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+		Date currentTime = new Date ( );
+		String sysdate = mSimpleDateFormat.format ( currentTime );
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/member/modifyRankDate/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1,sysdate);
+			stmt.setString(2,modifyMemberEmail);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+		
+	}
+
+
+
+
+
 
 	public void modifyMember(String modifyMemberEmail, String modifyMemberTypeId, String modifyMemberPoint,
 			String modifyMemberPassword, MemberVO member) {
@@ -288,8 +321,6 @@ public class MemberDAO {
 			catch ( SQLException e ) {}
 		}
 	}
-
-
 
 
 

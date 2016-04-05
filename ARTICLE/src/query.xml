@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <query>
+	<prohibitedWord>
+		<insertProhibitedWord>
+			INSERT INTO		PROHIBITED_WORD (
+			  									 PROHIBITED_WORD_ID
+			  									 , PROHIBITED_WORD_NAME
+			  								) 
+			VALUES 							( 
+												PROHIBITED_WORD_ID_SEQ.NEXTVAL
+												, ?
+											)
+		</insertProhibitedWord>
+	</prohibitedWord>
 	<major>
 		<getAllMajorCount>
 			SELECT	COUNT(MAJOR_ID)
@@ -92,6 +104,35 @@
 		</getUnivName>
 	</univ>
 	<survey>
+		<insertSurveyStats>
+				INSERT	INTO	SURVEY_STATS 	(
+				   									SURVEY_STATS_ID
+				   									, SURVEY_ID
+				   									, FIRST_STATS
+				   									, SECOND_STATS
+				   									, THIRD_STATS
+				   									, FOURTH_STATS
+				   								) 
+				VALUES 							(	
+													SURVEY_STATS_ID_SEQ.NEXTVAL
+													, ?
+													, 0
+													, 0
+													, 0
+													, 0
+											    )
+		</insertSurveyStats>
+	
+		<getSurveyId>
+			SELECT	SURVEY_ID
+			FROM	SURVEY
+			WHERE	SURVEY_TITLE = ?
+			AND		SURVEY_ANSWER1 = ?
+			AND		SURVEY_ANSWER2 = ?
+			AND		SURVEY_ANSWER3 = ?
+			AND		SURVEY_ANSWER4 = ?
+			AND		SURVEY_DATE = ?
+		</getSurveyId>
 		<deleteSurvey>
 			DELETE 
 			FROM   SURVEY

@@ -16,14 +16,24 @@
 				alert("검색어를 입력하세요!");
 				return;
 			}
+			
+			var searchKeyword = $("#searchKeyword").val();
+			
+			if ($("#searchType").val() == 3 && !(searchKeyword == "y" || searchKeyword == "n" 
+					|| searchKeyword == "Y" || searchKeyword == "N" )) {
+				alert("검색어를 y(Y) 또는 n(N)으로 입력하세요!");
+				return;
+			}
+			
+			if (searchKeyword == "y") {
+				$("#searchKeyword").val("Y");
+			}
+			
+			if (searchKeyword == "n") {
+				$("#searchKeyword").val("N");
+			}
 
 			movePage('0');
-		});
-
-		// checkBox
-		$("#massiveSelectCheckBox").click(function() {
-			var isChecked = $(this).prop("checked");
-			$(".questionIdBox").prop("checked", isChecked);
 		});
 
 		// 내가 글 작성한 jquery
@@ -47,8 +57,6 @@
 	<table class="table" style="width: 2000px">
 		<thead>
 			<tr>
-				<td style="width: 15px"><input type="checkbox"
-					id="massiveSelectCheckBox" /></td>
 				<th style="width: 100px; text-align: center;">질문 일</th>
 				<th style="width: 200px; text-align: center;">질문 제목</th>
 				<th style="width: 300px; text-align: center;">질문 내용 (40 글자)</th>
@@ -62,14 +70,10 @@
 		<tbody>
 			<c:forEach items="${questionList.questions}" var="question">
 				<tr>
-					<td style="text-align: center;">
+					<td class="btnDetailQuestion" style="text-align: center;">
 						<form class="massiveForm">
-							<input class="questionIdBox" name="questionIdBox"
-							value="${question.questionId}" type="checkbox" />
 							<input name="questionId" type="hidden" value="${question.questionId}" />
 						</form>
-					</td>
-					<td class="btnDetailQuestion" style="text-align: center;">
 						<c:set var="questionDate" value="${question.questionDate}" />
 						${fn:substring(questionDate, 0, 10)}
 					</td>
@@ -109,13 +113,13 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="6">
+				<td colspan="7">
 					<form id="searchForm">
 						<div>
 							${ questionList.paging.getPagingList("pageNo", "[@]", "[이전]", "[다음]", "searchForm")}
 						</div>
 						<div style="text-align: right;">
-							<select name="searchType">
+							<select id="searchType" name="searchType">
 								<c:forEach begin="1" end="3" step="1" var="i">
 									<c:set var="selected" value="" />
 									<c:if test="${ i eq searchVO.searchType }">

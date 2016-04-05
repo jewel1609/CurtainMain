@@ -93,4 +93,10 @@ public class MemberBiz {
 		
 	}
 
+	public void modifyRankDate(String modifyMemberEmail, MemberVO member) {
+		if( member.getMemberTypeId() == 6 ) {
+			memberDAO.modifyRankDate(modifyMemberEmail);
+		}
+	}
+
 }

@@ -507,4 +507,14 @@
     <servlet-name>QuestionAndAnswerServlet</servlet-name>
     <url-pattern>/questionAndAnswer</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailQuestionServlet</display-name>
+    <servlet-name>DetailQuestionServlet</servlet-name>
+    <servlet-class>com.ktds.oph.questionAndAnswer.web.DetailQuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailQuestionServlet</servlet-name>
+    <url-pattern>/detailQuestion</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.keyword.biz.KeywordBiz;
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class ShowKeywordTopSeven
@@ -41,10 +42,11 @@ public class ShowKeywordTopSeven extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		int boardId = (int) session.getAttribute("_BOARD_ID_");
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		System.out.println(boardId);
 		
-		List<String> keywords = keywordBiz.getKeywordTopSeven(boardId);
+		List<String> keywords = keywordBiz.getKeywordTopSeven(boardId, member);
 		
 		StringBuffer json = new StringBuffer();
 		

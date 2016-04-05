@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#initSearchBtn").click(function() {
-			location.href = "<c:url value="/list/init" />";
+			location.href = "<c:url value="/showQuestion/init" />";
 		});
 
 		$("#searchBtn").click(function() {
@@ -26,27 +26,6 @@
 			$(".questionIdBox").prop("checked", isChecked);
 		});
 
-		$("#massiveDeleteBtn").click(function() {
-			var isChecked = false;
-			$(".questionIdBox").each(function(index, data) {
-				if (data.checked) {
-					isChecked = data.checked;
-				}
-			});
-
-			if (!isChecked) {
-				alert("삭제할 대상을 선택하세요.")
-				return;
-			}
-
-			if (confirm("정말 삭제하시겠습니까?")) {
-				var form = $(".massiveForm");
-				form.attr("method", "post");
-				form.attr("action", "<c:url value="/" />");
-				form.submit();
-			}
-		});
-		
 		// 내가 글 작성한 jquery
 		$(document).on("mouseover", ".btnDetailQuestion", function () {
 			$(".btnDetailQuestion").css("cursor","pointer");
@@ -55,8 +34,6 @@
 		$(document).on("click", ".btnDetailQuestion", function () {
 			var td = $(this);
 			var form = td.parent().children(":eq(0)").children(":eq(0)");
-			console.log(form.html());
-			
 			form.attr("method", "post");
 			form.attr("action", "<c:url value="/detailQuestion" />");
 			form.submit();
@@ -83,7 +60,7 @@
 		</thead>
 
 		<tbody>
-			<c:forEach items="${questions}" var="question">
+			<c:forEach items="${questionList.questions}" var="question">
 				<tr>
 					<td style="text-align: center;">
 						<form class="massiveForm">
@@ -134,7 +111,8 @@
 			<tr>
 				<td colspan="6">
 					<form id="searchForm">
-						<div>${ members.paging.getPagingList("pageNo", "[@]", "[이전]", "[다음]", "searchForm")}
+						<div>
+							${ questionList.paging.getPagingList("pageNo", "[@]", "[이전]", "[다음]", "searchForm")}
 						</div>
 						<div style="text-align: right;">
 							<select name="searchType">
@@ -144,13 +122,13 @@
 										<c:set var="selected" value="selected='selected'" />
 									</c:if>
 									<c:if test="${i eq 1}">
-										<c:set var="name" value="제목" />
+										<c:set var="name" value="제목 + 내용" />
 									</c:if>
 									<c:if test="${i eq 2}">
-										<c:set var="name" value="작성자 EMAIL" />
+										<c:set var="name" value="작성자" />
 									</c:if>
 									<c:if test="${i eq 3}">
-										<c:set var="name" value="내용" />
+										<c:set var="name" value="확인여부" />
 									</c:if>
 									<option value="${i}" ${selected}>${name}</option>
 								</c:forEach>
@@ -159,7 +137,7 @@
 								id="searchBtn" value="검색" /> <input type="button"
 								id="initSearchBtn" value="검색 초기화" />
 						</div>
-					</form> <span id="massiveDeleteBtn" style="cursor: pointer;">일괄삭제</span>
+					</form>
 				</td>
 			</tr>
 		</tbody>

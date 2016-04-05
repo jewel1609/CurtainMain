@@ -19,6 +19,7 @@ public interface Description {
 	
 	public static final String LOGIN_SUCCESS = "[%s]가 로그인에 성공했습니다.";
 	public static final String LOGIN_FAIL = "[%s]가 로그인에 실패했습니다.";
+	public static final String LOGOUT = "[%s]님이 로그아웃 했습니다.";
 	
 	
 	

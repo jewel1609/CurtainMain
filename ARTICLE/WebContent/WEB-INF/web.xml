@@ -327,7 +327,6 @@
     <servlet-name>DoInsertSurveyServlet</servlet-name>
     <url-pattern>/doInsertSurvey</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>MajorGroupListServlet</display-name>
@@ -348,7 +347,6 @@
     <servlet-name>DetailMajorServlet</servlet-name>
     <url-pattern>/detailMajor</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>SurveyListServlet</display-name>
@@ -389,5 +387,34 @@
     <servlet-name>SurveyMassiveDeleteServlet</servlet-name>
     <url-pattern>/surveyMassiveDelete</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>ArticleTypeListServlet</display-name>
+    <servlet-name>ArticleTypeListServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.ArticleTypeListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleTypeListServlet</servlet-name>
+    <url-pattern>/articleTypeList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertProhibitedWordServlet</display-name>
+    <servlet-name>InsertProhibitedWordServlet</servlet-name>
+    <servlet-class>com.ktds.oph.prohibitedWord.web.InsertProhibitedWordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertProhibitedWordServlet</servlet-name>
+    <url-pattern>/insertProhibitedWord</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoInsertProhibitedWordServlet</display-name>
+    <servlet-name>DoInsertProhibitedWordServlet</servlet-name>
+    <servlet-class>com.ktds.oph.prohibitedWord.web.DoInsertProhibitedWordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoInsertProhibitedWordServlet</servlet-name>
+    <url-pattern>/doInsertProhibitedWord</url-pattern>
+  </servlet-mapping>
 </web-app>

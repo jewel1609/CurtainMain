@@ -278,7 +278,6 @@ public class QuestionAndAnswerDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		QuestionAndAnswerVO question = null;
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
 			

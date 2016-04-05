@@ -71,13 +71,19 @@ public class ArticleBiz {
 
 		articles = new ArrayList<ArticleVO>();
 		if ( searchVO.getSearchType().equals("1")) {
+			
 			articles = articleDAO.showMajorArticleByTitle(stdMember, searchVO);
+			getReplyCount(articles);
+
 		}
 		else if (searchVO.getSearchType().equals("2")) {
 			articles = articleDAO.showMajorArticleByDesc(stdMember, searchVO);
+			getReplyCount(articles);
+			
 		}
 		else {
 			articles = articleDAO.showMajorArticle(stdMember);
+			getReplyCount(articles);
 		}
 		
 		
@@ -112,6 +118,15 @@ public class ArticleBiz {
 	}
 	
 
+	private void getReplyCount(List<ArticleVO> articles) {
+		
+		int replyCount = 0;
+		for(ArticleVO article : articles){
+			replyCount = replyDAO.getReplyCountByArticleId(article.getArticleId());
+			article.setReplyCount(replyCount);
+		}
+	}
+
 	/**
 	 * 해당 비밀 게시판 리스트 가져오기
 	 * @param stdMember
@@ -123,12 +138,15 @@ public class ArticleBiz {
 		
 		if ( searchVO.getSearchType().equals("1")) {
 			articles = articleDAO.showSecretArticleByTitle(stdMember, boardId, searchVO);
+			getReplyCount(articles);
 		}
 		else if (searchVO.getSearchType().equals("2")) {
 			articles = articleDAO.showSecretArticleByDesc(stdMember, boardId, searchVO);
+			getReplyCount(articles);
 		}
 		else {
 			articles = articleDAO.showSecretArticle(stdMember, boardId);
+			getReplyCount(articles);
 		}
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
@@ -355,6 +373,8 @@ public class ArticleBiz {
 		ArticleVO article = new ArticleVO();
 		article = articleDAO.showTopArticle(stdMember, boardId);
 		
+		article.setReplyCount(replyDAO.getReplyCountByArticleId(article.getArticleId()));
+		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
 		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
@@ -500,8 +520,10 @@ public class ArticleBiz {
 	 * @return
 	 */
 	public ArticleVO showTopMajorArticle(MemberVO stdMember, String boardId) {
+		
 		ArticleVO article = new ArticleVO();
 		article = articleDAO.showTopMajorArticle(stdMember, boardId);
+		replyDAO.getReplyCountByArticleId(article.getArticleId());
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);

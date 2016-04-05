@@ -1,7 +1,6 @@
 package com.ktds.oph.questionAndAnswer.web;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,15 +12,16 @@ import com.ktds.oph.questionAndAnswer.biz.QuestionAndAnswerBiz;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerVO;
 
 /**
- * Servlet implementation class QuestionAndAnswerServlet
+ * Servlet implementation class DetailQuestionServlet
  */
-public class QuestionAndAnswerServlet extends HttpServlet {
+public class DetailQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private QuestionAndAnswerBiz questionAndAnswerBiz;
+	private QuestionAndAnswerBiz questionAndAnswerBiz;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionAndAnswerServlet() {
+    public DetailQuestionServlet() {
         super();
         questionAndAnswerBiz = new QuestionAndAnswerBiz();
     }
@@ -37,10 +37,12 @@ public class QuestionAndAnswerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<QuestionAndAnswerVO> questions = questionAndAnswerBiz.getAllQuestions(request);
-		request.setAttribute("questions", questions);
+		String questionId = request.getParameter("questionId");
+		QuestionAndAnswerVO question = questionAndAnswerBiz.getQuestionByQuestionId(questionId);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/questionAndAnswer/questionAndAnswer.jsp");
+		request.setAttribute("question", question);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/questionAndAnswer/detailQuestion.jsp");
 		rd.forward(request, response);
 	}
 

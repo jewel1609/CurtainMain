@@ -479,6 +479,26 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ArticleListServlet</display-name>
+    <servlet-name>ArticleListServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.ArticleListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleListServlet</servlet-name>
+    <url-pattern>/articleList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ArticleFindByDateServlet</display-name>
+    <servlet-name>ArticleFindByDateServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.ArticleFindByDateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleFindByDateServlet</servlet-name>
+    <url-pattern>/articleFindByDate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>HistoryListServlet</display-name>
     <servlet-name>HistoryListServlet</servlet-name>
     <servlet-class>com.ktds.oph.history.web.HistoryListServlet</servlet-class>

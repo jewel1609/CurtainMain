@@ -586,7 +586,7 @@
 									WHERE	QUESTION_TITLE LIKE '%' || ? || '%'
 									OR		QUESTION_DESCRIPTION LIKE '%' || ? || '%'
 									ORDER   BY ANSWER_DATE DESC
-											, QUESTION_DATE DESC 
+											, QUESTION_DATE 
 						       ) A
 						WHERE  ROWNUM &lt;= ?
 				   )
@@ -632,6 +632,13 @@
 			FROM	QA
 			WHERE	QUESTION_ID = ?
 		</getQuestionByQuestionId>
+		
+		<addNewAnswer>
+			UPDATE	CURTAIN.QA
+			SET		ANSWER_DESCRIPTION = ?
+					, ANSWER_DATE = SYSDATE
+			WHERE	QUESTION_ID = ?
+		</addNewAnswer>
 	</question>
 
 </query>

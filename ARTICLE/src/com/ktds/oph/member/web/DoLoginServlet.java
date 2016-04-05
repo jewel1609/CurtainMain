@@ -57,7 +57,7 @@ public class DoLoginServlet extends HttpServlet {
 			return;
 		}
 		else {
-			response.sendRedirect("/doLogin?errorCode=1");
+			response.sendRedirect("/?errorCode=1");
 		}
 	}
 	

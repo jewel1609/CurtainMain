@@ -21,10 +21,13 @@ public class SurveyBiz {
 	
 	public boolean insertSurvey(String surveyTitle, String surveyAnswer1, String surveyAnswer2, String surveyAnswer3,
 			String surveyAnswer4, String surveyDate, MemberVO member) {
-		
+		int surveyId = 0;
 		if( member.getMemberTypeId() == 6 ) {
 			surveyDAO.insertSurvey(surveyTitle, surveyAnswer1,  surveyAnswer2,  surveyAnswer3,
 									surveyAnswer4,  surveyDate,  member);
+			surveyId = surveyDAO.getSurveyId(surveyTitle, surveyAnswer1,  surveyAnswer2,  surveyAnswer3,
+					surveyAnswer4,  surveyDate);
+			surveyDAO.insertSurveyStats(surveyId);
 			return true;
 		}
 		return false;

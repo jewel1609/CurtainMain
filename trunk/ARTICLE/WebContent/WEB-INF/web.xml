@@ -525,7 +525,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowQuestionServlet</servlet-name>
-    <url-pattern>/questionAndAnswer</url-pattern>
+    <url-pattern>/showQuestion</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

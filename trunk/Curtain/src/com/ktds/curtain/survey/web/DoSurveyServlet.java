@@ -81,11 +81,6 @@ public class DoSurveyServlet extends HttpServlet {
 			session.setAttribute("_VOTE_", checkCount);
 		}
 		
-		
-		
-		
-		
-		
 		if ( userSelectSurvey == null) {
 			isCheckId = false;
 			System.out.println(userSelectSurvey);
@@ -109,7 +104,7 @@ public class DoSurveyServlet extends HttpServlet {
 			System.out.println("========" + choiceNumber);
 			
 			if ( choiceNumber > 0 ) { 
-				isCheckId = surveyBiz.statsUpdateTodaySurvey(choiceNumber, surveyId);
+				isCheckId = surveyBiz.statsUpdateTodaySurvey(choiceNumber, surveyId, request);
 				
 				OperationHistoryVO historyVO = new OperationHistoryVO();
 				historyVO.setIp(request.getRemoteHost());

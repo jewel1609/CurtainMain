@@ -518,5 +518,14 @@
 			WHERE	REPLY_ID = ?			
 		</getAllClaimReplyCountByReplyId>
 	</reply>
+	
+	<question>
+		<getAllQuestions>
+			SELECT	*
+			FROM	QA
+			ORDER	BY ANSWER_DATE DESC
+					, QUESTION_DATE DESC
+		</getAllQuestions>
+	</question>
 
 </query>

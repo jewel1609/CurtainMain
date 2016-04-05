@@ -537,4 +537,24 @@
     <servlet-name>DetailQuestionServlet</servlet-name>
     <url-pattern>/detailQuestion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ArticleMassiveDeleteServlet</display-name>
+    <servlet-name>ArticleMassiveDeleteServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.ArticleMassiveDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleMassiveDeleteServlet</servlet-name>
+    <url-pattern>/articleMassiveDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailArticleServlet</display-name>
+    <servlet-name>DetailArticleServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.DetailArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailArticleServlet</servlet-name>
+    <url-pattern>/detailArticle</url-pattern>
+  </servlet-mapping>
 </web-app>

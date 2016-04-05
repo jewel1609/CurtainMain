@@ -82,7 +82,7 @@ public class TwoLayerCurtainBoardServlet extends HttpServlet {
 		historyBiz.addHistory(historyVO);
 		
 		
-		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL2, searchVO);
+		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL2, searchVO, request);
 		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.SECRET_BOARD_LEVEL2);
 		
 		request.setAttribute("topArticle", topArticle);

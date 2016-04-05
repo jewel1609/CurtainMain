@@ -5,7 +5,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 		
-		//비밀번호 전송버튼 누를시
+		//설문 전송버튼 누를시
 		$("#surveyBtn").click(function(){
 			 
 			 if( $("#surveyTitle").val() == ""){
@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 
 <div class="container">
-  <h2>투표설정</h2>
+  <h2>설문설정</h2>
   <p>자유롭게 이용하세요.</p>
    <form id="surveyForm">         
 	  <table class="table">

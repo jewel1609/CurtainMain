@@ -429,10 +429,8 @@
                               </c:if>
                               <strong>${topArticle.articleTitle}</strong>
                         </div>
-                        <div class="w3-col m1" align="right">
-                           <h6>${topArticle.nickName}</h6>
-                        </div>
-                        <div class="w3-col m1" align="right">
+                      
+                        <div class="w3-col m2" align="right">
                            <h6>조회수 ${topArticle.hits}</h6>
                            <input type="hidden" id="articleId" name="articleId" value="${topArticle.articleId}" />
                            <input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
@@ -441,8 +439,8 @@
                            ${topArticle.articleDesc}
                         </div>
                         </a>
-                        <div class="w3-col m12" align="right">
-                           <h6>${topArticle.articleModifyDate} </h6>
+                        <div class="w3-col m12" align="left">
+                           <h6>${topArticle.nickName} &nbsp;&nbsp;&nbsp;&nbsp;${topArticle.articleModifyDate}</h6>
                         </div>
                         <div class="w3-col m6 w3-padding-bottom" style="color:#7d7d7d;">
                         

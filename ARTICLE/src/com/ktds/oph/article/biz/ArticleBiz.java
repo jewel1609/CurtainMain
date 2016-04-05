@@ -68,5 +68,33 @@ public class ArticleBiz {
 		return null;
 	}
 
+
+	public ArticleListVO getAllArticle(String startDate,String endDate, ArticleSearchVO searchVO) {
+		int allArticleCount = articleDAO.getAllArticleCount(startDate, endDate);
+
+		System.out.println(startDate + " " + endDate);
+		Paging paging = new Paging();
+		paging.setTotalArticleCount(allArticleCount);
+		paging.setPageNumber(searchVO.getPageNo() + ""); // 1페이지 0번으로 시작함
+		
+		System.out.println(paging.getTotalArticleCount());
+		
+		searchVO.setStartIndex( paging.getStartArticleNumber() );
+		searchVO.setEndIndex( paging.getEndArticleNumber() );
+		
+		List<ArticleVO> articles = new ArrayList<ArticleVO>();
+		articles = articleDAO.getAllArticle(startDate, endDate,searchVO);
+		// paging 바꾸는 이유 검색 때문에
+		
+		ArticleListVO articleList = new ArticleListVO();
+		articleList.setArticleList(articles);
+		articleList.setPaging(paging);
+		
+		// 몇 번째 페이지
+		
+		
+		return articleList;
+	}
+
 	//////////////////////////////////////////////////////////////////////
 }

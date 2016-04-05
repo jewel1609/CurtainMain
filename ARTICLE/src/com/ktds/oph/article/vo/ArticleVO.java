@@ -23,7 +23,24 @@ public class ArticleVO extends MemberVO{
 	private int boardId;
 	private int hits;
 	private int articleLikes;
+	private int articleDislike;
+	private int articleScrab;
 	
+	private String startDate;
+	private String endDate;
+	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	public int getArticleId() {
 		return articleId;
 	}
@@ -90,7 +107,5 @@ public class ArticleVO extends MemberVO{
 	public void setArticleScrab(int articleScrab) {
 		this.articleScrab = articleScrab;
 	}
-	private int articleDislike;
-	private int articleScrab;
 
 }

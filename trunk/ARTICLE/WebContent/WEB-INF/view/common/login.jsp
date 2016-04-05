@@ -11,6 +11,7 @@ $(document).ready(function () {
 		form.attr("action", "/doLogin");
 		form.submit();
 	});
+
 });
 </script>
 

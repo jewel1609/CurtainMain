@@ -341,6 +341,13 @@
 	</member>
 	
 	<article>
+		<getAllArticleCount>
+			SELECT	COUNT(A.ARTICLE_ID)
+			FROM 	ARTICLE A, MEMBER M
+			WHERE   A.EMAIL = M.EMAIL
+			AND		ARTICLE_REGISTER_DATE >= ?
+			AND		ARTICLE_REGISTER_DATE &lt;= ?
+		</getAllArticleCount>
 		<getClaimArticleInfoByArticleId>
 			SELECT	*
 			FROM	ARTICLE
@@ -373,11 +380,6 @@
 			WHERE	RNUM >= ?
 		</getAllClaimArticle>
 	
-		<getAllArticleCount>
-			SELECT	COUNT(A.ARTICLE_ID)
-			FROM 	ARTICLE A, MEMBERS M
-			WHERE   A.MEMBER_ID = M.MEMBER_ID
-		</getAllArticleCount>
 		<getAllArticle>
 			SELECT	*
 			FROM	(
@@ -385,21 +387,23 @@
 								, AB.*
 						FROM	(
 										SELECT	A.ARTICLE_ID
-												, TITLE
-												, M.NICK_NAME
-												, HITS
-												, RECOMMENDS
-										        , COUNT(FILE_ID) FILE_COUNT
+                                                , A.ARTICLE_TITLE
+                                                , A.ARTICLE_DESC
+                                                , A.ARTICLE_REGISTER_DATE
+                                                , A.ARTICLE_MODIFY_DATE
+                                                , A.ARTICLE_TYPE_ID
+                                                , A.EMAIL
+                                                , A.BOARD_ID
+                                                , A.MAJOR_GROUP_ID
+                                                , A.UNIV_ID
+                                                , A.HITS
+                                                , A.ARTICLE_LIKES
+                                                , A.ARTICLE_DISLIKES
+                                                , A.ARTICLE_SCRAB
 										FROM 	ARTICLE A
-										        , MEMBERS M
-										        , FILES F
-										WHERE   A.MEMBER_ID = M.MEMBER_ID
-										AND     A.ARTICLE_ID = F.ARTICLE_ID(+)
-										GROUP   BY A.ARTICLE_ID
-												, TITLE
-												, M.NICK_NAME
-												, HITS
-												, RECOMMENDS
+										WHERE   A.ARTICLE_REGISTER_DATE >= ?
+										AND		A.ARTICLE_REGISTER_DATE &lt; ?
+										OR		A.ARTICLE_REGISTER_DATE LIKE TO_DATE(?,	'YYYY-MM-DD')
 										ORDER	BY A.ARTICLE_ID DESC
 								) AB
 						WHERE	ROWNUM &lt;= ?

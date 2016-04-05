@@ -100,52 +100,49 @@
             	<div class="w3-container w3-third">
     				<h3>회원 등급</h3>
     				<c:if test="${ member.memberTypeId eq 1 }">
-    				<img src="/resource/img/window.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px">
+    				<img src="/resource/img/window.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px">
     				</c:if>
     				<c:if test="${ member.memberTypeId eq 2 }">
-    				<img src="/resource/img/oneLayerCurtain.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px">
+    				<img src="/resource/img/oneLayerCurtain.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px">
     				</c:if>
     				<c:if test="${ member.memberTypeId eq 3 }">
-    				<img src="/resource/img/twoLayerCurtain.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px">
+    				<img src="/resource/img/twoLayerCurtain.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px">
     				</c:if>
     				<c:if test="${ member.memberTypeId eq 4 }">
-    				<img src="/resource/img/company.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px">
+    				<img src="/resource/img/company.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px">
     				</c:if>
     				<c:if test="${ member.memberTypeId eq 5 }">
-    				<img src="/resource/img/company2.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px">
+    				<img src="/resource/img/company2.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px">
     				</c:if>
     				<p>회원님의 등급은 ' ${ memberRank } '입니다.</p> 
   				</div>
   				<div class="w3-container w3-third">
     				<h3>포인트</h3>
-    				<img src="/resource/img/point.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 90px;">
-    				<p style="position:relative; top:10px;">${ member.point } 포인트</p> 
+    				<img src="/resource/img/point.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;">
+    				<p>${ member.point } 포인트</p> 
   				</div>
   				<div class="w3-container w3-third">
     				<h3>활동량</h3>
     				<div class="w3-container w3-third">
     					<div>
-	    					<img src="/resource/img/article.png" class="w3-center w3-circle w3-margin-bottom w3-margin-right" style="width:100px; height: 100px;
+	    					<img src="/resource/img/article.png" class="w3-center w3-margin-bottom w3-margin-right" style="width:100px; height: 100px;
 	    					position: relative; left:-13px;">
-	    					<p style="position:relative; top:-50px; left:0px;">${ countArticle }</p>
     					</div>
-    					<p style="position:relative; top:-30px;">게시글</p>
+    					<p>게시글 : ${ countArticle }</p>
     				</div>
     				<div class="w3-container w3-third">
     					<div>
-	    					<img src="/resource/img/reply.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px;
+	    					<img src="/resource/img/reply.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;
 	    					position: relative; left:-13px;">
-	    					<p style="position:relative; top:-50px; left:0px;">${ countReply }</p>
     					</div>
-    					<p style="position:relative; top:-30px;">댓글</p>
+    					<p>댓글 : ${ countReply }</p>
     				</div>
     				<div class="w3-container w3-third">
     					<div>
-	    					<img src="/resource/img/vote.png" class="w3-center w3-circle w3-margin-bottom" style="width:100px; height: 100px;
+	    					<img src="/resource/img/vote.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;
 	    					position: relative; left:-13px;">
-	    					<p style="position:relative; top:-50px; left:0px;">${ countSurvey }</p>
     					</div>
-    					<p style="position:relative; top:-30px;">투표참여</p>
+    					<p>투표참여 : ${ countSurvey }</p>
     				</div>
   				</div>
             </div>

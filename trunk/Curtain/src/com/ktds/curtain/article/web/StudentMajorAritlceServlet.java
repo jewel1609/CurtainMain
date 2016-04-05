@@ -80,7 +80,7 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		}
 		
 		List<String> univNames = univBiz.getUnivNameList(stdMember.getMajorGroupId());
-		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD, searchVO);
+		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD, searchVO, request);
 		ArticleVO topArticle = articleBiz.showTopMajorArticle(stdMember, BoardId.MAJOR_BOARD);
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();

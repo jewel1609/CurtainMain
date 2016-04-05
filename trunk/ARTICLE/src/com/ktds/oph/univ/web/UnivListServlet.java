@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.univ.biz.UnivBiz;
 import com.ktds.oph.univ.vo.UnivListVO;
 import com.ktds.oph.univ.vo.UnivSearchVO;
@@ -23,6 +28,7 @@ public class UnivListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberBiz memberBiz;
 	private UnivBiz univBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,6 +37,7 @@ public class UnivListServlet extends HttpServlet {
         super();
         memberBiz = new MemberBiz();
         univBiz = new UnivBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -71,6 +78,15 @@ public class UnivListServlet extends HttpServlet {
 			univVO.setPageNo(pageNo);
 			
 			UnivListVO univs = univBiz.getAllUniv(univVO);
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(loginMember.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.ADMIN_UNIV_PAGE);
+			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_UNIV_PAGE, loginMember.getEmail()));
+			
+			historyBiz.addHistory(historyVO);
 			
 			request.setAttribute("univs", univs);
 			RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/univ/univList.jsp");

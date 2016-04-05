@@ -14,6 +14,11 @@ import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberListVO;
 import com.ktds.oph.member.vo.MemberSearchVO;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.util.Root;
 
 /**
@@ -22,12 +27,14 @@ import com.ktds.oph.util.Root;
 public class InsertSurveyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private MemberBiz memberBiz;   
+    private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public InsertSurveyServlet() {
         super();
         memberBiz = new MemberBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -59,6 +66,16 @@ public class InsertSurveyServlet extends HttpServlet {
 		
 			//response.sendRedirect(Root.get(this) + "/WEB-INF/view/survey/survey.jsp");
 			//response.sendRedirect("/WEB-INF/view/survey/survey.jsp");
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(loginMember.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.ADMIN_SURVEY_ADD_PAGE);
+			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_SURVEY_ADD_PAGE, loginMember.getEmail()));
+			
+			historyBiz.addHistory(historyVO);
+			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/survey/survey.jsp");
 			rd.forward(request, response);

@@ -1533,6 +1533,46 @@
 			        )
 			WHERE   ROWNUM &lt; 8
 		</getKeywordTopSeven>
+		
+		<getKeywordTopSevenByMajor>
+			SELECT  *
+			FROM    (
+			            SELECT  COUNT(KEYWORD_ID) COUNT_KEY_ID
+			                    , KEYWORD_NAME
+			            FROM    (
+			                        SELECT  K.*
+			                        FROM    KEYWORD K
+			                        		, ARTICLE A
+			                        WHERE   K.ARTICLE_ID = A.ARTICLE_ID
+			                        AND		KEYWORD_DATE &gt; SYSDATE - 1
+			                        AND		BOARD_ID = 1
+			                        AND		A.MAJOR_GROUP_ID = ?
+			                    )
+			            GROUP   BY KEYWORD_NAME
+			            ORDER   BY COUNT_KEY_ID DESC
+			        )
+			WHERE   ROWNUM &lt; 8
+		</getKeywordTopSevenByMajor>
+		
+		<getKeywordTopSevenByUniv>
+			SELECT  *
+			FROM    (
+			            SELECT  COUNT(KEYWORD_ID) COUNT_KEY_ID
+			                    , KEYWORD_NAME
+			            FROM    (
+			                        SELECT  K.*
+			                        FROM    KEYWORD K
+			                        		, ARTICLE A
+			                        WHERE   K.ARTICLE_ID = A.ARTICLE_ID
+			                        AND		KEYWORD_DATE &gt; SYSDATE - 1
+			                        AND		BOARD_ID = 2
+			                        AND		A.UNIV_ID = ?
+			                    )
+			            GROUP   BY KEYWORD_NAME
+			            ORDER   BY COUNT_KEY_ID DESC
+			        )
+			WHERE   ROWNUM &lt; 8
+		</getKeywordTopSevenByUniv>
 	</keyword>
 	
 	<operationHistory>

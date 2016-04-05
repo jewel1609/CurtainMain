@@ -493,14 +493,14 @@
             </div>   
             <!-- 조회수 많은 게시글 끝 -->
             
+            <!--  게시글 리스트 시작 -->
          <c:forEach items="${majorArticles}" var="article">
          <input type="hidden" class="majorName" value="${article.majorName}"/>
             <div class="w3-row-padding w3-margin-top">
                <div class="w3-col m12">
                   <div class="w3-card w3-white w3-round-large">
                      <div class="w3-container">
-                        <a
-                           href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>">
+                        <a href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>">
                               
                               <div class="w3-col m10 w3-padding-top">
                                  <c:if test="${article.articleTypeName eq '연애'}">
@@ -520,10 +520,7 @@
                                  </c:if>
                                  <strong>${article.articleTitle}</strong>
                               </div>
-                              <div class="w3-col m1" align="right">
-                                 <h6>${article.nickName}</h6>
-                              </div>
-                              <div class="w3-col m1" align="right">
+                             <div class="w3-col m2" align="right">
                                  <h6>조회수 ${article.hits}</h6>
                               </div>
                               
@@ -531,8 +528,8 @@
                                  <p>${article.articleDesc}</p>
                               </div>
                         </a>
-                              <div class="w3-col-m12" align="right">
-                                 <h6>${article.articleModifyDate} </h6>
+                              <div class="w3-col-m12" align="left">
+                               		<h6>${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;${article.articleModifyDate}</h6>
                               </div>
                            <div class="w3-col m6 w3-padding-bottom" style="color:#7d7d7d;">
                               <div style="float:left; margin-right:10px;">
@@ -560,7 +557,7 @@
                               </div>
                            </div>
                            <div class="w3-col m6" align="right" style="color:#7d7d7d;">
-                           <span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span>  ${article.replyCount} &nbsp; &nbsp;
+                           <a href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>"><span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span></a>  ${article.replyCount} &nbsp; &nbsp;
                         
                            <c:if test="${article.scrab}">
                               <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;

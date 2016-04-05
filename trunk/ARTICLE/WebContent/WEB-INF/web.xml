@@ -387,7 +387,6 @@
     <servlet-name>SurveyMassiveDeleteServlet</servlet-name>
     <url-pattern>/surveyMassiveDelete</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>RegisterNewMajorGroupServlet</display-name>
@@ -448,7 +447,6 @@
     <servlet-name>MassiveMajorDeleteServlet</servlet-name>
     <url-pattern>/massiveMajorDelete</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>ArticleTypeListServlet</display-name>
@@ -478,6 +476,26 @@
   <servlet-mapping>
     <servlet-name>DoInsertProhibitedWordServlet</servlet-name>
     <url-pattern>/doInsertProhibitedWord</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HistoryListServlet</display-name>
+    <servlet-name>HistoryListServlet</servlet-name>
+    <servlet-class>com.ktds.oph.history.web.HistoryListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HistoryListServlet</servlet-name>
+    <url-pattern>/historyList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowHistoryListServlet</display-name>
+    <servlet-name>ShowHistoryListServlet</servlet-name>
+    <servlet-class>com.ktds.oph.history.web.ShowHistoryListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowHistoryListServlet</servlet-name>
+    <url-pattern>/showHistoryList</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

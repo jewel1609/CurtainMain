@@ -154,7 +154,7 @@ $(document).ready(function () {
 	/*새로 추가된것에 접근하는 방법*/
 	$("body").on ("click", "#writeReplyBtn", function() {
 		
-		if($("#replyDesc").text() == "") {
+		if( $("#replyDesc").val() == "") {
 			alert("내용을 입력하세요.");
 			return;
 		}

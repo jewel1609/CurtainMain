@@ -47,7 +47,6 @@ public class DetailMemberServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
-		
 		memberInfo = memberBiz.getMemberInfoByEmail(memberEmail, member);
 		
 		request.setAttribute("member", memberInfo);

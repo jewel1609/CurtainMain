@@ -205,7 +205,7 @@
 		
 		
 
-		$("#doWrite").click(function() {
+		$("#writeBtn").click(function() {
 		
 			
 			 if( $("#articleTitle").val() == ""){

@@ -201,8 +201,8 @@
 		});
 
 
-		$("#doWrite").click(function() {
-			alert("클릭");
+		$("#writeBtn").click(function() {
+			
 			 if( $("#articleTitle").val() == ""){
 				alert("제목을 입력하세요!");
 				$("#articleTitle").focus();
@@ -319,10 +319,10 @@
 										<div style="padding:10px;">
 											<div class="col-sm-2 input" style="padding-left:0px;">
 												<select class="form-control " id="sel1" name="articleTypeId">
-													<option value="1">동아리모집</option>
-													<option value="2">대외활동모집</option>
-													<option value="3">취업관련</option>
-													<option value="4">스터디모집</option>
+													<option value="6">동아리모집</option>
+													<option value="7">대외활동모집</option>
+													<option value="8">취업관련</option>
+													<option value="9">스터디모집</option>
 													<option value="5">기타</option>
 												</select>
 											</div>

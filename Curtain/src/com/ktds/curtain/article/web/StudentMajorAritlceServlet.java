@@ -1,10 +1,7 @@
 package com.ktds.curtain.article.web;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,15 +14,12 @@ import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleSearchVO;
 import com.ktds.curtain.article.vo.ArticleVO;
 import com.ktds.curtain.article.vo.BoardId;
-import com.ktds.curtain.articleLike.vo.ArticleLikeVO;
 import com.ktds.curtain.history.biz.OperationHistoryBiz;
 import com.ktds.curtain.history.vo.ActionCode;
 import com.ktds.curtain.history.vo.BuildDescription;
 import com.ktds.curtain.history.vo.Description;
 import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
-import com.ktds.curtain.survey.biz.SurveyBiz;
-import com.ktds.curtain.survey.vo.SurveyVO;
 import com.ktds.curtain.univ.biz.UnivBiz;
 
 /**
@@ -35,7 +29,6 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleBiz articleBiz;
 	private UnivBiz univBiz;
-	private SurveyBiz surveyBiz;
 	private OperationHistoryBiz historyBiz;
        
     /**
@@ -44,7 +37,6 @@ public class StudentMajorAritlceServlet extends HttpServlet {
     public StudentMajorAritlceServlet() {
         super();
         articleBiz = new ArticleBiz();
-        surveyBiz = new SurveyBiz();
         univBiz = new UnivBiz();
         historyBiz = new OperationHistoryBiz();
     }

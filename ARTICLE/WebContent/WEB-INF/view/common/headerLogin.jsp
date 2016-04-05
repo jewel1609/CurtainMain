@@ -42,7 +42,7 @@
         <li><a href="/insertProhibitedWord">금칙어등록</a></li>
         <li><a href="/articleFindByDate">게시글관리</a></li>
         <li><a href="/historyList">히스토리확인</a></li>
-        <li><a href="/questionAndAnswer">질문관리</a></li>
+        <li><a href="/showQuestion">질문관리</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 

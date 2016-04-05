@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.survey.dao.SurveyDAO;
 import com.ktds.curtain.survey.vo.SurveyStatsVO;
 import com.ktds.curtain.survey.vo.SurveyVO;
@@ -11,9 +14,11 @@ import com.ktds.curtain.survey.vo.SurveyVO;
 public class SurveyBiz {
 	
 	private SurveyDAO surveyDAO;
+	private MemberBiz memberBiz;
 	
 	public SurveyBiz (){
 		surveyDAO = new SurveyDAO();
+		memberBiz = new MemberBiz();
 	}
 
 	public SurveyVO showTodaySurvey(String mTime) {
@@ -29,22 +34,26 @@ public class SurveyBiz {
 		return surveyDAO.selectSurveyStats(mTime);
 	}
 
-	public boolean statsUpdateTodaySurvey(int choiceNumber, int surveyId) {
+	public boolean statsUpdateTodaySurvey(int choiceNumber, int surveyId, HttpServletRequest request) {
 		
 		if ( choiceNumber == 1) {
 			surveyDAO.upDateFirst(surveyId);
+			memberBiz.addPointAndModifyMemberType(null, request);
 			return true;
 		}
 		else if ( choiceNumber == 2 ) {
 			surveyDAO.upDateSecond(surveyId);
+			memberBiz.addPointAndModifyMemberType(null, request);
 			return true;
 		}
 		else if ( choiceNumber == 3 ) {
 			surveyDAO.upDateThird(surveyId);
+			memberBiz.addPointAndModifyMemberType(null, request);
 			return true;
 		}
 		else if ( choiceNumber == 4 ) {
 			surveyDAO.upDateFourth(surveyId);
+			memberBiz.addPointAndModifyMemberType(null, request);
 			return true;
 		}
 		return false;

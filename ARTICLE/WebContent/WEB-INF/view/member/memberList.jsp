@@ -23,7 +23,7 @@
 		$("#massiveSelectCheckBox").click(function () {
 			// 여러가지 경우를 가져오기 위해서 prop를 사용한다.
 			var isChecked = $(this).prop("checked");
-			$(".deleteMemberEmail").prop("checked", isChecked);
+			$(".memberEmail").prop("checked", isChecked);
 		});
 		
 		$("#massiveDeleteBtn").click(function() {

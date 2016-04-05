@@ -5,7 +5,6 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		
-		//수정
 		$("#deleteClaimArticleBtn").click(function() {
 		
 			if (confirm("정말 삭제하시겠습니까?")) {

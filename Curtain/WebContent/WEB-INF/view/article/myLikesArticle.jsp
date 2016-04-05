@@ -10,6 +10,10 @@
 
 
 	$(document).ready(function() {
+		
+		$("#cancelBtn1").click(function() {
+			location.href = "/myPage";
+		});
 
 
 		$('[data-toggle="popover"]').popover();
@@ -249,6 +253,11 @@
 		      	<div class="w3-margin-4" style="float:left;">
 		      		<h2>내가 좋아요 한 글</h2>
 		      	</div>
+		      	<div style="margin-left: 950px; position: relative; top:30px;">
+		      	<button type="button" id="cancelBtn1" class="btn btn-primary" style="background-color:#FF3300; border:0px;">
+					뒤로가기
+				</button>
+				</div>
 	      	</div>
 
 			<c:forEach items="${myLikesArticle}" var="article">

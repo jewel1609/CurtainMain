@@ -211,15 +211,18 @@ $(document).ready(function () {
 	<c:set var="majorGroupId" value="${ sessionScope._MEMBER_.majorGroupId }" />
 	<c:set var="univName" value="${ sessionScope._UNIVNAME_}" />
 	<c:set var="majorGroupName" value="${ sessionScope._MAJORGROUPNAME_ }" />
+	<c:set var="boardId" value="${ sessionScope._BOARD_ID_ }" />
+	
 
 
   <div class="w3-row" >
-    <div class="w3-col m7 w3-main wrapper" style="border-right:1px solid #bababa;
-    background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height:885px; overflow: auto;">
-     		
+     <div class="w3-col m7 w3-main wrapper"
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+         
+       		
      		<!-- 게시판 헤더 -->
-     		<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
-				<div class="w3-margin-4" style="float:left;">
+     		 <div class="w3-row" style="border-bottom: 1px solid #bababa;">
+				 <div class="w3-margin-4" style="float:left; padding-left:10px;">
 					<c:if test="${boardId eq 1}">
 						<h2>${majorGroupName} 게시판입니다.</h2>
 					</c:if>
@@ -243,8 +246,8 @@ $(document).ready(function () {
 			</div>
 			
 			<!-- 게시판 body -->	
-	      <div class="w3-row-padding">
-	        <div class="w3-col m12" align="left">
+	       <div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
+            <div class="w3-col m12" align="left" >
 	          <div class="w3-card w3-white w3-round-large" style="margin-top:10px; margin-bottom:10px;">
 	            <div class="w3-container">
 	           	 	<div>
@@ -275,7 +278,12 @@ $(document).ready(function () {
 													
 						<div class="col-sm-12" style="margin-bottom:20px;">
 							<div class="col-sm-11" style="padding-left:0px;">
-							<span style="color: #FF3300;"><h5>${article.nickName}</h5></span>
+								<span style="color: #FF3300;">
+									<h5>
+									${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;
+									${article.articleModifyDate}
+									</h5>
+								</span>
 							</div>
 							<div class="col-sm-1"><h6>조회수 ${article.hits}</h6></div>
 						</div>
@@ -288,7 +296,7 @@ $(document).ready(function () {
 				            <br/>
 				             <c:forEach items="${files}" var="file">
 				             	<c:if test="${file.fileType eq '1'}">								
-									<img src="/resource/img/${file.fileName}"/>
+									<img width="560" height="315" src="/resource/img/${file.fileName}"/>
 								</c:if>
 								<c:if test="${file.fileType eq '2'}">
 									<iframe width="560" height="315" src="${file.fileName}" ></iframe>
@@ -296,7 +304,6 @@ $(document).ready(function () {
 							</c:forEach>
 
 						</div>
-			             <div><h6>${article.articleModifyDate} </h6></div>
 			            	<ul class="pager">
 			            			<c:if test="${article.boardId eq 1}">
 										 <li class="previous"><a href="/studentMajorAritlce" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>

@@ -46,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 		historyVO.setActionCode(ActionCode.LOGIN_PAGE);
 		historyVO.setDescription( BuildDescription.get(Description.VISIT_LOGIN_PAGE, request.getRemoteHost()));
 		
+		
 		historyBiz.addHistory(historyVO);
 		
 		

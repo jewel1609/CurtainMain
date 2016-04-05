@@ -14,6 +14,11 @@ import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberListVO;
 import com.ktds.oph.member.vo.MemberSearchVO;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 
 /**
  * Servlet implementation class ShowMemberServlet
@@ -21,6 +26,7 @@ import com.ktds.oph.member.vo.MemberVO;
 public class ShowMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberBiz memberBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,6 +34,7 @@ public class ShowMemberServlet extends HttpServlet {
     public ShowMemberServlet() {
         super();
         memberBiz = new MemberBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -68,6 +75,15 @@ public class ShowMemberServlet extends HttpServlet {
 			searchVO.setPageNo(pageNo);
 			
 			MemberListVO members = memberBiz.getAllMember(searchVO);
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(loginMember.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.ADMIN_MEMBER_PAGE);
+			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_MEMBER_PAGE, loginMember.getEmail()));
+			
+			historyBiz.addHistory(historyVO);
 			
 			request.setAttribute("members", members);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/memberList.jsp");

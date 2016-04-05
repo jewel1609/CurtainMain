@@ -3,4 +3,5 @@
     
 <jsp:include page="./WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="./WEB-INF/view/common/center.jsp"></jsp:include>
-<jsp:include page="./WEB-INF/view/common/footer.jsp"></jsp:include>
+</body>
+</html>

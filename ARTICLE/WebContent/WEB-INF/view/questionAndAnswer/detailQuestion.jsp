@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="/WEB-INF/view/common/headerLogin.jsp"></jsp:include>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -20,44 +21,68 @@
 </script>
 
 <div class="container">
-	<h2>신고게시글 상세페이지</h2>
+	<h2>질문 상세페이지</h2>
 	<table class="table">
 		<thead>
 			<tr>
-				<th style="text-align: center;">질문 번호 : </th>
-				<th style="text-align: center;">질문 일 : </th>
-				<th style="text-align: center;">질문자 EMAIL :</th>
-				<th style="text-align: center;">확인 여부 :</th>
+				<th style="text-align: center;">질문 번호 : ${question.questionId} </th>
+				<th style="text-align: center;">
+					<c:set var="questionDate" value="${question.questionDate}" />
+					질문 일 : ${fn:substring(questionDate, 0, 10)}
+				</th>
+				<th style="text-align: center;">질문자 EMAIL : ${question.email}</th>
+				<th style="text-align: center;">확인 여부 : ${question.isChecked}</th>
 			</tr>
 			<tr>
-				<td style="width: 200px; text-align: center;">
+				<td style="width: 150px; text-align: center;">
 					<b>질문 제목 : </b>
 				</td>
-				<td colspan="3" style="text-align: center;"></td>
+				<td colspan="3">
+					${question.questionTitle}
+				</td>
 			</tr>
 			<tr>
-				<td style="width: 200px; text-align: center;">
+				<td style="width: 150px; text-align: center;">
 					<b>질문 내용 : </b>
 				</td>
-				<td colspan="3" style="text-align: center;"></td>
+				<td colspan="3">
+					${question.questionDescription}
+				</td>
 			</tr>
 		</thead>
 
+		<thead>
+			<tr><td colspan="4" style="height: 50px;"></td></tr>
+		</thead>
+		
 		<tbody>
-			<form id="claimArticleForm">
+			<c:if test="${question.answerDescription ne null}">
 				<tr>
-					<input type="hidden" name="articleId"
-						value="${claimReplyInfo.replyId}" />
-					<td>${claimReplyInfo.replyId}</td>
-					<td>${claimReplyInfo.replyDesc}</td>
-					<td>${claimReplyInfo.replyRegisterDate}</td>
-					<td>${claimReplyInfo.replyModifyDate}</td>
+					<td>
+						<c:set var="answerDate" value="${question.answerDate}" />
+						<b>답변 일 : ${fn:substring(answerDate, 0, 10)} </b>
+					</td>
+					<td style="width: 150px;">
+						<b>답변 내용 : </b>
+					</td>
+					<td colspan="2">
+						${question.answerDescription}
+					</td>
 				</tr>
-			</form>
-			<tr>
-				<td colspan="14"><span id="deleteClaimArticleBtn"
-					style="cursor: pointer;">댓글 삭제하기</span></td>
-			</tr>
+				<tr>
+					<td colspan="4" style="text-align: center;">
+						수정 하기
+					</td>
+				</tr>
+			</c:if>
+			
+			<c:if test="${question.answerDescription eq null}">
+				<tr>
+					<td colspan="4" style="text-align: center;">
+						답변 하기
+					</td>
+				</tr>
+			</c:if>
 		</tbody>
 	</table>
 </div>

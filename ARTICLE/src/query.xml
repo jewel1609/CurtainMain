@@ -555,12 +555,83 @@
 	</reply>
 	
 	<question>
-		<getAllQuestions>
+
+		<getAllQuestionCount>
+			SELECT	COUNT(QUESTION_ID)
+			FROM	QA
+			WHERE	QUESTION_TITLE LIKE '%' || ? || '%'
+			OR		QUESTION_DESCRIPTION LIKE '%' || ? || '%'
+		</getAllQuestionCount>
+		
+		<getAllQuestionCountByEmail>
+			SELECT	COUNT(QUESTION_ID)
+			FROM	QA
+			WHERE	EMAIL LIKE '%' || ? || '%'
+		</getAllQuestionCountByEmail>
+		
+		<getAllQuestionCountByIsCheck>
+			SELECT	COUNT(QUESTION_ID)
+			FROM	QA
+			WHERE	IS_CHECKED LIKE '%' || ? || '%'
+		</getAllQuestionCountByIsCheck>
+		
+		<getQuestions>
+			SELECT *
+			FROM   (
+						SELECT ROWNUM AS RNUM
+						       , A.*
+						FROM   (
+			            			SELECT  *
+									FROM	QA
+									WHERE	QUESTION_TITLE LIKE '%' || ? || '%'
+									OR		QUESTION_DESCRIPTION LIKE '%' || ? || '%'
+									ORDER   BY ANSWER_DATE DESC
+											, QUESTION_DATE DESC 
+						       ) A
+						WHERE  ROWNUM &lt;= ?
+				   )
+			WHERE  RNUM >= ?
+		</getQuestions>
+		
+		<getQuestionsByEmail>
+			SELECT *
+			FROM   (
+						SELECT ROWNUM AS RNUM
+						       , A.*
+						FROM   (
+			            			SELECT  *
+									FROM	QA
+									WHERE	EMAIL LIKE '%' || ? || '%'
+									ORDER   BY ANSWER_DATE DESC
+											, QUESTION_DATE DESC 
+						       ) A
+						WHERE  ROWNUM &lt;= ?
+				   )
+			WHERE  RNUM &gt;= ?
+		</getQuestionsByEmail>
+		
+		<getQuestionsByIsCheck>
+			SELECT *
+			FROM   (
+						SELECT ROWNUM AS RNUM
+						       , A.*
+						FROM   (
+			            			SELECT  *
+									FROM	QA
+									WHERE	IS_CHECKED = ?
+									ORDER   BY ANSWER_DATE DESC
+											, QUESTION_DATE DESC 
+						       ) A
+						WHERE  ROWNUM &lt;= ?
+				   )
+			WHERE  RNUM &gt;= ?
+		</getQuestionsByIsCheck>
+		
+		<getQuestionByQuestionId>
 			SELECT	*
 			FROM	QA
-			ORDER	BY ANSWER_DATE DESC
-					, QUESTION_DATE DESC
-		</getAllQuestions>
+			WHERE	QUESTION_ID = ?
+		</getQuestionByQuestionId>
 	</question>
 
 </query>

@@ -1,7 +1,6 @@
 package com.ktds.oph.questionAndAnswer.web;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +13,6 @@ import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.questionAndAnswer.biz.QuestionAndAnswerBiz;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerListVO;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerSearchVO;
-import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerVO;
 
 /**
  * Servlet implementation class QuestionAndAnswerServlet

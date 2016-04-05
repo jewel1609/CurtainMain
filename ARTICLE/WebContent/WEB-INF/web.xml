@@ -557,4 +557,14 @@
     <servlet-name>DetailArticleServlet</servlet-name>
     <url-pattern>/detailArticle</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowQuestionInitServlet</display-name>
+    <servlet-name>ShowQuestionInitServlet</servlet-name>
+    <servlet-class>com.ktds.oph.questionAndAnswer.web.ShowQuestionInitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowQuestionInitServlet</servlet-name>
+    <url-pattern>/showQuestion/init</url-pattern>
+  </servlet-mapping>
 </web-app>

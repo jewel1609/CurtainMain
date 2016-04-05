@@ -263,27 +263,13 @@
 						, HITS
 						, ARTICLE_LIKES
 						, ARTICLE_DISLIKES 
-						, COUNT(REPLY_ID)
 			FROM 		ARTICLE A
 						, MEMBER SM
 						, ARTICLE_TYPE AT
-						, REPLY R
 			WHERE 		A.EMAIL = SM.EMAIL 
 			AND 		A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID 
-			AND         R.ARTICLE_ID = A.ARTICLE_ID
 			AND 		A.BOARD_ID = 1 
 			AND 		A.MAJOR_GROUP_ID = ?
-			GROUP       BY	A.ARTICLE_ID
-						, ARTICLE_TITLE
-						, ARTICLE_DESC
-						, ARTICLE_MODIFY_DATE
-						, AT.ARTICLE_TYPE_NAME
-						, SM.NICK_NAME
-						, A.BOARD_ID
-						, A.MAJOR_GROUP_ID
-						, HITS
-						, ARTICLE_LIKES
-						, ARTICLE_DISLIKES 
 			ORDER 		BY A.ARTICLE_ID DESC
 		</showMajorArticle>
 		
@@ -415,26 +401,12 @@
 						, HITS
 						, ARTICLE_LIKES
 						, ARTICLE_DISLIKES 
-						, COUNT(REPLY_ID)
 			FROM 		ARTICLE A
 						, MEMBER SM
 						, ARTICLE_TYPE AT
-						, REPLY R
 			WHERE 		A.EMAIL = SM.EMAIL 
 			AND 		A.ARTICLE_TYPE_ID = AT.ARTICLE_TYPE_ID 
-			AND         R.ARTICLE_ID = A.ARTICLE_ID
 			AND 		A.BOARD_ID = ? 
-			GROUP       BY	A.ARTICLE_ID
-						, ARTICLE_TITLE
-						, ARTICLE_DESC
-						, ARTICLE_MODIFY_DATE
-						, AT.ARTICLE_TYPE_NAME
-						, SM.NICK_NAME
-						, A.BOARD_ID
-						, A.MAJOR_GROUP_ID
-						, HITS
-						, ARTICLE_LIKES
-						, ARTICLE_DISLIKES 
 			ORDER 		BY A.ARTICLE_ID DESC
 		</showSecretArticle>
 		
@@ -782,6 +754,7 @@
 		                    WHERE BOARD_ID = ?
 		                    AND MAJOR_GROUP_ID = ?
 		                )
+		AND     A.MAJOR_GROUP_ID = ?
 		</showTopMajorArticle>
 		<showTopUnivArticle>
 		SELECT 			ARTICLE_ID
@@ -1259,6 +1232,13 @@
 	</dislike>
 	
 	<reply>
+	
+		<getReplyCountByArticleId>
+			SELECT  COUNT(REPLY_ID)
+			FROM    REPLY
+			WHERE   ARTICLE_ID = ?
+		</getReplyCountByArticleId>
+		
 		<minusDislikeCount>
 			UPDATE	REPLY
 			SET		REPLY_DISLIKES = REPLY_DISLIKES - 1

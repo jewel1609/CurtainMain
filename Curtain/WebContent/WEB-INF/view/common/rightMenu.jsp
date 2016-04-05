@@ -366,8 +366,10 @@
 		    			<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="${ first }%, ${ one }표" >
 				    	</a>
 		    		</div>
-		      			<h>${ survey.firstAnswer }</h> 
 	  			</div>
+      			<div style="position: relative; top: -18px;">
+      				<h>└ ${ survey.firstAnswer }</h>
+      			</div> 
   			</c:if>
   			<c:if test="${ survey.secondAnswer ne null }">
 	  			<div class="progress">
@@ -375,8 +377,10 @@
 	  				<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="${ second }%, ${ two }표" >
 				    </a>
 				    </div>
-				      	<h>${ survey.secondAnswer }</h> 
 			  	</div>
+			  	<div style="position: relative; top: -18px;">
+			      	<h>└ ${ survey.secondAnswer }</h> 
+		      	</div>
 		  	</c:if>
 		  	<c:if test="${ survey.thirdAnswer ne null }">
 			  	<div class="progress">
@@ -384,8 +388,10 @@
 						<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="${ third }%, ${ three }표" >
 				    	</a>
 			    	</div>
-			      		<h>${ survey.thirdAnswer }</h>
 			 	</div>
+			 	<div style="position: relative; top: -18px;">
+		      		<h>└ ${ survey.thirdAnswer }</h>
+		      	</div>
 		 	</c:if>
 		 	<c:if test="${ survey.fourthAnswer ne null }">
 			  	<div class="progress">
@@ -393,8 +399,10 @@
 						<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="${ fourth }%, ${ four }표" >
 				    	</a>
 				    </div>
-				      <p>${ survey.fourthAnswer }</p>
 			  	</div>
+			  	<div style="position: relative; top: -18px;">
+			        <p>└ ${ survey.fourthAnswer }</p>
+				</div>
 		  	</c:if>
 		</form>
 		</c:if>

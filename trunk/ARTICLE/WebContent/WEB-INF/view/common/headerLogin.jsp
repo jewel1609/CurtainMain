@@ -40,6 +40,7 @@
         <li><a href="/insertSurvey">설문등록</a></li>
         <li><a href="/surveyList">설문리스트</a></li>
         <li><a href="/insertProhibitedWord">금칙어등록</a></li>
+        <li><a href="/questionAndAnswer">질문관리</a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">

@@ -45,12 +45,17 @@ public class MemberModifyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
+		int beforeMemberTypeId = member.getMemberTypeId();
 		System.out.println("ModifyList : " + modifyMemberEmail);
 		System.out.println("ModifyList : " + modifyMemberTypeId);
 		System.out.println("ModifyList : " + modifyMemberPoint);
 		System.out.println("ModifyList : " + modifyMemberPassword);
 		
 		memberBiz.modifyMember(modifyMemberEmail,modifyMemberTypeId,modifyMemberPoint, modifyMemberPassword,member);
+		
+		if(beforeMemberTypeId != Integer.parseInt(modifyMemberTypeId)){
+			memberBiz.modifyRankDate(modifyMemberEmail, member);
+		}
 		
 		response.sendRedirect(Root.get(this) + "/showMember");
 	}

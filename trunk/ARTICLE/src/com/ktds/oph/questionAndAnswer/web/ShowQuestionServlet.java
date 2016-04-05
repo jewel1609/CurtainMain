@@ -55,7 +55,7 @@ public class ShowQuestionServlet extends HttpServlet {
 			searchVO.setSearchType(request.getParameter("searchType"));
 		}
 		catch (NumberFormatException nfe) {
-			searchVO = (QuestionAndAnswerSearchVO) session.getAttribute("_QUESTION_SEARCH_");
+			searchVO = (QuestionAndAnswerSearchVO) session.getAttribute("_SEARCH_");
 			if (searchVO == null) {
 				searchVO = new QuestionAndAnswerSearchVO();
 				searchVO.setPageNo(0);
@@ -64,7 +64,7 @@ public class ShowQuestionServlet extends HttpServlet {
 			}
 		}
 		
-		session.setAttribute("_QUESTION_SEARCH_", searchVO);
+		session.setAttribute("_SEARCH_", searchVO);
 		
 		QuestionAndAnswerListVO questionList = questionAndAnswerBiz.getQuestionList(searchVO, member);
 		

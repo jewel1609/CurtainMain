@@ -95,9 +95,7 @@ public class ArticleBiz {
 			
 			articles = articleDAO.showMajorArticleByTitle(stdMember, searchVO);
 			getReplyCount(articles);
-			for(ArticleVO article: articles){
-				System.out.println("articles 리스트 : " + article.getArticleId() + "/ "+article.getReplyCount());
-			}
+			changeDateFormat(articles);
 		
 
 		}
@@ -115,19 +113,14 @@ public class ArticleBiz {
 			
 			articles = articleDAO.showMajorArticleByDesc(stdMember, searchVO);
 			getReplyCount(articles);
-			
-			for(ArticleVO article: articles){
-				System.out.println("articles 리스트 : " + article.getArticleId() + "/ "+ article.getReplyCount());
-			}
+			changeDateFormat(articles);
 			
 		}
 		else {
 			articles = articleDAO.showMajorArticle(stdMember);
 			getReplyCount(articles);
+			changeDateFormat(articles);
 			
-			for(ArticleVO article: articles){
-				System.out.println("articles 리스트 : " + article.getArticleId() + "/ "+article.getReplyCount());
-			}
 		}
 		
 		
@@ -162,16 +155,27 @@ public class ArticleBiz {
 	}
 	
 
-	private void getReplyCount(List<ArticleVO> articles) {
+	/**
+	 * 날짜 형식 바꾸기
+	 * @param articles2
+	 */
+	private void changeDateFormat(List<ArticleVO> articles2) {
 		
-		System.out.println("getReplyCount 접근");
+		String date = "";
+		
+		for(ArticleVO article : articles){
+			date = article.getArticleModifyDate().substring(0, 16);
+			article.setArticleModifyDate(date);
+		}
+		
+	}
+
+	private void getReplyCount(List<ArticleVO> articles) {
 		
 		int replyCount = 0;
 		
 		for(ArticleVO article : articles){
-			System.out.print("for문도는 articleId 들 : " + article.getArticleId() + " / ");
 			replyCount = replyDAO.getReplyCountByArticleId(article.getArticleId());
-			System.out.println("replyCount : " + replyCount);
 			article.setReplyCount(replyCount);
 		}
 	}
@@ -202,6 +206,8 @@ public class ArticleBiz {
 			
 			articles = articleDAO.showSecretArticleByTitle(stdMember, boardId, searchVO);
 			getReplyCount(articles);
+			changeDateFormat(articles);
+			
 		}
 		else if (searchVO.getSearchType().equals("2")) {
 			
@@ -217,10 +223,12 @@ public class ArticleBiz {
 			
 			articles = articleDAO.showSecretArticleByDesc(stdMember, boardId, searchVO);
 			getReplyCount(articles);
+			changeDateFormat(articles);
 		}
 		else {
 			articles = articleDAO.showSecretArticle(stdMember, boardId);
 			getReplyCount(articles);
+			changeDateFormat(articles);
 		}
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
@@ -315,6 +323,9 @@ public class ArticleBiz {
 			historyBiz.addHistory(historyVO);
 			
 			articles = articleDAO.showUnivArticleByTitle(stdMember, searchVO);
+			getReplyCount(articles);
+			changeDateFormat(articles);
+			
 		}
 		else if (searchVO.getSearchType().equals("2")) {
 			
@@ -329,9 +340,15 @@ public class ArticleBiz {
 			historyBiz.addHistory(historyVO);
 			
 			articles = articleDAO.showUnivArticleByDesc(stdMember, searchVO);
+			getReplyCount(articles);
+			changeDateFormat(articles);
+			
 		}
 		else {
+			
 			articles = articleDAO.showUnivArticle(stdMember);
+			getReplyCount(articles);
+			changeDateFormat(articles);
 		}
 		
 		return articles;
@@ -474,6 +491,7 @@ public class ArticleBiz {
 		article = articleDAO.showTopArticle(stdMember, boardId);
 		
 		article.setReplyCount(replyDAO.getReplyCountByArticleId(article.getArticleId()));
+		article.setArticleModifyDate(article.getArticleModifyDate().substring(0, 16));
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
@@ -649,6 +667,7 @@ public class ArticleBiz {
 		article = articleDAO.showTopMajorArticle(stdMember, boardId);
 		
 		article.setReplyCount(replyDAO.getReplyCountByArticleId(article.getArticleId()));
+		article.setArticleModifyDate(article.getArticleModifyDate().substring(0, 16));
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
@@ -677,8 +696,12 @@ public class ArticleBiz {
 
 
 	public ArticleVO showTopUnivArticle(MemberVO stdMember, String majorBoard) {
+		
 		ArticleVO article = new ArticleVO();
 		article = articleDAO.showTopUnivArticle(stdMember, majorBoard);
+		
+		article.setReplyCount(replyDAO.getReplyCountByArticleId(article.getArticleId()));
+		article.setArticleModifyDate(article.getArticleModifyDate().substring(0, 16));
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, majorBoard);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, majorBoard);

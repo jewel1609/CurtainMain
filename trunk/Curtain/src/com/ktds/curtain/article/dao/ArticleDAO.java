@@ -189,6 +189,8 @@ public class ArticleDAO {
 				article.setHits(rs.getInt("HITS"));
 				article.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
 				article.setArticleDislikes(rs.getInt("ARTICLE_DISLIKES"));
+				article.setLike(false);
+				
 				articles.add(article);
 			}
 
@@ -1462,7 +1464,7 @@ public class ArticleDAO {
 	}
 	
 
-	public ArticleVO showTopUnivArticle(MemberVO stdMember, String majorBoard) {
+	public ArticleVO showTopUnivArticle(MemberVO stdMember, String boardId) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -1475,9 +1477,10 @@ public class ArticleDAO {
 
 			String query = XML.getNodeString("//query/article/showTopUnivArticle/text()");
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, Integer.parseInt(majorBoard));
+			stmt.setInt(1, Integer.parseInt(boardId));
 			stmt.setInt(2, stdMember.getUnivId());
-			System.out.println ("대학번호"+stdMember.getUnivId());
+			stmt.setInt(3, Integer.parseInt(boardId));
+			
 			rs = stmt.executeQuery();
 
 			if (rs.next()) {

@@ -6,9 +6,50 @@
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
 
+<!-- Magnific Popup core CSS file -->
+<link rel="stylesheet" href="/resource/css/article/magnific-popup.css">
+
+<!-- Magnific Popup core JS file -->
+<script src="/resource/js//jquery.magnific-popup.js"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function () {
+	
+	$(document).ready(function() {
+		
+		$(document).ready(function() {
+			$('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+				disableOn: 700,
+				type: 'iframe',
+				mainClass: 'mfp-fade',
+				removalDelay: 160,
+				preloader: false,
+
+				fixedContentPos: false
+			});
+		});
+		
+		
+		
+		$('.popup-gallery').magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			tLoading: 'Loading image #%curr%...',
+			mainClass: 'mfp-img-mobile',
+			gallery: {
+				enabled: true,
+				navigateByImgClick: true,
+				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+			},
+			image: {
+				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+				titleSrc: function(item) {
+					return item.el.attr('title');
+				}
+			}
+		});
+	});
 	
 	$(".wrapper").css("height", window.innerHeight - 130);
 	
@@ -295,11 +336,20 @@ $(document).ready(function () {
 							
 				            <br/>
 				             <c:forEach items="${files}" var="file">
-				             	<c:if test="${file.fileType eq '1'}">								
-									<img width="560" height="315" src="/resource/img/${file.fileName}"/>
+				             
+				             	<c:if test="${file.fileType eq '1'}">	
+				             	<div class="popup-gallery">
+					             	<a class="image-popup-fit-width" href="/resource/img/${file.fileName}">
+										<img src="/resource/img/${file.fileName}" width="50%">
+									</a>
+									<!-- 여기에 이미지 추가하면댐 -->
+								</div>
+									
 								</c:if>
 								<c:if test="${file.fileType eq '2'}">
-									<iframe width="560" height="315" src="${file.fileName}" ></iframe>
+									<a class="popup-youtube" href="${file.fileName}">
+										<iframe width="560" height="315" src="${file.fileName}" ></iframe>
+									</a>
 								</c:if>
 							</c:forEach>
 

@@ -62,6 +62,9 @@ public interface ActionCode {
 	public static final String DO_REPLY_LIKE = "D_RPY_L";
 	public static final String DO_REPLY_DISLIKE = "D_RPY_DL";
 	
+	public static final String SEARCH_TITLE = "SH_T";
+	public static final String SEARCH_DESC = "SH_D";
+	
 	
 	
 	

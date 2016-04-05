@@ -127,6 +127,40 @@ public class ArticleDAO {
 		}
 	}
 	
+	public int getAllArticleCount(String startDate, String endDate) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int articleCount = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/article/getAllArticleCount/text()");
+			stmt = conn.prepareStatement(query);
+			// 물음표에 값 넣기 - 파라미터 매핑 (SQL Parameter Mapping)
+			// 결과 받아오기
+			stmt.setString(1, startDate);
+			stmt.setString(2, endDate);
+			rs = stmt.executeQuery();
+			rs.next();
+			articleCount = rs.getInt(1);
+			
+			return articleCount;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+
+
 
 	public int getAllClaimReplyCount() {
 		loadOracleDriver();
@@ -158,6 +192,62 @@ public class ArticleDAO {
 		}
 	}
 	
+
+	public List<ArticleVO> getAllArticle(String startDate,String endDate, ArticleSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/getAllArticle/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, startDate);
+			stmt.setString(2, endDate);
+			stmt.setString(3, endDate);
+			stmt.setInt(4, searchVO.getEndIndex());
+			stmt.setInt(5, searchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<ArticleVO> articles = new ArrayList<ArticleVO>();
+			ArticleVO articleVO = null;
+			
+			while ( rs.next() ) {
+				
+				articleVO = new ArticleVO();
+				articleVO.setArticleId(rs.getInt("ARTICLE_ID"));
+				articleVO.setArticleTitle(rs.getString("ARTICLE_TITLE"));
+				articleVO.setArticleDesc(rs.getString("ARTICLE_DESC"));
+				articleVO.setArticleRegisterDate(rs.getString("ARTICLE_REGISTER_DATE"));
+				articleVO.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				articleVO.setArticleTypeId(rs.getInt("ARTICLE_TYPE_ID"));
+				articleVO.setEmail(rs.getString("EMAIL"));
+				articleVO.setBoardId(rs.getInt("BOARD_ID"));
+				articleVO.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				articleVO.setUnivId(rs.getInt("UNIV_ID"));
+				articleVO.setHits(rs.getInt("HITS"));
+				articleVO.setArticleLikes(rs.getInt("ARTICLE_LIKES"));
+				articleVO.setArticleDislike(rs.getInt("ARTICLE_DISLIKES"));
+				articleVO.setArticleScrab(rs.getInt("ARTICLE_SCRAB"));
+				articleVO.setStartDate(startDate);
+				articleVO.setEndDate(endDate);
+				
+				articles.add(articleVO);
+			}
+
+			return articles;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
 
 	public List<ClaimArticleVO> getAllClaimArticle(ArticleSearchVO searchVO) {
 
@@ -386,7 +476,6 @@ public class ArticleDAO {
 			catch ( SQLException e ) {}
 		}
 	}
-
 
 
 

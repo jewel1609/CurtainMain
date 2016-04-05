@@ -72,7 +72,8 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		String boardId = multipartRequest.getParameter("boardId");
 		MultipartFile file = multipartRequest.getFile("imgFile");
 		String movieUrl = multipartRequest.getParameter("movieUrl");
-		
+
+		System.out.println("========게시=:" + articleTypeId);
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		

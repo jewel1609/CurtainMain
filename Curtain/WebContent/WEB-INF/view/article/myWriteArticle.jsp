@@ -242,6 +242,12 @@
 	<div class="w3-row">
 		<div class="w3-col m7 w3-main wrapper"
 			style="margin-left: 350px; margin-right: 100px; overflow: auto;">
+			
+			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
+		      	<div class="w3-margin-4" style="float:left;">
+		      		<h2>내가 쓴 게시글/댓글</h2>
+		      	</div>
+	      	</div>
 
 			<c:forEach items="${ myWriteArticle }" var="article">
             <input type="hidden" class="majorName" value="${article.majorName}"/>

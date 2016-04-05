@@ -6,23 +6,23 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		
-		$("#registerNewUniv").hide();
+		$("#registerNewMajorGroup").hide();
 		
 		$("#insertBtn").click(function () {
 			
-			$("#registerNewUniv").slideToggle();
+			$("#registerNewMajorGroup").slideToggle();
 		});
 		
-		$("#insertUnivBtn").click(function() {
+		$("#insertMajorGroupBtn").click(function() {
 			
-			if($("#newUniv").val == "" ) {
-				alert("등록할 대학명을 입력하세요.")
+			if($("#newMajorGroup").val == "" ) {
+				alert("등록할 학과 그룹을 입력하세요.")
 				return;
 			}
 			
-				var form = $("#registerNewUnivForm");
+				var form = $("#registerNewMajorGroupForm");
 				form.attr("method", "post");
-				form.attr("action", "<c:url value="/registerNewUniv" />");
+				form.attr("action", "<c:url value="/registerNewMajorGroup" />");
 				form.submit();
 
 		});
@@ -44,12 +44,12 @@
 		$("#massiveSelectCheckBox").click(function () {
 			// 여러가지 경우를 가져오기 위해서 prop를 사용한다.
 			var isChecked = $(this).prop("checked");
-			$(".univId").prop("checked", isChecked);
+			$(".majorGroupId").prop("checked", isChecked);
 		});
 		
 		$("#massiveDeleteBtn").click(function() {
 			var isChecked = false;
-			$(".univId").each(function (index, data) {
+			$(".majorGroupId").each(function (index, data) {
 				if(data.checked){
 					isChecked = data.checked;
 				}
@@ -63,7 +63,7 @@
 			if (confirm("정말 삭제하시겠습니까?")) {
 				var form = $("#massiveForm");
 				form.attr("method", "post");
-				form.attr("action", "<c:url value="/massiveUnivDelete" />");
+				form.attr("action", "<c:url value="/massiveMajorGroupDelete" />");
 				form.submit();
 			}
 		});
@@ -73,14 +73,14 @@
 			var root = $(this).parent().children(":eq(0)");
 			
 			if ( root.val() == "" ) {
-				alert("대학명을 입력하세요.");
+				alert("학과 그룹을 입력하세요.");
 				return;
 			}
 			
 			$.post(		
-				"/updateUnivName"
+				"/updateMajorGroupName"
 				, { "updateText" : root.val()
-					, "univId" : $(this).attr("id")
+					, "majorGroupId" : $(this).attr("id")
 				}
 				, function(data) {
 					var jsonData = {};		
@@ -92,11 +92,11 @@
 						jsonData.result = false;
 					}
 					if(jsonData.result){
-						var univId = jsonData.univId;
-						var result2 = "#univ" + univId;
-						var updateUnivName = jsonData.updateUnivName;
-						URLEncoder.encode(updateUnivName , "UTF-8");
-						$(result2).val(updateUnivName);
+						var majorGroupId = jsonData.majorGroupId;
+						var result2 = "#majorGroup" + majorGroupId;
+						var updateMajorGroupName = jsonData.updateMajorGroupName;
+						URLEncoder.encode(updateMajorGroupName , "UTF-8");
+						$(result2).val(updateMajorGroupName);
 					}
 					else{
 						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
@@ -109,7 +109,7 @@
 	});
 </script>
 <div class="container">
-  <h2>대학리스트</h2>
+  <h2>학과 그룹 리스트</h2>
   <p>자유롭게 이용하세요</p>
   <table class="table">
     <thead>
@@ -117,8 +117,8 @@
       	<td style="width: 15px">
 			<input type="checkbox" id="massiveSelectCheckBox" />
 		</td>
-        <th>대학번호</th>
-        <th>대학명</th>
+        <th>학과그룹번호</th>
+        <th>학과그룹명</th>
       </tr>
     </thead>
     
@@ -131,17 +131,19 @@
 						<input class="majorGroupId" name="majorGroupId" value="${major.majorGroupId}" type="checkbox"/>
 					</td>
 			        <td><a href="/detailMajor?majorGroupId=${major.majorGroupId}">${major.majorGroupId}</a></td>  
-			        <td>${major.majorGroupName}</td>
+			         <td><input type="text" id ="majorGroup${major.majorGroupId}" value="${major.majorGroupName}"/>
+			        	<span class ="updateBtn" id ="${major.majorGroupId}">수정</span>
+			        </td>
 			      </tr>
 			    
 	    	</c:forEach> 
     	</form>
     
-    	<tr id="registerNewUniv">
+    	<tr id="registerNewMajorGroup">
     		<td colspan=3 >
-    		<form id = "registerNewUnivForm">
-    			대학명 : <input type="text" id ="newUniv" name="newUniv"/>
-    			<span class ="insertUnivBtn" id ="insertUnivBtn">등록</span>
+    		<form id = "registerNewMajorGroupForm">
+    			학과 그룹명 : <input type="text" id ="newMajorGroup" name="newMajorGroup"/>
+    			<span class ="insertMajorGroupBtn" id ="insertMajorGroupBtn">등록</span>
     		</form>
     		</td>
     	</tr>

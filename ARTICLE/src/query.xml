@@ -13,6 +13,63 @@
 		</insertProhibitedWord>
 	</prohibitedWord>
 	<major>
+		<deleteMajors2>
+			DELETE
+			FROM	MAJOR
+			WHERE	MAJOR_ID = ?
+		</deleteMajors2>
+		<updateMajorName>
+			UPDATE	MAJOR
+			SET		MAJOR_NAME = ?
+			WHERE	MAJOR_ID = ?
+		</updateMajorName>
+		<getMajorName>
+			SELECT	MAJOR_NAME
+			FROM	MAJOR
+			WHERE 	MAJOR_ID = ?
+		</getMajorName>
+		<registerMajor>
+			INSERT INTO		MAJOR		(
+  													 MAJOR_ID
+  													 , MAJOR_NAME
+  													 , MAJOR_GROUP_ID
+  										) 
+			VALUES 						( 		
+													 MAJOR_ID_SEQ.NEXTVAL
+													, ?
+													, ?
+										)
+		</registerMajor>
+		<deleteMajors>
+			DELETE
+			FROM	MAJOR
+			WHERE	MAJOR_GROUP_ID = ?
+		</deleteMajors>
+		<deleteMajorGroups>
+			DELETE
+			FROM	MAJOR_GROUP
+			WHERE	MAJOR_GROUP_ID = ?
+		</deleteMajorGroups>
+		<getMajorGroupName>
+			SELECT	MAJOR_GROUP_NAME
+			FROM	MAJOR_GROUP
+			WHERE	MAJOR_GROUP_ID = ?
+		</getMajorGroupName>
+		<updateMajorGroupName>
+			UPDATE	MAJOR_GROUP
+			SET		MAJOR_GROUP_NAME = ?
+			WHERE	MAJOR_GROUP_ID = ?
+		</updateMajorGroupName>
+		<registerMajorGroup>
+			INSERT INTO		MAJOR_GROUP (
+  													 MAJOR_GROUP_ID
+  													 , MAJOR_GROUP_NAME
+  										) 
+			VALUES 						( 		
+													 MAJOR_GROUP_ID.NEXTVAL
+													, ?
+										)
+		</registerMajorGroup>
 		<getAllMajorCount>
 			SELECT	COUNT(MAJOR_ID)
 			FROM	MAJOR
@@ -26,6 +83,7 @@
 						FROM	(
 										SELECT	MAJOR_ID
 												, MAJOR_NAME
+												, MAJOR_GROUP_ID
 										FROM	MAJOR
 										WHERE	MAJOR_GROUP_ID = ?
 										ORDER	BY MAJOR_ID DESC

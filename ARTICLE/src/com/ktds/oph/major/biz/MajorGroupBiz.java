@@ -9,6 +9,7 @@ import com.ktds.oph.major.vo.MajorGroupSearchVO;
 import com.ktds.oph.major.vo.MajorGroupVO;
 import com.ktds.oph.major.vo.MajorListVO;
 import com.ktds.oph.major.vo.MajorVO;
+import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.univ.vo.UnivListVO;
 import com.ktds.oph.util.web.Paging;
 
@@ -63,6 +64,75 @@ public class MajorGroupBiz {
 		
 		// 몇 번째 페이지
 		return majorList;
+	}
+
+	public boolean registerMajorGroup(MajorGroupVO majorGroupVO, MemberVO member) {
+		int insertCount = 0;
+		
+		if (member.getMemberTypeId() == 6 ) {
+			insertCount = majorGroupDAO.registerMajorGroup(majorGroupVO);
+		}
+		return insertCount > 0;
+	}
+
+	public boolean updateMajorGroupName(MajorGroupVO majorGroupVO, MemberVO member) {
+		if (member.getMemberTypeId() == 6 ) {
+
+			String majorGroupName = majorGroupDAO.getMajorGroupName(majorGroupVO);
+			if (majorGroupName.equals(majorGroupVO.getMajorGroupName())) {
+				return false;
+				
+			}
+			else {
+				return majorGroupDAO.updateMajorGroupName(majorGroupVO) > 0;
+			}
+
+		}
+		return false;
+	}
+
+	public void deleteMajorGroups(String[] majorGroupIds, MemberVO member) {
+		if (member.getMemberTypeId() == 6 ) {
+			for (String majorGroupId : majorGroupIds) {
+				majorGroupDAO.deleteMajorGroups(Integer.parseInt(majorGroupId));
+				majorGroupDAO.deleteMajors(Integer.parseInt(majorGroupId));
+			}
+		}
+
+	}
+
+	public boolean registerMajor(MajorVO majorVO, MemberVO member) {
+		int insertCount = 0;
+		
+		if (member.getMemberTypeId() == 6 ) {
+			insertCount = majorGroupDAO.registerMajor(majorVO);
+		}
+		return insertCount > 0;
+	}
+
+	public boolean updateMajorName(MajorVO majorVO, MemberVO member) {
+		if (member.getMemberTypeId() == 6 ) {
+
+			String majorName = majorGroupDAO.getMajorName(majorVO);
+			if (majorName.equals(majorVO.getMajorName())) {
+				return false;
+				
+			}
+			else {
+				return majorGroupDAO.updateMajorName(majorVO) > 0;
+			}
+
+		}
+		return false;
+	}
+
+	public void deleteMajors(String[] majorIds, MemberVO member) {
+		if (member.getMemberTypeId() == 6 ) {
+			for (String majorId : majorIds) {
+				majorGroupDAO.deleteMajors2(Integer.parseInt(majorId));
+			}
+		}
+		
 	}
 
 }

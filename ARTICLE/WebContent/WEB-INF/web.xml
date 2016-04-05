@@ -387,6 +387,68 @@
     <servlet-name>SurveyMassiveDeleteServlet</servlet-name>
     <url-pattern>/surveyMassiveDelete</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>RegisterNewMajorGroupServlet</display-name>
+    <servlet-name>RegisterNewMajorGroupServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.RegisterNewMajorGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterNewMajorGroupServlet</servlet-name>
+    <url-pattern>/registerNewMajorGroup</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateMajorGroupNameServlet</display-name>
+    <servlet-name>UpdateMajorGroupNameServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.UpdateMajorGroupNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateMajorGroupNameServlet</servlet-name>
+    <url-pattern>/updateMajorGroupName</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MassiveMajorGroupDeleteServlet</display-name>
+    <servlet-name>MassiveMajorGroupDeleteServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.MassiveMajorGroupDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MassiveMajorGroupDeleteServlet</servlet-name>
+    <url-pattern>/massiveMajorGroupDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterNewMajorServlet</display-name>
+    <servlet-name>RegisterNewMajorServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.RegisterNewMajorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterNewMajorServlet</servlet-name>
+    <url-pattern>/registerNewMajor</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateMajorNameServlet</display-name>
+    <servlet-name>UpdateMajorNameServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.UpdateMajorNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateMajorNameServlet</servlet-name>
+    <url-pattern>/updateMajorName</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MassiveMajorDeleteServlet</display-name>
+    <servlet-name>MassiveMajorDeleteServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.MassiveMajorDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MassiveMajorDeleteServlet</servlet-name>
+    <url-pattern>/massiveMajorDelete</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>ArticleTypeListServlet</display-name>
@@ -417,4 +479,5 @@
     <servlet-name>DoInsertProhibitedWordServlet</servlet-name>
     <url-pattern>/doInsertProhibitedWord</url-pattern>
   </servlet-mapping>
+
 </web-app>

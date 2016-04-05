@@ -138,6 +138,7 @@ public class MajorGroupDAO {
 				major = new MajorVO();
 				major.setMajorId(rs.getInt("MAJOR_ID"));
 				major.setMajorName(rs.getString("MAJOR_NAME"));
+				major.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
 				majors.add(major);
 			}
 			return majors;
@@ -149,6 +150,218 @@ public class MajorGroupDAO {
 		finally {
 			closeDB(conn, stmt, rs);
 		}
+	}
+	
+	public int registerMajorGroup(MajorGroupVO majorGroupVO) {
+		this.loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/major/registerMajorGroup/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, majorGroupVO.getMajorGroupName());
+			return stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+	}
+
+
+	public String getMajorGroupName(MajorGroupVO majorGroupVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/major/getMajorGroupName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorGroupVO.getMajorGroupId());
+			rs = stmt.executeQuery();
+
+			rs.next();
+			return rs.getString(1);
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+
+	public int updateMajorGroupName(MajorGroupVO majorGroupVO) {
+		this.loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/major/updateMajorGroupName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, majorGroupVO.getMajorGroupName());
+			stmt.setInt(2,majorGroupVO.getMajorGroupId());
+			return stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+	}
+	
+
+	public void deleteMajorGroups(int majorGroupId) {
+		this.loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/major/deleteMajorGroups/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorGroupId);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+		
+	}
+
+
+	public void deleteMajors(int majorGroupId) {
+		this.loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/major/deleteMajors/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorGroupId);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+	}
+
+
+	public int registerMajor(MajorVO majorVO) {
+		this.loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/major/registerMajor/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, majorVO.getMajorName());
+			stmt.setInt(2, majorVO.getMajorGroupId());
+			return stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+	}
+
+
+	public String getMajorName(MajorVO majorVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/major/getMajorName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorVO.getMajorId());
+			rs = stmt.executeQuery();
+
+			rs.next();
+			return rs.getString(1);
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+
+	public int updateMajorName(MajorVO majorVO) {
+		this.loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/major/updateMajorName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, majorVO.getMajorName());
+			stmt.setInt(2,majorVO.getMajorId());
+			return stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+	}
+
+
+	public void deleteMajors2(int majorId) {
+		this.loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/major/deleteMajors2/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorId);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+		
 	}
 
 	
@@ -193,7 +406,6 @@ public class MajorGroupDAO {
 			catch ( SQLException e ) {}
 		}
 	}
-
 
 
 

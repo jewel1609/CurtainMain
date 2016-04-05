@@ -359,7 +359,6 @@
 		
 		<c:if test="${voteCheck ne null}">
 		<form id="surveyResultForm">
-			결과보기
 			<c:if test="${ survey.firstAnswer ne null }">
 				<div class="progress">
 		    		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${first}%">

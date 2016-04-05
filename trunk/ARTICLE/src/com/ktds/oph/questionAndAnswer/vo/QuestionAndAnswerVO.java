@@ -1,7 +1,5 @@
 package com.ktds.oph.questionAndAnswer.vo;
 
-import com.ktds.oph.member.vo.MemberVO;
-
 public class QuestionAndAnswerVO {
 
 	private int questionId;

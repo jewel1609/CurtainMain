@@ -49,9 +49,10 @@ public class SuccessLoginServlet extends HttpServlet {
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();
 		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(memberVO.getEmail());
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.ADMIN_HOME);
-		historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_HOME, request.getRemoteHost()));
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_HOME, memberVO.getEmail()));
 		
 		historyBiz.addHistory(historyVO);
 		

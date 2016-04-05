@@ -45,6 +45,7 @@ public class ShowQuestionServlet extends HttpServlet {
 		int pageNo = 0;
 		
 		QuestionAndAnswerSearchVO searchVO = new QuestionAndAnswerSearchVO();
+		session  = request.getSession();
 		
 		try {
 			pageNo = Integer.parseInt(request.getParameter("pageNo"));
@@ -67,6 +68,7 @@ public class ShowQuestionServlet extends HttpServlet {
 		QuestionAndAnswerListVO questionList = questionAndAnswerBiz.getQuestionList(searchVO, member);
 		
 		request.setAttribute("questionList", questionList);
+		request.setAttribute("searchVO", searchVO);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/questionAndAnswer/questionAndAnswer.jsp");
 		rd.forward(request, response);

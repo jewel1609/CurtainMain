@@ -19,13 +19,13 @@ import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerVO;
 /**
  * Servlet implementation class QuestionAndAnswerServlet
  */
-public class QuestionAndAnswerServlet extends HttpServlet {
+public class ShowQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private QuestionAndAnswerBiz questionAndAnswerBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionAndAnswerServlet() {
+    public ShowQuestionServlet() {
         super();
         questionAndAnswerBiz = new QuestionAndAnswerBiz();
     }

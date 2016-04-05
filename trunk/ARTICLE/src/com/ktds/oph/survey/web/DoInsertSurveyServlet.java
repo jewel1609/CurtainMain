@@ -54,7 +54,7 @@ public class DoInsertSurveyServlet extends HttpServlet {
 		
 		surveyBiz.insertSurvey(surveyTitle,surveyAnswer1,surveyAnswer2,surveyAnswer3,surveyAnswer4,surveyDate, member);
 		
-		response.sendRedirect(Root.get(this) + "/insertSurvey");
+		response.sendRedirect(Root.get(this) + "/surveyList");
 		
 	}
 

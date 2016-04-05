@@ -2,9 +2,6 @@ package com.ktds.oph.questionAndAnswer.biz;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.questionAndAnswer.dao.QuestionAndAnswerDAO;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerListVO;
@@ -71,6 +68,10 @@ public class QuestionAndAnswerBiz {
 		return question;
 	}
 
-
+	public void addNewAnswer(QuestionAndAnswerVO questionAndAnswerVO, MemberVO member) {
+		if(member.getMemberTypeId() == 6) {
+			questionAndAnswerDAO.addNewAnswer(questionAndAnswerVO);
+		}
+	}
 
 }

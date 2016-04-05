@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.dao.ArticleDAO;
 import com.ktds.curtain.article.vo.ArticleSearchVO;
@@ -17,6 +18,11 @@ import com.ktds.curtain.articleScrab.dao.ScrabDAO;
 import com.ktds.curtain.articleScrab.vo.ArticleScrabVO;
 import com.ktds.curtain.file.dao.FileDAO;
 import com.ktds.curtain.file.vo.FileVO;
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.keyword.biz.KeywordBiz;
 import com.ktds.curtain.member.biz.MemberBiz;
 import com.ktds.curtain.member.vo.MemberVO;
@@ -42,6 +48,7 @@ public class ArticleBiz {
 	private ReplyDislikeDAO replyDislikeDAO;
 	
 	private KeywordBiz keywordBiz;
+	private OperationHistoryBiz historyBiz;
 	
 	public ArticleBiz() {
 		articleDAO = new ArticleDAO();
@@ -58,6 +65,7 @@ public class ArticleBiz {
 		replyDislikeDAO = new ReplyDislikeDAO();
 		
 		keywordBiz = new KeywordBiz();
+		historyBiz = new OperationHistoryBiz();
 
 	}
 	
@@ -67,16 +75,40 @@ public class ArticleBiz {
 	 * @return
 	 */
 
-	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId, ArticleSearchVO searchVO){
-
+	public List<ArticleVO> showMajorArticle(MemberVO stdMember, String boardId, ArticleSearchVO searchVO, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
+		
 		articles = new ArrayList<ArticleVO>();
 		if ( searchVO.getSearchType().equals("1")) {
+		
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.SEARCH_TITLE);
+			historyVO.setDescription( BuildDescription.get(Description.SEARCH_TITLE, member.getNickName()) );
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_SEARCH_TITLE, searchVO.getSearchKeyword()));
+			
+			historyBiz.addHistory(historyVO);
 			
 			articles = articleDAO.showMajorArticleByTitle(stdMember, searchVO);
 			getReplyCount(articles);
 
 		}
 		else if (searchVO.getSearchType().equals("2")) {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.SEARCH_DESC);
+			historyVO.setDescription( BuildDescription.get(Description.SEARCH_DESC, member.getNickName()) );
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_SEARCH_DESC, searchVO.getSearchKeyword()));
+			
+			historyBiz.addHistory(historyVO);
+			
 			articles = articleDAO.showMajorArticleByDesc(stdMember, searchVO);
 			getReplyCount(articles);
 			

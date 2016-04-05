@@ -70,8 +70,8 @@ public interface Description {
 	public static final String DO_REPLY_LIKE = "[%s] 님이 [%s]번 댓글을 좋아합니다.";
 	public static final String DO_REPLY_DISLIKE = "[%s] 님이 [%s]번 댓글을 싫어합니다.";
 	
-	public static final String SEARCH_TITLE = "[%s] 님이 '제목'으로 검색을 시도했습니다..";
-	public static final String SEARCH_DESC = "[%s] 님이 '내용'으로 검색을 시도했습니다.";
+	public static final String SEARCH_TITLE = "[%s] 님이 제목 탭으로 검색을 시도했습니다..";
+	public static final String SEARCH_DESC = "[%s] 님이 내용 탭으로 검색을 시도했습니다.";
 	
 			
 	public static final String LIST = "[%s]님이 목록보기 페이지에 접근했습니다.";
@@ -98,8 +98,8 @@ public interface Description {
 	
 	public static final String DETAIL_DO_REPLY = "댓글 내용 : [%s]";
 	
-	public static final String DETAIL_SEARCH_TITLE = "검색(제목) : [%s] ";
-	public static final String DETAIL_SEARCH_DESC = "검색(내용) : [%s] ";
+	public static final String DETAIL_SEARCH_TITLE = "검색 내용 : [%s] ";
+	public static final String DETAIL_SEARCH_DESC = "검색 내용 : [%s] ";
 	
 	
 }

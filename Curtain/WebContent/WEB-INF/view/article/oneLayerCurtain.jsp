@@ -206,7 +206,7 @@
 		
 		
 
-		$("#doWrite").click(function() {
+		$("#writeBtn").click(function() {
 		
 			 if( $("#articleTitle").val() == ""){
 				alert("제목을 입력하세요!");

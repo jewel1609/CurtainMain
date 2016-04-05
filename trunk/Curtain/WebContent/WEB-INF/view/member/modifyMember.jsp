@@ -57,12 +57,35 @@
 		
 		$("#modifyMemberBtn").click( function () {
 			
+			var userNickName = $("#userNickName").val();
+			
 			if ( confirm("수정 하시겠습니까?") == true ) {
-				var form = $("#modifyMember");
-				alert("##안내##\n\n회원정보를 수정 했습니다..");
-				form.attr("method", "post");
-				form.attr("action","/modifyMemberInfo");
-				form.submit();
+				
+				$.post(
+						"/duplicationCheckNickName"
+						, { "userNickName" : userNickName }
+						, function(data) {
+							
+							try{
+								jsonData3 = JSON.parse(data);
+							}
+							catch(e) { //자바스크립트는 타입이 없기때문에 e만 적으면 된다.
+							}
+							
+							if(jsonData3.isCheckId) {
+								alert("이미 존재하는 닉네임입니다.");
+								$("#userNickName").val("");
+								return;
+							}
+							else {
+								var form = $("#modifyMember");
+								alert("##안내##\n\n회원정보를 수정 했습니다..");
+								form.attr("method", "post");
+								form.attr("action","/modifyMemberInfo");
+								form.submit();
+							}
+						  }
+						);
 			}
 			else {
 				return;

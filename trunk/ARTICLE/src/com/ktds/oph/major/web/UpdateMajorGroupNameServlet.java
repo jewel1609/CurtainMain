@@ -1,4 +1,4 @@
-package com.ktds.oph.univ.web;
+package com.ktds.oph.major.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,24 +9,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.oph.major.biz.MajorGroupBiz;
+import com.ktds.oph.major.vo.MajorGroupVO;
 import com.ktds.oph.member.vo.MemberVO;
-import com.ktds.oph.univ.biz.UnivBiz;
 import com.ktds.oph.univ.vo.UnivVO;
-import com.ktds.oph.util.Root;
 
 /**
- * Servlet implementation class UpdateUnivNameServlet
+ * Servlet implementation class UpdateMajorGroupNameServlet
  */
-public class UpdateUnivNameServlet extends HttpServlet {
+public class UpdateMajorGroupNameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UnivBiz univBiz;
+	private MajorGroupBiz majorGroupBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateUnivNameServlet() {
+    public UpdateMajorGroupNameServlet() {
         super();
-        univBiz = new UnivBiz();
+        majorGroupBiz = new MajorGroupBiz();
     }
 
 	/**
@@ -40,25 +40,25 @@ public class UpdateUnivNameServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String updateUnivName = request.getParameter("updateText");
-		int univId = Integer.parseInt(request.getParameter("univId"));
+		String updateMajorGroupName = request.getParameter("updateText");
+		int majorGroupId = Integer.parseInt(request.getParameter("majorGroupId"));
 		
-		UnivVO univVO = new UnivVO();
-		univVO.setUnivId(univId);
-		univVO.setUnivName(updateUnivName);
+		MajorGroupVO majorGroupVO = new MajorGroupVO();
+		majorGroupVO.setMajorGroupId(majorGroupId);
+		majorGroupVO.setMajorGroupName(updateMajorGroupName);
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		boolean updateName = univBiz.updateUnivName(univVO, member);
+		boolean updateName = majorGroupBiz.updateMajorGroupName(majorGroupVO, member);
 		
 // json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");
-		json.append(", \"updateUnivName\" : \""+ updateUnivName +"\"");
+		json.append(", \"updateMajorGroupName\" : \""+ updateMajorGroupName +"\"");
 		json.append(", \"updateName\" :" + updateName);
-		json.append(", \"univId\" : "+ univId);
+		json.append(", \"majorGroupId\" : "+ majorGroupId);
 		json.append("}");
 
 		PrintWriter out = response.getWriter();
@@ -66,6 +66,7 @@ public class UpdateUnivNameServlet extends HttpServlet {
 		System.out.println(json.toString());
 		out.flush();
 		out.close();
+	
 	}
 
 }

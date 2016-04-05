@@ -6,23 +6,25 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		
-		$("#registerNewUniv").hide();
+		$("#registerNewMajor").hide();
 		
 		$("#insertBtn").click(function () {
 			
-			$("#registerNewUniv").slideToggle();
+			$("#registerNewMajor").slideToggle();
 		});
 		
-		$("#insertUnivBtn").click(function() {
+		$("#insertMajorBtn").click(function() {
 			
-			if($("#newUniv").val == "" ) {
-				alert("등록할 대학명을 입력하세요.")
+			if($("#newMajor").val == "" ) {
+				alert("등록할 학과명을 입력하세요.")
 				return;
 			}
-			
-				var form = $("#registerNewUnivForm");
+				var majorGroupId = $(".majorGroupId").val();
+				$(".majorGroupId1").val(majorGroupId);
+				
+				var form = $("#registerNewMajorForm");
 				form.attr("method", "post");
-				form.attr("action", "<c:url value="/registerNewUniv" />");
+				form.attr("action", "<c:url value="/registerNewMajor" />");
 				form.submit();
 
 		});
@@ -44,12 +46,12 @@
 		$("#massiveSelectCheckBox").click(function () {
 			// 여러가지 경우를 가져오기 위해서 prop를 사용한다.
 			var isChecked = $(this).prop("checked");
-			$(".univId").prop("checked", isChecked);
+			$(".majorId").prop("checked", isChecked);
 		});
 		
 		$("#massiveDeleteBtn").click(function() {
 			var isChecked = false;
-			$(".univId").each(function (index, data) {
+			$(".majorId").each(function (index, data) {
 				if(data.checked){
 					isChecked = data.checked;
 				}
@@ -63,7 +65,7 @@
 			if (confirm("정말 삭제하시겠습니까?")) {
 				var form = $("#massiveForm");
 				form.attr("method", "post");
-				form.attr("action", "<c:url value="/massiveUnivDelete" />");
+				form.attr("action", "<c:url value="/massiveMajorDelete" />");
 				form.submit();
 			}
 		});
@@ -73,14 +75,14 @@
 			var root = $(this).parent().children(":eq(0)");
 			
 			if ( root.val() == "" ) {
-				alert("대학명을 입력하세요.");
+				alert("학과명을 입력하세요.");
 				return;
 			}
 			
 			$.post(		
-				"/updateUnivName"
+				"/updateMajorName"
 				, { "updateText" : root.val()
-					, "univId" : $(this).attr("id")
+					, "majorId" : $(this).attr("id")
 				}
 				, function(data) {
 					var jsonData = {};		
@@ -92,11 +94,11 @@
 						jsonData.result = false;
 					}
 					if(jsonData.result){
-						var univId = jsonData.univId;
-						var result2 = "#univ" + univId;
-						var updateUnivName = jsonData.updateUnivName;
-						URLEncoder.encode(updateUnivName , "UTF-8");
-						$(result2).val(updateUnivName);
+						var majorId = jsonData.majorId;
+						var result2 = "#major" + majorId;
+						var updateMajorName = jsonData.updateMajorName;
+						URLEncoder.encode(updateMajorName , "UTF-8");
+						$(result2).val(updateMajorName);
 					}
 					else{
 						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
@@ -128,20 +130,24 @@
 			      
 			      <tr>
 			     	 <td>
-						<input class="majorGroupId" name="majorGroupId" value="${major.majorId}" type="checkbox"/>
+						<input class="majorId" name="majorId" value="${major.majorId}" type="checkbox"/>
 					</td>
 			        <td>${major.majorId}</td>  
-			        <td>${major.majorName}</td>
+			        <td><input type="text" id ="major${major.majorId}" value="${major.majorName}"/>
+			        	<span class ="updateBtn" id ="${major.majorId}">수정</span>
+			        </td>
+    				<td><input type="hidden" class="majorGroupId" name="majorGroupId" value="${major.majorGroupId}"/></td>
 			      </tr>
 			    
 	    	</c:forEach> 
     	</form>
     
-    	<tr id="registerNewUniv">
+    	<tr id="registerNewMajor">
     		<td colspan=3 >
-    		<form id = "registerNewUnivForm">
-    			대학명 : <input type="text" id ="newUniv" name="newUniv"/>
-    			<span class ="insertUnivBtn" id ="insertUnivBtn">등록</span>
+    		<form id = "registerNewMajorForm">
+    		<input type="hidden" class="majorGroupId1" name="majorGroupId1" value=""/>
+    			학과명 : <input type="text" id ="newMajor" name="newMajor"/>
+    			<span class ="insertMajorBtn" id ="insertMajorBtn">등록</span>
     		</form>
     		</td>
     	</tr>
@@ -177,7 +183,7 @@
 					</div>
 				</form>
 				<span id="massiveDeleteBtn" style="cursor: pointer;">일괄삭제</span>
-				<span id="insertBtn" style="cursor: pointer;">학과그룹등록</span>
+				<span id="insertBtn" style="cursor: pointer;">학과등록</span>
 			</td>
 		</tr>
     </tbody>

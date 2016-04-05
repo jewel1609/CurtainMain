@@ -1,4 +1,4 @@
-package com.ktds.oph.univ.web;
+package com.ktds.oph.major.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,24 +9,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.oph.major.biz.MajorGroupBiz;
+import com.ktds.oph.major.vo.MajorVO;
 import com.ktds.oph.member.vo.MemberVO;
-import com.ktds.oph.univ.biz.UnivBiz;
-import com.ktds.oph.univ.vo.UnivVO;
-import com.ktds.oph.util.Root;
 
 /**
- * Servlet implementation class UpdateUnivNameServlet
+ * Servlet implementation class UpdateMajorNameServlet
  */
-public class UpdateUnivNameServlet extends HttpServlet {
+public class UpdateMajorNameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UnivBiz univBiz;
+	private MajorGroupBiz majorGroupBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateUnivNameServlet() {
+    public UpdateMajorNameServlet() {
         super();
-        univBiz = new UnivBiz();
+        majorGroupBiz = new MajorGroupBiz();
     }
 
 	/**
@@ -40,25 +39,25 @@ public class UpdateUnivNameServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String updateUnivName = request.getParameter("updateText");
-		int univId = Integer.parseInt(request.getParameter("univId"));
+		String updateMajorName = request.getParameter("updateText");
+		int majorId = Integer.parseInt(request.getParameter("majorId"));
 		
-		UnivVO univVO = new UnivVO();
-		univVO.setUnivId(univId);
-		univVO.setUnivName(updateUnivName);
+		MajorVO majorVO = new MajorVO();
+		majorVO.setMajorId(majorId);
+		majorVO.setMajorName(updateMajorName);
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		boolean updateName = univBiz.updateUnivName(univVO, member);
+		boolean updateName = majorGroupBiz.updateMajorName(majorVO, member);
 		
 // json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");
-		json.append(", \"updateUnivName\" : \""+ updateUnivName +"\"");
+		json.append(", \"updateMajorName\" : \""+ updateMajorName +"\"");
 		json.append(", \"updateName\" :" + updateName);
-		json.append(", \"univId\" : "+ univId);
+		json.append(", \"majorId\" : "+ majorId);
 		json.append("}");
 
 		PrintWriter out = response.getWriter();

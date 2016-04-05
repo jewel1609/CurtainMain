@@ -751,10 +751,11 @@
 		AND     M.EMAIL = A.EMAIL   
 		AND     HITS = ( SELECT MAX(HITS)
 		                    FROM ARTICLE
-		                    WHERE BOARD_ID = ?
+		                    WHERE BOARD_ID = ? 
 		                    AND MAJOR_GROUP_ID = ?
 		                )
 		AND     A.MAJOR_GROUP_ID = ?
+		AND     BOARD_ID = ?
 		</showTopMajorArticle>
 		<showTopUnivArticle>
 		SELECT 			ARTICLE_ID

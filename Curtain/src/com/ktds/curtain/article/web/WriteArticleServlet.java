@@ -60,7 +60,7 @@ public class WriteArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// mutilpartHttpServletResquest 선언
-			System.out.println("넘어오니");
+				System.out.println("넘어오니");
 				MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
 				
 				String articleTitle = multipartRequest.getParameter("articleTitle");
@@ -77,6 +77,7 @@ public class WriteArticleServlet extends HttpServlet {
 				
 				HttpSession session = request.getSession();
 				MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
+				System.out.println(stdMember.getMajorGroupId());
 				
 				List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
 

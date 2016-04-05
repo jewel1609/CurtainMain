@@ -56,6 +56,7 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
 
 		String articleTitle = multipartRequest.getParameter("articleTitle");
@@ -67,14 +68,13 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 		File upImgFile = imgFile.write("D:\\" + imgFile.getFileName());
 
 		String movieUrl = multipartRequest.getParameter("movieUrl");
-
+		
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		
 		if(memberBiz.getPointbyEmail(loginMember) > 100){
 			
-		
 		List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
 
 		for (int i = 0; i < wordList.size(); i++) {
@@ -139,6 +139,7 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 
 			response.sendRedirect("/promotionArticle");
 			return;
+			
 		} else {
 			System.out.println("articleId 가져오지 못함 - 등록 실패");
 		}

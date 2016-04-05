@@ -278,8 +278,6 @@
 	<div class="w3-container w3-main wrapper" style="margin-top:0px;">
 	
 		<c:set var="oneLayerCurtainMemberCount" value="${ sessionScope._MEMBER_.oneLayerCurtainMemberCount }" />
-		<c:set var="boardId" value="${sessionScope._BOARD_ID_}" />
-		
 		
 		<div class="w3-row" >
 			 <div class="w3-col m7 w3-main wrapper"

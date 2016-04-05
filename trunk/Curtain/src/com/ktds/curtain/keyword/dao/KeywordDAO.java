@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.util.web.Const;
 import com.ktds.curtain.util.xml.XML;
 
@@ -72,6 +73,72 @@ public class KeywordDAO {
 		}
 	}
 	
+	public List<String> getKeywordTopSevenByMajor(MemberVO member) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		List<String> keywords = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/keyword/getKeywordTopSevenByMajor/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, member.getMajorGroupId());
+			rs = stmt.executeQuery();
+			
+			keywords = new ArrayList<String> ();
+			
+			while(rs.next()) {
+				keywords.add(rs.getString("KEYWORD_NAME"));
+			}
+			
+			return keywords;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}		
+	}
+
+	public List<String> getKeywordTopSevenByUniv(MemberVO member) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		List<String> keywords = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/keyword/getKeywordTopSevenByUniv/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, member.getUnivId());
+			rs = stmt.executeQuery();
+			
+			keywords = new ArrayList<String> ();
+			
+			while(rs.next()) {
+				keywords.add(rs.getString("KEYWORD_NAME"));
+			}
+			
+			return keywords;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+		
+	}
+
+	
 	private void loadOracleDriver() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -101,6 +168,7 @@ public class KeywordDAO {
 		}
 
 	}
+
 
 
 	

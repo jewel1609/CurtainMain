@@ -88,7 +88,7 @@ public class SecretArticleListServlet extends HttpServlet {
 		
 		historyBiz.addHistory(historyVO);
 		
-		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.FREE_BOARD, searchVO);
+		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.FREE_BOARD, searchVO, request);
 		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.FREE_BOARD);
 		
 		request.setAttribute("topArticle", topArticle);

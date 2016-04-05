@@ -164,15 +164,40 @@ public class ArticleBiz {
 	 * @param stdMember
 	 * @return
 	 */
-	public List<ArticleVO> showSecretArticle(MemberVO stdMember, String boardId, ArticleSearchVO searchVO) {
-
+	public List<ArticleVO> showSecretArticle(MemberVO stdMember, String boardId, ArticleSearchVO searchVO, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
+		
 		articles = new ArrayList<ArticleVO>();
 		
 		if ( searchVO.getSearchType().equals("1")) {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.SEARCH_TITLE);
+			historyVO.setDescription( BuildDescription.get(Description.SEARCH_TITLE, member.getNickName()) );
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_SEARCH_TITLE, searchVO.getSearchKeyword()));
+			
+			historyBiz.addHistory(historyVO);
+			
 			articles = articleDAO.showSecretArticleByTitle(stdMember, boardId, searchVO);
 			getReplyCount(articles);
 		}
 		else if (searchVO.getSearchType().equals("2")) {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.SEARCH_DESC);
+			historyVO.setDescription( BuildDescription.get(Description.SEARCH_DESC, member.getNickName()) );
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_SEARCH_DESC, searchVO.getSearchKeyword()));
+			
+			historyBiz.addHistory(historyVO);
+			
 			articles = articleDAO.showSecretArticleByDesc(stdMember, boardId, searchVO);
 			getReplyCount(articles);
 		}

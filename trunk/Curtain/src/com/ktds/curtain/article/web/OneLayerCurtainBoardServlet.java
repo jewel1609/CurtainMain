@@ -80,7 +80,7 @@ public class OneLayerCurtainBoardServlet extends HttpServlet {
 		
 		historyBiz.addHistory(historyVO);
 		
-		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL1, searchVO);
+		List<ArticleVO> secretArticles = articleBiz.showSecretArticle(stdMember, BoardId.SECRET_BOARD_LEVEL1, searchVO, request);
 		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.SECRET_BOARD_LEVEL1);
 		
 		request.setAttribute("topArticle", topArticle);

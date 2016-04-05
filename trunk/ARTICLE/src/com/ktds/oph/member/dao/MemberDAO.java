@@ -153,9 +153,6 @@ public class MemberDAO {
 		System.out.println("DAO : " + memberEmail);
 	}
 
-
-
-
 	
 	private void executeUpdateAndDeleteQuery(String memberEmail, String queryName) {
 		Connection conn = null;

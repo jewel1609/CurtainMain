@@ -77,7 +77,7 @@ public class StudentUnivArticleServlet extends HttpServlet {
 		
 		historyBiz.addHistory(historyVO);
 		
-		List<ArticleVO> univArticles = articleBiz.showUnivArticle(stdMember, searchVO);
+		List<ArticleVO> univArticles = articleBiz.showUnivArticle(stdMember, searchVO, request);
 		ArticleVO topArticle = articleBiz.showTopUnivArticle(stdMember, BoardId.UNIV_BOARD);
 		
 		request.setAttribute("topArticle", topArticle);

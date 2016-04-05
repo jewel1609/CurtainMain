@@ -651,7 +651,7 @@ public class ArticleBiz {
 				article.setScrab(true);
 			}
 		}
-
+		
 		return article;
 	}
 

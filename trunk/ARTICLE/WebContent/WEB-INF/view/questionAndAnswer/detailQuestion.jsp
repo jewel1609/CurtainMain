@@ -16,6 +16,21 @@
 				form.submit();
 			}
 		});
+		
+		$("#btnAddAnswer").click( function () {
+			
+			var answerDescription = $("#answerDescription").text();
+			
+			if (answerDescription == "") {
+				alert("내용을 입력하세요!");
+				return;
+			}
+			
+			var form = $("#addAnswerForm");
+			form.attr("method", "post");
+			form.attr("action", "<c:url value="/addNewAnswer" />");
+			form.submit();
+		});
 
 	});
 </script>
@@ -79,7 +94,12 @@
 			<c:if test="${question.answerDescription eq null}">
 				<tr>
 					<td colspan="4" style="text-align: center;">
-						답변 하기
+						<form id="addAnswerForm">
+							<input id="btnAddAnswer" type="button" value="답변 하기" />
+							<input id="questionId" name="questionId" type="hidden" value="${question.questionId}" />
+							<div style="clear: both;"></div>
+							<textarea id="answerDescription" name="answerDescription"></textarea>
+						</form>
 					</td>
 				</tr>
 			</c:if>

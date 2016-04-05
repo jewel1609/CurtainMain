@@ -380,6 +380,11 @@
 			WHERE	ARTICLE_ID = ?
 		
 		</getClaimArticleInfoByArticleId>
+		<getArticleInfoByArticleId>
+			SELECT	*
+			FROM	ARTICLE
+			WHERE	ARTICLE_ID = ?
+		</getArticleInfoByArticleId>
 		<getClaimArticleCountByArticleId>
 			SELECT	COUNT(ARTICLE_ID)
 			FROM	ARTICLE_CLAIM

@@ -61,33 +61,33 @@
          
          var root = $(this).parent().children(":eq(0)");
                
-               $.post(      
-                  "/writeClaim"
-                  , { "claimText" : root.val()
-                     , "articleClaim" : $(this).attr("id")
-                  }
-                  , function(data) {
-                     
-                     var jsonData = {};      
-                     
-                     try {
-                        jsonData = JSON.parse(data);
-                     }
-                     catch(e) {
-                        jsonData.result = false;
-                     }
-                     
-                     if(jsonData.result){
-                        $(".claim").hide();
-                        alert("신고가 완료되었습니다.");
-                     }
-                     else{
-                        alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-                        location.href="/";
-                     }
-                  }
-               )   
-            });
+              $.post(      
+                 "/writeClaim"
+                 , { "claimText" : root.val()
+                    , "articleClaim" : $(this).attr("id")
+                 }
+                 , function(data) {
+                    
+                    var jsonData = {};      
+                    
+                    try {
+                       jsonData = JSON.parse(data);
+                    }
+                    catch(e) {
+                       jsonData.result = false;
+                    }
+                    
+                    if(jsonData.result){
+                       $(".claim").hide();
+                       alert("신고가 완료되었습니다.");
+                    }
+                    else{
+                       alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+                       location.href="/";
+                    }
+                 }
+              )   
+           });
             
             $(".like").click(function() {   
 
@@ -158,13 +158,11 @@
                         var result = "#dislike" + articleId;
                         if(jsonData.isDislike){
                            $(result).attr("style", "color:#a9d039");
-                           /*$(result).attr("src", "/resource/img/dislike_active_small.png");*/
                            var count = "#dislikeCount"+jsonData.articleId;
                            $(count).text(jsonData.updateDislikeCount);
                         }
                         else{
                            $(result).attr("style", "color:#7d7d7d");
-                           /*$(result).attr("src", "/resource/img/dislike_inactive_small.png");*/
                            var count = "#dislikeCount"+jsonData.articleId;
                            $(count).text(jsonData.updateDislikeCount);
                         }   
@@ -292,7 +290,8 @@
 
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
-<div class="w3-container w3-main" style="margin-bottom: 20px;">
+<div class="w3-container w3-main wrapper" style="margin-top:0px;">
+
    <c:set var="memberType" value="${ sessionScope._MEMBER_.memberTypeId }" />
    <c:set var="univId" value="${ sessionScope._MEMBER_.univId }" />
    <c:set var="majorGroupId" value="${ sessionScope._MEMBER_.majorGroupId }" />
@@ -300,9 +299,12 @@
    <c:set var="majorGroupName" value="${ sessionScope._MAJORGROUPNAME_ }" />
    <c:set var="majorMemberCount" value="${ sessionScope._MEMBER_.majorMemberCount }" />
 
+	
    <div class="w3-row" >
       <div class="w3-col m7 w3-main wrapper"
          style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+         
+         <!-- 게시판 헤더 -->
          
          <div class="w3-row" style="border-bottom: 1px solid #bababa;">
             <div class="w3-margin-4" style="float:left; padding-left:10px;">
@@ -334,8 +336,9 @@
                </form>
             </div>   
          </div>      
+         <!-- 게시판 타이틀 끝 -->
          
-         
+         <!-- 글쓰기 시작 -->
          <div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
             <div class="w3-col m12" align="left" >
                <div class="w3-card w3-round w3-white" style="margin-top:10px; margin-bottom:10px;">
@@ -387,10 +390,8 @@
                               </div>
 
                            <div class="col-sm-12" id="imagePreview">
-
                                  <img id="uploadImg" src="" width="100px;">
-
-                        </div>
+                       	</div>
                               
                               <div class="col-sm-12" align="right">
                                  <button type="button" class="btn btn-default" id="writeBtn">게시</button>
@@ -406,7 +407,24 @@
 
    <div style="background-color: white;">
             <div class="w3-row-padding w3-margin-top" >
-               <div class="w3-col m12">
+            	<div class="w3-col m12">
+            	
+          		<!-- 게시글이 없을 경우 -->
+				<c:if test="${ empty topArticle.articleId }">
+					<div class="w3-container">
+							<div class="w3-col m12 w3-padding-top">
+								<div style="height:100px;" align="center">
+									<h3 style="color:#7d7d7d;">게시글이 없습니다.<br/><br/>
+									게시글을 작성해주세요.</h3>
+								
+								</div>
+							</div>
+					</div>
+				</c:if>
+            
+            <!-- 게시글이 있을 경우 -->
+            <c:if test="${ not empty topArticle.articleId }">
+              
                   <div class="w3-card w3-round-large" style="border-color: #a9d039;" >
                      <div class="w3-container">
                      <a href="<c:url value="/hitsCount?boardId=4&articleId=${topArticle.articleId}"/>">
@@ -435,13 +453,14 @@
                            <input type="hidden" id="articleId" name="articleId" value="${topArticle.articleId}" />
                            <input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
                         </div>
-                        <div class="w3-col m12 w3-padding-top" style="height:60px;">
+                        <div class="desc w3-col m12 w3-padding-top" style="height:70px;">
                            ${topArticle.articleDesc}
                         </div>
                         </a>
                         <div class="w3-col m12" align="left">
                            <h6>${topArticle.nickName} &nbsp;&nbsp;&nbsp;&nbsp;${topArticle.articleModifyDate}</h6>
                         </div>
+                        
                         <div class="w3-col m6 w3-padding-bottom" style="color:#7d7d7d;">
                         
                            <div style="float:left; margin-right:10px;">
@@ -456,11 +475,11 @@
                            </div>
                            <div>
                               <c:if test="${topArticle.dislike}">
-                              <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${topArticle.articleId}" style="color:#a9d039;"></span>
+                              	<span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${topArticle.articleId}" style="color:#a9d039;"></span>
                                  <span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
                               </c:if>
                               <c:if test="${!topArticle.dislike}">
-                              <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${topArticle.articleId}" style="color:#7d7d7d;"></span>
+                            	  <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${topArticle.articleId}" style="color:#7d7d7d;"></span>
                                  <span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
                               </c:if>
                            </div>
@@ -489,6 +508,9 @@
                         </div>                        
                      </div>
                   </div>
+                  
+                 </c:if>
+                 
                </div>
             </div>   
             <!-- 조회수 많은 게시글 끝 -->
@@ -498,6 +520,7 @@
          <input type="hidden" class="majorName" value="${article.majorName}"/>
             <div class="w3-row-padding w3-margin-top">
                <div class="w3-col m12">
+               
                   <div class="w3-card w3-white w3-round-large">
                      <div class="w3-container">
                         <a href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>">
@@ -520,11 +543,13 @@
                                  </c:if>
                                  <strong>${article.articleTitle}</strong>
                               </div>
+                              
+                              
                              <div class="w3-col m2" align="right">
                                  <h6>조회수 ${article.hits}</h6>
                               </div>
                               
-                              <div class="w3-col m12 w3-padding-top" style="height: 60px;">
+                              <div class="desc w3-col m12 w3-padding-top" style="height: 70px;">
                                  <p>${article.articleDesc}</p>
                               </div>
                         </a>
@@ -583,8 +608,6 @@
             </div>
          </c:forEach>
          </div>
-
       </div>
    </div>
-
 </div>

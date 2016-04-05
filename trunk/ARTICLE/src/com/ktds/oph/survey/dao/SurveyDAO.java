@@ -51,8 +51,64 @@ public class SurveyDAO {
 		}
 		
 	}
-	
 
+
+
+
+	public void insertSurveyStats(int surveyId) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/survey/insertSurveyStats/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1,surveyId);
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+		
+	}
+	
+	public int getSurveyId(String surveyTitle, String surveyAnswer1, String surveyAnswer2, String surveyAnswer3,
+			String surveyAnswer4, String surveyDate) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int surveyId = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/survey/getSurveyId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, surveyTitle);
+			stmt.setString(2, surveyAnswer1);
+			stmt.setString(3, surveyAnswer2);
+			stmt.setString(4, surveyAnswer3);
+			stmt.setString(5, surveyAnswer4);
+			stmt.setString(6, surveyDate);
+			rs = stmt.executeQuery();
+			rs.next();
+			surveyId = rs.getInt(1);
+			return surveyId;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+		
+	}
 
 
 	public int getAllSurveyCount() {
@@ -125,6 +181,30 @@ public class SurveyDAO {
 		finally {
 			closeDB(conn, stmt, rs);
 		}
+	}
+
+
+
+
+	public void deleteSurvey(String surveyId) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/survey/deleteSurvey/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1,Integer.parseInt(surveyId));
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+		
 	}
 
 
@@ -234,29 +314,6 @@ public class SurveyDAO {
 			} catch (SQLException e) {
 			}
 		}
-	}
-
-
-
-	public void deleteSurvey(String surveyId) {
-		loadOracleDriver();
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		
-		try {
-			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
-			
-			String query =  XML.getNodeString("//query/survey/deleteSurvey/text()");
-			stmt = conn.prepareStatement(query);
-			stmt.setInt(1,Integer.parseInt(surveyId));
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new RuntimeException(e.getMessage(), e);
-		}
-		finally {
-			this.closeDB(conn, stmt, null);
-		}
-		
 	}
 
 

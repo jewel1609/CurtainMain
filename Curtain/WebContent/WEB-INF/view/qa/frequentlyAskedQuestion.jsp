@@ -4,6 +4,8 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css" />
+
 
 <script type="text/javascript">
 	
@@ -99,52 +101,45 @@
 	}
 </script>
 	
-	<div class="w3-container w3-center w3-main">
 		<div class="w3-row">
-			<div class="w3-col m7 w3-main wrapper" style="margin-left: 350px; overflow: auto;">
-				<div class="w3-row-padding w3-margin-top">
-					<div class="w3-col m12">
-					
-						<div style="float:left; margin: 0px 0px 20px 0px">
-							<div style="float: left; margin-top: 7px; padding-left: 20px;">
-								<h1
-									style="display: inline; border-right: thin; border-right-style: solid; border-right-color: #DDDDDD; padding-right: 20px;">
-									□  도움말</h1>
-							</div>
-							<div style="float: left;">
-								<p style="padding-left: 20px; margin-bottom: 0px;">
-									커튼의 서비스에 대해 자주 묻는 질문들 입니다.</p>
-								<p style="padding-left: 20px; margin-top: 0px; text-align: left;">
-									궁금하신 서비스를 선택해주세요.
-								</p>
-							</div>
+			<div class="w3-col m7 w3-main wrapper"
+        	 style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+         
+				<!-- 게시판 헤더 -->
+					  <div class="w3-row" style="border-bottom: 1px solid #bababa;">
+						 <div class="w3-margin-4" style="float:left; padding-left:10px;">
+								<h2>도움말</h2>
+						</div>
+						<div style="float:left; padding:20px;">
+							    커튼의 서비스에 대해 자주 묻는 질문들 입니다. 궁금하신 서비스를 선택해주세요.
 						</div>
 						
-						<div style="clear: both;"></div>
-					
-						<div class="w3-white w3-round-large" style="padding: 10px; height: 350px; overflow-y: auto;">
-							<div class="w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;" >
+						 <div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">
+           				 <div class="w3-col m12" align="left" >
+            
+						<div style="padding: 10px; height: 250px; overflow-y: auto;">
+							<div class="w3-container w3-card" style="margin-bottom: 10px; padding: 10px;" >
 								<div id="btnFirstFAQ">
-									<div style="float: left; margin-left: 20px;">
+									<div style="float: left;">
 										<ul>
 											<li><h4 style="display: inline;">포인트는 어떻게 사용하나요?</h4></li>
 										</ul>
 									</div>
-									<div style="float: right;">▽</div>
+									<div style="float: right;">▼</div>
 									<div style="clear: both;"></div>
 								</div>
 								<div id="firstFAQ" style="margin-top: 20px;">
 									홍보글을 올리는데 사용할 수 있습니다.
 								</div>
 							</div>
-							<div class="w3-container w3-card-2" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;">
+							<div class="w3-container w3-card" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;">
 								<div id="btnSecondFAQ">
-									<div  style="float: left; margin-left: 20px;">
+									<div  style="float: left;">
 										<ul>
 											<li><h4 style="display: inline;">포인트 유효기간은 어떻게 되나요?</h4></li>
 										</ul>
 									</div>
-									<div style="float: right;">▽</div>
+									<div style="float: right;">▼</div>
 									<div style="clear: both;"></div>
 								</div>
 								<div id="secondFAQ" style="margin-top: 20px;">
@@ -153,24 +148,21 @@
 							</div>
 						</div>
 						
-						<div style="float:left; margin: 20px 0px 20px 0px">
-							<div style="float: left; margin-top: 7px; padding-left: 20px;">
-								<h1
-									style="display: inline; border-right: thin; border-right-style: solid; border-right-color: #DDDDDD; padding-right: 20px;">
-									□  내가 한 질문들</h1>
+						<div class="w3-row" style="border-bottom: 1px solid #bababa; margin-bottom:10px;">
+							<div class="w3-margin-4" style="float:left; padding-left:10px;">
+								<h2>내가 한 질문들</h2>
 							</div>
-							<div style="float: left;">
-								<p style="padding-left: 20px; margin-top: 15px;">
-									커튼의 서비스에 대한 회원님의 질문입니다.</p>
+							<div style="float: left; padding: 20px; margin-top:10px;">
+								<p>커튼의 서비스에 대한 회원님의 질문입니다.</p>
 							</div>
 						</div>
 						
 						<div style="clear: both;"></div>
 						
-						<div class="w3-container w3-card-2" style="height:50px; text-align: left; margin-bottom: 10px; padding: 10px 10px 10px 10px;">
+						<div class="w3-container w3-card" style="height:50px; text-align: left; margin-bottom: 10px; padding: 10px;">
 							<div style="float: left; margin-left: 20px;">
 								<ul>
-									<li><h4 style="display: inline;">내가 질문한 글 보기</h4></li>
+									<li><h4 style="display:inline;">내가 질문한 글 보기</h4></li>
 								</ul>
 							</div>
 							<form class="btnFormByFreuentlyAskedQuestion">
@@ -182,12 +174,12 @@
 							</form>
 						</div>
 						
-						<div style="float:left; margin: 20px 0px 20px 0px;">
+						<div class="w3-row" style="border-bottom: 1px solid #bababa; margin-bottom:10px;">
 							<div style="display: inline-block; float:left; margin: 0px 0px 20px 0px">
 								<div style="float: left; margin-top: 7px; padding-left: 20px;">
-									<h1
+									<h2
 										style="display: inline; border-right: thin; border-right-style: solid; border-right-color: #DDDDDD; padding-right: 20px;">
-										□  문의하기</h1>
+										문의하기</h2>
 								</div>
 								<div style="float: left; margin-top: 17px;">
 									<p style="padding-left: 20px; margin-bottom: 0px;">이용하시면서
@@ -199,7 +191,7 @@
 						
 						<div style="clear: both;"></div>
 						
-						<div class="w3-container w3-card-2" style="height:50px; margin-bottom: 10px; padding: 10px 10px 10px 10px;">
+						<div class="w3-container w3-card" style="height:50px; margin-bottom: 10px; padding: 10px 10px 10px 10px;">
 							<div style="float: left; margin-left: 20px;">
 								<ul>
 									<li>

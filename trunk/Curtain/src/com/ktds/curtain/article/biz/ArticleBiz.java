@@ -95,6 +95,10 @@ public class ArticleBiz {
 			
 			articles = articleDAO.showMajorArticleByTitle(stdMember, searchVO);
 			getReplyCount(articles);
+			for(ArticleVO article: articles){
+				System.out.println("articles 리스트 : " + article.getArticleId() + "/ "+article.getReplyCount());
+			}
+		
 
 		}
 		else if (searchVO.getSearchType().equals("2")) {
@@ -112,10 +116,18 @@ public class ArticleBiz {
 			articles = articleDAO.showMajorArticleByDesc(stdMember, searchVO);
 			getReplyCount(articles);
 			
+			for(ArticleVO article: articles){
+				System.out.println("articles 리스트 : " + article.getArticleId() + "/ "+ article.getReplyCount());
+			}
+			
 		}
 		else {
 			articles = articleDAO.showMajorArticle(stdMember);
 			getReplyCount(articles);
+			
+			for(ArticleVO article: articles){
+				System.out.println("articles 리스트 : " + article.getArticleId() + "/ "+article.getReplyCount());
+			}
 		}
 		
 		
@@ -152,9 +164,14 @@ public class ArticleBiz {
 
 	private void getReplyCount(List<ArticleVO> articles) {
 		
+		System.out.println("getReplyCount 접근");
+		
 		int replyCount = 0;
+		
 		for(ArticleVO article : articles){
+			System.out.print("for문도는 articleId 들 : " + article.getArticleId() + " / ");
 			replyCount = replyDAO.getReplyCountByArticleId(article.getArticleId());
+			System.out.println("replyCount : " + replyCount);
 			article.setReplyCount(replyCount);
 		}
 	}
@@ -626,9 +643,12 @@ public class ArticleBiz {
 	 */
 	public ArticleVO showTopMajorArticle(MemberVO stdMember, String boardId) {
 		
+		System.out.println("showTopMajorArticle 접근");
+		
 		ArticleVO article = new ArticleVO();
 		article = articleDAO.showTopMajorArticle(stdMember, boardId);
-		replyDAO.getReplyCountByArticleId(article.getArticleId());
+		
+		article.setReplyCount(replyDAO.getReplyCountByArticleId(article.getArticleId()));
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
 		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);

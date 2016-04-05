@@ -1433,6 +1433,7 @@ public class ArticleDAO {
 			stmt.setInt(1, Integer.parseInt(boardId));
 			stmt.setInt(2, stdMember.getMajorGroupId());
 			stmt.setInt(3, stdMember.getMajorGroupId());
+			stmt.setInt(4, Integer.parseInt(boardId));
 			
 			rs = stmt.executeQuery();
 

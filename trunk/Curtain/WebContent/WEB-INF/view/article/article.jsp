@@ -112,13 +112,11 @@
                         var result = "#like" + articleId;
                         if(jsonData.doLike){
                            $(result).attr("style", "color:#a9d039");
-                           /*$(result).attr("src", "/resource/img/like_active_small.png");*/
                            var count = "#likeCount"+jsonData.articleId;
                            $(count).text(jsonData.updateLikeCount);
                         }
                         else{
                            $(result).attr("style", "color:#7d7d7d");
-                           /*$(result).attr("src", "/resource/img/like_inactive_small.png");*/
                            var count = "#likeCount"+jsonData.articleId;
                            $(count).text(jsonData.updateLikeCount);
                         }   
@@ -200,12 +198,10 @@
                            console.log(jsonData.isScrab);
                            alert("스크랩되었습니다.");
                            $(result).attr("style", "color:#a9d039");
-                           /*$(result).attr("src", "/resource/img/scrap_active_small.png");*/
                         }
                         else{
                            alert("스크랩 해제 되었습니다.");
                            $(result).attr("style", "color:#7d7d7d");
-                           /*$(result).attr("src", "/resource/img/scrap_inactive_small.png");*/
                         }
                      }
                      else{
@@ -387,11 +383,11 @@
                            <div class="form-group" style="margin-top: 30px; padding:10px;">
                                  <textarea class="form-control w3-col m12" rows="7" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
                                     placeholder="무슨 생각을 하고 계신가요?"></textarea>
-                              </div>
+                           </div>
 
                            <div class="col-sm-12" id="imagePreview">
                                  <img id="uploadImg" src="" width="100px;">
-                       	</div>
+                       	   </div>
                               
                               <div class="col-sm-12" align="right">
                                  <button type="button" class="btn btn-default" id="writeBtn">게시</button>

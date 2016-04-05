@@ -15,6 +15,11 @@ import com.ktds.oph.article.vo.ArticleListVO;
 import com.ktds.oph.article.vo.ArticleSearchVO;
 import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 
 /**
  * Servlet implementation class ShowClaimArticleServlet
@@ -23,6 +28,7 @@ public class ShowClaimArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private MemberBiz memberBiz;   
     private ArticleBiz articleBiz;
+    private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,6 +36,7 @@ public class ShowClaimArticleServlet extends HttpServlet {
         super();
         memberBiz = new MemberBiz();
         articleBiz = new ArticleBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -69,6 +76,16 @@ public class ShowClaimArticleServlet extends HttpServlet {
 			searchVO.setPageNo(pageNo);
 			
 			ArticleListVO claimArticles = articleBiz.getAllClaimArticle(searchVO);
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(loginMember.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.ADMIN_CLAIM_PAGE);
+			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_CLAIM_PAGE, loginMember.getEmail()));
+			
+			historyBiz.addHistory(historyVO);
+			
 			
 			request.setAttribute("claimArticles", claimArticles);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/claimArticleList.jsp");

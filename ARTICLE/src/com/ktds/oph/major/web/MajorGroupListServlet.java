@@ -15,6 +15,11 @@ import com.ktds.oph.major.vo.MajorGroupListVO;
 import com.ktds.oph.major.vo.MajorGroupSearchVO;
 import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 
 /**
  * Servlet implementation class MajorListServlet
@@ -23,6 +28,7 @@ public class MajorGroupListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberBiz memberBiz;
 	private MajorGroupBiz majorGroupBiz;
+	private OperationHistoryBiz historyBiz;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,6 +37,7 @@ public class MajorGroupListServlet extends HttpServlet {
         super();
         memberBiz = new MemberBiz();
         majorGroupBiz = new MajorGroupBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -70,6 +77,16 @@ public class MajorGroupListServlet extends HttpServlet {
 			majorSearchVO.setPageNo(pageNo);
 			
 			MajorGroupListVO majors = majorGroupBiz.getAllMajor(majorSearchVO);
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(loginMember.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.ADMIN_MAJOR_PAGE);
+			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_MAJOR_PAGE, loginMember.getEmail()));
+			
+			historyBiz.addHistory(historyVO);
+			
 			
 			request.setAttribute("majors", majors);
 			RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/major/majorGroupList.jsp");

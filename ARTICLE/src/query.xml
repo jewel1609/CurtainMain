@@ -251,6 +251,11 @@
 	</survey>
 	
 	<member>
+		<modifyRankDate>
+			UPDATE	MEMBER
+			SET		RANK_MODIFY_DATE = ?
+			WHERE	EMAIL = ?
+		</modifyRankDate>
 		<modifyMember>
 			UPDATE	MEMBER
 			SET		MEMBER_TYPE_ID = ?
@@ -317,7 +322,7 @@
 	<article>
 		<getClaimArticleInfoByArticleId>
 			SELECT	*
-			FROM	ARTICLE_CLAIM
+			FROM	ARTICLE
 			WHERE	ARTICLE_ID = ?
 		
 		</getClaimArticleInfoByArticleId>

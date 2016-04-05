@@ -10,6 +10,12 @@
 		$("#initSearchBtn").click(function() {
 			location.href = "<c:url value="/showQuestion/init" />";
 		});
+		
+		$("#searchKeyword").keydown( function (event) {
+			if (event.keyCode == 13) {
+				return false;
+			}
+		});
 
 		$("#searchBtn").click(function() {
 			if ($("#searchKeyword").val() == "") {
@@ -36,7 +42,6 @@
 			movePage('0');
 		});
 
-		// 내가 글 작성한 jquery
 		$(document).on("mouseover", ".btnDetailQuestion", function () {
 			$(".btnDetailQuestion").css("cursor","pointer");
 		});
@@ -136,10 +141,9 @@
 									</c:if>
 									<option value="${i}" ${selected}>${name}</option>
 								</c:forEach>
-							</select> <input type="text" id="searchKeyword" name="searchKeyword"
-								value="${searchVO.searchKeyword}" /> <input type="button"
-								id="searchBtn" value="검색" /> <input type="button"
-								id="initSearchBtn" value="검색 초기화" />
+							</select> 
+							<input type="text" id="searchKeyword" name="searchKeyword" value="${searchVO.searchKeyword}" /> 
+							<input type="button" id="searchBtn" value="검색" /> <input type="button" id="initSearchBtn" value="검색 초기화" />
 						</div>
 					</form>
 				</td>

@@ -7,7 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.questionAndAnswer.dao.QuestionAndAnswerDAO;
+import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerListVO;
+import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerSearchVO;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerVO;
+import com.ktds.oph.util.web.Paging;
 
 public class QuestionAndAnswerBiz {
 	
@@ -17,18 +20,43 @@ public class QuestionAndAnswerBiz {
 		questionAndAnswerDAO = new QuestionAndAnswerDAO();
 	}
 
-	public List<QuestionAndAnswerVO> getAllQuestions(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
-		
+	public QuestionAndAnswerListVO getQuestionList(QuestionAndAnswerSearchVO searchVO, MemberVO member) {
+		int allQuestionCount = 0;
 		List<QuestionAndAnswerVO> questions = null;
 		
-		if (member.getMemberTypeId() == 6) {
-			questions = questionAndAnswerDAO.getAllQuestions();
+		if ( searchVO.getSearchType().equals("1") ) {
+			allQuestionCount = questionAndAnswerDAO.getAllQuestionCount(searchVO);
 		}
-
-		return questions;
+		else if ( searchVO.getSearchType().equals("2") ) {
+			allQuestionCount = questionAndAnswerDAO.getAllQuestionCountByEmail(searchVO);
+		}
+		else if ( searchVO.getSearchType().equals("3") ) {
+			allQuestionCount = questionAndAnswerDAO.getAllQuestionCountByIsCheck(searchVO);
+		}
 		
+		Paging paging = new Paging();
+		paging.setTotalArticleCount(allQuestionCount);
+		paging.setPageNumber(searchVO.getPageNo()+"");
+		
+		searchVO.setStartIndex(paging.getStartArticleNumber());
+		searchVO.setEndIndex(paging.getEndArticleNumber());
+		
+		if (member.getMemberTypeId() == 6) {
+			if ( searchVO.getSearchType().equals("1") ) {
+				questions = questionAndAnswerDAO.getQuestions(searchVO);
+			}
+			else if ( searchVO.getSearchType().equals("2") ) {
+				questions = questionAndAnswerDAO.getQuestionsByEmail(searchVO);
+			}
+			else if ( searchVO.getSearchType().equals("3") ) {
+				questions = questionAndAnswerDAO.getQuestionsByIsCheck(searchVO);
+			}
+		}
+		
+		QuestionAndAnswerListVO questionAndAnswerListVO = new QuestionAndAnswerListVO();
+		questionAndAnswerListVO.setQuestions(questions);
+		questionAndAnswerListVO.setPaging(paging);
+		return questionAndAnswerListVO;
 	}
 
 	public QuestionAndAnswerVO getQuestionByQuestionId(String questionId) {
@@ -38,10 +66,11 @@ public class QuestionAndAnswerBiz {
 			question = questionAndAnswerDAO.getQuestionByQuestionId(Integer.parseInt(questionId));
 		}
 		catch (NumberFormatException nfe) {
-			
 		}
 		
 		return question;
 	}
+
+
 
 }

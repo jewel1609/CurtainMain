@@ -5,14 +5,14 @@ import com.ktds.oph.util.web.Paging;
 
 public class QuestionAndAnswerListVO {
 	
-	private List<QuestionAndAnswerVO> questionList;
+	private List<QuestionAndAnswerVO> questions;
 	private Paging paging;
 	
-	public List<QuestionAndAnswerVO> getQuestionList() {
-		return questionList;
+	public List<QuestionAndAnswerVO> getQuestions() {
+		return questions;
 	}
-	public void setQuestionList(List<QuestionAndAnswerVO> questionList) {
-		this.questionList = questionList;
+	public void setQuestions(List<QuestionAndAnswerVO> questions) {
+		this.questions = questions;
 	}
 	public Paging getPaging() {
 		return paging;

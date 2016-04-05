@@ -519,12 +519,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>QuestionAndAnswerServlet</display-name>
-    <servlet-name>QuestionAndAnswerServlet</servlet-name>
-    <servlet-class>com.ktds.oph.questionAndAnswer.web.QuestionAndAnswerServlet</servlet-class>
+    <display-name>ShowQuestionServlet</display-name>
+    <servlet-name>ShowQuestionServlet</servlet-name>
+    <servlet-class>com.ktds.oph.questionAndAnswer.web.ShowQuestionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>QuestionAndAnswerServlet</servlet-name>
+    <servlet-name>ShowQuestionServlet</servlet-name>
     <url-pattern>/questionAndAnswer</url-pattern>
   </servlet-mapping>
   <servlet>

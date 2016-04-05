@@ -430,6 +430,36 @@ public class ReplyDAO {
 			closeDB(conn, stmt, rs);
 		}
 	}
+	
+	
+	/**
+	 * 게시글 별 댓글 수 얻어오기
+	 * @param articleId
+	 */
+	public int getReplyCountByArticleId(int articleId) {
+		
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/getReplyCountByArticleId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, articleId);
+			rs = stmt.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
 
 	
 	private void loadOracleDriver() {
@@ -461,6 +491,7 @@ public class ReplyDAO {
 		}
 
 	}
+	
 
 
 

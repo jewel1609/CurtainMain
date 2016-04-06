@@ -60,6 +60,30 @@
 		</insertProhibitedWord>
 	</prohibitedWord>
 	<major>
+		<getArticleByMajorNameCount>
+			SELECT	COUNT(MAJOR_ID)
+			FROM	MAJOR
+			WHERE	MAJOR_NAME LIKE '%' || ? || '%'
+			AND		MAJOR_GROUP_ID = ?
+		</getArticleByMajorNameCount>
+		<getArticleByMajorName>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	MAJOR_ID
+												, MAJOR_NAME
+												, MAJOR_GROUP_ID
+										FROM	MAJOR
+										WHERE	MAJOR_GROUP_ID = ?
+										AND		MAJOR_NAME LIKE '%' || ? || '%'
+										ORDER	BY MAJOR_ID DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getArticleByMajorName>
 		<deleteMajors2>
 			DELETE
 			FROM	MAJOR
@@ -141,6 +165,27 @@
 		</getAllMajor>
 	</major>
 	<majorGroup>
+		<getArticleByMajorGroupNameCount>
+			SELECT	COUNT(MAJOR_GROUP_ID)
+			FROM	MAJOR_GROUP
+			WHERE	MAJOR_GROUP_NAME LIKE '%' || ? || '%'
+		</getArticleByMajorGroupNameCount>
+		<getArticleByMajorGroupName>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	MAJOR_GROUP_ID
+												, MAJOR_GROUP_NAME
+										FROM	MAJOR_GROUP
+										WHERE	MAJOR_GROUP_NAME LIKE '%' || ? || '%'
+										ORDER	BY MAJOR_GROUP_ID DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getArticleByMajorGroupName>
 		<getAllMajorGroupCount>
 			SELECT	COUNT(MAJOR_GROUP_ID)
 			FROM	MAJOR_GROUP
@@ -163,6 +208,11 @@
 	</majorGroup>
 
 	<univ>
+		<getArticleByUnivNameCount>
+			SELECT	COUNT(UNIV_ID)
+			FROM	UNIV
+			WHERE	UNIV_NAME LIKE '%' || ? || '%'
+		</getArticleByUnivNameCount>
 		<getAllUnivCount>
 			SELECT	COUNT(UNIV_ID)
 			FROM	UNIV
@@ -182,6 +232,22 @@
 					)
 			WHERE	RNUM >= ?
 		</getAllUniv>
+		<getArticleByUnivName>
+			SELECT	*
+			FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	UNIV_ID
+												, UNIV_NAME
+										FROM	UNIV
+										WHERE	UNIV_NAME LIKE '%' || ? || '%'
+										ORDER	BY UNIV_ID DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getArticleByUnivName>
 		<deleteUniv>
 			DELETE
 			FROM	UNIV

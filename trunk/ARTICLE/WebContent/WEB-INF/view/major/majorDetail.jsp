@@ -133,7 +133,7 @@
 						<input class="majorId" name="majorId" value="${major.majorId}" type="checkbox"/>
 					</td>
 			        <td>${major.majorId}</td>  
-			        <td><input type="text" id ="major${major.majorId}" value="${major.majorName}"/>
+			        <td><input type="text" id ="major${major.majorId}" name="majors" value="${major.majorName}"/>
 			        	<span class ="updateBtn" id ="${major.majorId}">수정</span>
 			        </td>
     				<td><input type="hidden" class="majorGroupId" name="majorGroupId" value="${major.majorGroupId}"/></td>

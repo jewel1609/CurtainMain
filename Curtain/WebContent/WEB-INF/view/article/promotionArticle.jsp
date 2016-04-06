@@ -12,6 +12,9 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
+	   $("#img1").hide();
+	   $("#img2").hide();
+		
 		$(".wrapper").css("height", window.innerHeight - 130);
 		
 		$(window).resize(function() {
@@ -29,7 +32,7 @@
 			alert("비방글은 게시하실 수 없습니다.");
 		}
 		
-		 $("#imagePreview").hide();
+		 $(".imagePreview").hide();
 	      $(".claim").hide();
 	      
 	      $(".doClaim").click(function (){
@@ -255,17 +258,32 @@
 
 	});
 
-	function readURL(input) {
-
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$("#imagePreview").show();
-				$('#uploadImg').attr("src", e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
+	   function readURL(input) {
+		   var count = parseInt($("#count").val());
+		   console.log(count);
+	      if (input.files && input.files[0]) {
+	    	  if (count == 0 ) {
+	    		  $("#img1").show();
+	    		  $("#img0").hide();
+	    	  }
+	    	  if ( count == 1 ) {
+	    		  $("#img2").show();
+	    		  $("#img1").hide();
+	    	  }
+	    	  if ( count == 2 ) {
+	    		  $("#img2").hide();
+	    	  }
+	         var reader = new FileReader();
+	         reader.onload = function(e) {
+	            var imagePreview = "#imagePreview"+count;
+	            $(imagePreview).show();
+	            var uploadImg = "#uploadImg"+count;
+	            $(uploadImg).attr("src", e.target.result);
+	         }
+	         reader.readAsDataURL(input.files[0]);
+	      }
+	      $("#count").val(count+1);
+	   }
 </script>
 
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
@@ -326,19 +344,26 @@
 													<option value="5">기타</option>
 												</select>
 											</div>
-											 <div class="col-sm-8">
+											 <div class="col-sm-7">
 												<input class="w3-input" type="text" id="articleTitle" name="articleTitle"
 				                                       placeholder="제목을 입력하세요." style="margin-bottom: 5px;">
 				                              </div>
-											 <div class="col-sm-2" align="right" style="padding-right:0px;">               			
-												<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
-												<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
-													<span class="glyphicon glyphicon-picture"></span>
-												</button>
-												
-												<button type="button" id="movieBtn" class="btn btn-default btn-sm">
-													<span class="glyphicon glyphicon-facetime-video"></span>
-												</button>
+  												<div class="col-sm-3" align="right" style="padding-right:0px;">               
+					                                 <input type="file" name="imgFile0" style="display: none;" onchange="readURL(this);">
+					                                 <button type="button" class="btn btn-default btn-sm" id="img0" onclick="document.all.imgFile0.click();">
+					                                    <span class="glyphicon glyphicon-picture"></span>
+					                                 </button>
+					                                 <input type="file" name="imgFile1" style="display: none;" onchange="readURL(this);">
+					                                 <button type="button" class="btn btn-default btn-sm" id="img1" onclick="document.all.imgFile1.click();">
+					                                    <span class="glyphicon glyphicon-picture"></span>
+					                                 </button>
+					                                <input type="file" name="imgFile2" style="display: none;" onchange="readURL(this);">
+					                                 <button type="button" id="img2" class="btn btn-default btn-sm" onclick="document.all.imgFile2.click();">
+					                                    <span  class="glyphicon glyphicon-picture"></span>
+					                                 </button>
+					                                 <button type="button" id="movieBtn" class="btn btn-default btn-sm">
+					                                    <span class="glyphicon glyphicon-facetime-video"></span>
+					                                 </button>
 												
 												<div id="movieUrlForm" class="hide">
 													<div>
@@ -358,9 +383,16 @@
 			                                 <textarea class="form-control w3-col m12" rows="7" id="articleDescription" name="articleDescription" style="margin-bottom: 5px; overflow: visible;"
 			                                    placeholder="무슨 생각을 하고 계신가요?"></textarea>
 			                              </div>
-										<div class="col-sm-12" id="imagePreview">
-											<img id="uploadImg" src="" width="100px;">
-										</div>
+				                           <input type="hidden" id="count" value="0" />
+				                           <div class="col-sm-2 imagePreview" id="imagePreview0">
+				                                 <img id="uploadImg0" src="" width="100px;">
+				                       	   </div>
+				                       	    <div class="col-sm-2 imagePreview" id="imagePreview1">
+				                                 <img id="uploadImg1" src="" width="100px;">
+				                       	   </div>
+				                       	   <div class="col-sm-2 imagePreview" id="imagePreview2">
+				                                 <img id="uploadImg2" src="" width="100px;">
+				                       	   </div>
 										<div class="col-sm-12" align="right">
 			                                 <button type="button" class="btn btn-default" id="writeBtn">게시</button>
 			                              </div>

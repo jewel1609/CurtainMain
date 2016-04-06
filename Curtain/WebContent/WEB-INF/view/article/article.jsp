@@ -414,13 +414,13 @@
                            </div>
 
                            <input type="hidden" id="count" value="0" />
-                           <div class="col-sm-4 imagePreview" id="imagePreview0">
+                           <div class="col-sm-2 imagePreview" id="imagePreview0">
                                  <img id="uploadImg0" src="" width="100px;">
                        	   </div>
-                       	    <div class="col-sm-4 imagePreview" id="imagePreview1">
+                       	    <div class="col-sm-2 imagePreview" id="imagePreview1">
                                  <img id="uploadImg1" src="" width="100px;">
                        	   </div>
-                       	   <div class="col-sm-4 imagePreview" id="imagePreview2">
+                       	   <div class="col-sm-2 imagePreview" id="imagePreview2">
                                  <img id="uploadImg2" src="" width="100px;">
                        	   </div>
                               

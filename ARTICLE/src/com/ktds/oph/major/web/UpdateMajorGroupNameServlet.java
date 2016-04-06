@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 import com.ktds.oph.major.biz.MajorGroupBiz;
 import com.ktds.oph.major.vo.MajorGroupVO;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.univ.vo.UnivVO;
 
 /**
@@ -20,13 +25,14 @@ import com.ktds.oph.univ.vo.UnivVO;
 public class UpdateMajorGroupNameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MajorGroupBiz majorGroupBiz;
-       
+    private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public UpdateMajorGroupNameServlet() {
         super();
         majorGroupBiz = new MajorGroupBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -51,6 +57,18 @@ public class UpdateMajorGroupNameServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		boolean updateName = majorGroupBiz.updateMajorGroupName(majorGroupVO, member);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.MODIFY_MAJOR_GROUP);
+		historyVO.setDescription( BuildDescription.get(Description.MODIFY_MAJOR_GROUP, member.getEmail(),  majorGroupId+""));
+		historyVO.setEtc( BuildDescription.get(Description.DETAIL_MODIFY_MAJOR_GROUP, updateMajorGroupName));
+		
+		historyBiz.addHistory(historyVO);
+		
+// json 만드는 방법 "{ \"key\" : \"value\" }"
 
 		// json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();

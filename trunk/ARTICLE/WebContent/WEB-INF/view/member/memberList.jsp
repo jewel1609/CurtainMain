@@ -103,7 +103,6 @@
 			        <td>${member.companyName}</td>
 			        <td>${member.majorGroupId}</td>
 			      </tr>
-			    
 	    	</c:forEach> 
     	</form>
    		<tr>

@@ -271,10 +271,10 @@ $(document).ready(function () {
 						<h2>${univName} 게시판입니다.</h2> 
 					</c:if>
 					<c:if test="${boardId eq 3}">
-						<h2>홍보게시판입니다.</h2>
+						<h2>홍보 게시판입니다.</h2>
 					</c:if>
 					<c:if test="${boardId eq 4 }">
-						<h2>자유게시판입니다.</h2>
+						<h2>자유 게시판입니다.</h2>
 					</c:if>
 					<c:if test="${boardId eq 5 }">
 						<h2>한겹커튼 게시판입니다.</h2>

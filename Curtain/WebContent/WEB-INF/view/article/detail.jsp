@@ -289,8 +289,8 @@ $(document).ready(function () {
 			
 			<!-- 게시판 body -->	
 	       <div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
-            <div class="w3-col m12" align="left" >
-	          <div class="w3-card w3-white w3-round-large" style="margin-top:10px; margin-bottom:10px;">
+            <div class="w3-col w3-card w3-white w3-round-large m12" align="left" >
+	          <div class="w3-white " style="margin-top:10px; margin-bottom:10px;">
 	            <div class="w3-container">
 	           	 	<div>
 			           	 <div class="col-sm-12" style="margin-top:10px; padding-bottom: 10px; border-bottom:1px solid #bababa;">
@@ -426,7 +426,6 @@ $(document).ready(function () {
   				</div>
   				
   				<c:set var="nickName" value="${ sessionScope._MEMBER_.nickName }" />
-  				<hr>
   				
   				<!-- 댓글부분 -->
   				

@@ -25,12 +25,14 @@
 		<div class="w3-accordion">
 			<a onclick="myAccordion('demo')" href="javascript:void(0)">학생게시판<i class="fa fa-caret-down"></i></a>
 			<div id="demo" class="w3-accordion-content w3-animate-left w3-padding">
+			<c:if test="${memberType eq 1 || memberType eq 2 || memberType eq 3}">
 				<div id="majorGroup">
 					<a href="<c:url value="/studentMajorAritlce"/> ">&nbsp;&nbsp;&nbsp;${majorGroupName}</a>
 				</div> 
 				<div id="univFill">
 					<a href="<c:url value="/studentUnivArticle"/> ">&nbsp;&nbsp;&nbsp;${univName}</a>
 				</div>
+			</c:if>
 			</div>
 		</div>
 

@@ -24,21 +24,21 @@
 			}
 			
 			<%
-				MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
-				String keyword = request.getParameter("searchKeyword");
-				String searchType = request.getParameter("searchType");
-				
-				OperationHistoryBiz historyBiz = new OperationHistoryBiz();
-				OperationHistoryVO historyVO = new OperationHistoryVO();
-				historyVO.setIp(request.getRemoteHost());
-				historyVO.setEmail(member.getEmail());
-				historyVO.setUrl(request.getRequestURI());
-				historyVO.setActionCode(ActionCode.DO_SEARCH);
-				historyVO.setDescription( BuildDescription.get(Description.DO_SEARCH, member.getEmail()));
-				historyVO.setEtc( BuildDescription.get(Description.DETAIL_DO_SEARCH, searchType, keyword ));
-				System.out.println("검색시도");
-				historyBiz.addHistory(historyVO);
-			%>
+			MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+			String keyword = request.getParameter("searchKeyword");
+			String searchType = request.getParameter("searchType");
+			
+			OperationHistoryBiz historyBiz = new OperationHistoryBiz();
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.DO_SEARCH);
+			historyVO.setDescription( BuildDescription.get(Description.DO_SEARCH, member.getEmail()));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_DO_SEARCH, searchType, keyword ));
+			System.out.println("검색시도");
+			historyBiz.addHistory(historyVO);
+		%>
 			
 			movePage('0');
 		});
@@ -102,18 +102,21 @@
 					</div>	
 					<div style= "text-align: right;">
 							<select name="searchType">
-							<c:forEach begin="1" end="3" step="1" var="i">
+							<c:forEach begin="1" end="4" step="1" var="i">
 								<c:set var="selected" value="" />
 								<c:if test="${ i eq searchVO.searchType }">
 									<c:set var="selected" value="selected='selected'" />
 								</c:if>
 								<c:if test="${i eq 1}" >
-									<c:set var="name" value="글ID" />
+									<c:set var="name" value="전체" />
 								</c:if>
 								<c:if test="${i eq 2}" >
-									<c:set var="name" value="댓글ID" />
+									<c:set var="name" value="글ID" />
 								</c:if>
 								<c:if test="${i eq 3}" >
+									<c:set var="name" value="댓글ID" />
+								</c:if>
+								<c:if test="${i eq 4}" >
 									<c:set var="name" value="EMAIL" />
 								</c:if>
 								<option value="${i}" ${selected}> ${name} </option>

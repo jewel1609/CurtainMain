@@ -25,6 +25,7 @@ public interface Description {
 	public static final String VISIT_ADMIN_HISTORY_PAGE = "[%s] 님이 히스토리확인 페이지에 접근했습니다.";
 	public static final String VISIT_HISTORY_LIST_PAGE = "[%s] 님이 히스토리리스트 페이지에 접근했습니다.";
 	
+	public static final String VISIT_DETAIL_SURVEY_PAGE = "[%s] 님이 설문리스트 상세 페이지에 접근했습니다.";
 	
 	public static final String LOGIN_SUCCESS = "[%s]가 로그인에 성공했습니다.";
 	public static final String LOGIN_FAIL = "[%s]가 로그인에 실패했습니다.";

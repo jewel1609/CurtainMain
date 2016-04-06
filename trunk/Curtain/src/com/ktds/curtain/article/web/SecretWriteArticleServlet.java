@@ -96,7 +96,7 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		int articleId = articleBiz.getArticleId();
 		if (articleId > 0) {
 			// 이미지 파일이 있을 경우
-			if ( !file.getFileName().equals("")) {
+			if ( file != null && !file.getFileName().equals("")) {
 				File upFile = file.write("C:\\Users\\206-001\\Documents\\curtain\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Curtain\\resource\\img\\"+file.getFileName());
 				FileVO fileVO = new FileVO();
 				fileVO.setFileName(file.getFileName());

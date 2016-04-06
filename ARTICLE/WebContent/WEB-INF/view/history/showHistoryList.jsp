@@ -111,7 +111,7 @@
 	});
 </script>
 <div class="container">
-  <h2>대학리스트</h2>
+  <h2>히스토리확인</h2>
   <p>자유롭게 이용하세요</p>
   <table class="table">
     <thead>
@@ -119,8 +119,15 @@
       	<td style="width: 15px">
 			<input type="checkbox" id="massiveSelectCheckBox" />
 		</td>
-        <th>대학번호</th>
-        <th>대학명</th>
+        <th>번호</th>
+        <th>IP</th>
+        <th>날짜</th>
+        <th>URL</th>
+        <th>ACTION_CODE</th>
+        <th>DESCRIPTION</th>
+        <th>ETC</th>
+        <th>Email</th>
+        
       </tr>
     </thead>
     
@@ -133,46 +140,36 @@
 						<input class="majorId" name="majorId" value="${history.historyId}" type="checkbox"/>
 					</td>
 			        <td>${history.historyId}</td>  
-			        <td><input type="text" id ="major${history.historyId}" value="${history.ip}"/>
-			        	<span class ="updateBtn" id ="${history.historyId}">수정</span>
-			        </td>
-    				<td><input type="hidden" class="majorGroupId" name="majorGroupId" value="${history.historyId}"/></td>
+			        <td>${history.ip}</td>
+			        <td>${history.date}</td>
+			        <td>${history.url}</td>
+			        <td>${history.actionCode}</td>
+			        <td>${history.description}</td>
+			        <td>${history.etc}</td>
+			        <td>${history.email}</td>
 			      </tr>
 			    
 	    	</c:forEach> 
     	</form>
-    
-    	<tr id="registerNewMajor">
-    		<td colspan=3 >
-    		<form id = "registerNewMajorForm">
-    		<input type="hidden" class="majorGroupId1" name="majorGroupId1" value=""/>
-    			학과명 : <input type="text" id ="newMajor" name="newMajor"/>
-    			<span class ="insertMajorBtn" id ="insertMajorBtn">등록</span>
-    		</form>
-    		</td>
-    	</tr>
-    	
+        	
    		<tr>
-			<td colspan="6">
+			<td colspan="8">
 				<form id="searchForm">
 					<div>
 						${ historys.paging.getPagingList("pageNo", "[@]", "[이전]", "[다음]", "searchForm")}
 					</div>	
 					<div style= "text-align: right;">
 							<select name="searchType">
-							<c:forEach begin="1" end="3" step="1" var="i">
+							<c:forEach begin="1" end="5" step="1" var="i">
 								<c:set var="selected" value="" />
 								<c:if test="${ i eq searchVO.searchType }">
 									<c:set var="selected" value="selected='selected'" />
 								</c:if>
 								<c:if test="${i eq 1}" >
-									<c:set var="name" value="제목+내용" />
+									<c:set var="name" value="전체" />
 								</c:if>
 								<c:if test="${i eq 2}" >
-									<c:set var="name" value="작성자ID" />
-								</c:if>
-								<c:if test="${i eq 3}" >
-									<c:set var="name" value="작성자명" />
+									<c:set var="name" value="Email" />
 								</c:if>
 								<option value="${i}" ${selected}> ${name} </option>
 							</c:forEach>
@@ -182,8 +179,6 @@
 						<input type="button" id="initSearchBtn" value="검색 초기화" />
 					</div>
 				</form>
-				<span id="massiveDeleteBtn" style="cursor: pointer;">일괄삭제</span>
-				<span id="insertBtn" style="cursor: pointer;">학과등록</span>
 			</td>
 		</tr>
     </tbody>

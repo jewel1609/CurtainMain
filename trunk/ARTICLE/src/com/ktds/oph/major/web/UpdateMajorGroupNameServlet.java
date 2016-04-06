@@ -63,7 +63,6 @@ public class UpdateMajorGroupNameServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		out.print(json.toString()); //String으로 바껴서 간다.
-		System.out.println(json.toString());
 		out.flush();
 		out.close();
 	

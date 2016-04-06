@@ -295,6 +295,30 @@ public class QuestionAndAnswerDAO {
 		}
 	}
 	
+	public int modifyAnswer(QuestionAndAnswerVO question) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/question/modifyAnswer/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, question.getAnswerDescription());
+			stmt.setInt(2, question.getQuestionId());
+			
+			return stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, null);
+		}
+	}
+	
 
 	private void loadOracleDriver() {
 		try {
@@ -325,6 +349,4 @@ public class QuestionAndAnswerDAO {
 			}
 		}
 	}
-
-
 }

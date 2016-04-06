@@ -321,5 +321,244 @@ public class MemberDAO {
 
 
 
+	public int getAllMemberCountByEmail(MemberSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/member/getAllMemberCountByEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+			
+			rs.next();
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+		
+	}
+
+
+
+	public int getAllMemberCountByNickName(MemberSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/member/getAllMemberCountByNickName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+			
+			rs.next();
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+		
+	}
+
+
+
+	public int getAllMemberCountByCompany(MemberSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/member/getAllMemberCountByCompany/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+			
+			rs.next();
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+	}
+
+
+
+	public List<MemberVO> getAllMemberByEmail(MemberSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getAllMemberByEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, searchVO.getSearchKeyword());
+			stmt.setInt(2, searchVO.getEndIndex());
+			stmt.setInt(3, searchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<MemberVO> members = new ArrayList<MemberVO>();
+			MemberVO memberVO = null;
+
+			while ( rs.next() ) {
+				memberVO = new MemberVO();
+				memberVO.setEmail(rs.getString("EMAIL"));
+				memberVO.setMemberTypeId(rs.getInt("MEMBER_TYPE_ID"));
+				memberVO.setUnivId(rs.getInt("UNIV_ID"));
+				memberVO.setMajorId(rs.getInt("MAJOR_ID"));
+				memberVO.setSignupDate(rs.getString("SIGNUP_DATE"));
+				memberVO.setNickName(rs.getString("NICK_NAME"));
+				memberVO.setSecondEmail(rs.getString("SECOND_EMAIL"));
+				memberVO.setPoint(rs.getInt("POINT"));
+				memberVO.setRankModifyDate(rs.getString("RANK_MODIFY_DATE"));
+				memberVO.setPassword(rs.getString("PASSWORD"));
+				memberVO.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+				memberVO.setCompanyName(rs.getString("COMPANY_NAME"));
+				memberVO.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				
+				members.add(memberVO);
+			}
+
+			return members;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+
+
+	public List<MemberVO> getAllMemberByNickName(MemberSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getAllMemberByNickName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, searchVO.getSearchKeyword());
+			stmt.setInt(2, searchVO.getEndIndex());
+			stmt.setInt(3, searchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<MemberVO> members = new ArrayList<MemberVO>();
+			MemberVO memberVO = null;
+
+			while ( rs.next() ) {
+				memberVO = new MemberVO();
+				memberVO.setEmail(rs.getString("EMAIL"));
+				memberVO.setMemberTypeId(rs.getInt("MEMBER_TYPE_ID"));
+				memberVO.setUnivId(rs.getInt("UNIV_ID"));
+				memberVO.setMajorId(rs.getInt("MAJOR_ID"));
+				memberVO.setSignupDate(rs.getString("SIGNUP_DATE"));
+				memberVO.setNickName(rs.getString("NICK_NAME"));
+				memberVO.setSecondEmail(rs.getString("SECOND_EMAIL"));
+				memberVO.setPoint(rs.getInt("POINT"));
+				memberVO.setRankModifyDate(rs.getString("RANK_MODIFY_DATE"));
+				memberVO.setPassword(rs.getString("PASSWORD"));
+				memberVO.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+				memberVO.setCompanyName(rs.getString("COMPANY_NAME"));
+				memberVO.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				
+				members.add(memberVO);
+			}
+
+			return members;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+
+
+	public List<MemberVO> getAllMemberByCompany(MemberSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/member/getAllMemberByCompany/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, searchVO.getSearchKeyword());
+			stmt.setInt(2, searchVO.getEndIndex());
+			stmt.setInt(3, searchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<MemberVO> members = new ArrayList<MemberVO>();
+			MemberVO memberVO = null;
+
+			while ( rs.next() ) {
+				memberVO = new MemberVO();
+				memberVO.setEmail(rs.getString("EMAIL"));
+				memberVO.setMemberTypeId(rs.getInt("MEMBER_TYPE_ID"));
+				memberVO.setUnivId(rs.getInt("UNIV_ID"));
+				memberVO.setMajorId(rs.getInt("MAJOR_ID"));
+				memberVO.setSignupDate(rs.getString("SIGNUP_DATE"));
+				memberVO.setNickName(rs.getString("NICK_NAME"));
+				memberVO.setSecondEmail(rs.getString("SECOND_EMAIL"));
+				memberVO.setPoint(rs.getInt("POINT"));
+				memberVO.setRankModifyDate(rs.getString("RANK_MODIFY_DATE"));
+				memberVO.setPassword(rs.getString("PASSWORD"));
+				memberVO.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+				memberVO.setCompanyName(rs.getString("COMPANY_NAME"));
+				memberVO.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				
+				members.add(memberVO);
+			}
+
+			return members;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
 
 }

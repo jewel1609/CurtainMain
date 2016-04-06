@@ -42,9 +42,20 @@ public class MemberBiz {
 		return member!=null;
 	}
 
-	public MemberListVO getAllMember(MemberSearchVO searchVO) {
+	public MemberListVO getAllMember(MemberSearchVO searchVO, MemberVO member) {
 		
-		int allMemberCount = memberDAO.getAllMemberCount();
+		int allMemberCount = 0;
+		List<MemberVO> members = null;
+		
+		if (searchVO.getSearchType().equals("1")){ //EMAIL
+			allMemberCount = memberDAO.getAllMemberCountByEmail(searchVO);
+		}
+		else if (searchVO.getSearchType().equals("2")){//NICKNAME
+			allMemberCount = memberDAO.getAllMemberCountByNickName(searchVO);
+		}
+		else if (searchVO.getSearchType().equals("3")){//COMPANY
+			allMemberCount = memberDAO.getAllMemberCountByCompany(searchVO);
+		}
 		
 		Paging paging = new Paging();
 		paging.setTotalArticleCount(allMemberCount);
@@ -53,17 +64,21 @@ public class MemberBiz {
 		searchVO.setStartIndex( paging.getStartArticleNumber() );
 		searchVO.setEndIndex( paging.getEndArticleNumber() );
 		
-		List<MemberVO> members = new ArrayList<MemberVO>();
-		members = memberDAO.getAllMember(searchVO);
-		// paging 바꾸는 이유 검색 때문에
+		if (member.getMemberTypeId() == 6) {
+			if ( searchVO.getSearchType().equals("1") ) {
+				members = memberDAO.getAllMemberByEmail(searchVO);
+			}
+			else if ( searchVO.getSearchType().equals("2") ) {
+				members = memberDAO.getAllMemberByNickName(searchVO);
+			}
+			else if ( searchVO.getSearchType().equals("3") ) {
+				members = memberDAO.getAllMemberByCompany(searchVO);
+			}
+		}
 		
 		MemberListVO memberList = new MemberListVO();
 		memberList.setMemberList(members);
 		memberList.setPaging(paging);
-		
-		// 몇 번째 페이지
-		
-		
 		return memberList;
 		
 	}

@@ -19,6 +19,7 @@ import com.ktds.oph.operationHistory.vo.ActionCode;
 import com.ktds.oph.operationHistory.vo.BuildDescription;
 import com.ktds.oph.operationHistory.vo.Description;
 import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
+import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerSearchVO;
 
 /**
  * Servlet implementation class ShowMemberServlet
@@ -65,16 +66,28 @@ public class ShowMemberServlet extends HttpServlet {
 		}
 		else if(memberBiz.isAdmin(loginMember)){
 			int pageNo = 0;
-		
+			MemberSearchVO searchVO = new MemberSearchVO();
+			session = request.getSession();
+			
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+				searchVO.setPageNo(pageNo);
+				searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+				searchVO.setSearchType(request.getParameter("searchType"));
 			}
-			catch (NumberFormatException nfe) {}
+			catch (NumberFormatException nfe) {
+				searchVO = (MemberSearchVO) session.getAttribute("_MEMBERLIST_SEARCH_");
+				if (searchVO == null) {
+					searchVO = new MemberSearchVO();
+					searchVO.setPageNo(0);
+					searchVO.setSearchKeyword("");
+					searchVO.setSearchType("1");
+				}
+			}
 			
-			MemberSearchVO searchVO = new MemberSearchVO();
-			searchVO.setPageNo(pageNo);
+			session.setAttribute("_MEMBERLIST_SEARCH_", searchVO);
 			
-			MemberListVO members = memberBiz.getAllMember(searchVO);
+			MemberListVO members = memberBiz.getAllMember(searchVO, loginMember);
 			
 			OperationHistoryVO historyVO = new OperationHistoryVO();
 			historyVO.setIp(request.getRemoteHost());
@@ -86,6 +99,8 @@ public class ShowMemberServlet extends HttpServlet {
 			historyBiz.addHistory(historyVO);
 			
 			request.setAttribute("members", members);
+			request.setAttribute("searchVO", searchVO);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/memberList.jsp");
 			rd.forward(request, response);
 		}

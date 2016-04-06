@@ -35,6 +35,8 @@ public interface ActionCode {
 	public static final String SURVEY_ADD= "SUR_AD";
 	public static final String SURVEY_DELETE= "SUR_DE";
 	
+	public static final String PROHIBITED_WORD_ADD= "PRO_W_A";
+	
 	
 	public static final String ADMIN_MAJOR_ADD = "A_MJ_A";
 	public static final String ADMIN_MAJOR_DELETE = "A_MJ_D";

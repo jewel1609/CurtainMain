@@ -30,6 +30,8 @@ public interface ActionCode {
 	public static final String ADMIN_UNIV_ADD= "A_U_AD";
 	public static final String ADMIN_UNIV_DELETE = "A_U_D";
 	
+	public static final String SURVEY_ADD= "SUR_AD";
+	
 	
 	public static final String ADMIN_MAJOR_ADD = "A_MJ_A";
 	public static final String ADMIN_MAJOR_DELETE = "A_MJ_D";

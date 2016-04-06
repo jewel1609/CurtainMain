@@ -700,7 +700,7 @@ public class MemberDAO {
 	}
 	
 
-	public void minusPointByPromotion(MemberVO loginMember) {
+	public int minusPointByPromotion(MemberVO loginMember) {
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -712,7 +712,8 @@ public class MemberDAO {
 			String query = XML.getNodeString("//query/member/minusPointByPromotion/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, loginMember.getEmail());
-			stmt.executeUpdate();
+			
+			return stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);

@@ -27,6 +27,7 @@ public interface ActionCode {
 	
 	public static final String ADMIN_MEMBER_DELETE = "A_M_D";
 	
+	public static final String ADMIN_UNIV_ADD= "A_U_AD";
 	public static final String ADMIN_UNIV_DELETE = "A_U_D";
 	
 	

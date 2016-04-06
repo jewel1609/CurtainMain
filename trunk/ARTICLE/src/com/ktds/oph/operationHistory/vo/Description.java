@@ -31,6 +31,7 @@ public interface Description {
 	public static final String LOGOUT = "[%s]님이 로그아웃 했습니다.";
 	
 	public static final String DO_ADMIN_MEMBER_DELETE = "[%s] 님이 회원리스트를 삭제했습니다.";
+	public static final String DO_ADMIN_UNIV_ADD = "[%s] 님이 대학리스트를 추가했습니다.";
 	public static final String DO_ADMIN_UNIV_DELETE = "[%s] 님이 대학리스트를 삭제했습니다.";
 	
 	public static final String DO_ADMIN_MAJOR_ADD = "[%s] 님이 학과리스트를 추가했습니다.";
@@ -43,6 +44,8 @@ public interface Description {
 	public static final String DETAIL_LOGIN_FAIL = "시도한 계정 아이디:[%s] <br/> 패스워드:[%s]";
 	
 	public static final String DETAIL_MEMBER_DELETE = "삭제한 회원 이메일:[%s] <br/>";
+	
+	public static final String DETAIL_UNIV_ADD= "추가한 대학명:[%s]";
 	public static final String DETAIL_UNIV_DELETE = "삭제한  대학번호 : [%s] <br/> 대학명:[%s]";
 
 	public static final String DETAIL_MAJOR_ADD = "추가한 학과명 : [%s] ";

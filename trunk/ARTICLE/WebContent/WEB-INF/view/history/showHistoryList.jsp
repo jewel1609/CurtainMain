@@ -1,4 +1,10 @@
- <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%> 
+<%@page import="com.ktds.oph.member.vo.MemberVO"%>
+<%@page import="com.ktds.oph.operationHistory.vo.OperationHistoryVO"%>
+<%@page import="com.ktds.oph.operationHistory.vo.ActionCode"%>
+<%@page import="com.ktds.oph.operationHistory.vo.BuildDescription"%>
+<%@page import="com.ktds.oph.operationHistory.vo.Description"%>
+<%@page import="com.ktds.oph.operationHistory.biz.OperationHistoryBiz"%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/view/common/headerLogin.jsp"></jsp:include>
 
@@ -39,6 +45,23 @@
 				alert("검색어를 입력하세요!");
 				return;
 			}
+			
+			<%
+				MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+				String keyword = request.getParameter("searchKeyword");
+				String searchType = request.getParameter("searchType");
+				
+				OperationHistoryBiz historyBiz = new OperationHistoryBiz();
+				OperationHistoryVO historyVO = new OperationHistoryVO();
+				historyVO.setIp(request.getRemoteHost());
+				historyVO.setEmail(member.getEmail());
+				historyVO.setUrl(request.getRequestURI());
+				historyVO.setActionCode(ActionCode.DO_SEARCH);
+				historyVO.setDescription( BuildDescription.get(Description.DO_SEARCH, member.getEmail()));
+				historyVO.setEtc( BuildDescription.get(Description.DETAIL_DO_SEARCH, searchType, keyword ));
+				System.out.println("검색시도");
+				historyBiz.addHistory(historyVO);
+			%>
 			
 			movePage('0');
 		});

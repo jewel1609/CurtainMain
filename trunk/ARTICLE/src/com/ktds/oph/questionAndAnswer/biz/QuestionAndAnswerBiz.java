@@ -74,4 +74,17 @@ public class QuestionAndAnswerBiz {
 		}
 	}
 
+	public boolean modifyAnswer(QuestionAndAnswerVO question, MemberVO member) {
+		int updateCount = 0;
+		
+		if (member.getMemberTypeId() == 6) {
+			updateCount = questionAndAnswerDAO.modifyAnswer(question);
+			
+			if (updateCount > 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

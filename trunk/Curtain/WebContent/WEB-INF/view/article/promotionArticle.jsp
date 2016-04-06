@@ -298,7 +298,7 @@
          <!-- 게시판 헤더 -->
       		 <div class="w3-row" style="border-bottom: 1px solid #bababa;">
             <div class="w3-margin-4" style="float:left; padding-left:10px;">
-						<h2>홍보게시판입니다.</h2> 
+						<h2>홍보 게시판입니다.</h2> 
 					</div> 
 					<div style="float:left; padding-top:20px;">
 						<h5>참여인원 ${noticeBoardMemberCount }명</h5> 

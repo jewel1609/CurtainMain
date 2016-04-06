@@ -47,6 +47,7 @@ public interface ActionCode {
 	public static final String DELETE_ARTICLE = "DT_A";
 	public static final String DELETE_ARTICLE_FAIL = "DT_A_F";
 	
+	public static final String DELETE_REPLY = "D_REPLY";
 	
 	
 	public static final String SECEDE_MEMBER = "S_M";

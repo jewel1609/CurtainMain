@@ -379,6 +379,10 @@ html, body, h1, h2, h3, h4, h5 {
 		//과 이름 검색
 		$("#inputMajorName").keyup(function(){
 			//AJAX 준비
+			var length = $("#inputMajorName").val().length;
+			if (length <= 3) {
+				return;
+			}
 	         $.post(
 	        		 "<c:url value="/doMajorSearch" />" //갈 서블릿url
 	                  , {

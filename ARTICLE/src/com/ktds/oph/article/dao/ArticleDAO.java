@@ -490,6 +490,250 @@ public class ArticleDAO {
 	}
 
 
+	public int getAllClaimArticleCountByArticleId(ArticleSearchVO searchVO) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int claimArticleCount = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/article/getAllClaimArticleCountByArticleId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1,searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+			
+			rs.next();
+			claimArticleCount = rs.getInt(1);
+			
+			return claimArticleCount;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+	}
+	
+	public int getAllClaimArticleCountByReplyId(ArticleSearchVO searchVO) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int claimArticleCount = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/article/getAllClaimArticleCountByReplyId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1,Integer.parseInt(searchVO.getSearchKeyword()));
+			rs = stmt.executeQuery();
+			
+			rs.next();
+			claimArticleCount = rs.getInt(1);
+			
+			return claimArticleCount;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+	}
+
+	public int getAllClaimArticleCountByEmail(ArticleSearchVO searchVO) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int claimArticleCount = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/article/getAllClaimArticleCountByEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1,searchVO.getSearchKeyword());
+			rs = stmt.executeQuery();
+			
+			rs.next();
+			claimArticleCount = rs.getInt(1);
+			
+			return claimArticleCount;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+	}
+
+
+	public List<ClaimArticleVO> getAllClaimArticleByArticleId(ArticleSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/getAllClaimArticleByArticleId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, searchVO.getSearchKeyword());
+			stmt.setInt(2, searchVO.getEndIndex());
+			stmt.setInt(3, searchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<ClaimArticleVO> claimArticles = new ArrayList<ClaimArticleVO>();
+			ClaimArticleVO claimArticleVO = null;
+			int claimCount = 0;
+			int claimReplyCount = 0;
+			while ( rs.next() ) {
+				
+				claimArticleVO = new ClaimArticleVO();
+				claimArticleVO.setArticleClaimId(rs.getInt("ARTICLE_CLAIM_ID"));
+				claimArticleVO.setEmail(rs.getString("EMAIL"));
+				claimArticleVO.setArticleId(rs.getInt("ARTICLE_ID"));
+				
+				claimCount = getClaimArticleCountByArticleId(claimArticleVO.getArticleId());
+				
+				claimArticleVO.setReplyId(rs.getInt("REPLY_ID"));
+				
+				claimReplyCount = getAllClaimReplyCountByReplyId(claimArticleVO.getReplyId());
+						
+				claimArticleVO.setClaimDate(rs.getString("CLAIM_DATE"));
+				claimArticleVO.setClaimText(rs.getString("CLAIM_TEXT"));
+				
+				claimArticleVO.setClaimCount(claimCount);
+				claimArticleVO.setClaimReplyCount(claimReplyCount);
+				
+				claimArticles.add(claimArticleVO);
+			}
+
+			return claimArticles;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+	
+	public List<ClaimArticleVO> getAllClaimArticleByReplyId(ArticleSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/getAllClaimArticleByReplyId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, Integer.parseInt(searchVO.getSearchKeyword()));
+			stmt.setInt(2, searchVO.getEndIndex());
+			stmt.setInt(3, searchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<ClaimArticleVO> claimArticles = new ArrayList<ClaimArticleVO>();
+			ClaimArticleVO claimArticleVO = null;
+			int claimCount = 0;
+			int claimReplyCount = 0;
+			while ( rs.next() ) {
+				
+				claimArticleVO = new ClaimArticleVO();
+				claimArticleVO.setArticleClaimId(rs.getInt("ARTICLE_CLAIM_ID"));
+				claimArticleVO.setEmail(rs.getString("EMAIL"));
+				claimArticleVO.setArticleId(rs.getInt("ARTICLE_ID"));
+				
+				claimCount = getClaimArticleCountByArticleId(claimArticleVO.getArticleId());
+				
+				claimArticleVO.setReplyId(rs.getInt("REPLY_ID"));
+				
+				claimReplyCount = getAllClaimReplyCountByReplyId(claimArticleVO.getReplyId());
+						
+				claimArticleVO.setClaimDate(rs.getString("CLAIM_DATE"));
+				claimArticleVO.setClaimText(rs.getString("CLAIM_TEXT"));
+				
+				claimArticleVO.setClaimCount(claimCount);
+				claimArticleVO.setClaimReplyCount(claimReplyCount);
+				
+				claimArticles.add(claimArticleVO);
+			}
+
+			return claimArticles;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+	public List<ClaimArticleVO> getAllClaimArticleByEmail(ArticleSearchVO searchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/getAllClaimArticleByEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, searchVO.getSearchKeyword());
+			stmt.setInt(2, searchVO.getEndIndex());
+			stmt.setInt(3, searchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<ClaimArticleVO> claimArticles = new ArrayList<ClaimArticleVO>();
+			ClaimArticleVO claimArticleVO = null;
+			int claimCount = 0;
+			int claimReplyCount = 0;
+			while ( rs.next() ) {
+				
+				claimArticleVO = new ClaimArticleVO();
+				claimArticleVO.setArticleClaimId(rs.getInt("ARTICLE_CLAIM_ID"));
+				claimArticleVO.setEmail(rs.getString("EMAIL"));
+				claimArticleVO.setArticleId(rs.getInt("ARTICLE_ID"));
+				
+				claimCount = getClaimArticleCountByArticleId(claimArticleVO.getArticleId());
+				
+				claimArticleVO.setReplyId(rs.getInt("REPLY_ID"));
+				
+				claimReplyCount = getAllClaimReplyCountByReplyId(claimArticleVO.getReplyId());
+						
+				claimArticleVO.setClaimDate(rs.getString("CLAIM_DATE"));
+				claimArticleVO.setClaimText(rs.getString("CLAIM_TEXT"));
+				
+				claimArticleVO.setClaimCount(claimCount);
+				claimArticleVO.setClaimReplyCount(claimReplyCount);
+				
+				claimArticles.add(claimArticleVO);
+			}
+
+			return claimArticles;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
 	///////////////////////////////////////////////////////////////////////////////
 	
 
@@ -534,9 +778,5 @@ public class ArticleDAO {
 			catch ( SQLException e ) {}
 		}
 	}
-
-	
-
-
 
 }

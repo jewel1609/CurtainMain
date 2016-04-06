@@ -7,7 +7,22 @@ public class ArticleSearchVO {
 	private int pageNo;
 	private int startIndex;
 	private int endIndex;
+	
+	private String searchKeyword;
+	private String searchType;
 
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
 	public int getPageNo() {
 		return pageNo;
 	}

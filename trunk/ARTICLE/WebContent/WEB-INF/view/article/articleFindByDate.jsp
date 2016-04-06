@@ -17,21 +17,26 @@ $(document).ready(function () {
   <h2>날짜별 게시글 검색</h2>      
   <table class="table">
     <thead>
-      <tr>
-        <th>시작날짜</th>
-        <th>마지막날짜</th>
+       <tr>
+		<td colspan="6">게시글 기간을 선택하세요.</td>
       </tr>
     </thead>
     <tbody>
-    	<form id="articleFindByDateForm">
     	<tr>
-	        <td><input type="date" name="startDate"/></td>
-	        <td><input type="date" name="endDate"/></td>
-	      </tr>
-	    </form> 
+    	<td colspan="6">
+		    	<form id="articleFindByDateForm">
+			        <input type="date" name="startDate"/>부터
+			        <input type="date" name="endDate"/>까지
+			    </form> 
+		    </td>
+	    </tr>
+	    <tr>
+	  	  <td colspan="6">
+	  	  	<span id="articleFindeByDateBtn" style="cursor: pointer;">찾기</span>
+	  	  </td>
+	    <tr>
     </tbody>
   </table>
-   <input type="button" id="articleFindeByDateBtn" value="게시글 검색"/>
 </div>
 	
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

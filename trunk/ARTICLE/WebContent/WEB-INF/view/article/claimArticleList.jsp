@@ -7,7 +7,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#initSearchBtn").click(function () {
-			location.href = "<c:url value="/list/init" />";
+			location.href = "<c:url value="/claimArticle/init" />";
 		});
 			
 		
@@ -85,13 +85,13 @@
 									<c:set var="selected" value="selected='selected'" />
 								</c:if>
 								<c:if test="${i eq 1}" >
-									<c:set var="name" value="제목+내용" />
+									<c:set var="name" value="글ID" />
 								</c:if>
 								<c:if test="${i eq 2}" >
-									<c:set var="name" value="작성자ID" />
+									<c:set var="name" value="댓글ID" />
 								</c:if>
 								<c:if test="${i eq 3}" >
-									<c:set var="name" value="작성자명" />
+									<c:set var="name" value="EMAIL" />
 								</c:if>
 								<option value="${i}" ${selected}> ${name} </option>
 							</c:forEach>

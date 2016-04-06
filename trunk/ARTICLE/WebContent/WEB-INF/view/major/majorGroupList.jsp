@@ -115,6 +115,7 @@
 						jsonData.result = false;
 					}
 					if(jsonData.result){
+						alert("수정되었습니다.");
 						var majorGroupId = jsonData.majorGroupId;
 						var result2 = "#majorGroup" + majorGroupId;
 						var updateMajorGroupName = jsonData.updateMajorGroupName;

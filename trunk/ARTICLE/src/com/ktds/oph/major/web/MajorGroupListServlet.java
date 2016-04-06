@@ -59,7 +59,7 @@ public class MajorGroupListServlet extends HttpServlet {
 		historyVO.setIp(request.getRemoteHost());
 		historyVO.setEmail(loginMember.getEmail());
 		historyVO.setUrl(request.getRequestURI());
-		historyVO.setActionCode(ActionCode.ADMIN_MAJOR_PAGE);
+		historyVO.setActionCode(ActionCode.ADMIN_MAJOR_GROUP_PAGE);
 		
 		if(!memberBiz.isAdmin(loginMember)){
 			response.setContentType("text/html; charset=UTF-8");
@@ -85,7 +85,7 @@ public class MajorGroupListServlet extends HttpServlet {
 				historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 			}
 			catch (NumberFormatException nfe) {
-				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_MAJOR_PAGE, loginMember.getEmail()));
+				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_MAJOR_GROUP_PAGE, loginMember.getEmail()));
 				majorSearchVO = (MajorGroupSearchVO) session.getAttribute("_SEARCH_");
 				
 				if ( majorSearchVO == null ) {

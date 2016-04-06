@@ -298,6 +298,21 @@
 	</survey>
 	
 	<member>
+		<getAllMemberCountByCompany>
+			SELECT 	COUNT(COMPANY_NAME)
+			FROM	MEMBER
+			WHERE	COMPANY_NAME LIKE '%' || ? || '%'
+		</getAllMemberCountByCompany>
+		<getAllMemberCountByNickName>
+			SELECT 	COUNT(NICK_NAME)
+			FROM	MEMBER
+			WHERE	NICK_NAME LIKE '%' || ? || '%'
+		</getAllMemberCountByNickName>
+		<getAllMemberCountByEmail>
+			SELECT 	COUNT(EMAIL)
+			FROM	MEMBER
+			WHERE	EMAIL LIKE '%' || ? || '%'
+		</getAllMemberCountByEmail>
 		<modifyRankDate>
 			UPDATE	MEMBER
 			SET		RANK_MODIFY_DATE = ?
@@ -343,6 +358,54 @@
 			WHERE	RNUM >= ?
 		</getAllMember>
 		
+		<getAllMemberByEmail>
+			SELECT	*
+				FROM	(
+							SELECT	ROWNUM AS RNUM
+									, AB.*
+							FROM	(
+											SELECT	*
+											FROM 	MEMBER
+											WHERE	EMAIL LIKE '%' || ? || '%'
+											ORDER	BY EMAIL DESC
+									) AB
+							WHERE	ROWNUM &lt;= ?
+						)
+				WHERE	RNUM >= ?
+		</getAllMemberByEmail>
+		
+		<getAllMemberByNickName>
+			SELECT	*
+					FROM	(
+							SELECT	ROWNUM AS RNUM
+									, AB.*
+							FROM	(
+											SELECT	*
+											FROM 	MEMBER
+											WHERE	NICK_NAME LIKE '%' || ? || '%'
+											ORDER	BY EMAIL DESC
+									) AB
+							WHERE	ROWNUM &lt;= ?
+						)
+				WHERE	RNUM >= ?
+		</getAllMemberByNickName>
+		
+		<getAllMemberByCompany>
+			SELECT	*
+					FROM	(
+							SELECT	ROWNUM AS RNUM
+									, AB.*
+							FROM	(
+											SELECT	*
+											FROM 	MEMBER
+											WHERE	COMPANY_NAME LIKE '%' || ? || '%'
+											ORDER	BY EMAIL DESC
+									) AB
+							WHERE	ROWNUM &lt;= ?
+						)
+				WHERE	RNUM >= ?
+		</getAllMemberByCompany>
+		
 		<getMemberByIdAndPassword>
 			SELECT	*
 			FROM	MEMBER
@@ -367,6 +430,21 @@
 	</member>
 	
 	<article>
+		<getAllClaimArticleCountByArticleId>
+			SELECT 	COUNT(ARTICLE_ID)
+			FROM	ARTICLE_CLAIM
+			WHERE	ARTICLE_ID LIKE '%' || ? || '%'
+		</getAllClaimArticleCountByArticleId>
+		<getAllClaimArticleCountByReplyId>
+			SELECT 	COUNT(REPLY_ID)
+			FROM	ARTICLE_CLAIM
+			WHERE	REPLY_ID LIKE '%' || ? || '%'
+		</getAllClaimArticleCountByReplyId>
+		<getAllClaimArticleCountByEmail>
+			SELECT 	COUNT(EMAIL)
+			FROM	ARTICLE_CLAIM
+			WHERE	EMAIL LIKE '%' || ? || '%'
+		</getAllClaimArticleCountByEmail>
 		<getAllArticleCount>
 			SELECT	COUNT(A.ARTICLE_ID)
 			FROM 	ARTICLE A, MEMBER M
@@ -396,6 +474,51 @@
 			FROM	ARTICLE_CLAIM
 		</getAllClaimArticleCount>
 	
+		<getAllClaimArticleByArticleId>
+			SELECT	*
+				FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	*
+										FROM 	ARTICLE_CLAIM
+										WHERE	ARTICLE_ID LIKE '%' || ? || '%'
+										ORDER	BY CLAIM_DATE DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllClaimArticleByArticleId>
+		<getAllClaimArticleByReplyId>
+			SELECT	*
+				FROM	(
+						SELECT	ROWNUM AS RNUM
+								, AB.*
+						FROM	(
+										SELECT	*
+										FROM 	ARTICLE_CLAIM
+										WHERE	REPLY_ID LIKE '%' || ? || '%'
+										ORDER	BY CLAIM_DATE DESC
+								) AB
+						WHERE	ROWNUM &lt;= ?
+					)
+			WHERE	RNUM >= ?
+		</getAllClaimArticleByReplyId>
+		<getAllClaimArticleByEmail>
+			SELECT	*
+					FROM	(
+							SELECT	ROWNUM AS RNUM
+									, AB.*
+							FROM	(
+											SELECT	*
+											FROM 	ARTICLE_CLAIM
+											WHERE	EMAIL LIKE '%' || ? || '%'
+											ORDER	BY CLAIM_DATE DESC
+									) AB
+							WHERE	ROWNUM &lt;= ?
+							)
+			WHERE	RNUM >= ?
+		</getAllClaimArticleByEmail>
 		<getAllClaimArticle>
 			SELECT	*
 			FROM	(

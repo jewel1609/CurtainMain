@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.oph.questionAndAnswer.biz.QuestionAndAnswerBiz;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerVO;
-import com.ktds.oph.util.Root;
 
 /**
  * Servlet implementation class ModifyAnswerServlet

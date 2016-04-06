@@ -587,4 +587,14 @@
     <servlet-name>ModifyAnswerServlet</servlet-name>
     <url-pattern>/modifyAnswer</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoModifyAnswerServlet</display-name>
+    <servlet-name>DoModifyAnswerServlet</servlet-name>
+    <servlet-class>com.ktds.oph.questionAndAnswer.web.DoModifyAnswerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoModifyAnswerServlet</servlet-name>
+    <url-pattern>/doModifyAnswer</url-pattern>
+  </servlet-mapping>
 </web-app>

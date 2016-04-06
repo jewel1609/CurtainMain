@@ -26,7 +26,7 @@
 
 <div class="container">
 <!-- 	<input id="isChecked" type="hidden" value="${question.isChecked}" /> -->
-	<h2>질문 상세페이지</h2>
+	<h2>답변 수정페이지</h2>
 	<table class="table">
 		<thead>
 			<tr>

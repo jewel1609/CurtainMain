@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.util.Root;
 
 /**
@@ -14,12 +19,14 @@ import com.ktds.oph.util.Root;
  */
 public class InitMajorGroupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public InitMajorGroupServlet() {
         super();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -34,6 +41,15 @@ public class InitMajorGroupServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.INIT_SEARCH);
+		historyVO.setDescription( BuildDescription.get(Description.INIT_SEARCH ));
+		
+		historyBiz.addHistory(historyVO);
+		
 		session.removeAttribute("_SEARCH_");
 		
 		response.sendRedirect(Root.get(this)+"/majorGroupList");

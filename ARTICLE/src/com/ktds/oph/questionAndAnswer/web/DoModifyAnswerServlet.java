@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.questionAndAnswer.biz.QuestionAndAnswerBiz;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerVO;
-import com.ktds.oph.util.Root;
 
 /**
  * Servlet implementation class DoModifyAnswerServlet

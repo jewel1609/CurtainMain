@@ -6,7 +6,7 @@ public interface Description {
 	public static final String VISIT_LOGIN_PAGE = "[%s]가 로그인 페이지에 접근했습니다.";
 	public static final String VISIT_ADMIN_HOME = "[%s]님이 관리자페이지 홈에 접근했습니다.";
 	
-	public static final String INIT_SEARCH = "[%s]님이 검색 초기화 버튼을 클릭했습니다.";
+	public static final String INIT_SEARCH = "검색 초기화 버튼을 클릭했습니다.";
 	
 	public static final String LIST_PAGING = "[%s]님이 [%s]번째 페이지로 이동했습니다.";
 	

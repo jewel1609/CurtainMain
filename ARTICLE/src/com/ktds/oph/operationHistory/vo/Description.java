@@ -43,6 +43,7 @@ public interface Description {
 	
 	public static final String MODIFY_SURVEY = "[%s]님이 설문조사를 수정했습니다.";
 	
+	public static final String PROHIBITED_WORD_ADD = "[%s]님이 금칙어를 추가했습니다.";
 	
 	
 	public static final String DETAIL_LOGIN_SUCCESS = "성공한 계정 아이디 : [%s] <br/> 패스워드:[%s]";
@@ -56,6 +57,8 @@ public interface Description {
 	public static final String DETAIL_UNIV_ADD= "추가한 대학명:[%s]";
 	public static final String DETAIL_UNIV_DELETE = "삭제한  대학번호 : [%s] <br/> 대학명:[%s]";
 
+	public static final String DETAIL_PROHIBITED_WORD_ADD = "추가한 금칙어 : [%s] ";
+	
 	public static final String DETAIL_MAJOR_ADD = "추가한 학과명 : [%s] ";
 	public static final String DETAIL_MAJOR_DELETE = "삭제한 학과 번호 :[%s] <br/> 학과명 : [%s] ";
 	

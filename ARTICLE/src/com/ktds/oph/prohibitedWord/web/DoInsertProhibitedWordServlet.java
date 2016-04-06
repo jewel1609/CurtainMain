@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.oph.util.Root;
 
@@ -21,6 +26,7 @@ import com.ktds.oph.util.Root;
 public class DoInsertProhibitedWordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProhibitedWordBiz prohibitedWordBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,6 +34,7 @@ public class DoInsertProhibitedWordServlet extends HttpServlet {
     public DoInsertProhibitedWordServlet() {
         super();
         prohibitedWordBiz = new ProhibitedWordBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -47,6 +54,16 @@ public class DoInsertProhibitedWordServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		prohibitedWordBiz.insertProhibitedWord(prohibitedWordName, member);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.PROHIBITED_WORD_ADD);
+		historyVO.setDescription( BuildDescription.get(Description.PROHIBITED_WORD_ADD, member.getEmail()));
+		historyVO.setEtc( BuildDescription.get(Description.DETAIL_PROHIBITED_WORD_ADD, prohibitedWordName));
+		
+		historyBiz.addHistory(historyVO);
 		
 		response.sendRedirect(Root.get(this) + "/");
 	}

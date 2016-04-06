@@ -59,7 +59,6 @@ public class SessionCheckFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		
 		String uri = req.getRequestURI();
-		System.out.println(uri);
 		
 		// whiteList url가 없다면 sesstion을 체크해라
 		if ( !whiteList.contains(uri) ) {

@@ -680,7 +680,7 @@ html, body, h1, h2, h3, h4, h5 {
 					</h1><hr>
 					<div class="form-group">
 						<div class="col-sm-6" data-toggle="buttons">
-							개인화면 약관에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal">
+							커튼 이용약관에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal">
 												  내용보기
 											  </button>
 								<input class="w3-check" id="agree" name="agree" type="checkbox" autocomplete="off">
@@ -804,7 +804,7 @@ html, body, h1, h2, h3, h4, h5 {
 					</h1><hr>
 					<div class="form-group">
 						<div class="col-sm-6" data-toggle="buttons">
-							개인화면 약관에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal">
+							커튼 이용약관에 동의 <button class="btn btn-default" data-toggle="modal" data-target="#modal">
 												  내용보기
 											  </button>
 								<input class="w3-check" id="compAgree" name="compAgree" type="checkbox" autocomplete="off">

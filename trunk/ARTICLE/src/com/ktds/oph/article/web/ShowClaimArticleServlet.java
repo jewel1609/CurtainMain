@@ -52,6 +52,12 @@ public class ShowClaimArticleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
+
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(loginMember.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.ADMIN_CLAIM_PAGE);
 		
 		if(!memberBiz.isAdmin(loginMember)){
 			response.setContentType("text/html; charset=UTF-8");
@@ -69,21 +75,19 @@ public class ShowClaimArticleServlet extends HttpServlet {
 		
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+				
+				historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 			}
-			catch (NumberFormatException nfe) {}
+			catch (NumberFormatException nfe) {
+				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_CLAIM_PAGE, loginMember.getEmail()));
+			}
 			
 			ArticleSearchVO searchVO = new ArticleSearchVO();
 			searchVO.setPageNo(pageNo);
 			
 			ArticleListVO claimArticles = articleBiz.getAllClaimArticle(searchVO);
 			
-			OperationHistoryVO historyVO = new OperationHistoryVO();
-			historyVO.setIp(request.getRemoteHost());
-			historyVO.setEmail(loginMember.getEmail());
-			historyVO.setUrl(request.getRequestURI());
-			historyVO.setActionCode(ActionCode.ADMIN_CLAIM_PAGE);
-			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_CLAIM_PAGE, loginMember.getEmail()));
-			
+		
 			historyBiz.addHistory(historyVO);
 			
 			

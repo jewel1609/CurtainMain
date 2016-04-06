@@ -24,6 +24,9 @@ public interface ActionCode {
 	public static final String ADMIN_HISTORY_PAGE = "A_HS";
 	public static final String HISTORY_LIST_PAGE = "HS_L";
 	
+	public static final String ARTICLE_LIST_PAGE = "AT_L"; 
+	public static final String ARTICLE_DETAIL_PAGE = "AT_D"; 
+	
 	public static final String ADMIN_QUESTION_PAGE = "A_QT";
 	public static final String QUESTION_DETAIL_PAGE = "QT_D";
 	

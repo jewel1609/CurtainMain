@@ -27,6 +27,10 @@ public interface Description {
 	
 	public static final String VISIT_DETAIL_SURVEY_PAGE = "[%s] 님이 설문리스트 상세 페이지에 접근했습니다.";
 	
+	public static final String VISIT_ARTICLE_LIST_PAGE = "[%s] 님이 게시글 목록 페이지에 접근했습니다.";
+	public static final String VISIT_ARTICLE_DETAIL_PAGE = "[%s] 님이 게시글 상세 페이지에 접근했습니다.";
+	
+	
 	public static final String LOGIN_SUCCESS = "[%s]가 로그인에 성공했습니다.";
 	public static final String LOGIN_FAIL = "[%s]가 로그인에 실패했습니다.";
 	public static final String LOGOUT = "[%s]님이 로그아웃 했습니다.";
@@ -64,8 +68,10 @@ public interface Description {
 	
 	public static final String DETAIL_QUESTION = "상세보기한 질문 글 번호 : [%s] <br/> 제목:[%s] <br/> 내용:[%s] <br/>질문일자:[%s]";
 	public static final String DETAIL_HISTORY = "시작날짜 : [%s] <br/> 끝 날짜 : [%s]";
+	public static final String DETAIL_ARTICLE = "시작날짜 : [%s] <br/> 끝 날짜 : [%s]";
 	
 	public static final String DETAIL_MODIFY_SURVEY = "수정한 설문조사 번호 : [%s] <br/> 주제 : [%s] <br/> 항목1 : [%s] <br/> 항목2 : [%s] <br/> 항목3 : [%s] <br/> 항목4 : [%s] <br/>";
+	public static final String DETAIL_ARTICLE_SHOW = "상세보기한 게시글 번호 : [%s]";
 	
 	
 	

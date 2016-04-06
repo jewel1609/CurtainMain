@@ -36,32 +36,38 @@ $(document).ready(function () {
 		});			
 	});
 	
-	$(".glyphicon-trash").click(function() {		
-
-		$.post(		
-			"/deleteFile"
-			, { "fileId" : $(this).attr("id") }
-			, function(data) {
-				
-				var jsonData = {};		
-				
-				try {
-					jsonData = JSON.parse(data);
+	$(".badge").click(function() {	
+		
+		var r = confirm("삭제하시겠습니까?");
+	    if (r == true) {
+	    
+			$.post(		
+				"/deleteFile"
+				, { "fileId" : $(this).attr("id") }
+				, function(data) {
+					
+					var jsonData = {};		
+					
+					try {
+						jsonData = JSON.parse(data);
+					}
+					catch(e) {
+						jsonData.result = false;
+					}
+					
+					if(jsonData.result){
+						var result = "#" + jsonData.fileId;
+						$(result).hide();
+					}
+					else{
+						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+						location.href="/";
+					}
 				}
-				catch(e) {
-					jsonData.result = false;
-				}
-				
-				if(jsonData.result){
-					var result = "#" + jsonData.fileId;
-					$(result).hide();
-				}
-				else{
-					alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-					location.href="/";
-				}
-			}
-		)	
+			)	
+	    } else {
+	       
+	    }
 	});
 	
 
@@ -74,15 +80,18 @@ $(document).ready(function () {
 			return; // 더이상 밑의 이벤트를 진행하지 않음.
 		} 
 		 
-		 if( $("#articleDescription").val() == ""){
-			alert("내용을 입력하세요!");
-			$("#articleDescription").focus();
-			return; // 더이상 밑의 이벤트를 진행하지 않음.
-		} 
-		var form = $(updateArticle);
-		form.attr("method", "post");
-		form.attr("action", "/doUpdateArticle");
-		form.submit();
+	 if( $("#articleDescription").val() == ""){
+		alert("내용을 입력하세요!");
+		$("#articleDescription").focus();
+		return; // 더이상 밑의 이벤트를 진행하지 않음.
+	} 
+	 else {
+		 alert("수정되었습니다.");
+		 var form = $(updateArticle);
+			form.attr("method", "post");
+			form.attr("action", "/doUpdateArticle");
+			form.submit();
+	 }
 	});
 	
 });
@@ -99,23 +108,31 @@ function readURL(input) {
 }
 
 </script>
+
+
+
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" /> 
-<div class="w3-container w3-main">    
 
-  <div class="w3-row" >
-    <div class="w3-col m7 w3-main wrapper" style="margin-left: 350px; margin-right: 100px; overflow: auto;">
-     
-     <div class="w3-row-padding">
+
+
+<div class="w3-container w3-main" style="margin-top:0px; ">    
+
+  <div class="w3-row" style="border-bottom: 1px solid #bababa;">
+    <div class="w3-col m7 w3-main wrapper w3-padding"
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+         
+        <div class="w3-row-padding">
 				<div class="w3-col m12">
-					<div class="w3-card-2 w3-round w3-white">
-
-						<form id="updateArticle" enctype="multipart/form-data">
-							<div class="w3-container w3-padding w3-left-align">
-								<div class="form-group1">
+					<div class="w3-card w3-white w3-round-large" style="margin-top:10px; margin-bottom:10px;">
+						<div class="w3-container">
+						
+							<div class="w3-container">
+							<form id="updateArticle" enctype="multipart/form-data">
+								<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
+								
 								<div>
-									<input type="hidden" id="boardId" name="boardId" value="${article.boardId}" />
-									<div>
-										 <div>
+									<div class="col-sm-12" style="margin-top:10px; padding-bottom: 10px; border-bottom:1px solid #bababa;">
+										<div class="col-sm-1 input" style="padding-left:0px; padding-top:8px;" align="left">
 											<c:if test="${article.articleTypeName eq '연애'}">
 												<span class="label label-danger">${article.articleTypeName}</span>
 											</c:if>
@@ -131,16 +148,14 @@ function readURL(input) {
 											<c:if test="${article.articleTypeName eq '기타'}">
 												<span class="label label-default">${article.articleTypeName}</span>
 											</c:if>
-											 <img id="${article.articleId}"
-											class="like" src="<c:url value="/resource/img/like_active_small.png"/>" />${article.articleLikes}
-										</div>
-										<div style="padding-top: 4px;">
-											<input type="hidden" id="articleId" name="articleId" value="${article.articleId}"/>
-											<input type="text" class="w3-col m10 input-lg"
-												id="articleTitle" name="articleTitle"  value="${article.articleTitle}"/>
 										</div>
 										
-										<div class="col-sm-2">					
+										<div class="col-sm-9" align="left" style="padding-left:0px;">
+										<input type="hidden" id="articleId" name="articleId" value="${article.articleId}"/>
+											<input type="text" class="form-control w3-col m10 input-lg"
+												id="articleTitle" name="articleTitle"  value="${article.articleTitle}"/>
+										</div>
+										<div class="col-sm-2" align="right" style="padding-right:0px; padding-top:8px;">					
 											<input type="file" name="imgFile" style="display: none;" onchange="readURL(this);">
 											<button type="button" class="btn btn-default btn-sm" onclick="document.all.imgFile.click();">
 												<span class="glyphicon glyphicon-picture"></span>
@@ -161,23 +176,32 @@ function readURL(input) {
 											</div>
 											<input type="hidden" id="movieUrl" name="movieUrl" />
 										</div>
-										
-										<div style="padding-top: 4px;">
-										<textarea name="articleDescription" class="w3-col m12"
-											rows="5" id="comment" style="margin-bottom: 5px;">${article.articleDesc}</textarea>
 									</div>
-									<div class="col-sm-9"  id="imagePreview"><img id="uploadImg" src="" width="100px;"></div>
-									<div class="w3-col m12">
-										<c:forEach items="${files}" var="file">
-											<span id="${file.fileId}" class="glyphicon glyphicon-trash col-sm-9">${file.fileName}</span>
-										</c:forEach>
-									</div>
+								
+								<div class="col-sm-12" style="margin-bottom:10px; margin-top:10px;">
+									<textarea name="articleDescription" class="w3-col m12 w3-padding"
+											rows="10" id="comment" style="margin-bottom: 5px;">${article.articleDesc}</textarea>
+								</div>
+								<div class="col-sm-9"  id="imagePreview"><img id="uploadImg" src="" width="100px;"></div>
+								<div class="w3-col m12 w3-margin-top">
+									<c:forEach items="${files}" var="file">
+										  	<span id="${file.fileId}" class="badge" style="cursor:pointer;">${file.fileName}&nbsp;&nbsp; X</span>
+									</c:forEach>
+								</div>
 								</div>
 							</div>
 									
 			            	<ul class="pager">
-							 	 <li class="previous col-sm-2"><a href="<c:url value="/showDetail?articleId=${article.articleId}&boardId=${article.boardId}"/>">뒤로가기</a></li>
-								<li id="updateArticleBtn" class="col-sm-2">수정완료</li>
+
+							 	 <li class="previous col-sm-2">
+							 	 <a href="<c:url value="/showDetail?articleId=${article.articleId}&boardId=${article.boardId}"/>">
+							 	 	<span class="glyphicon glyphicon-arrow-left" style="color:#FF3300; "></span>
+							 	 </a>
+							 	 </li>
+							 	 <li class="next btn w3-round-xxlarge">
+									<a id="updateArticleBtn" style="color:#FF3300;">수정</a>
+								</li>
+								
 							</ul>  
 								</div>
 							</div>

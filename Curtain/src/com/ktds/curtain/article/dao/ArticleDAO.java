@@ -1507,6 +1507,31 @@ public class ArticleDAO {
 		}
 	}
 
+	public int memberCount(MemberVO stdMember) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/article/memberCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, stdMember.getMajorGroupId());
+			rs = stmt.executeQuery();
+
+			rs.next();
+			
+			return rs.getInt(1);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
 	
 	private void loadOracleDriver() {
 		try {
@@ -1537,5 +1562,6 @@ public class ArticleDAO {
 		}
 
 	}
+
 
 }

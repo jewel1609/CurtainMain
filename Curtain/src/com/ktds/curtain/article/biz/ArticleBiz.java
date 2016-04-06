@@ -722,4 +722,16 @@ public class ArticleBiz {
 		return article;
 	}
 
+	/**
+	 * 사용자와 동일한 그룹에 속한 사람 찾기
+	 * @param stdMember
+	 * @param majorBoard
+	 * @return
+	 */
+	public int memberCount(MemberVO stdMember) {
+		ArticleVO memberCount = new ArticleVO();
+		memberCount.setTotalCount(articleDAO.memberCount(stdMember));
+		return memberCount.getTotalCount();
+	}
+
 }

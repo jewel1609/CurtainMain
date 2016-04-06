@@ -33,7 +33,16 @@ public class ArticleVO extends MemberVO {
 	private List<ReplyVO> replyList;
 	private List<FileVO> fileList;
 	
+	private int totalCount;
 	
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
 	public int getReplyCount() {
 		return replyCount;
 	}

@@ -237,6 +237,18 @@ $(document).ready(function () {
 		formAppender.show();
 		
 	});
+	
+	$(".deleteRe").click(function () {
+		var table = $(this).parent().parent().parent().parent().parent().parent().parent().parent();
+		var replyId = table.children(":eq(0)").children(":eq(0)").html();
+		alert(replyId);
+		$("#delete").val(replyId);
+		
+		var form = $("#deleteReplyForm");
+		form.attr("method", "post");
+		form.attr("action", "/doDeleteReply");
+		form.submit();
+	});
   
 
 });
@@ -446,13 +458,17 @@ $(document).ready(function () {
 				</div>
 				</div>
 				</div>
-				
+		<form id="deleteReplyForm">
+			<input type="hidden" id="delete" name="delete" value=""/>
+			<input type="hidden" id="articleId2" name="articleId2" value="${article.articleId}" />
+		</form>
 				<!-- 답글 -->
 			<div style="margin-top:20px;">
 				<c:forEach items="${article.replyList}" var="reply">
 					<div style="margin-left:32px; margin-right:32px;" >
 						<table width="100%">
 							<tr>
+								<td class="hide replyId">${reply.replyId}</td>
 								<td>
 							     	<div class="w3-row-padding">
 										<div class="w3-col m12">
@@ -478,7 +494,7 @@ $(document).ready(function () {
 														</c:if>
 													</div>
 													
-													<div class="w3-col m11 w3-padding-bottom">
+													<div class="w3-col m10 w3-padding-bottom">
 														<div style="float:left; margin-right:10px; color:#7d7d7d; font-size:10pt;">
 															<c:if test="${reply.like}">
 																<span class="like glyphicon glyphicon-thumbs-up" id="like${reply.replyId}" style="color:#a9d039;"></span>
@@ -505,6 +521,12 @@ $(document).ready(function () {
 													<div class="w3-col m1" align="right" style="color:#7d7d7d; font-size:10pt;">
 													<span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기
 													</div>
+													<div class="w3-col m1" align="right" style="color:#7d7d7d; font-size:10pt;">
+														<c:set var="loginId2" value="${ sessionScope._MEMBER_.email}"/>
+														<c:if test="${ loginId2 eq reply.email }">
+															<span class="glyphicon glyphicon-trash deleteRe" id="delete${reply.replyId}" style="color:#7d7d7d;"></span>  삭제하기
+														</c:if>
+													</div>
 													<div class="claim w3-col m12">
 														<form class="claimWrite">
 															<input class="w3-input w3-col m11 " type="text" class="claimCom" id="claimCom${reply.replyId}" name="claimCom${reply.replyId}"
@@ -513,8 +535,7 @@ $(document).ready(function () {
 														</form>
 														<div style="clear: both;"></div>
 													</div>
-													
-													
+												
 												</div>
 											</div>
 										</div>

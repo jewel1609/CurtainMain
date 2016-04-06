@@ -38,6 +38,12 @@ public class ModifyAnswerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		QuestionAndAnswerVO question = questionAndAnswerBiz.getQuestionByQuestionId(request.getParameter("questionId"));
+		
+		String answerDescription = question.getAnswerDescription();
+		if (answerDescription != null) {
+			question.setAnswerDescription(answerDescription.replace("<br />", "\n"));
+		}
+		
 		request.setAttribute("question", question);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/questionAndAnswer/modifyAnswer.jsp");

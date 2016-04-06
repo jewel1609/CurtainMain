@@ -87,34 +87,11 @@
 	    	</c:forEach> 
     	</form>
    		<tr>
-			<td colspan="6">
+			<td colspan="8">
 				<form id="searchForm">
 					<div>
 						${ survey.paging.getPagingList("pageNo", "[@]", "[이전]", "[다음]", "searchForm")}
 					</div>	
-					<div style= "text-align: right;">
-							<select name="searchType">
-							<c:forEach begin="1" end="3" step="1" var="i">
-								<c:set var="selected" value="" />
-								<c:if test="${ i eq searchVO.searchType }">
-									<c:set var="selected" value="selected='selected'" />
-								</c:if>
-								<c:if test="${i eq 1}" >
-									<c:set var="name" value="제목+내용" />
-								</c:if>
-								<c:if test="${i eq 2}" >
-									<c:set var="name" value="작성자ID" />
-								</c:if>
-								<c:if test="${i eq 3}" >
-									<c:set var="name" value="작성자명" />
-								</c:if>
-								<option value="${i}" ${selected}> ${name} </option>
-							</c:forEach>
-						</select> 
-						<input type="text" id="searchKeyword" name="searchKeyword" value="${searchVO.searchKeyword}" />
-						<input type="button" id="searchBtn" value="검색" />
-						<input type="button" id="initSearchBtn" value="검색 초기화" />
-					</div>
 				</form>
 				<span id="massiveDeleteBtn" style="cursor: pointer;">일괄삭제</span>
 			</td>

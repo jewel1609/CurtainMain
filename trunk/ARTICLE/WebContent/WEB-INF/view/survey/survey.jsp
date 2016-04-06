@@ -60,7 +60,7 @@ $(document).ready(function() {
   </form>
 </div>
 <div class="container">
-  	<input type="button" id="surveyBtn" value="설문 등록"/>
+  	<span id="surveyBtn" style="cursor:pointer">설문 등록</span>
 </div>
 
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

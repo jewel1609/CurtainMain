@@ -444,7 +444,6 @@ public class ArticleBiz {
 		for (ReplyVO replys : reply) {
 			for(ReplyDislikeVO replyDislike : replyDislikes ) {
 				if( replys.getReplyId() == replyDislike.getReplyId() ){
-					System.out.println("싫어요"+replyDislike.getReplyId());
 					replys.setDislike(true);
 				}
 			}
@@ -569,8 +568,6 @@ public class ArticleBiz {
 		}
 		
 		description = description.replaceAll("\n", "<br/>");
-		System.out.println(originAticle.getArticleDesc());
-		System.out.println(description);
 		if ( !originAticle.getArticleDesc().equals(description) ) {
 			changeCount++;
 			changedArticle.setArticleDesc(description);
@@ -660,9 +657,6 @@ public class ArticleBiz {
 	 * @return
 	 */
 	public ArticleVO showTopMajorArticle(MemberVO stdMember, String boardId) {
-		
-		System.out.println("showTopMajorArticle 접근");
-		
 		ArticleVO article = new ArticleVO();
 		article = articleDAO.showTopMajorArticle(stdMember, boardId);
 		

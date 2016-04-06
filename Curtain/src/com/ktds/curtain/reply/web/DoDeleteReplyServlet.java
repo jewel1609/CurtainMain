@@ -68,6 +68,8 @@ public class DoDeleteReplyServlet extends HttpServlet {
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.DELETE_REPLY);
 			historyVO.setDescription( BuildDescription.get(Description.DELETE_REPLY, member.getNickName(), articleId+"", replyId+"" ) );
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_DELETE_REPLY) );
+			
 			historyBiz.addHistory(historyVO);
 			
 			response.sendRedirect("/showDetail?articleId="+articleId);

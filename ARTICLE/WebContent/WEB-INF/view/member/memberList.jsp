@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="/WEB-INF/view/common/headerLogin.jsp"></jsp:include>
 
 
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#initSearchBtn").click(function () {
-			location.href = "<c:url value="/list/init" />";
+			location.href = "<c:url value="/showMember/init" />";
 		});
 			
 		
@@ -43,28 +44,6 @@
 				var form = $("#massiveForm");
 				form.attr("method", "post");
 				form.attr("action", "<c:url value="/massiveDelete" />");
-				form.submit();
-			}
-		});
-		
-		//수정
-		$("#modifyMemberInfoBtn").click(function() {
-			var isChecked = false;
-			$(".memberEmail").each(function (index, data) {
-				if(data.checked){
-					isChecked = data.checked;
-				}
-			});
-			
-			if(!isChecked) {
-				alert("삭제할 대상을 선택하세요.")
-				return;
-			}
-			
-			if (confirm("정말 삭제하시겠습니까?")) {
-				var form = $("#massiveForm");
-				form.attr("method", "post");
-				form.attr("action", "<c:url value="/massiveModify" />");
 				form.submit();
 			}
 		});
@@ -108,11 +87,17 @@
 			        <td>${member.memberTypeId} </td>
 			        <td>${member.univId}</td>
 			       	<td>${member.majorId}</td>
-			        <td>${member.signupDate}</td>
+			       	<td>
+			       		<c:set var="signupDate" value="${member.signupDate}" />
+			       		 ${fn:substring(signupDate, 0, 11)}
+			        </td>
 			        <td>${member.nickName}</td>
 			        <td>${member.secondEmail}</td>
 			        <td>${member.point}</td>
-			        <td>${member.rankModifyDate}</td>
+			        <td>
+			        <c:set var="rankModifyDate" value="${member.rankModifyDate}" />
+			       		 ${fn:substring(rankModifyDate, 0, 11)}
+			        </td>
 			        <td>${member.password}</td>
 			        <td>${member.phoneNumber}</td>
 			        <td>${member.companyName}</td>
@@ -122,7 +107,7 @@
 	    	</c:forEach> 
     	</form>
    		<tr>
-			<td colspan="6">
+			<td colspan="14">
 				<form id="searchForm">
 					<div>
 						${ members.paging.getPagingList("pageNo", "[@]", "[이전]", "[다음]", "searchForm")}
@@ -135,13 +120,13 @@
 									<c:set var="selected" value="selected='selected'" />
 								</c:if>
 								<c:if test="${i eq 1}" >
-									<c:set var="name" value="제목+내용" />
+									<c:set var="name" value="EMAIL" />
 								</c:if>
 								<c:if test="${i eq 2}" >
-									<c:set var="name" value="작성자ID" />
+									<c:set var="name" value="NICK_NAME" />
 								</c:if>
 								<c:if test="${i eq 3}" >
-									<c:set var="name" value="작성자명" />
+									<c:set var="name" value="COMPANY_NAME" />
 								</c:if>
 								<option value="${i}" ${selected}> ${name} </option>
 							</c:forEach>
@@ -150,8 +135,8 @@
 						<input type="button" id="searchBtn" value="검색" />
 						<input type="button" id="initSearchBtn" value="검색 초기화" />
 					</div>
-				</form>
 				<span id="massiveDeleteBtn" style="cursor: pointer;">일괄삭제</span>
+				</form>
 			</td>
 		</tr>
     </tbody>

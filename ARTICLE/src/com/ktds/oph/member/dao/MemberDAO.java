@@ -150,7 +150,6 @@ public class MemberDAO {
 	public void deleteMember(String memberEmail) {
 		this.loadOracleDriver();
 		executeUpdateAndDeleteQuery(memberEmail, "deleteMember");
-		System.out.println("DAO : " + memberEmail);
 	}
 
 	

@@ -6,6 +6,7 @@
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
 
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css">
 <!-- Magnific Popup core CSS file -->
 <link rel="stylesheet" href="/resource/css/article/magnific-popup.css">
 
@@ -13,6 +14,7 @@
 <script src="/resource/js//jquery.magnific-popup.js"></script>
 
 <script type="text/javascript">
+
 
 $(document).ready(function () {
 	
@@ -70,9 +72,7 @@ $(document).ready(function () {
 	$(".claim").hide();
 	
 	$(".doClaim").click(function () {
-		
-		var root = $(this).parent().parent().children(":eq(4)");
-		
+		var root = $(this).parent().parent().children(":eq(3)");
 		root.slideToggle();
 		
 	});
@@ -209,6 +209,9 @@ $(document).ready(function () {
 	$(".writeReReply").click (function () {
 		var table = $(this).parent().parent().parent().parent().parent().parent().parent();
 		console.log(table.text);
+		
+		
+		
 		/*칼럼에 있는 정보 가져오고 싶을 때*/
 		var parentReplyId = table.children(":eq(1)").children(":eq(0)").html();
 		var orderNo = table.children(":eq(2)").children(":eq(0)").html();
@@ -231,7 +234,7 @@ $(document).ready(function () {
 			$(".formAppender").html("");
 		}
 		
-		var formAppender = table.parent().parent().children(":eq(1)");
+		var formAppender = table.parent().children(":eq(1)");
 		formAppender.html(form);
 		formAppender.show();
 		
@@ -317,20 +320,21 @@ $(document).ready(function () {
 							
 						</div>
 													
-						<div class="col-sm-12" style="margin-bottom:20px;">
+						<div class="col-sm-12" style="margin-bottom:10px;">
 							<div class="col-sm-11" style="padding-left:0px;">
-								<span style="color: #FF3300;">
-									<h5>
+								<span>
+									<h6>
 									${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;
 									${article.articleModifyDate}
-									</h5>
+									</h6>
 								</span>
 							</div>
-							<div class="col-sm-1"><h6>조회수 ${article.hits}</h6></div>
+							<div class="col-sm-1" align="right"><h6>조회수 ${article.hits}</h6></div>
 						</div>
+						
 						<div>
 
-							<div>
+							<div class="w3-padding">
 							${article.articleDesc}
 							</div>
 							
@@ -338,7 +342,7 @@ $(document).ready(function () {
 				             <c:forEach items="${files}" var="file">
 				             
 				             	<c:if test="${file.fileType eq '1'}">	
-				             	<div class="popup-gallery">
+				             	<div class="popup-gallery w3-padding">
 					             	<a class="image-popup-fit-width" href="/resource/img/${file.fileName}">
 										<img src="/resource/img/${file.fileName}" width="50%">
 									</a>
@@ -347,7 +351,7 @@ $(document).ready(function () {
 									
 								</c:if>
 								<c:if test="${file.fileType eq '2'}">
-									<a class="popup-youtube" href="${file.fileName}">
+									<a class="popup-youtube w3-padding" href="${file.fileName}">
 										<iframe width="560" height="315" src="${file.fileName}" ></iframe>
 									</a>
 								</c:if>
@@ -356,118 +360,158 @@ $(document).ready(function () {
 						</div>
 			            	<ul class="pager">
 			            			<c:if test="${article.boardId eq 1}">
-										 <li class="previous"><a href="/studentMajorAritlce" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+										 <li class="previous">
+										    <a href="/studentMajorAritlce" class="btn btn-info btn-lg">
+									          <span class="glyphicon glyphicon-arrow-left" style="color:#FF3300; "></span>
+									        </a>
+										 </li>
 									</c:if>
 									<c:if test="${article.boardId eq 2}">
-										 <li class="previous"><a href="/studentUnivArticle" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+										 <li class="previous">
+										    <a href="/studentUnivArticle" class="btn btn-info btn-lg">
+									          <span class="glyphicon glyphicon-arrow-left" style="color:#FF3300; "></span>
+									        </a>
+										 </li>
 									</c:if>
 									<c:if test="${article.boardId eq 3}">
-										 <li class="previous"><a href="/promotionArticle" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+										 <li class="previous">
+										    <a href="/promotionArticle" class="btn btn-info btn-lg">
+									          <span class="glyphicon glyphicon-arrow-left" style="color:#FF3300; "></span>
+									        </a>
+										 </li>
 									</c:if>
 									<c:if test="${article.boardId eq 4 }">
-										 <li class="previous"><a href="/secretArticleList" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+										 <li class="previous">
+										    <a href="/secretArticleList" class="btn btn-info btn-lg">
+									          <span class="glyphicon glyphicon-arrow-left" style="color:#FF3300; "></span>
+									        </a>
+										 </li>
 									</c:if>
 									<c:if test="${article.boardId eq 5 }">
-										 <li class="previous"><a href="/oneLayerCurtain" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+										 <li class="previous">
+										    <a href="/oneLayerCurtain" class="btn btn-info btn-lg">
+									          <span class="glyphicon glyphicon-arrow-left" style="color:#FF3300; "></span>
+									        </a>
+										 </li>
 									</c:if>		
 									<c:if test="${article.boardId eq 6 }">
-										 <li class="previous"><a href="/twoLayerCurtain" style="color:#FF3300; font-size: 10pt;">뒤로가기</a></li>
+										 <li class="previous">
+										    <a href="/twoLayerCurtain" class="btn btn-info btn-lg">
+									          <span class="glyphicon glyphicon-arrow-left" style="color:#FF3300; "></span>
+									        </a>
+										 </li>
 									</c:if>	
 							   	<c:set var="loginId" value="${ sessionScope._MEMBER_.email}"/>
 								<c:if test="${ loginId eq article.email }">
-								${article.boardId}
-								<li class="next"><a href="<c:url value="/updateArticle?articleId=${article.articleId}&boardId=${article.boardId}"/>"  style="color:#FF3300; font-size: 10pt;">수정하기</a></li>
-								<li class="next"><a href="<c:url value="/deleteArticle?articleId=${article.articleId}&email=${article.email}"/>"  style="color:#FF3300; font-size: 10pt;">삭제하기</a></li>
+								<!-- ${article.boardId} -->
+								<li class="next">
+								<a href="<c:url value="/updateArticle?articleId=${article.articleId}&boardId=${article.boardId}"/>"  style="color:#FF3300; font-size: 10pt;">수정</a>
+								</li>
+								<li class="next">
+								<a onClick="deleteFunction()" href="<c:url value="/deleteArticle?articleId=${article.articleId}&email=${article.email}"/>"  style="color:#FF3300; font-size: 10pt;">삭제</a>
+								</li>
 								</c:if>
 							</ul>  
   					</div>
   				</div>
-            </div>
-
-       	</div>
-	  </div>
-	  
-	  <!-- 댓글부분 -->
-	  <div id="formWrapper" class="w3-margin-32" >
-			<div class="w3-col m12">
-				<div class="w3-container w3-card" style="background-color: white; margin-bottom:50px;">
+  				
+  				<c:set var="nickName" value="${ sessionScope._MEMBER_.nickName }" />
+  				<hr>
+  				
+  				<!-- 댓글부분 -->
+  				
+  				<div id="formWrapper" class="w3-margin-32" >
+  					<div class="w3-col m12">
+					<div class="w3-margin w3-padding w3-container w3-card" style="background-color: white;">
 					<form id="writeReplyForm">
 						<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
 						<input type="hidden" id="parentReplyId" name="parentReplyId" value="0"/>
 						<input type="hidden" id="orderNo" name="orderNo" value="0"/>
 						<input type="hidden" id="replyId" name="replyId" value="0"/>
-						<textarea id="replyDesc" name="replyDesc" class="w3-col m12" style="border: none; margin-bottom:10px;"></textarea><br/>
-						<button type="button" class="btn btn-default" id="writeReplyBtn" style="float:right; color:#FF3300;">댓글 등록</button>
+						
+						<div class="w3-col m12" ><h6>${nickName}</h6></div>
+						<textarea id="replyDesc" name="replyDesc" rows="3" class="form-control w3-col m10" style="margin-right:10px;"></textarea>
+						<button type="button" class="btn btn-default w3-col m1 w3-padding" id="writeReplyBtn" style="color:#FF3300; height:70px;">댓글등록</button>
+					
 					</form>
 				</div>
-			</div>
-		</div>
-			<div style="margin-top:30px;">
+				</div>
+				</div>
+				
+				<!-- 답글 -->
+			<div style="margin-top:20px;">
 				<c:forEach items="${article.replyList}" var="reply">
 					<div>
 						<table width="100%">
+						    
 							<tr>
-								<th>
+								<td>
 							     	<div class="w3-row-padding">
 										<div class="w3-col m12">
 											<div class="w3-card w3-white">
 												<div class="w3-container">
-												
 													<div>
+														<span>
+															<h6 style="float:left; margin-right:20px; color:#FF3300;">${reply.nickName} </h6>
+															<h6 style="padding-top:10px;">${reply.replyRegisterDate}</h6>
+														</span>
+														
 														<c:if test="${reply.parentReplyId ne reply.replyId}">
 														  <div> ㄴ ${reply.replyDesc}</div>
 														</c:if>
 														
 														<c:if test="${reply.parentReplyId eq reply.replyId}">
-															${reply.replyDesc}
+															<div style="height:60px;">
+																${reply.replyDesc}
+																<button type="button" class="btn btn-default btn-xs writeReReply ">
+																ㄴ댓글쓰기
+																</button>
+															</div>
 														</c:if>
 													</div>
 													
-													<div class="w3-col m8 w3-padding-bottom">
-														<div style="float:left; margin-right:10px;">
+													<div class="w3-col m11 w3-padding-bottom">
+														<div style="float:left; margin-right:10px; color:#7d7d7d; font-size:10pt;">
 															<c:if test="${reply.like}">
-																<img class="like" id="like${reply.replyId}" src="/resource/img/like_active_small.png" style="width:20px;">	
+																<span class="like glyphicon glyphicon-thumbs-up" id="like${reply.replyId}" style="color:#a9d039;"></span>
 																<span id="likeCount${reply.replyId}">${reply.replyLikes}</span>
 															</c:if>
 															<c:if test="${!reply.like}">
-																<img class="like" id="like${reply.replyId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
+																<span class="like glyphicon glyphicon-thumbs-up" id="like${reply.replyId}" style="color:#7d7d7d;"></span>
 																<span id="likeCount${reply.replyId}">${reply.replyLikes}</span>
 															</c:if>
 														</div>
-														<div>
-															<c:if test="${reply.dislike}">
-																<img class="dislike" id="dislike${reply.replyId}" src="/resource/img/dislike_active_small.png" style="width:20px;">
+														<div style="color:#7d7d7d; font-size:10pt;">
+															<c:if test="${reply.dislike}" >
+																<span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${reply.replyId}" style="color:#a9d039;"></span>
 																<span id="dislikeCount${reply.replyId}">${reply.replyDislikes}</span>
 															</c:if>
 															<c:if test="${!reply.dislike}">
-																<img class="dislike" id="dislike${reply.replyId}" src="/resource/img/dislike_inactive_small.png" style="width:20px;">
+																<span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${reply.replyId}" style="color:#7d7d7d;"></span>
 																<span id="dislikeCount${reply.replyId}">${reply.replyDislikes}</span>
 															</c:if>
 														</div>
 													</div>
 													
-													<span style="color: #FF3300;"><h5>${reply.nickName}</h5></span>
-													<div class="w3-col m1">
-														<span class="doClaim glyphicon glyphicon-send">신고하기</span>
+													
+													<div class="w3-col m1" align="right" style="color:#7d7d7d; font-size:10pt;">
+													<span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기
 													</div>
 													<div class="claim w3-col m12">
 														<form class="claimWrite">
-															<input class="w3-input" type="text" class="claimCom" id="claimCom${reply.replyId}" name="claimCom${reply.replyId}"
-																			placeholder="신고 사유를 입력하세요." style="margin-bottom: 5px;">
-															<span class="doClaimBtn" id="claim${reply.replyId}">신고하기</span>
+															<input class="w3-input w3-col m11 " type="text" class="claimCom" id="claimCom${reply.replyId}" name="claimCom${reply.replyId}"
+																			placeholder="신고 사유를 입력하세요." style="margin-bottom: 5px; float:left;">
+															<span class="doClaimBtn w3-col m1 btn" id="claim${reply.replyId}" style="float:left; cursor:pointer; font-size:10pt;">신고하기</span>
 														</form>
+														<div style="clear: both;"></div>
 													</div>
 													
-													<c:if test="${reply.parentReplyId eq reply.replyId}">
-														<button type="button" class="btn btn-default btn-xs writeReReply ">
-															댓글쓰기
-														</button>
-													</c:if>
+													
 												</div>
 											</div>
 										</div>
 									</div>     
-								</th>
+								</td>
 	
 							</tr>
 							<tr>
@@ -479,11 +523,19 @@ $(document).ready(function () {
 							<tr >
 								<td colspan="2" class="hide replyId">${reply.replyId}</td>
 							</tr>
+							
 						</table>
 						<div class="formAppender"></div>
 					</div>
 				</c:forEach>
 			</div>
+  				
+            </div>
+
+       	</div>
+	  </div>
+	  
+	  
 	
  
     	</div> 

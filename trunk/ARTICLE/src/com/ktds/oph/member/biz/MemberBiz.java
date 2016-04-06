@@ -87,7 +87,6 @@ public class MemberBiz {
 		if( member.getMemberTypeId() == 6 ) {
 			for (String memberEmail : deleteMemberEmail ) {
 				memberDAO.deleteMember(memberEmail);
-				System.out.println("Biz : " + memberEmail);
 			}
 		}
 		

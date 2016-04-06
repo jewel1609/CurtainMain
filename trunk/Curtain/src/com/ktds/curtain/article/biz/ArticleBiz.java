@@ -612,9 +612,13 @@ public class ArticleBiz {
 			historyBiz.addHistory(historyVO);
 			
 			articles = articleDAO.showPromotionArticleByDesc(stdMember, promotionBoard, searchVO);
+			getReplyCount(articles);
+			changeDateFormat(articles);
 		}
 		else {
 			articles = articleDAO.showPromotionArticle(stdMember, promotionBoard);
+			getReplyCount(articles);
+			changeDateFormat(articles);
 		}
 		
 		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, promotionBoard);

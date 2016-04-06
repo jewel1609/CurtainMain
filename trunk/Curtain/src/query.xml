@@ -1330,6 +1330,7 @@
 			 		, REPLY_ORDER
 			 		, REPLY_LIKES
 			 		, REPLY_DISLIKES
+			 		, REPLY_REGISTER_DATE
 			 		, M.EMAIL
 			FROM 	REPLY R
 					, MEMBER M

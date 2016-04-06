@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.survey.biz.SurveyBiz;
 import com.ktds.oph.survey.vo.SurveyVO;
 import com.ktds.oph.util.Root;
@@ -22,6 +27,7 @@ public class DoInsertSurveyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private SurveyVO surveyVO;   
     private SurveyBiz surveyBiz;
+    private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,6 +35,7 @@ public class DoInsertSurveyServlet extends HttpServlet {
         super();
         surveyVO = new SurveyVO();
         surveyBiz = new SurveyBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -53,6 +60,16 @@ public class DoInsertSurveyServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		surveyBiz.insertSurvey(surveyTitle,surveyAnswer1,surveyAnswer2,surveyAnswer3,surveyAnswer4,surveyDate, member);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.SURVEY_ADD);
+		historyVO.setDescription( BuildDescription.get(Description.DO_SURVEY_ADD, member.getEmail()));
+		historyVO.setEtc( BuildDescription.get(Description.DETAIL_SURVEY_ADD, surveyTitle, surveyAnswer1, surveyAnswer2, surveyAnswer3, surveyAnswer4, surveyDate));
+		
+		historyBiz.addHistory(historyVO);
 		
 		response.sendRedirect(Root.get(this) + "/surveyList");
 		

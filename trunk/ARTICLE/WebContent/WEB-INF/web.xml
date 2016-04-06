@@ -567,7 +567,6 @@
     <servlet-name>ShowQuestionInitServlet</servlet-name>
     <url-pattern>/showQuestion/init</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>ShowMemberInitServlet</display-name>
@@ -617,5 +616,35 @@
   <servlet-mapping>
     <servlet-name>DoModifyAnswerServlet</servlet-name>
     <url-pattern>/doModifyAnswer</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InitUnivServlet</display-name>
+    <servlet-name>InitUnivServlet</servlet-name>
+    <servlet-class>com.ktds.oph.univ.web.InitUnivServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitUnivServlet</servlet-name>
+    <url-pattern>/univList/init</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InitMajorGroupServlet</display-name>
+    <servlet-name>InitMajorGroupServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.InitMajorGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitMajorGroupServlet</servlet-name>
+    <url-pattern>/majorGroupList/init</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InitMajorServlet</display-name>
+    <servlet-name>InitMajorServlet</servlet-name>
+    <servlet-class>com.ktds.oph.major.web.InitMajorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitMajorServlet</servlet-name>
+    <url-pattern>/major/init</url-pattern>
   </servlet-mapping>
 </web-app>

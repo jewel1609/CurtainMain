@@ -302,15 +302,15 @@
 	
  	<c:set var="voteCheck" value="${ sessionScope._VOTE_ }" />
  	<input type="hidden" id="first" value="${ first }" />
- 
-
- <div class="w3-padding-medium">
+ 	
+ 	
+<div style="text-align: center; border-bottom:1px solid #BABABA;">
 	 <c:if test="${ sessionScope._BOARD_ID_ ne 0 }">
 	 <div>
-	 	<div class="w3-card w3-round w3-white" style="padding:4px;">
+	 	<div class="w3-white" style="padding:20px; border-bottom:1px solid #BABABA;">
 	 		<strong>게시판의 관심사</strong><br/>
 	 	</div>
-		<div id="wrapperKeywordList">
+		<div id="wrapperKeywordList" align="left" style="padding:10px;">
 			<form id="topKeywordForm">
 				<input type="hidden" name="searchKeyword" class="searchKeyword" value="" />
 				<input type="hidden" name="articleTypeId" class="articleTypeId" value="" />
@@ -325,19 +325,21 @@
 			</form>
 		</div>
 	</div>	
-	</c:if>   
-	
-	<div>
+	</c:if> 
+			
+</div>
+			 
+<div style="text-align: center; border-bottom:1px solid #BABABA;">
 		
 	  <input type="hidden" id="isVoteCheck" name="isVoteCheck" value= false />	
-	  <div class="w3-card w3-round w3-white" style="margin-top:50px; padding:4px;">
+	  <div class="w3-white" style="padding:15px; border-bottom:1px solid #BABABA;">
 	  	<strong>오늘의 투표</strong><br/>  ${ mTime }
 	  </div>
-		<br/>
+	  
+	  
+	  <div align="left" style="padding:10px;">
 		<input type="hidden" id="todaySurveyCheck" name="todaySurveyCheck" value= "0" />
-		
-		
-		<p> ${ survey.surveyTitle }</p>
+		<p><strong>${ survey.surveyTitle }</strong> </p>
 		<c:if test="${voteCheck eq null }">
 		<form id="todaySurveyForm" name="todaySurveyForm">	
 			<c:forEach items="${surveys}" var="surveyList">
@@ -351,7 +353,7 @@
 				<input type="hidden" id = "survey4" name="survey4" value="${ survey.fourthAnswer }" />
 				<input type="hidden" id = "surveyId" name="surveyId" value="${ survey.surveyId }" />
 		<div class="w3-container w3-center-align" style="margin-left: 45px;">
-			<button id = "doSurvey" type="button" class="btn btn-primary btn-sm">투표하기</button>
+			<button id = "doSurvey" type="button" class="btn btn-default btn-sm">투표하기</button>
 		</div>
 		</form>
 		</c:if>
@@ -404,8 +406,10 @@
 		  	</c:if>
 		</form>
 		</c:if>
+	  </div>
+	  
+	  
 	  	
 	 
 	</div>
-  </div>
 </nav>

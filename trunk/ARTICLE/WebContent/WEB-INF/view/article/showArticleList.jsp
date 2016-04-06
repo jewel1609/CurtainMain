@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="/WEB-INF/view/common/headerLogin.jsp"></jsp:include>
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -66,9 +67,27 @@
 				</td>
 		        <td>${article.articleId}</td>
 		        <td><a href="/detailArticle?articleId=${article.articleId}">${article.articleTitle }</a></td>
-		        <td>${article.articleDesc }</td>
-		        <td>${article.articleRegisterDate }</td>
-		        <td>${article.articleModifyDate }</td>
+		        <td>
+		        	<c:set var="articleDesc" value="${article.articleDesc }" />
+		        	<c:set var="isContainByarticleDesc" value="${fn:contains(articleDesc, \"<br />\")}" />
+		        	<c:if test="${isContainByQuestion}">
+						${fn:substringBefore(articleDesc, "<br />")}...
+					</c:if>
+					<c:if test="${!isContainByQuestion}">
+						${fn:substring(articleDesc, 0, 20)}...
+					</c:if>
+		        </td>
+		        
+		        <td>
+		      	  <c:set var="articleRegisterDate" value="${article.articleRegisterDate }" />
+		      		${fn:substring(articleRegisterDate, 0, 11)}
+		        </td>
+		        
+		        <td>
+		      	  <c:set var="articleModifyDate" value="${article.articleRegisterDate }" />
+		        	${fn:substring(articleModifyDate, 0, 11)}
+		        </td>
+		        
 		        <td>${article.articleTypeId }</td>
 		        <td>${article.email }</td>
 		        <td>${article.boardId }</td>

@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
-
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		

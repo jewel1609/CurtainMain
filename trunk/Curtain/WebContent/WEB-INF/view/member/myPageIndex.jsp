@@ -3,6 +3,8 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css">
+
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 	
@@ -82,7 +84,7 @@
 	    </div>
 	  </div>
       
-      <div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
+      <div class="w3-row-padding" style="background-color:#F3F3F3;">
         <div class="w3-col m12">
           <div class="w3-card w3-white w3-round-large" style="margin-top:10px; margin-bottom:10px;">
             <div class="w3-container w3-padding w3-center-align">
@@ -110,7 +112,7 @@
     				<img src="/resource/img/point.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;">
     				<p>${ member.point } 포인트</p> 
   				</div>
-  				<div class="w3-container w3-third">
+  				<div class="w3-container w3-third">	
     				<h3>활동량</h3>
     				<div class="w3-container w3-third">
     					<div>
@@ -142,45 +144,45 @@
         </div>
       </div>
       
-        <div class="w3-row-padding w3-margin-top">
-       		 <div class="w3-col m12">
-            	<ul class="list-group w3-left-align">
-            		<li class="list-group-item"><a href="/myPage/myWriteArticle">내가 쓴 게시글/댓글 보기</a></li>
-            		<li class="list-group-item"><a href="/myPage/myLikesArticle">내가 좋아요 한 글  보기</a></li>
-            		<li class="list-group-item"><a href="/myPage/myScrabArticle">내가 스크랩 한 글 보기</a></li>
-            	</ul>
-       		 </div>
-      	</div>
+       <div class="w3-row-padding" style="background-color:#F3F3F3;">
+     		 <div class="w3-col m12">
+	          	<ul class="list-group w3-left-align">
+	          		<li class="list-group-item"><a href="/myPage/myWriteArticle" style="color:#FF3300;">내가 쓴 게시글/댓글 보기</a></li>
+	          		<li class="list-group-item"><a href="/myPage/myLikesArticle" style="color:#FF3300;">내가 좋아요 한 글  보기</a></li>
+	          		<li class="list-group-item"><a href="/myPage/myScrabArticle" style="color:#FF3300;">내가 스크랩 한 글 보기</a></li>
+	          	</ul>
+     		 </div>
+     	</div>
 
       
       <div class="w3-myfont w3-left-align">
 	      <div class="w3-row" style="background-color: white; border-top: 1px solid #bababa; border-bottom: 1px solid #bababa;">
-		        <div class="w3-margin-4" style="float:left;">
+		        <div class="w3-margin-4" style="float:left; width:80%; padding-left:10px;">
 		      		<h2>회원정보</h2>
 		      	</div>
-		      	<div class="w3-col" style="width:10%; margin-top:30px;">
-		      		<button type="button" id="modifyBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원정보 변경</button>
+		      	<div class="w3-col" align="right" style="width:17%; margin-top:22px; boarder:1px solid black;">
+		      		<button type="button" id="modifyBtn" class="btn btn-default" >회원정보 변경</button>
 		      	</div>
 		      </div>
 	      </div>
 
       <c:if test="${companyCheck eq null}"> 
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
-            <div class="w3-container w3-padding w3-left-align">
-          		<div class="w3-col" style="width:90%">
-          			<div class="w3-col" style="width:20%">
-          				<b>대학교 이메일</b>
-          			</div>
-          			<div class="w3-col" style="width:80%">
-    					<p>${ member.email }</p>
-    				</div>
-          		</div>
-            </div>
-          </div>
-        </div>
-      </div>
+	      <div class="w3-padding">
+	        <div class="w3-col m12">
+	          <div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
+	            <div class="w3-container w3-padding w3-left-align">
+	          		<div class="w3-col" style="width:90%">
+	          			<div class="w3-col" style="width:20%; vertical-align:middle">
+	          				<b>대학교 이메일</b>
+	          			</div>
+	          			<div class="w3-col" style="width:80%">
+	    					<p>${ member.email }</p>
+	    				</div>
+	          		</div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
       
       
        <div class="w3-row-padding w3-margin-top">
@@ -256,7 +258,7 @@
        <br/>
       </c:if> 
       
-      <button type="button" id="secedeBtn" class="btn btn-primary " style="background-color:#FF3300; border:0px;">회원 탈퇴</button>
+      <button type="button" id="secedeBtn" class="btn btn-default">회원 탈퇴</button>
       
         
     </div>

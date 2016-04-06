@@ -94,7 +94,7 @@ public class ShowHistoryListServlet extends HttpServlet {
 			if (startDate==null || endDate==null) {
 				historyVO.setStartDate((String) session.getAttribute("_START_DATE_"));
 				historyVO.setEndDate((String) session.getAttribute("_END_DATE_"));
-				operationHistoryVO.setDescription( BuildDescription.get(Description.DETAIL_HISTORY, historyVO.getStartDate(), historyVO.getEndDate()));
+				operationHistoryVO.setEtc( BuildDescription.get(Description.DETAIL_HISTORY, historyVO.getStartDate(), historyVO.getEndDate()));
 			}
 			else {
 				startDate = startDate.replaceAll("-", "");
@@ -103,7 +103,6 @@ public class ShowHistoryListServlet extends HttpServlet {
 				historyVO.setEndDate(String.valueOf(Integer.parseInt(endDate)+1));
 				session.setAttribute("_START_DATE_", startDate);
 				session.setAttribute("_END_DATE_", endDate);
-				operationHistoryVO.setDescription( BuildDescription.get(Description.DETAIL_HISTORY, historyVO.getStartDate(), historyVO.getEndDate()));
 			}
 			HistorySearchVO historySearchVO = new HistorySearchVO();
 			historySearchVO.setPageNo(pageNo);

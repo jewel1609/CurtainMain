@@ -88,12 +88,9 @@ public class ArticleBiz {
 	public ArticleListVO getAllArticle(String startDate,String endDate, ArticleSearchVO searchVO) {
 		int allArticleCount = articleDAO.getAllArticleCount(startDate, endDate);
 
-		System.out.println(startDate + " " + endDate);
 		Paging paging = new Paging();
 		paging.setTotalArticleCount(allArticleCount);
 		paging.setPageNumber(searchVO.getPageNo() + ""); // 1페이지 0번으로 시작함
-		
-		System.out.println(paging.getTotalArticleCount());
 		
 		searchVO.setStartIndex( paging.getStartArticleNumber() );
 		searchVO.setEndIndex( paging.getEndArticleNumber() );
@@ -117,7 +114,6 @@ public class ArticleBiz {
 		if( member.getMemberTypeId() == 6 ) {
 			for (String articleId : deleteArticleId ) {
 				articleDAO.deleteArticle(articleId);
-				System.out.println("article : " + articleId);
 			}
 		}
 		
@@ -131,5 +127,4 @@ public class ArticleBiz {
 		return null;
 	}
 
-	//////////////////////////////////////////////////////////////////////
 }

@@ -41,6 +41,8 @@ public interface Description {
 	public static final String DO_SURVEY_ADD = "[%s] 님이 설문조사를 추가했습니다.";
 	public static final String DO_SURVEY_DELETE = "[%s] 님이 설문조사를 삭제했습니다.";
 	
+	public static final String MODIFY_SURVEY = "[%s]님이 설문조사를 수정했습니다.";
+	
 	
 	
 	public static final String DETAIL_LOGIN_SUCCESS = "성공한 계정 아이디 : [%s] <br/> 패스워드:[%s]";
@@ -59,6 +61,8 @@ public interface Description {
 	
 	public static final String DETAIL_QUESTION = "상세보기한 질문 글 번호 : [%s] <br/> 제목:[%s] <br/> 내용:[%s] <br/>질문일자:[%s]";
 	public static final String DETAIL_HISTORY = "시작날짜 : [%s] <br/> 끝 날짜 : [%s]";
+	
+	public static final String DETAIL_MODIFY_SURVEY = "수정한 설문조사 번호 : [%s] <br/> 주제 : [%s] <br/> 항목1 : [%s] <br/> 항목2 : [%s] <br/> 항목3 : [%s] <br/> 항목4 : [%s] <br/>";
 	
 	
 	

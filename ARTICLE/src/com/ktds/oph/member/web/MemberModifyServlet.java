@@ -46,10 +46,6 @@ public class MemberModifyServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		int beforeMemberTypeId = member.getMemberTypeId();
-		System.out.println("ModifyList : " + modifyMemberEmail);
-		System.out.println("ModifyList : " + modifyMemberTypeId);
-		System.out.println("ModifyList : " + modifyMemberPoint);
-		System.out.println("ModifyList : " + modifyMemberPassword);
 		
 		memberBiz.modifyMember(modifyMemberEmail,modifyMemberTypeId,modifyMemberPoint, modifyMemberPassword,member);
 		

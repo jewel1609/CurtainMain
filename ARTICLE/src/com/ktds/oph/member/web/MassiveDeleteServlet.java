@@ -49,7 +49,6 @@ public class MassiveDeleteServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		System.out.println("deleteList : " + deleteMemberEmail[0]);
 		memberBiz.deleteMembers(deleteMemberEmail, member);
 		
 		for ( int i = 0; i < deleteMemberEmail.length; i++) {

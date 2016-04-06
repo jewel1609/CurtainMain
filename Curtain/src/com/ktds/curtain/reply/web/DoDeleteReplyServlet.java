@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.curtain.history.biz.OperationHistoryBiz;
+import com.ktds.curtain.history.vo.ActionCode;
+import com.ktds.curtain.history.vo.BuildDescription;
+import com.ktds.curtain.history.vo.Description;
+import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.reply.biz.ReplyBiz;
 import com.ktds.curtain.reply.vo.ReplyVO;
@@ -18,12 +23,14 @@ import com.ktds.curtain.reply.vo.ReplyVO;
 public class DoDeleteReplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ReplyBiz replyBiz;   
+    private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DoDeleteReplyServlet() {
         super();
         replyBiz = new ReplyBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -37,6 +44,10 @@ public class DoDeleteReplyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
+		
 		int replyId = Integer.parseInt(request.getParameter("delete"));
 		System.out.println(replyId);
 		int articleId = Integer.parseInt(request.getParameter("articleId2"));
@@ -47,7 +58,18 @@ public class DoDeleteReplyServlet extends HttpServlet {
 		
 		boolean deleteReply = replyBiz.doDeleteReply(replyVO);
 		
+		
+		
 		if ( deleteReply ) {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.DELETE_REPLY);
+			historyVO.setDescription( BuildDescription.get(Description.DELETE_REPLY, member.getNickName(), articleId+"", replyId+"" ) );
+			historyBiz.addHistory(historyVO);
+			
 			response.sendRedirect("/showDetail?articleId="+articleId);
 			return;
 		}

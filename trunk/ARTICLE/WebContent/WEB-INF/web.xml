@@ -567,6 +567,27 @@
     <servlet-name>ShowQuestionInitServlet</servlet-name>
     <url-pattern>/showQuestion/init</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>ShowMemberInitServlet</display-name>
+    <servlet-name>ShowMemberInitServlet</servlet-name>
+    <servlet-class>com.ktds.oph.member.web.ShowMemberInitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowMemberInitServlet</servlet-name>
+    <url-pattern>/showMember/init</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClaimArticleInitServlet</display-name>
+    <servlet-name>ClaimArticleInitServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.ClaimArticleInitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClaimArticleInitServlet</servlet-name>
+    <url-pattern>/claimArticle/init</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>AddNewAnswerServlet</display-name>

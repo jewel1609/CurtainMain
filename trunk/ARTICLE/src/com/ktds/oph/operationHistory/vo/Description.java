@@ -30,6 +30,8 @@ public interface Description {
 	public static final String VISIT_ARTICLE_LIST_PAGE = "[%s] 님이 게시글 목록 페이지에 접근했습니다.";
 	public static final String VISIT_ARTICLE_DETAIL_PAGE = "[%s] 님이 게시글 상세 페이지에 접근했습니다.";
 	
+	public static final String VISIT_CLAIM_DETAIL_PAGE = "[%s] 님이 신고 글 상세 페이지에 접근했습니다.";
+	public static final String VISIT_MEMBER_DETAIL_PAGE = "[%s] 님이 회원정보 상세페이지에 접근했습니다.";
 	
 	public static final String LOGIN_SUCCESS = "[%s]가 로그인에 성공했습니다.";
 	public static final String LOGIN_FAIL = "[%s]가 로그인에 실패했습니다.";
@@ -46,6 +48,7 @@ public interface Description {
 	public static final String DO_SURVEY_DELETE = "[%s] 님이 설문조사를 삭제했습니다.";
 	
 	public static final String MODIFY_SURVEY = "[%s]님이 설문조사를 수정했습니다.";
+	public static final String MODIFY_MEMBER = "[%s]님이 회원정보를 변경했습니다.";
 	
 	public static final String PROHIBITED_WORD_ADD = "[%s]님이 금칙어를 추가했습니다.";
 	
@@ -72,6 +75,9 @@ public interface Description {
 	
 	public static final String DETAIL_MODIFY_SURVEY = "수정한 설문조사 번호 : [%s] <br/> 주제 : [%s] <br/> 항목1 : [%s] <br/> 항목2 : [%s] <br/> 항목3 : [%s] <br/> 항목4 : [%s] <br/>";
 	public static final String DETAIL_ARTICLE_SHOW = "상세보기한 게시글 번호 : [%s]";
+	public static final String DETAIL_CLAIM_SHOW = "상세보기한 신고글 번호 : [%s]";
+	public static final String DETAIL_MEMBER_SHOW = "상세보기한 회원 이메일 : [%s]";
+	public static final String DETAIL_MODIFY_MEMBER = "정보 변경 한 회원 이메일 : [%s] <br/> 등급 : [%s] <br/> 포인트 : [%s] 패스워드 : [%s]";
 	
 	
 	

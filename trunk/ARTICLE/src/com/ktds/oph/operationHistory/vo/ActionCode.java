@@ -27,6 +27,10 @@ public interface ActionCode {
 	public static final String ARTICLE_LIST_PAGE = "AT_L"; 
 	public static final String ARTICLE_DETAIL_PAGE = "AT_D"; 
 	
+	public static final String CLAIM_DETAIL_PAGE = "CL_D"; 
+	public static final String MEMBER_DETAIL_PAGE = "MB_D"; 
+	
+	
 	public static final String ADMIN_QUESTION_PAGE = "A_QT";
 	public static final String QUESTION_DETAIL_PAGE = "QT_D";
 	
@@ -45,6 +49,7 @@ public interface ActionCode {
 	public static final String ADMIN_MAJOR_DELETE = "A_MJ_D";
 	
 	public static final String MODIFY_SURVEY = "M_S";
+	public static final String MODIFY_MEMBER = "MD_M";
 	
 	
 	

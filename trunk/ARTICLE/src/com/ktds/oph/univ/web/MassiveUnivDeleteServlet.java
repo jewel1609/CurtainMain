@@ -59,7 +59,7 @@ public class MassiveUnivDeleteServlet extends HttpServlet {
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.ADMIN_UNIV_DELETE);
 			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_UNIV_DELETE, member.getEmail()));
-			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_DELETE, univs[i]));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_DELETE, univId[i], univs[i]));
 			
 			historyBiz.addHistory(historyVO);
 		}

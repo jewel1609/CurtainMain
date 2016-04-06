@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.questionAndAnswer.biz.QuestionAndAnswerBiz;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerVO;
 
@@ -20,6 +25,7 @@ import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerVO;
 public class DoModifyAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private QuestionAndAnswerBiz questionAndAnswerBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,6 +33,7 @@ public class DoModifyAnswerServlet extends HttpServlet {
     public DoModifyAnswerServlet() {
         super();
         questionAndAnswerBiz = new QuestionAndAnswerBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -54,6 +61,17 @@ public class DoModifyAnswerServlet extends HttpServlet {
 			question.setAnswerDescription(modifyAnswer);
 			
 			isSuccess = questionAndAnswerBiz.modifyAnswer(question, member);
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.MODIFY_ANSWER);
+			historyVO.setDescription( BuildDescription.get(Description.MODIFY_ANSWER, member.getEmail(), request.getParameter("questionId")));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MODIFY_ANSWER, request.getParameter("modifyAnswer")));
+			
+			historyBiz.addHistory(historyVO);
+			
 		}
 		catch (NumberFormatException nfe) {
 		}

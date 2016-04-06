@@ -21,7 +21,9 @@ public interface Description {
 	public static final String VISIT_ADMIN_SURVEY_ADD_PAGE = "[%s] 님이 설문등록 페이지에 접근했습니다.";
 	public static final String VISIT_ADMIN_PROHIBITED_PAGE = "[%s] 님이 금칙어등록 페이지에 접근했습니다.";
 	public static final String VISIT_ADMIN_ARTICLE_PAGE = "[%s] 님이 게시글관리 페이지에 접근했습니다.";
+	
 	public static final String VISIT_ADMIN_HISTORY_PAGE = "[%s] 님이 히스토리확인 페이지에 접근했습니다.";
+	public static final String VISIT_HISTORY_LIST_PAGE = "[%s] 님이 히스토리리스트 페이지에 접근했습니다.";
 	
 	
 	public static final String LOGIN_SUCCESS = "[%s]가 로그인에 성공했습니다.";
@@ -37,6 +39,7 @@ public interface Description {
 	public static final String DETAIL_LOGIN_FAIL = "시도한 계정 아이디:[%s] <br/> 패스워드:[%s]";
 	public static final String DETAIL_MEMBER_DELETE = "삭제한 회원 이메일:[%s] <br/>";
 	public static final String DETAIL_QUESTION = "상세보기한 질문 글 번호 : [%s] <br/> 제목:[%s] <br/> 내용:[%s] <br/>질문일자:[%s]";
+	public static final String DETAIL_HISTORY = "";
 	
 	
 }

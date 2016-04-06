@@ -20,7 +20,14 @@ public class HistoryBiz {
 	}
 
 	public HistoryListVO getAllHistory(HistorySearchVO historySearchVO, HistoryVO historyVO) {
-		int allHistoryCount = historyDAO.getAllHistoryCount(historyVO);
+		int allHistoryCount = 0;
+		
+		if ( historySearchVO.getSearchType().equals("1") ) {
+			allHistoryCount = historyDAO.getAllHistoryCount(historyVO, historySearchVO);
+		}
+		else if ( historySearchVO.getSearchType().equals("2") ) {
+			allHistoryCount = historyDAO.getHistoryByEmailCount(historySearchVO, historyVO);
+		}
 		
 		Paging paging = new Paging();
 		paging.setTotalArticleCount(allHistoryCount);
@@ -30,7 +37,13 @@ public class HistoryBiz {
 		historySearchVO.setEndIndex( paging.getEndArticleNumber() );
 		
 		List<HistoryVO> historys = new ArrayList<HistoryVO>();
-		historys = historyDAO.getAllHistory(historySearchVO, historyVO);
+		
+		if ( historySearchVO.getSearchType().equals("1") ) {
+			historys = historyDAO.getAllHistory(historySearchVO, historyVO);
+		}
+		else if ( historySearchVO.getSearchType().equals("2") ) {
+			historys = historyDAO.gethistoryByEmail(historySearchVO, historyVO);
+		}
 		// paging 바꾸는 이유 검색 때문에
 		
 		HistoryListVO historyList = new HistoryListVO();

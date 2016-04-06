@@ -14,6 +14,7 @@ import com.ktds.oph.history.biz.HistoryBiz;
 import com.ktds.oph.history.vo.HistoryListVO;
 import com.ktds.oph.history.vo.HistorySearchVO;
 import com.ktds.oph.history.vo.HistoryVO;
+import com.ktds.oph.major.vo.MajorGroupSearchVO;
 import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
@@ -80,16 +81,29 @@ public class ShowHistoryListServlet extends HttpServlet {
 		}
 		else if(memberBiz.isAdmin(loginMember)){
 			int pageNo = 0;
+			HistorySearchVO historySearchVO = new HistorySearchVO();
 		
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
-				
+				historySearchVO.setPageNo(pageNo);
+				historySearchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+				historySearchVO.setSearchType(request.getParameter("searchType"));
 				operationHistoryVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 				
 			}
 			catch (NumberFormatException nfe) {
 				operationHistoryVO.setDescription( BuildDescription.get(Description.VISIT_HISTORY_LIST_PAGE, loginMember.getEmail()));
+				
+				historySearchVO = (HistorySearchVO) session.getAttribute("_SEARCH_");
+				
+				if ( historySearchVO == null ) {
+					historySearchVO = new HistorySearchVO();
+					historySearchVO.setPageNo(0);
+					historySearchVO.setSearchKeyword("");
+					historySearchVO.setSearchType("1");
+				}
 			}
+			session.setAttribute("_SEARCH_", historySearchVO);
 			
 			if (startDate==null || endDate==null) {
 				historyVO.setStartDate((String) session.getAttribute("_START_DATE_"));
@@ -104,13 +118,12 @@ public class ShowHistoryListServlet extends HttpServlet {
 				session.setAttribute("_START_DATE_", startDate);
 				session.setAttribute("_END_DATE_", endDate);
 			}
-			HistorySearchVO historySearchVO = new HistorySearchVO();
-			historySearchVO.setPageNo(pageNo);
 			
 			historys = historyBiz.getAllHistory(historySearchVO, historyVO);
 			
 			operationHistoryBiz.addHistory(operationHistoryVO);
 			
+			request.setAttribute("historySearchVO", historySearchVO);
 			request.setAttribute("historys", historys);
 			RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/history/showHistoryList.jsp");
 			rd.forward(request, response);

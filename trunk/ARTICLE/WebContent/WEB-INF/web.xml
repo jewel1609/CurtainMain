@@ -647,4 +647,14 @@
     <servlet-name>InitMajorServlet</servlet-name>
     <url-pattern>/major/init</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InitHistoryServlet</display-name>
+    <servlet-name>InitHistoryServlet</servlet-name>
+    <servlet-class>com.ktds.oph.history.web.InitHistoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitHistoryServlet</servlet-name>
+    <url-pattern>/history/init</url-pattern>
+  </servlet-mapping>
 </web-app>

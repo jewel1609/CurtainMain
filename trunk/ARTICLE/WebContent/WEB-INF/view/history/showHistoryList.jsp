@@ -11,32 +11,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		
-		$("#registerNewMajor").hide();
-		
-		$("#insertBtn").click(function () {
 			
-			$("#registerNewMajor").slideToggle();
-		});
-		
-		$("#insertMajorBtn").click(function() {
-			
-			if($("#newMajor").val == "" ) {
-				alert("등록할 학과명을 입력하세요.")
-				return;
-			}
-				var majorGroupId = $(".majorGroupId").val();
-				$(".majorGroupId1").val(majorGroupId);
-				
-				var form = $("#registerNewMajorForm");
-				form.attr("method", "post");
-				form.attr("action", "<c:url value="/registerNewMajor" />");
-				form.submit();
-
-		});
-		
 		$("#initSearchBtn").click(function () {
-			location.href = "<c:url value="/list/init" />";
+			location.href = "<c:url value="/history/init" />";
 		});
 			
 		
@@ -183,13 +160,13 @@
 					</div>	
 					<div style= "text-align: right;">
 							<select name="searchType">
-							<c:forEach begin="1" end="5" step="1" var="i">
+							<c:forEach begin="1" end="2" step="1" var="i">
 								<c:set var="selected" value="" />
-								<c:if test="${ i eq searchVO.searchType }">
+								<c:if test="${ i eq historySearchVO.searchType }">
 									<c:set var="selected" value="selected='selected'" />
 								</c:if>
 								<c:if test="${i eq 1}" >
-									<c:set var="name" value="전체" />
+									<c:set var="name" value="선택" />
 								</c:if>
 								<c:if test="${i eq 2}" >
 									<c:set var="name" value="Email" />
@@ -197,7 +174,7 @@
 								<option value="${i}" ${selected}> ${name} </option>
 							</c:forEach>
 						</select> 
-						<input type="text" id="searchKeyword" name="searchKeyword" value="${searchVO.searchKeyword}" />
+						<input type="text" id="searchKeyword" name="searchKeyword" value="${historySearchVO.searchKeyword}" />
 						<input type="button" id="searchBtn" value="검색" />
 						<input type="button" id="initSearchBtn" value="검색 초기화" />
 					</div>

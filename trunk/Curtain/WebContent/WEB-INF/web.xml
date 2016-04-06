@@ -630,4 +630,14 @@
     <servlet-name>WriteReplyClaimServlet</servlet-name>
     <url-pattern>/writeReplyClaim</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoDeleteReplyServlet</display-name>
+    <servlet-name>DoDeleteReplyServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.reply.web.DoDeleteReplyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoDeleteReplyServlet</servlet-name>
+    <url-pattern>/doDeleteReply</url-pattern>
+  </servlet-mapping>
 </web-app>

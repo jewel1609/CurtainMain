@@ -48,6 +48,7 @@ public class ReplyDAO {
 				reply.setReplyOrder(rs.getInt("REPLY_ORDER"));
 				reply.setReplyLikes(rs.getInt("REPLY_LIKES"));
 				reply.setReplyDislikes(rs.getInt("REPLY_DISLIKES"));
+				reply.setEmail(rs.getString("EMAIL"));
 				
 				replyList.add(reply);
 			}
@@ -453,6 +454,93 @@ public class ReplyDAO {
 			closeDB(conn, stmt, rs);
 		}
 	}
+	
+	public void doDeleteReplyByParentReply(ReplyVO replyVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/doDeleteReplyByParentReply/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyVO.getReplyId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	
+	
+	public int doDeleteReply(ReplyVO replyVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/doDeleteReply/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyVO.getReplyId());
+			return stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+	}
+	
+	public void doDeleteReplyLike(ReplyVO replyVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/doDeleteReplyLike/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyVO.getReplyId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	public void doDeleteReplyDislike(ReplyVO replyVO) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/doDeleteReplyDislike/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, replyVO.getReplyId());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+		
+	}
 
 	
 	private void loadOracleDriver() {
@@ -484,6 +572,7 @@ public class ReplyDAO {
 		}
 
 	}
+
 	
 
 

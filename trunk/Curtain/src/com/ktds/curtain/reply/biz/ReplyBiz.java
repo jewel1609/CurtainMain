@@ -54,5 +54,18 @@ public class ReplyBiz {
 		return 0;
 	}
 
+	public boolean doDeleteReply(ReplyVO replyVO) {
+		
+		// replyid가 parentid로 쓰이는지 안 쓰이는지
+		if ( replyDAO.selectCountParentReplyID(replyVO) > 0 ) {
+			replyDAO.doDeleteReplyByParentReply(replyVO);
+		}
+		
+		int deleteReplyCount = replyDAO.doDeleteReply(replyVO);
+		replyDAO.doDeleteReplyLike(replyVO);
+		replyDAO.doDeleteReplyDislike(replyVO);
+		return deleteReplyCount > 0;
+	}
+
 
 }

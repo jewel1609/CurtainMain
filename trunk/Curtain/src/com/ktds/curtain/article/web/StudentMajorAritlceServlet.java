@@ -74,6 +74,8 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		List<String> univNames = univBiz.getUnivNameList(stdMember.getMajorGroupId());
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD, searchVO, request);
 		ArticleVO topArticle = articleBiz.showTopMajorArticle(stdMember, BoardId.MAJOR_BOARD);
+		ArticleVO memberCount = new ArticleVO();
+		memberCount.setTotalCount(articleBiz.memberCount(stdMember));
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();
 		historyVO.setIp(request.getRemoteHost());
@@ -84,7 +86,7 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		
 		historyBiz.addHistory(historyVO);
 		
-		
+		request.setAttribute("memberCount", memberCount);
 		request.setAttribute("topArticle", topArticle);
 		request.setAttribute("member", stdMember);
 		request.setAttribute("majorArticles", majorArticles);

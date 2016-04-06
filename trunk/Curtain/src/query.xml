@@ -221,6 +221,11 @@
 		</addMacInfo>
 	</mac>
 	<article>
+		<memberCount>
+			SELECT	COUNT(EMAIL)
+			FROM	MEMBER
+			WHERE	MAJOR_GROUP_ID = ?
+		</memberCount>
 		<getTheLatestArticleId>
 			SELECT	ARTICLE_ID_SEQ.CURRVAL
 			FROM	DUAL
@@ -1235,7 +1240,26 @@
 	</dislike>
 	
 	<reply>
-	
+		<doDeleteReplyByParentReply>
+			DELETE
+			FROM	REPLY
+			WHERE	PARENT_REPLY_ID = ?
+		</doDeleteReplyByParentReply>
+		<doDeleteReply>
+			DELETE
+			FROM	REPLY
+			WHERE	REPLY_ID = ?
+		</doDeleteReply>
+		<doDeleteReplyLike>
+			DELETE
+			FROM	REPLY_LIKE
+			WHERE	REPLY_ID = ?
+		</doDeleteReplyLike>
+		<doDeleteReplyDislike>
+			DELETE
+			FROM	REPLY_DISLIKE
+			WHERE	REPLY_ID = ?
+		</doDeleteReplyDislike>
 		<getReplyCountByArticleId>
 			SELECT  COUNT(REPLY_ID)
 			FROM    REPLY
@@ -1306,6 +1330,7 @@
 			 		, REPLY_ORDER
 			 		, REPLY_LIKES
 			 		, REPLY_DISLIKES
+			 		, M.EMAIL
 			FROM 	REPLY R
 					, MEMBER M
 			WHERE	R.EMAIL = M.EMAIL

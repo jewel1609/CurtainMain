@@ -72,9 +72,9 @@
 
 		$(".like").click(function() {
 
-			$.post("/like", {
-				"articleId" : $(this).attr("id"),
-				"boardId" : $("#boardId").val()
+			$.post(
+				"/like", {
+				"articleId" : $(this).attr("id")
 			}, function(data) {
 
 				var jsonData = {};
@@ -108,8 +108,7 @@
 		$(".dislike").click(function() {
 
 			$.post("/dislike", {
-				"articleId" : $(this).attr("id"),
-				"boardId" : $("#boardId").val()
+				"articleId" : $(this).attr("id")
 			}, function(data) {
 
 				var jsonData = {};
@@ -141,9 +140,9 @@
 		});
 
 		$(".scrab").click(function() {
-			$.post("/scrab", {
-				"articleId" : $(this).attr("id"),
-				"boardId" : $("#boardId").val()
+			$.post(
+				"/scrab", {
+				"articleId" : $(this).attr("id")
 			}
 
 			, function(data) {
@@ -302,11 +301,11 @@
                            <div class="w3-col m6 w3-padding-bottom" style="color:#7d7d7d;">
                               <div style="float:left; margin-right:10px;">
                                  <c:if test="${article.like}">
-                                    <span class="like glyphicon glyphicon-thumbs-up" id="like${article.articleId}" style="color:#a9d039;"></span>
+                                    <span class="like glyphicon glyphicon-thumbs-up" id="like${article.articleId/article.boardId}" style="color:#a9d039;"></span>
                                     <span id="likeCount${article.articleId}">${article.articleLikes}</span>
                                  </c:if>
                                  <c:if test="${!article.like}">
-                                    <span class="like glyphicon glyphicon-thumbs-up" id="like${article.articleId}" style="color:#7d7d7d;"></span>
+                                    <span class="like glyphicon glyphicon-thumbs-up" id="like${article.articleId/article.boardId}" style="color:#7d7d7d;"></span>
                                     <!-- 
                                     <img class="like" id="like${article.articleId}" src="/resource/img/like_inactive_small.png" style="width:20px;">
                                      -->
@@ -315,11 +314,11 @@
                               </div>
                               <div>
                                  <c:if test="${article.dislike}">
-                                    <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${article.articleId}" style="color:#a9d039;"></span>
+                                    <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${article.articleId/article.boardId}" style="color:#a9d039;"></span>
                                     <span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
                                  </c:if>
                                  <c:if test="${!article.dislike}">
-                                    <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${article.articleId}" style="color:#7d7d7d;"></span>
+                                    <span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${article.articleId/article.boardId}" style="color:#7d7d7d;"></span>
                                     <span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
                                  </c:if>
                               </div>
@@ -328,11 +327,11 @@
                            <a href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>"><span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span></a>  ${article.replyCount} &nbsp; &nbsp;
                         
                            <c:if test="${article.scrab}">
-                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;
+                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId/article.boardId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;
                            </c:if>
                            
                            <c:if test="${!article.scrab}">
-                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId}" style="color:#7d7d7d;"></span>  스크랩하기&nbsp; &nbsp;
+                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId/article.boardId} style="color:#7d7d7d;"></span>  스크랩하기&nbsp; &nbsp;
                            </c:if>
                            
                            <span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기

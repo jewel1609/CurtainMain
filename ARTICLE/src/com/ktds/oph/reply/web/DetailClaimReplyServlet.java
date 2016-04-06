@@ -41,7 +41,6 @@ public class DetailClaimReplyServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String replyId = request.getParameter("replyId");
-		System.out.println(replyId);
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");

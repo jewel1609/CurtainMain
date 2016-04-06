@@ -77,7 +77,7 @@ public interface Description {
 	public static final String DETAIL_ARTICLE_SHOW = "상세보기한 게시글 번호 : [%s]";
 	public static final String DETAIL_CLAIM_SHOW = "상세보기한 신고글 번호 : [%s]";
 	public static final String DETAIL_MEMBER_SHOW = "상세보기한 회원 이메일 : [%s]";
-	public static final String DETAIL_MODIFY_MEMBER = "정보 변경 한 회원 이메일 : [%s] <br/> 등급 : [%s] <br/> 포인트 : [%s] 패스워드 : [%s]";
+	public static final String DETAIL_MODIFY_MEMBER = "정보 변경 한 회원 이메일 : [%s] <br/> 등급 : [%s] --> [%s] <br/> 포인트 : [%s] --> [%s] 패스워드 : [%s] --> [%s]";
 	
 	
 	

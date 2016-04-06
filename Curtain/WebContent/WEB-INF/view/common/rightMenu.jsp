@@ -14,7 +14,6 @@
 	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
 	Date currentTime = new Date ( );
 	String mTime = mSimpleDateFormat.format ( currentTime );
-	System.out.println ( mTime );
 	
 	SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
 	SurveyStatsVO surveyStats = surveyBiz.getSurveyStats(mTime);

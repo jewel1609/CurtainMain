@@ -51,7 +51,7 @@
 	  var errorCode = <%=request.getParameter("errorCode")%>;
 	  if (errorCode == 1) {
 		  $("#btnModal").click();
-		  $("#notEqualIdOrPasswordMessage").text("아이디 또는 비빌먼호를 다시 확인해주세요.");
+		  $("#notEqualIdOrPasswordMessage").text("아이디 또는 비빌번호를 다시 확인해주세요.");
 	  }
 	 
 	  

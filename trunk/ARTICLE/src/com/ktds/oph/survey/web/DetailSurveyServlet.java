@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.survey.biz.SurveyBiz;
 import com.ktds.oph.survey.vo.SurveyVO;
 
@@ -20,6 +25,7 @@ public class DetailSurveyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SurveyBiz surveyBiz;
 	private SurveyVO surveyInfo;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,6 +34,7 @@ public class DetailSurveyServlet extends HttpServlet {
         super();
         surveyBiz = new SurveyBiz();
         surveyInfo = new SurveyVO();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -47,6 +54,15 @@ public class DetailSurveyServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		surveyInfo = surveyBiz.getSurveyInfoBySurveyId(surveyId, member);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.DETAIL_SURVEY_PAGE);
+		historyVO.setDescription( BuildDescription.get(Description.VISIT_DETAIL_SURVEY_PAGE, member.getEmail()));
+		
+		historyBiz.addHistory(historyVO);
 		
 		request.setAttribute("survey", surveyInfo);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/survey/detailSurvey.jsp");

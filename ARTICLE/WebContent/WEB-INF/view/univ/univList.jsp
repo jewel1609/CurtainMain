@@ -28,7 +28,7 @@
 		});
 		
 		$("#initSearchBtn").click(function () {
-			location.href = "<c:url value="/list/init" />";
+			location.href = "<c:url value="/univList/init" />";
 		});
 			
 		

@@ -834,16 +834,16 @@ html, body, h1, h2, h3, h4, h5 {
 	</div>
 	</div>
 	
-	<!-- 개인화면 약관 Modal -->
+	<!-- 커튼 이용약관 Modal -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal-lg" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">개인화면 약관</h4>
+	        <h4 class="modal-title" id="myModalLabel">커튼 이용약관 동의</h4>
 	      </div>
 	      <div class="modal-body" style="overflow-y: auto; height: 250px">
-	    	개인화면 약관 내용
+	    	커튼 이용약관 내용
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>

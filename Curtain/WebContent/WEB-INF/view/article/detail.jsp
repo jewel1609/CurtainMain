@@ -32,8 +32,6 @@ $(document).ready(function () {
 			});
 		});
 		
-		
-		
 		$('.popup-gallery').magnificPopup({
 			delegate: 'a',
 			type: 'image',
@@ -99,7 +97,8 @@ $(document).ready(function () {
 				
 				if(jsonData.result){
 					$(".claim").hide();
-					alert("신고 완료");
+					alert("신고 완료되었습니다.");
+					 $(result).attr("style", "color:#7d7d7d");
 				}
 				else{
 					alert("세션이 만료되었습니다. 다시 로그인해주세요.");
@@ -131,12 +130,11 @@ $(document).ready(function () {
 					var replyId = jsonData.replyId;
 					var result = "#like" + replyId;
 					if(jsonData.doLike){
-						$(result).attr("src", "/resource/img/like_active_small.png");
+						$(result).attr("style", "color:#a9d039");
 						var count = "#likeCount"+jsonData.replyId;
 						$(count).text(jsonData.updateLikeCount);
 					}
 					else{
-						$(result).attr("src", "/resource/img/like_inactive_small.png");
 						var count = "#likeCount"+jsonData.replyId;
 						$(count).text(jsonData.updateLikeCount);
 					}	
@@ -173,12 +171,12 @@ $(document).ready(function () {
 					var replyId = jsonData.replyId;
 					var result = "#dislike" + replyId;
 					if(jsonData.isDislike){
-						$(result).attr("src", "/resource/img/dislike_active_small.png");
+						$(result).attr("style", "color:#a9d039");
 						var count = "#dislikeCount"+jsonData.replyId;
 						$(count).text(jsonData.updateDislikeCount);
 					}
 					else{
-						$(result).attr("src", "/resource/img/dislike_inactive_small.png");
+						$(result).attr("style", "color:#a9d039");
 						var count = "#dislikeCount"+jsonData.replyId;
 						$(count).text(jsonData.updateDislikeCount);
 					}	
@@ -311,7 +309,19 @@ $(document).ready(function () {
 								</c:if>
 								<c:if test="${article.articleTypeName eq '기타'}">
 									<span class="label label-default">${article.articleTypeName}</span>
-								</c:if>		           	 	
+								</c:if>	
+								<c:if test="${article.articleTypeName eq '동아리모집'}">
+									<span class="label label-danger">${article.articleTypeName}</span>
+								</c:if>
+								<c:if test="${article.articleTypeName eq '대외활동모집'}">
+									<span class="label label-warning">${article.articleTypeName}</span>
+								</c:if>
+								<c:if test="${article.articleTypeName eq '취업관련'}">
+									<span class="label label-primary">${article.articleTypeName}</span>
+								</c:if>
+								<c:if test="${article.articleTypeName eq '스터디모집'}">
+									<span class="label label-info">${article.articleTypeName}</span>
+								</c:if>	           	 	
 			           	 	</div>
 							
 							<div class="col-sm-11" style="padding-left:0px;">
@@ -361,7 +371,7 @@ $(document).ready(function () {
 			            	<ul class="pager">
 			            			<c:if test="${article.boardId eq 1}">
 										 <li class="previous">
-										    <a href="/studentMajorAritlce" class="btn btn-info btn-lg">
+										    <a href="/studentMajorAritlce" class="btn btn-lg">
 									          <span class="glyphicon glyphicon-arrow-left" style="color:#FF3300; "></span>
 									        </a>
 										 </li>
@@ -441,9 +451,8 @@ $(document).ready(function () {
 				<!-- 답글 -->
 			<div style="margin-top:20px;">
 				<c:forEach items="${article.replyList}" var="reply">
-					<div>
+					<div style="margin-left:32px; margin-right:32px;" >
 						<table width="100%">
-						    
 							<tr>
 								<td>
 							     	<div class="w3-row-padding">
@@ -457,7 +466,7 @@ $(document).ready(function () {
 														</span>
 														
 														<c:if test="${reply.parentReplyId ne reply.replyId}">
-														  <div> ㄴ ${reply.replyDesc}</div>
+														  <div style="height:60px;"> ㄴ ${reply.replyDesc}</div>
 														</c:if>
 														
 														<c:if test="${reply.parentReplyId eq reply.replyId}">

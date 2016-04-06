@@ -64,7 +64,7 @@ public class RegisterNewMajorGroupServlet extends HttpServlet {
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.ADMIN_MAJOR_ADD);
 			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_MAJOR_ADD, member.getEmail()));
-			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MAJOR_ADD, majorGroupVO.getMajorGroupId()+"", newMajorGroup));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MAJOR_ADD, newMajorGroup));
 			
 			historyBiz.addHistory(historyVO);
 			

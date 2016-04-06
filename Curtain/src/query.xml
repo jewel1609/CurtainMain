@@ -779,6 +779,8 @@
 		                    WHERE BOARD_ID = ?
 		                    AND UNIV_ID = ?
 		                )
+		AND     BOARD_ID = ?
+		ORDER   BY ARTICLE_MODIFY_DATE DESC
 		</showTopUnivArticle>
 		<updateArticleOnlyTitle>
 			UPDATE	ARTICLE

@@ -111,7 +111,7 @@
 	});
 </script>
 <div class="container">
-  <h2>대학리스트</h2>
+  <h2>학과리스트</h2>
   <p>자유롭게 이용하세요</p>
   <table class="table">
     <thead>
@@ -119,8 +119,8 @@
       	<td style="width: 15px">
 			<input type="checkbox" id="massiveSelectCheckBox" />
 		</td>
-        <th>대학번호</th>
-        <th>대학명</th>
+        <th>학과번호</th>
+        <th>학과명</th>
       </tr>
     </thead>
     

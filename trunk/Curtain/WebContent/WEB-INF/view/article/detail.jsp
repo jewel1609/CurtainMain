@@ -207,15 +207,15 @@ $(document).ready(function () {
 	});
 	
 	$(".writeReReply").click (function () {
-		var table = $(this).parent().parent().parent().parent().parent().parent().parent();
+		var table = $(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().parent();
 		console.log(table.text);
 		
 		
 		
 		/*칼럼에 있는 정보 가져오고 싶을 때*/
-		var parentReplyId = table.children(":eq(1)").children(":eq(0)").html();
-		var orderNo = table.children(":eq(2)").children(":eq(0)").html();
-		var replyId = table.children(":eq(3)").children(":eq(0)").html();
+		var parentReplyId = table.children(":eq(0)").children(":eq(1)").children(":eq(0)").html();
+		var orderNo = table.children(":eq(0)").children(":eq(2)").children(":eq(0)").html();
+		var replyId = table.children(":eq(0)").children(":eq(3)").children(":eq(0)").html();
 		
 		
 		$("#parentReplyId").val(replyId);

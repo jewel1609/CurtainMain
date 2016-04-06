@@ -60,9 +60,9 @@ public class MassiveMajorGroupDeleteServlet extends HttpServlet {
 			historyVO.setIp(request.getRemoteHost());
 			historyVO.setEmail(member.getEmail());
 			historyVO.setUrl(request.getRequestURI());
-			historyVO.setActionCode(ActionCode.ADMIN_MAJOR_DELETE);
-			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_MAJOR_DELETE, member.getEmail()));
-			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MAJOR_DELETE, majorGroupId[i], majors[i]));
+			historyVO.setActionCode(ActionCode.ADMIN_MAJOR_GROUP_DELETE);
+			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_MAJOR_GROUP_DELETE, member.getEmail()));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MAJOR_GROUP_DELETE, majorGroupId[i], majors[i]));
 			
 			historyBiz.addHistory(historyVO);
 		}

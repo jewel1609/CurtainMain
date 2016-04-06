@@ -49,8 +49,9 @@ $(document).ready(function() {
   </form>
 </div>
 <div class="container">
-  	<input type="button" id="prohibitedWordBtn" value="욕설,금칙어 등록"/>
-  	<input type="button" id="cancleBtn" value="취소"/>
+  	<span id="prohibitedWordBtn" style="cursor: pointer;">욕설,금칙어 등록</span>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  	<span id="cancleBtn" style="cursor: pointer;">취소</span>
 </div>
 
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

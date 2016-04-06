@@ -327,7 +327,7 @@
                <h2>${majorGroupName} 게시판입니다.</h2>
             </div> 
             <div style="float:left; padding:20px;">
-               <h5>참여인원 ${majorMemberCount}명</h5> 
+               <h5>참여인원 ${memberCount.totalCount}명</h5> 
             </div>
             <div style="float:left; padding:20px;">
                <a href="#" title="참여 대학 목록입니다." data-toggle="popover" data-placement="bottom" data-content="${univNames}"><h5>참여대학교</h5></a>

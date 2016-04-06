@@ -20,7 +20,14 @@ public class UnivBiz {
 	}
 
 	public UnivListVO getAllUniv(UnivSearchVO univSearchVO) {
-		int allUnivCount = univDAO.getAllUnivCount();
+		int allUnivCount = 0;
+
+		if ( univSearchVO.getSearchType().equals("1") ) {
+			allUnivCount = univDAO.getAllUnivCount();
+		}
+		else if ( univSearchVO.getSearchType().equals("2") ) {
+			allUnivCount = univDAO.getArticleByUnivNameCount(univSearchVO);
+		}
 		
 		Paging paging = new Paging();
 		paging.setTotalArticleCount(allUnivCount);
@@ -30,7 +37,14 @@ public class UnivBiz {
 		univSearchVO.setEndIndex( paging.getEndArticleNumber() );
 		
 		List<UnivVO> univs = new ArrayList<UnivVO>();
-		univs = univDAO.getAllUniv(univSearchVO);
+		
+		if ( univSearchVO.getSearchType().equals("1") ) {
+			univs = univDAO.getAllUniv(univSearchVO);
+		}
+		else if ( univSearchVO.getSearchType().equals("2") ) {
+			univs = univDAO.getArticleByUnivName(univSearchVO);
+		}
+		
 		// paging 바꾸는 이유 검색 때문에
 		
 		UnivListVO univList = new UnivListVO();

@@ -180,6 +180,78 @@ public class UnivDAO {
 		}
 		
 	}
+	
+
+	public int getArticleByUnivNameCount(UnivSearchVO univSearchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int memberCount = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/univ/getArticleByUnivNameCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, univSearchVO.getSearchKeyword());
+			// 물음표에 값 넣기 - 파라미터 매핑 (SQL Parameter Mapping)
+			// 결과 받아오기
+			rs = stmt.executeQuery();
+			rs.next();
+			memberCount = rs.getInt(1);
+			
+			return memberCount;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+
+
+	public List<UnivVO> getArticleByUnivName(UnivSearchVO univSearchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/univ/getArticleByUnivName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, univSearchVO.getSearchKeyword());
+			stmt.setInt(2, univSearchVO.getEndIndex());
+			stmt.setInt(3, univSearchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<UnivVO> univs = new ArrayList<UnivVO>();
+			UnivVO univVO = null;
+
+			while ( rs.next() ) {
+				univVO = new UnivVO();
+				univVO.setUnivId(rs.getInt("UNIV_ID"));
+				univVO.setUnivName(rs.getString("UNIV_NAME"));
+				univs.add(univVO);
+			}
+
+			return univs;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
 
 	
 	/**
@@ -223,7 +295,6 @@ public class UnivDAO {
 			catch ( SQLException e ) {}
 		}
 	}
-
 
 
 

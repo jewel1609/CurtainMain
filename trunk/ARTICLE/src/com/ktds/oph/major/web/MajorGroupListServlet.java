@@ -20,6 +20,7 @@ import com.ktds.oph.operationHistory.vo.ActionCode;
 import com.ktds.oph.operationHistory.vo.BuildDescription;
 import com.ktds.oph.operationHistory.vo.Description;
 import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
+import com.ktds.oph.univ.vo.UnivSearchVO;
 
 /**
  * Servlet implementation class MajorListServlet
@@ -73,25 +74,36 @@ public class MajorGroupListServlet extends HttpServlet {
 		}
 		else if(memberBiz.isAdmin(loginMember)){
 			int pageNo = 0;
+			MajorGroupSearchVO majorSearchVO = new MajorGroupSearchVO();
 		
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
 				
+				majorSearchVO.setPageNo(pageNo);
+				majorSearchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+				majorSearchVO.setSearchType(request.getParameter("searchType"));
 				historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 			}
 			catch (NumberFormatException nfe) {
 				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_MAJOR_PAGE, loginMember.getEmail()));
+				majorSearchVO = (MajorGroupSearchVO) session.getAttribute("_SEARCH_");
+				
+				if ( majorSearchVO == null ) {
+					majorSearchVO = new MajorGroupSearchVO();
+					majorSearchVO.setPageNo(0);
+					majorSearchVO.setSearchKeyword("");
+					majorSearchVO.setSearchType("1");
+				}
 			}
 			
-			MajorGroupSearchVO majorSearchVO = new MajorGroupSearchVO();
-			majorSearchVO.setPageNo(pageNo);
+			session.setAttribute("_SEARCH_", majorSearchVO);
 			
 			MajorGroupListVO majors = majorGroupBiz.getAllMajor(majorSearchVO);
 			
 			
 			historyBiz.addHistory(historyVO);
 			
-			
+			request.setAttribute("majorSearchVO", majorSearchVO);
 			request.setAttribute("majors", majors);
 			RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/major/majorGroupList.jsp");
 			rd.forward(request, response);

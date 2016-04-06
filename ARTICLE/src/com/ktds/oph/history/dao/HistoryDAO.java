@@ -50,7 +50,6 @@ public class HistoryDAO {
 			rs = stmt.executeQuery();
 			rs.next();
 			memberCount = rs.getInt(1);
-			System.out.println(memberCount);
 			
 			return memberCount;
 			

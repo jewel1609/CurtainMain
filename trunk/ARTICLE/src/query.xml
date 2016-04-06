@@ -639,6 +639,14 @@
 					, ANSWER_DATE = SYSDATE
 			WHERE	QUESTION_ID = ?
 		</addNewAnswer>
+		
+		<modifyAnswer>
+			UPDATE	CURTAIN.QA
+			SET		ANSWER_DESCRIPTION = ?
+					, ANSWER_DATE = SYSDATE
+			WHERE	QUESTION_ID = ?
+			AND		IS_CHECKED = 'N'
+		</modifyAnswer>
 	</question>
 
 </query>

@@ -101,7 +101,7 @@
 				<tr>
 					<td colspan="4" style="text-align: center;">
 						<form id="addAnswerForm">
-							<textarea class="form-control" id="answerDescription" name="answerDescription"></textarea>
+							<textarea class="form-control" id="answerDescription" name="answerDescription" style="height: 400px;"></textarea>
 							<input id="btnAddAnswer" type="button" value="답변 하기" />
 							<input id="questionId" name="questionId" type="hidden" value="${question.questionId}" />
 							<div style="clear: both;"></div>

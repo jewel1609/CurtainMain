@@ -72,7 +72,7 @@
 				<td colspan="2">
 					<form class="modifyAnswerForm">
 						<input id="questionId" name="questionId" type="hidden" value="${question.questionId}" />
-						<textarea id="modifyAnswer" name="modifyAnswer" class="form-control" style="width: 100%;">${question.answerDescription}</textarea>
+						<textarea id="modifyAnswer" name="modifyAnswer" class="form-control" style="width: 100%; height: 400px;">${question.answerDescription}</textarea>
 					</form>
 				</td>
 			</tr>

@@ -10,12 +10,12 @@
 			
 			var modifyAnswer = $("#modifyAnswer").text();
 			
-			if (answerDescription == "") {
+			if (modifyAnswer == "") {
 				alert("내용을 입력하세요!");
 				return;
 			}
 			
-			var form = $("#modifyAnswerForm");
+			var form = $(".modifyAnswerForm");
 			form.attr("method", "post");
 			form.attr("action", "<c:url value="/doModifyAnswer" />");
 			form.submit();
@@ -66,11 +66,11 @@
 					<c:set var="answerDate" value="${question.answerDate}" />
 					<b style="">답변 일 : ${fn:substring(answerDate, 0, 10)} </b>
 				</td>
-				<td style="width: 100px;">
+				<td style="width: 150px;">
 					<b>답변 내용 : </b>
 				</td>
 				<td colspan="2">
-					<form id="modifyAnswerForm">
+					<form class="modifyAnswerForm">
 						<input id="questionId" name="questionId" type="hidden" value="${question.questionId}" />
 						<textarea id="modifyAnswer" name="modifyAnswer" class="form-control" style="width: 100%;">${question.answerDescription}</textarea>
 					</form>

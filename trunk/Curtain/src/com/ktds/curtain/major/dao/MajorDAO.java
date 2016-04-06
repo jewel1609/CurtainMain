@@ -103,7 +103,6 @@ public class MajorDAO {
 	
 	//입력받는 학과에 맞는 학과들 출력
 	public String checkMajorName(String inputMajorName) {
-		System.out.println("DAO : " + inputMajorName);
 		loadOracleDriver();
 
 		Connection conn = null;

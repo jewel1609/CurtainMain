@@ -32,7 +32,6 @@ public class DuplDAO {
 			int duplCount = 0;
 			rs.next();
 			duplCount = rs.getInt(1);
-			System.out.println("카운트 : " + duplCount);
 			
 			return duplCount;
 			

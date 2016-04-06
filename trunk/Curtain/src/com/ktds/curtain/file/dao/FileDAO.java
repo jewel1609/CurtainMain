@@ -42,7 +42,6 @@ public class FileDAO {
 
 			if (insertCount > 0) {
 				stmt.close();
-				System.out.println("파일 테이블 입력 성공");
 			}
 
 		} catch (SQLException e) {
@@ -128,7 +127,6 @@ public class FileDAO {
 
 			if (deleteCount > 0) {
 				stmt.close();
-				System.out.println("파일 삭제 성공");
 			}
 
 		} catch (SQLException e) {

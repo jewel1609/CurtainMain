@@ -56,13 +56,8 @@ public class ModifyMemberPasswordServlet extends HttpServlet {
 		String userNewPw = request.getParameter("userNewPw");
 		String userNewRePw = request.getParameter("userNewRePw");
 		
-		System.out.println(userPw);
-		System.out.println(userNewPw);
-		System.out.println(userNewRePw);
 		
 		if ( userPw.equals(userPassword) && userNewPw.equals(userNewRePw) ) {
-			System.out.println("modifyTest");
-			System.out.println(email);
 			memberBiz.modifyMemberPassword(userNewPw, email);
 			member.setPassword(userNewPw);
 			

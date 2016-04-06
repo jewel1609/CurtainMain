@@ -41,9 +41,6 @@ public class HitsCountServlet extends HttpServlet {
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		int articleId = Integer.parseInt(request.getParameter("articleId"));
 		
-		System.out.println(boardId);
-		System.out.println(articleId);
-		
 		ArticleVO articleVO = new ArticleVO();
 		articleVO.setArticleId(articleId);
 		articleVO.setBoardId(boardId);

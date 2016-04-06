@@ -61,7 +61,6 @@ public class DoUpdateArticleServlet extends HttpServlet {
 		MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
 		
 		int articleId = Integer.parseInt(multipartRequest.getParameter("articleId"));
-		System.out.println(articleId);
 		String articleTitle = multipartRequest.getParameter("articleTitle");
 		String articleDescription = multipartRequest.getParameter("articleDescription");
 		String articleTypeId = multipartRequest.getParameter("articleId");
@@ -89,7 +88,6 @@ public class DoUpdateArticleServlet extends HttpServlet {
 		articleVO.setArticleDesc(articleDescription);
 		articleVO.setArticleTypeId(Integer.parseInt(articleTypeId));
 		articleVO.setBoardId(Integer.parseInt(boardId));
-		System.out.println(article.getBoardId());
 		articleVO.setEmail(stdMember.getEmail());
 		articleVO.setMajorGroupId(stdMember.getMajorGroupId());
 
@@ -130,7 +128,6 @@ public class DoUpdateArticleServlet extends HttpServlet {
 				fileVO.setFileType(2);
 
 				fileBiz.insertFile(fileVO);
-				System.out.println("영상 등록 성공");
 			}
 		}
 			response.sendRedirect("/showDetail?articleId="+articleId+"&boardId="+article.getBoardId());

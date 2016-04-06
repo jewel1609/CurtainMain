@@ -49,7 +49,6 @@ public class ModifyMemberInfoServlet extends HttpServlet {
 		
 		// Object로 넘어오기 때문에 MemberVO로 캐스팅해준다.
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
-		System.out.println(member.getEmail());
 		String userEmail = request.getParameter("userEmail");
 		String userNickName = request.getParameter("userNickName");
 		

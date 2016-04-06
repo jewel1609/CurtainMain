@@ -71,7 +71,6 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		MultipartFile file = multipartRequest.getFile("imgFile");
 		String movieUrl = multipartRequest.getParameter("movieUrl");
 
-		System.out.println("========게시=:" + articleTypeId);
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
@@ -90,7 +89,6 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		article.setArticleDesc(articleDescription);
 		article.setArticleTypeId(articleTypeId);
 		article.setBoardId(Integer.parseInt(boardId));
-		System.out.println("보드 아이디: "+ article.getBoardId());
 		article.setEmail(loginMember.getEmail());
 
 
@@ -116,7 +114,6 @@ public class SecretWriteArticleServlet extends HttpServlet {
 				fileVO.setFileType(2);
 
 				fileBiz.insertFile(fileVO);
-				System.out.println("영상 등록 성공");
 			}
 		}
 

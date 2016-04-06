@@ -59,7 +59,6 @@ public class ShowDetailServlet extends HttpServlet {
 		
 		ArticleVO article = articleBiz.showDetail(articleId, stdMember);
 		List<FileVO> files = articleBiz.getFileListByArticleId(articleId);
-		System.out.println("여긴 디테일 서블릿"+article.getBoardId());
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();
 		historyVO.setIp(request.getRemoteHost());

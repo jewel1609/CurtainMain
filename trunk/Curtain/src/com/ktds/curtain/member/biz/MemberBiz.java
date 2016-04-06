@@ -90,7 +90,6 @@ public class MemberBiz {
 	}
 
 	public void modifyMemberPassword(String userNewPw, String email) {
-		System.out.println("testBIZ");
 		memberDAO.updateMemberPassword(userNewPw, email);
 	}
 

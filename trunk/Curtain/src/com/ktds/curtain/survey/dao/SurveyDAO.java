@@ -154,7 +154,6 @@ public class SurveyDAO {
 
 	public void upDateThird(int surveyId) {
 		
-		System.out.println(surveyId + "DBDBDB");
 		loadOracleDriver();
 		
 		Connection conn = null;
@@ -165,14 +164,12 @@ public class SurveyDAO {
 
 			String query = XML.getNodeString("//query/survey/upDateThird/text()");
 			
-			System.out.println(query);
 			
 			stmt = conn.prepareStatement(query);
 			
 			stmt.setInt(1, surveyId);
 			stmt.executeUpdate();
 			
-			System.out.println("여기가안되네?");
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);

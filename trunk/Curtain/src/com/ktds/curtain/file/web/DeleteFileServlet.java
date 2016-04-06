@@ -38,7 +38,6 @@ public class DeleteFileServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int fileId = Integer.parseInt(request.getParameter("fileId"));
-		System.out.println(fileId);
 		
 		FileVO file = new FileVO();
 		file.setFileId(fileId);

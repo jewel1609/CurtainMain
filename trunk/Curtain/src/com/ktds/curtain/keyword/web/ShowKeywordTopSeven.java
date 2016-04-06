@@ -44,7 +44,6 @@ public class ShowKeywordTopSeven extends HttpServlet {
 		int boardId = (int) session.getAttribute("_BOARD_ID_");
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		System.out.println(boardId);
 		
 		List<String> keywords = keywordBiz.getKeywordTopSeven(boardId, member);
 		

@@ -59,17 +59,12 @@ public class WriteArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// mutilpartHttpServletResquest 선언
-				System.out.println("넘어오니");
 				MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
 				
 				String articleTitle = multipartRequest.getParameter("articleTitle");
-				System.out.println(articleTitle);
 				String articleDescription = multipartRequest.getParameter("articleDescription");
-				System.out.println(articleDescription);
 				String articleTypeId = multipartRequest.getParameter("articleTypeId");
-				System.out.println(articleTypeId);
 				String boardId = multipartRequest.getParameter("boardId");
-				System.out.println(boardId);
 				
 				MultipartFile file0 = multipartRequest.getFile("imgFile0");
 				MultipartFile file1 = multipartRequest.getFile("imgFile1");
@@ -78,7 +73,6 @@ public class WriteArticleServlet extends HttpServlet {
 				
 				HttpSession session = request.getSession();
 				MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
-				System.out.println(stdMember.getMajorGroupId());
 				
 				List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
 
@@ -144,7 +138,6 @@ public class WriteArticleServlet extends HttpServlet {
 						fileVO.setFileType(2);
 
 						fileBiz.insertFile(fileVO);
-						System.out.println("영상 등록 성공");
 					}
 				}
 

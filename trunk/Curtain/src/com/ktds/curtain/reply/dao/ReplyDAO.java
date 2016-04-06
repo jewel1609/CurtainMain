@@ -41,7 +41,6 @@ public class ReplyDAO {
 			while (rs.next()) {
 				reply = new ReplyVO();
 				reply.setReplyId(rs.getInt("REPLY_ID"));
-				System.out.println(rs.getInt("REPLY_ID"));
 				reply.setArticleId(rs.getInt("ARTICLE_ID"));
 				reply.setNickName(rs.getString("NICK_NAME"));
 				reply.setReplyDesc(rs.getString("REPLY_DESC"));
@@ -83,20 +82,14 @@ public class ReplyDAO {
 			
 			// 물음표에 값 넣기 - 파라미터 매핑 (SQL Parameter Mapping)
 			stmt.setInt(1, reply.getArticleId());
-			System.out.println(reply.getArticleId());
 			stmt.setString(2, reply.getEmail());
-			System.out.println(reply.getEmail());
 			stmt.setString(3, reply.getReplyDesc().replaceAll("\n", "<br/>"));
-			System.out.println(reply.getReplyDesc());
 			stmt.setInt(4, reply.getBoardId());
-			System.out.println(reply.getBoardId());
 			
 			//<br/>
 			if ( reply.getParentReplyId() > 0 ) {
 				stmt.setInt(5, reply.getParentReplyId());
-				System.out.println(reply.getParentReplyId());
 				stmt.setInt(6, reply.getReplyOrder());
-				System.out.println(reply.getReplyOrder());
 				
 			}
 

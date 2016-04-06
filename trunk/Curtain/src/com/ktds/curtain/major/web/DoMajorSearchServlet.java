@@ -36,7 +36,6 @@ public class DoMajorSearchServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String inputMajorName = request.getParameter("inputMajorName");
-		System.out.println(inputMajorName);
 		String checkMajorNameList = majorBiz.checkMajorName(inputMajorName);
 		
 		StringBuffer json = new StringBuffer();

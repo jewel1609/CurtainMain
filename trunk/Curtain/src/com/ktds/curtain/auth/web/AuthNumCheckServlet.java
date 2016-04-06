@@ -39,8 +39,6 @@ public class AuthNumCheckServlet extends HttpServlet {
 		
 		String inputUnivEmail = request.getParameter("inputUnivEmail");
 		String inputNumberCheck = request.getParameter("inputNumberCheck");
-		System.out.println("메일 확인 :" + inputUnivEmail);
-		System.out.println("넣는 인증번호 확인 : " + inputNumberCheck);
 		
 		boolean isExistsUnivEmail = macBiz.checkAuthNumByUnivEmail(inputUnivEmail,inputNumberCheck);
 		

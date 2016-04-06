@@ -51,8 +51,8 @@ public class UpdateMajorGroupNameServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		boolean updateName = majorGroupBiz.updateMajorGroupName(majorGroupVO, member);
-		
-// json 만드는 방법 "{ \"key\" : \"value\" }"
+
+		// json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();
 		json.append("{");
 		json.append("\"result\" : true");

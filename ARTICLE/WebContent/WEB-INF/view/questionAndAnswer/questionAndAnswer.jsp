@@ -60,7 +60,7 @@
 <div class="container">
 	<h2>질문 리스트</h2>
 	<p>질문에 대한 답변을 해주세요.</p>
-	<table class="table" style="width: 2000px">
+	<table class="table">
 		<thead>
 			<tr>
 				<th style="width: 100px; text-align: center;">질문 일</th>

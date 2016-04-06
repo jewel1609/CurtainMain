@@ -1,6 +1,7 @@
 package com.ktds.oph.questionAndAnswer.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,9 +55,17 @@ public class DoModifyAnswerServlet extends HttpServlet {
 		catch (NumberFormatException nfe) {
 		}
 		
-		request.setAttribute("isSuccess", isSuccess);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/showQuestion");
-		rd.forward(request, response);
+		if ( isSuccess == false ) {
+			PrintWriter out = response.getWriter();
+			out.println("<script>"); 
+			out.println("alert(\"질문자가 글을 읽었거나 관리자가 아니라 글 수정에 실패했습니다.!\");");
+			out.println("location.href=\"showQuestion\"");
+			out.println("</script>");
+			out.close();
+		}
+		else {
+			RequestDispatcher rd = request.getRequestDispatcher("/detailQuestion");
+			rd.forward(request, response);
+		}
 	}
 }

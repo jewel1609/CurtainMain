@@ -23,7 +23,6 @@ import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
 import com.ktds.curtain.prohibitedWord.biz.ProhibitedWordBiz;
 import com.ktds.curtain.util.MultipartHttpServletRequest;
-import com.ktds.curtain.util.Root;
 import com.ktds.curtain.util.MultipartHttpServletRequest.MultipartFile;
 
 

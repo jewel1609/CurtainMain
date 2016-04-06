@@ -156,7 +156,7 @@
 					</td>
 			        <td><a href="/detailMajor?majorGroupId=${major.majorGroupId}">${major.majorGroupId}</a></td>  
 			         <td><input type="text" id ="majorGroup${major.majorGroupId}" name="majors" value="${major.majorGroupName}"/>
-			        	<span class ="updateBtn" id ="${major.majorGroupId}">수정</span>
+			        	<span class ="updateBtn" id ="${major.majorGroupId}" style="cursor:pointer">수정</span>
 			        </td>
 			      </tr>
 			    

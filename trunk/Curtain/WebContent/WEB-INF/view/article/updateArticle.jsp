@@ -148,11 +148,24 @@ function readURL(input) {
 											<c:if test="${article.articleTypeName eq '기타'}">
 												<span class="label label-default">${article.articleTypeName}</span>
 											</c:if>
+											<c:if test="${article.articleTypeName eq '동아리모집'}">
+												<span class="label label-danger">${article.articleTypeName}</span>
+											</c:if>
+											<c:if test="${article.articleTypeName eq '대외활동모집'}">
+												<span class="label label-warning">${article.articleTypeName}</span>
+											</c:if>
+											<c:if test="${article.articleTypeName eq '취업관련'}">
+												<span class="label label-primary">${article.articleTypeName}</span>
+											</c:if>
+											<c:if test="${article.articleTypeName eq '스터디모집'}">
+												<span class="label label-info">${article.articleTypeName}</span>
+											</c:if>
+
 										</div>
 										
 										<div class="col-sm-9" align="left" style="padding-left:0px;">
 										<input type="hidden" id="articleId" name="articleId" value="${article.articleId}"/>
-											<input type="text" class="form-control w3-col m10 input-lg"
+											<input type="text" class="w3-input w3-col m10 input-lg"
 												id="articleTitle" name="articleTitle"  value="${article.articleTitle}"/>
 										</div>
 										<div class="col-sm-2" align="right" style="padding-right:0px; padding-top:8px;">					

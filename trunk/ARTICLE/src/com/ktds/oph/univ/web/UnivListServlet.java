@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ktds.oph.article.vo.ArticleSearchVO;
 import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
@@ -74,33 +75,38 @@ public class UnivListServlet extends HttpServlet {
 		}
 		else if(memberBiz.isAdmin(loginMember)){
 			int pageNo = 0;
+			UnivSearchVO univSearchVO = new UnivSearchVO();
 		
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
 				
+				univSearchVO.setPageNo(pageNo);
+				univSearchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+				univSearchVO.setSearchType(request.getParameter("searchType"));
 				historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 			}
 			catch (NumberFormatException nfe) {
 				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_UNIV_PAGE, loginMember.getEmail()));
+				univSearchVO = (UnivSearchVO) session.getAttribute("_SEARCH_");
+				
+				if ( univSearchVO == null ) {
+					univSearchVO = new UnivSearchVO();
+					univSearchVO.setPageNo(0);
+					univSearchVO.setSearchKeyword("");
+					univSearchVO.setSearchType("1");
+				}
 			}
+			session.setAttribute("_SEARCH_", univSearchVO);
 			
-			UnivSearchVO univVO = new UnivSearchVO();
-			univVO.setPageNo(pageNo);
-			
-			UnivListVO univs = univBiz.getAllUniv(univVO);
-			
-			
-			
+			UnivListVO univs = univBiz.getAllUniv(univSearchVO);
 			
 			historyBiz.addHistory(historyVO);
 			
 			request.setAttribute("univs", univs);
+			request.setAttribute("univSearchVO", univSearchVO);
 			RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/univ/univList.jsp");
 			rd.forward(request, response);
 		}
-		
-
-		
 	}
 
 }

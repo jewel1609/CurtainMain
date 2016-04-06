@@ -527,8 +527,6 @@
                            </c:if>
                         
                            <span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기
-                              
-                           
                            <div class="claim w3-col m12">
                               <form class="claimWrite">
                                  <input class="w3-input" type="text" class="claimCom" id="claimCom${topArticle.articleId}" name="claimCom${topArticle.articleId}"

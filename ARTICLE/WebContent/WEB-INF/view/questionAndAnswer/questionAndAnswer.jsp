@@ -7,6 +7,16 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		var isSuccess = "${isSuccess}";
+		
+		if (isSuccess == "true") {
+			alert("질문을 수정했습니다!");
+		}
+		else if (isSuccess == "false"){
+			alert("질문자가 글을 읽었거나 관리자가 아니라 글 수정에 실패했습니다.!");
+		}
+		
 		$("#initSearchBtn").click(function() {
 			location.href = "<c:url value="/showQuestion/init" />";
 		});

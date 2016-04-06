@@ -46,9 +46,12 @@ public class DoModifyAnswerServlet extends HttpServlet {
 		QuestionAndAnswerVO question = new QuestionAndAnswerVO();
 		
 		boolean isSuccess = false;
+		String modifyAnswer = "";
 		try {
 			question.setQuestionId(Integer.parseInt(request.getParameter("questionId")));
-			question.setAnswerDescription(request.getParameter("modifyAnswer"));
+			modifyAnswer = request.getParameter("modifyAnswer");
+			modifyAnswer = modifyAnswer.replace("\n", "<br />");
+			question.setAnswerDescription(modifyAnswer);
 			
 			isSuccess = questionAndAnswerBiz.modifyAnswer(question, member);
 		}

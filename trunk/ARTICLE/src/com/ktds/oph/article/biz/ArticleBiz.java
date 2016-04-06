@@ -37,9 +37,20 @@ public class ArticleBiz {
 
 	/////////////////////////Curtain 관리자///////////////////////////////
 
-	public ArticleListVO getAllClaimArticle(ArticleSearchVO searchVO) {
-		int allClaimArticleCount = articleDAO.getAllClaimArticleCount();
-
+	public ArticleListVO getAllClaimArticle(ArticleSearchVO searchVO, MemberVO member) {
+		int allClaimArticleCount = 0;
+		List<ClaimArticleVO> claimArticles = null;
+		
+		if(searchVO.getSearchType().equals("1")){ //글ID
+			allClaimArticleCount = articleDAO.getAllClaimArticleCountByArticleId(searchVO);
+		}
+		else if(searchVO.getSearchType().equals("2")){
+			allClaimArticleCount = articleDAO.getAllClaimArticleCountByReplyId(searchVO);
+		}
+		else if(searchVO.getSearchType().equals("3")){
+			allClaimArticleCount = articleDAO.getAllClaimArticleCountByEmail(searchVO);
+		}
+		
 		Paging paging = new Paging();
 		paging.setTotalArticleCount(allClaimArticleCount);
 		paging.setPageNumber(searchVO.getPageNo() + ""); // 1페이지 0번으로 시작함
@@ -47,16 +58,21 @@ public class ArticleBiz {
 		searchVO.setStartIndex( paging.getStartArticleNumber() );
 		searchVO.setEndIndex( paging.getEndArticleNumber() );
 		
-		List<ClaimArticleVO> claimArticles = new ArrayList<ClaimArticleVO>();
-		claimArticles = articleDAO.getAllClaimArticle(searchVO);
-		// paging 바꾸는 이유 검색 때문에
+		if(member.getMemberTypeId() == 6){
+			if( searchVO.getSearchType().equals("1")){
+				claimArticles = articleDAO.getAllClaimArticleByArticleId(searchVO);
+			}
+			else if( searchVO.getSearchType().equals("2")){
+				claimArticles = articleDAO.getAllClaimArticleByReplyId(searchVO);
+			}
+			else if( searchVO.getSearchType().equals("3")){
+				claimArticles = articleDAO.getAllClaimArticleByEmail(searchVO);
+			}
+		}
 		
 		ArticleListVO claimArticleList = new ArticleListVO();
 		claimArticleList.setClaimArticleList(claimArticles);
 		claimArticleList.setPaging(paging);
-		
-		// 몇 번째 페이지
-		
 		
 		return claimArticleList;
 	}

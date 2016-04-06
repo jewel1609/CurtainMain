@@ -14,6 +14,7 @@ import com.ktds.oph.article.biz.ArticleBiz;
 import com.ktds.oph.article.vo.ArticleListVO;
 import com.ktds.oph.article.vo.ArticleSearchVO;
 import com.ktds.oph.member.biz.MemberBiz;
+import com.ktds.oph.member.vo.MemberSearchVO;
 import com.ktds.oph.member.vo.MemberVO;
 import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
 import com.ktds.oph.operationHistory.vo.ActionCode;
@@ -72,26 +73,39 @@ public class ShowClaimArticleServlet extends HttpServlet {
 		}
 		else if(memberBiz.isAdmin(loginMember)){
 			int pageNo = 0;
-		
+			ArticleSearchVO searchVO = new ArticleSearchVO();
+			session = request.getSession();
+			
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
-				
+				searchVO.setPageNo(pageNo);
+				searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+				searchVO.setSearchType(request.getParameter("searchType"));
 				historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 			}
 			catch (NumberFormatException nfe) {
+				searchVO = (ArticleSearchVO) session.getAttribute("_CLAIM_ARTICLE_SEARCH_");
+				if (searchVO == null) {
+					searchVO = new ArticleSearchVO();
+					searchVO.setPageNo(0);
+					searchVO.setSearchKeyword("");
+					searchVO.setSearchType("1");
+				}
+				
 				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_CLAIM_PAGE, loginMember.getEmail()));
 			}
 			
-			ArticleSearchVO searchVO = new ArticleSearchVO();
-			searchVO.setPageNo(pageNo);
+			session.setAttribute("_CLAIM_ARTICLE_SEARCH_", searchVO);
 			
-			ArticleListVO claimArticles = articleBiz.getAllClaimArticle(searchVO);
+			ArticleListVO claimArticles = articleBiz.getAllClaimArticle(searchVO, loginMember);
 			
 		
 			historyBiz.addHistory(historyVO);
 			
 			
 			request.setAttribute("claimArticles", claimArticles);
+			request.setAttribute("searchVO", searchVO);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/claimArticleList.jsp");
 			rd.forward(request, response);
 		}

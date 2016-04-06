@@ -54,6 +54,12 @@ public class MajorGroupListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(loginMember.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.ADMIN_MAJOR_PAGE);
+		
 		if(!memberBiz.isAdmin(loginMember)){
 			response.setContentType("text/html; charset=UTF-8");
 			 
@@ -70,20 +76,18 @@ public class MajorGroupListServlet extends HttpServlet {
 		
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+				
+				historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 			}
-			catch (NumberFormatException nfe) {}
+			catch (NumberFormatException nfe) {
+				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_MAJOR_PAGE, loginMember.getEmail()));
+			}
 			
 			MajorGroupSearchVO majorSearchVO = new MajorGroupSearchVO();
 			majorSearchVO.setPageNo(pageNo);
 			
 			MajorGroupListVO majors = majorGroupBiz.getAllMajor(majorSearchVO);
 			
-			OperationHistoryVO historyVO = new OperationHistoryVO();
-			historyVO.setIp(request.getRemoteHost());
-			historyVO.setEmail(loginMember.getEmail());
-			historyVO.setUrl(request.getRequestURI());
-			historyVO.setActionCode(ActionCode.ADMIN_MAJOR_PAGE);
-			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_MAJOR_PAGE, loginMember.getEmail()));
 			
 			historyBiz.addHistory(historyVO);
 			

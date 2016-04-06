@@ -41,9 +41,12 @@ public class AddNewAnswerServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		QuestionAndAnswerVO questionAndAnswerVO = new QuestionAndAnswerVO();
+		String answerDescription = "";
 		try{
 			questionAndAnswerVO.setQuestionId(Integer.parseInt(request.getParameter("questionId")));
-			questionAndAnswerVO.setAnswerDescription(request.getParameter("answerDescription"));
+			answerDescription = request.getParameter("answerDescription");
+			answerDescription = answerDescription.replace("\n", "<br />");
+			questionAndAnswerVO.setAnswerDescription(answerDescription);
 			questionAndAnswerBiz.addNewAnswer(questionAndAnswerVO, member);
 			response.sendRedirect(Root.get(this) + "/detailQuestion?questionId=" + questionAndAnswerVO.getQuestionId());
 		}

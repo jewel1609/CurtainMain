@@ -77,7 +77,7 @@ $(document).ready(function () {
 	
 	$(".doClaimBtn").click(function() {		
 		
-		var root = $(this).parent().children(":eq(0)");
+		var root = $(this).parent().children(":eq(1)");
 
 		$.post(		
 			"/writeReplyClaim"
@@ -519,7 +519,7 @@ $(document).ready(function () {
 													
 													
 													<div class="w3-col m1" align="right" style="color:#7d7d7d; font-size:10pt;">
-													<span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기
+														<span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기
 													</div>
 													<div class="w3-col m1" align="right" style="color:#7d7d7d; font-size:10pt;">
 														<c:set var="loginId2" value="${ sessionScope._MEMBER_.email}"/>

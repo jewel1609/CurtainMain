@@ -43,7 +43,6 @@
 	historyVO.setUrl(request.getRequestURI());
 	historyVO.setActionCode(ActionCode.MAIN);
 	historyVO.setDescription( BuildDescription.get(Description.VISIT_MAIN_PAGE, request.getRemoteHost()));
-	System.out.println("메인접근");
 	historyBiz.addHistory(historyVO);
 %>
 <meta charset="utf-8">

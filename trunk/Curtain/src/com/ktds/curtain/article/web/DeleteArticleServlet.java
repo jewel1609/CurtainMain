@@ -16,7 +16,6 @@ import com.ktds.curtain.history.vo.BuildDescription;
 import com.ktds.curtain.history.vo.Description;
 import com.ktds.curtain.history.vo.OperationHistoryVO;
 import com.ktds.curtain.member.vo.MemberVO;
-import com.ktds.curtain.util.MultipartHttpServletRequest;
 
 /**
  * Servlet implementation class DeleteArticleServlet

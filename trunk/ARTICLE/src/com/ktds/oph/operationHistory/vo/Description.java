@@ -47,6 +47,7 @@ public interface Description {
 	public static final String DO_ADMIN_MAJOR_ADD = "[%s] 님이 학과리스트를 추가했습니다.";
 	public static final String DO_ADMIN_MAJOR_GROUP_ADD = "[%s] 님이 학과그룹리스트를 추가했습니다.";
 	public static final String DO_ADMIN_MAJOR_DELETE = "[%s] 님이 학과리스트를 삭제했습니다.";
+	public static final String DO_ADMIN_MAJOR_GROUP_DELETE = "[%s] 님이 학과그룹리스트를 삭제했습니다.";
 	
 	public static final String DO_SURVEY_ADD = "[%s] 님이 설문조사를 추가했습니다.";
 	public static final String DO_SURVEY_DELETE = "[%s] 님이 설문조사를 삭제했습니다.";
@@ -78,6 +79,7 @@ public interface Description {
 	public static final String DETAIL_MAJOR_ADD = "추가한 학과명 : [%s] ";
 	public static final String DETAIL_MAJOR_GROUP_ADD = "추가한 학과그룹명 : [%s] ";
 	public static final String DETAIL_MAJOR_DELETE = "삭제한 학과 번호 :[%s] <br/> 학과명 : [%s] ";
+	public static final String DETAIL_MAJOR_GROUP_DELETE = "삭제한 학과그룹 번호 :[%s] <br/> 학과그룹명 : [%s] ";
 	
 	public static final String DETAIL_QUESTION = "상세보기한 질문 글 번호 : [%s] <br/> 제목:[%s] <br/> 내용:[%s] <br/>질문일자:[%s]";
 	public static final String DETAIL_HISTORY = "시작날짜 : [%s] <br/> 끝 날짜 : [%s]";

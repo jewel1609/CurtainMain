@@ -6,17 +6,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		//수정
-		$("#deleteClaimArticleBtn").click(function() {
-
-			if (confirm("정말 삭제하시겠습니까?")) {
-				var form = $("#claimArticleForm");
-				form.attr("method", "post");
-				form.attr("action", "<c:url value="/deleteClaimReply" />");
-				form.submit();
-			}
-		});
-		
 		$("#btnAddAnswer").click( function () {
 			
 			var answerDescription = $("#answerDescription").text();
@@ -29,6 +18,20 @@
 			var form = $("#addAnswerForm");
 			form.attr("method", "post");
 			form.attr("action", "<c:url value="/addNewAnswer" />");
+			form.submit();
+		});
+		
+		$("#btnModifyAnswer").click(function () {
+			
+			var isChecked = "${question.isChecked}";
+			if (isChecked == "Y") {
+				alert("이미 질문자가 답변을 확인하여 수정을 할 수 없습니다!");
+				return;
+			}
+			
+			var form = $("#modifyAnswerForm");
+			form.attr("method", "post");
+			form.attr("action", "<c:url value="/modifyAnswer" />");
 			form.submit();
 		});
 
@@ -86,7 +89,10 @@
 				</tr>
 				<tr>
 					<td colspan="4" style="text-align: center;">
-						수정 하기
+						<form id="modifyAnswerForm">
+							<input id="btnModifyAnswer" type="button" value="수정 하기" />
+							<input id="questionId" name="questionId" type="hidden" value="${question.questionId}" />
+						</form>
 					</td>
 				</tr>
 			</c:if>
@@ -95,10 +101,10 @@
 				<tr>
 					<td colspan="4" style="text-align: center;">
 						<form id="addAnswerForm">
+							<textarea class="form-control" id="answerDescription" name="answerDescription"></textarea>
 							<input id="btnAddAnswer" type="button" value="답변 하기" />
 							<input id="questionId" name="questionId" type="hidden" value="${question.questionId}" />
 							<div style="clear: both;"></div>
-							<textarea id="answerDescription" name="answerDescription"></textarea>
 						</form>
 					</td>
 				</tr>

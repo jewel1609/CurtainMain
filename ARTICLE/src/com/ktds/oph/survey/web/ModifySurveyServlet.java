@@ -51,6 +51,7 @@ public class ModifySurveyServlet extends HttpServlet {
 		String surveyAnswer3 = request.getParameter("surveyAnswer3");
 		String surveyAnswer4 = request.getParameter("surveyAnswer4");
 		
+		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		

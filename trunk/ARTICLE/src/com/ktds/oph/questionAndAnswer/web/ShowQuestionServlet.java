@@ -87,7 +87,6 @@ public class ShowQuestionServlet extends HttpServlet {
 		
 		request.setAttribute("questionList", questionList);
 		request.setAttribute("searchVO", searchVO);
-		request.setAttribute("isSuccess", request.getParameter("isSuccess"));
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/questionAndAnswer/questionAndAnswer.jsp");
 		rd.forward(request, response);

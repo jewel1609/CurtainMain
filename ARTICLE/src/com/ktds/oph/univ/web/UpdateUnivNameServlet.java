@@ -8,8 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.BorderFactory;
 
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.univ.biz.UnivBiz;
 import com.ktds.oph.univ.vo.UnivVO;
 import com.ktds.oph.util.Root;
@@ -20,6 +26,7 @@ import com.ktds.oph.util.Root;
 public class UpdateUnivNameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UnivBiz univBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,6 +34,7 @@ public class UpdateUnivNameServlet extends HttpServlet {
     public UpdateUnivNameServlet() {
         super();
         univBiz = new UnivBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -51,6 +59,16 @@ public class UpdateUnivNameServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		boolean updateName = univBiz.updateUnivName(univVO, member);
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.MODIFY_UNIV);
+		historyVO.setDescription( BuildDescription.get(Description.MODIFY_UNIV, member.getEmail(),  univId+""));
+		historyVO.setEtc( BuildDescription.get(Description.DETAIL_MODIFY_UNIV, updateUnivName));
+		
+		historyBiz.addHistory(historyVO);
 		
 // json 만드는 방법 "{ \"key\" : \"value\" }"
 		StringBuffer json = new StringBuffer();

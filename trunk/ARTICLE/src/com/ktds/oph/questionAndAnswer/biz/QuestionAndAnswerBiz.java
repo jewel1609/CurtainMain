@@ -61,6 +61,7 @@ public class QuestionAndAnswerBiz {
 		
 		try {
 			question = questionAndAnswerDAO.getQuestionByQuestionId(Integer.parseInt(questionId));
+			
 		}
 		catch (NumberFormatException nfe) {
 		}

@@ -163,7 +163,6 @@ public class MemberDAO {
 			String query =  XML.getNodeString("//query/member/"+queryName+"/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1,memberEmail);
-			System.out.println("executeUpdateAndDeleteQuery : " +memberEmail);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);

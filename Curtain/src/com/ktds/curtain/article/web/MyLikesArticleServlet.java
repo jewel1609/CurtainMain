@@ -12,13 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
-import com.ktds.curtain.member.vo.MemberVO;
-import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.history.biz.OperationHistoryBiz;
 import com.ktds.curtain.history.vo.ActionCode;
 import com.ktds.curtain.history.vo.BuildDescription;
 import com.ktds.curtain.history.vo.Description;
 import com.ktds.curtain.history.vo.OperationHistoryVO;
+import com.ktds.curtain.member.vo.MemberVO;
 
 /**
  * Servlet implementation class MyLikesArticleServlet

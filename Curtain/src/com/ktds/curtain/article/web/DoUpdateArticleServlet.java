@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
-import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.history.biz.OperationHistoryBiz;

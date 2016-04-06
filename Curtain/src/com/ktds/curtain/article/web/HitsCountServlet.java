@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
-import com.ktds.curtain.article.vo.BoardId;
 
 /**
  * Servlet implementation class HitsCountServlet

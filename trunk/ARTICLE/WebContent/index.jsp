@@ -16,7 +16,6 @@
 	historyVO.setUrl(request.getRequestURI());
 	historyVO.setActionCode(ActionCode.ADMIN_PAGE);
 	historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_PAGE, request.getRemoteHost()));
-	System.out.println("관리자인덱스접근");
 	historyBiz.addHistory(historyVO);
 %>
 <script type="text/javascript">

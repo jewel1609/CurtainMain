@@ -67,6 +67,7 @@ public interface Description {
 	public static final String DO_CLAIM_REPLY = "[%s] 님이 [%s]번 댓글을 신고했습니다.";
 	
 	public static final String DO_REPLY = "[%s] 님이 [%s]번글에 댓글을 달았습니다.";
+	public static final String DELETE_REPLY = "[%s] 님이 [%s]번글 [%s]번 댓글을 삭제했습니다.";
 	public static final String DO_REPLY_LIKE = "[%s] 님이 [%s]번 댓글을 좋아합니다.";
 	public static final String DO_REPLY_DISLIKE = "[%s] 님이 [%s]번 댓글을 싫어합니다.";
 	
@@ -100,6 +101,7 @@ public interface Description {
 	
 	public static final String DETAIL_SEARCH_TITLE = "검색 내용 : [%s] ";
 	public static final String DETAIL_SEARCH_DESC = "검색 내용 : [%s] ";
+	public static final String DETAIL_DELETE_REPLY = "댓글 삭제 완료";
 	
 	
 }

@@ -435,6 +435,78 @@ public class MajorGroupDAO {
 		}
 	}
 
+
+	public int getArticleByMajorNameCount(MajorGroupSearchVO majorSearchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int majorGroupCount = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/major/getArticleByMajorNameCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, majorSearchVO.getSearchKeyword());
+			stmt.setInt(2, majorSearchVO.getMajorGroupId());
+			// 물음표에 값 넣기 - 파라미터 매핑 (SQL Parameter Mapping)
+			// 결과 받아오기
+			rs = stmt.executeQuery();
+			rs.next();
+			majorGroupCount = rs.getInt(1);
+			
+			return majorGroupCount;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+	public List<MajorVO> getArticleByMajorName(MajorGroupSearchVO majorSearchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/major/getArticleByMajorName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, majorSearchVO.getMajorGroupId());
+			stmt.setString(2, majorSearchVO.getSearchKeyword());
+			stmt.setInt(3, majorSearchVO.getEndIndex());
+			stmt.setInt(4, majorSearchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<MajorVO> majorGroups = new ArrayList<MajorVO>();
+			MajorVO majorGroup = null;
+
+			while ( rs.next() ) {
+				majorGroup = new MajorVO();
+				majorGroup.setMajorId(rs.getInt("MAJOR_ID"));
+				majorGroup.setMajorName(rs.getString("MAJOR_NAME"));
+				majorGroup.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				majorGroups.add(majorGroup);
+			}
+			return majorGroups;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
 	
 	/**
 	 * 오라클 드라이버

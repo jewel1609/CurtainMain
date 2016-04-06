@@ -42,17 +42,15 @@ public class ShowMemberInitServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.removeAttribute("_MEMBERLIST_SEARCH_");
-		MemberVO member = (MemberVO) request.getAttribute("_MEMBER_");
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();
 		historyVO.setIp(request.getRemoteHost());
-		historyVO.setEmail(member.getEmail());
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.INIT_SEARCH);
-		historyVO.setDescription( BuildDescription.get(Description.INIT_SEARCH, member.getEmail()));
+		historyVO.setDescription( BuildDescription.get(Description.INIT_SEARCH ));
 		
 		historyBiz.addHistory(historyVO);
+		session.removeAttribute("_MEMBERLIST_SEARCH_");
 		
 		response.sendRedirect(Root.get(this) + "/showMember");
 	}

@@ -40,13 +40,16 @@ public class ArticleBiz {
 		int allClaimArticleCount = 0;
 		List<ClaimArticleVO> claimArticles = null;
 		
-		if(searchVO.getSearchType().equals("1")){ //글ID
+		if(searchVO.getSearchType().equals("1")){ //전체
+			allClaimArticleCount = articleDAO.getAllClaimArticleCount();
+		}
+		else if(searchVO.getSearchType().equals("2")){ //글ID
 			allClaimArticleCount = articleDAO.getAllClaimArticleCountByArticleId(searchVO);
 		}
-		else if(searchVO.getSearchType().equals("2")){
+		else if(searchVO.getSearchType().equals("3")){
 			allClaimArticleCount = articleDAO.getAllClaimArticleCountByReplyId(searchVO);
 		}
-		else if(searchVO.getSearchType().equals("3")){
+		else if(searchVO.getSearchType().equals("4")){
 			allClaimArticleCount = articleDAO.getAllClaimArticleCountByEmail(searchVO);
 		}
 		
@@ -59,12 +62,15 @@ public class ArticleBiz {
 		
 		if(member.getMemberTypeId() == 6){
 			if( searchVO.getSearchType().equals("1")){
-				claimArticles = articleDAO.getAllClaimArticleByArticleId(searchVO);
+				claimArticles = articleDAO.getAllClaimArticle(searchVO);
 			}
 			else if( searchVO.getSearchType().equals("2")){
-				claimArticles = articleDAO.getAllClaimArticleByReplyId(searchVO);
+				claimArticles = articleDAO.getAllClaimArticleByArticleId(searchVO);
 			}
 			else if( searchVO.getSearchType().equals("3")){
+				claimArticles = articleDAO.getAllClaimArticleByReplyId(searchVO);
+			}
+			else if( searchVO.getSearchType().equals("4")){
 				claimArticles = articleDAO.getAllClaimArticleByEmail(searchVO);
 			}
 		}

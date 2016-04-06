@@ -36,7 +36,6 @@ public class DoCompCheckServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String inputCompEmail = request.getParameter("inputCompEmail");
-		System.out.println("체크할 회사메일 이름 : " + inputCompEmail);
 		boolean isExistCompEmail = univBiz.isExistStdUnivEmail(inputCompEmail);
 		
 		StringBuffer json = new StringBuffer();
@@ -46,7 +45,6 @@ public class DoCompCheckServlet extends HttpServlet {
 		json.append("\"result\" : true");
 		json.append(", \"isExistCompEmail\" : "+ isExistCompEmail);
 		json.append("}");
-		System.out.println("중복 기업이메일 결과 : " + isExistCompEmail);
 		
 		out.print(json.toString());
 		out.flush();

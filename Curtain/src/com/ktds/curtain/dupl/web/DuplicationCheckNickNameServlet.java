@@ -45,9 +45,7 @@ public class DuplicationCheckNickNameServlet extends HttpServlet {
 		
 		
 		String userNickName = request.getParameter("userNickName");
-		System.out.println(userNickName);
 		boolean isCheckId = duplBiz.isExistNickName(userNickName);
-		System.out.println(isCheckId);
 		
 		if ( isCheckId ) { //중복이면
 			StringBuffer json = new StringBuffer(); 

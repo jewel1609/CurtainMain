@@ -76,10 +76,8 @@ public class MacDAO {
 	        
 	    // 발송하기
 	    Transport.send(msg);
-	    System.out.println(msg + " 이메일 전송 성공 ");
 	    return true;
 		} catch (MessagingException e) {
-			System.out.println("이메일 전송 실패.");
 			return false;
 		}
 	}
@@ -136,10 +134,8 @@ public boolean sendPasswordBySecondEmail(String email, String secondEmail, Strin
 	        
 	    // 발송하기
 	    Transport.send(msg);
-	    System.out.println(msg + " 이메일 전송 성공 ");
 	    return true;
 		} catch (MessagingException e) {
-			System.out.println("이메일 전송 실패.");
 			return false;
 		}
 	}
@@ -186,7 +182,6 @@ public boolean sendPasswordBySecondEmail(String email, String secondEmail, Strin
 			if (rs.next()) {
 				macDesc = rs.getString("MAC_DESC");
 			}
-			System.out.println("이메일에따른 MAC_DESC : " + macDesc);
 			return macDesc;
 			
 		} catch (SQLException e) {
@@ -200,10 +195,8 @@ public boolean sendPasswordBySecondEmail(String email, String secondEmail, Strin
 	public boolean checkAuthNumByUnivEmail(String inputNumberCheck, String getAuthNum) {
 		
 		if (inputNumberCheck.equals(getAuthNum)) {
-				System.out.println("true");
 				return true;
 			}
-		System.out.println("false");
 		return false;
 	}
 	
@@ -223,7 +216,6 @@ public boolean sendPasswordBySecondEmail(String email, String secondEmail, Strin
 		        randomStr += num;
 		    }
 		}
-		System.out.println("랜덤 문자열: " + randomStr);
 		return randomStr;
 	}
 	

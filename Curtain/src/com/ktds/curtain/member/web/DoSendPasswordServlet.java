@@ -38,8 +38,6 @@ public class DoSendPasswordServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String secondEmail = request.getParameter("secondEmail");
 		
-		System.out.println(email);
-		System.out.println(secondEmail);
 		
 		if(macBiz.sendPasswordByEamil(email,secondEmail)){
 			response.sendRedirect(Root.get(this) + "/main.jsp");

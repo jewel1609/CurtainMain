@@ -123,7 +123,6 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 				file.setFileType(1);
 
 				fileBiz.insertFile(file);
-				System.out.println("이미지 등록 성공");
 			}
 			// 영상 url이 있을 경우
 			if (!movieUrl.equals("")) {
@@ -134,20 +133,17 @@ public class PromotionWriteArticleServlet extends HttpServlet {
 				file.setFileType(2);
 
 				fileBiz.insertFile(file);
-				System.out.println("영상 등록 성공");
 			}
 
 			response.sendRedirect("/promotionArticle");
 			return;
 			
 		} else {
-			System.out.println("articleId 가져오지 못함 - 등록 실패");
 		}
 			
 		} // 포인트가 100이 넘을경우
 		
 		else
-			System.out.println("포인트 부족");
 			response.setContentType("text/html; charset=UTF-8");
 			 
 			PrintWriter out = response.getWriter();

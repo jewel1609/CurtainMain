@@ -37,7 +37,6 @@ public class DoUnivCheckServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String inputUnivEmail = request.getParameter("inputUnivEmail");
-		System.out.println("체크할 대학메일 이름 : " + inputUnivEmail);
 		boolean isExistStdUnivEmail = univBiz.isExistStdUnivEmail(inputUnivEmail);
 		
 		StringBuffer json = new StringBuffer();
@@ -47,7 +46,6 @@ public class DoUnivCheckServlet extends HttpServlet {
 		json.append("\"result\" : true");
 		json.append(", \"isExistStdUnivEmail\" : "+ isExistStdUnivEmail);
 		json.append("}");
-		System.out.println("중복 대학이메일 결과 : " + isExistStdUnivEmail);
 		
 		out.print(json.toString());
 		out.flush();

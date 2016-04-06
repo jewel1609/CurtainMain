@@ -69,7 +69,6 @@ public class DoSurveyServlet extends HttpServlet {
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
 		Date currentTime = new Date ( );
 		String mTime = mSimpleDateFormat.format ( currentTime );
-		System.out.println ( mTime );
 		
 		SurveyVO survey = surveyBiz.showTodaySurvey(mTime);
 		
@@ -83,8 +82,6 @@ public class DoSurveyServlet extends HttpServlet {
 		
 		if ( userSelectSurvey == null) {
 			isCheckId = false;
-			System.out.println(userSelectSurvey);
-			System.out.println(survey1 + "=======서베이");
 		}
 		else if ( userSelectSurvey != null ){
 			int choiceNumber = 0;
@@ -101,7 +98,6 @@ public class DoSurveyServlet extends HttpServlet {
 			else if ( userSelectSurvey.equals(survey4) ) {
 				choiceNumber = 4;
 			}
-			System.out.println("========" + choiceNumber);
 			
 			if ( choiceNumber > 0 ) { 
 				isCheckId = surveyBiz.statsUpdateTodaySurvey(choiceNumber, surveyId, request);
@@ -124,7 +120,6 @@ public class DoSurveyServlet extends HttpServlet {
 		}	
 		
 		
-		System.out.println(isCheckId);
 		
 		if ( isCheckId ) { //투포했으면
 			surveyBiz.upDateIsVote(member.getEmail(), surveyId);

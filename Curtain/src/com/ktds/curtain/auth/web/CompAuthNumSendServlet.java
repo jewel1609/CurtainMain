@@ -38,7 +38,6 @@ public class CompAuthNumSendServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String inputCompEmail = request.getParameter("inputCompEmail");
-		System.out.println(inputCompEmail);
 		
 		boolean isSendCheck = macBiz.sendAuthEmailByUnivEmail(inputCompEmail);
 		if(isSendCheck){

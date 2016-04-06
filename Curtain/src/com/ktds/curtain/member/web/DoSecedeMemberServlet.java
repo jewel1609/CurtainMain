@@ -62,9 +62,6 @@ public class DoSecedeMemberServlet extends HttpServlet {
 		Date currentTime = new Date ( );
 		String mTime = mSimpleDateFormat.format ( currentTime );
 		
-		System.out.println(memberEmail+"<탈퇴회원 이메일");
-		System.out.println(mTime+"<탈퇴한 날짜");
-		System.out.println(secedeDesc + "<탈퇴사유");
 		
 		
 		memberBiz.secedeMember(memberEmail);

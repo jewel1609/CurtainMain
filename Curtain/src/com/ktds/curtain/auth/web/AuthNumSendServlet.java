@@ -37,7 +37,6 @@ public class AuthNumSendServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String inputUnivEmail = request.getParameter("inputUnivEmail");
-		System.out.println(inputUnivEmail);
 		
 		boolean isSendCheck = macBiz.sendAuthEmailByUnivEmail(inputUnivEmail);
 		if(isSendCheck){

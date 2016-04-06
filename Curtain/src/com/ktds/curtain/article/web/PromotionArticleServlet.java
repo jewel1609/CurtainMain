@@ -76,7 +76,6 @@ public class PromotionArticleServlet extends HttpServlet {
 		
 		historyBiz.addHistory(historyVO);
 		
-		System.out.println(stdMember.getCompanyName() + "========");
 		List<ArticleVO> promotionArticles = articleBiz.showPromotionArticle(stdMember, BoardId.AD_BOARD, searchVO, request);
 		ArticleVO topArticle = articleBiz.showTopArticle(stdMember, BoardId.AD_BOARD);
 		

@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.univ.biz.UnivBiz;
 import com.ktds.oph.univ.vo.UnivVO;
 import com.ktds.oph.util.Root;
@@ -19,6 +24,7 @@ import com.ktds.oph.util.Root;
 public class RegisterNewUnivServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UnivBiz univBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,6 +32,7 @@ public class RegisterNewUnivServlet extends HttpServlet {
     public RegisterNewUnivServlet() {
         super();
         univBiz = new UnivBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -50,6 +57,17 @@ public class RegisterNewUnivServlet extends HttpServlet {
 		boolean registerUniv = univBiz.registerUniv(univVO, member);
 		
 		if (registerUniv) {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.ADMIN_UNIV_ADD);
+			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_UNIV_ADD, member.getEmail()));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_ADD, newUniv));
+			
+			historyBiz.addHistory(historyVO);
+			
 			response.sendRedirect(Root.get(this) + "/univList");
 			return;
 		}

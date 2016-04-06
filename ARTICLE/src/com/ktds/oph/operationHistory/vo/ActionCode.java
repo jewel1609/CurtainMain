@@ -39,6 +39,8 @@ public interface ActionCode {
 	public static final String ADMIN_MAJOR_ADD = "A_MJ_A";
 	public static final String ADMIN_MAJOR_DELETE = "A_MJ_D";
 	
+	public static final String MODIFY_SURVEY = "M_S";
+	
 	
 	
 	

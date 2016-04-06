@@ -5,6 +5,7 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css" />
 
 <script type="text/javascript">
 
@@ -246,15 +247,15 @@
 <div class="w3-container w3-main">
 
 	<div class="w3-row">
-		<div class="w3-col m7 w3-main wrapper"
-			style="margin-left: 350px; margin-right: 100px; overflow: auto;">
+ <div class="w3-col m7 w3-main wrapper"
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#F3F3F3; ">
 			
-			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
-		      	<div class="w3-margin-4" style="float:left;">
+			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa; backgroud-color:white;">
+		      	 <div class="w3-margin-4" style="float:left; padding-left:10px;">
 		      		<h2>내가 좋아요 한 글</h2>
 		      	</div>
 		      	<div style="margin-left: 950px; position: relative; top:30px;">
-		      	<button type="button" id="cancelBtn1" class="btn btn-primary" style="background-color:#FF3300; border:0px;">
+		      	<button type="button" id="cancelBtn1" class="btn btn-default">
 					뒤로가기
 				</button>
 				</div>
@@ -262,7 +263,7 @@
 
 			<c:forEach items="${myLikesArticle}" var="article">
          <input type="hidden" class="majorName" value="${article.majorName}"/>
-            <div class="w3-row-padding w3-margin-top">
+            <div class="w3-row-padding w3-margin-top" >
                <div class="w3-col m12">
                
                   <div class="w3-card w3-white w3-round-large">

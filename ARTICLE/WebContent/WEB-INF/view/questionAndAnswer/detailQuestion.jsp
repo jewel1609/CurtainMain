@@ -8,7 +8,7 @@
 
 		$("#btnAddAnswer").click( function () {
 			
-			var answerDescription = $("#answerDescription").text();
+			var answerDescription = $("#answerDescription").val();
 			
 			if (answerDescription == "") {
 				alert("내용을 입력하세요!");

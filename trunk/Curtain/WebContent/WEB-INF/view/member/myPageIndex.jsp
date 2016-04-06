@@ -28,9 +28,6 @@
 		});
 		
 		
-		$("#alarmBtn").click(function () {
-			location.href = "/myQuestion";
-		});
 		
 		$("#secedeBtn").click(function() {
 			location.href= "/myPage/secedeMember"
@@ -56,16 +53,8 @@
 	      		<h2>마이페이지</h2>
 	      	</div>
 	      	<div class="w3-col" style="width:10%; margin-top:30px;">
-	      		
-	      		<a href="#" data-toggle="tooltip" data-placement="top" class="red-tooltip" title="문의하신 답변이 왔습니다!" >
-	      			<c:if test="">
-	      			<button type="button" id="alarmBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;">알림!</button>
-	      			</c:if>
-	      		</a>
-	      	</div>
-	      	<div class="w3-col" style="width:10%; margin-top:30px;">
       			<c:if test="${ companyCheck ne null }">
-      			<button type="button" id="alarmBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;"
+      			<button type="button" id="point" class="btn btn-primary" style="background-color:#FF3300; border:0px;"
       			data-toggle="modal" data-target="#myModal" >포인트 결제</button>
       			</c:if>
 	      	</div>

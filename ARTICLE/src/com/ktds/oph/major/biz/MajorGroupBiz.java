@@ -57,7 +57,14 @@ public class MajorGroupBiz {
 	}
 
 	public MajorListVO getMajor(MajorGroupSearchVO majorSearchVO, MajorVO majorVO) {
-		int allMajorCount = majorGroupDAO.getAllMajorCount(majorVO);
+		int allMajorCount = 0;
+		
+		if ( majorSearchVO.getSearchType().equals("1") ) {
+			allMajorCount = majorGroupDAO.getAllMajorCount(majorVO);
+		}
+		else if ( majorSearchVO.getSearchType().equals("2") ) {
+			allMajorCount = majorGroupDAO.getArticleByMajorNameCount(majorSearchVO);
+		}
 		
 		Paging paging = new Paging();
 		paging.setTotalArticleCount(allMajorCount);
@@ -67,7 +74,14 @@ public class MajorGroupBiz {
 		majorSearchVO.setEndIndex( paging.getEndArticleNumber() );
 		
 		List<MajorVO> majors = new ArrayList<MajorVO>();
-		majors = majorGroupDAO.getAllMajor(majorSearchVO, majorVO);
+		
+		if ( majorSearchVO.getSearchType().equals("1") ) {
+			majors = majorGroupDAO.getAllMajor(majorSearchVO, majorVO);
+		}
+		else if ( majorSearchVO.getSearchType().equals("2") ) {
+			majors = majorGroupDAO.getArticleByMajorName(majorSearchVO);
+		}
+		
 		// paging 바꾸는 이유 검색 때문에
 		
 		MajorListVO majorList = new MajorListVO();

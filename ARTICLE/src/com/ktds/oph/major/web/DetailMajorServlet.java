@@ -63,18 +63,36 @@ public class DetailMajorServlet extends HttpServlet {
 		}
 		else if(memberBiz.isAdmin(loginMember)){
 			int pageNo = 0;
+			MajorGroupSearchVO majorSearchVO = new MajorGroupSearchVO();
 		
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+				
+				majorSearchVO.setPageNo(pageNo);
+				majorSearchVO.setMajorGroupId(majorGroupId);
+				majorSearchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+				majorSearchVO.setSearchType(request.getParameter("searchType"));
 			}
-			catch (NumberFormatException nfe) {}
+			catch (NumberFormatException nfe) {
+				majorSearchVO = (MajorGroupSearchVO) session.getAttribute("_SEARCH_");
+				
+				if ( majorSearchVO == null ) {
+					majorSearchVO = new MajorGroupSearchVO();
+					majorSearchVO.setPageNo(0);
+					majorSearchVO.setMajorGroupId(majorGroupId);
+					majorSearchVO.setSearchKeyword("");
+					majorSearchVO.setSearchType("1");
+				}
+			}
 			
-			MajorGroupSearchVO majorSearchVO = new MajorGroupSearchVO();
-			majorSearchVO.setPageNo(pageNo);
+			session.setAttribute("_SEARCH_", majorSearchVO);
+			
 			MajorVO majorVO = new MajorVO();
 			majorVO.setMajorGroupId(majorGroupId);
 			
 			MajorListVO majors = majorGroupBiz.getMajor(majorSearchVO, majorVO);
+			
+			request.setAttribute("majorSearchVO", majorSearchVO);
 			request.setAttribute("majors", majors);
 			RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/major/majorDetail.jsp");
 			rd.forward(request, response);

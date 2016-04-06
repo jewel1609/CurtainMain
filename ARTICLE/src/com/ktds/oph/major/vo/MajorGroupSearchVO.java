@@ -6,7 +6,14 @@ public class MajorGroupSearchVO {
 	private int endIndex;
 	private String searchKeyword;
 	private String searchType;
+	private int majorGroupId;
 
+	public int getMajorGroupId() {
+		return majorGroupId;
+	}
+	public void setMajorGroupId(int majorGroupId) {
+		this.majorGroupId = majorGroupId;
+	}
 	public String getSearchKeyword() {
 		return searchKeyword;
 	}

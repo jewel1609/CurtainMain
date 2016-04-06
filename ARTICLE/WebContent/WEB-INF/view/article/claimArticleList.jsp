@@ -81,8 +81,11 @@
 		       	<c:if test="${claimArticle.replyId == 0}">
 		       		<td>${claimArticle.replyId}</td>
 		       	</c:if>
-		       	
-		        <td>${claimArticle.claimDate}</td>
+		       
+		        <td>
+		        	<c:set var="claimDate" value="${claimArticle.claimDate}" />
+		        	${fn:substring(claimDate, 0, 11)}
+		        </td>
 		        
 		        <td>
 		      		<c:set var="claimText" value="${claimArticle.claimText}" />

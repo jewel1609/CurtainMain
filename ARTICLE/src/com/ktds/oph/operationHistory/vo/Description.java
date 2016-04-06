@@ -6,6 +6,8 @@ public interface Description {
 	public static final String VISIT_LOGIN_PAGE = "[%s]가 로그인 페이지에 접근했습니다.";
 	public static final String VISIT_ADMIN_HOME = "[%s]님이 관리자페이지 홈에 접근했습니다.";
 	
+	public static final String INIT_SEARCH = "[%s]님이 검색 초기화 버튼을 클릭했습니다.";
+	
 	public static final String LIST_PAGING = "[%s]님이 [%s]번째 페이지로 이동했습니다.";
 	
 	public static final String VISIT_ADMIN_MEMBER_PAGE = "[%s] 님이 회원관리 페이지에 접근했습니다.";
@@ -73,7 +75,7 @@ public interface Description {
 	public static final String DETAIL_HISTORY = "시작날짜 : [%s] <br/> 끝 날짜 : [%s]";
 	public static final String DETAIL_ARTICLE = "시작날짜 : [%s] <br/> 끝 날짜 : [%s]";
 	
-	public static final String DETAIL_MODIFY_SURVEY = "수정한 설문조사 번호 : [%s] <br/> 주제 : [%s] <br/> 항목1 : [%s] <br/> 항목2 : [%s] <br/> 항목3 : [%s] <br/> 항목4 : [%s] <br/>";
+	public static final String DETAIL_MODIFY_SURVEY = "수정한 설문조사 번호 : [%s] <br/> 주제 : [%s] --> [%s] <br/> 항목1 : [%s] --> [%s] <br/> 항목2 : [%s] --> [%s] <br/> 항목3 : [%s] --> [%s] <br/> 항목4 : [%s] --> [%s] <br/>";
 	public static final String DETAIL_ARTICLE_SHOW = "상세보기한 게시글 번호 : [%s]";
 	public static final String DETAIL_CLAIM_SHOW = "상세보기한 신고글 번호 : [%s]";
 	public static final String DETAIL_MEMBER_SHOW = "상세보기한 회원 이메일 : [%s]";

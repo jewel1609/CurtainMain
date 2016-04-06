@@ -53,6 +53,9 @@ public class MemberModifyServlet extends HttpServlet {
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
 		int beforeMemberTypeId = member.getMemberTypeId();
+		String memberTypeId = request.getParameter("memberTypeIds");
+		String memberPoint = request.getParameter("memberPoints");
+		String memberPassword = request.getParameter("memberPasswords");
 		
 		memberBiz.modifyMember(modifyMemberEmail,modifyMemberTypeId,modifyMemberPoint, modifyMemberPassword,member);
 		
@@ -62,7 +65,7 @@ public class MemberModifyServlet extends HttpServlet {
 		historyVO.setUrl(request.getRequestURI());
 		historyVO.setActionCode(ActionCode.MODIFY_MEMBER);
 		historyVO.setDescription( BuildDescription.get(Description.MODIFY_MEMBER, member.getEmail()));
-		historyVO.setEtc( BuildDescription.get(Description.DETAIL_MODIFY_MEMBER, modifyMemberEmail, modifyMemberTypeId, modifyMemberPoint, modifyMemberPassword  ));
+		historyVO.setEtc( BuildDescription.get(Description.DETAIL_MODIFY_MEMBER, modifyMemberEmail, memberTypeId, modifyMemberTypeId, memberPoint, modifyMemberPoint, memberPassword, modifyMemberPassword  ));
 		
 		historyBiz.addHistory(historyVO);
 		

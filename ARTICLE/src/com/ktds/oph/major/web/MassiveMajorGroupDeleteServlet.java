@@ -41,10 +41,6 @@ public class MassiveMajorGroupDeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] majorGroupId = request.getParameterValues("majorGroupId");
 		
-		for (int i = 0; i < majorGroupId.length; i++) {
-			System.out.println(majorGroupId[i]);
-		}
-		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		

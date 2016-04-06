@@ -16,6 +16,11 @@ import com.ktds.oph.major.vo.MajorListVO;
 import com.ktds.oph.major.vo.MajorVO;
 import com.ktds.oph.member.biz.MemberBiz;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 
 /**
  * Servlet implementation class DetailMajorServlet
@@ -24,6 +29,7 @@ public class DetailMajorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MajorGroupBiz majorGroupBiz;
 	private MemberBiz memberBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,6 +38,7 @@ public class DetailMajorServlet extends HttpServlet {
         super();
         majorGroupBiz = new MajorGroupBiz();
         memberBiz = new MemberBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -49,6 +56,12 @@ public class DetailMajorServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
+		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(loginMember.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.ADMIN_MAJOR_PAGE);
 		
 		if(!memberBiz.isAdmin(loginMember)){
 			response.setContentType("text/html; charset=UTF-8");
@@ -72,8 +85,11 @@ public class DetailMajorServlet extends HttpServlet {
 				majorSearchVO.setMajorGroupId(majorGroupId);
 				majorSearchVO.setSearchKeyword(request.getParameter("searchKeyword"));
 				majorSearchVO.setSearchType(request.getParameter("searchType"));
+				
+				historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 			}
 			catch (NumberFormatException nfe) {
+				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_MAJOR_PAGE, loginMember.getEmail()));
 				majorSearchVO = (MajorGroupSearchVO) session.getAttribute("_SEARCH_");
 				
 				if ( majorSearchVO == null ) {
@@ -91,6 +107,8 @@ public class DetailMajorServlet extends HttpServlet {
 			majorVO.setMajorGroupId(majorGroupId);
 			
 			MajorListVO majors = majorGroupBiz.getMajor(majorSearchVO, majorVO);
+			
+			historyBiz.addHistory(historyVO);
 			
 			request.setAttribute("majorSearchVO", majorSearchVO);
 			request.setAttribute("majors", majors);

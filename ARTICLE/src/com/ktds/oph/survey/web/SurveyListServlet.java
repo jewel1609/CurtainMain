@@ -53,6 +53,12 @@ public class SurveyListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(loginMember.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.ADMIN_SURVEY_LIST_PAGE);
+		
 		if(!memberBiz.isAdmin(loginMember)){
 			response.setContentType("text/html; charset=UTF-8");
 			 
@@ -70,20 +76,18 @@ public class SurveyListServlet extends HttpServlet {
 			
 			try {
 				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+				
+				historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, loginMember.getEmail(), pageNo+""));
 			}
-			catch (NumberFormatException nfe) {}
+			catch (NumberFormatException nfe) {
+				historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_SURVEY_LIST_PAGE, loginMember.getEmail()));
+			}
 			
 			SurveySearchVO searchVO = new SurveySearchVO();
 			searchVO.setPageNo(pageNo);
 			
 			SurveyListVO survey = surveyBiz.getAllSurvey(searchVO);
 			
-			OperationHistoryVO historyVO = new OperationHistoryVO();
-			historyVO.setIp(request.getRemoteHost());
-			historyVO.setEmail(loginMember.getEmail());
-			historyVO.setUrl(request.getRequestURI());
-			historyVO.setActionCode(ActionCode.ADMIN_SURVEY_LIST_PAGE);
-			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_SURVEY_LIST_PAGE, loginMember.getEmail()));
 			
 			historyBiz.addHistory(historyVO);
 			

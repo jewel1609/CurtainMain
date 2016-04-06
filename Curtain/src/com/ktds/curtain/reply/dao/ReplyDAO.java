@@ -48,6 +48,7 @@ public class ReplyDAO {
 				reply.setReplyOrder(rs.getInt("REPLY_ORDER"));
 				reply.setReplyLikes(rs.getInt("REPLY_LIKES"));
 				reply.setReplyDislikes(rs.getInt("REPLY_DISLIKES"));
+				reply.setReplyRegisterDate(rs.getString("REPLY_REGISTER_DATE").substring(0, 16));
 				reply.setEmail(rs.getString("EMAIL"));
 				
 				replyList.add(reply);

@@ -51,6 +51,8 @@ public interface ActionCode {
 	public static final String MODIFY_SURVEY = "M_S";
 	public static final String MODIFY_MEMBER = "MD_M";
 	
+	public static final String DO_SEARCH = "DO_S";
+	
 	
 	
 	

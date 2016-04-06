@@ -49,6 +49,8 @@ public interface Description {
 	public static final String DO_SURVEY_ADD = "[%s] 님이 설문조사를 추가했습니다.";
 	public static final String DO_SURVEY_DELETE = "[%s] 님이 설문조사를 삭제했습니다.";
 	
+	public static final String DO_SEARCH = "[%s] 님이 회원검색을 시도했습니다.";
+	
 	public static final String MODIFY_SURVEY = "[%s]님이 설문조사를 수정했습니다.";
 	public static final String MODIFY_MEMBER = "[%s]님이 회원정보를 변경했습니다.";
 	
@@ -81,7 +83,7 @@ public interface Description {
 	public static final String DETAIL_MEMBER_SHOW = "상세보기한 회원 이메일 : [%s]";
 	public static final String DETAIL_MODIFY_MEMBER = "정보 변경 한 회원 이메일 : [%s] <br/> 등급 : [%s] --> [%s] <br/> 포인트 : [%s] --> [%s] 패스워드 : [%s] --> [%s]";
 	
-	
+	public static final String DETAIL_DO_SEARCH ="선택한 탭 : [%s] <br/> 검색한 내용 : [%s]";
 	
 	
 	

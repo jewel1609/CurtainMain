@@ -10,7 +10,6 @@ import com.ktds.oph.article.vo.ArticleVO;
 import com.ktds.oph.article.vo.ClaimArticleVO;
 import com.ktds.oph.file.dao.FileDAO;
 import com.ktds.oph.member.vo.MemberVO;
-import com.ktds.oph.util.MultipartHttpServletRequest;
 import com.ktds.oph.util.web.Paging;
 
 public class ArticleBiz {

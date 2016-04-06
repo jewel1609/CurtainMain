@@ -45,6 +45,10 @@ public interface ActionCode {
 	
 	public static final String PROHIBITED_WORD_ADD= "PRO_W_A";
 	
+	public static final String ADD_NEW_ANSWER = "ADD_AN";
+	public static final String MODIFY_ANSWER = "MD_AN";
+	public static final String MODIFY_ANSWER_PAGE = "MD_AN_P";
+	
 	
 	public static final String ADMIN_MAJOR_ADD = "A_MJ_A";
 	public static final String ADMIN_MAJOR_GROUP_ADD = "A_MJ_GA";

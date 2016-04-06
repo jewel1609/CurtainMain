@@ -60,6 +60,10 @@ public interface Description {
 	public static final String MODIFY_MAJOR = "[%s]님이 [%s]번의 학과정보를 변경했습니다.";
 	public static final String MODIFY_MAJOR_GROUP = "[%s]님이 [%s]번의 학과그룹정보를 변경했습니다.";
 	
+	public static final String ADD_NEW_ANSWER = "[%s] 님이 [%s]번의 질문에 답변했습니다.";
+	public static final String MODIFY_ANSWER = "[%s] 님이 [%s]번 질문에 대한 답변을 수정했습니다.";
+	public static final String MODIFY_ANSWER_PAGE = "[%s] 님이 답변수정페이지에 접근했습니다.";
+	
 	public static final String PROHIBITED_WORD_ADD = "[%s]님이 금칙어를 추가했습니다.";
 	
 	
@@ -96,6 +100,9 @@ public interface Description {
 	public static final String DETAIL_MODIFY_UNIV ="수정 후 대학명:[%s]";
 	public static final String DETAIL_MODIFY_MAJOR ="수정 후 학과명:[%s]";
 	public static final String DETAIL_MODIFY_MAJOR_GROUP ="수정 후 학과그룹명:[%s]";
+	
+	public static final String DETAIL_ADD_NEW_ANSWER = "답변 내용 : [%s]";
+	public static final String DETAIL_MODIFY_ANSWER = "수정한 답변 내용 : [%s]";
 	
 	
 	

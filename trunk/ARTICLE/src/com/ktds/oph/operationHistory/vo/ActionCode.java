@@ -15,6 +15,7 @@ public interface ActionCode {
 	public static final String ADMIN_MEMBER_PAGE = "A_M";
 	public static final String ADMIN_UNIV_PAGE = "A_U";
 	public static final String ADMIN_MAJOR_PAGE = "A_MJ";
+	public static final String ADMIN_MAJOR_GROUP_PAGE = "A_MJ_G";
 	public static final String ADMIN_CLAIM_PAGE = "A_CL";
 	public static final String ADMIN_SURVEY_ADD_PAGE = "A_SA";
 	public static final String ADMIN_SURVEY_LIST_PAGE = "A_SL";
@@ -46,10 +47,15 @@ public interface ActionCode {
 	
 	
 	public static final String ADMIN_MAJOR_ADD = "A_MJ_A";
+	public static final String ADMIN_MAJOR_GROUP_ADD = "A_MJ_GA";
 	public static final String ADMIN_MAJOR_DELETE = "A_MJ_D";
 	
 	public static final String MODIFY_SURVEY = "M_S";
 	public static final String MODIFY_MEMBER = "MD_M";
+	public static final String MODIFY_UNIV = "MD_UN";
+	public static final String MODIFY_MAJOR = "MD_MJ";
+	public static final String MODIFY_MAJOR_GROUP = "MD_MG";
+	
 	
 	public static final String DO_SEARCH = "DO_S";
 	

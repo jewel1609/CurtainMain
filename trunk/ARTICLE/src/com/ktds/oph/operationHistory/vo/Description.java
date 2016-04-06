@@ -13,6 +13,7 @@ public interface Description {
 	public static final String VISIT_ADMIN_MEMBER_PAGE = "[%s] 님이 회원관리 페이지에 접근했습니다.";
 	public static final String VISIT_ADMIN_UNIV_PAGE = "[%s] 님이 대학 관리 페이지에 접근했습니다.";
 	public static final String VISIT_ADMIN_MAJOR_PAGE = "[%s] 님이 학과 관리 페이지에 접근했습니다.";
+	public static final String VISIT_ADMIN_MAJOR_GROUP_PAGE = "[%s] 님이 학과그룹 관리 페이지에 접근했습니다.";
 	public static final String VISIT_ADMIN_CLAIM_PAGE = "[%s] 님이 신고된 글  페이지에 접근했습니다.";
 	public static final String VISIT_ADMIN_SURVEY_LIST_PAGE = "[%s] 님이 설문리스트 페이지에 접근했습니다.";
 	
@@ -44,6 +45,7 @@ public interface Description {
 	public static final String DO_ADMIN_UNIV_DELETE = "[%s] 님이 대학리스트를 삭제했습니다.";
 	
 	public static final String DO_ADMIN_MAJOR_ADD = "[%s] 님이 학과리스트를 추가했습니다.";
+	public static final String DO_ADMIN_MAJOR_GROUP_ADD = "[%s] 님이 학과그룹리스트를 추가했습니다.";
 	public static final String DO_ADMIN_MAJOR_DELETE = "[%s] 님이 학과리스트를 삭제했습니다.";
 	
 	public static final String DO_SURVEY_ADD = "[%s] 님이 설문조사를 추가했습니다.";
@@ -53,6 +55,9 @@ public interface Description {
 	
 	public static final String MODIFY_SURVEY = "[%s]님이 설문조사를 수정했습니다.";
 	public static final String MODIFY_MEMBER = "[%s]님이 회원정보를 변경했습니다.";
+	public static final String MODIFY_UNIV = "[%s]님이 [%s]번의 대학정보를 변경했습니다.";
+	public static final String MODIFY_MAJOR = "[%s]님이 [%s]번의 학과정보를 변경했습니다.";
+	public static final String MODIFY_MAJOR_GROUP = "[%s]님이 [%s]번의 학과그룹정보를 변경했습니다.";
 	
 	public static final String PROHIBITED_WORD_ADD = "[%s]님이 금칙어를 추가했습니다.";
 	
@@ -71,6 +76,7 @@ public interface Description {
 	public static final String DETAIL_PROHIBITED_WORD_ADD = "추가한 금칙어 : [%s] ";
 	
 	public static final String DETAIL_MAJOR_ADD = "추가한 학과명 : [%s] ";
+	public static final String DETAIL_MAJOR_GROUP_ADD = "추가한 학과그룹명 : [%s] ";
 	public static final String DETAIL_MAJOR_DELETE = "삭제한 학과 번호 :[%s] <br/> 학과명 : [%s] ";
 	
 	public static final String DETAIL_QUESTION = "상세보기한 질문 글 번호 : [%s] <br/> 제목:[%s] <br/> 내용:[%s] <br/>질문일자:[%s]";
@@ -84,6 +90,10 @@ public interface Description {
 	public static final String DETAIL_MODIFY_MEMBER = "정보 변경 한 회원 이메일 : [%s] <br/> 등급 : [%s] --> [%s] <br/> 포인트 : [%s] --> [%s] 패스워드 : [%s] --> [%s]";
 	
 	public static final String DETAIL_DO_SEARCH ="선택한 탭 : [%s] <br/> 검색한 내용 : [%s]";
+
+	public static final String DETAIL_MODIFY_UNIV ="수정 후 대학명:[%s]";
+	public static final String DETAIL_MODIFY_MAJOR ="수정 후 학과명:[%s]";
+	public static final String DETAIL_MODIFY_MAJOR_GROUP ="수정 후 학과그룹명:[%s]";
 	
 	
 	

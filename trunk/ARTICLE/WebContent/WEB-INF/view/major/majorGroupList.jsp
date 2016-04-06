@@ -57,7 +57,6 @@
 				historyVO.setActionCode(ActionCode.DO_SEARCH);
 				historyVO.setDescription( BuildDescription.get(Description.DO_SEARCH, member.getEmail()));
 				historyVO.setEtc( BuildDescription.get(Description.DETAIL_DO_SEARCH, searchType, keyword ));
-				System.out.println("검색시도");
 				historyBiz.addHistory(historyVO);
 			%>
 			

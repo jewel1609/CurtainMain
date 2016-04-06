@@ -70,14 +70,14 @@ $(document).ready(function () {
 	$(".claim").hide();
 	
 	$(".doClaim").click(function () {
-		var root = $(this).parent().parent().children(":eq(3)");
+		var root = $(this).parent().parent().children(":eq(4)");
 		root.slideToggle();
 		
 	});
 	
 	$(".doClaimBtn").click(function() {		
 		
-		var root = $(this).parent().children(":eq(1)");
+		var root = $(this).parent().children(":eq(0)");
 
 		$.post(		
 			"/writeReplyClaim"

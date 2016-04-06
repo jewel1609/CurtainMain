@@ -45,7 +45,7 @@ public class MassiveUnivDeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] univId = request.getParameterValues("univId");
-		String[] univs = request.getParameterValues("univ");
+		String[] univs = request.getParameterValues("univs");
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
@@ -59,7 +59,7 @@ public class MassiveUnivDeleteServlet extends HttpServlet {
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.ADMIN_UNIV_DELETE);
 			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_UNIV_DELETE, member.getEmail()));
-			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_DELETE, univs));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_DELETE, univs[i]));
 			
 			historyBiz.addHistory(historyVO);
 		}

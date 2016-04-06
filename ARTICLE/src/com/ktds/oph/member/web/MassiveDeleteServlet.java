@@ -59,7 +59,7 @@ public class MassiveDeleteServlet extends HttpServlet {
 			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.ADMIN_MEMBER_DELETE);
 			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_MEMBER_DELETE, member.getEmail()));
-			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MEMBER_DELETE, deleteMemberEmail ));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MEMBER_DELETE, deleteMemberEmail[i] ));
 			
 			historyBiz.addHistory(historyVO);
 		}

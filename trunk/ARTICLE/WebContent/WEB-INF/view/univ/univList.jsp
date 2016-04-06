@@ -115,6 +115,7 @@
 						jsonData.result = false;
 					}
 					if(jsonData.result){
+						alert("수정되었습니다.");
 						var univId = jsonData.univId;
 						var result2 = "#univ" + univId;
 						var updateUnivName = jsonData.updateUnivName;
@@ -155,7 +156,7 @@
 					</td>
 			        <td>${univ.univId}</td>  
 			        <td><input type="text" id ="univ${univ.univId}" name="univs" value="${univ.univName}"/>
-			        	<span class ="updateBtn" id ="${univ.univId}">수정</span>
+			        	<span class ="updateBtn" id ="${univ.univId}" style="cursor:pointer">수정</span>
 			        </td>
 			      </tr>
 			    

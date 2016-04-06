@@ -80,6 +80,10 @@
 			        <td>${member.companyName}</td>
 			        <td>${member.majorGroupId}</td>
 			      </tr>
+			      	<input type="hidden" name="memberTypeIds" value="${member.memberTypeId }" />
+			      	<input type="hidden" name="memberPoints" value="${member.point }" />
+			      	<input type="hidden" name="memberPasswords" value="${member.password }" />
+			      	
     	</form>
    		<tr>
 			<td colspan="6">

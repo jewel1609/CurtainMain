@@ -307,8 +307,13 @@ public class MemberBiz {
 		memberDAO.secedeMemberFromEmail(memberEmail);
 	}
 
-	public void minusPointByPromotion(MemberVO loginMember) {
-		memberDAO.minusPointByPromotion(loginMember);
+	public void minusPointByPromotion(MemberVO loginMember, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
+		if ( memberDAO.minusPointByPromotion(loginMember) > 0) {
+			member.setPoint(getPointbyEmail(member));
+			session.setAttribute("_MEMBER_", member);
+		}
 	}
 
 	public void secedeMemberAdd(String memberEmail, String mTime, String secedeDesc) {

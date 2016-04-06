@@ -41,7 +41,6 @@ public class DetailArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String articleId = request.getParameter("articleId");
-		System.out.println(articleId);
 		
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");

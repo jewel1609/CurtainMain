@@ -11,6 +11,11 @@ import javax.servlet.http.HttpSession;
 import com.ktds.oph.major.biz.MajorGroupBiz;
 import com.ktds.oph.major.vo.MajorVO;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.util.Root;
 
 /**
@@ -19,6 +24,7 @@ import com.ktds.oph.util.Root;
 public class RegisterNewMajorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MajorGroupBiz majorGroupBiz;
+	private OperationHistoryBiz historyBiz;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,6 +32,7 @@ public class RegisterNewMajorServlet extends HttpServlet {
     public RegisterNewMajorServlet() {
         super();
         majorGroupBiz = new MajorGroupBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -52,6 +59,17 @@ public class RegisterNewMajorServlet extends HttpServlet {
 		boolean registerMajor = majorGroupBiz.registerMajor(majorVO, member);
 		
 		if (registerMajor) {
+			
+			OperationHistoryVO historyVO = new OperationHistoryVO();
+			historyVO.setIp(request.getRemoteHost());
+			historyVO.setEmail(member.getEmail());
+			historyVO.setUrl(request.getRequestURI());
+			historyVO.setActionCode(ActionCode.ADMIN_MAJOR_ADD);
+			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_MAJOR_ADD, member.getEmail()));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MAJOR_ADD, newMajor));
+			
+			historyBiz.addHistory(historyVO);
+			
 			response.sendRedirect(Root.get(this) + "/detailMajor?majorGroupId="+majorGroupId);
 			return;
 		}

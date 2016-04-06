@@ -131,7 +131,7 @@
 						<input class="univId" name="univId" value="${univ.univId}" type="checkbox"/>
 					</td>
 			        <td>${univ.univId}</td>  
-			        <td><input type="text" id ="univ${univ.univId}" value="${univ.univName}"/>
+			        <td><input type="text" id ="univ${univ.univId}" name="univs" value="${univ.univName}"/>
 			        	<span class ="updateBtn" id ="${univ.univId}">수정</span>
 			        </td>
 			      </tr>

@@ -363,6 +363,77 @@ public class MajorGroupDAO {
 		}
 		
 	}
+	
+
+	public List<MajorGroupVO> getArticleByMajorGroupName(MajorGroupSearchVO majorSearchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/majorGroup/getArticleByMajorGroupName/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, majorSearchVO.getSearchKeyword());
+			stmt.setInt(2, majorSearchVO.getEndIndex());
+			stmt.setInt(3, majorSearchVO.getStartIndex());
+			rs = stmt.executeQuery();
+			
+			List<MajorGroupVO> majorGroups = new ArrayList<MajorGroupVO>();
+			MajorGroupVO majorGroup = null;
+
+			while ( rs.next() ) {
+				majorGroup = new MajorGroupVO();
+				majorGroup.setMajorGroupId(rs.getInt("MAJOR_GROUP_ID"));
+				majorGroup.setMajorGroupName(rs.getString("MAJOR_GROUP_NAME"));
+				majorGroups.add(majorGroup);
+			}
+			return majorGroups;
+			
+		}
+		catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
+
+
+
+	public int getArticleByMajorGroupNameCount(MajorGroupSearchVO majorSearchVO) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		int majorGroupCount = 0;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query = XML.getNodeString("//query/majorGroup/getArticleByMajorGroupNameCount/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, majorSearchVO.getSearchKeyword());
+			// 물음표에 값 넣기 - 파라미터 매핑 (SQL Parameter Mapping)
+			// 결과 받아오기
+			rs = stmt.executeQuery();
+			rs.next();
+			majorGroupCount = rs.getInt(1);
+			
+			return majorGroupCount;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, rs);
+		}
+	}
 
 	
 	/**

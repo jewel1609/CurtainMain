@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.operationHistory.biz.OperationHistoryBiz;
+import com.ktds.oph.operationHistory.vo.ActionCode;
+import com.ktds.oph.operationHistory.vo.BuildDescription;
+import com.ktds.oph.operationHistory.vo.Description;
+import com.ktds.oph.operationHistory.vo.OperationHistoryVO;
 import com.ktds.oph.questionAndAnswer.biz.QuestionAndAnswerBiz;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerListVO;
 import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerSearchVO;
@@ -20,12 +25,14 @@ import com.ktds.oph.questionAndAnswer.vo.QuestionAndAnswerSearchVO;
 public class ShowQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private QuestionAndAnswerBiz questionAndAnswerBiz;
+    private OperationHistoryBiz historyBiz;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ShowQuestionServlet() {
         super();
         questionAndAnswerBiz = new QuestionAndAnswerBiz();
+        historyBiz = new OperationHistoryBiz();
     }
 
 	/**
@@ -42,6 +49,12 @@ public class ShowQuestionServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		historyVO.setActionCode(ActionCode.ADMIN_QUESTION_PAGE);
+		
 		int pageNo = 0;
 		
 		QuestionAndAnswerSearchVO searchVO = new QuestionAndAnswerSearchVO();
@@ -52,8 +65,11 @@ public class ShowQuestionServlet extends HttpServlet {
 			searchVO.setPageNo(pageNo);
 			searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
 			searchVO.setSearchType(request.getParameter("searchType"));
+			
+			historyVO.setDescription( BuildDescription.get(Description.LIST_PAGING, member.getEmail(), pageNo+""));
 		}
 		catch (NumberFormatException nfe) {
+			historyVO.setDescription( BuildDescription.get(Description.VISIT_ADMIN_QUESTION_PAGE, member.getEmail()));
 			searchVO = (QuestionAndAnswerSearchVO) session.getAttribute("_QUESTION_SEARCH_");
 			if (searchVO == null) {
 				searchVO = new QuestionAndAnswerSearchVO();
@@ -66,6 +82,8 @@ public class ShowQuestionServlet extends HttpServlet {
 		session.setAttribute("_QUESTION_SEARCH_", searchVO);
 		
 		QuestionAndAnswerListVO questionList = questionAndAnswerBiz.getQuestionList(searchVO, member);
+		
+		historyBiz.addHistory(historyVO);
 		
 		request.setAttribute("questionList", questionList);
 		request.setAttribute("searchVO", searchVO);

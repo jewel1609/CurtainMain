@@ -119,33 +119,51 @@
 					
 					<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">
            				 <div class="w3-col m12" align="left" >
-							<div style="padding: 10px; height: 250px; overflow-y: auto;">
+							<div style="padding: 10px; height: 350px; overflow: auto;">
 							<div class="w3-container w3-card w3-round-large w3-white" style="margin-bottom: 10px; padding: 10px;" >
 								<div id="btnFirstFAQ" style="padding-top:10px;">
 									<div style="float:left;">
 										<ul>
-											<li><h4 style="display: inline;">포인트는 어떻게 사용하나요?</h4></li>
+											<li><h4 style="display: inline;">포인트는 무엇인가요?</h4></li>
 										</ul>
 									</div>
 									<div style="float: right;">▼</div>
 									<div style="clear: both;"></div>
 								</div>
-								<div id="firstFAQ" style="margin-top: 20px;">
-									홍보글을 올리는데 사용할 수 있습니다.
+								<div id="firstFAQ" style="margin-top: 20px; padding-left: 30px;">
+									학생 회원인 경우 포인트는 홍보게시판을 제외한 게시판에서 글을 쓸 때 10포인트씩 적립됩니다.
+									<br /><br />
+									하지만 하루에 5개의 게시글만 포인트가 상승합니다.
+									<br /><br />
+									기업 회원의 경우에는 포인트를 구매 할 수 있습니다.
+									<br /><br />
+									적립된 포인트는 홍보게시판에 100포인트를 주고 글을 올릴 수 있습니다.
+									<br /><br />
+									포인트의 유효기간은 기업 회원의 경우 기간은 없으며 학생 회원의 경우에는 기간은 1년 입니다.
 								</div>
 							</div>
 							<div class="w3-container w3-card w3-round-large w3-white" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;">
 								<div id="btnSecondFAQ" style="padding-top:10px;">
 									<div  style="float: left;">
 										<ul>
-											<li><h4 style="display:inline;" >포인트 유효기간은 어떻게 되나요?</h4></li>
+											<li><h4 style="display:inline;" >회원의 등급은 어떻게 되나요?</h4></li>
 										</ul>
 									</div>
 									<div style="float: right;">▼</div>
 									<div style="clear: both;"></div>
 								</div>
-								<div id="secondFAQ" style="margin-top: 20px;">
-									기업회원의 경우 유효기간은 없으며 대학생 화원의 경우에는 유효기간은 1년 입니다.
+								<div id="secondFAQ" style="margin-top: 20px; padding-left: 30px;">
+									학생 회원은 처음 가입하면 창문 등급이 됩니다.
+									<br /><br />
+									학생 회원이 다음 조건을 만족하게 되면 등급이 한겹커튼으로 상승하게 됩니다.(총 게시글 5개, 댓글 10개, 투표를 7회 이상)
+									<br /><br />
+									한겹커튼 등급의 회원은 비밀게시판 중 한겹게시판을 이용 할 수 있습니다.
+									<br /><br />
+									학생 회원이 다음 조건을 만족하게 되면 등급이 두겹커튼으로 상승하게 됩니다.(총 게시글 15개, 댓글 30개, 투표를 21회 이상)
+									<br /><br />
+									두겹커튼 등급의 회원은 비밀게시판 중 한겹, 두겹게시판을 이용 할 수 있습니다.
+									<br /><br />
+									기업 회원의 경우 홍보게시판만 볼 수 있습니다.
 								</div>
 							</div>
 						</div>
@@ -161,7 +179,7 @@
 						
 						<div style="clear: both;"></div>
 						
-						<div style="height:200px; padding:10px;">
+						<div style="height:150px; padding:10px;">
 							
 							<div class="w3-container w3-card w3-round-large w3-white" style="margin-bottom: 10px; padding: 10px;" >
 								<div id="btnFirstFAQ" style="padding-top:10px;">
@@ -180,11 +198,6 @@
 							</div>							
 					    </div>
 
-
-
-
-
-
 						<div class="w3-row" style="border-bottom: 1px solid #bababa; border-top:1px solid #bababa; margin-bottom:10px;">
 							<div class="w3-margin-4" style="float:left; padding-left:10px;">
 								<h2>문의하기</h2>
@@ -196,7 +209,7 @@
 						
 						<div style="clear: both;"></div>
 						
-						<div style="height:200px; padding:10px;">
+						<div style="height:100px; padding:10px;">
 							
 							<div class="w3-container w3-card w3-round-large w3-white" style="margin-bottom: 10px; padding: 10px;" >
 								<div id="btnFirstFAQ" style="padding-top:10px;">

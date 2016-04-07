@@ -64,7 +64,7 @@
     	<c:forEach items="${claimArticles.claimArticleList}" var="claimArticle"> 
 		      
 		      <tr>
-		      	<td>${claimArticle.articleClaimId}</td>
+		      	<td><a href="/detailClaimArticleDesc?articleClaimId=${claimArticle.articleClaimId}">${claimArticle.articleClaimId}</a></td>
 		        <td>${claimArticle.email} </td>
 		        
 		        <c:if test="${claimArticle.articleId != 0}">

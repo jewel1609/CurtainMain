@@ -296,12 +296,9 @@
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
 	<div class="w3-container" style="margin-top: 0px;">
-	
 		<c:set var="freeBoardMemberCount" value="${ sessionScope._MEMBER_.freeBoardMemberCount }" />
-		
-		
-		<div class="w3-row" >
-			<div class="w3-col m7 wrapper"
+			<div class="w3-row" >
+				<div class="w3-col m7 wrapper"
 		         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto;">
 		         
 		         <!-- 게시판 헤더 -->
@@ -415,22 +412,22 @@
 				
 				
 				<!-- 가장 조회수 많은 게시글 시작-->
-				<div style="background-color: white;">
-				<div class="w3-row-padding w3-margin-top" >
-					<div class="w3-col m12">
-					
-					<!-- 게시글이 없을 경우 -->
-					<c:if test="${ empty topArticle.articleId }">
-						<div class="w3-container">
-								<div class="w3-col m12 w3-padding-top">
-									<div style="height:100px;" align="center">
-										<h3 style="color:#7d7d7d;">게시글이 없습니다.<br/><br/>
-										게시글을 작성해주세요.</h3>
-									
-									</div>
+   <div style="background-color: white;">
+            <div class="w3-row-padding w3-margin-top" >
+            	<div class="w3-col m12">
+            	
+				<!-- 게시글이 없을 경우 -->
+				<c:if test="${ empty topArticle.articleId }">
+					<div class="w3-container">
+							<div class="w3-col m12 w3-padding-top">
+								<div style="height:100px;" align="center">
+									<h3 style="color:#7d7d7d;">게시글이 없습니다.<br/><br/>
+									게시글을 작성해주세요.</h3>
+								
 								</div>
-						</div>
-					</c:if>
+							</div>
+					</div>
+				</c:if>
 					
 					<!-- 게시글이 있을 경우 -->
           		  <c:if test="${ not empty topArticle.articleId }">

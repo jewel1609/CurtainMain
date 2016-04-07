@@ -657,4 +657,14 @@
     <servlet-name>InitHistoryServlet</servlet-name>
     <url-pattern>/history/init</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailClaimArticleDescServlet</display-name>
+    <servlet-name>DetailClaimArticleDescServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.DetailClaimArticleDescServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailClaimArticleDescServlet</servlet-name>
+    <url-pattern>/detailClaimArticleDesc</url-pattern>
+  </servlet-mapping>
 </web-app>

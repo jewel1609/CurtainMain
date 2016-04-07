@@ -846,8 +846,9 @@ html, body, h1, h2, h3, h4, h5 {
 	        <button type="button" class="close" data-dismiss="modal-lg" aria-hidden="true">&times;</button>
 	        <h4 class="modal-title" id="myModalLabel">개인화면 약관</h4>
 	      </div>
-	      <div class="modal-body" style="overflow-y: auto; height: 250px">
-	    	커튼에 방문하신 것을 환영합니다. 본 약관은 커튼 회원 및 비회원의 활동에 적용됩니다. 커튼을 이용하면 본 약관에 동의하는 것으로 간주됩니다.
+	      <div class="modal-body">
+	      <textarea class="form-control" rows="30">
+커튼에 방문하신 것을 환영합니다. 본 약관은 커튼 회원 및 비회원의 활동에 적용됩니다. 커튼을 이용하면 본 약관에 동의하는 것으로 간주됩니다.
 
 제1장 총칙
 제1조 (목적)
@@ -1049,6 +1050,7 @@ C.	기타 불가항력적 사유가 있는 경우
 부칙
 제1조 (약관의 효력 및 변경)
 1.	이 약관은 2016년 4월 9일부터 시행하며, 이 약관이 제정되기 전에 가입한 회원에게도 적용됩니다.
+</textarea>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
@@ -1065,8 +1067,9 @@ C.	기타 불가항력적 사유가 있는 경우
 	        <button type="button" class="close" data-dismiss="modal-lg" aria-hidden="true">&times;</button>
 	        <h4 class="modal-title" id="myModalLabel">개인정보 수정 및 이용</h4>
 	      </div>
-	      <div class="modal-body" style="overflow-y: auto; height: 250px">
-	      1. 개인정보의 처리 목적
+	      <div class="modal-body">
+	      <textarea class="form-control" rows="30">
+1. 개인정보의 처리 목적
  ‘http://curtain.com’ 이하 ‘커튼’ 은(는) 다음의 목적을 위하여 개인정보를 처리하고 있으며, 다음의 목적 이외의 용도로는 이용하지 않습니다.
    1.	고객 가입의사 확인, 고객에 대한 서비스 제공에 따른 본인 식별.인증, 회원자격 유지.관리, 물품 또는 서비스 공급에 따른 금액 결제, 물품 또는 서비스의 공급.배송 등
 
@@ -1126,7 +1129,7 @@ C.	기타 불가항력적 사유가 있는 경우
 8. 개인정보 처리방침 변경
 	1.	이 개인정보처리방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터 공지사항을 통하여 고지할 것입니다.
 
-
+</textarea>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>

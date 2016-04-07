@@ -302,7 +302,7 @@
 		
 		<div class="w3-row" >
 			<div class="w3-col m7 wrapper"
-		         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#f3f3f3;">
+		         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto;">
 		         
 		         <!-- 게시판 헤더 -->
 		         
@@ -337,7 +337,7 @@
 				<!-- 게시판 타이틀 끝 -->
 				
 				<!-- 글쓰기 시작 -->
-				<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">
+				<div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#f3f3f3;">
 					<div class="w3-col m12" align="left">
 						 <div class="w3-card w3-round w3-white" style="margin-top:10px; margin-bottom:10px;">
 

@@ -150,7 +150,7 @@
 				<div style="float:left;">
 				<h1 class="page-header">지금 커튼 속으로 입장하세요!</h1>
 				</div>
-				<div id="insertStartButton" style="float:left; padding:30px;">
+				<div id="insertStartButton" style="float:left; padding:37px 30px 23px 30px;">
 				</div>
 			</div>
 		</div>

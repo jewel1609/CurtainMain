@@ -640,4 +640,14 @@
     <servlet-name>DoDeleteReplyServlet</servlet-name>
     <url-pattern>/doDeleteReply</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InitArticleListServlet</display-name>
+    <servlet-name>InitArticleListServlet</servlet-name>
+    <servlet-class>com.ktds.curtain.article.web.InitArticleListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitArticleListServlet</servlet-name>
+    <url-pattern>/initArticleList</url-pattern>
+  </servlet-mapping>
 </web-app>

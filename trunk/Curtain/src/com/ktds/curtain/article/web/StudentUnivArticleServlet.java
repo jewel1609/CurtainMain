@@ -56,17 +56,19 @@ public class StudentUnivArticleServlet extends HttpServlet {
 		ArticleSearchVO searchVO = new ArticleSearchVO();
 
 		if(request.getParameter("searchKeyword") == null) {
-			searchVO.setSearchKeyword("");
+			searchVO = (ArticleSearchVO) session.getAttribute("_SEARCH_");
+			if (searchVO == null) {
+				searchVO = new ArticleSearchVO();
+				searchVO.setSearchKeyword("");
+				searchVO.setSearchType("1");
+			}
 		}
 		else {
 			searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
-		}
-		if(request.getParameter("articleTypeId") == null) {
-			searchVO.setSearchType("0");
-		}
-		else {
 			searchVO.setSearchType(request.getParameter("articleTypeId"));
 		}
+		
+		session.setAttribute("_SEARCH_", searchVO);
 		
 		OperationHistoryVO historyVO = new OperationHistoryVO();
 		historyVO.setIp(request.getRemoteHost());

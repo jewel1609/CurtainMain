@@ -94,7 +94,7 @@ public class ShowHistoryListServlet extends HttpServlet {
 			catch (NumberFormatException nfe) {
 				operationHistoryVO.setDescription( BuildDescription.get(Description.VISIT_HISTORY_LIST_PAGE, loginMember.getEmail()));
 				
-				historySearchVO = (HistorySearchVO) session.getAttribute("_SEARCH_");
+				historySearchVO = (HistorySearchVO) session.getAttribute("_SEARCH_HISTORY_");
 				
 				if ( historySearchVO == null ) {
 					historySearchVO = new HistorySearchVO();
@@ -103,7 +103,8 @@ public class ShowHistoryListServlet extends HttpServlet {
 					historySearchVO.setSearchType("1");
 				}
 			}
-			session.setAttribute("_SEARCH_", historySearchVO);
+			
+			session.setAttribute("_SEARCH_HISTORY_", historySearchVO);
 			
 			if (startDate==null || endDate==null) {
 				historyVO.setStartDate((String) session.getAttribute("_START_DATE_"));

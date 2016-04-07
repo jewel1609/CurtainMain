@@ -486,7 +486,8 @@
 									</div>
 								</div>
 								 <div class="w3-col m6" align="right" style="color:#7d7d7d;">
-                           <span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span>  ${topArticle.replyCount}&nbsp; &nbsp;
+                           <a href="<c:url value="/hitsCount?boardId=1&articleId=${topArticle.articleId}"/>"><span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span></a>
+                           ${topArticle.replyCount}&nbsp; &nbsp;
                         
                            <c:if test="${topArticle.scrab}">
                               <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${topArticle.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;

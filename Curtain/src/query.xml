@@ -1169,6 +1169,7 @@
 					, FILE_TYPE
 			FROM	FILES
 			WHERE	ARTICLE_ID = ?
+			ORDER	BY FILE_ID
 		</getFileListByArticleId>
 		<deleteFile>
 			DELETE

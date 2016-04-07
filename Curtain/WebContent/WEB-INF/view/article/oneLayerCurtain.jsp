@@ -468,7 +468,7 @@
 								</div>
 								</a>
 								<div class="w3-col m12" align="left">
-									<h6>${topArticle.nickName} &nbsp;&nbsp;&nbsp;&nbsp;${topArticle.articleModifyDate}</h6>
+									<h6>${topArticle.articleModifyDate}</h6>
 								</div>
 								
 								 <div class="w3-col m6 w3-padding-bottom" style="color:#7d7d7d;">
@@ -566,7 +566,7 @@
 									</div>	
 								</a>						
 									<div class="w3-col-m12" align="left">
-                              				<h6>${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;${article.articleModifyDate}</h6>
+                              				<h6>${article.articleModifyDate}</h6>
                             			 </div>
 									<div class="w3-col m6 w3-padding-bottom" style="color:#7d7d7d;">
 										<div style="float:left; margin-right:10px;">

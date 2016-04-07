@@ -46,7 +46,7 @@
 
   <div class="w3-row" >
      <div class="w3-col m7 wrapper"
-         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#f3f3f3; ">
 
       <div class="w3-myfont w3-left-align" >
       	<div class="w3-row" style="border-bottom: 1px solid #bababa;">
@@ -170,10 +170,10 @@
 	          <div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
 	            <div class="w3-container w3-padding w3-left-align">
 	          		<div class="w3-col" style="width:90%">
-	          			<div class="w3-col" style="width:20%; vertical-align:middle">
+	          			<div class="w3-col" style="width:20%; padding-top:7px;">
 	          				<b>대학교 이메일</b>
 	          			</div>
-	          			<div class="w3-col" style="width:80%">
+	          			<div class="w3-col" style="width:80%; padding-top:7px;">
 	    					<p>${ member.email }</p>
 	    				</div>
 	          		</div>
@@ -188,10 +188,10 @@
           <div class="w3-card w3-white w3-round-large">
             <div class="w3-container w3-padding w3-left-align">
               <div class="w3-col" style="width:90%">
-          			<div class="w3-col" style="width:20%">
+          			<div class="w3-col" style="width:20%; padding-top:7px;">
           				<b>학교 이름</b>
           			</div>
-          			<div class="w3-col" style="width:80%">
+          			<div class="w3-col" style="width:80%; padding-top:7px;">
     					<p>${ univName }</p>
     				</div>
           		</div>
@@ -205,10 +205,10 @@
           <div class="w3-card w3-white w3-round-large">
             <div class="w3-container w3-padding w3-left-align">
               <div class="w3-col" style="width:90%">
-          			<div class="w3-col" style="width:20%">
+          			<div class="w3-col" style="width:20%; padding-top:7px;">
           				<b>학과 이름</b>
           			</div>
-          			<div class="w3-col" style="width:80%">
+          			<div class="w3-col" style="width:80%; padding-top:7px;">
     					<p>${ majorName}</p>
     				</div>
           		</div>
@@ -224,10 +224,10 @@
           <div class="w3-card w3-round-large w3-white" style="margin-top:10px; margin-bottom:10px;">
             <div class="w3-container w3-padding w3-left-align">
           		<div class="w3-col" style="width:90%">
-          			<div class="w3-col" style="width:20%">
+          			<div class="w3-col" style="width:20%; padding-top:7px;">
           				<b>기업 이메일</b>
           			</div>
-          			<div class="w3-col" style="width:80%">
+          			<div class="w3-col" style="width:80%; padding-top:7px;">
     					<p>${ member.email }</p>
     				</div>
           		</div>
@@ -237,15 +237,15 @@
       </div>
       
       
-       <div class="w3-row-padding w3-margin-top">
+       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card w3-white w3-round-large">
             <div class="w3-container w3-padding w3-left-align">
               <div class="w3-col" style="width:90%">
-          			<div class="w3-col" style="width:20%">
+          			<div class="w3-col" style="width:20%; padding-top:7px;">
           				<b>기업 이름</b>
           			</div>
-          			<div class="w3-col" style="width:80%">
+          			<div class="w3-col" style="width:80%; padding-top:7px;">
     					<p>${ member.companyName }</p>
     				</div>
           		</div>

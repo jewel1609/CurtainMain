@@ -489,29 +489,35 @@ public class ArticleBiz {
 		ArticleVO article = new ArticleVO();
 		article = articleDAO.showTopArticle(stdMember, boardId);
 		
-		article.setReplyCount(replyDAO.getReplyCountByArticleId(article.getArticleId()));
-		article.setArticleModifyDate(article.getArticleModifyDate().substring(0, 16));
-		
-		List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
-		List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
-		List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
-		
-		for(ArticleDislikeVO articleDislike : articleDislikes ) {
-			if( article.getArticleId() == articleDislike.getArticleId() ){
-				article.setDislike(true);
+		if(article != null){
+			
+			System.out.println("널이아님");
+			article.setReplyCount(replyDAO.getReplyCountByArticleId(article.getArticleId()));
+			article.setArticleModifyDate(article.getArticleModifyDate().substring(0, 16));
+			List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
+			List<ArticleLikeVO> articleLikes = showArticleLike(stdMember, boardId);
+			List<ArticleScrabVO> articleScrabs = showArticleScrab(stdMember, boardId);
+			
+			for(ArticleDislikeVO articleDislike : articleDislikes ) {
+				if( article.getArticleId() == articleDislike.getArticleId() ){
+					article.setDislike(true);
+				}
+			}
+			
+			for(ArticleLikeVO articleLike : articleLikes ){
+				if( article.getArticleId() == articleLike.getArticleId() ){
+					article.setLike(true);
+				}
+			}
+			
+			for(ArticleScrabVO articleScrab : articleScrabs ){
+				if( article.getArticleId() == articleScrab.getArticleId() ){
+					article.setScrab(true);
+				}
 			}
 		}
-	
-		for(ArticleLikeVO articleLike : articleLikes ){
-			if( article.getArticleId() == articleLike.getArticleId() ){
-				article.setLike(true);
-			}
-		}
-
-		for(ArticleScrabVO articleScrab : articleScrabs ){
-			if( article.getArticleId() == articleScrab.getArticleId() ){
-				article.setScrab(true);
-			}
+		else{
+			System.out.println("널임");
 		}
 
 		return article;

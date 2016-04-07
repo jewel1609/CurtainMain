@@ -75,6 +75,7 @@ public class StudentMajorAritlceServlet extends HttpServlet {
 		
 		List<String> univNames = univBiz.getUnivNameList(stdMember.getMajorGroupId());
 		List<ArticleVO> majorArticles = articleBiz.showMajorArticle(stdMember, BoardId.MAJOR_BOARD, searchVO, request);
+		
 		ArticleVO topArticle = articleBiz.showTopMajorArticle(stdMember, BoardId.MAJOR_BOARD);
 		ArticleVO memberCount = new ArticleVO();
 		memberCount.setTotalCount(articleBiz.memberCount(stdMember));

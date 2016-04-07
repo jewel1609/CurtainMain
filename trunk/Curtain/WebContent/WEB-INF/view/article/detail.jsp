@@ -98,7 +98,7 @@ $(document).ready(function () {
 				if(jsonData.result){
 					$(".claim").hide();
 					alert("신고 완료되었습니다.");
-					 $(result).attr("style", "color:#7d7d7d");
+					
 				}
 				else{
 					alert("세션이 만료되었습니다. 다시 로그인해주세요.");
@@ -135,6 +135,7 @@ $(document).ready(function () {
 						$(count).text(jsonData.updateLikeCount);
 					}
 					else{
+						$(result).attr("style", "color:#7d7d7d");
 						var count = "#likeCount"+jsonData.replyId;
 						$(count).text(jsonData.updateLikeCount);
 					}	
@@ -176,7 +177,7 @@ $(document).ready(function () {
 						$(count).text(jsonData.updateDislikeCount);
 					}
 					else{
-						$(result).attr("style", "color:#a9d039");
+						$(result).attr("style", "color:#7d7d7d");
 						var count = "#dislikeCount"+jsonData.replyId;
 						$(count).text(jsonData.updateDislikeCount);
 					}	
@@ -241,13 +242,20 @@ $(document).ready(function () {
 	$(".deleteRe").click(function () {
 		var table = $(this).parent().parent().parent().parent().parent().parent().parent().parent();
 		var replyId = table.children(":eq(0)").children(":eq(0)").html();
-		alert(replyId);
+		var r = confirm("정말 삭제하시겠습니까?");
+		 if (r == true) {
 		$("#delete").val(replyId);
 		
 		var form = $("#deleteReplyForm");
 		form.attr("method", "post");
 		form.attr("action", "/doDeleteReply");
 		form.submit();
+			 
+			 
+		 }
+		 else{
+			 
+		 }
 	});
   
 
@@ -268,12 +276,10 @@ $(document).ready(function () {
 	<c:set var="boardId" value="${ sessionScope._BOARD_ID_ }" />
 	
 
-
-  <div class="w3-row" >
-     <div class="w3-col m7 wrapper"
-         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
-         
-       		
+   <div class="w3-row" >
+      <div class="w3-col m7 wrapper"
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#F3F3F3;">
+       	
      		<!-- 게시판 헤더 -->
      		 <div class="w3-row" style="border-bottom: 1px solid #bababa;">
 				 <div class="w3-margin-4" style="float:left; padding-left:10px;">
@@ -300,9 +306,9 @@ $(document).ready(function () {
 			</div>
 			
 			<!-- 게시판 body -->	
-	       <div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
-            <div class="w3-col w3-card w3-white w3-round-large m12" align="left" >
-	          <div class="w3-white " style="margin-top:10px; margin-bottom:10px;">
+         <div class="w3-row-padding">
+            <div class="w3-card w3-white w3-round-large m12 w3-margin" align="left" >
+	          <div style="margin-bottom:10px;">
 	            <div class="w3-container">
 	           	 	<div>
 			           	 <div class="col-sm-12" style="margin-top:10px; padding-bottom: 10px; border-bottom:1px solid #bababa;">
@@ -343,7 +349,7 @@ $(document).ready(function () {
 						</div>
 													
 						<div class="col-sm-12" style="margin-bottom:10px;">
-							<div class="col-sm-11" style="padding-left:0px;">
+							<div class="col-sm-10" style="padding-left:0px;">
 								<span>
 									<h6>
 									${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;
@@ -351,7 +357,7 @@ $(document).ready(function () {
 									</h6>
 								</span>
 							</div>
-							<div class="col-sm-1" align="right"><h6>조회수 ${article.hits}</h6></div>
+							<div class="col-sm-2" align="right"><h6>조회수 ${article.hits}</h6></div>
 						</div>
 						
 						<div>
@@ -443,7 +449,7 @@ $(document).ready(function () {
   				
   				<div id="formWrapper" class="w3-margin-32" >
   					<div class="w3-col m12">
-					<div class="w3-margin w3-padding w3-container w3-card" style="background-color: white;">
+					<div class="w3-margin w3-padding w3-container  w3-round-large w3-card" style="background-color: white;">
 					<form id="writeReplyForm">
 						<input type="hidden" id="articleId" name="articleId" value="${article.articleId}" />
 						<input type="hidden" id="parentReplyId" name="parentReplyId" value="0"/>
@@ -452,7 +458,7 @@ $(document).ready(function () {
 						
 						<div class="w3-col m12" ><h6>${nickName}</h6></div>
 						<textarea id="replyDesc" name="replyDesc" rows="3" class="form-control w3-col m10" style="margin-right:10px;"></textarea>
-						<button type="button" class="btn btn-default w3-col m1 w3-padding" id="writeReplyBtn" style="color:#FF3300; height:70px;">댓글등록</button>
+						<button type="button" class="btn btn-default m1 w3-padding" id="writeReplyBtn" style="color:#FF3300; height:70px;">댓글등록</button>
 					
 					</form>
 				</div>

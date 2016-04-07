@@ -132,4 +132,12 @@ public class ArticleBiz {
 		return null;
 	}
 
+
+	public ClaimArticleVO getClaimInfoByClaimArticleId(String articleClaimId, MemberVO member) {
+		if( member.getMemberTypeId() == 6 ) {
+			return articleDAO.getClaimInfoByClaimArticleId(articleClaimId);
+		}
+		return null;
+	}
+
 }

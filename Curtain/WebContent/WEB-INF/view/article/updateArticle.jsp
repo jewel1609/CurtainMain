@@ -113,13 +113,11 @@ function readURL(input) {
 
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" /> 
 
-
-
 <div class="w3-container" style="margin-top:0px; ">    
 
   <div class="w3-row" style="border-bottom: 1px solid #bababa;">
     <div class="w3-col m7 wrapper w3-padding"
-         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#f3f3f3;">
          
         <div class="w3-row-padding">
 				<div class="w3-col m12">
@@ -165,7 +163,7 @@ function readURL(input) {
 										
 										<div class="col-sm-9" align="left" style="padding-left:0px;">
 										<input type="hidden" id="articleId" name="articleId" value="${article.articleId}"/>
-											<input type="text" class="w3-input w3-col m10 input-lg"
+											<input type="text" class="form-control w3-col m10 input-lg"
 												id="articleTitle" name="articleTitle"  value="${article.articleTitle}"/>
 										</div>
 										<div class="col-sm-2" align="right" style="padding-right:0px; padding-top:8px;">					
@@ -192,7 +190,7 @@ function readURL(input) {
 									</div>
 								
 								<div class="col-sm-12" style="margin-bottom:10px; margin-top:10px;">
-									<textarea name="articleDescription" class="w3-col m12 w3-padding"
+									<textarea name="articleDescription" class="form-control w3-col m12 w3-padding"
 											rows="10" id="comment" style="margin-bottom: 5px;">${article.articleDesc}</textarea>
 								</div>
 								<div class="col-sm-9"  id="imagePreview"><img id="uploadImg" src="" width="100px;"></div>

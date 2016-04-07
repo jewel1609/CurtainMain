@@ -3,6 +3,9 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css" />
+
+
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <script type="text/javascript">
@@ -56,14 +59,14 @@
       <div class="w3-myfont w3-left-align" >
       	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 	      	<div class="w3-margin-4" style="float:left;">
-	      		<h2>회원 탈퇴</h2>
+	      		<h2 style="padding-left:10px;">회원 탈퇴</h2>
 			   <input type="hidden" id="memberEmail" name="memberEmail" value="${ member.email }" />
 	      	</div>
       	</div>
       </div>
    
-      <div class="w3-myfont w3-center-align" >
-      	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
+      <div class="w3-padding w3-center-align" >
+      	<div class="w3-round-large w3-card" style="background-color: white; border-bottom: 1px solid #bababa;">
 	      	<div class="w3-margin-4" >
 	      		<p>고객님께서 회원 탈퇴를 결정 하신 것은 저희 커튼의 서비스에 대해 부족한 점을 느끼셨기 때문일 것입니다.</p> 
 				<p>고객님께서 느끼신 불편 사항이나 아쉬웠던 점을 알려주시면 고객님의 불편을 해결하고 더 좋은 모습으로 발전하도록 노력하겠습니다.</p> 
@@ -75,7 +78,7 @@
       
       <br/>
       <div class="w3-myfont w3-left-align" >
-      <p>회원 탈퇴 후  포인트는 자동 소멸되며 등급 혜택도 소멸됩니다. 탈퇴 고객님의 재가입은 탈퇴 1개월 후 가능합니다.</p>
+      <p style="padding-left:20px;">회원 탈퇴 후  포인트는 자동 소멸되며 등급 혜택도 소멸됩니다. 탈퇴 고객님의 재가입은 탈퇴 1개월 후 가능합니다.</p>
       </div>
       
       <div class="w3-row-padding">
@@ -135,8 +138,8 @@
         </div>
       </div>
       <div class="w3-myfont w3-left-align" >
-      	<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
-	      	<div class="w3-margin-4" style="float:left;">
+      	<div class="w3-row">
+	      	<div class="w3-margin-16" style="float:left; padding-left:20px;">
 	      		<h4>회원 탈퇴 신청하기</h4>
 			      <div class="w3-myfont w3-left-align" >
 			      <p>커튼을 이용하시면서 가장 불편했던 점을 적어주시기 바랍니다. 서비스 향상을 위해 활용하도록 하겠습니다.</p>
@@ -146,9 +149,9 @@
       </div>
       
       
-      <div id="formWrapper" class="w3-margin-32" >
+      <div id="formWrapper" class="w3-margin w3-white" >
 			<div class="w3-col m12">
-				<div class="w3-container w3-card" style="background-color: white; margin-bottom:25px;">
+				<div class="w3-container w3-card w3-round-large" style="background-color: white; margin-bottom:25px;">
 						<textarea id="secedeDesc" name="secedeDesc" class="w3-col m12" rows="4" style="border: none; margin-bottom:70;"></textarea><br/>
 				</div>
 			</div>
@@ -157,10 +160,10 @@
 		
       <div class="w3-center-align">	
 		<div class="w3-btn-group">
-			<button type="button" id="secedeBtn" class="btn btn-primary" style="background-color:#FF3300; border:0px;">
+			<button type="button" id="secedeBtn" class="btn btn-default">
 				탈퇴
 			</button>
-			<button type="button" id="cancelSecedeBtn" class="btn btn-primary" style="background-color:#c0c0c0; border:0px;">
+			<button type="button" id="cancelSecedeBtn" class="btn btn-default">
 				취소
 			</button>
 		</div>

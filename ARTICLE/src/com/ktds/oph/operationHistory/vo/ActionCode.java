@@ -52,7 +52,9 @@ public interface ActionCode {
 	
 	
 	public static final String ADMIN_MAJOR_ADD = "A_MJ_A";
+	public static final String ADMIN_MAJOR_ADD_ERROR = "A_MJ_A_R";
 	public static final String ADMIN_MAJOR_GROUP_ADD = "A_MJ_GA";
+	public static final String ADMIN_MAJOR_GROUP_ADD_ERROR = "A_MJ_GA_E";
 	public static final String ADMIN_MAJOR_DELETE = "A_MJ_D";
 	public static final String ADMIN_MAJOR_GROUP_DELETE = "A_MJ_GD";
 	

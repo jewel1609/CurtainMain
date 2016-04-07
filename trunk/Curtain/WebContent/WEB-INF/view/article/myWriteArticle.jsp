@@ -14,6 +14,12 @@
 		$("#cancelBtn1").click(function() {
 			location.href = "/myPage";
 		});
+		
+		$(".wrapper").css("height", window.innerHeight - 130);
+		
+		$(window).resize(function() {
+			$(".wrapper").css("height", window.innerHeight - 130);
+		});
 
 		$('[data-toggle="popover"]').popover();
 
@@ -245,7 +251,7 @@
 
 	<div class="w3-row">
 		 <div class="w3-col m7 w3-main wrapper"
-         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#F3F3F3; ">
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; overflow: auto; background-color:#F3F3F3; ">
 			
 			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">
 		      	 <div class="w3-margin-4" style="float:left; padding-left:10px;">

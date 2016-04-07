@@ -384,7 +384,7 @@ $(document).ready(function () {
 						<div>
 
 							<div class="w3-padding">
-							${article.articleDesc}
+								<span style="word-wrap: break-word;">${article.articleDesc}</span>
 							</div>
 							
 				            <br/>

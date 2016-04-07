@@ -155,7 +155,7 @@
 							$(count).text(jsonData.updateDislikeCount);
 						}
 						else{
-							$(result).attr("style", "color:#a9d039");
+							$(result).attr("style", "color:#7d7d7d");
 							var count = "#dislikeCount"+jsonData.articleId;
 							$(count).text(jsonData.updateDislikeCount);
 						}	

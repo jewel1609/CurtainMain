@@ -198,6 +198,11 @@
 		</isExistNickName>
 	</dupl>
 	<mac>
+		<deleteAuthNumByUnivEmail>
+			DELETE
+			FROM	MAC
+			WHERE	EMAIL = ?
+		</deleteAuthNumByUnivEmail>
 		<getMacDescByStudentEmail>
 			SELECT 	MAC_ID
 					, EMAIL

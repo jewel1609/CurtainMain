@@ -46,7 +46,9 @@ public interface Description {
 	public static final String DO_ADMIN_UNIV_DELETE = "[%s] 님이 대학리스트를 삭제했습니다.";
 	
 	public static final String DO_ADMIN_MAJOR_ADD = "[%s] 님이 학과리스트를 추가했습니다.";
+	public static final String DO_ADMIN_MAJOR_ADD_ERROR = "[%s] 님이 학과리스트 추가에 실패했습니다.";
 	public static final String DO_ADMIN_MAJOR_GROUP_ADD = "[%s] 님이 학과그룹리스트를 추가했습니다.";
+	public static final String DO_ADMIN_MAJOR_GROUP_ADD_ERROR = "[%s] 님이 학과그룹리스트 추가를 실패했습니다.";
 	public static final String DO_ADMIN_MAJOR_DELETE = "[%s] 님이 학과리스트를 삭제했습니다.";
 	public static final String DO_ADMIN_MAJOR_GROUP_DELETE = "[%s] 님이 학과그룹리스트를 삭제했습니다.";
 	
@@ -83,7 +85,9 @@ public interface Description {
 	public static final String DETAIL_PROHIBITED_WORD_ADD = "추가한 금칙어 : [%s] ";
 	
 	public static final String DETAIL_MAJOR_ADD = "추가한 학과명 : [%s] ";
+	public static final String DETAIL_MAJOR_ADD_ERROR = "추가에 실패한 학과명 : [%s] ";
 	public static final String DETAIL_MAJOR_GROUP_ADD = "추가한 학과그룹명 : [%s] ";
+	public static final String DETAIL_MAJOR_GROUP_ADD_ERROR = "추가에 실패한 학과그룹명 : [%s] ";
 	public static final String DETAIL_MAJOR_DELETE = "삭제한 학과 번호 :[%s] <br/> 학과명 : [%s] ";
 	public static final String DETAIL_MAJOR_GROUP_DELETE = "삭제한 학과그룹 번호 :[%s] <br/> 학과그룹명 : [%s] ";
 	

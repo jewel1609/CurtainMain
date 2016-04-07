@@ -109,7 +109,7 @@
 
 		 <div class="w3-row" style="border-bottom: 1px solid #bababa;">
 				 <div class="w3-margin-4" style="float:left; padding-left:30px;">
-									<h2>도움말</h2>
+									<h2>FAQ</h2>
 						</div>
 						<div style="float:left; padding:30px 0 0 20px;">
 							    커튼의 서비스에 대해 자주 묻는 질문들 입니다. 궁금하신 서비스를 선택해주세요.
@@ -118,7 +118,7 @@
 					
 					<div class="w3-row-padding" style="border-bottom:1px solid #BABABA;">
            				 <div class="w3-col m12" align="left" >
-							<div style="padding: 10px; height: 350px; overflow: auto;">
+							<div style="padding: 10px; overflow: auto;">
 							<div class="w3-container w3-card w3-round-large w3-white" style="margin-bottom: 10px; padding: 10px;" >
 								<div id="btnFirstFAQ" style="padding-top:10px;">
 									<div style="float:left;">

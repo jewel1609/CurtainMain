@@ -49,27 +49,21 @@ public class ProhibitedWordDAO {
 				
 				int id = rs.getInt("PROHIBITED_WORD_ID");
 				String word = rs.getString("PROHIBITED_WORD_NAME");
-				System.out.println(id);
 				
 				if ( id >= 1 && id <= 500 ) {
 					words1.add(word);
-					System.out.println(word);
 				}
 				else if ( id >= 501 && id <= 1000) {
 					words2.add(word);
-					System.out.println(word);
 				}
 				else if ( id >= 1001 && id <= 1500){
 					words3.add(word);
-					System.out.println(word);
 				}
 				else if ( id >= 1501 && id <= 2000){
 					words4.add(word);
-					System.out.println(word);
 				}
 				else if ( id >= 2001){
 					words5.add(word);
-					System.out.println(word);
 				}
 			}
 			wordList.add(words1);

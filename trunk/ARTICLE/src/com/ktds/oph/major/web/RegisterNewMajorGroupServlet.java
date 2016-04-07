@@ -85,7 +85,7 @@ public class RegisterNewMajorGroupServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			 
 			out.println("<script>"); 
-			out.println("alert('학과명이 중복됩니다.');");
+			out.println("alert('학과 그룹명이 중복됩니다.');");
 			out.println("window.history.back();");
 			out.println("</script>");
 			out.flush();

@@ -56,22 +56,29 @@ public class RegisterNewUnivServlet extends HttpServlet {
 		
 		boolean registerUniv = univBiz.registerUniv(univVO, member);
 		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
+		
 		if (registerUniv) {
-			
-			OperationHistoryVO historyVO = new OperationHistoryVO();
-			historyVO.setIp(request.getRemoteHost());
-			historyVO.setEmail(member.getEmail());
-			historyVO.setUrl(request.getRequestURI());
 			historyVO.setActionCode(ActionCode.ADMIN_UNIV_ADD);
 			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_UNIV_ADD, member.getEmail()));
 			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_ADD, newUniv));
 			
 			historyBiz.addHistory(historyVO);
-			
 			response.sendRedirect(Root.get(this) + "/univList");
-			return;
 		}
+		else {
+			// TODO 수정
+			historyVO.setActionCode(ActionCode.ADMIN_UNIV_ADD);
+			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_UNIV_ADD, member.getEmail()));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_ADD, newUniv));
 			
+			historyBiz.addHistory(historyVO);
+			response.sendRedirect(Root.get(this) + "/univList?errorCode=1");
+		}
+		
 	}
 
 }

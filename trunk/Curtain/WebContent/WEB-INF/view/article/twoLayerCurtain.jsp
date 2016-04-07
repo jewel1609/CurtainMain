@@ -322,7 +322,7 @@
 								<option value="2">내용</option>
 							</select>
 							<div style="width: 100px; float: right; margin: 7px 10px 0 0;">
-								<a href="/twoLayerCurtain">검색초기화</a>
+								<a href="/initArticleList">검색초기화</a>
 							</div>
 						</form>
 					</div>

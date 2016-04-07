@@ -775,6 +775,21 @@
 	</file>
 
 	<reply>
+		<deleteArticleReplyDislike>
+			DELETE
+			FROM	REPLY_DISLIKE
+			WHERE	ARTICLE_ID = ?
+		</deleteArticleReplyDislike>
+		<deleteArticleReplyLike>
+			DELETE
+			FROM	REPLY_LIKE
+			WHERE	ARTICLE_ID = ?
+		</deleteArticleReplyLike>
+		<deleteClaimReply>
+			DELETE
+			FROM	ARTICLE_CLAIM
+			WHERE	REPLY_ID = ?
+		</deleteClaimReply>
 		<deleteReply>
 			DELETE
 			FROM	REPLY

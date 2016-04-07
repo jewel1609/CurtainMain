@@ -1,6 +1,7 @@
 package com.ktds.oph.univ.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -75,7 +76,16 @@ public class RegisterNewUnivServlet extends HttpServlet {
 			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_ADD_ERROR, newUniv));
 			
 			historyBiz.addHistory(historyVO);
-			response.sendRedirect(Root.get(this) + "/univList?errorCode=1");
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>"); 
+			out.println("alert('학과명이 중복됩니다.');");
+			out.println("window.history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
 		}
 		
 	}

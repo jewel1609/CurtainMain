@@ -8,18 +8,18 @@ import com.ktds.curtain.prohibitedWord.dao.ProhibitedWordDAO;
 public class ProhibitedWordBiz {
 	
 	private ProhibitedWordDAO prohibitedWordDAO;
-	private List<String> words;
+	private List<List<String>> words;
 	
 	public ProhibitedWordBiz(){
 		prohibitedWordDAO = new ProhibitedWordDAO();
-		words = new ArrayList<String>();
+		words = new ArrayList<List<String>>();
 	}
 
 	/**
 	 * 비방어 리스트로 얻어오기
 	 * @return
 	 */
-	public List<String> getProhibitedWordList() {
+	public List<List<String>> getProhibitedWordList() {
 		words = prohibitedWordDAO.getAllWords();
 		return words;
 	}

@@ -17,7 +17,7 @@ public class ProhibitedWordDAO {
 	 * 욕설 List 얻어오기
 	 * @return
 	 */
-	public List<String> getAllWords() {
+	public List<List<String>> getAllWords() {
 		
 		loadOracleDriver();
 
@@ -25,7 +25,13 @@ public class ProhibitedWordDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		List<String> words = new ArrayList<String>();
+		List<String> words1 = new ArrayList<String>();
+		List<String> words2 = new ArrayList<String>();
+		List<String> words3 = new ArrayList<String>();
+		List<String> words4 = new ArrayList<String>();
+		List<String> words5 = new ArrayList<String>();
+
+		List<List<String>> wordList = new ArrayList<List<String>>();
 		
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
@@ -34,12 +40,45 @@ public class ProhibitedWordDAO {
 			stmt = conn.prepareStatement(query);
 			rs = stmt.executeQuery();
 
+//			while (rs.next()) {
+//				String word = rs.getString("PROHIBITED_WORD_NAME");
+//				words.add(word);
+//			}
+
 			while (rs.next()) {
+				
+				int id = rs.getInt("PROHIBITED_WORD_ID");
 				String word = rs.getString("PROHIBITED_WORD_NAME");
-				words.add(word);
+				System.out.println(id);
+				
+				if ( id >= 1 && id <= 500 ) {
+					words1.add(word);
+					System.out.println(word);
+				}
+				else if ( id >= 501 && id <= 1000) {
+					words2.add(word);
+					System.out.println(word);
+				}
+				else if ( id >= 1001 && id <= 1500){
+					words3.add(word);
+					System.out.println(word);
+				}
+				else if ( id >= 1501 && id <= 2000){
+					words4.add(word);
+					System.out.println(word);
+				}
+				else if ( id >= 2001){
+					words5.add(word);
+					System.out.println(word);
+				}
 			}
+			wordList.add(words1);
+			wordList.add(words2);
+			wordList.add(words3);
+			wordList.add(words4);
+			wordList.add(words5);
 			
-			return words;
+			return wordList;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);

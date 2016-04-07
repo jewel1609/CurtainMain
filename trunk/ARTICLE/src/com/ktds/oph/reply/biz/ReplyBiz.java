@@ -22,6 +22,7 @@ public class ReplyBiz {
 	public void deleteReply(String replyId, MemberVO member) {
 		if( member.getMemberTypeId() == 6 ) {
 			replyDAO.deleteReply(replyId);
+			replyDAO.deleteClaimReply(replyId);
 		}
 	}
 

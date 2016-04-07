@@ -10,6 +10,7 @@ import com.ktds.oph.article.vo.ArticleVO;
 import com.ktds.oph.article.vo.ClaimArticleVO;
 import com.ktds.oph.file.dao.FileDAO;
 import com.ktds.oph.member.vo.MemberVO;
+import com.ktds.oph.reply.dao.ReplyDAO;
 import com.ktds.oph.util.web.Paging;
 
 public class ArticleBiz {
@@ -18,12 +19,14 @@ public class ArticleBiz {
 	private List<ArticleVO> articles;
 	private ArticleVO articleVO;
 	private FileDAO fileDAO;
+	private ReplyDAO replyDAO;
 	
 	public ArticleBiz() {
 		articleDAO = new ArticleDAO();
 		articleVO = new ArticleVO();
 		articles = new ArrayList<ArticleVO>();
 		fileDAO = new FileDAO();
+		replyDAO = new ReplyDAO();
 	}
 
 
@@ -147,6 +150,11 @@ public class ArticleBiz {
 				articleDAO.deleteArticleReply(deleteArticleId);
 				
 				articleDAO.deleteClaimArticle(deleteArticleId);
+				
+				replyDAO.deleteArticleReplyLike(deleteArticleId);
+				
+				replyDAO.deleteArticleReplyDislike(deleteArticleId);
+				
 		}
 		
 	}

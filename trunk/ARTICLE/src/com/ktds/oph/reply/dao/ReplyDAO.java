@@ -114,4 +114,68 @@ public class ReplyDAO {
 		}
 		
 	}
+
+	public void deleteArticleReplyLike(String deleteArticleId) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/deleteArticleReplyLike/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, deleteArticleId);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	
+	public void deleteArticleReplyDislike(String deleteArticleId) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/deleteArticleReplyDislike/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, deleteArticleId);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+
+	public void deleteClaimReply(String replyId) {
+		loadOracleDriver();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/deleteClaimReply/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, replyId);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			closeDB(conn, stmt, null);
+		}
+		
+		
+	}
 }

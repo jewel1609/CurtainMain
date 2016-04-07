@@ -19,13 +19,11 @@
 				alert("등록할 학과명을 입력하세요.")
 				return;
 			}
-				var majorGroupId = $(".majorGroupId").val();
-				$(".majorGroupId1").val(majorGroupId);
 				
-				var form = $("#registerNewMajorForm");
-				form.attr("method", "post");
-				form.attr("action", "<c:url value="/registerNewMajor" />");
-				form.submit();
+			var form = $("#registerNewMajorForm");
+			form.attr("method", "post");
+			form.attr("action", "<c:url value="/registerNewMajor" />");
+			form.submit();
 
 		});
 		
@@ -145,7 +143,7 @@
     	<tr id="registerNewMajor">
     		<td colspan=3 >
     		<form id = "registerNewMajorForm">
-    		<input type="hidden" class="majorGroupId1" name="majorGroupId1" value="${major.majorGroupId}"/>
+    			<input type="hidden" class="majorGroupId1" name="majorGroupId1" value="${majorGroupId}" />
     			학과명 : <input type="text" id ="newMajor" name="newMajor"/>
     			<span class ="insertMajorBtn" id ="insertMajorBtn">등록</span>
     		</form>

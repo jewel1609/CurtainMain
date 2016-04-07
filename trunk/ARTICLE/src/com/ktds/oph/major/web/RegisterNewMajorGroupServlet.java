@@ -1,6 +1,7 @@
 package com.ktds.oph.major.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,12 +57,14 @@ public class RegisterNewMajorGroupServlet extends HttpServlet {
 		
 		boolean registerMajorGroup = majorGroupBiz.registerMajorGroup(majorGroupVO, member);
 		
+		OperationHistoryVO historyVO = new OperationHistoryVO();
+		
+		historyVO.setIp(request.getRemoteHost());
+		historyVO.setEmail(member.getEmail());
+		historyVO.setUrl(request.getRequestURI());
 		if (registerMajorGroup) {
 			
-			OperationHistoryVO historyVO = new OperationHistoryVO();
-			historyVO.setIp(request.getRemoteHost());
-			historyVO.setEmail(member.getEmail());
-			historyVO.setUrl(request.getRequestURI());
+
 			historyVO.setActionCode(ActionCode.ADMIN_MAJOR_GROUP_ADD);
 			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_MAJOR_GROUP_ADD, member.getEmail()));
 			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MAJOR_GROUP_ADD, newMajorGroup));
@@ -70,6 +73,23 @@ public class RegisterNewMajorGroupServlet extends HttpServlet {
 			
 			response.sendRedirect(Root.get(this) + "/majorGroupList");
 			return;
+		}
+		else {
+			historyVO.setActionCode(ActionCode.ADMIN_MAJOR_GROUP_ADD_ERROR);
+			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_MAJOR_GROUP_ADD_ERROR, member.getEmail()));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_MAJOR_GROUP_ADD_ERROR, newMajorGroup));
+			
+			historyBiz.addHistory(historyVO);
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>"); 
+			out.println("alert('학과명이 중복됩니다.');");
+			out.println("window.history.back();");
+			out.println("</script>");
+			out.flush();
+			out.close();
 		}
 	}
 

@@ -477,14 +477,15 @@
 									<input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
 								</div>
 								<div class="desc w3-col m12 w3-padding-top" style="height: 70px;">
-									<c:set var="topArticleDesc" value="${topArticle.articleDesc}" />
+											<c:set var="topArticleDesc" value="${topArticle.articleDesc}" />
 									<c:set var="isContainByTopArticle" value="${fn:contains(topArticleDesc, \"<br/>\")}" />
 									<c:if test="${isContainByTopArticle}">
 										${fn:substringBefore(topArticleDesc, "<br/>")}
 										<br/><span style="color: #337AB7">...더 보기</span>
 									</c:if>
 									<c:if test="${!isContainByTopArticle}">
-										${fn:substring(topArticleDesc, 0, 80)}...
+										${fn:substring(topArticleDesc, 0, 80)}
+										<br/><span style="color: #337AB7">...더 보기</span>
 									</c:if>
 								</div>
 								</a>

@@ -19,4 +19,10 @@ public class ReplyBiz {
 		return null;
 	}
 
+	public void deleteReply(String replyId, MemberVO member) {
+		if( member.getMemberTypeId() == 6 ) {
+			replyDAO.deleteReply(replyId);
+		}
+	}
+
 }

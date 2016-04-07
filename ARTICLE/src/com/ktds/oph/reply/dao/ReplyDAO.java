@@ -92,4 +92,26 @@ public class ReplyDAO {
 			catch ( SQLException e ) {}
 		}
 	}
+
+	public void deleteReply(String replyId) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+
+			String query = XML.getNodeString("//query/reply/deleteReply/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, Integer.parseInt(replyId));
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
 }

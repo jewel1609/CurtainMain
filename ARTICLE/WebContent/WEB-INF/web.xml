@@ -667,4 +667,24 @@
     <servlet-name>DetailClaimArticleDescServlet</servlet-name>
     <url-pattern>/detailClaimArticleDesc</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteArticleServlet</display-name>
+    <servlet-name>DeleteArticleServlet</servlet-name>
+    <servlet-class>com.ktds.oph.article.web.DeleteArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteArticleServlet</servlet-name>
+    <url-pattern>/deleteArticle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteClaimReplyServlet</display-name>
+    <servlet-name>DeleteClaimReplyServlet</servlet-name>
+    <servlet-class>com.ktds.oph.reply.web.DeleteClaimReplyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteClaimReplyServlet</servlet-name>
+    <url-pattern>/deleteClaimReply</url-pattern>
+  </servlet-mapping>
 </web-app>

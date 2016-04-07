@@ -471,8 +471,8 @@
 									<input type="hidden" id="articleId" name="articleId" value="${topArticle.articleId}" />
 									<input type="hidden" id="boardId" name="boardId" value="${topArticle.boardId}" />
 								</div>
-								<div class="desc w3-col m12 w3-padding-top" style="height: 60px;">
-									${topArticle.articleDesc}
+								<div class="desc w3-col m12 w3-padding-top" style="height: 70px;">
+									<p>${article.articleDesc}</p>
 								</div>
 								</a>
 								<div class="w3-col-m12" align="left">
@@ -563,8 +563,8 @@
 											<h6>조회수 ${article.hits}</h6>
 										</div>
 										
-										<div class="desc w3-col m12 w3-padding-top" style="height: 60px;">
-										<p>${article.articleDesc}</p>
+										<div class="desc w3-col m12 w3-padding-top" style="height: 70px;">
+											<p>${article.articleDesc}</p>
 										</div>
 								</a>
 										<div class="w3-col-m12" align="left">

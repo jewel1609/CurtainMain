@@ -111,6 +111,11 @@
 													, ?
 										)
 		</registerMajor>
+		<checkMajorName>
+			SELECT	MAJOR_NAME
+			FROM	CURTAIN.MAJOR
+			WHERE	MAJOR_NAME = ?
+		</checkMajorName>
 		<deleteMajors>
 			DELETE
 			FROM	MAJOR
@@ -141,6 +146,11 @@
 													, ?
 										)
 		</registerMajorGroup>
+		<checkMajorGroupName>
+			SELECT	MAJOR_GROUP_NAME
+			FROM	MAJOR_GROUP
+			WHERE	MAJOR_GROUP_NAME = ?
+		</checkMajorGroupName>
 		<getAllMajorCount>
 			SELECT	COUNT(MAJOR_ID)
 			FROM	MAJOR

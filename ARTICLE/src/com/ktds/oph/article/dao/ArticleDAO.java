@@ -910,9 +910,7 @@ public class ArticleDAO {
 			String query = XML.getNodeString("//query/article/deleteClaimArticle/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, articleId);
-			System.out.println(articleId);
 			stmt.executeUpdate();
-			System.out.println("게시물삭제시 댓글삭제");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

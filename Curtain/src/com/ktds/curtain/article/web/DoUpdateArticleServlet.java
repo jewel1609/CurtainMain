@@ -2,6 +2,7 @@ package com.ktds.curtain.article.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.file.biz.FileBiz;
 import com.ktds.curtain.file.vo.FileVO;
 import com.ktds.curtain.history.biz.OperationHistoryBiz;
@@ -71,14 +73,21 @@ public class DoUpdateArticleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
+		List<List<String>> wordList = (List<List<String>>) session.getAttribute("_WORDLIST_");
 
 		for (int i = 0; i < wordList.size(); i++) {
-			if (articleTitle.contains(wordList.get(i)) || articleDescription.contains(wordList.get(i))) {
-				response.sendRedirect("/showDetail?isFword=1&articleId="+articleId+"&boardId="+boardId);
-				return;
-			}  	
-			break;
+			List<String> words = new ArrayList<String>();
+			words = wordList.get(i);
+			for ( String word : words) {
+				if (articleTitle.contains(word)) {
+					response.sendRedirect("/showDetail?isFword=1&articleId="+articleId+"&boardId="+boardId);
+					return;
+				}
+				else if (articleDescription.contains(word)) {
+					response.sendRedirect("/showDetail?isFword=1&articleId="+articleId+"&boardId="+boardId);
+					return;
+				}
+			}
 		}
 		
 		ArticleVO article = articleBiz.showDetail(articleId, stdMember);

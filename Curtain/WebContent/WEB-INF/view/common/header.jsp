@@ -207,7 +207,7 @@
                         	자동로그인하기 
                         	<input id="autoLoginCheckBox" name="autoLoginCheckBox" type="checkbox" class="w3-check" value="1"/>
                      </div>
-                     <div id="btnDoLogin" class="btn btn-primary btn-lg" style=" background-color:#A9D039; margin-top: 20px; margin-bottom:15px; width: 100%; border:0px;">시작하기</div>
+                     <div id="btnDoLogin" class="btn btn-default btn-lg" style=" background-color:#A9D039; margin-top: 20px; margin-bottom:15px; width: 100%; border:0px;">시작하기</div>
                      
                      <a href="/findPassword" style=""> 비밀번호를 잊으셨나요? </a>
                   </div>

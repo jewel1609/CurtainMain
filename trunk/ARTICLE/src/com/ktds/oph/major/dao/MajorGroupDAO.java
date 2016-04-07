@@ -157,19 +157,34 @@ public class MajorGroupDAO {
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
 			
-			String query =  XML.getNodeString("//query/major/registerMajorGroup/text()");
+			String query = XML.getNodeString("//query/major/checkMajorGroupName/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, majorGroupVO.getMajorGroupName());
-			return stmt.executeUpdate();
+			rs = stmt.executeQuery();
+			
+			if(!rs.next()) {
+				rs.close();
+				stmt.close();
+				
+				query =  XML.getNodeString("//query/major/registerMajorGroup/text()");
+				stmt = conn.prepareStatement(query);
+				stmt.setString(1, majorGroupVO.getMajorGroupName());
+				
+				return stmt.executeUpdate();
+			}
+			
+			return 0;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 		finally {
-			this.closeDB(conn, stmt, null);
+			this.closeDB(conn, stmt, rs);
 		}
 	}
 
@@ -274,15 +289,30 @@ public class MajorGroupDAO {
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
 			
-			String query =  XML.getNodeString("//query/major/registerMajor/text()");
+			String query = XML.getNodeString("//query/major/checkMajorName/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, majorVO.getMajorName());
-			stmt.setInt(2, majorVO.getMajorGroupId());
-			return stmt.executeUpdate();
+			rs = stmt.executeQuery();
+			
+			if(!rs.next()) {
+				stmt.close();
+				rs.close();
+				
+				query =  XML.getNodeString("//query/major/registerMajor/text()");
+				stmt = conn.prepareStatement(query);
+				stmt.setString(1, majorVO.getMajorName());
+				stmt.setInt(2, majorVO.getMajorGroupId());
+				
+				return stmt.executeUpdate();
+			}
+			
+			return 0;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}

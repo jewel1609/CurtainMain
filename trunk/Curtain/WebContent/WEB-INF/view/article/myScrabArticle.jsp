@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
@@ -300,7 +300,16 @@
                               </div>
                               
                               <div class="desc w3-col m12 w3-padding-top" style="height: 70px;">
-                                 <p>${article.articleDesc}</p>
+									<c:set var="articleDesc" value="${article.articleDesc}" />
+									<c:set var="isContainByArticle" value="${fn:contains(articleDesc, \"<br/>\")}" />
+									<c:if test="${isContainByArticle}">
+										${fn:substringBefore(articleDesc, "<br/>")}
+										<br/><span style="color: #337AB7">...더 보기</span>
+									</c:if>
+									<c:if test="${!isContainByArticle}">
+										${fn:substring(articleDesc, 0, 80)}
+										<br/><span style="color: #337AB7">...더 보기</span>
+									</c:if>
                               </div>
                         </a>
                               <div class="w3-col-m12" align="left">

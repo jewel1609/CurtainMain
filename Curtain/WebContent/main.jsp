@@ -172,7 +172,7 @@
 			</div>
 
 			<div class="col-md-6">
-				<img class="img-responsive" src="http://placehold.it/700x450" alt="">
+				<img class="img-responsive" src="/resource/img/메인2.GIF" alt="">
 
 				<br />
 				<br />
@@ -189,7 +189,7 @@
 
 			</div>
 			<div class="col-md-6">
-				<img class="img-responsive" src="http://placehold.it/700x450" alt="">
+				<img class="img-responsive" src="/resource/img/메인1.GIF" alt="">
 			</div>
 		</div>
 		<!-- /.row -->

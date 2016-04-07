@@ -73,8 +73,9 @@
 				
 		<div class="w3-row-padding" style="background-color:#F3F3F3;">
             <div class="w3-col m12" align="left" >
-	          <div class="w3-card w3-white w3-round-large" style="margin:10px;">
+	          <div style="margin:10px;">
 					<c:forEach items="${questions}" var="question">
+						<div class="w3-card w3-white w3-round-large" style="margin:10px;">
 						<form> 
 							<div class="btnQuestion w3-container" style="margin-bottom: 10px; padding: 10px 10px 10px 10px;" >
 								<table class="w3-table">
@@ -109,6 +110,7 @@
 								</table>
 							</div>
 						</form>
+						</div>
 					</c:forEach>
 				</div>
 					</div>

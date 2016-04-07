@@ -490,8 +490,6 @@ public class ArticleBiz {
 		article = articleDAO.showTopArticle(stdMember, boardId);
 		
 		if(article != null){
-			
-			System.out.println("널이아님");
 			article.setReplyCount(replyDAO.getReplyCountByArticleId(article.getArticleId()));
 			article.setArticleModifyDate(article.getArticleModifyDate().substring(0, 16));
 			List<ArticleDislikeVO> articleDislikes = showArticleDislike(stdMember, boardId);
@@ -517,7 +515,6 @@ public class ArticleBiz {
 			}
 		}
 		else{
-			System.out.println("널임");
 		}
 
 		return article;

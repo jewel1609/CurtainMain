@@ -70,10 +70,9 @@ public class RegisterNewUnivServlet extends HttpServlet {
 			response.sendRedirect(Root.get(this) + "/univList");
 		}
 		else {
-			// TODO 수정
-			historyVO.setActionCode(ActionCode.ADMIN_UNIV_ADD);
-			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_UNIV_ADD, member.getEmail()));
-			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_ADD, newUniv));
+			historyVO.setActionCode(ActionCode.ADMIN_UNIV_ADD_ERROR);
+			historyVO.setDescription( BuildDescription.get(Description.DO_ADMIN_UNIV_ADD_ERROR, member.getEmail()));
+			historyVO.setEtc( BuildDescription.get(Description.DETAIL_UNIV_ADD_ERROR, newUniv));
 			
 			historyBiz.addHistory(historyVO);
 			response.sendRedirect(Root.get(this) + "/univList?errorCode=1");

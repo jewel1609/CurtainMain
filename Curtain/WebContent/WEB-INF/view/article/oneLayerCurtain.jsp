@@ -367,9 +367,6 @@
 				                                 <button type="button" id="img2" class="btn btn-default btn-sm" onclick="document.all.imgFile2.click();">
 				                                    <span  class="glyphicon glyphicon-picture"></span>
 				                                 </button>
-				                                 <button type="button" id="movieBtn" class="btn btn-default btn-sm">
-				                                    <span class="glyphicon glyphicon-facetime-video"></span>
-				                                 </button>
 												
 												<button type="button" id="movieBtn" class="btn btn-default btn-sm">
 													<span class="glyphicon glyphicon-facetime-video"></span>

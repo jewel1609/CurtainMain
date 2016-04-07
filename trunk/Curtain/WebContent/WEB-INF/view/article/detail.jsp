@@ -351,10 +351,31 @@ $(document).ready(function () {
 						<div class="col-sm-12" style="margin-bottom:10px;">
 							<div class="col-sm-10" style="padding-left:0px;">
 								<span>
+								<c:if test="${article.boardId eq 1}">
 									<h6>
-									${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;
-									${article.articleModifyDate}
+										${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;
+										${article.articleModifyDate}
 									</h6>
+								</c:if>
+								<c:if test="${article.boardId eq 2}">
+									<h6>
+										${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;
+										${article.articleModifyDate}
+									</h6>
+								</c:if>
+								<c:if test="${article.boardId eq 3}">
+									<h6>
+										${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;
+										${article.articleModifyDate}
+									</h6>
+								</c:if>
+								<c:if test="${article.boardId eq 4 }">
+									<h6>
+										${article.nickName} &nbsp;&nbsp;&nbsp;&nbsp;
+										${article.articleModifyDate}
+									</h6>
+								</c:if>
+
 								</span>
 							</div>
 							<div class="col-sm-2" align="right"><h6>조회수 ${article.hits}</h6></div>
@@ -442,8 +463,19 @@ $(document).ready(function () {
 							</ul>  
   					</div>
   				</div>
+				<c:if test="${article.boardId eq 1}">
+					<c:set var="nickName" value="${ sessionScope._MEMBER_.nickName }" />
+				</c:if>
+				<c:if test="${article.boardId eq 2}">
+					<c:set var="nickName" value="${ sessionScope._MEMBER_.nickName }" />
+				</c:if>
+				<c:if test="${article.boardId eq 3}">
+					<c:set var="nickName" value="${ sessionScope._MEMBER_.nickName }" />
+				</c:if>
+				<c:if test="${article.boardId eq 4 }">
+					<c:set var="nickName" value="${ sessionScope._MEMBER_.nickName }" />
+				</c:if>
   				
-  				<c:set var="nickName" value="${ sessionScope._MEMBER_.nickName }" />
   				
   				<!-- 댓글부분 -->
   				
@@ -482,7 +514,19 @@ $(document).ready(function () {
 												<div class="w3-container">
 													<div>
 														<span>
-															<h6 style="float:left; margin-right:20px; color:#FF3300;">${reply.nickName} </h6>
+															<c:if test="${article.boardId eq 1}">
+																<h6 style="float:left; margin-right:20px; color:#FF3300;">${reply.nickName} </h6>
+															</c:if>
+															<c:if test="${article.boardId eq 2}">
+																<h6 style="float:left; margin-right:20px; color:#FF3300;">${reply.nickName} </h6>
+															</c:if>
+															<c:if test="${article.boardId eq 3}">
+																<h6 style="float:left; margin-right:20px; color:#FF3300;">${reply.nickName} </h6>
+															</c:if>
+															<c:if test="${article.boardId eq 4 }">
+																<h6 style="float:left; margin-right:20px; color:#FF3300;">${reply.nickName} </h6>
+															</c:if>
+															
 															<h6 style="padding-top:10px;">${reply.replyRegisterDate}</h6>
 														</span>
 														

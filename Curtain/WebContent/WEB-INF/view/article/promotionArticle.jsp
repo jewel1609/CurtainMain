@@ -488,21 +488,21 @@
 							<div style="float:left; margin-right:10px;">
                               <c:if test="${topArticle.like}">
                                  <span class="like glyphicon glyphicon-thumbs-up like${topArticle.articleId}" id="like${topArticle.articleId}" style="color:#a9d039;"></span>
-                                 <span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>&nbsp; &nbsp;
+                                 <span class="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>&nbsp; &nbsp;
                               </c:if>
                               <c:if test="${!topArticle.like}">
                                  <span class="like glyphicon glyphicon-thumbs-up like${topArticle.articleId}" id="like${topArticle.articleId}" style="color:#7d7d7d;"></span>
-                                 <span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
+                                 <span class="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
                               </c:if>
                            </div>
                            <div>
                               <c:if test="${topArticle.dislike}">
                               	<span class="dislike glyphicon glyphicon-thumbs-down dislike${topArticle.articleId}" id="dislike${topArticle.articleId}" style="color:#a9d039;"></span>
-                                 <span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
+                                 <span class="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
                               </c:if>
                               <c:if test="${!topArticle.dislike}">
                             	  <span class="dislike glyphicon glyphicon-thumbs-down dislike${topArticle.articleId}" id="dislike${topArticle.articleId}" style="color:#7d7d7d;"></span>
-                                 <span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
+                                 <span class="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
                               </c:if>
                            </div>
                         </div>

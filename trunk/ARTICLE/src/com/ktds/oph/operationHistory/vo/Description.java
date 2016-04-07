@@ -42,6 +42,7 @@ public interface Description {
 	
 	public static final String DO_ADMIN_MEMBER_DELETE = "[%s] 님이 회원리스트를 삭제했습니다.";
 	public static final String DO_ADMIN_UNIV_ADD = "[%s] 님이 대학리스트를 추가했습니다.";
+	public static final String DO_ADMIN_UNIV_ADD_ERROR = "[%s] 님이 대학리스트를 추가를 실패했습니다.";
 	public static final String DO_ADMIN_UNIV_DELETE = "[%s] 님이 대학리스트를 삭제했습니다.";
 	
 	public static final String DO_ADMIN_MAJOR_ADD = "[%s] 님이 학과리스트를 추가했습니다.";
@@ -76,6 +77,7 @@ public interface Description {
 	public static final String DETAIL_SURVEY_DELETE= "삭제한 설문조사 번호 : [%s]";
 	
 	public static final String DETAIL_UNIV_ADD= "추가한 대학명:[%s]";
+	public static final String DETAIL_UNIV_ADD_ERROR= "추가에 실패한 대학명:[%s]";
 	public static final String DETAIL_UNIV_DELETE = "삭제한  대학번호 : [%s] <br/> 대학명:[%s]";
 
 	public static final String DETAIL_PROHIBITED_WORD_ADD = "추가한 금칙어 : [%s] ";

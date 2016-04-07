@@ -62,13 +62,13 @@
          $("#autoLoginCheckBox").click();
          
          var div = $("#insertStartButton");
-         div.html("<button type=\"button\" id=\"btnStart\" class=\"btn btn-primary btn-lg\">시작하기</button>");
+         div.html("<button type=\"button\" id=\"btnStart\" class=\"btn btn-default btn-lg\" style=\"border-color: rgb(255, 51, 0); color: rgb(255, 51, 0);\">시작하기</button>");
          div.show();
          
       }
       else {
          var div = $("#insertStartButton");
-         div.html("<button type=\"button\" id=\"btnRegister\" class=\"btn btn-primary btn-lg\">가입하기</button>");
+         div.html("<button type=\"button\" id=\"btnRegister\" class=\"btn btn-default btn-lg\" style=\"border-color: rgb(255, 51, 0); color: rgb(255, 51, 0);\">가입하기</button>");
          div.show();
       }
       

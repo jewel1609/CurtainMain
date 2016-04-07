@@ -137,19 +137,33 @@ public class UnivDAO {
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
 			
-			String query =  XML.getNodeString("//query/univ/registerUniv/text()");
+			String query = XML.getNodeString("//query/univ/checkUnivName/text()");
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, univVO.getUnivName());
-			return stmt.executeUpdate();
+			rs = stmt.executeQuery();
+			
+			if(!rs.next()) {
+				stmt.close();
+				rs.close();
+				
+				query =  XML.getNodeString("//query/univ/registerUniv/text()");
+				stmt = conn.prepareStatement(query);
+				
+				stmt.setString(1, univVO.getUnivName());
+				return stmt.executeUpdate();
+			}
+			
+			return 0;
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 		finally {
-			this.closeDB(conn, stmt, null);
+			this.closeDB(conn, stmt, rs);
 		}
 	}
 

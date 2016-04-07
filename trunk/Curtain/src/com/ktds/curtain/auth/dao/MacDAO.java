@@ -200,6 +200,31 @@ public boolean sendPasswordBySecondEmail(String email, String secondEmail, Strin
 		return false;
 	}
 	
+
+
+	public void deleteAuthNumByUnivEmail(String inputUnivEmail) {
+		loadOracleDriver();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_USER, Const.DB_PASSWORD);
+
+			// articleId에 맞는 데이터 불러오기
+			String query = XML.getNodeString("//query/mac/deleteAuthNumByUnivEmail/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, inputUnivEmail);
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		} finally {
+			closeDB(conn, stmt, null);
+		}
+		
+	}
+	
 	//랜덤 문자열 생성.
 	public String makeRandomAuthNum(){
 		Random rnd =new Random();

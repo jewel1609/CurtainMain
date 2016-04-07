@@ -44,4 +44,8 @@ public class MacBiz {
 		
 	}
 
+	public void deleteAuthNumByUnivEmail(String inputUnivEmail) {
+		macDAO.deleteAuthNumByUnivEmail(inputUnivEmail);
+	}
+
 }

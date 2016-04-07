@@ -41,7 +41,7 @@
 		
 		$(".doClaim").click(function () {
 			
-			var root = $(this).parent().parent().children(":eq(5)");
+			var root = $(this).parent().children(":eq(3)");
 			root.slideToggle();
 			
 		});
@@ -82,7 +82,7 @@
 					
 					if(jsonData.result){
 						$(".claim").hide();
-						alert("신고 완료");
+						 alert("신고가 완료되었습니다.");
 					}
 					else{
 						alert("세션이 만료되었습니다. 다시 로그인해주세요.");

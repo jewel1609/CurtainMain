@@ -42,18 +42,21 @@ public class CompAuthNumCheckServlet extends HttpServlet {
 		
 		boolean isExistsCompEmail = macBiz.checkAuthNumByUnivEmail(inputUnivEmail,inputNumberCheck);
 		
-		
-		StringBuffer json = new StringBuffer();
-		PrintWriter out = response.getWriter();
-		
-		json.append("{");
-		json.append("\"result\" : true");
-		json.append(", \"isCompEmail\" : " + isExistsCompEmail);
-		json.append("}");
-		
-		out.print(json.toString());
-		out.flush();
-		out.close();
+		if(isExistsCompEmail){
+			macBiz.deleteAuthNumByUnivEmail(inputUnivEmail);
+			
+			StringBuffer json = new StringBuffer();
+			PrintWriter out = response.getWriter();
+			
+			json.append("{");
+			json.append("\"result\" : true");
+			json.append(", \"isCompEmail\" : " + isExistsCompEmail);
+			json.append("}");
+			
+			out.print(json.toString());
+			out.flush();
+			out.close();
+		}
 	}
 
 }

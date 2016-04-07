@@ -41,18 +41,18 @@
 			<div id="demo1" class="w3-accordion-content w3-animate-left w3-padding">
 				<c:if test="${memberType eq 2 || memberType eq 3}">
 					<div id="oneLayerCurtain">
-						<a href="<c:url value="/oneLayerCurtain"/>">한겹</a> 
+						<a href="<c:url value="/oneLayerCurtain"/>">한겹커튼</a> 
 					</div>
 					<c:if test="${memberType eq 3 }">
 						<div id="twoLayerCurtain">
-							<a href="<c:url value="/twoLayerCurtain"/>">두겹</a>
+							<a href="<c:url value="/twoLayerCurtain"/>">두겹커튼</a>
 						</div>
 					</c:if>
 				</c:if>
 			</div>
 		</div>
 		<div id="freeArticle">
-			<a href="<c:url value="/secretArticleList"/>">자유게시판</a> 
+			<a href="<c:url value="/secretArticleList"/>">전국 대학생 게시판</a> 
 		</div>
 	</c:if>
 		

@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
+
 <style type="text/css">
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -24,9 +28,6 @@
 
 </style>
 
-<jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/view/common/leftMenu.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -119,16 +120,12 @@
 								</table>
 								<div style="float: right; margin-top: 20px; width: 200px;">
 									<div style="float: right; width: 80px;">
-										<div id="btnFAQ" class="btn btn-primary" style="float: right;
-											 border: 0px currentColor; border-image: none; 
-											 background-color: rgb(255, 51, 0); color: white;">
+										<div id="btnFAQ" class="btn btn-default" style="float: right; border-color: rgb(255, 51, 0); color: rgb(255, 51, 0);">
 											뒤로가기
 										</div>
 									</div>
 									<div style="float: right; width: 80px;">
-										<div id="btnDoRegisterQuestion" class="btn btn-primary" style="float: right;
-											 border: 0px currentColor; border-image: none; 
-											 background-color: rgb(255, 51, 0); color: white;">
+										<div id="btnDoRegisterQuestion" class="btn btn-default" style="float: right; border-color: rgb(255, 51, 0); color: rgb(255, 51, 0);">
 											문의하기
 										</div>
 									</div>

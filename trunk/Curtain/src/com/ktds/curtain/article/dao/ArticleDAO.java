@@ -863,7 +863,7 @@ public class ArticleDAO {
 				article.setArticleId(rs.getInt("ARTICLE_ID"));
 				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
-				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE").substring(0, 16));
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
 				article.setEmail(rs.getString("EMAIL"));
 				article.setNickName(rs.getString("NICK_NAME"));
@@ -1259,7 +1259,7 @@ public class ArticleDAO {
 				article.setArticleId(rs.getInt("ARTICLE_ID"));
 				article.setArticleTitle(rs.getString("ARTICLE_TITLE"));
 				article.setArticleDesc(rs.getString("ARTICLE_DESC"));
-				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE"));
+				article.setArticleModifyDate(rs.getString("ARTICLE_MODIFY_DATE").substring(0,16));
 				article.setArticleTypeName(rs.getString("ARTICLE_TYPE_NAME"));
 				article.setNickName(rs.getString("NICK_NAME"));
 				article.setBoardId(rs.getInt("BOARD_ID"));

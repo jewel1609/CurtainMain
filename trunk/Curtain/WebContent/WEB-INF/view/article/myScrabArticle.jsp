@@ -249,10 +249,10 @@
 	}
 </script>
 
-<div class="w3-container w3-main">
+<div class="w3-container">
 
 	<div class="w3-row">
-		 <div class="w3-col m7 w3-main wrapper"
+		 <div class="w3-col m7 wrapper"
          style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; overflow: auto; background-color:#F3F3F3; ">
 			
 			<div class="w3-row" style="background-color: white; border-bottom: 1px solid #bababa;">

@@ -156,7 +156,7 @@
 --%>
 
    <%-- 헤더 --%>
-   <div class="w3-main">
+   <div>
 
 		<header class="w3-container" style="background-color: #F4F4F4; border-bottom: 1px solid #bababa; height: 105px;">
 			<div id="btnHome" style="float: left; width: 200px; margin-top: 10px;">

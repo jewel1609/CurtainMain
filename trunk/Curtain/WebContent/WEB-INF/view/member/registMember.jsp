@@ -573,7 +573,7 @@ html, body, h1, h2, h3, h4, h5 {
 
 </script>
 	<div style="width:2000px; overflow-y : auto;"> 
-	<div class="w3-container w3-center w3-main"
+	<div class="w3-container w3-center"
 		style="margin-top: 30px; margin-bottom: 20px;">
 		
 		

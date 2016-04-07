@@ -77,9 +77,9 @@
 		});
 	</script>
 
-	<div class="w3-container w3-center w3-main">
+	<div class="w3-container w3-center">
 		<div class="w3-row">
-			<div class="w3-col m7 w3-main wrapper" style="margin-left: 350px; overflow: auto;">
+			<div class="w3-col m7 wrapper" style="margin-left: 350px; overflow: auto;">
 				<div class="w3-row-padding w3-margin-top">
 					<div class="w3-col m12">
 						<div style="float:left; margin: 20px 0px 20px 0px;">

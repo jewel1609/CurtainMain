@@ -5,6 +5,7 @@
 <jsp:include page="/WEB-INF/view/common/rightMenu.jsp"></jsp:include>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resource/css/member/modifyMember.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/css/article/secretArticle.css" />
 
 <script type="text/javascript">
 		
@@ -151,7 +152,7 @@
 
   <div class="w3-row" >
      <div class="w3-col m7 wrapper"
-         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#f3f3f3;">
        
          <div class="w3-row" style="border-bottom: 1px solid #bababa;">
             <div class="w3-margin-4" style="float:left; padding-left:10px;">
@@ -166,7 +167,7 @@
       <form id="modifyMember">
       
       <c:if test="${ companyCheck eq null }">
-        <div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
+        <div class="w3-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
       
         <div class="w3-col m12" align="left" >
               <ul class="list-group">
@@ -183,14 +184,14 @@
       </c:if>
       
       <c:if test="${ companyCheck ne null }">
-       <div class="w3-row-padding" align="left">
+       <div class="w3-padding" align="left">
         <div class="w3-col m12">
              <ul class="list-group">
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>기업 이메일</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
     					<p>${ member.email }</p>
     				</div>
     			</li>
@@ -204,29 +205,31 @@
         <div class="w3-col m12">
                <ul class="list-group">
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>일반 이메일</b>
           			</div>
-          			<div style="width:80%">
-    					<input type="text" tabindex="1" id="userEmail" name="userEmail" placeholder="${ member.secondEmail }" />
+          			<div style="width:80%; padding-top:5px;">
+    					<input type="text" class="form-control" 
+    					style="width:250px;" tabindex="1" id="userEmail" name="userEmail" placeholder="${ member.secondEmail }" /> 
     				</div>
     			</li>
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>닉네임</b>
           			</div>
-          			<div style="width:80%">
-    					<input type="text" tabindex="2" id="userNickName" name="userNickName" placeholder="${ member.nickName }" />
-						<button type="button" id="send" class="btn btn-primary" tabindex="3" style="background-color:#FF3300; border:0px;">
+          			<div style="width:80%; padding-top:5px;">
+    					<input type="text" class="form-control" tabindex="2" id="userNickName" 
+    					style="width:150px; float:left; margin-right:10px;" name="userNickName" placeholder="${ member.nickName }" />
+						<button type="button" id="send" class="btn btn-default" tabindex="3">
 							중복 체크
 						</button>	
     				</div>
     			</li>  
     			<li class="list-group-item">          			
-           			<div style="float:left; width:20%">
+           			<div style="float:left; width:20%; padding-top:7px;">
           				<b>회원 등급</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
     					<p>${ memberRank }</p>
     				</div>
     			</li>    			
@@ -241,10 +244,10 @@
         <div class="w3-col m12">
              <ul class="list-group">
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>학교 이름</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
     					<p>${ univName }</p>
     				</div>
     			</li>
@@ -258,10 +261,10 @@
         <div class="w3-col m12">
              <ul class="list-group">
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>기업 이름</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
     					<p>${ member.companyName }</p>
     				</div>
     			</li>
@@ -275,18 +278,18 @@
         <div class="w3-col m12">
              <ul class="list-group">
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>학과 소계열명</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
     					<p>${ majorGroupName }</p>
     				</div>
     			</li>
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>학과 이름</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
     					<p>${ majorName }</p>
     				</div>
     			</li>
@@ -299,26 +302,26 @@
         <div class="w3-col m12">
               <ul class="list-group">
 			    <li class="list-group-item">          			
-          				<div style="float:left; width:20%">
+          				<div style="float:left; width:20%; padding-top:7px;">
           				<b>회원가입 날짜</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
     					<p>${ member.signupDate }</p>
     				</div>
     			</li>
 			    <li class="list-group-item">          			
-          				<div style="float:left; width:20%">
+          				<div style="float:left; width:20%; padding-top:7px;">
           				<b>보유 포인트</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
     					<p>${ member.point }</p>
     				</div>
     			</li>
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>활동량</b>
           			</div>
-          			<div style="width:80%">
+          			<div style="width:80%; padding-top:7px;">
           				<p>게시글 수 : ${ countArticle }, 댓글 수 : ${ countReply }, 투표 참여 수 : ${ countSurvey }</p>
     				</div>
     			</li>    			
@@ -328,23 +331,22 @@
       </div>   
       </form> 
      	
-     <div class="w3-center-align">	
-		<div class="w3-btn-group">
-			<button type="button" id="modifyMemberBtn" class="btn btn-primary" tabindex="3" style="background-color:#FF3300; border:0px;">
+     <div class="w3-padding-bottom" align="center">	
+		<div class="w3-btn-group" >
+			<button type="button" id="modifyMemberBtn" class="btn btn-default" tabindex="3">
 				회원 정보 변경하기
 			</button>
-			<button type="button" id="cancelBtn1" class="btn btn-primary" tabindex="4" style="background-color:#c0c0c0; border:0px;">
+			<button type="button" id="cancelBtn1" class="btn btn-default" tabindex="4" style="border-color:#7b7b7b;">
 				<div style="margin-left:50px; margin-right:50px;">취소</div>
 			</button>
 		</div>
 	</div>
 	
-	<div class="w3-myfont w3-left-align">
-      	<div class="w3-col" style="width:30%">
+	
+	
+	<div class="w3-row" style="border-bottom: 1px solid #bababa; border-top: 1px solid #bababa;">
+      	 <div class="w3-margin-4" style="float:left; padding-left:10px;">
       		<h2>비밀번호 변경</h2>
-      	</div>
-      	<div class="w3-col" style="width:90%; margin-left:20px; margin-bottom:20px;">
-      		<h>비밀번호는 연속번호나 생년월일 등 타인이 알기 쉬운 숫자를 피해 공백 없이 8자 이상의 영문/숫자 조합으로 입력하여 주시기 바랍니다.</h>
       	</div>
       </div>
 	
@@ -353,27 +355,28 @@
         <div class="w3-col m12">
              <ul class="list-group">
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
-          				<b>기존 비밀 번호</b>
+          			<div style="float:left; width:20%; padding-top:7px;">
+          				<b>기존 비밀번호</b>
           			</div>
-          			<div style="width:80%">
-    					<input type="password"  tabindex="5" id="userPw" name="userPw"/>
+          			<div style="width:80%; padding-top:5px;">
+    					<input type="password" class="form-control" style="width:150px;" tabindex="5" id="userPw" name="userPw"/>
     				</div>
     			</li>
 			    <li class="list-group-item">          			
-          			<div style="float:left; width:20%">
+          			<div style="float:left; width:20%; padding-top:7px;">
           				<b>새로운 비밀번호</b>
           			</div>
-          			<div style="width:80%">
-    					<input type="password"  tabindex="6" id="userNewPw" name="userNewPw"/>
+          			<div style="width:80%; padding-top:5px;">
+    					<input type="password"  class="form-control" style="width:150px; float:left; margin-right:10px;" tabindex="6" id="userNewPw" name="userNewPw"/>
+          				<h6>연속번호나 생년월일 등 타인이 알기 쉬운 숫자를 피해 공백 없이 8자 이상의 영문/숫자 조합으로 입력하여 주시기 바랍니다.</h6>
     				</div>
     			</li>
 			    <li class="list-group-item">          			
-          		<div style="float:left; width:20%">
+          		<div style="float:left; width:20%; padding-top:7px;">
           				<b>새로운 비밀번호 확인</b>
           			</div>
-          			<div style="width:80%">
-    					<input type="password"  tabindex="7" id="userNewRePw" name="userNewRePw"/>
+          			<div style="width:80%; padding-top:5px;">
+    					<input type="password"  class="form-control" style="width:150px;" tabindex="7" id="userNewRePw" name="userNewRePw"/>
     				</div>
     			</li>    			
 			  </ul>          
@@ -383,12 +386,12 @@
 
 	  </form>	
 		      
-      <div class="w3-center-align">	
+      <div class="w3-padding-bottom" align="center">	
 		<div class="w3-btn-group">
-			<button type="button" id="modifyPasswordBtn" class="btn btn-primary " tabindex="8" style="background-color:#FF3300; border:0px;">
+			<button type="button" id="modifyPasswordBtn" class="btn btn-default " tabindex="8" >
 				비밀번호 변경하기
 			</button>
-			<button type="button" id="cancelBtn2" class="btn btn-primary" tabindex="9" style="background-color:#c0c0c0; border:0px;">
+			<button type="button" id="cancelBtn2" class="btn btn-default" tabindex="9" style="border-color:#7b7b7b;">
 				<div style="margin-left:50px; margin-right:50px;">취소</div>
 			</button>
 		</div>

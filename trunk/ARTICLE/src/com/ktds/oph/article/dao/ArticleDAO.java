@@ -734,6 +734,42 @@ public class ArticleDAO {
 			closeDB(conn, stmt, rs);
 		}
 	}
+	
+
+	public ClaimArticleVO getClaimInfoByClaimArticleId(String articleClaimId) {
+		loadOracleDriver();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection(Const.DB_URL, Const.DB_ID, Const.DB_PASSWORD);
+			
+			String query =  XML.getNodeString("//query/article/getClaimInfoByClaimArticleId/text()");
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1,Integer.parseInt(articleClaimId));
+			rs = stmt.executeQuery();
+			ClaimArticleVO claimArticleVO = null;
+			if(rs.next()){
+				claimArticleVO = new ClaimArticleVO();
+				claimArticleVO.setArticleClaimId(rs.getInt("ARTICLE_CLAIM_ID"));
+				claimArticleVO.setEmail(rs.getString("EMAIL"));
+				claimArticleVO.setArticleId(rs.getInt("ARTICLE_ID"));
+				claimArticleVO.setReplyId(rs.getInt("REPLY_ID"));
+				claimArticleVO.setClaimDate(rs.getString("CLAIM_DATE"));
+				claimArticleVO.setClaimText(rs.getString("CLAIM_TEXT"));
+				
+			}
+			return claimArticleVO;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		finally {
+			this.closeDB(conn, stmt, rs);
+		}
+	}
+
+	
 	///////////////////////////////////////////////////////////////////////////////
 	
 

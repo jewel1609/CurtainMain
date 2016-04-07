@@ -145,7 +145,7 @@
     	<tr id="registerNewMajor">
     		<td colspan=3 >
     		<form id = "registerNewMajorForm">
-    		<input type="hidden" class="majorGroupId1" name="majorGroupId1" value=""/>
+    		<input type="hidden" class="majorGroupId1" name="majorGroupId1" value="${major.majorGroupId}"/>
     			학과명 : <input type="text" id ="newMajor" name="newMajor"/>
     			<span class ="insertMajorBtn" id ="insertMajorBtn">등록</span>
     		</form>

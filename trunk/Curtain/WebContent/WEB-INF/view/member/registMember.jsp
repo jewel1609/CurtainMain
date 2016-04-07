@@ -28,6 +28,11 @@ html, body, h1, h2, h3, h4, h5 {
 		$('#registStdBtn').attr('disabled',true); // 버튼 비활성화
 		$('#registCompBtn').attr('disabled',true); // 버튼 비활성화
 		
+		 $(".close").click(function() {
+	         $("#modal").modal('hide');
+	         $("#modal2").modal('hide');
+	      });
+		
 		$("#inputUnivEmail").keyup(function(){
 			console.log($("#inputUnivEmail").val());
 			//AJAX 준비
@@ -843,7 +848,7 @@ html, body, h1, h2, h3, h4, h5 {
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal-lg" aria-hidden="true">&times;</button>
+	        <button type="button" class="close" data-dismiss="modal-lg" aria-hidden="true" stlye="float:right" >&times;</button>
 	        <h4 class="modal-title" id="myModalLabel">개인화면 약관</h4>
 	      </div>
 	      <div class="modal-body">

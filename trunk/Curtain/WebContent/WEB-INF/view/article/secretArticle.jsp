@@ -302,7 +302,7 @@
 		
 		<div class="w3-row" >
 			<div class="w3-col m7 wrapper"
-		         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+		         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#f3f3f3;">
 		         
 		         <!-- 게시판 헤더 -->
 		         

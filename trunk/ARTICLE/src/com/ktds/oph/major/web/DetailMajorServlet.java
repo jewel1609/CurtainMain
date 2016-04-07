@@ -112,6 +112,7 @@ public class DetailMajorServlet extends HttpServlet {
 			
 			request.setAttribute("majorSearchVO", majorSearchVO);
 			request.setAttribute("majors", majors);
+			request.setAttribute("majorGroupId", majorGroupId);
 			RequestDispatcher rd = request.getRequestDispatcher("//WEB-INF/view/major/majorDetail.jsp");
 			rd.forward(request, response);
 		}

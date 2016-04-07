@@ -297,7 +297,7 @@
 
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
-<div class="w3-container w3-main" style="margin-bottom: 20px;">
+<div class="w3-container" style="margin-bottom: 20px;">
 	<c:set var="memberType" value="${ sessionScope._MEMBER_.memberTypeId }" />
 	<c:set var="univId" value="${ sessionScope._MEMBER_.univId }" />
 	<c:set var="majorGroupId" value="${ sessionScope._MEMBER_.majorGroupId }" />
@@ -308,7 +308,7 @@
 	
 	
 	<div class="w3-row" >
-		<div class="w3-col m7 w3-main wrapper" style="border-right:1px solid #bababa;
+		<div class="w3-col m7 wrapper" style="border-right:1px solid #bababa;
     			background-color: #F3F3F3; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
 		
 				<div class="w3-row" style="border-bottom: 1px solid #bababa;">

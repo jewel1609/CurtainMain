@@ -293,12 +293,12 @@
 
 <input type="hidden" id="isFword" value="<%= request.getParameter("isFword") %>" />
 
-	<div class="w3-container w3-main wrapper" style="margin-top:0px;">
+	<div class="w3-container wrapper" style="margin-top:0px;">
 	
 		<c:set var="oneLayerCurtainMemberCount" value="${ sessionScope._MEMBER_.oneLayerCurtainMemberCount }" />
 		
 		<div class="w3-row" >
-			 <div class="w3-col m7 w3-main wrapper"
+			 <div class="w3-col m7 wrapper"
         		 style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">	
 				
 				<!-- 게시판 헤더 -->

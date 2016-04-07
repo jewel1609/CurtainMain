@@ -145,25 +145,30 @@
 
 </script>
 
+
+<div class="w3-container wrapper" style="margin-top:0px;">
 <c:set var="companyCheck" value="${ sessionScope._COMPANY_ }" />
 
-<div class="w3-container w3-center w3-main" style="margin-bottom:20px;">    
   <div class="w3-row" >
-    <div class="w3-col m7 w3-main wrapper" style="margin-left:350px; margin-right: 100px; margin-right: 100px; overflow: auto;">
-      
-      <div class="w3-myfont w3-left-align">
-      	<div class="w3-col" style="width:30%">
+     <div class="w3-col m7 wrapper"
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
+       
+         <div class="w3-row" style="border-bottom: 1px solid #bababa;">
+            <div class="w3-margin-4" style="float:left; padding-left:10px;">
       		<h2>회원정보 변경</h2>
       	</div>
-      	<div class="w3-col" style="width:70%; margin-top:35px;">
-      		<p>닉네임과 이메일 주소는 변경 시 꼭 회원  정보를 변경하여 주세요!</p>
+            <div style="float:left; padding-top:30px;">
+      		<p style="padding-left:10px;">비밀번호를 찾을 수 있는 일반 이메일주소와 닉네임을 변경하실 수 있습니다.</p>
       	</div>
       </div>
+      
+      
       <form id="modifyMember">
       
       <c:if test="${ companyCheck eq null }">
-      <div class="w3-row-padding" align="left">
-        <div class="w3-col m12">
+        <div class="w3-row-padding" style="border-bottom:1px solid #BABABA; background-color:#F3F3F3;">
+      
+        <div class="w3-col m12" align="left" >
               <ul class="list-group">
 			    <li class="list-group-item">          			
 			    <div style="float:left; width:20%">

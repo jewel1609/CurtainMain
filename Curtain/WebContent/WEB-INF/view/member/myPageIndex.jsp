@@ -41,11 +41,11 @@
 	
 
 </script>
-<div class="w3-container w3-center w3-main" style="margin-top:0px;">    
+<div class="w3-container w3-center" style="margin-top:0px;">    
 <c:set var="companyCheck" value="${ sessionScope._COMPANY_ }" />
 
   <div class="w3-row" >
-     <div class="w3-col m7 w3-main wrapper"
+     <div class="w3-col m7 wrapper"
          style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; ">
 
       <div class="w3-myfont w3-left-align" >
@@ -53,12 +53,6 @@
       	
 	      <div class="w3-margin-4" style="float:left; padding-left:10px;">
 	      		<h2>마이페이지</h2>
-	      	</div>
-	      	<div class="w3-col" style="width:10%; margin-top:30px;">
-      			<c:if test="${ companyCheck ne null }">
-      			<button type="button" id="point" class="btn btn-primary" style="background-color:#FF3300; border:0px;"
-      			data-toggle="modal" data-target="#myModal" >포인트 결제</button>
-      			</c:if>
 	      	</div>
       	</div>
       </div>
@@ -111,6 +105,13 @@
     				<h3>포인트</h3>
     				<img src="/resource/img/point.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;">
     				<p>${ member.point } 포인트</p> 
+	    			<c:if test="${ companyCheck ne null }">
+	      			<button type="button" id="point" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal" >포인트 결제</button>
+	      			</c:if>
+    				
+    				
+    				
+    				
   				</div>
   				<div class="w3-container w3-third">	
     				<h3>활동량</h3>

@@ -49,7 +49,6 @@ public class DoDeleteReplyServlet extends HttpServlet {
 		MemberVO member = (MemberVO)session.getAttribute("_MEMBER_");
 		
 		int replyId = Integer.parseInt(request.getParameter("delete"));
-		System.out.println(replyId);
 		int articleId = Integer.parseInt(request.getParameter("articleId2"));
 		
 		ReplyVO replyVO = new ReplyVO();

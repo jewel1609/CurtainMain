@@ -121,7 +121,8 @@
 
 	<prohibitedWord>
 		<getAllWords>
-			SELECT  PROHIBITED_WORD_NAME
+			SELECT  PROHIBITED_WORD_ID
+					, PROHIBITED_WORD_NAME
 			FROM    PROHIBITED_WORD
 		</getAllWords>
 	</prohibitedWord>

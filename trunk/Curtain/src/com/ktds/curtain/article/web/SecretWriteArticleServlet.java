@@ -2,6 +2,7 @@ package com.ktds.curtain.article.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -76,16 +77,36 @@ public class SecretWriteArticleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO loginMember = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
-
-		for (int i = 0; i < wordList.size(); i++) {
-			if (articleTitle.contains(wordList.get(i)) || articleDescription.contains(wordList.get(i))) {
-				response.sendRedirect("/secretArticleList?isFword=1");
-				return;
-			}  	
-			break;
+		List<List<String>> wordList = (List<List<String>>) session.getAttribute("_WORDLIST_");
+		
+		if ( !boardId.equals(BoardId.SECRET_BOARD_LEVEL2)) {
+			for (int i = 0; i < wordList.size(); i++) {
+				List<String> words = new ArrayList<String>();
+				words = wordList.get(i);
+				for ( String word : words) {
+					if (articleTitle.contains(word)) {
+						if ( boardId.equals(BoardId.FREE_BOARD)) {
+							response.sendRedirect("/secretArticleList?isFword=1");
+						}
+						else if (boardId.equals(BoardId.SECRET_BOARD_LEVEL1)) {
+							response.sendRedirect("/oneLayerCurtain?isFword=1");
+						}
+						return;
+					}
+					else if (articleDescription.contains(word)) {
+						if ( boardId.equals(BoardId.FREE_BOARD)) {
+							response.sendRedirect("/secretArticleList?isFword=1");
+						}
+						else if (boardId.equals(BoardId.SECRET_BOARD_LEVEL1)) {
+							response.sendRedirect("/oneLayerCurtain?isFword=1");
+						}
+						return;
+					}
+				}
+			}
 		}
 		
+
 		ArticleVO article = new ArticleVO();
 		article.setArticleTitle(articleTitle);
 		article.setArticleDesc(articleDescription);

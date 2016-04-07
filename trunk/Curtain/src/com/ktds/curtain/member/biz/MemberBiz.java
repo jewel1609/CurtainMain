@@ -123,7 +123,8 @@ public class MemberBiz {
 			String univName = univDAO.getUnivNameByUnivId(member.getUnivId());
 			String majorGroupName = majorDAO.getMajorGroupNameByMajorGroupId(member.getMajorGroupId());
 			
-			List<String> wordList = wordDAO.getAllWords();
+			// 욕설
+			List<List<String>> wordList = wordDAO.getAllWords();
 			
 			session.setAttribute("_MEMBER_", currentMember);
 			session.setAttribute("_UNIVNAME_", univName);

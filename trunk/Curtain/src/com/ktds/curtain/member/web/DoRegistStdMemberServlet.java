@@ -78,7 +78,7 @@ public class DoRegistStdMemberServlet extends HttpServlet {
 		memberVO.setTwoLayerCurtainMemberCount(stdMemberBiz.getTwoLayerCurtainMemberCount());
 		
 		//비방글 필터
-		List<String> wordList = prohibitedWordBiz.getProhibitedWordList();
+		List<List<String>> wordList = prohibitedWordBiz.getProhibitedWordList();
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("_MEMBER_", memberVO);

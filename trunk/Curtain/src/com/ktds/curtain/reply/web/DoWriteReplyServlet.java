@@ -1,6 +1,7 @@
 package com.ktds.curtain.reply.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ktds.curtain.article.biz.ArticleBiz;
 import com.ktds.curtain.article.vo.ArticleVO;
+import com.ktds.curtain.article.vo.BoardId;
 import com.ktds.curtain.history.biz.OperationHistoryBiz;
 import com.ktds.curtain.history.vo.ActionCode;
 import com.ktds.curtain.history.vo.BuildDescription;
@@ -62,17 +64,22 @@ public class DoWriteReplyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("_MEMBER_");
 		
-		List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
-		
+		List<List<String>> wordList = (List<List<String>>) session.getAttribute("_WORDLIST_");
+
 		ArticleVO articleVO = articleBiz.showDetail(articleId, member);
-		
-		for (int i = 0; i < wordList.size(); i++) {
-			if (reply.contains(wordList.get(i))) {
-				response.sendRedirect("/showDetail?isFword=1&articleId="+articleId+"&boardId="+articleVO.getBoardId());
-				return;
-			}  	
-			break;
+		if (articleVO.getBoardId()!=Integer.parseInt(BoardId.SECRET_BOARD_LEVEL2)) {
+			for (int i = 0; i < wordList.size(); i++) {
+				List<String> words = new ArrayList<String>();
+				words = wordList.get(i);
+				for ( String word : words) {
+					if (reply.contains(word)) {
+						response.sendRedirect("/showDetail?isFword=1&articleId="+articleId+"&boardId="+articleVO.getBoardId());
+						return;
+					}
+				}
+			}
 		}
+		
 		
 		ReplyVO replyInfo = new ReplyVO();
 		replyInfo.setArticleId(articleId);

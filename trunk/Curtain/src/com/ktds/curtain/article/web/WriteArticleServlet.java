@@ -2,6 +2,7 @@ package com.ktds.curtain.article.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -74,20 +75,45 @@ public class WriteArticleServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				MemberVO stdMember = (MemberVO) session.getAttribute("_MEMBER_");
 				
-				List<String> wordList = (List<String>) session.getAttribute("_WORDLIST_");
+				List<List<String>> wordList = (List<List<String>>) session.getAttribute("_WORDLIST_");
 
 				for (int i = 0; i < wordList.size(); i++) {
-					if (articleTitle.contains(wordList.get(i)) || articleDescription.contains(wordList.get(i))) {
-						if ( boardId.equals(BoardId.MAJOR_BOARD)) {
-						response.sendRedirect("/studentMajorAritlce?isFword=1");
+					List<String> words = new ArrayList<String>();
+					words = wordList.get(i);
+					for ( String word : words) {
+						if (articleTitle.contains(word)) {
+							if ( boardId.equals(BoardId.MAJOR_BOARD)) {
+								response.sendRedirect("/studentMajorAritlce?isFword=1");
+							}
+							else if (boardId.equals(BoardId.UNIV_BOARD)) {
+								response.sendRedirect("/studentUnivArticle?isFword=1");
+							}
+							return;
 						}
-						else if (boardId.equals(BoardId.UNIV_BOARD)) {
-							response.sendRedirect("/studentUnivArticle?isFword=1");
+						else if (articleDescription.contains(word)) {
+							if ( boardId.equals(BoardId.MAJOR_BOARD)) {
+								response.sendRedirect("/studentMajorAritlce?isFword=1");
+							}
+							else if (boardId.equals(BoardId.UNIV_BOARD)) {
+								response.sendRedirect("/studentUnivArticle?isFword=1");
+							}
+							return;
 						}
-						return;
-					}  	
-					break;
+					}
 				}
+				
+//				for (int i = 0; i < wordList.size(); i++) {
+//					if (articleTitle.contains(wordList.get(i)) || articleDescription.contains(wordList.get(i))) {
+//						if ( boardId.equals(BoardId.MAJOR_BOARD)) {
+//						response.sendRedirect("/studentMajorAritlce?isFword=1");
+//						}
+//						else if (boardId.equals(BoardId.UNIV_BOARD)) {
+//							response.sendRedirect("/studentUnivArticle?isFword=1");
+//						}
+//						return;
+//					}  	
+//					break;
+//				}
 				
 				ArticleVO article = new ArticleVO();
 				article.setArticleTitle(articleTitle);

@@ -496,6 +496,31 @@
 	</member>
 	
 	<article>
+		<deleteClaimArticle>
+			DELETE
+			FROM	ARTICLE_CLAIM
+			WHERE	ARTICLE_ID = ?
+		</deleteClaimArticle>
+		<deleteArticleReply>
+			DELETE
+			FROM	REPLY
+			WHERE	ARTICLE_ID = ?
+		</deleteArticleReply>
+		<deleteArticleScrab>
+			DELETE
+			FROM	ARTICLE_SCRAB
+			WHERE	ARTICLE_ID = ?
+		</deleteArticleScrab>
+		<deleteArticleDislike>
+			DELETE
+			FROM	ARTICLE_DISLIKE
+			WHERE	ARTICLE_ID = ?
+		</deleteArticleDislike>
+		<deleteArticleLike>
+			DELETE
+			FROM	ARTICLE_LIKE
+			WHERE	ARTICLE_ID = ?
+		</deleteArticleLike>
 		<getClaimInfoByClaimArticleId>
 			SELECT	*
 			FROM	ARTICLE_CLAIM
@@ -735,6 +760,11 @@
 	</file>
 
 	<reply>
+		<deleteReply>
+			DELETE
+			FROM	REPLY
+			WHERE	REPLY_ID = ?
+		</deleteReply>
 		<getClaimReplyInfoByReplyId>
 			SELECT	*
 			FROM	REPLY

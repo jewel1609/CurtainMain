@@ -10,7 +10,7 @@
 			if (confirm("정말 삭제하시겠습니까?")) {
 				var form = $("#claimArticleForm");
 				form.attr("method", "post");
-				form.attr("action", "<c:url value="/deleteClaimArticle" />");
+				form.attr("action", "<c:url value="/deleteArticle" />");
 				form.submit();
 			}
 		});

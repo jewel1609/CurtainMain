@@ -119,11 +119,37 @@ public class ArticleBiz {
 		if( member.getMemberTypeId() == 6 ) {
 			for (String articleId : deleteArticleId ) {
 				articleDAO.deleteArticle(articleId);
+				
+				articleDAO.deleteArticleLike(articleId);
+				// 싫어요 목록에 있는 것 삭제
+				articleDAO.deleteArticleDislike(articleId);
+				// 스크랩 목록에 있는 것 삭제
+				articleDAO.deleteArticleScrab(articleId);
+				// 댓글 삭제
+				articleDAO.deleteArticleReply(articleId);
+				
+				articleDAO.deleteClaimArticle(articleId);
 			}
 		}
 		
 	}
-
+	
+	public void deleteArticles(String deleteArticleId, MemberVO member) {
+		if( member.getMemberTypeId() == 6 ) {
+				articleDAO.deleteArticle(deleteArticleId);
+				
+				articleDAO.deleteArticleLike(deleteArticleId);
+				// 싫어요 목록에 있는 것 삭제
+				articleDAO.deleteArticleDislike(deleteArticleId);
+				// 스크랩 목록에 있는 것 삭제
+				articleDAO.deleteArticleScrab(deleteArticleId);
+				// 댓글 삭제
+				articleDAO.deleteArticleReply(deleteArticleId);
+				
+				articleDAO.deleteClaimArticle(deleteArticleId);
+		}
+		
+	}
 
 	public ArticleVO getArticleInfoByArticleId(String articleId, MemberVO member) {
 		if( member.getMemberTypeId() == 6 ) {
@@ -139,5 +165,6 @@ public class ArticleBiz {
 		}
 		return null;
 	}
+
 
 }

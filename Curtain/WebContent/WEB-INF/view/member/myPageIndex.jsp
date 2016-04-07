@@ -116,24 +116,21 @@
     				<h3>활동량</h3>
     				<div class="w3-container w3-third">
     					<div>
-	    					<img src="/resource/img/article.png" class="w3-center w3-margin-bottom w3-margin-right" style="width:100px; height: 100px;
-	    					position: relative; left:-13px;">
+	    					<img src="/resource/img/article.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;">
     					</div>
     					<p>게시글</p>
     					<p>${ countArticle } 개</p>
     				</div>
     				<div class="w3-container w3-third">
     					<div>
-	    					<img src="/resource/img/reply.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;
-	    					position: relative; left:-13px;">
+	    					<img src="/resource/img/reply.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;">
     					</div>
     					<p>댓글</p>
     					<p>${ countReply } 개</p>
     				</div>
     				<div class="w3-container w3-third">
     					<div>
-	    					<img src="/resource/img/vote.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;
-	    					position: relative; left:-13px;">
+	    					<img src="/resource/img/vote.png" class="w3-center w3-margin-bottom" style="width:100px; height: 100px;">
     					</div>
     					<p>투표참여</p>
     					<p>${ countSurvey } 번</p>

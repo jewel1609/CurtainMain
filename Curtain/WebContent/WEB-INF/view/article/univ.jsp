@@ -92,126 +92,130 @@
 			)	
 		});
 		
-		$(".like").click(function() {		
-			
-			$.post(		
-				"/like"
-				, { "articleId" : $(this).attr("id")
-					, "boardId" : $("#boardId").val()
-				}
-				, function(data) {
-					
-					var jsonData = {};		
-					
-					try {
-						jsonData = JSON.parse(data);
-					}
-					catch(e) {
-						jsonData.result = false;
-					}
-					
-					if(jsonData.result){
-						var articleId = jsonData.articleId;
-						var result = "#like" + articleId;
-						if(jsonData.doLike){
-							$(result).attr("style", "color:#a9d039");
-							var count = "#likeCount"+jsonData.articleId;
-							$(count).text(jsonData.updateLikeCount);
-						}
-						else{
-							 $(result).attr("style", "color:#7d7d7d");
-							var count = "#likeCount"+jsonData.articleId;
-							$(count).text(jsonData.updateLikeCount);
-						}	
-					}
-					else{
-						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-						location.href="/";
-					}
-				}
-			)	
-		});
+		$(".like").click(function() {   
 
-		
+            $.post(      
+               "/like"
+               , { "articleId" : $(this).attr("id")
+                  , "boardId" : $("#boardId").val()
+               }
+               , function(data) {
+                  
+                  var jsonData = {};      
+                  
+                  try {
+                     jsonData = JSON.parse(data);
+                  }
+                  catch(e) {
+                     jsonData.result = false;
+                  }
+                  
+                  if(jsonData.result){
+                     var articleId = jsonData.articleId;
+                     var result = ".like" + articleId;
+                     if(jsonData.doLike){
+                        $(result).attr("style", "color:#a9d039");
+                        var count = ".likeCount"+jsonData.articleId;
+                        $(count).text(jsonData.updateLikeCount);
+                     }
+                     else{
+                        $(result).attr("style", "color:#7d7d7d");
+                        var count = ".likeCount"+jsonData.articleId;
+                        $(count).text(jsonData.updateLikeCount);
+                     }   
+                  }
+                  else{
+                     alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+                     location.href="/";
+                  }
+               }
+              )
+               
+              });
+            
+            
+         
 
-		$(".dislike").click(function() {		
-			
-			$.post(		
-				"/dislike"
-				, { "articleId" : $(this).attr("id")
-					, "boardId" : $("#boardId").val()
-				}
-				, function(data) {
-					
-					var jsonData = {};		
-					
-					try {
-						jsonData = JSON.parse(data);
-					}
-					catch(e) {
-						jsonData.result = false;
-					}
-					
-					if(jsonData.result){
-						var articleId = jsonData.articleId;
-						var result = "#dislike" + articleId;
-						if(jsonData.isDislike){
-							 $(result).attr("style", "color:#a9d039");
-							var count = "#dislikeCount"+jsonData.articleId;
-							$(count).text(jsonData.updateDislikeCount);
-						}
-						else{
-							$(result).attr("style", "color:#7d7d7d");
-							var count = "#dislikeCount"+jsonData.articleId;
-							$(count).text(jsonData.updateDislikeCount);
-						}	
-					}
-					else{
-						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-						location.href="/";
-					}
-				}
-			)	
-		});
+   $(".dislike").click(function() {      
 
-		
-		$(".scrab").click(function(){
-			$.post(
-				"/scrab"
-				, { "articleId" : $(this).attr("id")
-					, "boardId" : $("#boardId").val()	
-				}
-				, function(data){
-					var jsonData = {};
-					try{
-						jsonData = JSON.parse(data);
-						
-					}
-					catch(e){
-						jsonData.result = false;
-					}
-					if(jsonData.result){
-						var articleId = jsonData.articleId;
-						var result = "#scrab" + articleId;
-						if(jsonData.isScrab){
-							console.log(jsonData.isScrab);
-							alert("스크랩되었습니다.");
-							  $(result).attr("style", "color:#a9d039");
-						}
-						else{
-							alert("스크랩 해제 되었습니다.");
-							$(result).attr("style", "color:#7d7d7d");
-						}
-					}
-					else{
-						alert("세션이 만료되었습니다. 다시 로그인해주세요.");
-						location.href="/";
-					}
-					
-				}
-			)
-			
-		});
+            $.post(      
+               "/dislike"
+               , { "articleId" : $(this).attr("id")
+                  , "boardId" : $("#boardId").val()
+               }
+               , function(data) {
+                  
+                  var jsonData = {};      
+                  
+                  try {
+                     jsonData = JSON.parse(data);
+                  }
+                  catch(e) {
+                     jsonData.result = false;
+                  }
+                  
+                  if(jsonData.result){
+                     var articleId = jsonData.articleId;
+                     var result = ".dislike" + articleId;
+                     if(jsonData.isDislike){
+                        $(result).attr("style", "color:#a9d039");
+                        var count = ".dislikeCount"+jsonData.articleId;
+                        $(count).text(jsonData.updateDislikeCount);
+                     }
+                     else{
+                        $(result).attr("style", "color:#7d7d7d");
+                        var count = ".dislikeCount"+jsonData.articleId;
+                        $(count).text(jsonData.updateDislikeCount);
+                     }   
+                  }
+                  else{
+                     alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+                     location.href="/";
+                  }
+               }
+               )
+               
+   });
+
+   
+   $(".scrab").click(function(){
+      $.post(
+         "/scrab"
+         , { "articleId" : $(this).attr("id")
+            , "boardId" : $("#boardId").val()   
+         }
+
+               , function(data){
+                  var jsonData = {};
+                  try{
+                     jsonData = JSON.parse(data);
+                     
+                  }
+                  catch(e){
+                     jsonData.result = false;
+                  }
+                  if(jsonData.result){
+                     var articleId = jsonData.articleId;
+                     var result = ".scrab" + articleId;
+                     if(jsonData.isScrab){
+                        console.log(jsonData.isScrab);
+                        alert("스크랩되었습니다.");
+                        $(result).attr("style", "color:#a9d039");
+                     }
+                     else{
+                        alert("스크랩 해제 되었습니다.");
+                        $(result).attr("style", "color:#7d7d7d");
+                     }
+                  }
+                  else{
+                     alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+                     location.href="/";
+                  }
+               }
+               )
+                  
+      
+   });
 		
 		$("#writeBtn").click(function() {
 			
@@ -482,22 +486,22 @@
 									
 									<div style="float:left; margin-right:10px;">
 										<c:if test="${topArticle.like}">
-											<span class="like glyphicon glyphicon-thumbs-up" id="like${topArticle.articleId}" style="color:#a9d039;"></span>
-											<span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>&nbsp; &nbsp;
+											<span class="like glyphicon glyphicon-thumbs-up like${topArticle.articleId}" id="like${topArticle.articleId}" style="color:#a9d039;"></span>
+											<span class="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>&nbsp; &nbsp;
 										</c:if>
 										<c:if test="${!topArticle.like}">
-											<span class="like glyphicon glyphicon-thumbs-up" id="like${topArticle.articleId}" style="color:#7d7d7d;"></span>
-											<span id="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
+											<span class="like glyphicon glyphicon-thumbs-up like${topArticle.articleId}" id="like${topArticle.articleId}" style="color:#7d7d7d;"></span>
+											<span class="likeCount${topArticle.articleId}">${topArticle.articleLikes}</span>
 										</c:if>
 									</div>
 									<div>
 										<c:if test="${topArticle.dislike}">
-											<span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${topArticle.articleId}" style="color:#a9d039;"></span>
-											<span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
+											<span class="dislike glyphicon glyphicon-thumbs-down dislike${topArticle.articleId}" id="dislike${topArticle.articleId}" style="color:#a9d039;"></span>
+											<span class="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
 										</c:if>
 										<c:if test="${!topArticle.dislike}">
-											<span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${topArticle.articleId}" style="color:#7d7d7d;"></span>
-											<span id="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
+											<span class="dislike glyphicon glyphicon-thumbs-down dislike${topArticle.articleId}" id="dislike${topArticle.articleId}" style="color:#7d7d7d;"></span>
+											<span class="dislikeCount${topArticle.articleId}">${topArticle.articleDislikes}</span>
 										</c:if>
 									</div>
 								</div>
@@ -505,11 +509,11 @@
 									<a href="<c:url value="/hitsCount?boardId=1&articleId=${topArticle.articleId}"/>"><span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span></a>
 									${topArticle.replyCount}&nbsp; &nbsp;
 									<c:if test="${topArticle.scrab}">
-										<span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${topArticle.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;
+										<span class="scrab glyphicon glyphicon glyphicon-tag scrab${topArticle.articleId}" id="scrab${topArticle.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;
 									</c:if>
 									
 									<c:if test="${!topArticle.scrab}">
-										<span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${topArticle.articleId}" style="color:#7d7d7d;"></span>  스크랩하기&nbsp; &nbsp;
+										<span class="scrab glyphicon glyphicon glyphicon-tag scrab${topArticle.articleId}" id="scrab${topArticle.articleId}" style="color:#7d7d7d;"></span>  스크랩하기&nbsp; &nbsp;
 									</c:if>
 									
 									<span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기
@@ -573,22 +577,22 @@
 									<div class="w3-col m6 w3-padding-bottom">
 										<div style="float:left; margin-right:10px;">
 											<c:if test="${article.like}">
-												 <span class="like glyphicon glyphicon-thumbs-up" id="like${article.articleId}" style="color:#a9d039;"></span>
-												<span id="likeCount${article.articleId}">${article.articleLikes}</span>
+												 <span class="like glyphicon glyphicon-thumbs-up like${article.articleId}" id="like${article.articleId}" style="color:#a9d039;"></span>
+												<span class="likeCount${article.articleId}">${article.articleLikes}</span>
 											</c:if>
 											<c:if test="${!article.like}">
-												<span class="like glyphicon glyphicon-thumbs-up" id="like${article.articleId}" style="color:#7d7d7d;"></span>
-												<span id="likeCount${article.articleId}">${article.articleLikes}</span>
+												<span class="like glyphicon glyphicon-thumbs-up like${article.articleId}" id="like${article.articleId}" style="color:#7d7d7d;"></span>
+												<span class="likeCount${article.articleId}">${article.articleLikes}</span>
 											</c:if>
 										</div>
 										<div>
 											<c:if test="${article.dislike}">
-												<span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${article.articleId}" style="color:#a9d039;"></span>
-												<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
+												<span class="dislike glyphicon glyphicon-thumbs-down dislike${article.articleId}" id="dislike${article.articleId}" style="color:#a9d039;"></span>
+												<span class="dislikeCount${article.articleId}">${article.articleDislikes}</span>
 											</c:if>
 											<c:if test="${!article.dislike}">
-												<span class="dislike glyphicon glyphicon-thumbs-down" id="dislike${article.articleId}" style="color:#7d7d7d;"></span>
-												<span id="dislikeCount${article.articleId}">${article.articleDislikes}</span>
+												<span class="dislike glyphicon glyphicon-thumbs-down dislike${article.articleId}" id="dislike${article.articleId}" style="color:#7d7d7d;"></span>
+												<span class="dislikeCount${article.articleId}">${article.articleDislikes}</span>
 											</c:if>
 										</div>
 									</div>
@@ -596,11 +600,11 @@
                            				<a href="<c:url value="/hitsCount?boardId=1&articleId=${article.articleId}"/>"><span class="glyphicon glyphicon-edit" style="color:#7d7d7d;"></span></a>  ${article.replyCount} &nbsp; &nbsp;
 									
 										  <c:if test="${article.scrab}">
-				                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;
+				                              <span class="scrab glyphicon glyphicon glyphicon-tag scrab${article.articleId}" id="scrab${article.articleId}" style="color:#a9d039;"></span>  스크랩하기&nbsp; &nbsp;
 				                           </c:if>
 				                           
 				                           <c:if test="${!article.scrab}">
-				                              <span class="scrab glyphicon glyphicon glyphicon-tag" id="scrab${article.articleId}" style="color:#7d7d7d;"></span>  스크랩하기&nbsp; &nbsp;
+				                              <span class="scrab glyphicon glyphicon glyphicon-tag scrab${article.articleId}" id="scrab${article.articleId}" style="color:#7d7d7d;"></span>  스크랩하기&nbsp; &nbsp;
 				                           </c:if>
 				                           
 	                           <span class="doClaim glyphicon glyphicon-send" style="color:#7d7d7d;"></span>  신고하기

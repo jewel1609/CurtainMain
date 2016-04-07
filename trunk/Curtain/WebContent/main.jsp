@@ -61,9 +61,6 @@
 <script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
-<!-- 말풍선 -->
-<link rel="stylesheet" type="text/css" href="<c:url value="/resource/css/member/arrowBox.css" />" />
-
 <!-- Script to Activate the Carousel -->
 <script>
 	$('.carousel').carousel({
@@ -111,25 +108,23 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<div class="fill" style="background-image: url(/resource/img/1.jpg);"></div>
+				<div class="fill" style="background-image: url(/resource/img/2.png);"></div>
 				<div class="carousel-caption">
-					<h2>커튼은 전국 대학생들이 같은 전공 사람들끼리, 같은 대학 사람들끼리 <br/>
-					공개적으로 말하기 어려운 고민과 생각을 나눌 수 있는 익명 커뮤니티입니다. </h2>
+				
 				</div>
 			</div>
 			<div class="item">
 				<div class="fill"
-					style="background-image: url(/resource/img/2.jpg);"></div>
+					style="background-image: url(/resource/img/3.png);"></div>
 				<div class="carousel-caption">
-					<h2>커튼은 전국 대학생들이 같은 전공 사람들끼리, 같은 대학 사람들끼리 <br/>
-					공개적으로 말하기 어려운 고민과 생각을 나눌 수 있는 익명 커뮤니티입니다.</h2>
+					<h2>
+					</h2>
 				</div>
 			</div>
 			<div class="item">
-				<div class="fill" style="background-image: url(/resource/img/3.jpg);"></div>
+				<div class="fill" style="background-image: url(/resource/img/1.png);"></div>
 				<div class="carousel-caption">
-					<h2>커튼은 전국 대학생들이 같은 전공 사람들끼리, 같은 대학 사람들끼리 <br/>
-					공개적으로 말하기 어려운 고민과 생각을 나눌 수 있는 익명 커뮤니티입니다.</h2>
+					<h2></h2>
 				</div>
 			</div>
 		</div>

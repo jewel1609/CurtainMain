@@ -100,17 +100,16 @@
 		}, 5); */
 	}
 </script>
-	
-		<div class="w3-row">
-			<div class="w3-col m7 wrapper"
-        	 style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#F3F3F3; ">
-         
+
+   <div class="w3-row" >
+      <div class="w3-col m7 wrapper"
+         style="border-right:1px solid #bababa; margin-left: 334px; margin-right: 100px; height: 905px; overflow: auto; background-color:#F3F3F3;">
+       	
 				<!-- 게시판 헤더 -->
 
-					  <div class="w3-row" style="border-bottom: 1px solid #bababa;">
-						 <div class="w3-margin-4" style="float:left; padding-left:30px;">
-
-								<h2>도움말</h2>
+		 <div class="w3-row" style="border-bottom: 1px solid #bababa;">
+				 <div class="w3-margin-4" style="float:left; padding-left:30px;">
+									<h2>도움말</h2>
 						</div>
 						<div style="float:left; padding:30px 0 0 20px;">
 							    커튼의 서비스에 대해 자주 묻는 질문들 입니다. 궁금하신 서비스를 선택해주세요.
@@ -167,68 +166,66 @@
 								</div>
 							</div>
 						</div>
-						
-						<div class="w3-row" style="border-bottom: 1px solid #bababa; border-top:1px solid #bababa; margin-bottom:10px;">
-							<div class="w3-margin-4" style="float:left; padding-left:10px;">
-								<h2>내가 한 질문들</h2>
-							</div>
-							<div style="float: left; padding: 20px; margin-top:10px;">
-								<p>커튼의 서비스에 대한 회원님의 질문입니다.</p>
-							</div>
+						</div>
 						</div>
 						
-						<div style="clear: both;"></div>
 						
-						<div style="height:150px; padding:10px;">
-							
-							<div class="w3-container w3-card w3-round-large w3-white" style="margin-bottom: 10px; padding: 10px;" >
-								<div id="btnFirstFAQ" style="padding-top:10px;">
-									<div style="float:left;">
-										<ul>
-											<li><h4 style="display: inline;">내가 질문한 글 보기</h4></li>
-										</ul>
-									</div>
-								
-								</div>
-								<form class="btnFormByFreuentlyAskedQuestion">
-									<div id="btnMyQuestion" class="btn btn-default" style="float:right;">
-										확인하기
-									</div>
-								</form>
-							</div>							
-					    </div>
-
-						<div class="w3-row" style="border-bottom: 1px solid #bababa; border-top:1px solid #bababa; margin-bottom:10px;">
-							<div class="w3-margin-4" style="float:left; padding-left:10px;">
-								<h2>문의하기</h2>
-							</div>
-							<div style="float: left; padding: 20px; margin-top:10px;">
-								<p>이용하시면서 불편한 사항이나 개선점이 있다면 언제든지 알려주세요.</p>
-							</div>
-						</div>
-						
-						<div style="clear: both;"></div>
-						
-						<div style="height:100px; padding:10px;">
-							
-							<div class="w3-container w3-card w3-round-large w3-white" style="margin-bottom: 10px; padding: 10px;" >
-								<div id="btnFirstFAQ" style="padding-top:10px;">
-									<div style="float:left;">
-										<ul>
-											<li><h4 style="display: inline;">궁금한 항목에 대한 도움말이 없으시다면, 커튼고객센터로 문의해 주세요.</h4></li>
-										</ul>
-									</div>
-								
-								</div>
-								<form class="btnFormByFreuentlyAskedQuestion">
-									<div id="btnDoRegisterQuestion" class="btn btn-default" style="float: right;">
-										문의하기
-									</div>
-								</form>
-							</div>							
-					    </div>
-
+     		 <div class="w3-row" style="border-bottom: 1px solid #bababa;">
+				 <div class="w3-margin-4" style="float:left; padding-left:30px;">
+					<h2>내가 한 질문들</h2>
+				</div>
+				<div style="float: left; padding: 20px; margin-top:10px;">
+					<p>커튼의 서비스에 대한 회원님의 질문입니다.</p>
 				</div>
 			</div>
-		</div>
+											
+			<div style="height:120px; padding:10px;">
+							
+				<div class="w3-container w3-card w3-round-large w3-white w3-margin" style="margin-bottom: 10px; padding: 10px;" >
+					<div id="btnFirstFAQ" style="padding-top:10px;">
+						<div style="float:left;">
+							<ul>
+								<li><h4 style="display: inline;">내가 질문한 글 보기</h4></li>
+							</ul>
+						</div>
+					
+					</div>
+					<form class="btnFormByFreuentlyAskedQuestion">
+						<div id="btnMyQuestion" class="btn btn-default" style="float:right;">
+							확인하기
+						</div>
+					</form>
+				</div>							
+		    </div>
+
+			<div class="w3-row" style="border-bottom: 1px solid #bababa; border-top:1px solid #bababa; margin-bottom:10px;">
+				<div class="w3-margin-4" style="float:left; padding-left:30px;">
+					<h2>문의하기</h2>
+				</div>
+				<div style="float: left; padding: 20px; margin-top:10px;">
+					<p>이용하시면서 불편한 사항이나 개선점이 있다면 언제든지 알려주세요.</p>
+				</div>
+			</div>
+						
+			<div style="height:100px; padding:10px;">
+							
+				<div class="w3-container w3-card w3-round-large w3-white w3-margin" style="margin-bottom: 10px; padding: 10px;" >
+					<div id="btnFirstFAQ" style="padding-top:10px;">
+						<div style="float:left;">
+							<ul>
+								<li><h4 style="display: inline;">궁금한 항목에 대한 도움말이 없으시다면, 커튼고객센터로 문의해 주세요.</h4></li>
+							</ul>
+						</div>
+					
+					</div>
+			<form class="btnFormByFreuentlyAskedQuestion">
+			<div id="btnDoRegisterQuestion" class="btn btn-default" style="float: right;">
+				문의하기
+			</div>
+		</form>
+	</div>							
+   </div>
+
 	</div>
+</div>
+

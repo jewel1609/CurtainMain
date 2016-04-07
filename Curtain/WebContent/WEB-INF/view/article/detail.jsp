@@ -199,6 +199,11 @@ $(document).ready(function () {
 			return;
 		}
 		
+		if( $("#replyDesc").val().length > 100) {
+			alert("100자 이내로 입력해주세요.");
+			return;
+		}
+		
 		var form = $("#writeReplyForm");
 		form.attr("method", "post");
 		form.attr("action", "/doWriteReply");

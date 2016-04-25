@@ -13,6 +13,11 @@ public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
 	}
 
 	@Override
+	public void deleteOneArticle(String articleId) {
+		getSqlSession().delete("ArticleDAO.deleteOneArticle", articleId);
+	}
+
+	@Override
 	public int modifyOneArticle(ArticleVO articleVO) {
 		return getSqlSession().update("ArticleDAO.modifyOneArticle", articleVO);
 	}

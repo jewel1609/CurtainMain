@@ -31,6 +31,11 @@ public class ArticleController {
 		return articleService.getOneArticle(articleId);
 	}
 	
+	@RequestMapping("/delete/{articleId}")
+	public ModelAndView deleteOneArticle(@PathVariable String articleId) {
+		return articleService.deleteOneArticle(articleId);
+	}
+	
 	@RequestMapping("/modify/{articleId}")
 	public ModelAndView viewModifyPage(@PathVariable String articleId){
 		return articleService.getOneArticle(articleId);

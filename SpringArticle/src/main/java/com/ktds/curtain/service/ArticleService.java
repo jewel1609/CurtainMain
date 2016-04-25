@@ -9,12 +9,14 @@ public interface ArticleService {
 
 	public ModelAndView getOneArticle(String articleId);
 
+	public ModelAndView viewWritePage();
+
+	public ModelAndView insertNewArticle(ArticleVO articleVO, Errors errors);
+	
 	public ModelAndView getAllList(int pageNo);
 	
 	public ModelAndView deleteOneArticle(String articleId);
 
 	public ModelAndView modifyOneArticle(ArticleVO articleVO, Errors errors);
 
-	public ModelAndView viewWritePage();
-	
 }

@@ -33,5 +33,11 @@
 	
 	</select>
 	
+	<delete id="deleteOneArticle" parameterType="string">
+		DELETE
+		FROM	ARTICLE
+		WHERE	ARTICLE_ID = #{articleId}
+	</delete>
+	
 
 </mapper>

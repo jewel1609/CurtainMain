@@ -8,6 +8,9 @@ public interface ArticleService {
 
 	public ModelAndView getOneArticle(String articleId);
 
+	public ModelAndView deleteOneArticle(String articleId);
+	
+
 	public ModelAndView modifyOneArticle(ArticleVO articleVO);
 
 	public ModelAndView viewWritePage();

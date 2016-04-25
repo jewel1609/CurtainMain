@@ -6,6 +6,8 @@ public interface ArticleDAO {
 
 	public ArticleVO getOneArticle(String articleId);
 
+	public int getTotalCount();
+
 	public void deleteOneArticle(String articleId);
 
 	public int modifyOneArticle(ArticleVO articleVO);

@@ -2,7 +2,11 @@ package com.ktds.curtain.biz.impl;
 
 import com.ktds.curtain.biz.ArticleBiz;
 import com.ktds.curtain.dao.ArticleDAO;
+import com.ktds.curtain.vo.ArticleListVO;
+import com.ktds.curtain.vo.ArticleSearchVO;
 import com.ktds.curtain.vo.ArticleVO;
+
+import kr.co.hucloud.utilities.web.Paging;
 
 public class ArticleBizImpl implements ArticleBiz {
 
@@ -17,6 +21,26 @@ public class ArticleBizImpl implements ArticleBiz {
 		return articleDAO.getOneArticle(articleId);
 	}
 
+
+	@Override
+	public ArticleListVO getAllList(int pageNo) {
+		ArticleListVO articleListVO = new ArticleListVO();
+		Paging paging = new Paging();
+		articleListVO.setPaging(paging);
+		// 토탈 리스트 수
+		int totalCount = articleDAO.getTotalCount();
+		paging.setTotalArticleCount(totalCount);
+		paging.setPageNumber(pageNo + " ");
+		
+		ArticleSearchVO articleSearchVO = new ArticleSearchVO();
+		articleSearchVO.setPageNo(pageNo);
+		articleSearchVO.setStartIndex(paging.getStartArticleNumber());
+		articleSearchVO.setEndIndex(paging.getEndArticleNumber());
+		
+		
+		return null;
+	}
+
 	@Override
 	public void deleteOneArticle(String articleId) {
 		articleDAO.deleteOneArticle(articleId);
@@ -26,5 +50,6 @@ public class ArticleBizImpl implements ArticleBiz {
 	public boolean modifyOneArticle(ArticleVO articleVO) {
 		return articleDAO.modifyOneArticle(articleVO) > 0;
 	}
+
 	
 }

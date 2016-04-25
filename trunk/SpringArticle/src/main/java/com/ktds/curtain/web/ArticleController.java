@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.curtain.service.ArticleService;
@@ -31,6 +32,11 @@ public class ArticleController {
 		return articleService.getOneArticle(articleId);
 	}
 	
+	@RequestMapping("/list")
+	public ModelAndView viewListPage(@RequestParam(required=false, defaultValue="0") int pageNo) {
+		return articleService.getAllList(pageNo);
+	}
+	
 	@RequestMapping("/delete/{articleId}")
 	public ModelAndView deleteOneArticle(@PathVariable String articleId) {
 		return articleService.deleteOneArticle(articleId);
@@ -45,5 +51,5 @@ public class ArticleController {
 	public ModelAndView doModifyAction(@Valid ArticleVO articleVO, Errors errors){
 		return articleService.modifyOneArticle(articleVO);
 	}
-	
+
 }

@@ -13,6 +13,12 @@ public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
 	}
 
 	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
 	public void deleteOneArticle(String articleId) {
 		getSqlSession().delete("ArticleDAO.deleteOneArticle", articleId);
 	}
@@ -21,7 +27,6 @@ public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
 	public int modifyOneArticle(ArticleVO articleVO) {
 		return getSqlSession().update("ArticleDAO.modifyOneArticle", articleVO);
 	}
-	
 	
 	
 }

@@ -1,5 +1,6 @@
 package com.ktds.curtain.service.impl;
 
+import org.springframework.validation.Errors;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.curtain.biz.ArticleBiz;
@@ -50,18 +51,27 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public ModelAndView modifyOneArticle(ArticleVO articleVO) {
+	public ModelAndView modifyOneArticle(ArticleVO articleVO, Errors errors) {
 		
-		boolean result = articleBiz.modifyOneArticle(articleVO);
-		if( result ) {
-			
-		}
-		else {
-			throw new RuntimeException("에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
-		}
+		// 기존의 제목이랑 수정된 제목이 같은지 비교
+		//뿌려주는 값이랑 새로 articleVO를 만들어서 받아온거를 set한다음에 
+		// 기존의 내용이랑 수정된 내용이 같은지 비교
 		
 		ModelAndView view = new ModelAndView();
-		view.setViewName("article/detail");
+		if( errors.hasErrors() ) {
+			view.setViewName("article/detail");
+			view.addObject("articleVO", articleVO);
+			return view;
+		}
+		else {
+			boolean result = articleBiz.modifyOneArticle(articleVO);
+			if ( result ) { 
+				view.setViewName("redirect:/detail");
+			}
+			else { 
+				throw new RuntimeException("에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
+			}
+		}
 		return view;
 	}
 

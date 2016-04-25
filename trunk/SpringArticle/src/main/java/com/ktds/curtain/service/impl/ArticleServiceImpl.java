@@ -28,5 +28,12 @@ public class ArticleServiceImpl implements ArticleService{
 		
 	}
 	
+	@Override
+	public ModelAndView viewWritePage() {
+		ModelAndView view = new ModelAndView();
+		view.setViewName("article/write");
+		return view;
+	}
+	
 	
 }

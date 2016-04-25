@@ -18,6 +18,11 @@ public class ArticleBizImpl implements ArticleBiz {
 	}
 
 	@Override
+	public void deleteOneArticle(String articleId) {
+		articleDAO.deleteOneArticle(articleId);
+	}
+
+	@Override
 	public boolean modifyOneArticle(ArticleVO articleVO) {
 		return articleDAO.modifyOneArticle(articleVO) > 0;
 	}

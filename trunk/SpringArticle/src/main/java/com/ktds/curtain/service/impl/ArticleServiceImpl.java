@@ -29,6 +29,17 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
+	public ModelAndView deleteOneArticle(String articleId) {
+		
+		ModelAndView view = new ModelAndView();
+		articleBiz.deleteOneArticle(articleId);
+		
+		view.setViewName("redirect:/list");
+		
+		return view;
+	}
+
+	@Override
 	public ModelAndView modifyOneArticle(ArticleVO articleVO) {
 		
 		boolean result = articleBiz.modifyOneArticle(articleVO);

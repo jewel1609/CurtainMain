@@ -16,9 +16,9 @@ public class ArticleController {
 		this.articleService = articleService;
 	}
 
-	@RequestMapping("/list")
+	@RequestMapping("/write")
 	public ModelAndView viewWritePage () {
-		return null;
+		return articleService.viewWritePage();
 	}
 	
 	@RequestMapping("/detail/{articleId}")

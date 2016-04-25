@@ -24,6 +24,11 @@ public class ArticleBizImpl implements ArticleBiz {
 		return articleDAO.getOneArticle(articleId);
 	}
 
+	@Override
+	public boolean insertNewArticle(ArticleVO articleVO) {
+		return false;
+	}
+
 
 	@Override
 	public ArticleListVO getAllList(int pageNo) {
@@ -58,5 +63,4 @@ public class ArticleBizImpl implements ArticleBiz {
 		return articleDAO.modifyOneArticle(articleVO) > 0;
 	}
 
-	
 }

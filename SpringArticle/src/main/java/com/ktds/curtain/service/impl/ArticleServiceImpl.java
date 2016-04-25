@@ -28,6 +28,16 @@ public class ArticleServiceImpl implements ArticleService{
 		
 	}
 
+
+	@Override
+	public ModelAndView getAllList(int pageNo) {
+		ModelAndView view = new ModelAndView();
+		view.setViewName("article/list");
+		view.addObject("articleListVO", articleBiz.getAllList(pageNo));
+		return view;
+	}
+
+
 	@Override
 	public ModelAndView deleteOneArticle(String articleId) {
 		
@@ -54,6 +64,7 @@ public class ArticleServiceImpl implements ArticleService{
 		view.setViewName("article/detail");
 		return view;
 	}
+
 	
 	@Override
 	public ModelAndView viewWritePage() {

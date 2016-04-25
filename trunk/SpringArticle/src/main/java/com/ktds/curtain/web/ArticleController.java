@@ -45,4 +45,5 @@ public class ArticleController {
 	public ModelAndView doModifyAction(@Valid ArticleVO articleVO, Errors errors){
 		return articleService.modifyOneArticle(articleVO);
 	}
+	
 }

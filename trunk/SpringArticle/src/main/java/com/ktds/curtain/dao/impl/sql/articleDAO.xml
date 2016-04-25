@@ -20,7 +20,6 @@
 	WHERE  	ARTICLE_ID     = #{}
 	</update>
 
-
 	<select id="getOneArticle" parameterType="string" resultType="ArticleVO">
 		SELECT	ARTICLE_ID articleId
 					, ARTICLE_NUMBER articleNumber

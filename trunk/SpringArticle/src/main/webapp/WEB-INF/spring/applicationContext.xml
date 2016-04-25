@@ -22,9 +22,9 @@
 	<bean id="customExceptionHandler" class="com.ktds.curtain.handler.CustomExceptionHandler" />
 	
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-
-	<bean id="articleController" class="com.ktds.curtain.web.ArticleController">
 		
+	<bean id="articleController" class="com.ktds.curtain.web.ArticleController">
+		<property name="articleService" ref="articleService"></property>
 	</bean>
 
 </beans>

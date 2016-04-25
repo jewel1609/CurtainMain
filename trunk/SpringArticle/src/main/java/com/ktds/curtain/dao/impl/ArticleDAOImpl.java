@@ -1,5 +1,10 @@
 package com.ktds.curtain.dao.impl;
 
-public class ArticleDAOImpl {
+import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import com.ktds.curtain.dao.ArticleDAO;
+
+public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
+
+	
 }

@@ -23,6 +23,8 @@
 	
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
-
+	<bean id="articleController" class="com.ktds.curtain.web.ArticleController">
+		
+	</bean>
 
 </beans>

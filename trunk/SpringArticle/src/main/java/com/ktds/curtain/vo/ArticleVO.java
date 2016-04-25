@@ -1,11 +1,15 @@
 package com.ktds.curtain.vo;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class ArticleVO {
 	
 	private String articleId;
 	private int articleNumber;
+	@NotEmpty (message="제목을 입력해주세요.")
 	private String subject;
 	private String description;
+	@NotEmpty (message="글 쓴이를 입력해주세요.")
 	private String writer;
 	private String createdDate;
 	private String modifiedDate;

@@ -16,5 +16,10 @@ public class ArticleBizImpl implements ArticleBiz {
 	public ArticleVO getOneArticle(String articleId) {
 		return articleDAO.getOneArticle(articleId);
 	}
+
+	@Override
+	public boolean modifyOneArticle(ArticleVO articleVO) {
+		return articleDAO.modifyOneArticle(articleVO) > 0;
+	}
 	
 }

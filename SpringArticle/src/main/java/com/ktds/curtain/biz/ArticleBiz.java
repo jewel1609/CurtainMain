@@ -6,4 +6,6 @@ public interface ArticleBiz {
 
 	public ArticleVO getOneArticle(String articleId);
 
+	public boolean modifyOneArticle(ArticleVO articleVO);
+
 }

@@ -11,6 +11,11 @@ public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
 	public ArticleVO getOneArticle(String articleId) {
 		return getSqlSession().selectOne("ArticleDAO.getOneArticle",articleId);
 	}
+
+	@Override
+	public int modifyOneArticle(ArticleVO articleVO) {
+		return getSqlSession().update("ArticleDAO.modifyOneArticle", articleVO);
+	}
 	
 	
 	

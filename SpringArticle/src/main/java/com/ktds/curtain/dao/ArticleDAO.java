@@ -1,5 +1,8 @@
 package com.ktds.curtain.dao;
 
+import java.util.List;
+
+import com.ktds.curtain.vo.ArticleSearchVO;
 import com.ktds.curtain.vo.ArticleVO;
 
 public interface ArticleDAO {
@@ -11,4 +14,6 @@ public interface ArticleDAO {
 	public void deleteOneArticle(String articleId);
 
 	public int modifyOneArticle(ArticleVO articleVO);
+
+	public List<ArticleVO> getAllList(ArticleSearchVO articleSearchVO);
 }

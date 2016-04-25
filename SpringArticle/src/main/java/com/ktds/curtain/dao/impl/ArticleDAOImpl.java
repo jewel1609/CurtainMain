@@ -1,8 +1,11 @@
 package com.ktds.curtain.dao.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import com.ktds.curtain.dao.ArticleDAO;
+import com.ktds.curtain.vo.ArticleSearchVO;
 import com.ktds.curtain.vo.ArticleVO;
 
 public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
@@ -14,8 +17,7 @@ public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
 
 	@Override
 	public int getTotalCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getSqlSession().selectOne("ArticleDAO.getTotalCount");
 	}
 	
 	@Override
@@ -26,6 +28,11 @@ public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
 	@Override
 	public int modifyOneArticle(ArticleVO articleVO) {
 		return getSqlSession().update("ArticleDAO.modifyOneArticle", articleVO);
+	}
+
+	@Override
+	public List<ArticleVO> getAllList(ArticleSearchVO articleSearchVO) {
+		return getSqlSession().selectList("ArticleDAO.getAllList", articleSearchVO);
 	}
 	
 	

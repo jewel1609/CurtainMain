@@ -27,6 +27,22 @@ public class ArticleServiceImpl implements ArticleService{
 		return view;
 		
 	}
+
+	@Override
+	public ModelAndView modifyOneArticle(ArticleVO articleVO) {
+		
+		boolean result = articleBiz.modifyOneArticle(articleVO);
+		if( result ) {
+			
+		}
+		else {
+			throw new RuntimeException("에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
+		}
+		
+		ModelAndView view = new ModelAndView();
+		view.setViewName("article/detail");
+		return view;
+	}
 	
 	@Override
 	public ModelAndView viewWritePage() {

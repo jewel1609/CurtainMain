@@ -1,5 +1,8 @@
 package com.ktds.curtain.biz.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ktds.curtain.biz.ArticleBiz;
 import com.ktds.curtain.dao.ArticleDAO;
 import com.ktds.curtain.vo.ArticleListVO;
@@ -37,8 +40,12 @@ public class ArticleBizImpl implements ArticleBiz {
 		articleSearchVO.setStartIndex(paging.getStartArticleNumber());
 		articleSearchVO.setEndIndex(paging.getEndArticleNumber());
 		
+		List<ArticleVO> articleList = new ArrayList<ArticleVO>();
+		articleList = articleDAO.getAllList(articleSearchVO);
 		
-		return null;
+		articleListVO.setArticleList(articleList);
+		
+		return articleListVO;
 	}
 
 	@Override

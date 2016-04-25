@@ -49,7 +49,7 @@ public class ArticleController {
 	
 	@RequestMapping("/doModifyAction")
 	public ModelAndView doModifyAction(@Valid ArticleVO articleVO, Errors errors){
-		return articleService.modifyOneArticle(articleVO);
+		return articleService.modifyOneArticle(articleVO, errors);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.ktds.curtain.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +19,11 @@ public class ArticleController {
 	@RequestMapping("/list")
 	public ModelAndView viewWritePage () {
 		return null;
+	}
+	
+	@RequestMapping("/detail/{articleId}")
+	public ModelAndView viewDetailPage(@PathVariable String articleId){
+		return articleService.getOneArticle(articleId);
 	}
 	
 }

@@ -82,6 +82,19 @@ public class ArticleServiceImpl implements ArticleService{
 		view.setViewName("article/write");
 		return view;
 	}
-	
+
+	@Override
+	public ModelAndView insertNewArticle(ArticleVO articleVO, Errors errors) {
+		ModelAndView view = new ModelAndView();
+		if (errors.hasErrors()) {
+			view.setViewName("redirect:/write");
+			view.addObject("articleVO", articleVO);
+		}
+		else {
+			view.setViewName("article/list");
+			boolean result = articleBiz.insertNewArticle(articleVO);
+		}
+		return view;
+	}
 	
 }

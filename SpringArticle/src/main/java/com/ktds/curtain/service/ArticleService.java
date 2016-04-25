@@ -15,5 +15,4 @@ public interface ArticleService {
 
 	public ModelAndView viewWritePage();
 	
-	
 }

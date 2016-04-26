@@ -34,6 +34,11 @@ public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
 	public List<ArticleVO> getAllList(ArticleSearchVO articleSearchVO) {
 		return getSqlSession().selectList("ArticleDAO.getAllList", articleSearchVO);
 	}
+
+	@Override
+	public int doRecommendArticle(String articleId) {
+		return getSqlSession().update("ArticleDAO.doRecommendArticle", articleId);
+	}
 	
 	
 }

@@ -32,6 +32,7 @@
 					, WRITER writer
 					, CREATED_DATE createdDate
 					, MODIFIED_DATE modifiedDate
+					, RECOMMEND recommend
 			FROM	ARTICLE
 			WHERE	ARTICLE_ID = #{articleId}
 	
@@ -69,5 +70,10 @@
 		WHERE	RNUM >= #{startIndex}
 	</select>
 	
+	<update id="doRecommendArticle" parameterType="string">
+		UPDATE ARTICLE
+		SET    RECOMMEND = RECOMMEND + 1
+		WHERE  ARTICLE_ID = #{articleId}
+	</update>
 
 </mapper>

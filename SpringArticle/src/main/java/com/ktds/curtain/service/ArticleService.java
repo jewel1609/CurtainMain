@@ -21,4 +21,6 @@ public interface ArticleService {
 
 	public ModelAndView viewModifyPage(String articleId);
 
+	public ModelAndView doRecommendArticle(String articleId);
+
 }

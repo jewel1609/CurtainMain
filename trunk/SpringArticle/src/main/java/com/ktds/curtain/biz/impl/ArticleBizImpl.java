@@ -89,4 +89,9 @@ public class ArticleBizImpl implements ArticleBiz {
 		return articleDAO.doRecommendArticle(articleId) > 0;
 	}
 
+	@Override
+	public boolean doAddHitAction(String articleId) {
+		return articleDAO.doAddHitAction(articleId) > 0;
+	}
+
 }

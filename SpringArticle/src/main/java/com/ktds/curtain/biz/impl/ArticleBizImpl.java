@@ -38,7 +38,7 @@ public class ArticleBizImpl implements ArticleBiz {
 		// 토탈 리스트 수
 		int totalCount = articleDAO.getTotalCount();
 		paging.setTotalArticleCount(totalCount);
-		paging.setPageNumber(pageNo + " ");
+		paging.setPageNumber(pageNo + "");
 		
 		ArticleSearchVO articleSearchVO = new ArticleSearchVO();
 		articleSearchVO.setPageNo(pageNo);

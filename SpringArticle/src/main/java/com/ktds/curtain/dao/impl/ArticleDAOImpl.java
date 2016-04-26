@@ -39,6 +39,11 @@ public class ArticleDAOImpl extends SqlSessionDaoSupport implements ArticleDAO {
 	public int doRecommendArticle(String articleId) {
 		return getSqlSession().update("ArticleDAO.doRecommendArticle", articleId);
 	}
+
+	@Override
+	public int doAddHitAction(String articleId) {
+		return getSqlSession().update("ArticleDAO.doAddHitAction", articleId);
+	}
 	
 	
 }

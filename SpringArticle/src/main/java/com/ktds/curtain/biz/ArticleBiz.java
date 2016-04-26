@@ -17,4 +17,6 @@ public interface ArticleBiz {
 
 	public boolean doRecommendArticle(String articleId);
 
+	public boolean doAddHitAction(String articleId);
+
 }

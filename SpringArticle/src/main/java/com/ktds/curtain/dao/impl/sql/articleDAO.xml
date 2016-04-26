@@ -33,6 +33,7 @@
 					, CREATED_DATE createdDate
 					, MODIFIED_DATE modifiedDate
 					, RECOMMEND recommend
+					, HIT hit
 			FROM	ARTICLE
 			WHERE	ARTICLE_ID = #{articleId}
 	
@@ -75,5 +76,10 @@
 		SET    RECOMMEND = RECOMMEND + 1
 		WHERE  ARTICLE_ID = #{articleId}
 	</update>
-
+	
+	<update id="doAddHitAction" parameterType="string">
+		UPDATE ARTICLE
+		SET    HIT = HIT + 1
+		WHERE  ARTICLE_ID = #{articleId}
+	</update>
 </mapper>

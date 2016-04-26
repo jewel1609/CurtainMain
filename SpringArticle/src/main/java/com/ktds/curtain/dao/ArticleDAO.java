@@ -18,4 +18,6 @@ public interface ArticleDAO {
 	public List<ArticleVO> getAllList(ArticleSearchVO articleSearchVO);
 
 	public int doRecommendArticle(String articleId);
+
+	public int doAddHitAction(String articleId);
 }

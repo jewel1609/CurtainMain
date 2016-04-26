@@ -14,6 +14,15 @@ public class ArticleVO {
 	private String createdDate;
 	private String modifiedDate;
 	private String recommend;
+	private int hit;
+
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 
 	public String getRecommend() {
 		return recommend;

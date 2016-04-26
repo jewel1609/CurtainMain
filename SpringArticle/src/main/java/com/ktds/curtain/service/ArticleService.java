@@ -23,4 +23,6 @@ public interface ArticleService {
 
 	public ModelAndView doRecommendArticle(String articleId);
 
+	public ModelAndView doAddHitAction(String articleId);
+
 }

@@ -25,7 +25,12 @@ public class ArticleController {
 	public ModelAndView viewWritePage () {
 		return articleService.viewWritePage();
 	}
-	
+
+	@RequestMapping("/addHit/{articleId}")
+	public ModelAndView doAddHitAction(@PathVariable String articleId){
+		return articleService.doAddHitAction(articleId);
+	}
+		
 	@RequestMapping("/detail/{articleId}")
 	public ModelAndView viewDetailPage(@PathVariable String articleId){
 		return articleService.getOneArticle(articleId);

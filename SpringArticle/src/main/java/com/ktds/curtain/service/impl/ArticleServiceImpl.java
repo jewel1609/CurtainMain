@@ -116,4 +116,19 @@ public class ArticleServiceImpl implements ArticleService {
 		return view;
 	}
 
+	@Override
+	public ModelAndView doAddHitAction(String articleId) {
+		
+		ModelAndView view = new ModelAndView();
+		boolean result = articleBiz.doAddHitAction(articleId);
+		
+		if( result ) {
+			view.setViewName("redirect:/detail/" + articleId);
+		}
+		else {
+			throw new RuntimeException("에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
+		}
+		return view;
+	}
+
 }

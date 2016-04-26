@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ktds.curtain.service.ArticleService;
 import com.ktds.curtain.vo.ArticleVO;
 
-
 @Controller
 public class ArticleController {
 	
@@ -30,6 +29,11 @@ public class ArticleController {
 	@RequestMapping("/detail/{articleId}")
 	public ModelAndView viewDetailPage(@PathVariable String articleId){
 		return articleService.getOneArticle(articleId);
+	}
+	
+	@RequestMapping("/doWriteAction")
+	public ModelAndView doWriteAction(@Valid ArticleVO articleVO, Errors errors){
+		return articleService.insertNewArticle(articleVO, errors);
 	}
 	
 	@RequestMapping("/list")

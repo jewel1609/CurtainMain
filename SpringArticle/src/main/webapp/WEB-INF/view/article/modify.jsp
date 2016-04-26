@@ -13,7 +13,7 @@
 	글쓴이 : ${article.writer }<br/>
 	<input type="text" name="subject" placeholder="글 제목을 입력하세요."/>${article.subject }<br/>
 	<textarea name="description" placeholder="글 내용을 입력하세요.">${article.description }</textarea>
-	<input type="submit" value="수정하기" />
+	<input type="submit" value="수정" />
 	<input type="reset" value="취소" />
 </form:form>
 </body>

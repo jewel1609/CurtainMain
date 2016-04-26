@@ -9,14 +9,13 @@
 </head>
 <body>
 
-<form:form commandName="ArticleVO" method="post" action="/doWrtieAction" >
+<form:form commandName="ArticleVO" method="post" action="/SpringArticle/doWriteAction" >
 	<input type="text" name="subject" placeholder="글 제목을 입력하세요."/><br/>
-	<form:errors message="으앙 !!?"/>
+	<form:errors path="subject"/>
 	<input type="text" name="writer" placeholder="글 쓴이를 입력하세요."/><br/>
-	
-	
+	<form:errors path="writer"/>
 	<textarea name="description" placeholder="글 내용을 입력하세요."></textarea>
-	
+	<input type="submit" value="제출" />
 </form:form>
 </body>
 </html>

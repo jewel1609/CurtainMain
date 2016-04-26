@@ -11,7 +11,7 @@
 <c:forEach items="${articleListVO.articleList}" var="article">
 	${article.articleId} / 
 	${article.articleNumber} / 
-	${article.subject} / 
+	<a href="/SpringArticle/detail/${article.articleId}">${article.subject}</a> / 
 	${article.writer} / 
 	${article.createdDate} / 
 	${article.modifiedDate}

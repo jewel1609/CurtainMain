@@ -6,6 +6,7 @@ import com.ktds.curtain.vo.ArticleVO;
 public interface ArticleBiz {
 
 	public ArticleVO getOneArticle(String articleId);
+	
 	public boolean insertNewArticle(ArticleVO articleVO);
 
 	public ArticleListVO getAllList(int pageNo);

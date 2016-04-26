@@ -48,7 +48,7 @@ public class ArticleController {
 	
 	@RequestMapping("/modify/{articleId}")
 	public ModelAndView viewModifyPage(@PathVariable String articleId){
-		return articleService.getOneArticle(articleId);
+		return articleService.viewModifyPage(articleId);
 	}
 	
 	@RequestMapping("/doModifyAction")

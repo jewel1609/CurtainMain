@@ -19,4 +19,6 @@ public interface ArticleService {
 
 	public ModelAndView modifyOneArticle(ArticleVO articleVO, Errors errors);
 
+	public ModelAndView viewModifyPage(String articleId);
+
 }

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="/SpringBoard/js/jquery-1.12.1.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>

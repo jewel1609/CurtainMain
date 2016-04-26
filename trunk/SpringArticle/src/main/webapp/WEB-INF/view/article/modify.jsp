@@ -9,9 +9,11 @@
 </head>
 <body>
 
-<form:form commandName="ArticleVO" method="post" action="/doModifyAction" >
+<form:form commandName="ArticleVO" method="post" action="/SpringArticle/doModifyAction" >
 	글쓴이 : ${article.writer }<br/>
-	<input type="text" name="subject" placeholder="글 제목을 입력하세요."/>${article.subject }<br/>
+	<input type="hidden" name="articleId" value= "${article.articleId}" />
+	<input type="hidden" name="writer" value= "${article.writer}" />
+	<input type="text" name="subject" placeholder="글 제목을 입력하세요." value="${article.subject }"/><br/>
 	<textarea name="description" placeholder="글 내용을 입력하세요.">${article.description }</textarea>
 	<input type="submit" value="수정" />
 	<input type="reset" value="취소" />

@@ -10,16 +10,19 @@
 		FROM	DUAL
 	</select>
 
-<!-- 
-	<update id="updateOneArticle" parameterType="ArticleVO">
-	UPDATE	ARTICLE
-	SET		SUBJECT        = #{},
-	       	DESCRIPTION    = #{},
-	       	WRITER         = #{},
-	       	MODIFIED_DATE  = SYSDATE
-	WHERE  	ARTICLE_ID     = #{}
+
+	<update id="modifyOneArticle" parameterType="ArticleVO">
+		UPDATE	ARTICLE
+		SET		MODIFIED_DATE  = SYSDATE
+		<if test="subject != null and subject != ''">
+				, SUBJECT =  #{subject}
+		</if>
+		<if test="description != null and description != ''">
+				, DESCRIPTION = #{description}
+		</if>
+		WHERE  	ARTICLE_ID = #{articleId}
 	</update>
- -->
+
 
 	<select id="getOneArticle" parameterType="string" resultType="ArticleVO">
 		SELECT	ARTICLE_ID articleId

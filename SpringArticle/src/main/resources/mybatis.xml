@@ -10,7 +10,5 @@
 
 	<mappers>
 		<mapper resource="/com/ktds/curtain/dao/impl/sql/articleDAO.xml"/>
-		<mapper class=""/> 
-
 	</mappers>
 </configuration>

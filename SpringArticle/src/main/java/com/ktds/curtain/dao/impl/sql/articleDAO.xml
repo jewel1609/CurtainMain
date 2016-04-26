@@ -10,7 +10,7 @@
 		FROM	DUAL
 	</select>
 
-
+<!-- 
 	<update id="updateOneArticle" parameterType="ArticleVO">
 	UPDATE	ARTICLE
 	SET		SUBJECT        = #{},
@@ -19,6 +19,7 @@
 	       	MODIFIED_DATE  = SYSDATE
 	WHERE  	ARTICLE_ID     = #{}
 	</update>
+ -->
 
 	<select id="getOneArticle" parameterType="string" resultType="ArticleVO">
 		SELECT	ARTICLE_ID articleId
@@ -38,6 +39,32 @@
 		FROM	ARTICLE
 		WHERE	ARTICLE_ID = #{articleId}
 	</delete>
+	
+	<select id="getTotalCount" resultType="_int">
+		SELECT	COUNT(ARTICLE_ID)
+		FROM	ARTICLE
+	</select>
+	
+	<select id="getAllList" parameterType="ArticleSearchVO" resultType="ArticleVO">
+		SELECT	ARTICLE_ID articleId
+				, ARTICLE_NUMBER articleNumber
+				, SUBJECT subject
+				, DESCRIPTION description
+				, WRITER writer
+				, CREATED_DATE createdDate
+				, MODIFIED_DATE modifiedDate
+		FROM	(
+					SELECT	ROWNUM AS RNUM
+							, ARTICLE.*
+					FROM	(
+								SELECT	*
+								FROM	ARTICLE
+								ORDER	BY ARTICLE_ID DESC
+							) ARTICLE
+					WHERE	ROWNUM <![CDATA[<]]>= #{endIndex}
+				)
+		WHERE	RNUM >= #{startIndex}
+	</select>
 	
 
 </mapper>

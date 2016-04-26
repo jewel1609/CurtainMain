@@ -15,4 +15,6 @@ public interface ArticleBiz {
 
 	public boolean modifyOneArticle(ArticleVO articleVO);
 
+	public boolean doRecommendArticle(String articleId);
+
 }

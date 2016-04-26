@@ -56,4 +56,8 @@ public class ArticleController {
 		return articleService.modifyOneArticle(articleVO, errors);
 	}
 
+	@RequestMapping("/recommend/{articleId}")
+	public ModelAndView doRecommendArticle(@PathVariable String articleId){
+		return articleService.doRecommendArticle(articleId);
+	}
 }

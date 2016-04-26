@@ -16,4 +16,6 @@ public interface ArticleDAO {
 	public int modifyOneArticle(ArticleVO articleVO);
 
 	public List<ArticleVO> getAllList(ArticleSearchVO articleSearchVO);
+
+	public int doRecommendArticle(String articleId);
 }

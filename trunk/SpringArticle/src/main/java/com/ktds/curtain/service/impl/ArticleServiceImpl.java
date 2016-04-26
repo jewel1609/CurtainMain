@@ -53,7 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
 		ModelAndView view = new ModelAndView();
 
 		if (errors.hasErrors()) {
-			view.setViewName("article/modify/" + articleVO.getArticleId());
+			view.setViewName("redirect:/modify/" + articleVO.getArticleId());
 			view.addObject("article", articleVO);
 		} else {
 			boolean result = articleBiz.modifyOneArticle(articleVO);
@@ -91,9 +91,28 @@ public class ArticleServiceImpl implements ArticleService {
 	public ModelAndView viewModifyPage(String articleId) {
 
 		ModelAndView view = new ModelAndView();
-		view.setViewName("article/modify");
 		ArticleVO article = articleBiz.getOneArticle(articleId);
+		view.setViewName("article/modify");
 		view.addObject("article", article);
+		return view;
+	}
+
+	@Override
+	public ModelAndView doRecommendArticle(String articleId) {
+		
+		ModelAndView view = new ModelAndView();
+		ArticleVO article = articleBiz.getOneArticle(articleId);
+		boolean result = articleBiz.doRecommendArticle(articleId);
+		
+		if ( result ) { 
+			//view.setViewName("redirect:/detail/" + articleVO.getArticleId());
+			
+			view.setViewName("redirect:/detail/" + articleId);
+			view.addObject("article", article);
+		}
+		else { 
+			throw new RuntimeException("에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
+		}
 		return view;
 	}
 

@@ -3,10 +3,14 @@
 		"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<typeAliases>
+<typeAliases>
+		<typeAlias type="com.ktds.curtain.vo.ArticleVO" alias="ArticleVO"/>
+		<typeAlias type="com.ktds.curtain.vo.ArticleSearchVO" alias="ArticleSearchVO"/>
 	</typeAliases>
 
 	<mappers>
+		<mapper resource="/com/ktds/curtain/dao/impl/sql/articleDAO.xml"/>
 		<mapper class=""/> 
+
 	</mappers>
 </configuration>

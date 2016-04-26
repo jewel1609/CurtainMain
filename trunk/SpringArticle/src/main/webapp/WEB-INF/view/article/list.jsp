@@ -8,7 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:forEach items="${articleListVO.articleList}" var="article">
+	${article.articleId} / 
+	${article.articleNumber} / 
+	${article.subject} / 
+	${article.writer} / 
+	${article.createdDate} / 
+	${article.modifiedDate}
+	<br/>
 
+</c:forEach>
+<form id="pageForm">
+	${articleListVO.paging.getPagingList("pageNo", "[@]", "이전", "다음", "pageForm")}
+</form>
 list page 입니다.
 
 </body>
